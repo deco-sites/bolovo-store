@@ -10,7 +10,7 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
   return (
     <li class="group flex items-center">
       <a href={url} class="flex px-4 py-3 relative">
-        <div class="menu-item relative flex items-center">
+        <div class="relative flex items-center">
           <Icon
             id="Bars3"
             size={22}
