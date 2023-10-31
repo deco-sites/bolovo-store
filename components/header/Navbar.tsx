@@ -13,10 +13,13 @@ import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
 
-function Navbar({ items, searchbar, logo }: {
+function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
   items: SiteNavigationElement[];
   searchbar?: SearchbarProps;
   logo?: { src: string; alt: string };
+  blogItem: {text: string; href: string};
+  helpItem: {text: string; href: string};
+  countryFlag: "World" | "Brazil" | "Spain" | "US";
 }) {
   const platform = usePlatform();
 
@@ -36,7 +39,7 @@ function Navbar({ items, searchbar, logo }: {
             style={{ minHeight: navbarHeight }}
             aria-label="Store logo"
           >
-            <Image src={logo.src} alt={logo.alt} width={126} height={16} />
+            <Image src={logo.src} alt={logo.alt} width={145} height={43} />
           </a>
         )}
 
@@ -48,42 +51,61 @@ function Navbar({ items, searchbar, logo }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6">
-        <div class="flex-none w-44">
+      <div class="hidden md:flex flex-row justify-between items-center w-full">
+        <div class="flex items-center">
+          {items.map((item) => <NavItem item={item} />)}
+          {blogItem && (
+            <a class="text-base font-bold uppercase" href={blogItem.href}>{blogItem.text}</a>
+          )}
+        </div>
+        <div class="flex-auto flex justify-center w-44">
           {logo && (
             <a
               href="/"
               aria-label="Store logo"
               class="block px-4 py-3 w-[160px]"
             >
-              <Image src={logo.src} alt={logo.alt} width={126} height={16} />
+              <Image src={logo.src} alt={logo.alt} width={145} height={43} />
             </a>
           )}
-        </div>
-        <div class="flex-auto flex justify-center">
-          {items.map((item) => <NavItem item={item} />)}
         </div>
         <div class="flex-none w-44 flex items-center justify-end gap-2">
           <SearchButton />
           <Searchbar searchbar={searchbar} />
           <a
-            class="btn btn-circle btn-sm btn-ghost"
+            class="btn btn-sm btn-ghost hover:bg-transparent flex justify-center items-center text-base font-bold uppercase"
+            href="/"
+            aria-label="Country Flag"
+          >
+            <Icon
+              id={countryFlag}
+              size={19}
+              strokeWidth={2}
+              fill="none"
+            />
+            Brasil
+            <Icon
+              id="ChevronDown"
+              size={11}
+              strokeWidth={2}
+              fill="none"
+            />
+          </a>
+          {helpItem && (
+            <a
+              class="btn btn-sm btn-ghost hover:bg-transparent text-base font-bold uppercase"
+              href={helpItem.href}
+              aria-label="Help"
+            >
+              {helpItem.text}
+            </a>
+          )}
+          <a
+            class="btn btn-circle btn-sm btn-ghost hover:bg-transparent"
             href="/login"
             aria-label="Log in"
           >
             <Icon id="User" size={24} strokeWidth={0.4} />
-          </a>
-          <a
-            class="btn btn-circle btn-sm btn-ghost"
-            href="/wishlist"
-            aria-label="Wishlist"
-          >
-            <Icon
-              id="Heart"
-              size={24}
-              strokeWidth={2}
-              fill="none"
-            />
           </a>
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}

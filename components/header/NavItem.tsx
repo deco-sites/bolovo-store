@@ -1,5 +1,6 @@
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
 import { headerHeight } from "./constants.ts";
 
 function NavItem({ item }: { item: SiteNavigationElement }) {
@@ -8,10 +9,25 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
 
   return (
     <li class="group flex items-center">
-      <a href={url} class="px-4 py-3">
-        <span class="group-hover:underline">
-          {name}
-        </span>
+      <a href={url} class="flex px-4 py-3 relative">
+        <div class="menu-item relative flex items-center">
+          <Icon
+            id="Bars3"
+            size={22}
+            strokeWidth={2}
+            fill="none"
+            class="absolute left-0 top-0 transition-opacity opacity-100 group-hover:opacity-0"
+          />
+          <Icon
+            id="Close"
+            size={22}
+            fill="none"
+            class="absolute left-0 top-0 transition-opacity opacity-0 group-hover:opacity-100"
+          />
+          <span class="ml-7 text-base font-bold uppercase">
+            {name}
+          </span>
+        </div>
       </a>
 
       {children && children.length > 0 &&
