@@ -21,6 +21,22 @@ export interface Props {
 
   /** @title Logo */
   logo?: { src: ImageWidget; alt: string };
+
+    /** 
+  * @title Menu Item Blog
+  */
+  blogItem: { text: string; href: string };
+
+  /** 
+  * @title Menu Item Help
+  */
+  helpItem: { text: string; href: string };
+
+    /** 
+  * @title Flag Icon
+  * @Description Internationalization Menu Flag Icon
+  */
+  countryFlag: "World" | "Brazil" | "Spain" | "US";
 }
 
 function Header({
@@ -28,6 +44,9 @@ function Header({
   searchbar,
   navItems,
   logo,
+  blogItem,
+  helpItem,
+  countryFlag
 }: Props) {
   const platform = usePlatform();
   const items = navItems ?? [];
@@ -46,6 +65,9 @@ function Header({
               items={items}
               searchbar={searchbar && { ...searchbar, platform }}
               logo={logo}
+              blogItem={blogItem}
+              helpItem={helpItem}
+              countryFlag={countryFlag}
             />
           </div>
         </Drawers>
