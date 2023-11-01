@@ -8,13 +8,13 @@ import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import CartButtonWake from "$store/islands/Header/Cart/wake.tsx";
 import Searchbar from "$store/islands/Header/Searchbar.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
+import type { NavItemProps } from "./NavItem.tsx";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
 
 function Navbar({ items, searchbar, logo }: {
-  items: SiteNavigationElement[];
+  items: NavItemProps[];
   searchbar?: SearchbarProps;
   logo?: { src: string; alt: string };
 }) {
@@ -22,24 +22,14 @@ function Navbar({ items, searchbar, logo }: {
 
   return (
     <>
-      {/* Mobile Version */}
-      <div
-        style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2"
-      >
+       {/* Mobile Version */}
+      <div style={{ height: navbarHeight }} class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2">
         <MenuButton />
-
         {logo && (
-          <a
-            href="/"
-            class="flex-grow inline-flex items-center"
-            style={{ minHeight: navbarHeight }}
-            aria-label="Store logo"
-          >
+          <a href="/" class="flex-grow inline-flex items-center" style={{ minHeight: navbarHeight }} aria-label="Store logo">
             <Image src={logo.src} alt={logo.alt} width={126} height={16} />
           </a>
         )}
-
         <div class="flex gap-1">
           <SearchButton />
           {platform === "vtex" && <CartButtonVTEX />}
@@ -47,21 +37,19 @@ function Navbar({ items, searchbar, logo }: {
         </div>
       </div>
 
-      {/* Desktop Version */}
+       {/* Desktop Version */}
       <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6">
         <div class="flex-none w-44">
           {logo && (
-            <a
-              href="/"
-              aria-label="Store logo"
-              class="block px-4 py-3 w-[160px]"
-            >
+            <a href="/" aria-label="Store logo" class="block px-4 py-3 w-[160px]">
               <Image src={logo.src} alt={logo.alt} width={126} height={16} />
             </a>
           )}
         </div>
         <div class="flex-auto flex justify-center">
-          {items.map((item) => <NavItem item={item} />)}
+          {items.map((item) => (
+            <NavItem {...item} />
+          ))}
         </div>
         <div class="flex-none w-44 flex items-center justify-end gap-2">
           <SearchButton />

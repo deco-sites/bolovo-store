@@ -1,29 +1,43 @@
 import Icon from "$store/components/ui/Icon.tsx";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
+import { NavItemProps } from "./NavItem.tsx";
 
 export interface Props {
-  items: SiteNavigationElement[];
+  items: NavItemProps[];
 }
 
-function MenuItem({ item }: { item: SiteNavigationElement }) {
-  return (
-    <div class="collapse collapse-plus">
-      <input type="checkbox" />
-      <div class="collapse-title">{item.name}</div>
-      <div class="collapse-content">
-        <ul>
-          <li>
-            <a class="underline text-sm" href={item.url}>Ver todos</a>
+function MenuItem({ item }: { item: NavItemProps[] }) {
+  if (Array.isArray(item)) {
+    return (
+      <ul>
+        {item.map((menu) => (
+          <li key={menu.name}>
+            <MenuItem item={menu} />
           </li>
-          {item.children?.map((node) => (
+        ))}
+      </ul>
+    )
+  } else {
+    return (
+      <div class="collapse collapse-plus">
+        <input type="checkbox" />
+        <div class="collapse-title">{item.name}</div>
+        <div class="collapse-content">
+          <ul>
             <li>
-              <MenuItem item={node} />
+              <a class="underline text-sm" href={item.url}>
+                Ver todos
+              </a>
             </li>
-          ))}
-        </ul>
+            {item.images?.map((menu) => (
+              <li key={menu.src}>
+                <MenuItem item={menu} />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 function Menu({ items }: Props) {
@@ -31,7 +45,7 @@ function Menu({ items }: Props) {
     <div class="flex flex-col h-full">
       <ul class="px-4 flex-grow flex flex-col divide-y divide-base-200">
         {items.map((item) => (
-          <li>
+          <li key={item.name}>
             <MenuItem item={item} />
           </li>
         ))}
@@ -39,37 +53,25 @@ function Menu({ items }: Props) {
 
       <ul class="flex flex-col py-2 bg-base-200">
         <li>
-          <a
-            class="flex items-center gap-4 px-4 py-2"
-            href="/wishlist"
-          >
+          <a class="flex items-center gap-4 px-4 py-2" href="/wishlist">
             <Icon id="Heart" size={24} strokeWidth={2} />
             <span class="text-sm">Lista de desejos</span>
           </a>
         </li>
         <li>
-          <a
-            class="flex items-center gap-4 px-4 py-2"
-            href="https://www.deco.cx"
-          >
+          <a class="flex items-center gap-4 px-4 py-2" href="https://www.deco.cx">
             <Icon id="MapPin" size={24} strokeWidth={2} />
             <span class="text-sm">Nossas lojas</span>
           </a>
         </li>
         <li>
-          <a
-            class="flex items-center gap-4 px-4 py-2"
-            href="https://www.deco.cx"
-          >
+          <a class="flex items-center gap-4 px-4 py-2" href="https://www.deco.cx">
             <Icon id="Phone" size={24} strokeWidth={2} />
             <span class="text-sm">Fale conosco</span>
           </a>
         </li>
         <li>
-          <a
-            class="flex items-center gap-4 px-4 py-2"
-            href="https://www.deco.cx"
-          >
+          <a class="flex items-center gap-4 px-4 py-2" href="https://www.deco.cx">
             <Icon id="User" size={24} strokeWidth={2} />
             <span class="text-sm">Minha conta</span>
           </a>
