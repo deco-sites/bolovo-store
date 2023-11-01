@@ -1,57 +1,91 @@
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 import { headerHeight } from "./constants.ts";
 
-function NavItem({ item }: { item: SiteNavigationElement }) {
-  const { url, name, children } = item;
-  const image = item?.image?.[0];
+export interface NavItemProps {
+  label?: string;
+  links?: Links[];
+  images?: Image[];
+}
+
+export interface Links {
+  label?: string;
+  href?: string;
+  children?: Links[];
+}
+
+export interface Image {
+  image: ImageWidget;
+  label?: string;
+  alternateName?: string;
+}
+
+function renderLinks(links: Links[] | undefined, isChild = false) {
+  if (!links || links.length === 0) {
+    return null;
+  }
 
   return (
-    <li class="group flex items-center">
-      <a href={url} class="px-4 py-3">
-        <span class="group-hover:underline">
-          {name}
-        </span>
-      </a>
-
-      {children && children.length > 0 &&
-        (
-          <div
-            class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center gap-6 border-t border-b-2 border-base-200 w-screen"
-            style={{ top: "0px", left: "0px", marginTop: headerHeight }}
+    <>
+      {links.map((link) => (
+        <ul>
+          <a
+            class={`text-base ${isChild ? 'font-normal' : 'font-semibold'} leading-9 whitespace-nowrap`}
+            href={link.href}
           >
-            {image?.url && (
-              <Image
-                class="p-6"
-                src={image.url}
-                alt={image.alternateName}
-                width={300}
-                height={332}
-                loading="lazy"
-              />
-            )}
-            <ul class="flex items-start justify-center gap-6">
-              {children.map((node) => (
-                <li class="p-6">
-                  <a class="hover:underline" href={node.url}>
-                    <span>{node.name}</span>
-                  </a>
+            {link.label}
+          </a>
+          <li class="flex flex-col">
+            {renderLinks(link.children, true)}
+          </li>
+        </ul>
+      ))}
+    </>
+  );
+}
 
-                  <ul class="flex flex-col gap-1 mt-4">
-                    {node.children?.map((leaf) => (
-                      <li>
-                        <a class="hover:underline" href={leaf.url}>
-                          <span class="text-xs">{leaf.name}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-    </li>
+function renderImages(images: Image[] | undefined) {
+  if (!images || images.length === 0) {
+    return null;
+  }
+
+  return (
+    <div class="flex items-start gap-x-[30px] flex-wrap justify-center">
+      {images.map((imageData) => (
+        <figure class="flex flex-col items-center max-w-[242px] gap-y-[15px]">
+          <Image
+            src={imageData.image}
+            alt={imageData.alternateName}
+            width={242}
+            height={242}
+            loading="lazy"
+          />
+          <figcaption class="text-center text-base font-semibold leading-tight whitespace-normal">
+            {imageData.label}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
+function NavItem(item: NavItemProps) {
+  const { label, links, images } = item;
+  return (
+    <nav class="group flex items-center">
+      <span class="group-hover:underline">{label}</span>
+      <div
+        class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center border-t border-b-2 border-base-200 w-screen flex-row-reverse pt-[55px] pb-14 top-0 left-0"
+        style={{ marginTop: headerHeight }}
+      >
+        <div class="flex items-start gap-x-[140px] xl:flex-row flex-col-reverse">
+          <ul class="flex flex-1 items-start gap-x-[79px] mx-auto">
+            {renderLinks(links)}
+          </ul>
+          {renderImages(images)}
+        </div>
+      </div>
+    </nav>
   );
 }
 
