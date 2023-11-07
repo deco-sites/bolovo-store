@@ -1,6 +1,5 @@
 import Image from "apps/website/components/Image.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import { headerHeight } from "./constants.ts";
 
 export interface NavItemProps {
   label?: string;
@@ -20,7 +19,7 @@ export interface Image {
   alternateName?: string;
 }
 
-function renderLinks(links: Links[] | undefined, isChild = false) {
+function RenderLinks(links: Links[] | undefined, isChild = false) {
   if (!links || links.length === 0) {
     return null;
   }
@@ -36,7 +35,7 @@ function renderLinks(links: Links[] | undefined, isChild = false) {
             {link.label}
           </a>
           <li class="flex flex-col">
-            {renderLinks(link.children, true)}
+            {RenderLinks(link.children, true)}
           </li>
         </ul>
       ))}
@@ -44,7 +43,7 @@ function renderLinks(links: Links[] | undefined, isChild = false) {
   );
 }
 
-function renderImages(images: Image[] | undefined) {
+function RenderImages(images: Image[] | undefined) {
   if (!images || images.length === 0) {
     return null;
   }
@@ -75,14 +74,13 @@ function NavItem(item: NavItemProps) {
     <nav class="group flex items-center">
       <span class="group-hover:underline">{label}</span>
       <div
-        class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center border-t border-b-2 border-base-200 w-screen flex-row-reverse pt-[55px] pb-14 top-0 left-0"
-        style={{ marginTop: headerHeight }}
+        class="hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center border-t border-b-2 border-base-200 w-screen flex-row-reverse pt-[55px] pb-14 top-full absolute left-0"
       >
         <div class="flex items-start gap-x-[140px] xl:flex-row flex-col-reverse">
-          <ul class="flex flex-1 items-start gap-x-[79px] mx-auto">
-            {renderLinks(links)}
+          <ul class="flex flex-1 items-start gap-x-[79px] mx-auto px-2">
+            {RenderLinks(links)}
           </ul>
-          {renderImages(images)}
+          {RenderImages(images)}
         </div>
       </div>
     </nav>

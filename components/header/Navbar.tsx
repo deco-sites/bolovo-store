@@ -23,7 +23,7 @@ function Navbar({ items, searchbar, logo }: {
   return (
     <>
        {/* Mobile Version */}
-      <div style={{ height: navbarHeight }} class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2">
+      <div style={{ height: navbarHeight }} class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2 relative">
         <MenuButton />
         {logo && (
           <a href="/" class="flex-grow inline-flex items-center" style={{ minHeight: navbarHeight }} aria-label="Store logo">
