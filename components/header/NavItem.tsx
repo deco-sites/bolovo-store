@@ -53,7 +53,7 @@ function RenderImages(images: Image[] | undefined) {
   return (
     <div class="flex items-start gap-x-[30px] justify-center px-2">
       {images.map((imageData) => (
-        <figure class="flex flex-col items-center w-[80.65%] gap-y-[15px]">
+        <figure class="flex flex-col items-center w-4/5 gap-y-[15px]">
           <Image
             src={imageData.image}
             alt={imageData.alternateName}
