@@ -12,6 +12,8 @@ import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+import Lenguage from "deco-sites/bolovo-store/components/header/Buttons/Language.tsx";
 
 function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
   items: SiteNavigationElement[];
@@ -19,7 +21,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
   logo?: { src: string; alt: string };
   blogItem: { text: string; href: string };
   helpItem: { text: string; href: string };
-  countryFlag: "World" | "Brazil" | "Spain" | "US";
+  countryFlag: { countryLabel: string, countryImg: { img: ImageWidget, alt: string } }[];
 }) {
   const platform = usePlatform();
 
@@ -55,7 +57,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
         <div class="flex items-center">
           {items.map((item) => <NavItem item={item} />)}
           {blogItem && (
-            <a class="text-base font-bold uppercase text-Rubik" href={blogItem.href}>{blogItem.text}</a>
+            <a class="text-base uppercase text-Rubik" href={blogItem.href}>{blogItem.text}</a>
           )}
         </div>
         <div class="flex-auto flex justify-center w-44">
@@ -72,28 +74,10 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
         <div class="flex-none w-44 flex items-center justify-end gap-2 pr-0">
           <SearchButton />
           <Searchbar searchbar={searchbar} />
-          <a
-            class="btn btn-sm btn-ghost hover:bg-transparent flex justify-center items-center text-base font-bold uppercase"
-            href="/"
-            aria-label="Country Flag"
-          >
-            <Icon
-              id={countryFlag}
-              size={19}
-              strokeWidth={2}
-              fill="none"
-            />
-            Brasil
-            <Icon
-              id="ChevronDown"
-              size={11}
-              strokeWidth={2}
-              fill="none"
-            />
-          </a>
+          <Lenguage countryFlag={countryFlag} />
           {helpItem && (
             <a
-              class="btn btn-sm btn-ghost hover:bg-transparent text-base font-bold uppercase"
+              class="btn btn-sm btn-ghost hover:bg-transparent font-normal text-base uppercase"
               href={helpItem.href}
               aria-label="Help"
             >

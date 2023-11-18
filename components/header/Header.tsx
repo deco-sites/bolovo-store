@@ -22,9 +22,9 @@ export interface Props {
   /** @title Logo */
   logo?: { src: ImageWidget; alt: string };
 
-    /** 
-  * @title Menu Item Blog
-  */
+  /** 
+* @title Menu Item Blog
+*/
   blogItem: { text: string; href: string };
 
   /** 
@@ -32,11 +32,11 @@ export interface Props {
   */
   helpItem: { text: string; href: string };
 
-    /** 
-  * @title Flag Icon
-  * @Description Internationalization Menu Flag Icon
-  */
-  countryFlag: "World" | "Brazil" | "Spain" | "US";
+  /** 
+* @title Flag Icon
+* @Description Internationalization Menu Flag Icon
+*/
+  countryFlag: { countryLabel: string, countryImg: { img: ImageWidget, alt: string } }[]
 }
 
 function Header({
