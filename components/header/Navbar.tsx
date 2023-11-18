@@ -17,8 +17,8 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
   items: SiteNavigationElement[];
   searchbar?: SearchbarProps;
   logo?: { src: string; alt: string };
-  blogItem: {text: string; href: string};
-  helpItem: {text: string; href: string};
+  blogItem: { text: string; href: string };
+  helpItem: { text: string; href: string };
   countryFlag: "World" | "Brazil" | "Spain" | "US";
 }) {
   const platform = usePlatform();
@@ -51,11 +51,11 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center w-full">
+      <div class="hidden md:flex flex-row justify-between items-center w-full px-2">
         <div class="flex items-center">
           {items.map((item) => <NavItem item={item} />)}
           {blogItem && (
-            <a class="text-base font-bold uppercase" href={blogItem.href}>{blogItem.text}</a>
+            <a class="text-base font-bold uppercase text-Rubik" href={blogItem.href}>{blogItem.text}</a>
           )}
         </div>
         <div class="flex-auto flex justify-center w-44">
@@ -69,7 +69,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
             </a>
           )}
         </div>
-        <div class="flex-none w-44 flex items-center justify-end gap-2">
+        <div class="flex-none w-44 flex items-center justify-end gap-2 pr-0">
           <SearchButton />
           <Searchbar searchbar={searchbar} />
           <a
