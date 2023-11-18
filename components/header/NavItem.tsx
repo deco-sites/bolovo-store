@@ -24,7 +24,7 @@ function NavItem({ item }: { item: SiteNavigationElement }) {
             fill="none"
             class="absolute left-0 top-0 transition-opacity opacity-0 group-hover:opacity-100"
           />
-          <span class="ml-7 text-base font-bold uppercase">
+          <span class="ml-7 uppercase">
             {name}
           </span>
         </div>
