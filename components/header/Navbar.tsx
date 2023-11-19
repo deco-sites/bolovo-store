@@ -8,7 +8,7 @@ import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import CartButtonWake from "$store/islands/Header/Cart/wake.tsx";
 import Searchbar from "$store/islands/Header/Searchbar.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
+import type { NavItemProps } from "./NavItem.tsx";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
@@ -16,7 +16,7 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Lenguage from "deco-sites/bolovo-store/components/header/Buttons/Language.tsx";
 
 function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
-  items: SiteNavigationElement[];
+  items: NavItemProps[];
   searchbar?: SearchbarProps;
   logo?: { src: string; alt: string };
   blogItem: { text: string; href: string };
@@ -28,12 +28,8 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
   return (
     <>
       {/* Mobile Version */}
-      <div
-        style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2"
-      >
+      <div style={{ height: navbarHeight }} class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2 relative">
         <MenuButton />
-
         {logo && (
           <a
             href="/"
@@ -44,7 +40,6 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
             <Image src={logo.src} alt={logo.alt} width={145} height={43} />
           </a>
         )}
-
         <div class="flex gap-1">
           <SearchButton />
           {platform === "vtex" && <CartButtonVTEX />}
@@ -53,9 +48,11 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center w-full px-2">
-        <div class="flex items-center">
-          {items.map((item) => <NavItem item={item} />)}
+      <div class="hidden md:flex flex-row justify-between items-center w-full px-2 shadow-sm shadow-gray-300">
+        <div class="flex items-center px-0">
+          {items.map((item) => (
+            <NavItem {...item} />
+          ))}
           {blogItem && (
             <a class="text-base uppercase text-Rubik" href={blogItem.href}>{blogItem.text}</a>
           )}
@@ -65,7 +62,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
             <a
               href="/"
               aria-label="Store logo"
-              class="block px-4 py-3 w-[160px]"
+              class="block px-4 w-[160px]"
             >
               <Image src={logo.src} alt={logo.alt} width={145} height={43} />
             </a>

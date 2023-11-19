@@ -1,29 +1,43 @@
 import Icon from "$store/components/ui/Icon.tsx";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
+import { NavItemProps } from "./NavItem.tsx";
 
 export interface Props {
-  items: SiteNavigationElement[];
+  items: NavItemProps[];
 }
 
-function MenuItem({ item }: { item: SiteNavigationElement }) {
-  return (
-    <div class="collapse collapse-plus">
-      <input type="checkbox" />
-      <div class="collapse-title">{item.name}</div>
-      <div class="collapse-content">
-        <ul>
+function MenuItem({ items }: { items: NavItemProps[] | NavItemProps }) {
+  if (Array.isArray(items)) {
+    return (
+      <ul>
+        {items.map((menu) => (
           <li>
-            <a class="underline text-sm" href={item.url}>Ver todos</a>
+            <MenuItem items={menu} />
           </li>
-          {item.children?.map((node) => (
+        ))}
+      </ul>
+    );
+  } else {
+    return (
+      <div class="collapse collapse-plus">
+        <input type="checkbox" />
+        <div class="collapse-title">{items.label}</div>
+        <div class="collapse-content">
+          <ul>
             <li>
-              <MenuItem item={node} />
+              <a class="underline text-sm" href={items.links?.[0]?.href}>
+                Ver todos
+              </a>
             </li>
-          ))}
-        </ul>
+            {items.images?.map((menu) => (
+              <li>
+                <MenuItem items={menu} />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 function Menu({ items }: Props) {
@@ -32,17 +46,14 @@ function Menu({ items }: Props) {
       <ul class="px-4 flex-grow flex flex-col divide-y divide-base-200">
         {items.map((item) => (
           <li>
-            <MenuItem item={item} />
+            <MenuItem items={item} />
           </li>
         ))}
       </ul>
 
       <ul class="flex flex-col py-2 bg-base-200">
         <li>
-          <a
-            class="flex items-center gap-4 px-4 py-2"
-            href="/wishlist"
-          >
+          <a class="flex items-center gap-4 px-4 py-2" href="/wishlist">
             <Icon id="Heart" size={24} strokeWidth={2} />
             <span class="text-sm">Lista de desejos</span>
           </a>
