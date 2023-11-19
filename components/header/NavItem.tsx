@@ -1,73 +1,108 @@
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
-import { headerHeight } from "./constants.ts";
+import { navbarHeight } from "./constants.ts";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
-function NavItem({ item }: { item: SiteNavigationElement }) {
-  const { url, name, children } = item;
-  const image = item?.image?.[0];
+export interface NavItemProps {
+  label?: string;
+  links?: Links[];
+  images?: Image[];
+}
+
+export interface Links {
+  label?: string;
+  href?: string;
+  children?: Links[];
+}
+
+export interface Image {
+  image: ImageWidget;
+  label?: string;
+  alternateName?: string;
+}
+
+function RenderLinks(links: Links[] | undefined, isChild = false) {
+  if (!links || links.length === 0) {
+    return null;
+  }
 
   return (
-    <li class="group flex items-center">
-      <a href={url} class="flex pl-0 px-4 py-3 relative">
-        <div class="relative flex items-center">
-          <Icon
-            id="Bars3"
-            size={22}
-            strokeWidth={2}
-            fill="none"
-            class="absolute left-0 top-0 transition-opacity opacity-100 group-hover:opacity-0"
-          />
-          <Icon
-            id="Close"
-            size={22}
-            fill="none"
-            class="absolute left-0 top-0 transition-opacity opacity-0 group-hover:opacity-100"
-          />
-          <span class="ml-7 uppercase">
-            {name}
-          </span>
-        </div>
-      </a>
-
-      {children && children.length > 0 &&
-        (
-          <div
-            class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center gap-6 border-t border-b-2 border-base-200 w-screen"
-            style={{ top: "0px", left: "0px", marginTop: headerHeight }}
+    <>
+      {links.map((link) => (
+        <ul>
+          <a
+            class={`text-base ${isChild ? "font-normal" : "font-semibold"
+              } leading-9 whitespace-nowrap hover:underline ease-in-out duration-200`}
+            href={link.href}
           >
-            {image?.url && (
-              <Image
-                class="p-6"
-                src={image.url}
-                alt={image.alternateName}
-                width={300}
-                height={332}
-                loading="lazy"
-              />
-            )}
-            <ul class="flex items-start justify-center gap-6">
-              {children.map((node) => (
-                <li class="p-6">
-                  <a class="hover:underline" href={node.url}>
-                    <span>{node.name}</span>
-                  </a>
+            {link.label}
+          </a>
+          <li class="flex flex-col">
+            {RenderLinks(link.children, true)}
+          </li>
+        </ul>
+      ))}
+    </>
+  );
+}
 
-                  <ul class="flex flex-col gap-1 mt-4">
-                    {node.children?.map((leaf) => (
-                      <li>
-                        <a class="hover:underline" href={leaf.url}>
-                          <span class="text-xs">{leaf.name}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-    </li>
+function RenderImages(images: Image[] | undefined) {
+  if (!images || images.length === 0) {
+    return null;
+  }
+
+  return (
+    <div class="flex items-start px-2 justify-center w-2/4">
+      {images.map((imageData) => (
+        <figure class="flex flex-col items-center w-full gap-y-[15px] px-2">
+          <Image
+            src={imageData.image}
+            alt={imageData.alternateName}
+            width={242}
+            height={242}
+            loading="lazy"
+            class="w-full"
+          />
+          <figcaption class="text-center text-base font-semibold leading-tight whitespace-normal">
+            {imageData.label}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
+function NavItem(item: NavItemProps) {
+  const { label, links, images } = item;
+  return (
+    <nav class="group flex items-center cursor-pointer px-0" style={{ height: navbarHeight }}>
+      <div class="relative flex items-center pr-4">
+        <Icon
+          id="Bars3"
+          size={22}
+          strokeWidth={2}
+          fill="none"
+          class="absolute left-0 top-0 transition-opacity opacity-100 group-hover:opacity-0"
+        />
+        <Icon
+          id="Close"
+          size={22}
+          fill="none"
+          class="absolute left-0 top-0 transition-opacity opacity-0 group-hover:opacity-100"
+        />
+        <span class="ml-7 uppercase">
+          {label}
+        </span>
+      </div>
+      <div class="hidden group-hover:flex bg-base-100 z-50 items-start justify-between w-full border-t border-b-2 border-base-200 flex-row-reverse pt-[55px] pb-14 top-full absolute left-0">
+        <div class="flex items-start justify-between xl:flex-row flex-col-reverse w-full 2xl:gap-24 lg:gap-8">
+          <ul class="flex flex-1 items-start px-2 w-2/4 justify-between">
+            {RenderLinks(links)}
+          </ul>
+          {RenderImages(images)}
+        </div>
+      </div>
+    </nav>
   );
 }
 
