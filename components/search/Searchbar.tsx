@@ -73,10 +73,6 @@ function Searchbar({
   const id = useId();
   const { displaySearchPopup } = useUI();
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const { setQuery, payload, loading } = useSuggestions(loader);
-  const { products = [], searches = [] } = payload.value ?? {};
-  const hasProducts = Boolean(products.length);
-  const hasTerms = Boolean(searches.length);
 
   useEffect(() => {
     if (displaySearchPopup.value === true) {
@@ -97,18 +93,6 @@ function Searchbar({
           id="search-input"
           class=" px-2 join-item outline-0 flex-grow border-none h-auto"
           name={name}
-          onInput={(e) => {
-            const value = e.currentTarget.value;
-
-            if (value) {
-              sendEvent({
-                name: "search",
-                params: { search_term: value },
-              });
-            }
-
-            setQuery(value);
-          }}
           placeholder={placeholder}
           role="combobox"
           aria-controls="search-suggestion"
@@ -122,63 +106,6 @@ function Searchbar({
           <Image src={iconSearch.src} alt={iconSearch.alt} width={16} height={24} />
         </Button>
       </form>
-
-      <div
-        class={`overflow-y-scroll ${!hasProducts && !hasTerms ? "hidden" : ""}`}
-      >
-        <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[150px_1fr]">
-          <div class="flex flex-col gap-6">
-            <span
-              class="font-medium text-xl"
-              role="heading"
-              aria-level={3}
-            >
-              Sugestões
-            </span>
-            <ul id="search-suggestion" class="flex flex-col gap-6">
-              {console.log("bolovo:", products)}
-              {searches.map(({ term }) => (
-                <li>
-                  <a href={`/s?q=${term}`} class="flex gap-4 items-center">
-                    <span>
-                      <Icon
-                        id="MagnifyingGlass"
-                        size={24}
-                        strokeWidth={0.01}
-                      />
-                    </span>
-                    <span dangerouslySetInnerHTML={{ __html: term }} />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div class="flex flex-col pt-6 md:pt-0 gap-6 overflow-x-hidden">
-            <span
-              class="font-medium text-xl"
-              role="heading"
-              aria-level={3}
-            >
-              Produtos sugeridos
-            </span>
-            <Slider class="carousel">
-
-              {products.map((product, index) => (
-                <Slider.Item
-                  index={index}
-                  class="carousel-item first:ml-4 last:mr-4 min-w-[200px] max-w-[200px]"
-                >
-                  <ProductCard
-                    product={product}
-                    platform={platform}
-                    index={index}
-                  />
-                </Slider.Item>
-              ))}
-            </Slider>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
