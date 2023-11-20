@@ -10,6 +10,24 @@ import { headerHeight } from "./constants.ts";
 export interface Props {
   alerts: string[];
 
+  /**
+ * @title Button Search
+ */
+  buttonSearch: {
+    /**
+ * @title Text of Button
+ */
+    label: string;
+    /**
+ * @title Icon of Buttton 
+ */
+    img: {
+      src: ImageWidget;
+      alt: string;
+
+    }
+  }
+
   /** @title Search Bar */
   searchbar?: Omit<SearchbarProps, "platform">;
 
@@ -28,6 +46,7 @@ function Header({
   searchbar,
   navItems,
   logo,
+  buttonSearch,
 }: Props) {
   const platform = usePlatform();
   const items = navItems ?? [];
@@ -46,6 +65,8 @@ function Header({
               items={items}
               searchbar={searchbar && { ...searchbar, platform }}
               logo={logo}
+              label={buttonSearch.label}
+              img={buttonSearch.img}
             />
           </div>
         </Drawers>
