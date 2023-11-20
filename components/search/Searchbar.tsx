@@ -21,6 +21,9 @@ import { Suggestion } from "apps/commerce/types.ts";
 import { Resolved } from "deco/engine/core/resolver.ts";
 import { useEffect, useRef } from "preact/compat";
 import type { Platform } from "$store/apps/site.ts";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+import Image from "apps/website/components/Image.tsx";
+
 
 // Editable props
 export interface Props {
@@ -30,6 +33,13 @@ export interface Props {
    * @default What are you looking for?
    */
   placeholder?: string;
+  /**
+ * @title Icon of Search
+ */
+  iconSearch: {
+    src: ImageWidget;
+    alt: string;
+  }
   /**
    * @title Page path
    * @description When user clicks on the search button, navigate it to
@@ -58,6 +68,7 @@ function Searchbar({
   name = "q",
   loader,
   platform,
+  iconSearch,
 }: Props) {
   const id = useId();
   const { displaySearchPopup } = useUI();
@@ -73,27 +84,18 @@ function Searchbar({
     }
   }, [displaySearchPopup.value]);
 
+
   return (
-    <div
-      class="w-full grid gap-8 px-4 py-6 overflow-y-hidden"
-      style={{ gridTemplateRows: "min-content auto" }}
-    >
-      <form id={id} action={action} class="join">
-        <Button
-          type="submit"
-          class="join-item btn-square"
-          aria-label="Search"
-          for={id}
-          tabIndex={-1}
-        >
-          {loading.value
-            ? <span class="loading loading-spinner loading-xs" />
-            : <Icon id="MagnifyingGlass" size={24} strokeWidth={0.01} />}
-        </Button>
+    <div class="w-full grid gap-8 ">
+      <form
+        id={id}
+        action={action}
+        class="join h-[30px] justify-cente items-center rounded-none"
+      >
         <input
           ref={searchInputRef}
           id="search-input"
-          class="input input-bordered join-item flex-grow"
+          class=" px-2 join-item outline-0 flex-grow border-none h-auto"
           name={name}
           onInput={(e) => {
             const value = e.currentTarget.value;
@@ -113,11 +115,11 @@ function Searchbar({
           autocomplete="off"
         />
         <Button
-          type="button"
-          class="join-item btn-ghost btn-square hidden sm:inline-flex"
-          onClick={() => displaySearchPopup.value = false}
+          type="submit"
+          class="btn-circle btn-sm btn-ghost z-10 flex justify-center items-center "
+          aria-label="search icon button"
         >
-          <Icon id="XMark" size={24} strokeWidth={2} />
+          <Image src={iconSearch.src} alt={iconSearch.alt} width={16} height={24} />
         </Button>
       </form>
 
@@ -134,6 +136,7 @@ function Searchbar({
               Sugestões
             </span>
             <ul id="search-suggestion" class="flex flex-col gap-6">
+              {console.log("bolovo:", products)}
               {searches.map(({ term }) => (
                 <li>
                   <a href={`/s?q=${term}`} class="flex gap-4 items-center">
@@ -159,6 +162,7 @@ function Searchbar({
               Produtos sugeridos
             </span>
             <Slider class="carousel">
+
               {products.map((product, index) => (
                 <Slider.Item
                   index={index}
