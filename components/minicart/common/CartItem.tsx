@@ -66,42 +66,23 @@ function CartItem(
     >
       <Image
         {...image}
-        style={{ aspectRatio: "108 / 150" }}
-        width={108}
-        height={150}
+        style={{ aspectRatio: "105 / 105" }}
+        width={105}
+        height={105}
         class="h-full object-contain"
       />
 
-      <div class="flex flex-col gap-2">
-        <div class="flex justify-between items-center">
-          <span>{name}</span>
-          <Button
-            disabled={loading || isGift}
-            loading={loading}
-            class="btn-ghost btn-square"
-            onClick={withLoading(async () => {
-              const analyticsItem = itemToAnalyticsItem(index);
-
-              await onUpdateQuantity(0, index);
-
-              analyticsItem && sendEvent({
-                name: "remove_from_cart",
-                params: { items: [analyticsItem] },
-              });
-            })}
-          >
-            <Icon id="Trash" size={24} />
-          </Button>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="line-through text-base-300 text-sm">
+      <div class="flex flex-col gap-2 pl-8">
+        <span class="text-[15px] leading-5 text-[#121212] font-semibold">{name}</span>
+        <div class="flex items-center gap-2 flex-row w-full justify-between">
+          <span class="text-sm font-normal text-[#121212]">
             {formatPrice(list, currency, locale)}
           </span>
-          <span class="text-sm text-secondary">
-            {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
+          <span class="text-sm text-[#121212] font-normal">
+           Tam: G
           </span>
         </div>
-
+        <div class="flex flex-row justify-between items-center">
         <QuantitySelector
           disabled={loading || isGift}
           quantity={quantity}
@@ -121,6 +102,26 @@ function CartItem(
             }
           })}
         />
+         <div class="flex justify-between items-center">
+          <Button
+            disabled={loading || isGift}
+            loading={loading}
+            variant="ghost"
+            onClick={withLoading(async () => {
+              const analyticsItem = itemToAnalyticsItem(index);
+
+              await onUpdateQuantity(0, index);
+
+              analyticsItem && sendEvent({
+                name: "remove_from_cart",
+                params: { items: [analyticsItem] },
+              });
+            })}
+          >
+            <Icon id="Trash" height={20} width={17} class="border-none" />
+          </Button>
+        </div>
+        </div>
       </div>
     </div>
   );

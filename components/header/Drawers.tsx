@@ -29,14 +29,14 @@ const Aside = (
     children: ComponentChildren;
   },
 ) => (
-  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw]">
-    <div class="flex justify-between items-center">
-      <h1 class="px-4 py-3">
-        <span class="font-medium text-2xl">{title}</span>
+  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full max-w-[100vw]">
+    <div class="flex justify-end items-center px-2">
+      <h1 class="px-[18px] py-3">
+        <span class="font-semibold text-sm">{title}</span>
       </h1>
       {onClose && (
-        <Button class="btn btn-ghost" onClick={onClose}>
-          <Icon id="XMark" size={24} strokeWidth={2} />
+        <Button variant="icon" onClick={onClose}>
+          <Icon id="XMark" size={15} strokeWidth={2} class="text-[#121212]" />
         </Button>
       )}
     </div>
