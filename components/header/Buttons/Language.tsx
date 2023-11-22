@@ -9,7 +9,7 @@ export default function Lenguage({ countryFlag }: {
     return (
         <>
             <details className="dropdown">
-                <summary className="m-1 btn px-0 flex flex-row flex-nowrap border-none hover:border-none bg-transparent hover:bg-transparent w-max   text-base font-normal" >
+                <summary className=" btn px-0 flex flex-row flex-nowrap border-none hover:border-none bg-transparent hover:bg-transparent w-max   text-base font-normal" >
                     <Image src={countryFlag[0].countryImg.img} alt={countryFlag[0].countryImg.alt} width={19} height={12} />
                     {countryFlag[0].countryLabel}
                     <Icon
