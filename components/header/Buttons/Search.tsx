@@ -26,7 +26,7 @@ export default function SearchButton({ label, img }: Props) {
         }}
 
       >
-        <span class="uppercase text-base">
+        <span class="uppercase text-base font-normal">
           {label}
         </span>
         <Image src={img.src} alt={img.alt} width={16} height={24} />
