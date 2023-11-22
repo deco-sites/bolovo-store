@@ -73,7 +73,7 @@ function CartItem(
       />
 
       <div class="flex flex-col gap-2 pl-8">
-        <span class="text-[15px] leading-5 text-[#121212] font-semibold">{name}</span>
+        <span class="text-[15px] leading-5 text-[#121212] font-semibold max-w-[244px] text-ellipsis overflow-hidden">{name}</span>
         <div class="flex items-center gap-2 flex-row w-full justify-between">
           <span class="text-sm font-normal text-[#121212]">
             {formatPrice(list, currency, locale)}
@@ -106,7 +106,7 @@ function CartItem(
           <Button
             disabled={loading || isGift}
             loading={loading}
-            variant="ghost"
+            variant="icon"
             onClick={withLoading(async () => {
               const analyticsItem = itemToAnalyticsItem(index);
 

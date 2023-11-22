@@ -27,13 +27,13 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
         -
       </Button>
       <input
-        class="text-center border-none join-item [appearance:textfield] text-[#121212]"
+        class="text-center font-normal text-sm border-none join-item [appearance:textfield] text-[#121212]"
         type="number"
         inputMode="numeric"
-        pattern="[0-9]*"
+        pattern="[00-9]*"
         max={QUANTITY_MAX_VALUE}
         min={1}
-        value={quantity}
+        value={quantity.toString().padStart(2, '0')}
         disabled={disabled}
         onBlur={(e) => onChange?.(e.currentTarget.valueAsNumber)}
         maxLength={3}
