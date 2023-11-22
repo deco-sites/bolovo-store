@@ -3,12 +3,13 @@ import Drawers from "$store/islands/Header/Drawers.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
-import Alert from "./Alert.tsx";
+import Alert from "./Alert.tsx"
+import { Props as AlertProps } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 
 export interface Props {
-  alerts: string[];
+  promotionBar?: AlertProps;
 
   /** @title Search Bar */
   searchbar?: Omit<SearchbarProps, "platform">;
@@ -24,7 +25,7 @@ export interface Props {
 }
 
 function Header({
-  alerts,
+  promotionBar,
   searchbar,
   navItems,
   logo,
@@ -41,7 +42,7 @@ function Header({
           platform={platform}
         >
           <div class="bg-base-100 fixed w-full z-50">
-            <Alert alerts={alerts} />
+            <Alert {...promotionBar} />
             <Navbar
               items={items}
               searchbar={searchbar && { ...searchbar, platform }}
