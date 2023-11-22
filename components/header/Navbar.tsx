@@ -49,7 +49,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
 
       {/* Desktop Version */}
       <div class="hidden md:flex flex-row justify-between items-center w-full px-2 shadow-sm shadow-gray-300">
-        <div class="flex items-center px-0">
+        <div class="flex items-center px-0 w-2/6">
           {items.map((item) => (
             <NavItem {...item} />
           ))}
@@ -57,24 +57,24 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
             <a class="text-base uppercase text-Rubik" href={blogItem.href}>{blogItem.text}</a>
           )}
         </div>
-        <div class="flex-auto flex justify-center w-44">
+        <div class="flex-auto flex justify-center  w-2/6">
           {logo && (
             <a
               href="/"
               aria-label="Store logo"
-              class="block px-4 w-[160px]"
+              class="block w-[145px]"
             >
               <Image src={logo.src} alt={logo.alt} width={145} height={43} />
             </a>
           )}
         </div>
-        <div class="flex-none w-44 flex items-center justify-end gap-2 pr-0">
+        <div class="flex-none flex items-center justify-end gap-2 pr-0 w-2/6">
           <SearchButton />
           <Searchbar searchbar={searchbar} />
           <Lenguage countryFlag={countryFlag} />
           {helpItem && (
             <a
-              class="btn btn-sm btn-ghost hover:bg-transparent font-normal text-base uppercase"
+              class="btn btn-sm btn-ghost hover:bg-transparent px-2 font-normal text-base uppercase"
               href={helpItem.href}
               aria-label="Help"
             >
@@ -86,7 +86,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
             href="/login"
             aria-label="Log in"
           >
-            <Icon id="User" size={24} strokeWidth={0.4} />
+            <Icon id="User" width={20} height={24} strokeWidth={0.4} />
           </a>
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}

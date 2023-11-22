@@ -19,6 +19,7 @@ export interface Image {
   image: ImageWidget;
   label?: string;
   alternateName?: string;
+  link?: string
 }
 
 function RenderLinks(links: Links[] | undefined, isChild = false) {
@@ -52,21 +53,23 @@ function RenderImages(images: Image[] | undefined) {
   }
 
   return (
-    <div class="flex items-start px-2 justify-center w-2/4">
+    <div class="flex items-start px-2 justify-end w-2/4 flex-wrap">
       {images.map((imageData) => (
-        <figure class="flex flex-col items-center w-full gap-y-[15px] px-2">
-          <Image
-            src={imageData.image}
-            alt={imageData.alternateName}
-            width={242}
-            height={242}
-            loading="lazy"
-            class="w-full"
-          />
-          <figcaption class="text-center text-base font-semibold leading-tight whitespace-normal">
-            {imageData.label}
-          </figcaption>
-        </figure>
+        <a href={imageData.link} class=" w-1/3 max-w-[180px] lg:max-w-[242px] hover:scale-105 ease-in duration-200">
+          <figure class="flex flex-col items-center w-full px-2 gap-y-[15px] ">
+            <Image
+              src={imageData.image}
+              alt={imageData.alternateName}
+              width={242}
+              height={242}
+              loading="lazy"
+              class="w-full "
+            />
+            <figcaption class="text-center text-base font-semibold leading-tight whitespace-normal">
+              {imageData.label}
+            </figcaption>
+          </figure>
+        </a>
       ))}
     </div>
   );
@@ -95,8 +98,8 @@ function NavItem(item: NavItemProps) {
         </span>
       </div>
       <div class="hidden group-hover:flex bg-base-100 z-50 items-start justify-between w-full border-t border-b-2 border-base-200 flex-row-reverse pt-[55px] pb-14 top-full absolute left-0">
-        <div class="flex items-start justify-between xl:flex-row flex-col-reverse w-full 2xl:gap-24 lg:gap-8">
-          <ul class="flex flex-1 items-start px-2 w-2/4 justify-between">
+        <div class="flex items-start justify-between flex-row w-full">
+          <ul class="flex flex-1 items-start px-2 w-2/4 justify-start gap-8 flex-wrap xl:gap-16 2xl:gap-24">
             {RenderLinks(links)}
           </ul>
           {RenderImages(images)}

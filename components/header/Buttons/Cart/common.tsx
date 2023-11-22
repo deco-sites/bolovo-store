@@ -33,7 +33,7 @@ function CartButton({ loading, currency, total, items }: Props) {
       </span>
 
       <Button
-        class="btn-circle btn-sm btn-ghost w-auto"
+        class="btn-circle btn-sm btn-ghost"
         aria-label="open cart"
         data-deco={displayCart.value && "open-cart"}
         loading={loading}
