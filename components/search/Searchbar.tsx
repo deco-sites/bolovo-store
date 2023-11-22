@@ -81,7 +81,7 @@ function Searchbar({
         <input
           ref={searchInputRef}
           id="search-input"
-          class=" px-2 join-item outline-0 flex-grow border-none h-auto"
+          class=" px-2 join-item outline-0 flex-grow border-none h-auto font-normal"
           name={name}
           placeholder={placeholder}
           role="combobox"
@@ -93,7 +93,7 @@ function Searchbar({
           class=" btn-sm btn-ghost z-10 flex justify-center items-center "
           aria-label="search icon button"
         >
-          <Image src={iconSearch.src} alt={iconSearch.alt} width={16} height={24} loading="edge"/>
+          <Image src={iconSearch.src} alt={iconSearch.alt} width={16} height={24} loading={"eager"}/>
         </Button>
       </form>
     </div>
