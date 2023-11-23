@@ -7,6 +7,7 @@ import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import Coupon, { Props as CouponProps } from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
 import { useCart } from "apps/vnda/hooks/useCart.ts";
+import type { HTMLWidget } from "apps/admin/widgets.ts";
 
 interface Props {
   items: Item[];
@@ -18,10 +19,14 @@ interface Props {
   currency: string;
   coupon?: string;
   freeShippingTarget: number;
+  freeShippingText: HTMLWidget;
+  freeShippingValueColor: string
   checkoutHref: string;
   onAddCoupon: CouponProps["onAddCoupon"];
   onUpdateQuantity: ItemProps["onUpdateQuantity"];
   itemToAnalyticsItem: ItemProps["itemToAnalyticsItem"];
+  ctaCheckout?: string
+  ctaBackStore?: string
 }
 
 function Cart({
@@ -34,10 +39,14 @@ function Cart({
   currency,
   discounts,
   freeShippingTarget,
+  freeShippingText,
+  freeShippingValueColor,
   checkoutHref,
   itemToAnalyticsItem,
   onUpdateQuantity,
   onAddCoupon,
+  ctaCheckout,
+  ctaBackStore,
 }: Props) {
   const { displayCart } = useUI();
   const isEmtpy = items.length === 0;
@@ -49,8 +58,6 @@ function Cart({
   const valueInstallments = totalCart / 6;
   const numberFormated = valueInstallments.toFixed(2);
   const installments = numberFormated.replace('.', ',');
-
-  
   return (
     <div
       class="flex flex-col justify-center items-center overflow-hidden"
@@ -118,19 +125,17 @@ function Cart({
                   <span class="font-normal ">{`R$ ${installments} em 6x`}</span>
                 </div>
               </div>
-
              {/* Free Shipping Bar */}
-          
              <div class="px-[18px] w-full">
               <FreeShippingProgressBar
+                freeShippingValueColor={freeShippingValueColor}
+                freeShippingText={freeShippingText}
                 total={total}
                 locale={locale}
                 currency={currency}
                 target={freeShippingTarget}
               />
             </div>
-             
-
             {/* Cart Footer */}
             <footer class="w-full px-[18px]">
               <div class="pb-2">
@@ -153,7 +158,7 @@ function Cart({
                       });
                     }}
                   >
-                    CHECKOUT
+                   {ctaCheckout ?? "CHECKOUT"}
                   </Button>
                 </a>
               </div>
@@ -163,7 +168,7 @@ function Cart({
                     variant="secundary"
                     disabled={loading || isEmtpy}
                   >
-                   CONTINUAR COMPRANDO
+                   {ctaBackStore ?? "CONTINUAR COMPRANDO"}
                   </Button>
                 </a>
               </div>

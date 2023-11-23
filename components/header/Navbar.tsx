@@ -13,6 +13,17 @@ import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
 
+export interface MiniCart{
+   /**
+   * @title Texto do botão de checkout
+   */
+  ctaCheckout?: string
+    /**
+   * @title Texto do botão de voltar a comprar
+   */
+  ctaBackToStore?: string
+}
+
 function Navbar({ items, searchbar, logo }: {
   items: SiteNavigationElement[];
   searchbar?: SearchbarProps;
