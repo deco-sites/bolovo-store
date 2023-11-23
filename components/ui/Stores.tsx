@@ -11,18 +11,17 @@ export interface Props {
         media?: ImageWidget;
         altImg?: string;
     }
+    /** @format html */
+    /** @title Endereço da Loja */ 
+    address?: string;
     content:{
-        /** @format html */ 
-        address?: string;
         storeName?: string;
         socials?: Socials[];
     }
     alignment?: 'left' | 'right';
   }
 
-  function StoresDisplay({ hero,  content, alignment = 'left' }: Props) {
-    /** @format html */ 
-    content.address = '';
+  function StoresDisplay({ hero, address, content, alignment = 'left' }: Props) {
 
     const containerClasses = alignment === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row';
 
@@ -41,7 +40,7 @@ export interface Props {
                             {/* Título e Subtítulo */}
                             <div className={` flex flex-col max-w-[433px] ${alignment === 'right' ? 'lg:ml-auto' : 'lg:mr-auto'} gap-5`}>
                                 <h4 className="text-base font-bold">{content.storeName}</h4>
-                                <div className="text-base-300 leading-[26px]" dangerouslySetInnerHTML={{ __html: content.address ?? '' }} />
+                                <div className="text-base-300 leading-[26px]" dangerouslySetInnerHTML={{ __html: address ?? '' }} />
                                 <ul>
                                 {content.socials?.map(({ label, text, href }, index) => (
                                         <li key={index}>
