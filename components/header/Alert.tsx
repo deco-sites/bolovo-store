@@ -6,7 +6,6 @@ import { Color } from "https://deno.land/x/color@v0.3.0/mod.ts";
 export interface barColor {
   /**
    * @format color
-   * @title Background
    * @default #121212
    */
   background: string;
