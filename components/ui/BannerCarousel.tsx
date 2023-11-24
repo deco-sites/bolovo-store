@@ -119,7 +119,7 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
           height={851}
         />
         <img
-          class="object-cover object-center w-full h-full"
+          class="object-fill object-center w-full h-full"
           loading={lcp ? "eager" : "lazy"}
           src={desktop}
           alt={alt}
@@ -164,7 +164,7 @@ function Dots({ images, autoplay }: Props) {
 function Buttons() {
   return (
     <>
-      <div class="flex items-center justify-center z-10 col-start-1 row-start-2">
+      <div class="pl-6 md:pl-0 flex items-center justify-center z-10 col-start-1 row-start-2">
         <Slider.PrevButton class="btn btn-circle bg-[#FFFFFFCC]">
           <Icon
             class="text-base-100"
@@ -174,7 +174,7 @@ function Buttons() {
           />
         </Slider.PrevButton>
       </div>
-      <div class="flex items-center justify-center z-10 col-start-3 row-start-2">
+      <div class="pr-6 md:pr-0 flex items-center justify-center z-10 col-start-3 row-start-2">
         <Slider.NextButton class="btn btn-circle bg-[#FFFFFFCC]">
           <Icon
             class="text-base-100"
@@ -196,9 +196,9 @@ function BannerCarousel(props: Props) {
   return (
     <div
       id={id}
-      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] pb-20"
+      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] pb-14 md:pb-16"
     >
-      <Slider class="h-[calc((625/430)*100vw)] md:h-[calc((851/1630)*100vw)] carousel carousel-center w-full col-span-full row-span-full gap-6">
+      <Slider class="h-[calc((625/430)*100vw)] md:h-[calc((851/1630)*100vw)] max-h-[80vh] md:max-h-[83.8vh] carousel carousel-center w-full col-span-full row-span-full gap-6">
         {images?.map((image, index) => (
           <Slider.Item index={index} class="carousel-item w-full">
             <BannerItem image={image} lcp={index === 0 && preload} />
