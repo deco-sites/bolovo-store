@@ -7,6 +7,15 @@ import Alert from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 
+export interface Country {
+  countryLabel: string,
+  languageAbbreviation: string,
+  countryImg: {
+    img: ImageWidget,
+    alt: string,
+  }
+}
+
 export interface Props {
   alerts: string[];
 
@@ -36,7 +45,8 @@ export interface Props {
 * @title Flag Icon
 * @Description Internationalization Menu Flag Icon
 */
-  countryFlag: { countryLabel: string, countryImg: { img: ImageWidget, alt: string } }[]
+  /** @title Country Flag */
+  countryFlag: Country[]
 }
 
 function Header({
