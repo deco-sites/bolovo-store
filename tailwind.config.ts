@@ -8,11 +8,8 @@ export default {
     container: { center: true },
     extend: {
       fontFamily: {
-        "AcuminPro-Bold": ["AcuminPro-Bold"],
-        "AcuminPro-BoldItalic": ["AcuminPro-BoldItalic"],
-        "AcuminPro-Regular": ["AcuminPro-regular"],
-        "AcuminPro-Italic": ["AcuminPro-Italic"],
+        "acumin": ["Acumin"],
       },
-    },  
+    },
   },
 };
