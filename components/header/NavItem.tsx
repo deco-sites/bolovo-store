@@ -22,13 +22,15 @@ export interface Image {
   link?: string
 }
 
-function RenderLinks({ links }: Links[] | undefined, { isChild = false }: boolean) {
+function RenderLinks({ links, isChild = false }: { links: Links[] | undefined, isChild: boolean }) {
   if (!links || links.length === 0) {
     return null;
   }
 
+  console.log(isChild)
+
   return (
-    <div>
+    <>
       {links.map((link) => {
         return (
           <ul>
@@ -45,7 +47,7 @@ function RenderLinks({ links }: Links[] | undefined, { isChild = false }: boolea
           </ul>
         )
       })}
-    </div>
+    </>
   );
 }
 

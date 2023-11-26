@@ -12,8 +12,8 @@ import type { NavItemProps } from "./NavItem.tsx";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
-import type { ImageWidget } from "apps/admin/widgets.ts";
-import Lenguage from "deco-sites/bolovo-store/components/header/Buttons/Language.tsx";
+import LanguageSwitcher from "./Buttons/Language.tsx";
+import type { Country } from "./Header.tsx";
 
 function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
   items: NavItemProps[];
@@ -21,7 +21,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
   logo?: { src: string; alt: string };
   blogItem: { text: string; href: string };
   helpItem: { text: string; href: string };
-  countryFlag: { countryLabel: string, countryImg: { img: ImageWidget, alt: string } }[];
+  countryFlag: Country[];
 }) {
   const platform = usePlatform();
 
@@ -68,13 +68,13 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
             </a>
           )}
         </div>
-        <div class="flex-none flex items-center justify-end gap-2 pr-0 w-2/6">
+        <div class="flex-none flex items-center justify-end gap-1 pr-0 w-2/6">
           <SearchButton />
           <Searchbar searchbar={searchbar} />
-          <Lenguage countryFlag={countryFlag} />
+          <LanguageSwitcher countryFlag={countryFlag} />
           {helpItem && (
             <a
-              class="btn btn-sm btn-ghost hover:bg-transparent px-2 font-normal text-base uppercase"
+              class="btn btn-sm btn-ghost px-2 hover:bg-transparent font-normal text-base uppercase"
               href={helpItem.href}
               aria-label="Help"
             >
@@ -82,7 +82,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
             </a>
           )}
           <a
-            class="btn btn-circle btn-sm btn-ghost hover:bg-transparent"
+            class="btn btn-circle px-2 w-auto btn-sm btn-ghost hover:bg-transparent"
             href="/login"
             aria-label="Log in"
           >
