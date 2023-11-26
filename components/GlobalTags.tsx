@@ -17,47 +17,46 @@ function GlobalTags() {
         dangerouslySetInnerHTML={{
           __html: `          
           @font-face {
-            font-family: "AcuminPro-Regular";
-            src: url("${asset("/fonts/AcuminPro-Regular.woff2")}") format("woff2");
-            font-style: regular;
+            font-family: 'Acumin';
+            src: url("${asset("/fonts/AcuminPro-Italic.woff2")}") format('woff2'),
+                url("${asset("/fonts/AcuminPro-Italic.woff")}") format('woff'),
+                url("${asset("/fonts/AcuminPro-Italic.ttf")}") format('truetype');
             font-weight: normal;
-      },`,
-        }}
-      />
-      <style
-        type="text/css"
-        dangerouslySetInnerHTML={{
-          __html: `          
-          @font-face {
-            font-family: "AcuminPro-Bold";
-            src: url("${asset("/fonts/AcuminPro-Bold.woff2")}") format("woff2");
-            font-style: bold;
-            font-weight: normal;
-      },`,
-        }}
-      />
-      <style
-        type="text/css"
-        dangerouslySetInnerHTML={{
-          __html: `          
-          @font-face {
-            font-family: "AcuminPro-BoldItalic";
-            src: url("${asset("/fonts/AcuminPro-BoldItalic.woff2")}") format("woff2");
-            font-style: boldItalic;
-            font-weight: normal;
-      },`,
-        }}
-      />
-      <style
-        type="text/css"
-        dangerouslySetInnerHTML={{
-          __html: `          
-          @font-face {
-            font-family: "AcuminPro-Italic";
-            src: url("${asset("/fonts/AcuminPro-Italic.woff2")}") format("woff2");
             font-style: italic;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Acumin';
+            src: url("${asset("/fonts/AcuminPro-BoldItalic.woff2")}")  format('woff2'),
+                url("${asset("/fonts/AcuminPro-BoldItalic.woff")}")  format('woff'),
+                url("${asset("/fonts/AcuminPro-BoldItalic.ttf")}")  format('truetype');
+            font-weight: bold;
+            font-style: italic;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Acumin';
+            src: url("${asset("/fonts/AcuminPro-Regular.woff2")}") format('woff2'),
+                url("${asset("/fonts/AcuminPro-Regular.woff")}") format('woff'),
+                url("${asset("/fonts/AcuminPro-Regular.ttf")}") format('truetype');
             font-weight: normal;
-      },`,
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Acumin';
+            src: url("${asset("/fonts/AcuminPro-Bold.woff2")}") format('woff2'),
+                url("${asset("/fonts/AcuminPro-Bold.woff")}") format('woff'),
+                url("${asset("/fonts/AcuminPro-Bold.ttf")}") format('truetype');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        `,
         }}
       />
 
