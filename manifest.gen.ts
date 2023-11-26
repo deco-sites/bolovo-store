@@ -10,7 +10,7 @@ import * as $$$$$$2 from "./sections/Content/Benefits.tsx";
 import * as $$$$$$3 from "./sections/Content/Faq.tsx";
 import * as $$$$$$4 from "./sections/Content/Logos.tsx";
 import * as $$$$$$5 from "./sections/Content/Testimonials.tsx";
-import * as $$$$$$6 from "./sections/Content/TextPlusVideo.tsx";
+import * as $$$$$$6 from "./sections/Content/VideoAndText.tsx";
 import * as $$$$$$7 from "./sections/Footer/Footer.tsx";
 import * as $$$$$$8 from "./sections/Gallery.tsx";
 import * as $$$$$$9 from "./sections/Header/Header.tsx";
@@ -54,7 +54,7 @@ const manifest = {
     "deco-sites/bolovo-store/sections/Content/Faq.tsx": $$$$$$3,
     "deco-sites/bolovo-store/sections/Content/Logos.tsx": $$$$$$4,
     "deco-sites/bolovo-store/sections/Content/Testimonials.tsx": $$$$$$5,
-    "deco-sites/bolovo-store/sections/Content/TextPlusVideo.tsx": $$$$$$6,
+    "deco-sites/bolovo-store/sections/Content/VideoAndText.tsx": $$$$$$6,
     "deco-sites/bolovo-store/sections/Footer/Footer.tsx": $$$$$$7,
     "deco-sites/bolovo-store/sections/Gallery.tsx": $$$$$$8,
     "deco-sites/bolovo-store/sections/Header/Header.tsx": $$$$$$9,
