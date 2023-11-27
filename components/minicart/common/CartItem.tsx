@@ -105,7 +105,7 @@ function CartItem(
           <Button
             disabled={loading || isGift}
             loading={loading}
-            variant="icon"
+            class="btn btn-ghost p-0 hover:bg-white"
             onClick={withLoading(async () => {
               const analyticsItem = itemToAnalyticsItem(index);
 

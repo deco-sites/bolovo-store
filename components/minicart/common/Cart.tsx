@@ -141,7 +141,7 @@ function Cart({
               <div class="pb-2">
                 <a class="inline-block w-full" href={checkoutHref}>
                   <Button
-                    variant="primary"
+                    class="btn btn-active btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black"
                     data-deco="buy-button"
                     disabled={loading || isEmtpy}
                     onClick={() => {
@@ -165,7 +165,7 @@ function Cart({
               <div class="pb-4">
                 <a class="inline-block w-full" href="/">
                   <Button
-                    variant="secundary"
+                    class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white"
                     disabled={loading || isEmtpy}
                   >
                    {ctaBackStore ?? "CONTINUAR COMPRANDO"}
