@@ -66,14 +66,13 @@ function CartItem(
     >
       <Image
         {...image}
-        style={{ aspectRatio: "105 / 105" }}
         width={105}
         height={105}
         class="h-full object-contain"
       />
 
       <div class="flex flex-col gap-2 pl-8">
-        <span class="text-[15px] leading-5 text-[#121212] font-semibold max-w-[244px] text-ellipsis overflow-hidden">{name}</span>
+        <p class="text-[15px] leading-5 text-[#121212] font-semibold max-w-[244px] text-ellipsis overflow-hidden">{name}</p>
         <div class="flex items-center gap-2 flex-row w-full justify-between">
           <span class="text-sm font-normal text-[#121212]">
             {formatPrice(list, currency, locale)}

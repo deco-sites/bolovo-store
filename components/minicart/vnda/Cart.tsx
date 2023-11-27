@@ -2,7 +2,7 @@ import { itemToAnalyticsItem, useCart } from "apps/vnda/hooks/useCart.ts";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import BaseCart from "../common/Cart.tsx";
 
-export interface MiniCart{
+export interface MiniCartProps{
   /**
    * @format color
    * @title Cor do valor do frete

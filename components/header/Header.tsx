@@ -3,7 +3,7 @@ import Drawers from "$store/islands/Header/Drawers.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
-import type { MiniCart } from  '$store/components/minicart/vnda/Cart.tsx'
+import type { MiniCartProps } from  '$store/components/minicart/vnda/Cart.tsx'
 import Alert from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
@@ -24,7 +24,7 @@ export interface Props {
   logo?: { src: ImageWidget; alt: string };
 
   /** @title MiniCart */
-  miniCart?: MiniCart
+  miniCart?: MiniCartProps
 }
 
 function Header({

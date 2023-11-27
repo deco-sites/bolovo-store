@@ -15,10 +15,7 @@ function FreeShippingProgressBar({ target, total, currency, locale, freeShipping
   const remaining = target - total;
   const percent = Math.floor((total / target) * 100);
   const valueFreeShipping = formatPrice(remaining, currency, locale);
-  let newfreeShippingText = "";
-  if(freeShippingText){
-    newfreeShippingText = freeShippingText.replace("$valor",`<span style=color:${freeShippingValueColor}>${valueFreeShipping}</span>`)
-  }
+  
   return (
     <div class="flex flex-col w-full gap-2">
       <div class="flex justify-center items-center gap-2 text-primary">
@@ -27,7 +24,7 @@ function FreeShippingProgressBar({ target, total, currency, locale, freeShipping
             <div class="w-full text-center py-8">
              <div class="text-[#121212] font-semibold text-sm flex flex-row items-center w-full justify-center">
               <span class="mt-[6px]">
-                <InnerHTML html={newfreeShippingText} />
+                <InnerHTML html={freeShippingText?.replace("$valor",`<span style=color:${freeShippingValueColor}>${valueFreeShipping}</span>`)} />
               </span>
               <img
                 src="/image/Dog.gif"
