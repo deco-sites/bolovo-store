@@ -10,8 +10,8 @@ export default function PaymentMethods(
   return (
     <>
       {content && content.items && content.items.length > 0 && (
-        <div class="flex flex-col gap-4">
-          {content.title && <h3 class="text-lg">{content.title}</h3>}
+        <div class="flex flex-col gap-[15px]">
+          {content.title && <h3 class="text-base font-bold leading-[26px]">{content.title}</h3>}
           <ul class="flex items-center gap-4 flex-wrap">
             {content.items.map((item) => {
               return (
@@ -20,8 +20,8 @@ export default function PaymentMethods(
                   title={item.label}
                 >
                   <Icon
-                    width={48}
-                    height={32}
+                    width={36}
+                    height={24}
                     strokeWidth={1}
                     id={item.label}
                   />

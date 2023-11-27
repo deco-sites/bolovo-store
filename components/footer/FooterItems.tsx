@@ -1,21 +1,19 @@
-import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
-
 export type Item = {
   label: string;
   href: string;
 };
 
 export type Section = {
-  label: string;
   items: Item[];
 };
 
 export default function FooterItems(
-  { sections, justify = false }: { sections: Section[]; justify: boolean },
+  { items, justify = false }: { items: Section; justify: boolean },
 ) {
   return (
     <>
-      {sections.length > 0 && (
+      
+      {items.items.length > 0 && (
         <>
           {/* Tablet and Desktop view */}
           <ul
@@ -23,54 +21,29 @@ export default function FooterItems(
               justify && "lg:justify-between"
             }`}
           >
-            {sections.map((section) => (
+            <div class={`flex flex-col gap-4 flex-wrap text-sm`}>
+              {items.items.map((item) => (
               <li>
-                <div class="flex flex-col gap-2">
-                  <span class="font-medium text-lg">
-                    {section.label}
-                  </span>
-                  <ul class={`flex flex-col gap-2 flex-wrap text-sm`}>
-                    {section.items?.map((item) => (
-                      <li>
-                        <a href={item.href} class="block py-1 link link-hover">
-                          {item.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <a href={item.href} class="block font-semibold text-base leading-[19px] uppercase">
+                  {item.label}
+                </a>
               </li>
-            ))}
+              ))}
+            </div>
           </ul>
 
           {/* Mobile view */}
           <ul class="flex flex-col md:hidden gap-4">
-            {sections.map((section) => (
-              <li>
-                <div class="collapse collapse-arrow ">
-                  <input type="checkbox" class="min-h-[0]" />
-                  <div class="collapse-title min-h-[0] !p-0 flex gap-2">
-                    <span>{section.label}</span>
-                  </div>
-                  <div class="collapse-content">
-                    <ul
-                      class={`flex flex-col gap-1 pl-5 pt-2`}
-                    >
-                      {section.items?.map((item) => (
-                        <li>
-                          <a
-                            href={item.href}
-                            class="block py-1 link link-hover"
-                          >
-                            {item.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            ))}
+          {items.items.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="block font-semibold text-base leading-[19px] uppercase"
+                >
+                  {item.label}
+              </a>
+            </li>
+          ))}
           </ul>
         </>
       )}

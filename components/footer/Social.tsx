@@ -2,12 +2,10 @@ import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 
 export interface SocialItem {
   label:
-    | "Discord"
-    | "Facebook"
     | "Instagram"
-    | "Linkedin"
-    | "Tiktok"
-    | "Twitter";
+    | "Youtube"
+    | "Spotify"
+    | "WhatsApp";
   link: string;
 }
 
@@ -21,7 +19,7 @@ export default function Social(
     <>
       {content && content.items && content.items.length > 0 && (
         <div class="flex flex-col gap-4">
-          {content.title && <h3 class="text-lg">{content.title}</h3>}
+          {content.title && <h2 class="text-base font-bold leading-[26px]">{content.title}</h2>}
           <ul
             class={`flex gap-4 ${
               vertical ? "lg:flex-col lg:items-start" : "flex-wrap items-center"
@@ -30,15 +28,15 @@ export default function Social(
             {content.items.map((item) => {
               return (
                 <li>
-                  <a
+                <a
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${item.label} Logo`}
                     class="flex gap-2 items-center"
                   >
-                    <span class="block p-1 border rounded-full">
-                      <Icon size={24} id={item.label} />
+                    <span class="block rounded-full bg-black p-2">
+                      <Icon size={20} id={item.label} />
                     </span>
                     {vertical && (
                       <div class="text-sm hidden lg:block">{item.label}</div>
