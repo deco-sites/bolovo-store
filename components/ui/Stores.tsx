@@ -33,18 +33,16 @@ export interface Props {
                     <div className="mx-4 lg:mx-0 lg:w-1/2">
                         <img src={hero.media} alt={hero.altImg} className="object-cover w-full max-h-[577px]" />
                     </div>
-
                     {/* Título e Subtítulo */}
                     <div className="lg:w-1/2 px-11 lg:px-0 lg:py-16">
                         <div className={` bg-[#F6F6F6] ${alignment === 'right' ? 'lg:pr-[24.4%]' : 'lg:pl-[24.4%]'} md:h-full flex justify-center items-center feature-text-container relative py-11 lg:py-0`}>
-                            {/* Título e Subtítulo */}
                             <div className={`text-[13px] lg:text-[14px] xl:text-base leading-[20.8px] flex flex-col max-w-[433px] ${alignment === 'right' ? 'lg:ml-auto' : 'lg:mr-auto'} gap-5`}>
                                 <h4 className="text-[#121212] font-semibold">{content.storeName}</h4>
-                                <div className="lg:text-base-300" dangerouslySetInnerHTML={{ __html: address ?? '' }} />
+                                <div className="font-acumin lg:text-base-300" dangerouslySetInnerHTML={{ __html: address ?? '' }} />
                                 <ul>
                                 {content.socials?.map(({ label, text, href }, index) => (
                                         <li key={index}>
-                                            <a href={href}>
+                                            <a class="font-acumin" href={href}>
                                                 <strong>{label}: </strong>
                                                 {text}
                                             </a>
