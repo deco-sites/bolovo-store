@@ -13,21 +13,15 @@ import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
 
-export interface MiniCart{
-   /**
-   * @title Texto do botão de checkout
-   */
-  ctaCheckout?: string
-    /**
-   * @title Texto do botão de voltar a comprar
-   */
-  ctaBackToStore?: string
-}
-
-function Navbar({ items, searchbar, logo }: {
+function Navbar({ items, searchbar, logo, label, img }: {
   items: SiteNavigationElement[];
   searchbar?: SearchbarProps;
   logo?: { src: string; alt: string };
+  label: string;
+  img: {
+    src: ImageWidget;
+    alt: string;
+  };
 }) {
   const platform = usePlatform();
 
@@ -52,7 +46,7 @@ function Navbar({ items, searchbar, logo }: {
         )}
 
         <div class="flex gap-1">
-          <SearchButton />
+          <SearchButton label={label} img={img} />
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}
         </div>
@@ -75,17 +69,17 @@ function Navbar({ items, searchbar, logo }: {
           {items.map((item) => <NavItem item={item} />)}
         </div>
         <div class="flex-none w-44 flex items-center justify-end gap-2">
-          <SearchButton />
+          <SearchButton label={label} img={img} />
           <Searchbar searchbar={searchbar} />
           <a
-            class="btn btn-circle btn-sm btn-ghost"
+            class="btn btn-circle btn-sm btn-ghost z-[3]"
             href="/login"
             aria-label="Log in"
           >
             <Icon id="User" size={24} strokeWidth={0.4} />
           </a>
           <a
-            class="btn btn-circle btn-sm btn-ghost"
+            class="btn btn-circle btn-sm btn-ghost z-[3]"
             href="/wishlist"
             aria-label="Wishlist"
           >
