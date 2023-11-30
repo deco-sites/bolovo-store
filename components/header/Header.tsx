@@ -60,26 +60,26 @@ function Header({
 
   return (
     <>
-      <header style={{ height: headerHeight }}>
-        <Drawers
-          menu={{ items }}
-          searchbar={searchbar}
-          miniCart={miniCart}
-          platform={platform}
-        >
-          <div class="bg-base-100 fixed w-full z-50">
-            <Alert alerts={alerts} />
-            <Navbar
-               items={items}
-               searchbar={searchbar && { ...searchbar, platform }}
-               logo={logo}
-               label={buttonSearch.label}
-               img={buttonSearch.img}
-            />
-          </div>
-        </Drawers>
-      </header>
-    </>
+    <header style={{ height: headerHeight }}>
+      <Drawers
+        menu={{ items }}
+        searchbar={searchbar}
+        miniCart={miniCart}
+        platform={platform}
+      >
+        <div class="bg-base-100 fixed w-full z-50">
+          <Alert {...promotionBar} />
+          <Navbar
+            items={items}
+            searchbar={searchbar && { ...searchbar, platform }}
+            logo={logo}
+            label={buttonSearch.label}
+            img={buttonSearch.img}
+          />
+        </div>
+      </Drawers>
+    </header>
+  </>
   );
 }
 

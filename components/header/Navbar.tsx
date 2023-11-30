@@ -12,6 +12,7 @@ import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
 function Navbar({ items, searchbar, logo, label, img }: {
   items: SiteNavigationElement[];
