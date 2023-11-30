@@ -45,7 +45,13 @@ export type AvailableIcons =
 =======
   | "Spotify"
   | "Youtube"
+<<<<<<< HEAD
 >>>>>>> f452d8a (Footer)
+=======
+  | "Amex"
+  | "Boleto"
+  | "Hiper"
+>>>>>>> 85bd1f9 (Svg payment methods)
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
