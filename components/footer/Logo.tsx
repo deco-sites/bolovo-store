@@ -1,9 +1,11 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import InnerHTML from  "$store/components/ui/InnerHTML.tsx"
+import type { HTMLWidget } from "apps/admin/widgets.ts";
 
 export interface Props {
   logo?: {
     image: ImageWidget;
-    description?: string;
+    description?: HTMLWidget;
   };
 }
 
@@ -22,7 +24,7 @@ export default function Logo({ logo }: Props) {
             />
           </div>
           <div class="max-w-[350px] w-full font-normal leading-[26px] text-base">
-            {logo?.description}
+            <InnerHTML html={logo?.description} />
           </div>
         </div>
       )}

@@ -1,6 +1,7 @@
 export type Item = {
   label: string;
   href: string;
+  newTab?: boolean
 };
 
 export type Section = {
@@ -24,7 +25,7 @@ export default function FooterItems(
             <div class={`flex flex-col gap-4 flex-wrap text-sm`}>
               {items.items.map((item) => (
               <li>
-                <a href={item.href} class="block font-semibold text-base leading-[19px] uppercase">
+                <a target={item.newTab ?  "_blank" : ""} href={item.href} class="block font-semibold text-base leading-[19px] uppercase">
                   {item.label}
                 </a>
               </li>

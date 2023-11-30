@@ -13,6 +13,7 @@ import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
 import type {ContactsProps} from "$store/components/footer/Contacts.tsx"
+import type { HTMLWidget } from "apps/admin/widgets.ts";
 
 export type Item = {
   label: string;
@@ -111,6 +112,7 @@ export interface Props {
     text?: string;
   };
   contacts?: ContactsProps[];
+  extraInfo?: HTMLWidget
   layout?: Layout;
 }
 

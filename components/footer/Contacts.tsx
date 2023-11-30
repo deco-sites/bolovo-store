@@ -1,15 +1,15 @@
+import InnerHTML from  "$store/components/ui/InnerHTML.tsx"
+import type { HTMLWidget } from "apps/admin/widgets.ts";
 
 export interface ContactsProps {
     title: string
-    text: string
-    link?: string 
-    href?: string
+    text: HTMLWidget
 }
 
 const contacts1 = [
     {title:"instagram:", text:"@bolovopinheiros"},
     {title:"whats loja:", text:"(11) 91725-0298"},
-    {title:"telefone:", text:"(11) 3086-1020", link: "VEJA MAIS", href: "https://www.bolovo.com.br/p/lojas"},
+    {title:"telefone:", text:"(11) 3086-1020"},
   ]
 
 export default function Contacts ( { content }: { content?: ContactsProps }) {
@@ -20,8 +20,9 @@ export default function Contacts ( { content }: { content?: ContactsProps }) {
             {contacts1.map((contact) => (
               <div class="flex flex-row gap-1">
                  <span class=" font-bold text-base leading-[26px] uppercase">{contact.title}</span>
-                 <span class=" font-normal text-base leading-[26px]">{contact.text}</span>
-                 <a href={contact.href} class="underline text-[#121212]">{contact.link}</a>
+                 <span class=" font-normal text-base leading-[26px]">
+                   <InnerHTML html={contact.text} />
+                 </span>
              </div>
             ))}
         </div>

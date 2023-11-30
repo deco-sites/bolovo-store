@@ -7,6 +7,7 @@ export interface SocialItem {
     | "Spotify"
     | "WhatsApp";
   link: string;
+  newTab?: boolean
 }
 
 export default function Social(
@@ -30,7 +31,7 @@ export default function Social(
                 <li>
                 <a
                     href={item.link}
-                    target="_blank"
+                    target={item.newTab ? "_blank" : ""}
                     rel="noopener noreferrer"
                     aria-label={`${item.label} Logo`}
                     class="flex gap-2 items-center"
