@@ -18,7 +18,7 @@ export default function SearchButton({ label, img }: Props) {
   return (
     <>
       <Button
-        class="btn-circle btn-sm btn-ghost hidden sm:flex flex-row z-10 flex-nowrap w-auto hover:bg-transparent"
+        class="btn-circle btn-sm btn-ghost hidden sm:flex flex-row z-10 flex-nowrap w-auto hover:bg-transparent px-2"
         style={{ display: displaySearchPopup.value ? "none" : "flex" }}
         aria-label="search icon button"
         onClick={() => {
@@ -38,7 +38,7 @@ export default function SearchButton({ label, img }: Props) {
           displaySearchDrawer.value = !displaySearchDrawer.value;
         }}
       >
-        <Icon id="MagnifyingGlass" size={24} strokeWidth={0.1} />
+        <Icon id="MagnifyingGlass" size={19} strokeWidth={0.1} />
       </Button>
     </>
   );
