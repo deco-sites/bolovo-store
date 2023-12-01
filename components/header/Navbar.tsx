@@ -8,33 +8,28 @@ import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import CartButtonWake from "$store/islands/Header/Cart/wake.tsx";
 import Searchbar from "$store/islands/Header/Searchbar.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
+import type { NavItemProps } from "./NavItem.tsx";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
-import type { ImageWidget } from "apps/admin/widgets.ts";
+import LanguageSwitcher from "./Buttons/Language.tsx";
+import type { Country } from "./Header.tsx";
 
-function Navbar({ items, searchbar, logo, label, img }: {
-  items: SiteNavigationElement[];
+function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag, label, img }: {
+  items: NavItemProps[];
   searchbar?: SearchbarProps;
   logo?: { src: string; alt: string };
-  label: string;
-  img: {
-    src: ImageWidget;
-    alt: string;
-  };
+  blogItem: { text: string; href: string };
+  helpItem: { text: string; href: string };
+  countryFlag: Country[];
 }) {
   const platform = usePlatform();
 
   return (
     <>
       {/* Mobile Version */}
-      <div
-        style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2"
-      >
+      <div style={{ height: navbarHeight }} class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2 relative">
         <MenuButton />
-
         {logo && (
           <a
             href="/"
@@ -42,10 +37,9 @@ function Navbar({ items, searchbar, logo, label, img }: {
             style={{ minHeight: navbarHeight }}
             aria-label="Store logo"
           >
-            <Image src={logo.src} alt={logo.alt} width={126} height={16} />
+            <Image src={logo.src} alt={logo.alt} width={145} height={43} />
           </a>
         )}
-
         <div class="flex gap-1">
           <SearchButton label={label} img={img} />
           {platform === "vtex" && <CartButtonVTEX />}
@@ -54,42 +48,45 @@ function Navbar({ items, searchbar, logo, label, img }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6">
-        <div class="flex-none w-44">
+      <div class="hidden md:flex flex-row justify-between items-center w-full px-2 shadow-sm shadow-gray-300">
+        <div class="flex items-center px-0 w-2/6">
+          {items.map((item) => (
+            <NavItem {...item} />
+          ))}
+          {blogItem && (
+            <a class="text-base uppercase text-Rubik" href={blogItem.href}>{blogItem.text}</a>
+          )}
+        </div>
+        <div class="flex-auto flex justify-center w-2/6">
           {logo && (
             <a
               href="/"
               aria-label="Store logo"
-              class="block px-4 py-3 w-[160px]"
+              class="block w-[145px]"
             >
-              <Image src={logo.src} alt={logo.alt} width={126} height={16} />
+              <Image src={logo.src} alt={logo.alt} width={145} height={43} />
             </a>
           )}
         </div>
-        <div class="flex-auto flex justify-center">
-          {items.map((item) => <NavItem item={item} />)}
-        </div>
-        <div class="flex-none w-44 flex items-center justify-end gap-2">
+        <div class="flex-none flex items-center justify-end gap-1 pr-0 min-w-[33%] w-auto">
           <SearchButton label={label} img={img} />
           <Searchbar searchbar={searchbar} />
+          <LanguageSwitcher countryFlag={countryFlag} />
+          {helpItem && (
+            <a
+              class="btn btn-sm btn-ghost px-2 hover:bg-transparent font-normal text-base uppercase"
+              href={helpItem.href}
+              aria-label="Help"
+            >
+              {helpItem.text}
+            </a>
+          )}
           <a
-            class="btn btn-circle btn-sm btn-ghost z-[3]"
+            class="btn btn-circle px-2 w-auto btn-sm btn-ghost hover:bg-transparent"
             href="/login"
             aria-label="Log in"
           >
-            <Icon id="User" size={24} strokeWidth={0.4} />
-          </a>
-          <a
-            class="btn btn-circle btn-sm btn-ghost z-[3]"
-            href="/wishlist"
-            aria-label="Wishlist"
-          >
-            <Icon
-              id="Heart"
-              size={24}
-              strokeWidth={2}
-              fill="none"
-            />
+            <Icon id="User" width={20} height={24} strokeWidth={0.4} />
           </a>
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}

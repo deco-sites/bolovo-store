@@ -1,6 +1,7 @@
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
+import type { NavItemProps } from "./NavItem.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Alert from "./Alert.tsx"
@@ -9,6 +10,14 @@ import { Props as AlertProps } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 
+export interface Country {
+  countryLabel: string,
+  languageAbbreviation: string,
+  countryImg: {
+    img: ImageWidget,
+    alt: string,
+  }
+}
 
 export interface Props {
   promotionBar?: AlertProps;
@@ -38,13 +47,30 @@ export interface Props {
    * @title Navigation items
    * @description Navigation items used both on mobile and desktop menus
    */
-  navItems?: SiteNavigationElement[] | null;
+  navItems?: NavItemProps[];
 
   /** @title Logo */
   logo?: { src: ImageWidget; alt: string };
 
   /** @title MiniCart */
   miniCart?: MiniCartProps
+
+  /** 
+* @title Menu Item Blog
+*/
+  blogItem: { text: string; href: string };
+
+  /** 
+  * @title Menu Item Help
+  */
+  helpItem: { text: string; href: string };
+
+  /** 
+* @title Flag Icon
+* @Description Internationalization Menu Flag Icon
+*/
+  /** @title Country Flag */
+  countryFlag: Country[]
 }
 
 function Header({
@@ -54,6 +80,9 @@ function Header({
   logo,
   buttonSearch,
   miniCart,
+  blogItem,
+  helpItem,
+  countryFlag
 }: Props) {
   const platform = usePlatform();
   const items = navItems ?? [];
@@ -75,10 +104,13 @@ function Header({
             logo={logo}
             label={buttonSearch.label}
             img={buttonSearch.img}
+            blogItem={blogItem}
+            helpItem={helpItem}
+            countryFlag={countryFlag}
           />
-        </div>
-       </Drawers>
-     </header>
+          </div>
+        </Drawers>
+      </header>
     </>
   );
 }
