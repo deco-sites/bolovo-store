@@ -15,7 +15,7 @@ import { navbarHeight } from "./constants.ts";
 import LanguageSwitcher from "./Buttons/Language.tsx";
 import type { Country } from "./Header.tsx";
 
-function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
+function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag, label, img }: {
   items: NavItemProps[];
   searchbar?: SearchbarProps;
   logo?: { src: string; alt: string };
@@ -41,7 +41,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
           </a>
         )}
         <div class="flex gap-1">
-          <SearchButton />
+          <SearchButton label={label} img={img} />
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}
         </div>
@@ -69,7 +69,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag }: {
           )}
         </div>
         <div class="flex-none flex items-center justify-end gap-1 pr-0 w-2/6">
-          <SearchButton />
+          <SearchButton label={label} img={img} />
           <Searchbar searchbar={searchbar} />
           <LanguageSwitcher countryFlag={countryFlag} />
           {helpItem && (

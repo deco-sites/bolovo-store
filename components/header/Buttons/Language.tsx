@@ -10,7 +10,7 @@ export default function LanguageSwitcher({ countryFlag }: {
     return (
         <>
             <details className="dropdown px-0">
-                <summary className=" btn px-2 flex flex-row flex-nowrap border-none hover:border-none bg-transparent hover:bg-transparent w-max   text-base font-normal" >
+                <summary className=" btn px-2 flex flex-row flex-nowrap border-none hover:border-none bg-transparent hover:bg-transparent w-max uppercase text-base font-normal" >
                     <Image src={countryFlag[0].countryImg.img} alt={countryFlag[0].countryImg.alt} width={19} height={12} />
                     {countryFlag[0].countryLabel}
                     <Icon
