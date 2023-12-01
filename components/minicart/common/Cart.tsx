@@ -6,6 +6,8 @@ import { AnalyticsItem } from "apps/commerce/types.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import Coupon, { Props as CouponProps } from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
+import { useCart } from "apps/vnda/hooks/useCart.ts";
+import type { HTMLWidget } from "apps/admin/widgets.ts";
 
 interface Props {
   items: Item[];
@@ -17,10 +19,14 @@ interface Props {
   currency: string;
   coupon?: string;
   freeShippingTarget: number;
+  freeShippingText: HTMLWidget;
+  freeShippingValueColor: string
   checkoutHref: string;
   onAddCoupon: CouponProps["onAddCoupon"];
   onUpdateQuantity: ItemProps["onUpdateQuantity"];
   itemToAnalyticsItem: ItemProps["itemToAnalyticsItem"];
+  ctaCheckout?: string
+  ctaBackStore?: string
 }
 
 function Cart({
@@ -33,14 +39,25 @@ function Cart({
   currency,
   discounts,
   freeShippingTarget,
+  freeShippingText,
+  freeShippingValueColor,
   checkoutHref,
   itemToAnalyticsItem,
   onUpdateQuantity,
   onAddCoupon,
+  ctaCheckout,
+  ctaBackStore,
 }: Props) {
   const { displayCart } = useUI();
   const isEmtpy = items.length === 0;
-
+  const { cart } = useCart();
+  let totalCart = 0;
+  if(cart){
+    cart.value?.relatedItems?.map((item) => totalCart += item.total)
+  }
+  const valueInstallments = totalCart / 6;
+  const numberFormated = valueInstallments.toFixed(2);
+  const installments = numberFormated.replace('.', ',');
   return (
     <div
       class="flex flex-col justify-center items-center overflow-hidden"
@@ -62,20 +79,14 @@ function Cart({
         )
         : (
           <>
-            {/* Free Shipping Bar */}
-            <div class="px-2 py-4 w-full">
-              <FreeShippingProgressBar
-                total={total}
-                locale={locale}
-                currency={currency}
-                target={freeShippingTarget}
-              />
-            </div>
-
+          <div class="flex flex-row text-[15px] leading-[17px] justify-between w-full px-[18px] py-3">
+            <span class="font-semibold">CARRINHO DE COMPRAS</span>
+            <span class="font-normal">{items.length} {items.length > 1 ? "ITEMS" : "ITEM"}</span>
+          </div>
             {/* Cart Items */}
             <ul
               role="list"
-              class="mt-6 px-2 flex-grow overflow-y-auto flex flex-col gap-6 w-full"
+              class="mt-6 px-[18px] flex-grow overflow-y-auto flex flex-col gap-8 w-full pb-8"
             >
               {items.map((item, index) => (
                 <li key={index}>
@@ -90,46 +101,48 @@ function Cart({
                 </li>
               ))}
             </ul>
-
-            {/* Cart Footer */}
-            <footer class="w-full">
-              {/* Subtotal */}
-              <div class="border-t border-base-200 py-2 flex flex-col">
-                {discounts > 0 && (
-                  <div class="flex justify-between items-center px-4">
-                    <span class="text-sm">Descontos</span>
-                    <span class="text-sm">
-                      {formatPrice(discounts, currency, locale)}
-                    </span>
-                  </div>
-                )}
-                <div class="w-full flex justify-between px-4 text-sm">
-                  <span>Subtotal</span>
-                  <span class="px-4">
-                    {formatPrice(subtotal, currency, locale)}
-                  </span>
-                </div>
-                <Coupon onAddCoupon={onAddCoupon} coupon={coupon} />
-              </div>
-
+           
               {/* Total */}
-              <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 mx-4">
-                <div class="flex justify-between items-center w-full">
-                  <span>Total</span>
-                  <span class="font-medium text-xl">
+              <div  class="border-t border-[#121212] opacity-30 w-[91%] flex justify-center px-[18px]"/>
+              <div class="pt-8 pb-2 flex flex-col justify-end items-end gap-2 w-full px-[18px]">
+                <div class="flex justify-between items-center w-full font-semibold">
+                  <span class="text-[15px] leading-5">Total</span>
+                  <span class="font-bold text-lg leading-6">
                     {formatPrice(total, currency, locale)}
                   </span>
                 </div>
-                <span class="text-sm text-base-300">
-                  Taxas e fretes serão calculados no checkout
-                </span>
+                <div class={`flex flex-row items-center leading-5 text-[15px] w-full ${freeShippingTarget - total > 0 ? "justify-end" : "justify-between"}`}>
+                  {freeShippingTarget - total > 0 ? "" : 
+                  <div class="flex flex-row items-center font-semibold"><span class="mt-1">Frete Grátis </span>
+                   <img
+                    src="/image/Dog.gif"
+                    alt="Dog"
+                    width="46"
+                    height="46"
+                    class="ml-1"
+                   />
+                  </div>}
+                  <span class="font-normal ">{`R$ ${installments} em 6x`}</span>
+                </div>
               </div>
-
-              <div class="p-4">
+             {/* Free Shipping Bar */}
+             <div class="px-[18px] w-full">
+              <FreeShippingProgressBar
+                freeShippingValueColor={freeShippingValueColor}
+                freeShippingText={freeShippingText}
+                total={total}
+                locale={locale}
+                currency={currency}
+                target={freeShippingTarget}
+              />
+            </div>
+            {/* Cart Footer */}
+            <footer class="w-full px-[18px]">
+              <div class="pb-2">
                 <a class="inline-block w-full" href={checkoutHref}>
                   <Button
+                    class="btn btn-active btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black"
                     data-deco="buy-button"
-                    class="btn-primary btn-block"
                     disabled={loading || isEmtpy}
                     onClick={() => {
                       sendEvent({
@@ -145,7 +158,17 @@ function Cart({
                       });
                     }}
                   >
-                    Fechar pedido
+                   {ctaCheckout ?? "CHECKOUT"}
+                  </Button>
+                </a>
+              </div>
+              <div class="pb-4">
+                <a class="inline-block w-full" href="/">
+                  <Button
+                    class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white"
+                    disabled={loading || isEmtpy}
+                  >
+                   {ctaBackStore ?? "CONTINUAR COMPRANDO"}
                   </Button>
                 </a>
               </div>
