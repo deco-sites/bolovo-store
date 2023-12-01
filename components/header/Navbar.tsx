@@ -57,7 +57,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag, label
             <a class="text-base uppercase text-Rubik" href={blogItem.href}>{blogItem.text}</a>
           )}
         </div>
-        <div class="flex-auto flex justify-center  w-2/6">
+        <div class="flex-auto flex justify-center w-2/6">
           {logo && (
             <a
               href="/"
@@ -68,7 +68,7 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag, label
             </a>
           )}
         </div>
-        <div class="flex-none flex items-center justify-end gap-1 pr-0 w-2/6">
+        <div class="flex-none flex items-center justify-end gap-1 pr-0 min-w-[33%] w-auto">
           <SearchButton label={label} img={img} />
           <Searchbar searchbar={searchbar} />
           <LanguageSwitcher countryFlag={countryFlag} />
