@@ -1,13 +1,26 @@
 import { itemToAnalyticsItem, useCart } from "apps/vnda/hooks/useCart.ts";
+import type { HTMLWidget } from "apps/admin/widgets.ts";
 import BaseCart from "../common/Cart.tsx";
+
+export interface MiniCartProps{
+  /**
+   * @format color
+   * @title Cor do valor do frete
+   * @default #FFFFFF
+   */
+  freeShippingValueColor?: string
+  freeShippingText?: HTMLWidget
+  freeShippingTarget?: number
+  ctaCheckout?: string
+  ctaBackStore?: string
+}
 
 const normalizeUrl = (url: string) =>
   url.startsWith("//") ? `https:${url}` : url;
 
-function Cart() {
+function Cart({ctaCheckout, ctaBackStore, freeShippingTarget, freeShippingText,  freeShippingValueColor} : MiniCart) {
   const { cart, loading, updateItem, update } = useCart();
   const items = cart.value?.orderForm?.items ?? [];
-
   const total = cart.value?.orderForm?.total ?? 0;
   const subtotal = cart.value?.orderForm?.subtotal ?? 0;
   const discounts = cart.value?.orderForm?.subtotal_discount ?? 0;
@@ -32,8 +45,12 @@ function Cart() {
       discounts={discounts}
       locale={locale}
       currency={currency}
+      ctaCheckout={ctaCheckout}
+      ctaBackStore={ctaBackStore}
       loading={loading.value}
-      freeShippingTarget={1000}
+      freeShippingValueColor={freeShippingValueColor ?? "#121212"}
+      freeShippingTarget={freeShippingTarget ?? 0}
+      freeShippingText={freeShippingText ?? ""}
       coupon={coupon}
       checkoutHref={`/checkout/${token}`}
       onAddCoupon={(code) => update({ coupon_code: code })}
