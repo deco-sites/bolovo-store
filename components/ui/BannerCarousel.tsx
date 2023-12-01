@@ -9,6 +9,16 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
 /**
  * @titleBy alt
  */
+export interface Autoplay {
+  /** @description Activate or deactivate Carousel autoplay */
+  activate?: boolean;
+/**
+   * @title Autoplay interval
+   * @description time (in seconds) to start the carousel autoplay
+   */
+  interval?: number;
+}
+
 export interface Banner {
   /** @description desktop otimized image */
   desktop: ImageWidget;
@@ -19,10 +29,6 @@ export interface Banner {
   action?: {
     /** @description when user clicks on the image, go to this link */
     href: string;
-    /** @description Image text title */
-    title: string;
-    /** @description Image text subtitle */
-    subTitle: string;
     /** @description Button label */
     label: string;
   };
@@ -35,10 +41,9 @@ export interface Props {
    */
   preload?: boolean;
   /**
-   * @title Autoplay interval
-   * @description time (in seconds) to start the carousel autoplay
+   * @title Autoplay
    */
-  interval?: number;
+  autoplay?: Autoplay;
 }
 
 const DEFAULT_PROPS = {
@@ -48,8 +53,6 @@ const DEFAULT_PROPS = {
       action: {
         href: "https://www.deco.cx/",
         label: "deco.cx",
-        title: "Demo Store",
-        subTitle: "Visit our site and start building now:",
       },
       mobile:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/24278f9e-412d-4a8a-b2d3-57353bb1b368",
@@ -61,8 +64,6 @@ const DEFAULT_PROPS = {
       action: {
         href: "https://www.deco.cx/",
         label: "deco.cx",
-        title: "Demo Store",
-        subTitle: "Visit our site and start building now:",
       },
       mobile:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/eeaa624c-a3e1-45e8-a6fe-034233cfbcd0",
@@ -74,8 +75,6 @@ const DEFAULT_PROPS = {
       action: {
         href: "https://www.deco.cx/",
         label: "deco.cx",
-        title: "Demo Store",
-        subTitle: "Visit our site and start building now:",
       },
       mobile:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ae89571c-4a7c-44bf-9aeb-a341fd049d19",
@@ -84,6 +83,10 @@ const DEFAULT_PROPS = {
     },
   ],
   preload: true,
+  autoplay: {
+    activate: true,
+    interval: 5,
+  }
 };
 
 function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
@@ -98,46 +101,42 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
     <a
       href={action?.href ?? "#"}
       aria-label={action?.label}
-      class="relative h-[600px] overflow-y-hidden w-full"
+      class="relative overflow-y-hidden w-full"
     >
       <Picture preload={lcp}>
         <Source
-          media="(max-width: 767px)"
+          media="(max-width: 640px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={mobile}
-          width={360}
-          height={600}
+          width={320}
+          height={465}
         />
         <Source
-          media="(min-width: 768px)"
+          media="(min-width: 641px and max-width: 1023px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={desktop}
-          width={1440}
-          height={600}
+          width={641}
+          height={316}
+        />
+        <Source
+          media="(min-width: 1024px)"
+          fetchPriority={lcp ? "high" : "auto"}
+          src={desktop}
+          width={1024}
+          height={505}
         />
         <img
-          class="object-cover w-full h-full"
+          class="w-full h-full"
           loading={lcp ? "eager" : "lazy"}
           src={desktop}
           alt={alt}
         />
       </Picture>
-      {action && (
-        <div class="absolute h-min top-0 bottom-0 m-auto left-0 right-0 sm:right-auto sm:left-[12%] max-h-min max-w-[235px] flex flex-col gap-4 p-4 rounded glass">
-          <span class="text-6xl font-medium text-base-100">
-            {action.title}
-          </span>
-          <span class="font-medium text-xl text-base-100">
-            {action.subTitle}
-          </span>
-          <Button class="glass">{action.label}</Button>
-        </div>
-      )}
     </a>
   );
 }
 
-function Dots({ images, interval = 0 }: Props) {
+function Dots({ images, autoplay }: Props) {
   return (
     <>
       <style
@@ -158,7 +157,7 @@ function Dots({ images, interval = 0 }: Props) {
               <div class="py-5">
                 <div
                   class="w-16 sm:w-20 h-0.5 rounded group-disabled:animate-progress bg-gradient-to-r from-base-100 from-[length:var(--dot-progress)] to-[rgba(255,255,255,0.4)] to-[length:var(--dot-progress)]"
-                  style={{ animationDuration: `${interval}s` }}
+                  style={{ animationDuration: `${autoplay?.interval}s` }}
                 />
               </div>
             </Slider.Dot>
@@ -172,22 +171,22 @@ function Dots({ images, interval = 0 }: Props) {
 function Buttons() {
   return (
     <>
-      <div class="flex items-center justify-center z-10 col-start-1 row-start-2">
-        <Slider.PrevButton class="btn btn-circle glass">
+      <div class="pl-6 md:pl-0 flex items-center justify-center z-10 col-start-1 row-start-2">
+        <Slider.PrevButton class="btn btn-circle bg-[#FFFFFFCC]">
           <Icon
             class="text-base-100"
-            size={24}
-            id="ChevronLeft"
+            size={40}
+            id="ArrowPointingLeft"
             strokeWidth={3}
           />
         </Slider.PrevButton>
       </div>
-      <div class="flex items-center justify-center z-10 col-start-3 row-start-2">
-        <Slider.NextButton class="btn btn-circle glass">
+      <div class="pr-6 md:pr-0 flex items-center justify-center z-10 col-start-3 row-start-2">
+        <Slider.NextButton class="btn btn-circle bg-[#FFFFFFCC]">
           <Icon
             class="text-base-100"
-            size={24}
-            id="ChevronRight"
+            size={40}
+            id="ArrowPointingRight"
             strokeWidth={3}
           />
         </Slider.NextButton>
@@ -197,16 +196,16 @@ function Buttons() {
 }
 
 function BannerCarousel(props: Props) {
-  const { images, preload, interval } = { ...DEFAULT_PROPS, ...props };
-
+  const { images, preload, autoplay } = { ...DEFAULT_PROPS, ...props };
+  const interval = autoplay?.interval || 0;
   const id = useId();
 
   return (
     <div
       id={id}
-      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
+      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] pb-14 md:pb-16"
     >
-      <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
+      <Slider class="h-[calc((625/430)*100vw)] sm:h-[calc((851/1726)*100vw)] sm:max-h-[85.36vh] carousel carousel-center w-full col-span-full row-span-full gap-6">
         {images?.map((image, index) => (
           <Slider.Item index={index} class="carousel-item w-full">
             <BannerItem image={image} lcp={index === 0 && preload} />
@@ -216,9 +215,9 @@ function BannerCarousel(props: Props) {
 
       <Buttons />
 
-      <Dots images={images} interval={interval} />
+      <Dots images={images} autoplay={autoplay} />
 
-      <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
+      <SliderJS rootId={id} interval={autoplay?.interval && autoplay.interval * 1e3} infinite />
     </div>
   );
 }
