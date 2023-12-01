@@ -22,7 +22,7 @@ function SearchbarModal({ searchbar }: Props) {
       open={displaySearchPopup.value}
       onClose={() => displaySearchPopup.value = false}
     >
-      <div class="relative border-b border-black">
+      <div class="relative border-b border-black bg-white">
         <Searchbar {...searchbar} />
       </div>
     </FieldOfSearch>
