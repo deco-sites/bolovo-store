@@ -16,9 +16,9 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
     onChange?.(Math.min(quantity + 1, QUANTITY_MAX_VALUE));
 
   return (
-    <div class="join border rounded-none w-min">
+    <div class="join border border-[#121212] rounded-[15px] w-min h-[30px] items-center">
       <Button
-        class="btn-square btn-ghost join-item"
+        class="btn btn-ghost disabled:bg-transparent btn-sm border-none hover:bg-transparent rounded-[15px] join-item text-[#121212] font-normal text-base leading-5"
         onClick={decrement}
         disabled={disabled}
         loading={loading}
@@ -26,20 +26,20 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
         -
       </Button>
       <input
-        class="input text-center join-item [appearance:textfield]"
+        class="text-center font-normal text-sm border-none join-item [appearance:textfield] text-[#121212]"
         type="number"
         inputMode="numeric"
-        pattern="[0-9]*"
+        pattern="[00-9]*"
         max={QUANTITY_MAX_VALUE}
         min={1}
-        value={quantity}
+        value={quantity.toString().padStart(2, '0')}
         disabled={disabled}
         onBlur={(e) => onChange?.(e.currentTarget.valueAsNumber)}
         maxLength={3}
         size={3}
       />
       <Button
-        class="btn-square btn-ghost join-item"
+        class="btn btn-sm disabled:bg-transparent btn-ghost hover:bg-transparent border-none rounded-[15px] join-item text-[#121212] font-normal text-base leading-5"
         onClick={increment}
         disabled={disabled}
         loading={loading}

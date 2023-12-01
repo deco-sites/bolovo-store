@@ -3,12 +3,33 @@ import Drawers from "$store/islands/Header/Drawers.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
-import Alert from "./Alert.tsx";
+import Alert from "./Alert.tsx"
+import type { MiniCartProps } from  '$store/components/minicart/vnda/Cart.tsx'
+import { Props as AlertProps } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 
+
 export interface Props {
-  alerts: string[];
+  promotionBar?: AlertProps;
+
+  /**
+ * @title Button Search
+ */
+  buttonSearch: {
+    /**
+ * @title Text of Button
+ */
+    label: string;
+    /**
+ * @title Icon of Buttton 
+ */
+    img: {
+      src: ImageWidget;
+      alt: string;
+
+    }
+  }
 
   /** @title Search Bar */
   searchbar?: Omit<SearchbarProps, "platform">;
@@ -21,13 +42,18 @@ export interface Props {
 
   /** @title Logo */
   logo?: { src: ImageWidget; alt: string };
+
+  /** @title MiniCart */
+  miniCart?: MiniCartProps
 }
 
 function Header({
-  alerts,
+  promotionBar,
   searchbar,
   navItems,
   logo,
+  buttonSearch,
+  miniCart,
 }: Props) {
   const platform = usePlatform();
   const items = navItems ?? [];
@@ -35,21 +61,24 @@ function Header({
   return (
     <>
       <header style={{ height: headerHeight }}>
-        <Drawers
+       <Drawers
           menu={{ items }}
           searchbar={searchbar}
+          miniCart={miniCart}
           platform={platform}
         >
-          <div class="bg-base-100 fixed w-full z-50">
-            <Alert alerts={alerts} />
-            <Navbar
-              items={items}
-              searchbar={searchbar && { ...searchbar, platform }}
-              logo={logo}
-            />
-          </div>
-        </Drawers>
-      </header>
+        <div class="bg-base-100 fixed w-full z-50">
+          <Alert {...promotionBar} />
+          <Navbar
+            items={items}
+            searchbar={searchbar && { ...searchbar, platform }}
+            logo={logo}
+            label={buttonSearch.label}
+            img={buttonSearch.img}
+          />
+        </div>
+       </Drawers>
+     </header>
     </>
   );
 }
