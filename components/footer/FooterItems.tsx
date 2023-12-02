@@ -34,7 +34,7 @@ export default function FooterItems(
           </ul>
 
           {/* Mobile view */}
-          <ul class="flex flex-col md:hidden gap-4">
+          <ul class="flex flex-col mx-auto md:hidden gap-4">
           {items.items.map((item) => (
             <li>
               <a

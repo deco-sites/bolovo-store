@@ -208,12 +208,12 @@ function Footer({
         {(!layout?.variation || layout?.variation == "Variation 1") && (
           <div class="flex flex-col gap-[15px] mx-[15px]">
             <div class="flex flex-col pb-20 md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
-              <div>
+              <div class="lg:mb-0 mb-6">
                {_logo}
                {_payments}
               </div>
               {_sectionLinks}
-              <div class="flex flex-col gap-5">
+              <div class="flex flex-col gap-5 lg:my-0 my-6">
                 {_contacts}
                 {_social}
               </div>

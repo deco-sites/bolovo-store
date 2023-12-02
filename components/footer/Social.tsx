@@ -20,10 +20,10 @@ export default function Social(
     <>
       {content && content.items && content.items.length > 0 && (
         <div class="flex flex-col gap-4">
-          {content.title && <h2 class="text-base font-bold leading-[26px]">{content.title}</h2>}
+          {content.title && <h2 class="text-base font-bold leading-[26px] lg:mx-0 mx-auto">{content.title}</h2>}
           <ul
             class={`flex gap-4 ${
-              vertical ? "lg:flex-col lg:items-start" : "flex-wrap items-center"
+              vertical ? "lg:flex-col lg:items-start" : "flex-wrap lg:mx-0 mx-auto items-center"
             }`}
           >
             {content.items.map((item) => {
