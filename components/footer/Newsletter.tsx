@@ -1,6 +1,6 @@
-import { useSignal } from "@preact/signals";
-import { invoke } from "$store/runtime.ts";
 import type { JSX } from "preact";
+import { useNewsletter } from "../../sdk/useNewsletter.ts";
+import { useState } from "preact/compat";
 
 export interface Form {
   placeholder?: string;
@@ -25,21 +25,24 @@ function Newsletter(
   { content, layout = {} }: Props,
 ) {
   const { tiled = false } = layout;
-  const loading = useSignal(false);
+  const emptyData = { email: ""};
+  const [data, setData] = useState({ ...emptyData });
+  const [element, setElement] = useState<"invalid" | "error" | "success" | null>(null);
+  const { send, loading } = useNewsletter();
+
+  function showElement(content: "invalid" | "error" | "success") {
+    setElement(content);
+    setTimeout(() => setElement(null), 2000);
+  }
 
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-
-    try {
-      loading.value = true;
-
-      const email =
-        (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
-
-      await invoke.vtex.actions.newsletter.subscribe({ email });
-    } finally {
-      loading.value = false;
-    }
+    if (data.email) {
+      const status = await send(data);
+      if (status >= 400) showElement("error");
+      else showElement("success");
+      setData({ ...emptyData });
+    } else showElement("invalid");
   };
 
   return (
@@ -68,6 +71,10 @@ function Newsletter(
               name="email"
               class="flex-auto h-[38px] md:flex-none rounded-[20px] input input-bordered w-full text-base-content join-item"
               placeholder={content?.form?.placeholder || "Digite seu email"}
+              value={data.email}
+              onInput={(e) =>
+                setData({ ...data, email: e.currentTarget.value })}
+              required
             />
             <button
               type="submit"
@@ -78,6 +85,25 @@ function Newsletter(
             </button>
           </div>
         </form>
+        {element === "invalid"
+            ? (
+              <div class="text-[16px] mt-[5px] w-full text-left">
+                Preencha os campos obrigatórios
+              </div>
+            )
+            : element === "success"
+            ? (
+              <div class="text-green text-center text-[14px] mt-[5px] font-bold">
+                Obrigado! Enviado com sucesso.
+              </div>
+            )
+            : element === "error"
+            ? (
+              <div class="text-orange text-center text-[14px] mt-[5px] font-bold">
+                Problema ao enviar, tente novamente.
+              </div>
+            )
+            : null}
         {content?.form?.helpText && (
           <div
             class="text-[10px] font-normal leading-4 text-[#121212]"
