@@ -15,7 +15,7 @@ export interface Props {
 }
 
 function Cart({ platform, miniCart }: Props) {
-  const {ctaCheckout, ctaBackStore, freeShippingTarget, freeShippingText, freeShippingValueColor} = miniCart
+  const {ctaCheckout, ctaBackStore, freeShippingTarget, freeShippingText, freeShippingValueColor} = miniCart;
 
   if (platform === "vtex") {
     return <CartVTEX />;
@@ -28,7 +28,7 @@ function Cart({ platform, miniCart }: Props) {
              freeShippingTarget={freeShippingTarget}  
              freeShippingText={freeShippingText} 
              freeShippingValueColor={freeShippingValueColor} 
-            />;c
+            />;
   }
 
   if (platform === "wake") {

@@ -32,7 +32,7 @@ const Aside = (
   },
 ) => (
   <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full max-w-[100vw]">
-    <div class="flex justify-end items-center px-2">
+    <div class="hidden md:flex justify-end items-center px-2">
       <h1 class="px-[18px] py-3">
         <span class="font-semibold text-sm">{title}</span>
       </h1>

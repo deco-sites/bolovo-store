@@ -8,6 +8,7 @@ import Coupon, { Props as CouponProps } from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
 import { useCart } from "apps/vnda/hooks/useCart.ts";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
+import Icon from "$store/components/ui/Icon.tsx";
 
 interface Props {
   items: Item[];
@@ -25,6 +26,7 @@ interface Props {
   onAddCoupon: CouponProps["onAddCoupon"];
   onUpdateQuantity: ItemProps["onUpdateQuantity"];
   itemToAnalyticsItem: ItemProps["itemToAnalyticsItem"];
+  onClose?: () => void;
   ctaCheckout?: string
   ctaBackStore?: string
 }
@@ -45,6 +47,7 @@ function Cart({
   itemToAnalyticsItem,
   onUpdateQuantity,
   onAddCoupon,
+  onClose,
   ctaCheckout,
   ctaBackStore,
 }: Props) {
@@ -79,9 +82,14 @@ function Cart({
         )
         : (
           <>
-          <div class="flex flex-row text-[15px] leading-[17px] justify-between w-full px-[18px] py-3">
-            <span class="font-semibold">CARRINHO DE COMPRAS</span>
-            <span class="font-normal">{items.length} {items.length > 1 ? "ITEMS" : "ITEM"}</span>
+          <div class="flex flex-row justify-between w-full md:mt-0 mt-4">
+            <div class="flex flex-col md:flex-row text-[15px] leading-[17px] justify-between w-full px-[18px] py-3">
+              <span class="font-semibold">CARRINHO DE COMPRAS</span>
+              <span class="font-normal md:mt-0 mt-1">{items.length} {items.length > 1 ? "ITEMS" : "ITEM"}</span>
+            </div>
+            <Button class="btn btn-ghost hover:bg-transparent disabled:bg-transparent md:hidden block p-4" onClick={() => displayCart.value = false}>
+              <Icon id="XMark" size={25} strokeWidth={2} class="text-[#121212]" />
+            </Button>
           </div>
             {/* Cart Items */}
             <ul
