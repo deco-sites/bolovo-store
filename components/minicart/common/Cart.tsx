@@ -78,12 +78,12 @@ function Cart({
       </div>
       : <></>}
       <div
-        class="flex flex-col justify-center items-center overflow-hidden"
-        style={{ minWidth: "calc(min(100vw, 425px))", maxWidth: "425px" }}
+        class="flex flex-col justify-center items-center overflow-hidden w-full"
+        style={{ minWidth: "calc(min(90vw, 425px))", maxWidth: "425px", height: "90vh"}}
       >
         {isEmtpy
           ? (
-            <div class="flex flex-col gap-6 mt-20">
+            <div class="flex flex-col gap-6">
               <span class="font-medium text-2xl">Sua sacola está vazia</span>
               <Button
                 class="btn-outline"
