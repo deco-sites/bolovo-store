@@ -1,11 +1,9 @@
-import type { App, AppContext as AC } from "deco/mod.ts";
+import type { AppContext } from "$store/apps/site.ts";
 import { fetchSafe } from "apps/utils/fetch.ts";
 
 export interface Props {
   email: string;
 }
-
-export type AppContext = AC<ReturnType<typeof App>>;
 
 const newsletter = async (
   props: Props,
@@ -13,7 +11,7 @@ const newsletter = async (
   ctx: AppContext,
 ): Promise<number> => {
   const form = new FormData();
-  const baseUrl = `${ctx.commerce.publicUrl}webform`;
+  const baseUrl = `${ctx.commerce?.publicUrl}webform`;
   const { email } = props;
   form.append("key", "bolovo-newsletter");
   form.append("reply_to", email);
