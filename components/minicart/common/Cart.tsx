@@ -134,7 +134,6 @@ function Cart({
                   </li>
                 ))}
               </ul>
-
               {/* Total */}
               <div class="border-t border-[#121212] opacity-30 w-[91%] flex justify-center px-[18px]" />
               <div class="pt-8 pb-2 flex flex-col justify-end items-end gap-2 w-full px-[18px]">
