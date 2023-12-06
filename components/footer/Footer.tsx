@@ -112,7 +112,8 @@ export interface Props {
     text?: string;
   };
   contacts?: ContactsProps[];
-  extraInfo?: HTMLWidget
+   /** @format html */
+  extraInfo?: string
   layout?: Layout;
 }
 
@@ -145,8 +146,9 @@ function Footer({
   contacts = [
     {title:"instagram:", text:"@bolovopinheiros"},
     {title:"whats loja:", text:"(11) 91725-0298"},
-    {title:"telefone:", text:"(11) 3086-1020", link: "VEJA MAIS", href: "https://www.bolovo.com.br/p/lojas"},
+    {title:"telefone:", text:"(11) 3086-1020"},
   ],
+  extraInfo = "© BOLOVO | VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34",
   layout = {
     backgroundColor: "Primary",
     variation: "Variation 1",
@@ -221,7 +223,10 @@ function Footer({
             </div>
             <Divider />
             <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px]">
-              <p>© BOLOVO | VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34</p>
+               <div
+                 class="text-center"
+                 dangerouslySetInnerHTML={{ __html: extraInfo}}
+               />
             </div>
           </div>
         )}
