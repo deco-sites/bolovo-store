@@ -61,7 +61,7 @@ export default function InstagramPosts({
       {data.length > 0 ?
         <div class="w-full py-8 flex flex-col gap-4">
           <h3 class=" text-base md:text-center text-left px-4 font-bold">{title}</h3>
-          <div class="flex overflow-x-hidden sm:overflow-clip">
+          <div class="flex overflow-x-scroll sm:overflow-clip">
             <div
               class={`flex flex-row items-center justify-center place-items-center sm:w-full w-max px-4 sm:px-0`}
             >
