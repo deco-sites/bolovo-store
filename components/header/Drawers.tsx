@@ -87,7 +87,7 @@ function Drawers({ menu, searchbar, miniCart, children, platform }: Props) {
         onClose={() => displayCart.value = false}
         aside={
           <Aside
-            title="Fechar"
+            title={miniCart.modalCloseText ?? "Fechar"}
             onClose={() => displayCart.value = false}
           >
             <Cart platform={platform} miniCart={miniCart} />

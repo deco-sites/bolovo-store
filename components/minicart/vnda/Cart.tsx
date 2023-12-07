@@ -13,12 +13,19 @@ export interface MiniCartProps{
   freeShippingTarget?: number
   ctaCheckout?: string
   ctaBackStore?: string
+  modalCloseText?: string,
+  cartIsEmpty?: string,
+  buttonCartIsEmpty?: string,
+  cartTitle?: string
+  gotFreeShipping?: string
+  cartTotalText?: string
+  installmentsText?: string
 }
 
 const normalizeUrl = (url: string) =>
   url.startsWith("//") ? `https:${url}` : url;
 
-function Cart({ctaCheckout, ctaBackStore, freeShippingTarget, freeShippingText,  freeShippingValueColor} : MiniCart) {
+function Cart({ctaCheckout, ctaBackStore, freeShippingTarget, freeShippingText,  freeShippingValueColor, modalCloseText,cartIsEmpty,buttonCartIsEmpty,cartTitle,gotFreeShipping,cartTotalText,installmentsText} : MiniCartProps) {
   const { cart, loading, updateItem, update } = useCart();
   const items = cart.value?.orderForm?.items ?? [];
   const total = cart.value?.orderForm?.total ?? 0;
@@ -28,7 +35,7 @@ function Cart({ctaCheckout, ctaBackStore, freeShippingTarget, freeShippingText, 
   const currency = "BRL";
   const coupon = cart.value?.orderForm?.coupon_code ?? undefined;
   const token = cart.value?.orderForm?.token;
-
+  console.log( modalCloseText)
   return (
     <BaseCart
       items={items.map((item) => ({
@@ -40,6 +47,13 @@ function Cart({ctaCheckout, ctaBackStore, freeShippingTarget, freeShippingText, 
           list: item.variant_price,
         },
       }))}
+      modalCloseText={modalCloseText}
+      cartIsEmpty={cartIsEmpty}
+      buttonCartIsEmpty={buttonCartIsEmpty}
+      cartTitle={cartTitle}
+      gotFreeShipping={gotFreeShipping}
+      cartTotalText={cartTotalText}
+      installmentsText={installmentsText}
       total={total}
       subtotal={subtotal}
       discounts={discounts}
