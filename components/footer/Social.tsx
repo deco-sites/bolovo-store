@@ -22,7 +22,7 @@ export default function Social(
         <div class="flex flex-col gap-4">
           {content.title && <h2 class="text-base font-bold leading-[26px] lg:mx-0 mx-auto">{content.title}</h2>}
           <ul
-            class={`flex gap-4 ${
+            class={`flex gap-1 ${
               vertical ? "lg:flex-col lg:items-start" : "flex-wrap lg:mx-0 mx-auto items-center"
             }`}
           >

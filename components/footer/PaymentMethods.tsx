@@ -12,7 +12,7 @@ export default function PaymentMethods(
       {content && content.items && content.items.length > 0 && (
         <div class="flex flex-col gap-[15px]">
           {content.title && <h3 class="text-base font-bold lg:mx-0 mx-auto leading-[26px]">{content.title}</h3>}
-          <ul class="flex lg:mx-0 mx-auto items-center gap-4 flex-wrap">
+          <ul class="flex lg:mx-0 mx-auto items-center gap-1 flex-wrap">
             {content.items.map((item) => {
               return (
                 <li
