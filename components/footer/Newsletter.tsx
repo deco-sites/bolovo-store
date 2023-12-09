@@ -73,7 +73,6 @@ function Newsletter(
           <div class="flex flex-wrap gap-3 h-[38px] relative items-center">
             <input
               name="email"
-              type="email"
               class="flex-auto h-[38px] md:flex-none rounded-[20px] input input-bordered w-full text-base-content join-item"
               placeholder={content?.form?.placeholder || "Digite seu email"}
               required
@@ -98,7 +97,7 @@ function Newsletter(
         }
         {content?.form?.helpText && (
           <div
-            class="text-[10px] font-normal leading-4 mt-4 text-[#121212]"
+            class="text-[10px] font-normal leading-4 text-[#121212]"
             dangerouslySetInnerHTML={{ __html: content?.form?.helpText }}
           />
         )}
