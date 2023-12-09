@@ -26,17 +26,24 @@ function Newsletter(
 ) {
   const { tiled = false } = layout;
   const loading = useSignal(false);
-
+  const showMessage = useSignal("")
+  
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-
     try {
       loading.value = true;
-
-      const email =
-        (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
-
-      await invoke.vtex.actions.newsletter.subscribe({ email });
+      const email = (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
+      const status = await invoke({
+        key:"deco-sites/bolovo-store/loaders/newsletter.ts",
+        props: {
+          email: email,
+        }
+      },)
+      if(status >= 400){
+        showMessage.value = "error"
+      }else{
+        showMessage.value = "success"
+      }
     } finally {
       loading.value = false;
     }
@@ -47,18 +54,18 @@ function Newsletter(
       class={`flex ${
         tiled
           ? "flex-col gap-4 lg:flex-row lg:w-full lg:justify-between"
-          : "flex-col gap-4 lg:max-w-[378px] w-full"
+          : "flex-col gap-4 max-w-[378px] w-full"
       }`}
     >
       <div class="flex flex-col gap-4">
         {content?.title && (
-          <h3 class={tiled ? "text-2xl lg:text-3xl" : "lg:text-left text-center text-base leading-[26px] font-bold text-[#121212]"}>
+          <h3 class={tiled ? "text-2xl lg:text-3xl" : "text-base leading-[26px] font-bold text-[#121212]"}>
             {content?.title}
           </h3>
         )}
         {content?.description && <div>{content?.description}</div>}
       </div>
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col">
         <form
           class="form-control"
           onSubmit={handleSubmit}
@@ -66,8 +73,10 @@ function Newsletter(
           <div class="flex flex-wrap gap-3 h-[38px] relative items-center">
             <input
               name="email"
+              type="email"
               class="flex-auto h-[38px] md:flex-none rounded-[20px] input input-bordered w-full text-base-content join-item"
               placeholder={content?.form?.placeholder || "Digite seu email"}
+              required
             />
             <button
               type="submit"
@@ -78,9 +87,18 @@ function Newsletter(
             </button>
           </div>
         </form>
+        {
+          showMessage.value == "error" ? 
+          <div class="text-sm leading-none text-[#d44c47] mt-1">
+            Aconteceu algum erro ao cadastrar o email, tente novamente!
+          </div> : showMessage.value == "success" ? 
+          <div class="text-sm leading-none text-green-600 mt-1">
+            E-mail cadastrado com sucesso !
+          </div> : ""
+        }
         {content?.form?.helpText && (
           <div
-            class="text-[10px] font-normal leading-4 text-[#121212]"
+            class="text-[10px] font-normal leading-4 mt-4 text-[#121212]"
             dangerouslySetInnerHTML={{ __html: content?.form?.helpText }}
           />
         )}
