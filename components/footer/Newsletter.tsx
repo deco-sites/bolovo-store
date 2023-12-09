@@ -1,5 +1,4 @@
 import { useSignal } from "@preact/signals";
-import { useState } from  "preact/hooks";
 import { invoke } from "$store/runtime.ts";
 import type { JSX } from "preact";
 
@@ -27,7 +26,7 @@ function Newsletter(
 ) {
   const { tiled = false } = layout;
   const loading = useSignal(false);
-  const [showMessage, setShowMessage] = useState("")
+  const showMessage = useSignal("")
   
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -41,9 +40,9 @@ function Newsletter(
         }
       },)
       if(status >= 400){
-        setShowMessage("error")
+        showMessage.value = "error"
       }else{
-        setShowMessage("success")
+        showMessage.value = "success"
       }
     } finally {
       loading.value = false;
@@ -89,10 +88,10 @@ function Newsletter(
           </div>
         </form>
         {
-          showMessage == "error" ? 
+          showMessage.value == "error" ? 
           <div class="text-sm leading-none text-[#d44c47] mt-1">
             Aconteceu algum erro ao cadastrar o email, tente novamente!
-          </div> : showMessage == "success" ? 
+          </div> : showMessage.value == "success" ? 
           <div class="text-sm leading-none text-green-600 mt-1">
             E-mail cadastrado com sucesso !
           </div> : ""

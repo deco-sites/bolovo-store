@@ -47,6 +47,8 @@ function ProductInfo({ page, layout }: Props) {
     isVariantOf,
     additionalProperty = [],
   } = product;
+
+  console.log(product)
   const description = product.description || isVariantOf?.description;
   const {
     price = 0,
