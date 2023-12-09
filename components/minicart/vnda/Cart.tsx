@@ -2,30 +2,45 @@ import { itemToAnalyticsItem, useCart } from "apps/vnda/hooks/useCart.ts";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import BaseCart from "../common/Cart.tsx";
 
-export interface MiniCartProps{
+export interface MiniCartProps {
   /**
    * @format color
    * @title Cor do valor do frete
    * @default #FFFFFF
    */
-  freeShippingValueColor?: string
-  freeShippingText?: HTMLWidget
-  freeShippingTarget?: number
-  ctaCheckout?: string
-  ctaBackStore?: string
-  modalCloseText?: string,
-  cartIsEmpty?: string,
-  buttonCartIsEmpty?: string,
-  cartTitle?: string
-  gotFreeShipping?: string
-  cartTotalText?: string
-  installmentsText?: string
+  freeShippingValueColor?: string;
+  freeShippingTarget?: number;
+  cartTranslations?: {
+    /** @default Faltam R$ $valor para o frete grátis */
+    freeShippingText?: HTMLWidget;
+    /** @default CHECKOUT */
+    ctaCheckout?: string;
+    /** @default CONTINUAR COMPRANDO*/
+    ctaBackStore?: string;
+    /** @default Fechar */
+    modalCloseText?: string;
+    /** @default  Sua sacola está vazia */
+    cartIsEmpty?: string;
+    /** @default  Escolher Produtos */
+    buttonCartIsEmpty?: string;
+    /** @default  CARRINHO DE COMPRAS */
+    cartTitle?: string;
+    /** @default  Frete Grátis */
+    gotFreeShipping?: string;
+    /** @default  Escolher Total */
+    cartTotalText?: string;
+    /** @default  R$ $valor em 6x */
+    installmentsText?: string;
+  };
 }
 
 const normalizeUrl = (url: string) =>
   url.startsWith("//") ? `https:${url}` : url;
 
-function Cart({ctaCheckout, ctaBackStore, freeShippingTarget, freeShippingText,  freeShippingValueColor, modalCloseText,cartIsEmpty,buttonCartIsEmpty,cartTitle,gotFreeShipping,cartTotalText,installmentsText} : MiniCartProps) {
+function Cart(
+  { freeShippingTarget, freeShippingValueColor, cartTranslations }:
+    MiniCartProps,
+) {
   const { cart, loading, updateItem, update } = useCart();
   const items = cart.value?.orderForm?.items ?? [];
   const total = cart.value?.orderForm?.total ?? 0;
@@ -35,7 +50,7 @@ function Cart({ctaCheckout, ctaBackStore, freeShippingTarget, freeShippingText, 
   const currency = "BRL";
   const coupon = cart.value?.orderForm?.coupon_code ?? undefined;
   const token = cart.value?.orderForm?.token;
-  console.log( modalCloseText)
+
   return (
     <BaseCart
       items={items.map((item) => ({
@@ -47,24 +62,15 @@ function Cart({ctaCheckout, ctaBackStore, freeShippingTarget, freeShippingText, 
           list: item.variant_price,
         },
       }))}
-      modalCloseText={modalCloseText}
-      cartIsEmpty={cartIsEmpty}
-      buttonCartIsEmpty={buttonCartIsEmpty}
-      cartTitle={cartTitle}
-      gotFreeShipping={gotFreeShipping}
-      cartTotalText={cartTotalText}
-      installmentsText={installmentsText}
+      cartTranslations={cartTranslations}
       total={total}
       subtotal={subtotal}
       discounts={discounts}
       locale={locale}
       currency={currency}
-      ctaCheckout={ctaCheckout}
-      ctaBackStore={ctaBackStore}
       loading={loading.value}
       freeShippingValueColor={freeShippingValueColor ?? "#121212"}
       freeShippingTarget={freeShippingTarget ?? 0}
-      freeShippingText={freeShippingText ?? ""}
       coupon={coupon}
       checkoutHref={`/checkout/${token}`}
       onAddCoupon={(code) => update({ coupon_code: code })}

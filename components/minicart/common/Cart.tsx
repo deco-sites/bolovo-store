@@ -21,21 +21,23 @@ interface Props {
   currency: string;
   coupon?: string;
   freeShippingTarget: number;
-  freeShippingText: HTMLWidget;
   freeShippingValueColor: string;
   checkoutHref: string;
   onAddCoupon: CouponProps["onAddCoupon"];
   onUpdateQuantity: ItemProps["onUpdateQuantity"];
   itemToAnalyticsItem: ItemProps["itemToAnalyticsItem"];
-  ctaCheckout?: string;
-  ctaBackStore?: string;
-  modalCloseText?: string,
-  cartIsEmpty?: string,
-  buttonCartIsEmpty?: string,
-  cartTitle?: string
-  gotFreeShipping?: string
-  cartTotalText?: string
-  installmentsText?: string
+  cartTranslations?: {
+    freeShippingText?: HTMLWidget
+    ctaCheckout?: string
+    ctaBackStore?: string
+    modalCloseText?: string,
+    cartIsEmpty?: string,
+    buttonCartIsEmpty?: string,
+    cartTitle?: string
+    gotFreeShipping?: string
+    cartTotalText?: string
+    installmentsText?: string
+  }
 }
 
 function Cart({
@@ -48,21 +50,12 @@ function Cart({
   currency,
   discounts,
   freeShippingTarget,
-  freeShippingText,
   freeShippingValueColor,
   checkoutHref,
   itemToAnalyticsItem,
   onUpdateQuantity,
   onAddCoupon,
-  ctaCheckout,
-  ctaBackStore,
-  modalCloseText,
-  cartIsEmpty,
-  buttonCartIsEmpty,
-  cartTitle,
-  gotFreeShipping,
-  cartTotalText,
-  installmentsText
+  cartTranslations,
 }: Props) {
   const { displayCart } = useUI();
   const isEmtpy = items.length === 0;
@@ -78,7 +71,7 @@ function Cart({
     <div>
       {isEmtpy ? 
       <div class="md:hidden flex flex-row w-full justify-end items-center">
-        <span class="text-base mt-2">{modalCloseText ?? "Fechar"}</span>
+        <span class="text-base mt-2">{cartTranslations?.modalCloseText}</span>
         <Button
           class="btn btn-ghost hover:bg-transparent disabled:bg-transparent md:hidden block p-4"
           onClick={() => displayCart.value = false}
@@ -99,14 +92,14 @@ function Cart({
         {isEmtpy
           ? (
             <div class="flex flex-col gap-6">
-              <span class="font-medium text-2xl">{cartIsEmpty ?? "Sua sacola está vazia"}</span>
+              <span class="font-medium text-2xl">{cartTranslations?.cartIsEmpty}</span>
               <Button
                 class="btn-outline"
                 onClick={() => {
                   displayCart.value = false;
                 }}
               >
-                {buttonCartIsEmpty ?? "Escolher Produtos"}
+                {cartTranslations?.buttonCartIsEmpty}
               </Button>
             </div>
           )
@@ -114,7 +107,7 @@ function Cart({
             <>
               <div class="flex flex-row justify-between w-full md:mt-0 mt-4">
                 <div class="flex flex-col md:flex-row text-[15px] leading-[17px] justify-between w-full px-[18px] py-3">
-                  <span class="font-semibold">{cartTitle ?? "CARRINHO DE COMPRAS"}</span>
+                  <span class="font-semibold">{cartTranslations?.cartTitle}</span>
                   <span class="font-normal md:mt-0 mt-1">
                     {items.length} {items.length > 1 ? "ITEMS" : "ITEM"}
                   </span>
@@ -153,7 +146,7 @@ function Cart({
               <div class="border-t border-[#121212] opacity-30 w-[91%] flex justify-center px-[18px]" />
               <div class="pt-8 pb-2 flex flex-col justify-end items-end gap-2 w-full px-[18px]">
                 <div class="flex justify-between items-center w-full font-semibold">
-                  <span class="text-[15px] leading-5">{cartTotalText ?? "Total"}</span>
+                  <span class="text-[15px] leading-5">{cartTranslations?.cartTotalText}</span>
                   <span class="font-bold text-lg leading-6">
                     {formatPrice(total, currency, locale)}
                   </span>
@@ -169,7 +162,7 @@ function Cart({
                     ? ""
                     : (
                       <div class="flex flex-row items-center font-semibold">
-                        <span class="mt-1">{gotFreeShipping ?? "Frete Grátis"}</span>
+                        <span class="mt-1">{cartTranslations?.gotFreeShipping}</span>
                         <img
                           src="/image/Dog.gif"
                           alt="Dog"
@@ -179,14 +172,14 @@ function Cart({
                         />
                       </div>
                     )}
-                  <span class="font-normal "> <InnerHTML html={ installmentsText?.replace("$valor",`<span>${installments}</span>`)} /></span>
+                  <span class="font-normal "> <InnerHTML html={ cartTranslations?.installmentsText?.replace("$valor",`<span>${installments}</span>`)} /></span>
                 </div>
               </div>
               {/* Free Shipping Bar */}
               <div class="px-[18px] w-full">
                 <FreeShippingProgressBar
                   freeShippingValueColor={freeShippingValueColor}
-                  freeShippingText={freeShippingText}
+                  freeShippingText={cartTranslations?.freeShippingText}
                   total={total}
                   locale={locale}
                   currency={currency}
@@ -215,7 +208,7 @@ function Cart({
                         });
                       }}
                     >
-                      {ctaCheckout ?? "CHECKOUT"}
+                      {cartTranslations?.ctaCheckout}
                     </Button>
                   </a>
                 </div>
@@ -225,7 +218,7 @@ function Cart({
                       class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white"
                       disabled={loading || isEmtpy}
                     >
-                      {ctaBackStore ?? "CONTINUAR COMPRANDO"}
+                      {cartTranslations?.ctaBackStore}
                     </Button>
                   </a>
                 </div>
