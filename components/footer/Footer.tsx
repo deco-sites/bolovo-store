@@ -219,7 +219,9 @@ function Footer({
                 {_contacts}
                 {_social}
               </div>
-              {_newsletter}
+              <div class="lg:mx-0 mx-auto">
+                {_newsletter}
+              </div>
             </div>
             <Divider />
             <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px]">
