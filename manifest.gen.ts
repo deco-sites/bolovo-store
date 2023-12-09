@@ -4,6 +4,7 @@
 
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
+import * as $$$2 from "./loaders/newsletter.ts";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
 import * as $$$$$$2 from "./sections/Content/Benefits.tsx";
@@ -47,6 +48,7 @@ const manifest = {
   "loaders": {
     "deco-sites/bolovo-store/loaders/Layouts/ProductCard.tsx": $$$0,
     "deco-sites/bolovo-store/loaders/List/Sections.tsx": $$$1,
+    "deco-sites/bolovo-store/loaders/newsletter.ts": $$$2,
   },
   "sections": {
     "deco-sites/bolovo-store/sections/Category/CategoryBanner.tsx": $$$$$$0,
