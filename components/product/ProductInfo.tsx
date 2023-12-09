@@ -33,7 +33,6 @@ function ProductInfo({ page, layout }: Props) {
   if (page === null) {
     throw new Error("Missing Product Details Page Info");
   }
-
   const {
     breadcrumbList,
     product,
