@@ -1,9 +1,8 @@
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
+import type { Props as MenuProps } from "$store/components/header/Menu.tsx"
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import type { NavItemProps } from "./NavItem.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Alert from "./Alert.tsx"
 import type { MiniCartProps } from  '$store/components/minicart/vnda/Cart.tsx'
 import { Props as AlertProps } from "./Alert.tsx";
@@ -44,10 +43,11 @@ export interface Props {
   searchbar?: Omit<SearchbarProps, "platform">;
 
   /**
-   * @title Navigation items
-   * @description Navigation items used both on mobile and desktop menus
+   * @title Menu
+   * @description Navigation items used both on mobile and desktop menus and menu props
    */
-  navItems?: NavItemProps[];
+  menu: MenuProps
+
 
   /** @title Logo */
   logo?: { src: ImageWidget; alt: string };
@@ -76,7 +76,7 @@ export interface Props {
 function Header({
   promotionBar,
   searchbar,
-  navItems,
+  menu,
   logo,
   buttonSearch,
   miniCart,
@@ -85,13 +85,13 @@ function Header({
   countryFlag
 }: Props) {
   const platform = usePlatform();
-  const items = navItems ?? [];
+  const items = menu.items ?? [];
 
   return (
     <>
       <header style={{ height: headerHeight }}>
        <Drawers
-          menu={{ items }}
+          menu={menu}
           searchbar={searchbar}
           miniCart={miniCart}
           platform={platform}
