@@ -90,10 +90,10 @@ function Searchbar({
         />
         <Button
           type="submit"
-          class=" btn-sm btn-ghost z-10 flex justify-center items-center "
+          class=" btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
           aria-label="search icon button"
         >
-          <Image src={iconSearch.src} alt={iconSearch.alt} width={16} height={24} loading={"eager"}/>
+          <Image src={iconSearch.src} alt={iconSearch.alt} width={19} height={19} loading={"eager"}/>
         </Button>
       </form>
     </div>
