@@ -15,33 +15,39 @@ import { navbarHeight } from "./constants.ts";
 import LanguageSwitcher from "./Buttons/Language.tsx";
 import type { Country } from "./Header.tsx";
 
-function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag, label, img }: {
-  items: NavItemProps[];
-  searchbar?: SearchbarProps;
-  logo?: { src: string; alt: string };
-  blogItem: { text: string; href: string };
-  helpItem: { text: string; href: string };
-  countryFlag: Country[];
-}) {
+function Navbar(
+  { items, searchbar, logo, blogItem, helpItem, countryFlag, label, img }: {
+    items: NavItemProps[];
+    searchbar?: SearchbarProps;
+    logo?: { src: string; alt: string };
+    blogItem: { text: string; href: string };
+    helpItem: { text: string; href: string };
+    countryFlag: Country[];
+  },
+) {
   const platform = usePlatform();
 
   return (
     <>
       {/* Mobile Version */}
-      <div style={{ height: navbarHeight }} class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2 relative">
+      <div
+        style={{ height: navbarHeight }}
+        class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full px-[15px] md:pl-2 md:pr-6 gap-2 relative"
+      >
         <MenuButton />
         {logo && (
           <a
             href="/"
-            class="flex-grow inline-flex items-center"
+            class="flex-grow inline-flex items-center justify-center w-full ml-16"
             style={{ minHeight: navbarHeight }}
             aria-label="Store logo"
           >
             <Image src={logo.src} alt={logo.alt} width={145} height={43} />
           </a>
         )}
-        <div class="flex gap-1">
+        <div class="flex items-center gap-1">
           <SearchButton label={label} img={img} />
+          <Icon id="User" size={21} />
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}
         </div>
@@ -50,11 +56,11 @@ function Navbar({ items, searchbar, logo, blogItem, helpItem, countryFlag, label
       {/* Desktop Version */}
       <div class="hidden md:flex flex-row justify-between items-center w-full px-2 shadow-sm shadow-gray-300">
         <div class="flex items-center px-0 w-2/6">
-          {items.map((item) => (
-            <NavItem {...item} />
-          ))}
+          {items.map((item) => <NavItem {...item} />)}
           {blogItem && (
-            <a class="text-base uppercase text-Rubik" href={blogItem.href}>{blogItem.text}</a>
+            <a class="text-base uppercase text-Rubik" href={blogItem.href}>
+              {blogItem.text}
+            </a>
           )}
         </div>
         <div class="flex-auto flex justify-center w-2/6">
