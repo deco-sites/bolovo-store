@@ -10,7 +10,12 @@ export interface Props {
     /**
      * @title reversed order?
      */
-    directionInverse?: boolean;
+    directionInverse: {
+        /** @default "col-reverse" */
+        mobile?: "col" | "col-reverse";
+        /** @default "row" */
+        desktop?: "row" | "row-reverse";
+    };
 
     /**
     * @title Image of title content
@@ -38,13 +43,25 @@ export interface Props {
 
 }
 
+const MOBILE_DIRECTION = {
+    "col" : "flex-col",
+    "col-reverse": "flex-col-reverse",
+};
+
+const DESKTOP_DIRECTION = {
+    "row" : "md:flex-row",
+    "row-reverse": "md:flex-row-reverse",
+};
+
 export default function VideoAndText({ directionInverse, image, textContent, listImages, videoLink }: Props) {
     return (
-        <div class="flex flex-row px-2 w-full py-8 2xl:py-16">
-            <div style={{ flexDirection: directionInverse ? "row-reverse" : "row" }} class="flex flex-row justify-center items-center gap-4 w-full">
-                <div class="flex flex-col justify-between h-full items-center w-2/4 gap-3 2xl:gap-20">
+        <div class="flex flex-row px-4 w-full py-8 2xl:py-16">
+            <div class={`flex justify-center items-center gap-4 w-full ${
+            MOBILE_DIRECTION[directionInverse?.mobile ?? "col-reverse"]
+            } ${DESKTOP_DIRECTION[directionInverse?.desktop ?? "row"]}`}>
+                <div class="flex flex-col justify-between h-full items-center w-full md:w-2/4 gap-3 2xl:gap-20">
                     <Image src={image.src} alt={image.alt} width={350} height={69} loading={"lazy"} class="max-w-[200px] md:max-w-[220px] xl:max-w-[350px] 2xl:max-w-[400px]" />
-                    <div dangerouslySetInnerHTML={{ __html: textContent }} class=" font-acumin font-normal text-[10px] leading-4 lg:text-[13px] lg:leading-5 xl:text-sm xl:leading-6 2xl:text-base 2xl:leading-7">
+                    <div dangerouslySetInnerHTML={{ __html: textContent }} class=" font-acumin font-normal text-[12px] leading-4 lg:text-[13px] lg:leading-5 xl:text-sm xl:leading-6 2xl:text-base 2xl:leading-7">
 
                     </div>
                     <div class="flex flex-row gap-2">
@@ -57,12 +74,19 @@ export default function VideoAndText({ directionInverse, image, textContent, lis
                         })}
                     </div>
                 </div>
-                <div class="flex w-2/4 h-full">
+                <div class="hidden md:flex w-full md:w-2/4 h-full">
                     <div class="w-full h-full">
-                        <iframe width="560" height="315" src={videoLink + "?si=n_vAKsEE_BMTv0jn"} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        <iframe width="560" height="315" src={videoLink + "?si=n_vAKsEE_BMTv0jn"} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             class={"w-full h-full"}
-                            allowfullscreen>
-
+                            allowFullScreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="aspect-video flex w-full md:w-2/4 h-full md:hidden">
+                    <div class="w-full h-full">
+                        <iframe width="400" height="225" src={videoLink + "?si=n_vAKsEE_BMTv0jn"} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            class={"w-full h-full"}
+                            allowFullScreen>
                         </iframe>
                     </div>
                 </div>
