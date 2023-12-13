@@ -7,7 +7,7 @@ export default function MenuButton() {
 
   return (
     <Button
-      class="btn btn-sm btn-ghost flex text-base font-bold uppercase"
+      class="btn btn-sm btn-ghost flex text-base font-bold uppercase px-0"
       aria-label="open menu"
       onClick={() => {
         displayMenu.value = true;

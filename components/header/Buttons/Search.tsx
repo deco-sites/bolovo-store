@@ -17,29 +17,32 @@ export default function SearchButton({ label, img }: Props) {
 
   return (
     <>
-      <Button
-        class="btn-circle btn-sm btn-ghost hidden sm:flex flex-row z-10 flex-nowrap w-auto hover:bg-transparent px-2"
-        style={{ display: displaySearchPopup.value ? "none" : "flex" }}
-        aria-label="search icon button"
-        onClick={() => {
-          displaySearchPopup.value = !displaySearchPopup.value;
-        }}
-
-      >
-        <span class="uppercase text-base font-normal">
-          {label}
-        </span>
-        <Image src={img.src} alt={img.alt} width={16} height={24} />
-      </Button>
-      <Button
-        class="btn-circle btn-sm btn-ghost sm:hidden "
-        aria-label="search icon button"
-        onClick={() => {
-          displaySearchDrawer.value = !displaySearchDrawer.value;
-        }}
-      >
-        <Icon id="MagnifyingGlass" size={19} strokeWidth={0.1} />
-      </Button>
+      <span class="hidden md:flex">
+        <Button
+          class="btn-circle btn-sm btn-ghost md:flex flex-row z-10 flex-nowrap w-auto hover:bg-transparent px-2"
+          style={{ display: displaySearchPopup.value ? "none" : "flex" }}
+          aria-label="search icon button"
+          onClick={() => {
+            displaySearchPopup.value = !displaySearchPopup.value;
+          }}
+        >
+          <span class="uppercase text-base font-normal">
+            {label}
+          </span>
+          <Image src={img.src} alt={img.alt} width={16} height={24} />
+        </Button>
+      </span>
+      <span class="md:hidden block">
+        <Button
+          class="btn-circle btn-sm btn-ghost"
+          aria-label="search icon button"
+          onClick={() => {
+            displaySearchDrawer.value = !displaySearchDrawer.value;
+          }}
+        >
+          <Icon id="MagnifyingGlass" size={19} strokeWidth={0.1} />
+        </Button>
+      </span>
     </>
   );
 }
