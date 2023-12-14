@@ -43,6 +43,8 @@ export type AvailableIcons =
   | "WhatsApp"
   | "XMark"
   | "Zoom"
+  | "LikeIntagram"
+  | "CommentIntagram"
   | "Spotify"
   | "Youtube"
   | "Amex"
