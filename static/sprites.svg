@@ -332,4 +332,13 @@
 			d="M0 0H1.2V14H0V0ZM2.4 0H4.8V14H2.4V0ZM7.2 0H8.4V14H7.2V0ZM9.6 0H13.2V14H9.6V0ZM14.4 0H15.6V14H14.4V0ZM18 0H19.2V14H18V0ZM20.4 0H21.6V14H20.4V0ZM22.8 0H24V14H22.8V0Z"
 			fill="#121212" />
 	</symbol>
+	
+	<symbol id="LikeIntagram" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		<path d="M12 22c8-4 11-9 11-14a6 6 0 0 0-11-3.314A6 6 0 0 0 1 8c0 5 3 10 11 14Z" fill="#ffffff" class="fill-232323"></path>
+	</symbol>
+
+	<symbol id="CommentIntagram" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		<path d="M0 0h24v24H0z" fill="none"></path>
+		<path d="M7.291 20.824 2 22l1.176-5.291A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.956 9.956 0 0 1-4.709-1.176z" fill="#ffffff" class="fill-000000"></path>
+	</symbol>
 </svg>
