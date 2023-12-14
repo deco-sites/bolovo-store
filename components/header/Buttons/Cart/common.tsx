@@ -26,7 +26,7 @@ function CartButton({ loading, currency, total, items }: Props) {
   return (
     <div class="indicator">
       <span
-        class={`indicator-item badge badge-secondary badge-sm ${
+        class={`indicator-item badge border-none rounded-full w-3 h-3 text-white bg-[#FF0000] bg-opacity-[85%] badge-xs -left-[5px] top-[14px] ${
           totalItems === 0 ? "hidden" : ""
         }`}
       >
@@ -34,7 +34,7 @@ function CartButton({ loading, currency, total, items }: Props) {
       </span>
 
       <Button
-        class="btn-sm btn-ghost w-auto pl-2 pr-0 mt-1"
+        class="btn-sm btn-ghost w-auto pl-2 pr-0 mt-1 hover:bg-transparent"
         aria-label="open cart"
         data-deco={displayCart.value && "open-cart"}
         loading={loading}

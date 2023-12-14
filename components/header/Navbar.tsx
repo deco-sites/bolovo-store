@@ -16,12 +16,23 @@ import LanguageSwitcher from "./Buttons/Language.tsx";
 import type { Country } from "./Header.tsx";
 
 function Navbar(
-  { items, searchbar, logo, blogItem, helpItem, countryFlag, label, img }: {
+  {
+    items,
+    searchbar,
+    logo,
+    blogItem,
+    helpItem,
+    countryFlag,
+    label,
+    img,
+    accountHref,
+  }: {
     items: NavItemProps[];
     searchbar?: SearchbarProps;
     logo?: { src: string; alt: string };
     blogItem: { text: string; href: string };
     helpItem: { text: string; href: string };
+    accountHref: string;
     countryFlag: Country[];
   },
 ) {
@@ -32,21 +43,23 @@ function Navbar(
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full px-[15px] md:pl-2 md:pr-6 gap-2 relative"
+        class="md:hidden flex flex-row items-center border-b border-base-200 w-full justify-between px-[15px] md:pl-2 md:pr-6 relative"
       >
         <MenuButton />
         {logo && (
           <a
             href="/"
-            class="flex-grow inline-flex items-center justify-center w-full ml-16"
+            class="inline-flex items-center justify-center ml-14"
             style={{ minHeight: navbarHeight }}
             aria-label="Store logo"
           >
-            <Image src={logo.src} alt={logo.alt} width={145} height={43} />
+            <Image src={logo.src} alt={logo.alt} width={134} height={40} />
           </a>
         )}
-        <div class="flex items-center gap-1">
-          <SearchButton label={label} img={img} />
+        <div class="flex items-center gap-[7px]">
+          <span class="mr-1 mt-[2px]">
+            <SearchButton label={label} img={img} />
+          </span>
           <Icon id="User" size={21} />
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}
@@ -54,7 +67,7 @@ function Navbar(
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center w-full px-2 shadow-sm shadow-gray-300">
+      <div class="hidden md:flex flex-row justify-between items-center w-full px-[15px] pr-8 shadow-sm shadow-gray-300">
         <div class="flex items-center px-0 w-2/6">
           {items.map((item) => <NavItem {...item} />)}
           {blogItem && (
@@ -89,7 +102,7 @@ function Navbar(
           )}
           <a
             class="btn btn-circle px-2 w-auto btn-sm btn-ghost hover:bg-transparent"
-            href="/login"
+            href={accountHref}
             aria-label="Log in"
           >
             <Icon id="User" width={20} height={24} strokeWidth={0.4} />
