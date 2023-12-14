@@ -20,7 +20,8 @@ export interface Props {
     alt: string;
   };
   searchBar?: SearchbarProps;
-  loginText: string;
+  accountText: string;
+  accountHref: string
   countryFlag: Country[];
   social: SocialItem[];
 }
@@ -61,7 +62,7 @@ function MenuItem({ items }: { items: NavItemProps[] | NavItemProps }) {
 }
 
 function Menu(
-  { items, logo, searchBar, countryFlag, loginText, social }: Props,
+  { items, logo, searchBar, countryFlag, accountText, social,  accountHref}: Props,
 ) {
   console.log(countryFlag);
   const { displayMenu } = useUI();
@@ -104,11 +105,11 @@ function Menu(
           <div>
             <a
               class="btn btn-square w-auto justify-start btn-sm btn-ghost hover:bg-transparent flex flex-row"
-              href="/login"
+              href={accountHref}
               aria-label="Log in"
             >
               <Icon id="User" width={20} height={21} strokeWidth={0.4} />
-              <span class="font-normal text-[15px]">{loginText}</span>
+              <span class="font-normal text-[15px]">{accountText}</span>
             </a>
           </div>
           <div class="w-full">

@@ -65,6 +65,11 @@ export interface Props {
   */
   helpItem: { text: string; href: string };
 
+   /** 
+  * @title Href icon my account
+  */
+   accountHref: string
+
   /** 
 * @title Flag Icon
 * @Description Internationalization Menu Flag Icon
@@ -82,6 +87,7 @@ function Header({
   miniCart,
   blogItem,
   helpItem,
+  accountHref,
   countryFlag
 }: Props) {
   const platform = usePlatform();
@@ -96,7 +102,7 @@ function Header({
           miniCart={miniCart}
           platform={platform}
         >
-        <div class="bg-base-100 fixed w-full z-50">
+        <div class="bg-base-100 fixed z-50">
           <Alert {...promotionBar} />
           <Navbar
             items={items}
@@ -107,6 +113,7 @@ function Header({
             blogItem={blogItem}
             helpItem={helpItem}
             countryFlag={countryFlag}
+            accountHref={accountHref}
           />
           </div>
         </Drawers>
