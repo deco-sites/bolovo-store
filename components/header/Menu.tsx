@@ -5,7 +5,7 @@ import Image from "apps/website/components/Image.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import { lazy } from "preact/compat";
 import type { Country } from "$store/components/header/Header.tsx";
-import LanguageSwitcher from "./Buttons/Language.tsx";
+import LanguageSwitcher from "$store/components/header/Buttons/Language.tsx";
 import Social from "../footer/Social.tsx";
 import type { SocialItem } from "../footer/Social.tsx";
 import Button from "$store/components/ui/Button.tsx";
@@ -63,6 +63,7 @@ function MenuItem({ items }: { items: NavItemProps[] | NavItemProps }) {
 function Menu(
   { items, logo, searchBar, countryFlag, loginText, social }: Props,
 ) {
+  console.log(countryFlag);
   const { displayMenu } = useUI();
   const contentSocial = {
     title: "",
@@ -110,8 +111,8 @@ function Menu(
               <span class="font-normal text-[15px]">{loginText}</span>
             </a>
           </div>
-          <div>
-            Languagem selector
+          <div class="w-full">
+            <LanguageSwitcher countryFlag={countryFlag} />
           </div>
         </span>
       </div>
