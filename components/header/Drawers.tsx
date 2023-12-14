@@ -31,8 +31,8 @@ const Aside = (
     children: ComponentChildren;
   },
 ) => (
-  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full max-w-[100vw]">
-    <div class="flex justify-end items-center px-2">
+  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full w-auto max-w-[90vw]">
+    <div class="hidden md:flex justify-end items-center px-2">
       <h1 class="px-[18px] py-3">
         <span class="font-semibold text-sm">{title}</span>
       </h1>
@@ -87,7 +87,7 @@ function Drawers({ menu, searchbar, miniCart, children, platform }: Props) {
         onClose={() => displayCart.value = false}
         aside={
           <Aside
-            title="Fechar"
+            title={miniCart.modalCloseText ?? "Fechar"}
             onClose={() => displayCart.value = false}
           >
             <Cart platform={platform} miniCart={miniCart} />
