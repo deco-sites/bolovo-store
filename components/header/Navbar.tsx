@@ -43,7 +43,7 @@ function Navbar(
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row items-center border-b border-base-200 w-full justify-between px-[15px] md:pl-2 md:pr-6 relative"
+        class="md:hidden flex flex-row items-center border-b border-base-200 w-screen justify-between px-[15px] md:pl-2  relative"
       >
         <MenuButton />
         {logo && (
@@ -73,7 +73,7 @@ function Navbar(
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center w-full px-[15px] pr-8 shadow-sm shadow-gray-300">
+      <div class="hidden md:flex flex-row justify-between items-center w-full px-[15px]  shadow-sm shadow-gray-300">
         <div class="flex items-center px-0 w-2/6">
           {items.map((item) => <NavItem {...item} />)}
           {blogItem && (

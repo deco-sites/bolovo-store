@@ -2,6 +2,7 @@ import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { Color } from "https://deno.land/x/color@v0.3.0/mod.ts";
+import { useScroll } from "$store/sdk/useScroll.ts";
 
 export interface barColor {
   /**
@@ -18,7 +19,7 @@ export interface barColor {
 }
 
 export interface Props {
-  visible?: boolean; 
+  visible?: boolean;
   /** @format html */
   text?: string;
   layout?: barColor;
@@ -26,29 +27,37 @@ export interface Props {
   href?: string;
 }
 
-function Alert({visible = false, text = '', layout,  href = '/'}: Props) {
+function Alert({ visible = false, text = "", layout, href = "/" }: Props) {
   const id = useId();
+  const scroll = useScroll();
 
   if (!visible) {
-    return null; 
+    return null;
   }
 
   const sliderStyle = {
-    backgroundColor: layout?.background || '#121212',
+    backgroundColor: layout?.background || "#121212",
   };
-  
+
   const textStyle = {
-    color: layout?.text || '#FFFFFF',
+    color: layout?.text || "#FFFFFF",
   };
 
   return (
-    <div id={id}>
-      <Slider style={sliderStyle} class={`carousel carousel-center w-screen gap-6`}>
-          <div class="carousel-item">
-            <a href={href} class="flex items-center">
-              <span style={textStyle} class="text-xs md:text-sm text-secondary-content flex justify-center items-center w-screen h-[36px]" dangerouslySetInnerHTML={{ __html: text }} />
-            </a>
-          </div>
+    <div class={scroll.value > 1 ? "hidden" : ""} id={id}>
+      <Slider
+        style={sliderStyle}
+        class={`carousel carousel-center w-screen gap-6`}
+      >
+        <div class="carousel-item">
+          <a href={href} class="flex items-center">
+            <span
+              style={textStyle}
+              class="text-xs md:text-sm text-secondary-content flex justify-center items-center w-screen h-[36px]"
+              dangerouslySetInnerHTML={{ __html: text }}
+            />
+          </a>
+        </div>
       </Slider>
 
       {/* <SliderJS rootId={id} interval={interval && interval * 1e3} /> */}
