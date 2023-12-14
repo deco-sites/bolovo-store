@@ -45,6 +45,11 @@ export type AvailableIcons =
   | "Zoom"
   | "LikeIntagram"
   | "CommentIntagram"
+  | "Spotify"
+  | "Youtube"
+  | "Amex"
+  | "Boleto"
+  | "Hiper"
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

@@ -8,9 +8,12 @@ import MobileApps from "$store/components/footer/MobileApps.tsx";
 import PaymentMethods from "$store/components/footer/PaymentMethods.tsx";
 import RegionSelector from "$store/components/footer/RegionSelector.tsx";
 import Social from "$store/components/footer/Social.tsx";
+import Contacts from "$store/components/footer/Contacts.tsx"
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
+import type {ContactsProps} from "$store/components/footer/Contacts.tsx"
+import type { HTMLWidget } from "apps/admin/widgets.ts";
 
 export type Item = {
   label: string;
@@ -18,23 +21,21 @@ export type Item = {
 };
 
 export type Section = {
-  label: string;
   items: Item[];
 };
 
 export interface SocialItem {
   label:
-    | "Discord"
-    | "Facebook"
-    | "Instagram"
-    | "Linkedin"
-    | "Tiktok"
-    | "Twitter";
+  | "Instagram"
+  | "Youtube"
+  | "Spotify"
+  | "WhatsApp";
   link: string;
+  newTab?: boolean
 }
 
 export interface PaymentItem {
-  label: "Diners" | "Elo" | "Mastercard" | "Pix" | "Visa";
+  label: "Diners" | "Elo" | "Mastercard" | "Hiper" | "Visa" | "Amex" | "Boleto";
 }
 
 export interface MobileApps {
@@ -79,6 +80,7 @@ export interface Layout {
     regionOptions?: boolean;
     extraLinks?: boolean;
     backToTheTop?: boolean;
+    contacts?: boolean;
   };
 }
 
@@ -93,7 +95,7 @@ export interface Props {
     description?: string;
     form?: NewsletterForm;
   };
-  sections?: Section[];
+  items?: Section;
   social?: {
     title?: string;
     items: SocialItem[];
@@ -108,6 +110,9 @@ export interface Props {
   backToTheTop?: {
     text?: string;
   };
+  contacts?: ContactsProps[];
+   /** @format html */
+  extraInfo?: string
   layout?: Layout;
 }
 
@@ -118,51 +123,31 @@ function Footer({
     description: "",
     form: { placeholder: "", buttonText: "", helpText: "" },
   },
-  sections = [{
-    "label": "Sobre",
-    "items": [
-      {
-        "href": "/quem-somos",
-        "label": "Quem somos",
-      },
-      {
-        "href": "/termos-de-uso",
-        "label": "Termos de uso",
-      },
-      {
-        "href": "/trabalhe-conosco",
-        "label": "Trabalhe conosco",
-      },
-    ],
-  }, {
-    "label": "Atendimento",
-    "items": [
-      {
-        "href": "/centraldeatendimento",
-        "label": "Central de atendimento",
-      },
-      {
-        "href": "/whatsapp",
-        "label": "Fale conosco pelo WhatsApp",
-      },
-      {
-        "href": "/trocaedevolucao",
-        "label": "Troca e devolução",
-      },
-    ],
-  }],
+  items = [
+    {label:"login", href:"/"},
+    {label:"ajuda", href:"/"},
+    {label:"contato", href:"/"},
+    {label:"lojas", href:"/"},
+    {label:"compre pelo whatsapp", href:"/"},
+  ],
   social = {
     title: "Redes sociais",
-    items: [{ label: "Instagram", link: "/" }, { label: "Tiktok", link: "/" }],
+    items: [{ label: "Instagram", link: "/" }],
   },
   payments = {
     title: "Formas de pagamento",
-    items: [{ label: "Mastercard" }, { label: "Visa" }, { label: "Pix" }],
+    items: [{ label: "Mastercard" }, { label: "Visa" }],
   },
   mobileApps = { apple: "/", android: "/" },
   regionOptions = { currency: [], language: [] },
   extraLinks = [],
   backToTheTop,
+  contacts = [
+    {title:"instagram:", text:"@bolovopinheiros"},
+    {title:"whats loja:", text:"(11) 91725-0298"},
+    {title:"telefone:", text:"(11) 3086-1020"},
+  ],
+  extraInfo = "© BOLOVO | VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34",
   layout = {
     backgroundColor: "Primary",
     variation: "Variation 1",
@@ -176,6 +161,7 @@ function Footer({
       regionOptions: false,
       extraLinks: false,
       backToTheTop: false,
+      contacts: false,
     },
   },
 }: Props) {
@@ -191,7 +177,7 @@ function Footer({
   );
   const _sectionLinks = layout?.hide?.sectionLinks ? <></> : (
     <FooterItems
-      sections={sections}
+      items={items}
       justify={layout?.variation == "Variation 2" ||
         layout?.variation == "Variation 3"}
     />
@@ -211,34 +197,37 @@ function Footer({
   const _links = layout?.hide?.extraLinks
     ? <></>
     : <ExtraLinks content={extraLinks} />;
+  const _contacts = layout?.hide?.contacts ? <></> : <Contacts content={contacts} />
 
   return (
     <footer
-      class={`w-full flex flex-col pt-10 pb-2 md:pb-10 gap-10 ${
+      class={`w-full flex flex-col pt-10 pb-[15px] gap-[15px] ${
         ColorClasses(layout)
       }`}
     >
       <div class="lg:container mx-6 lg:mx-auto">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
-          <div class="flex flex-col gap-10">
-            <div class="flex flex-col md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
-              {_logo}
+          <div class="flex flex-col gap-[15px] mx-[15px]">
+            <div class="flex flex-col pb-20 md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
+              <div class="lg:mb-0 mb-6">
+               {_logo}
+               {_payments}
+              </div>
               {_sectionLinks}
-              {_newsletter}
-            </div>
-            <Divider />
-            <div class="flex flex-col md:flex-row gap-10 md:gap-14 md:items-end">
-              {_payments}
-              {_social}
-              <div class="flex flex-col lg:flex-row gap-10 lg:gap-14 lg:items-end">
-                {_apps}
-                {_region}
+              <div class="flex flex-col gap-5 lg:my-0 my-6">
+                {_contacts}
+                {_social}
+              </div>
+              <div class="lg:mx-0 mx-auto">
+                {_newsletter}
               </div>
             </div>
             <Divider />
-            <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10">
-              <PoweredByDeco />
-              {_links}
+            <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px]">
+               <div
+                 class="text-center"
+                 dangerouslySetInnerHTML={{ __html: extraInfo}}
+               />
             </div>
           </div>
         )}
