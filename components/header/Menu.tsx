@@ -21,7 +21,7 @@ export interface Props {
   };
   searchBar?: SearchbarProps;
   accountText: string;
-  accountHref: string
+  accountHref: string;
   countryFlag: Country[];
   social: SocialItem[];
 }
@@ -62,7 +62,8 @@ function MenuItem({ items }: { items: NavItemProps[] | NavItemProps }) {
 }
 
 function Menu(
-  { items, logo, searchBar, countryFlag, accountText, social,  accountHref}: Props,
+  { items, logo, searchBar, countryFlag, accountText, social, accountHref }:
+    Props,
 ) {
   console.log(countryFlag);
   const { displayMenu } = useUI();
@@ -99,7 +100,6 @@ function Menu(
           </li>
         ))}
       </ul>
-
       <div class="flex flex-col py-2 border-y border-black">
         <span class="py-8 block">
           <div>
