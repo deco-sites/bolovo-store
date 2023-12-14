@@ -56,11 +56,17 @@ function Navbar(
             <Image src={logo.src} alt={logo.alt} width={134} height={40} />
           </a>
         )}
-        <div class="flex items-center gap-[7px]">
+        <div class="flex items-center gap-[7px] ">
           <span class="mr-1 mt-[2px]">
             <SearchButton label={label} img={img} />
           </span>
-          <Icon id="User" size={21} />
+          <a
+            class="btn btn-circle w-auto btn-sm btn-ghost hover:bg-transparent"
+            href={accountHref}
+            aria-label="Log in"
+          >
+            <Icon id="User" size={21} strokeWidth={0.4} />
+          </a>
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}
         </div>
