@@ -1,5 +1,6 @@
 import type { SectionProps } from "deco/mod.ts";
 import Image from "apps/website/components/Image.tsx";
+import Icon from "../../components/ui/Icon.tsx";
 
 export interface Data {
   id: string;
@@ -40,7 +41,7 @@ export async function loader(
   };
 
   return {
-    data: data.slice(0, numberOfPosts ?? 5),
+    data: data.slice(0, numberOfPosts ?? 5) ?? [],
     title,
   };
 }
@@ -56,39 +57,55 @@ export default function InstagramPosts({
     },
   ],
 }: SectionProps<typeof loader>) {
+
+  if (data.length == 0) {
+    return (
+      null
+    )
+  }
+
   return (
-    <>
-      {data.length > 0 ?
-        <div class="w-full py-8 flex flex-col gap-4">
-          <h3 class=" text-base md:text-center text-left px-4 font-bold">{title}</h3>
-          <div class="flex overflow-x-scroll sm:overflow-clip">
-            <div
-              class={`flex flex-row items-center justify-center place-items-center sm:w-full w-max px-4 sm:px-0`}
+
+    <div class="w-full py-8 flex flex-col gap-4">
+      <h3 class=" text-base md:text-center text-left px-4 font-bold">{title}</h3>
+      <div class="flex overflow-x-scroll sm:overflow-clip">
+        <div
+          class={`flex flex-row items-center justify-center place-items-center sm:w-full w-max px-4 sm:px-0`}
+        >
+          {data.map((item) => (
+            <a
+              key={item.id}
+              href={item.permalink}
+              target="_blank"
+              title="Visite nosso instagram"
+              class=" overflow-hidden w-full group relative"
             >
-              {data.map((item) => (
-                <a
-                  key={item.id}
-                  href={item.permalink}
-                  target="_blank"
-                  title="Visite nosso instagram"
-                  class=" overflow-hidden w-full group"
-                >
-                  <Image
-                    class="max-w-full max-h-full min-w-[170px] object-cover w-full group-hover:scale-110  transition duration-400 group-hover:brightness-90"
-                    src={item.media_url}
-                    alt="Imagem do instagram"
-                    width={350}
-                    height={350}
-                    loading="lazy"
-                  />
-                </a>
-              ))}
-            </div>
-          </div>
+              <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center flex-row gap-3 opacity-0 group-hover:opacity-100 transition duration-400 bg-[#0000005e]" >
+                <div class="flex 2/4 gap-1" >
+                  <Icon id="LikeIntagram" size={24} colorRendering="#fff" />
+                  <span class="text-white font-bold">
+                    200
+                  </span>
+                </div>
+                <div class="flex 2/4 gap-1" >
+                  <Icon id="CommentIntagram" width={24} height={24} class="scale-x-[-1]" />
+                  <span class="text-white font-bold">
+                    12
+                  </span>
+                </div>
+              </div>
+              <Image
+                class="max-w-full max-h-full min-w-[170px] object-cover w-full "
+                src={item.media_url}
+                alt="Imagem do instagram"
+                width={350}
+                height={350}
+                loading="lazy"
+              />
+            </a>
+          ))}
         </div>
-        :
-        null
-      }
-    </>
+      </div>
+    </div>
   );
 }
