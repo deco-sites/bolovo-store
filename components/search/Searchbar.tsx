@@ -52,6 +52,7 @@ export interface Props {
    * @default q
    */
   name?: string;
+  isSubmit?: boolean;
 }
 
 function Searchbar({
@@ -59,6 +60,7 @@ function Searchbar({
   action = "/s",
   name = "q",
   iconSearch,
+  isSubmit = true
 }: Props) {
   const id = useId();
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -89,20 +91,35 @@ function Searchbar({
             aria-controls="search-suggestion"
             autocomplete="off"
           />
-          <Button
-            type="submit"
-            class=" btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
-            aria-label="search icon button"
-          >
-            <Image src={iconSearch.src} alt={iconSearch.alt} width={19} height={19} loading={"eager"} />
-          </Button>
+          {isSubmit ?
+            <Button
+              type="submit"
+              class=" btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
+              aria-label="search icon button"
+            >
+              <Image src={iconSearch.src} alt={iconSearch.alt} width={19} height={19} loading={"eager"} />
+            </Button>
+            :
+            <Button
+              type="button"
+              class=" btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
+              aria-label="search icon button"
+              onClick={() => {
+                displaySearchDrawer.value = false;
+                displaySearchPopup.value = false;
+              }}
+            >
+              <Icon id="Close" size={24} />
+            </Button>
+
+          }
         </form>
       </div>
       <div class="w-full md:hidden grid gap-8">
         <form
           id={id}
           action={action}
-          class="join h-[30px] justify-cente items-center rounded-none border-b-2 border-black"
+          class="join h-[30px] justify-cente items-center rounded-none border-b border-black"
         >
           <input
             ref={searchInputRef}
@@ -114,17 +131,29 @@ function Searchbar({
             aria-controls="search-suggestion"
             autocomplete="off"
           />
-          <Button
-            type="button"
-            class=" btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
-            aria-label="search icon button"
-            onClick={() => {
-              displaySearchDrawer.value = false;
-              displaySearchPopup.value = false;
-            }}
-          >
-            <Icon id="Close" size={24} />
-          </Button>
+
+          {isSubmit ?
+            <Button
+              type="submit"
+              class=" btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
+              aria-label="search icon button"
+            >
+              <Image src={iconSearch.src} alt={iconSearch.alt} width={19} height={19} loading={"eager"} />
+            </Button>
+            :
+            <Button
+              type="button"
+              class=" btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
+              aria-label="search icon button"
+              onClick={() => {
+                displaySearchDrawer.value = false;
+                displaySearchPopup.value = false;
+              }}
+            >
+              <Icon id="Close" size={24} />
+            </Button>
+
+          }
         </form>
       </div>
     </div>

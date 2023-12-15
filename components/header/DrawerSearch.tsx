@@ -66,7 +66,7 @@ function DrawerSearch({ searchbar, loading = "lazy", }: Props) {
                 {
                     searchbar && displaySearchDrawer.value && (
                         <div class="w-screen absolute bg-white py-4 px-9">
-                            <Searchbar {...searchbar} />
+                            <Searchbar {...searchbar} isSubmit={false} />
                         </div>
 
                     )
