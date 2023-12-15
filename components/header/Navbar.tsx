@@ -14,6 +14,7 @@ import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
 import LanguageSwitcher from "./Buttons/Language.tsx";
 import type { Country } from "./Header.tsx";
+import DrawerSearch from "$store/islands/Header/DrawerSearch.tsx";
 
 function Navbar(
   {
@@ -58,7 +59,8 @@ function Navbar(
         )}
         <div class="flex items-center gap-[7px] ">
           <span class="mr-1 mt-[2px]">
-            <SearchButton label={label} img={img} />
+            <DrawerSearch searchbar={searchbar}/>
+              <SearchButton label={label} img={img} />
           </span>
           <a
             class="btn btn-circle w-auto btn-sm btn-ghost hover:bg-transparent"
