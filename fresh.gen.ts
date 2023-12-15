@@ -23,7 +23,6 @@ import * as $$16 from "./islands/SearchControls.tsx";
 import * as $$17 from "./islands/ShippingSimulation.tsx";
 import * as $$18 from "./islands/SliderJS.tsx";
 import * as $$19 from "./islands/WishlistButton.tsx";
-import * as $$20 from "./islands/content/BannerGridHover.tsx";
 
 const manifest = {
   routes: {
@@ -50,7 +49,6 @@ const manifest = {
     "./islands/ShippingSimulation.tsx": $$17,
     "./islands/SliderJS.tsx": $$18,
     "./islands/WishlistButton.tsx": $$19,
-    "./islands/content/BannerGridHover.tsx": $$20,
   },
   baseUrl: import.meta.url,
 };

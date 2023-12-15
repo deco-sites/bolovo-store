@@ -1,8 +1,4 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import { useSignal } from "@preact/signals";
-import { useState } from "preact/hooks";
-import BannerGridHover from "$store/islands/content/BannerGridHover.tsx";
-
 
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
@@ -35,7 +31,7 @@ export type BorderRadius =
 
 export interface Props {
   /**
-   * @description Default is 2 for mobile and all for desktop
+   * @description Default is 2 for mobile and 3 for desktop
    */
   itemsPerLine: {
     /** @default 2 */
@@ -129,8 +125,6 @@ function BannerGrid(props: Props) {
     banners = [],
   } = { ...DEFAULT_PROPS, ...props };
 
-  const [hoveredBanner, setHoveredBanner] = useState<number | null>(null);
-
   return (
     <section class="container w-full px-4 py-8 md:px-0 mx-auto">
       <div
@@ -142,11 +136,9 @@ function BannerGrid(props: Props) {
           <a
             key={index}
             href={href}
-            class={`relative overflow-hidden ${
+            class={`group relative overflow-hidden ${
               RADIUS_MOBILE[borderRadius.mobile ?? "none"]
             } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
-            onMouseEnter={() => setHoveredBanner(index)}
-            onMouseLeave={() => setHoveredBanner(null)}
           >
             <Picture>
               <Source
@@ -171,10 +163,7 @@ function BannerGrid(props: Props) {
               />
             </Picture>
             <div
-              className={`overlay ${
-                hoveredBanner === index ? "visible" : ""
-              }`}
-            >
+              className="overlay group-hover:visible">
               <div className="overlay-content">
                 <p className="text-black text-center">{text}</p>
               </div>
@@ -193,7 +182,6 @@ function BannerGrid(props: Props) {
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
             overflow: hidden;
             transition: height 0.3s, opacity 0.3s;
           }
