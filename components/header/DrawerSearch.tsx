@@ -73,28 +73,6 @@ function DrawerSearch({ searchbar, loading = "lazy", }: Props) {
                 }
             </Aside>
         </div>
-        // <Drawer // left drawer
-        //     open={displaySearchDrawer.value}
-        //     onClose={() => {
-        //         displaySearchDrawer.value = false;
-        //     }}
-        //     class={"top-[90px]"}
-        //     aside={
-        //         <Aside
-        //             onClose={() => {
-        //                 displaySearchDrawer.value = false;
-        //             }}
-        //             title={"Buscar"}
-        //         >
-        //             {searchbar && displaySearchDrawer.value && (
-        //                 <div class="w-screen top-[89px] absolute bg-white py-4 px-9">
-        //                     <Searchbar {...searchbar} />
-        //                 </div>
-        //             )}
-        //         </Aside>
-        //     }
-        // >
-        // </Drawer>
     );
 }
 

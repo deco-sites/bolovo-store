@@ -75,7 +75,7 @@ function Searchbar({
 
   return (
     <div class="w-full">
-      <div class="w-full hidden md:grid gap-8">
+      <div class="w-full hidden lg:grid gap-8">
         <form
           id={id}
           action={action}
@@ -115,7 +115,7 @@ function Searchbar({
           }
         </form>
       </div>
-      <div class="w-full md:hidden grid gap-8">
+      <div class="w-full lg:hidden grid gap-8">
         <form
           id={id}
           action={action}
