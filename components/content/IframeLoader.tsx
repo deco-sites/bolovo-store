@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
+import { useSignal } from "@preact/signals";
 
 interface IframeLoaderProps {
     videoLink: string;
 }
 
 const IframeLoader = ({ videoLink }: IframeLoaderProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const isMobile = window.innerWidth < 765;
+  const isVisible = useSignal(false);
+
+  const targetElement = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
 
-    const targetElement = document.getElementById('lazy-iframe');
+    const currentElement = targetElement.current;
 
-    if (!targetElement) {
+    if (!currentElement) {
       return;
     }
 
@@ -20,7 +22,8 @@ const IframeLoader = ({ videoLink }: IframeLoaderProps) => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsVisible(true);
+            currentElement.src = videoLink;
+            isVisible.value = true;
             observer.unobserve(entry.target);
           }
         });
@@ -28,25 +31,23 @@ const IframeLoader = ({ videoLink }: IframeLoaderProps) => {
       { threshold: 0.5 }
     );
 
-    observer.observe(targetElement);
+    observer.observe(currentElement);
 
     return () => observer.disconnect();
   }, []);
 
-  return isVisible ? (
+  return (
     <iframe
-      width={isMobile ? "400" : "560"}
-      height={isMobile ? "225" : "315"}
-      src={videoLink + "?si=n_vAKsEE_BMTv0jn"}
-      title="YouTube video player"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      class="w-full h-full"
-      allowFullScreen
+        width={"400"}
+        height={"225"}
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        class="w-full h-full"
+        allowFullScreen
+        ref={targetElement}
     ></iframe>
-  ) : (
-    <div id="lazy-iframe" style={{ height: '315px' }}></div>
-  );
+);
 };
 
 export default IframeLoader;
