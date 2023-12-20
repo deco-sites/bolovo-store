@@ -48,6 +48,10 @@ export interface Props {
     desktop?: BorderRadius;
   };
   banners: Banner[];
+  /**
+   * @description Check this option when this banner is the biggest image on the screen for image optimizations
+   */
+  preload?: boolean;
 }
 
 const MOBILE_COLUMNS = {
@@ -113,6 +117,7 @@ const DEFAULT_PROPS: Props = {
     mobile: 2,
     desktop: 3,
   },
+  preload: true,
 };
 
 function BannerGrid(props: Props) {
@@ -120,6 +125,7 @@ function BannerGrid(props: Props) {
     itemsPerLine,
     borderRadius,
     banners = [],
+    preload,
   } = { ...DEFAULT_PROPS, ...props };
 
   return (
@@ -137,15 +143,17 @@ function BannerGrid(props: Props) {
               RADIUS_MOBILE[borderRadius.mobile ?? "none"]
             } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
           >
-            <Picture>
+            <Picture preload={preload}>
               <Source
                 media="(max-width: 1023px)"
+                fetchPriority={preload ? "high" : "auto"}
                 src={srcMobile}
                 width={256}
                 height={256}
               />
               <Source
                 media="(min-width: 1024px)"
+                fetchPriority={preload ? "high" : "auto"}
                 src={srcDesktop ? srcDesktop : srcMobile}
                 width={480}
                 height={480}
@@ -155,7 +163,7 @@ function BannerGrid(props: Props) {
                 src={srcMobile}
                 alt={text}
                 decoding="async"
-                loading="lazy"
+                loading={preload ? "eager" : "lazy"}
               />
             </Picture>
             <div
