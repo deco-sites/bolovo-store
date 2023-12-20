@@ -94,7 +94,7 @@ function Menu(
         </Button>
       </div>
       <div class="ease-in-out duration-300 relative overflow-hidden mt-11">
-        <div class="relative  bg-white">
+        <div class="relative border-b border-black bg-white w-full">
           <Searchbar {...searchBar} />
         </div>
       </div>
