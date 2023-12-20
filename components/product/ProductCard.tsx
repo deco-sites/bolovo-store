@@ -281,7 +281,7 @@ function ProductCard(
               </div>
             </div>
             <div>
-              {/* SKU Selector de Tamanho que vai virar Cor futuramente */}
+              {/* SKU Selector de Cor que atualmente está puxando os tamanhos disponíveis*/}
               {(!l?.elementsPositions?.skuSelector ||
                 l?.elementsPositions?.skuSelector === "Top") && (
                 <>
