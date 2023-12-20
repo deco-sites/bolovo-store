@@ -57,8 +57,8 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 200;
-const HEIGHT = 279;
+const WIDTH = 380;
+const HEIGHT = 380;
 
 function ProductCard(
   { product, preload, itemListName, layout, platform, index }: Props,
@@ -136,7 +136,7 @@ function ProductCard(
         }}
       />
       <figure
-        class="relative overflow-hidden"
+        class="relative overflow-hidden h-[calc(100% + 58px)] max-h-[calc(360px + 58px)] lg:h-[calc(22.08vw + 58px)]"
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}
@@ -213,40 +213,44 @@ function ProductCard(
           {l?.onMouseOver?.showCta && cta}
         </figcaption>
       </figure>
+      <div>
+              {/* SKU Selector */}
+                {(!l?.elementsPositions?.skuSelector ||
+                  l?.elementsPositions?.skuSelector === "Top") && (
+                  <>
+                    {l?.hide?.skuSelector ? "" : (
+                      <div class="group">
+                      <ul
+                        class={`absolute bottom-0 left-0 flex items-center gap-2 w-full overflow-auto p-3 transition-opacity duration-300 opacity-0 group-hover:opacity-100 ${
+                          align === "center" ? "justify-center" : "justify-start"
+                        } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
+                      >
+                        {skuSelector}
+                      </ul>
+                      </div>
+                    )}
+                  </>
+                )}
+        </div>
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col p-2 gap-3 lg:gap-4">
-        {/* SKU Selector */}
-        {(!l?.elementsPositions?.skuSelector ||
-          l?.elementsPositions?.skuSelector === "Top") && (
-          <>
-            {l?.hide?.skuSelector ? "" : (
-              <ul
-                class={`flex items-center gap-2 w-full overflow-auto p-3 ${
-                  align === "center" ? "justify-center" : "justify-start"
-                } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-              >
-                {skuSelector}
-              </ul>
-            )}
-          </>
-        )}
-
+      <div class="flex-auto flex flex-col pt-5 gap-3 lg:gap-4">
+        <div class="flex flex-col h-full lg:flex-row justify-between">
         {l?.hide?.productName && l?.hide?.productDescription
           ? ""
           : (
-            <div class="flex flex-col gap-0">
+            <div class="flex flex-col gap-0 pb-2 sm:pb-0 sm:max-w-[69.3%]">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate text-base lg:text-lg text-base-content"
+                  class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"
                   dangerouslySetInnerHTML={{ __html: name ?? "" }}
                 />
               )}
-              {l?.hide?.productDescription ? "" : (
+              {/* {l?.hide?.productDescription ? "" : (
                 <div
                   class="truncate text-sm lg:text-sm text-neutral"
                   dangerouslySetInnerHTML={{ __html: description ?? "" }}
                 />
-              )}
+              )} */}
             </div>
           )}
         {l?.hide?.allPrices ? "" : (
@@ -265,19 +269,20 @@ function ProductCard(
               >
                 {formatPrice(listPrice, offers?.priceCurrency)}
               </div>
-              <div class="text-accent text-base lg:text-xl">
+              <div class="text-accent text-black leading-[130%] text-[14px] lg:text-[15px]">
                 {formatPrice(price, offers?.priceCurrency)}
               </div>
             </div>
-            {l?.hide?.installments
+            {/* {l?.hide?.installments
               ? ""
               : (
                 <div class="text-base-300 text-sm lg:text-base truncate">
                   ou {installments}
                 </div>
-              )}
+              )} */}
           </div>
         )}
+        </div>
 
         {/* SKU Selector */}
         {l?.elementsPositions?.skuSelector === "Bottom" && (
@@ -294,7 +299,7 @@ function ProductCard(
           </>
         )}
 
-        {!l?.hide?.cta
+        {/* {!l?.hide?.cta
           ? (
             <div
               class={`flex-auto flex items-end ${
@@ -304,7 +309,7 @@ function ProductCard(
               {cta}
             </div>
           )
-          : ""}
+          : ""} */}
       </div>
     </div>
   );
