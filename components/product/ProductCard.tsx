@@ -251,7 +251,7 @@ function ProductCard(
         {l?.hide?.productName
           ? ""
           : (
-            <div class="flex flex-col gap-0 pb-2 sm:pb-0 sm:max-w-[69.3%] pl-[1px]">
+            <div class="flex flex-col gap-0 sm:max-w-[69.3%] pl-[1px]">
               {l?.hide?.productName ? "" : (
                 <h2
                   class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"
