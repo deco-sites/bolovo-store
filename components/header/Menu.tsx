@@ -77,7 +77,7 @@ function Menu(
   return (
     <div
       class="flex flex-col w-full h-full p-[25px]"
-      style={{ minWidth: "calc(min(90vw, 425px))"}}
+      style={{ minWidth: "calc(min(90vw, 425px))" }}
     >
       <div class="items-center justify-between w-full flex flex-row flex-grow">
         <Image
@@ -94,7 +94,7 @@ function Menu(
         </Button>
       </div>
       <div class="ease-in-out duration-300 relative overflow-hidden mt-11">
-        <div class="relative border-b border-black bg-white w-full">
+        <div class="relative  bg-white">
           <Searchbar {...searchBar} />
         </div>
       </div>
