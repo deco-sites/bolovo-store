@@ -10,6 +10,9 @@ export default {
       fontFamily: {
         "acumin": ["Acumin"],
       },
+      screens: {
+        'xs': '420px'
+      }
     },
   },
 };

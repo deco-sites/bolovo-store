@@ -26,46 +26,48 @@ export interface Props {
   social: SocialItem[];
 }
 
-function MenuItem({ items }: { items: NavItemProps[] | NavItemProps }) {
-  if (Array.isArray(items)) {
-    return (
-      <ul>
-        {items.map((menu) => (
-          <li>
-            <MenuItem items={menu} />
-          </li>
-        ))}
-      </ul>
-    );
-  } else {
-    return (
-      <div class="collapse collapse-arrow py-8">
-        <input type="checkbox" />
-        <div class="collapse-title px-0 coll">{items.label}</div>
-        <div class="collapse-content">
+function MenuItem({ item }: { item: NavItemProps }) {
+  return (
+    <div class="collapse items-start w-full">
+      <input type="checkbox" id="toggle" class="min-h-[40px] min-w-full" />
+      <div class="collapse-title relative min-w-full flex after:font-light flex-grow leading-0 w-full min-h-[40px] items-center px-0 py-0">
+        {item.label}
+        <Icon
+          id="ChevronDown"
+          size={11}
+          strokeWidth={2}
+          fill="none"
+          class="absolute right-0 transition-transform duration-300 transform"
+        />
+      </div>
+      <div class="collapse-content">
+        <ul>
           <ul>
-            <li>
-              <a class="underline text-sm" href={items.links?.[0]?.href}>
-                Ver todos
-              </a>
-            </li>
-            {items.images?.map((menu) => (
-              <li>
-                <MenuItem items={menu} />
-              </li>
+            {item?.links?.map((
+              link,
+            ) => (
+              <div>
+                <ul>
+                  <li class="font-semibold text-base py-2">{link.label}</li>
+                  {link.children?.map((item) => (
+                    <li class="py-2">
+                      <a href={item.href}>{item.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </ul>
-        </div>
+        </ul>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 function Menu(
   { items, logo, searchBar, countryFlag, accountText, social, accountHref }:
     Props,
 ) {
-  console.log(countryFlag);
   const { displayMenu } = useUI();
   const contentSocial = {
     title: "",
@@ -73,7 +75,10 @@ function Menu(
   };
 
   return (
-    <div class="flex flex-col w-full h-full p-[25px]">
+    <div
+      class="flex flex-col w-full h-full p-[25px]"
+      style={{ minWidth: "calc(min(90vw, 425px))" }}
+    >
       <div class="items-center justify-between w-full flex flex-row flex-grow">
         <Image
           src={logo?.image ?? ""}
@@ -93,10 +98,10 @@ function Menu(
           <Searchbar {...searchBar} />
         </div>
       </div>
-      <ul class="flex-grow flex flex-col divide-y divide-base-200 ">
+      <ul class="flex-grow flex flex-col w-full py-4">
         {items.map((item) => (
           <li>
-            <MenuItem items={item} />
+            <MenuItem item={item} />
           </li>
         ))}
       </ul>
@@ -117,7 +122,7 @@ function Menu(
           </div>
         </span>
       </div>
-      <div class="opacity-30 flex justify-start pt-11">
+      <div class="opacity-30 flex justify-start pt-11 w-full">
         <Social content={contentSocial} />
       </div>
     </div>
