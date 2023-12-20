@@ -9,24 +9,23 @@ export interface Banner {
   srcMobile: ImageWidget;
   srcDesktop?: ImageWidget;
   /**
-   * @description Image alt text
-   */
-  alt: string;
-  /**
    * @description When you click you go to
    */
   href: string;
+  /**
+   * @description Text to appear when hover(also Alt Text)
+   */
   text: string;
 }
 
 export type BorderRadius =
   | "none"
-  | "sm"
-  | "md"
-  | "lg"
-  | "xl"
-  | "2xl"
-  | "3xl"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
+  | "2xlarge"
+  | "3xlarge"
   | "full";
 
 export interface Props {
@@ -67,30 +66,29 @@ const DESKTOP_COLUMNS = {
 
 const RADIUS_MOBILE = {
   "none": "rounded-none",
-  "sm": "rounded-sm",
-  "md": "rounded-md",
-  "lg": "rounded-lg",
-  "xl": "rounded-xl",
-  "2xl": "rounded-2xl",
-  "3xl": "rounded-3xl",
+  "small": "rounded-sm",
+  "medium": "rounded-md",
+  "large": "rounded-lg",
+  "xlarge": "rounded-xl",
+  "2xlarge": "rounded-2xl",
+  "3xlarge": "rounded-3xl",
   "full": "rounded-full",
 };
 
 const RADIUS_DESKTOP = {
   "none": "sm:rounded-none",
-  "sm": "sm:rounded-sm",
-  "md": "sm:rounded-md",
-  "lg": "sm:rounded-lg",
-  "xl": "sm:rounded-xl",
-  "2xl": "sm:rounded-2xl",
-  "3xl": "sm:rounded-3xl",
+  "small": "sm:rounded-sm",
+  "medium": "sm:rounded-md",
+  "large": "sm:rounded-lg",
+  "xlarge": "sm:rounded-xl",
+  "2xlarge": "sm:rounded-2xl",
+  "3xlarge": "sm:rounded-3xl",
   "full": "sm:rounded-full",
 };
 
 const DEFAULT_PROPS: Props = {
   banners: [
     {
-      alt: "a",
       href: "a",
       srcMobile:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/82727553-f670-4e7c-b9c2-9452aed1955f",
@@ -99,7 +97,6 @@ const DEFAULT_PROPS: Props = {
       text: "Bolovo Store Productions"
     },
     {
-      alt: "a",
       href: "a",
       srcMobile:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/c5c6bdf6-5555-488c-8b14-719e4158dea6",
@@ -109,12 +106,12 @@ const DEFAULT_PROPS: Props = {
     },
   ],
   borderRadius: {
-    mobile: "3xl",
-    desktop: "3xl",
+    mobile: "medium",
+    desktop: "medium",
   },
   itemsPerLine: {
     mobile: 2,
-    desktop: 2,
+    desktop: 3,
   },
 };
 
@@ -132,7 +129,7 @@ function BannerGrid(props: Props) {
           MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
         } ${DESKTOP_COLUMNS[itemsPerLine?.desktop ?? 3]}`}
       >
-        {banners.map(({ href, srcMobile, srcDesktop, alt, text }, index) => (
+        {banners.map(({ href, srcMobile, srcDesktop, text }, index) => (
           <a
             key={index}
             href={href}
@@ -142,64 +139,35 @@ function BannerGrid(props: Props) {
           >
             <Picture>
               <Source
-                media="(max-width: 767px)"
+                media="(max-width: 1023px)"
                 src={srcMobile}
-                width={100}
-                height={100}
+                width={256}
+                height={256}
               />
               <Source
-                media="(min-width: 768px)"
+                media="(min-width: 1024px)"
                 src={srcDesktop ? srcDesktop : srcMobile}
-                width={250}
-                height={250}
+                width={480}
+                height={480}
               />
               <img
                 class="w-full"
-                sizes="(max-width: 523px) 100vw, 30vw"
                 src={srcMobile}
-                alt={alt}
+                alt={text}
                 decoding="async"
                 loading="lazy"
               />
             </Picture>
             <div
-              className="overlay group-hover:visible">
-              <div className="overlay-content">
+              className="absolute bottom-0 left-0 right-0 bg-white flex items-center justify-center overflow-hidden transition-['height, opacity'] duration-300 
+                h-0 opacity-0 group-hover:opacity-100 h-12">
+              <div className="w-4/5 text-center">
                 <p className="text-black text-center">{text}</p>
               </div>
             </div>
           </a>
         ))}
       </div>
-      <style jsx>{`
-        .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 0; 
-            background-color: rgba(255, 255, 255);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            transition: height 0.3s, opacity 0.3s;
-          }
-  
-          .overlay-content {
-            max-width: 80%;
-            text-align: center;
-          }
-  
-          .overlay.visible {
-            opacity: 1;
-            height: 50px; 
-          }
-  
-          a:hover .overlay {
-            height: 50px; 
-          }
-      `}</style>
     </section>
   );
 }
