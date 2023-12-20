@@ -76,8 +76,8 @@ function Menu(
 
   return (
     <div
-      class="flex flex-col w-full  h-full p-[25px] overflow-hidden"
-      style={{ minWidth: "calc(min(90vw, 425px))", maxWidth: "425px"}}
+      class="flex flex-col w-full h-full p-[25px]"
+      style={{ minWidth: "calc(min(90vw, 425px))"}}
     >
       <div class="items-center justify-between w-full flex flex-row flex-grow">
         <Image
