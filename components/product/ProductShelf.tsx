@@ -49,7 +49,7 @@ function ProductShelf({
     const itemsToRender = products?.map((product, index) => (
       <Slider.Item
         index={index}
-        class="carousel-item min-w-[166px] w-[38.6vw] max-w-[360px] lg:w-[22.08vw] sm:first:pl-0 sm:last:pr-0"
+        class="carousel-item min-w-[166px] w-[38.6vw] max-w-[380px] lg:w-[22.08vw] sm:first:pl-0 sm:last:pr-0"
       >
         <ProductCard
           product={product}
@@ -66,7 +66,7 @@ function ProductShelf({
       itemsToRender[products.length - 1] = (
         <Slider.Item
           index={products.length - 1}
-          class="carousel-item min-w-[166px] w-[38.6vw] max-w-[360px] lg:w-[22.08vw] sm:first:pl-0 sm:last:pr-0"
+          class="carousel-item min-w-[166px] w-[38.6vw] max-w-[380px] lg:w-[22.08vw] sm:first:pl-0 sm:last:pr-0"
         >
           <a class="w-full flex items-center justify-center" href={seeMoreLink}>
             <span className="px-5 py-1.5 uppercase block mt-2 text-center border rounded-lg border-black">{seeMoreText}</span> 
@@ -90,7 +90,7 @@ function ProductShelf({
         id={id}
         class="container max-w-[1630px] grid grid-cols-[48px_1fr_48px] px-4 sm:px-8"
       >
-        <Slider class="carousel carousel-center sm:carousel-end gap-2 lg:gap-8 col-span-full row-start-2 row-end-5">
+        <Slider class="carousel carousel-center sm:carousel-end gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
           {renderCarouselItems()}  
         </Slider>
 
