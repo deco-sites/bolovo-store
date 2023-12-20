@@ -28,7 +28,7 @@ export interface Props {
 
 function MenuItem({ item }: { item: NavItemProps }) {
   return (
-    <div class="collapse w-full">
+    <div class="collapse items-start w-full">
       <input type="checkbox" id="toggle" class="min-h-[40px] min-w-full" />
       <div class="collapse-title relative min-w-full flex after:font-light flex-grow leading-0 w-full min-h-[40px] items-center px-0 py-0">
         {item.label}
