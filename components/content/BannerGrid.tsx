@@ -1,5 +1,5 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-
+import AltSlider from "../ui/AltSlider.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
 /**
@@ -129,7 +129,7 @@ function BannerGrid(props: Props) {
   } = { ...DEFAULT_PROPS, ...props };
 
   return (
-    <section class="container w-full px-4 py-8 md:px-0 mx-auto">
+    <section class="container max-w-[1630px] w-full px-4 py-12 mx-auto">
       <div
         class={`grid gap-4 md:gap-6 ${
           MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
@@ -166,13 +166,7 @@ function BannerGrid(props: Props) {
                 loading={preload ? "eager" : "lazy"}
               />
             </Picture>
-            <div
-              className="absolute bottom-0 left-0 right-0 bg-white flex items-center justify-center overflow-hidden transition-['height, opacity'] duration-300 
-                h-0 opacity-0 group-hover:opacity-100 h-12">
-              <div className="w-4/5 text-center">
-                <p className="text-black text-center">{text}</p>
-              </div>
-            </div>
+            <AltSlider text={text}/>
           </a>
         ))}
       </div>
