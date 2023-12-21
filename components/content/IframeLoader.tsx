@@ -23,7 +23,6 @@ const IframeLoader = ({ videoLink }: IframeLoaderProps) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             currentElement.src = videoLink;
-            isVisible.value = true;
             observer.unobserve(entry.target);
           }
         });
