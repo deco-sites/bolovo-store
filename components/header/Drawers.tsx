@@ -7,7 +7,7 @@ import Icon from "$store/components/ui/Icon.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ComponentChildren } from "preact";
-import type { MiniCartProps } from  '$store/components/minicart/vnda/Cart.tsx'
+import type { MiniCartProps } from '$store/components/minicart/vnda/Cart.tsx'
 import { lazy, Suspense } from "preact/compat";
 
 const Menu = lazy(() => import("$store/components/header/Menu.tsx"));
@@ -31,7 +31,7 @@ const Aside = (
     children: ComponentChildren;
   },
 ) => (
-  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full w-auto max-w-[90vw]">
+  <div class="bg-base-100 grid grid-rows-[auto_1fr] min-h-full w-auto max-w-[90vw]">
     <div class="hidden md:flex justify-end items-center px-2">
       <h1 class="px-[18px] py-3">
         <span class="font-semibold text-sm">{title}</span>
@@ -55,29 +55,22 @@ const Aside = (
 );
 
 function Drawers({ menu, searchbar, miniCart, children, platform }: Props) {
-  const { displayCart, displayMenu, displaySearchDrawer } = useUI();
+  const { displayCart, displayMenu } = useUI();
 
   return (
     <Drawer // left drawer
-      open={displayMenu.value || displaySearchDrawer.value}
+      open={displayMenu.value}
       onClose={() => {
         displayMenu.value = false;
-        displaySearchDrawer.value = false;
       }}
       aside={
         <Aside
           onClose={() => {
             displayMenu.value = false;
-            displaySearchDrawer.value = false;
           }}
           title={displayMenu.value ? "Menu" : "Buscar"}
         >
           {displayMenu.value && <Menu {...menu} />}
-          {searchbar && displaySearchDrawer.value && (
-            <div class="w-screen">
-              <Searchbar {...searchbar} />
-            </div>
-          )}
         </Aside>
       }
     >
