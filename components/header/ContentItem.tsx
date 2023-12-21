@@ -40,7 +40,7 @@ function RenderImages({ images }: { images: LinkContent[] | undefined }) {
                 {imageData.title}
               </figcaption>
             </figure>
-            <p class="text-center text-sm text-[#1212124D]">{imageData.subtitle}</p>
+            <p class="text-center text-sm text-[#1212124D] mt-2">{imageData.subtitle}</p>
           </a>
         )
       })}
