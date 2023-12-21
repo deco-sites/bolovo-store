@@ -14,6 +14,7 @@ import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
 import LanguageSwitcher from "./Buttons/Language.tsx";
 import type { Country } from "./Header.tsx";
+import DrawerSearch from "$store/islands/Header/DrawerSearch.tsx";
 
 function Navbar(
   {
@@ -43,7 +44,7 @@ function Navbar(
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row items-center border-b border-base-200 w-screen justify-between px-[15px] md:pl-2  relative"
+        class="lg:hidden flex flex-row items-center border-b border-base-200 w-screen justify-between px-[15px] md:pl-2  relative"
       >
         <MenuButton />
         {logo && (
@@ -58,6 +59,7 @@ function Navbar(
         )}
         <div class="flex items-center gap-[7px] ">
           <span class="mr-1 mt-[2px]">
+            <DrawerSearch searchbar={searchbar} />
             <SearchButton label={label} img={img} />
           </span>
           <a
@@ -73,7 +75,7 @@ function Navbar(
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center w-full px-[15px]  shadow-sm shadow-gray-300">
+      <div class="hidden lg:flex flex-row justify-between items-center w-full px-[15px]  shadow-sm shadow-gray-300">
         <div class="flex items-center px-0 w-2/6">
           {items.map((item) => <NavItem {...item} />)}
           {blogItem && (
