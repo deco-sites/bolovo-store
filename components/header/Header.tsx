@@ -8,6 +8,7 @@ import type { MiniCartProps } from "$store/components/minicart/vnda/Cart.tsx";
 import { Props as AlertProps } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
+import type { ContentBlogItem } from "./ContentItem.tsx";
 
 export interface Country {
   countryLabel: string;
@@ -54,11 +55,6 @@ export interface Props {
   miniCart?: MiniCartProps;
 
   /**
-   * @title Menu Item Blog
-   */
-  blogItem: { text: string; href: string };
-
-  /**
    * @title Menu Item Help
    */
   helpItem: { text: string; href: string };
@@ -80,16 +76,17 @@ function Header({
   promotionBar,
   searchbar,
   menu,
+  contentBlog,
   logo,
   buttonSearch,
   miniCart,
-  blogItem,
   helpItem,
   accountHref,
   countryFlag,
 }: Props) {
   const platform = usePlatform();
   const items = menu.items ?? [];
+
 
   return (
     <>
@@ -104,11 +101,11 @@ function Header({
             <Alert {...promotionBar} />
             <Navbar
               items={items}
+              contentItem={menu.contentItem}
               searchbar={searchbar && { ...searchbar, platform }}
               logo={logo}
               label={buttonSearch.label}
               img={buttonSearch.img}
-              blogItem={blogItem}
               helpItem={helpItem}
               countryFlag={countryFlag}
               accountHref={accountHref}

@@ -15,13 +15,15 @@ import { navbarHeight } from "./constants.ts";
 import LanguageSwitcher from "./Buttons/Language.tsx";
 import type { Country } from "./Header.tsx";
 import DrawerSearch from "$store/islands/Header/DrawerSearch.tsx";
+import type { ContentBlogItem } from "./ContentItem.tsx";
+import ContentItem from "./ContentItem.tsx";
 
 function Navbar(
   {
     items,
+    contentItem,
     searchbar,
     logo,
-    blogItem,
     helpItem,
     countryFlag,
     label,
@@ -29,9 +31,9 @@ function Navbar(
     accountHref,
   }: {
     items: NavItemProps[];
+    contentItem: ContentBlogItem;
     searchbar?: SearchbarProps;
     logo?: { src: string; alt: string };
-    blogItem: { text: string; href: string };
     helpItem: { text: string; href: string };
     accountHref: string;
     countryFlag: Country[];
@@ -78,11 +80,7 @@ function Navbar(
       <div class="hidden lg:flex flex-row justify-between items-center w-full px-[15px]  shadow-sm shadow-gray-300">
         <div class="flex items-center px-0 w-2/6">
           {items.map((item) => <NavItem {...item} />)}
-          {blogItem && (
-            <a class="text-base uppercase text-Rubik" href={blogItem.href}>
-              {blogItem.text}
-            </a>
-          )}
+          <ContentItem item={contentItem} />
         </div>
         <div class="flex-auto flex justify-center w-2/6">
           {logo && (
