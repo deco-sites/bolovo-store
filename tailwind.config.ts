@@ -11,8 +11,11 @@ export default {
         "acumin": ["Acumin"],
       },
       screens: {
-        'xs': '420px'
-      }
+        "xs": "420px",
+      },
+      boxShadow: {
+        "menu": "inset 0px 17px 23px -30px #0000005e",
+      },
     },
   },
 };
