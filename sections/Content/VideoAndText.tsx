@@ -62,7 +62,7 @@ export default function VideoAndText({ directionInverse, image, textContent, lis
             } ${DESKTOP_DIRECTION[directionInverse?.desktop ?? "row"]}`}>
                 <div class="flex flex-col justify-between h-full items-center w-full md:w-2/4 gap-3 2xl:gap-20">
                     <Image src={image.src} alt={image.alt} width={350} height={69} loading={"lazy"} class="max-w-[200px] md:max-w-[220px] xl:max-w-[350px] 2xl:max-w-[400px]" />
-                    <div dangerouslySetInnerHTML={{ __html: textContent }} class=" font-acumin font-normal text-[12px] leading-[160%] lg:text-[13px] lg:leading-5 xl:text-sm xl:leading-6 2xl:text-base 2xl:leading-7">
+                    <div dangerouslySetInnerHTML={{ __html: textContent }} class="font-acumin font-normal text-[12px] leading-[160%] lg:text-[13px] lg:leading-5 xl:text-sm xl:leading-6 2xl:text-base 2xl:leading-7">
 
                     </div>
                     <div class="flex flex-row gap-2">
