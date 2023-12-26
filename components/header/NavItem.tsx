@@ -101,8 +101,7 @@ function NavItem(item: NavItemProps) {
           {label}
         </span>
       </div>
-      <div class="hidden group-hover:flex bg-base-100 z-50 items-start justify-between w-full border-b-2 border-base-200 flex-row-reverse pt-[55px] pb-14 top-full absolute left-0"
-        style="box-shadow: inset 0px 17px 23px -30px #0000005e;"
+      <div class="hidden group-hover:flex bg-base-100 z-50 items-start justify-between w-full border-b-2 border-base-200 flex-row-reverse pt-[55px] pb-14 top-full absolute left-0 shadow-menu"
       >
         <div class="flex items-start justify-between flex-row w-full">
           <ul class="flex flex-1 items-start px-2 w-2/4 justify-start gap-8 flex-wrap xl:gap-16 2xl:gap-24">
