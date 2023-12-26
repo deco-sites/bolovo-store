@@ -41,18 +41,16 @@ function Result({
   const offset = pageInfo.currentPage * perPage;
 
   return (
-    <>
-      <div class="container px-[15px] sm:py-10">
-        <h1 class="font-semibold text-base leading-5 pb-[25px]">{title}</h1>
-        <div class="flex-grow">
-          <Gallery
-            products={products}
-            offset={offset}
-            layout={{ card: cardLayout, columns: layout?.columns }}
-          />
-        </div>
+    <div class="container px-[15px] sm:py-10">
+      <h1 class="font-semibold text-base leading-5 pb-[25px]">{title}</h1>
+      <div class="flex-grow">
+        <Gallery
+          products={products}
+          offset={offset}
+          layout={{ card: cardLayout, columns: layout?.columns }}
+        />
       </div>
-    </>
+    </div>
   );
 }
 
