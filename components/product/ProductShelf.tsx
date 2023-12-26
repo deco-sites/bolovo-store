@@ -55,7 +55,7 @@ function ProductShelf({
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
+              class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[22.38vw] xl:w-[22.88vw] 2xl:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
             >
               <ProductCard
                 product={product}
@@ -69,7 +69,7 @@ function ProductShelf({
           {seeMore ? 
             <Slider.Item
               index={products.length}
-              class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
+              class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[22.38vw] xl:w-[22.88vw] 2xl:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
             >
               <a class="w-full flex items-center justify-center" href={seeMore?.link}>
                 <span className="px-5 py-1.5 uppercase block mt-2 text-center border rounded-lg border-black">{seeMore?.text}</span> 
