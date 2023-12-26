@@ -129,7 +129,7 @@ function BannerGrid(props: Props) {
   } = { ...DEFAULT_PROPS, ...props };
 
   return (
-    <section class="container max-w-[1630px] w-full px-4 py-12 mx-auto">
+    <section class="w-full px-4 py-12 mx-auto">
       <div
         class={`grid gap-4 md:gap-6 ${
           MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
