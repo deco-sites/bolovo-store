@@ -10,11 +10,14 @@ import Social from "../footer/Social.tsx";
 import type { SocialItem } from "../footer/Social.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
+import type { ContentBlogItem } from "./ContentItem.tsx";
+import ContentBlog from "./ContentItem.tsx";
 
 const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
 
 export interface Props {
   items: NavItemProps[];
+  contentItem: ContentBlogItem;
   logo?: {
     image: ImageWidget;
     alt: string;
@@ -26,6 +29,42 @@ export interface Props {
   social: SocialItem[];
 }
 
+function ContentItem({ item }: { item: ContentBlogItem }) {
+  return (
+    <div class="collapse items-start w-full">
+      <input type="checkbox" id="toggle" class="min-h-[40px] min-w-full" />
+      <div class="collapse-title relative min-w-full flex after:font-light flex-grow leading-0 w-full min-h-[40px] items-center px-0 py-0 uppercase">
+        {item.label}
+        <Icon
+          id="ChevronDown"
+          size={11}
+          strokeWidth={2}
+          fill="none"
+          class="absolute right-0 transition-transform duration-300 transform"
+        />
+      </div>
+      <div class="collapse-content">
+        <ul>
+          <ul>
+            {item.linksContent.map((
+              link,
+            ) => (
+              <div>
+                <ul>
+                  <li class=" uppercase text-base py-2">
+                    <a href={link.link}>
+                      {link.title}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            ))}
+          </ul>
+        </ul>
+      </div>
+    </div>
+  );
+}
 function MenuItem({ item }: { item: NavItemProps }) {
   return (
     <div class="collapse items-start w-full">
@@ -65,7 +104,7 @@ function MenuItem({ item }: { item: NavItemProps }) {
 }
 
 function Menu(
-  { items, logo, searchBar, countryFlag, accountText, social, accountHref }:
+  { items, contentItem, logo, searchBar, countryFlag, accountText, social, accountHref }:
     Props,
 ) {
   const { displayMenu } = useUI();
@@ -104,6 +143,9 @@ function Menu(
             <MenuItem item={item} />
           </li>
         ))}
+        <li>
+          <ContentItem item={contentItem} />
+        </li>
       </ul>
       <div class="flex flex-col py-2 border-y border-black">
         <span class="py-8 block">
