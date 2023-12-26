@@ -40,7 +40,7 @@ function ProductShelf({
   }
 
   return (
-    <div class="w-full container max-w-[1630px] py-8 flex flex-col gap-5 lg:gap-6 lg:py-10">
+    <div class="w-full py-8 flex flex-col gap-5 px-4 mx-auto lg:gap-6 lg:py-10">
       <Header
         title={title || ""}
         fontSize={layout?.headerfontSize || "Normal"}
@@ -49,13 +49,13 @@ function ProductShelf({
 
       <div
         id={id}
-        class="container max-w-[1630px] grid grid-cols-[48px_1fr_48px] px-4 sm:px-8"
+        class="w-full grid grid-cols-[48px_1fr_48px] lg:px-4"
       >
         <Slider class="carousel carousel-center sm:carousel-end gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item min-w-[166px] w-[38.6vw] max-w-[380px] lg:w-[22.08vw] sm:first:pl-0 sm:last:pr-0"
+              class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
             >
               <ProductCard
                 product={product}
@@ -69,7 +69,7 @@ function ProductShelf({
           {seeMore ? 
             <Slider.Item
               index={products.length}
-              class="carousel-item min-w-[166px] w-[38.6vw] max-w-[380px] lg:w-[22.08vw] sm:first:pl-0 sm:last:pr-0"
+              class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
             >
               <a class="w-full flex items-center justify-center" href={seeMore?.link}>
                 <span className="px-5 py-1.5 uppercase block mt-2 text-center border rounded-lg border-black">{seeMore?.text}</span> 
