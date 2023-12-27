@@ -3,13 +3,9 @@ import type { Product } from "apps/commerce/types.ts";
 import Gallery, { Columns } from "$store/components/product/ProductGallery.tsx";
 
 export interface Layout {
-  /**
-   * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
-   */
+  /** @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products */
   variant?: "aside" | "drawer";
-  /**
-   * @description Number of products per line on grid
-   */
+  /** @description Number of products per line on grid */
   columns?: Columns;
 }
 
@@ -26,7 +22,7 @@ function ProductArray({
   title,
   cardLayout,
 }: Props) {
-    
+
   if (!products || products.length === 0) {
     return null;
   }
