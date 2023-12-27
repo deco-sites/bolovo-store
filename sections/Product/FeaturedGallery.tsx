@@ -1,9 +1,10 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
-
+import type { Product } from "apps/commerce/types.ts";
+import ProductCard from "../../components/product/ProductCard.tsx";
 export interface Props {
     title: string;
-    idProduct?: string;
+    idProduct: Product[] | null;
     featuredPhoto: {
         src: ImageWidget;
         alt: string;
@@ -30,7 +31,12 @@ const DESKTOP_DIRECTION = {
     "row-reverse": "lg:flex-row-reverse",
 };
 
-export default function FeaturedGallery({ title, featuredPhoto, directionInverse }: Props) {
+export default function FeaturedGallery({ title, featuredPhoto, directionInverse, idProduct }: Props) {
+
+    if (!idProduct || idProduct.length === 0) {
+        return null;
+    }
+
     return (
         <div class="flex px-4 flex-col gap-2 py-2">
             <h3 class=" text-base text-left uppercase font-bold">
@@ -41,7 +47,9 @@ export default function FeaturedGallery({ title, featuredPhoto, directionInverse
                     } ${DESKTOP_DIRECTION[directionInverse?.desktop ?? "row"]}`}>
                     <Image src={featuredPhoto.src} alt={featuredPhoto.alt} width={400} height={400} loading={"lazy"} class="w-full lg:w-3/5" />
                     <div class="w-full lg:w-2/5 bg-red-600 min-h-[400px]">
-
+                        <ProductCard
+                            product={idProduct[0]}
+                        />
                     </div>
                 </div>
             </a>
