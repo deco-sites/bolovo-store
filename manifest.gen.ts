@@ -7,6 +7,7 @@ import * as $$$1 from "./loaders/List/Sections.tsx";
 import * as $$$2 from "./loaders/newsletter.ts";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
+import * as $$$$$$2 from "./sections/Content/BannerGrid.tsx";
 import * as $$$$$$2 from "./sections/Content/Stores.tsx";
 import * as $$$$$$3 from "./sections/Content/VideoAndText.tsx";
 import * as $$$$$$4 from "./sections/Footer/Footer.tsx";
