@@ -155,7 +155,7 @@ function ProductCard(
         }}
       />
       <figure
-        class="relative overflow-hidden mb-7 lg:mb-12"
+        class="relative overflow-hidden mb-7 lg:mb-12 "
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}
@@ -184,7 +184,7 @@ function ProductCard(
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="grid grid-cols-1 grid-rows-1 w-full"
+          class="grid grid-cols-1 grid-rows-1 w-full absolute"
         >
           <Image
             src={front.url!}
