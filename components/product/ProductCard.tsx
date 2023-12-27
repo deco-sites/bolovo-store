@@ -97,17 +97,23 @@ function ProductCard(
       <a href={link}>
         <div
           class="w-[12.7px] h-[12.7px] flex items-center justify-center"
-          title={`Cor ${value}`} 
+          title={`Cor ${value}`}
         >
-        {/* Aqui eu optei por colocar um svg, e ai a parte do fill vai ser dinâmica de acordo com a informação que pegarmos na PDP */}
-        <svg xmlns="http://www.w3.org/2000/svg" width="12.7" height="12.7" viewBox="0 0 14 14" fill="none">
-            <rect x="0" y="0" width="14" height="14" fill="#FF0000"/>
-        </svg>
+          {/* Aqui eu optei por colocar um svg, e ai a parte do fill vai ser dinâmica de acordo com a informação que pegarmos na PDP */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12.7"
+            height="12.7"
+            viewBox="0 0 14 14"
+            fill="none"
+          >
+            <rect x="0" y="0" width="14" height="14" fill="#FF0000" />
+          </svg>
         </div>
       </a>
     </li>
   ));
-  
+
   const cta = (
     <a
       href={url && relative(url)}
@@ -226,8 +232,9 @@ function ProductCard(
           {l?.onMouseOver?.showCta && cta}
         </figcaption>
       </figure>
-      {/*<div>
-               Seletor de Tamanhos (Esse aqui eu optei por esconder por talvez utilizarmos ele futuramente, no caso ele ja ta funcionando direitinho) 
+      {
+        /*<div>
+               Seletor de Tamanhos (Esse aqui eu optei por esconder por talvez utilizarmos ele futuramente, no caso ele ja ta funcionando direitinho)
                 {(!l?.elementsPositions?.skuSelector ||
                   l?.elementsPositions?.skuSelector === "Top") && (
                   <>
@@ -244,60 +251,62 @@ function ProductCard(
                     )}
                   </>
                 )}
-        </div>*/}
+        </div>*/
+      }
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col pt-4 lg:pt-5 gap-3 lg:gap-4">
         <div class="flex flex-col h-full lg:flex-row justify-between gap-[7px] lg:gap-0">
-        {l?.hide?.productName
-          ? ""
-          : (
-            <div class="flex flex-col gap-0 sm:max-w-[69.3%] pl-[1px]">
-              {l?.hide?.productName ? "" : (
-                <h2
-                  class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"
-                  dangerouslySetInnerHTML={{ __html: name ?? "" }}
-                />
-              )}            
-            </div>
-          )}
-        {l?.hide?.allPrices ? "" : (
-          <div class="flex flex-col gap-[7px] lg:gap-1">
-            <div
-              class={`flex flex-col gap-0 ${
-                l?.basics?.oldPriceSize === "Normal"
-                  ? "lg:flex-row lg:gap-2"
-                  : ""
-              } ${align === "center" ? "justify-center" : "justify-start"}`}
-            >
-              <div
-                class={`line-through text-base-300 text-xs ${
-                  l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                }`}
-              >
-                {formatPrice(listPrice, offers?.priceCurrency)}
+          {l?.hide?.productName
+            ? ""
+            : (
+              <div class="flex flex-col gap-0 sm:max-w-[69.3%] pl-[1px]">
+                {l?.hide?.productName ? "" : (
+                  <h2
+                    class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"
+                    dangerouslySetInnerHTML={{ __html: name ?? "" }}
+                  />
+                )}
               </div>
-              <div class="text-black leading-[130%] text-[14px] lg:text-end">
-                {formatPrice(price, offers?.priceCurrency)}
-              </div>
-            </div>
-            <div>
-              {/* SKU Selector de Cor que atualmente está puxando os tamanhos disponíveis*/}
-              {(!l?.elementsPositions?.skuSelector ||
-                l?.elementsPositions?.skuSelector === "Top") && (
-                <>
-                  {l?.hide?.skuSelector ? "" : (
-                    <div class="group">
-                      <ul
-                        class="flex items-center gap-1 justify-start lg:justify-end">
-                        {colorSelector}
-                      </ul>
-                    </div>
+            )}
+          {l?.hide?.allPrices
+            ? ""
+            : (
+              <div class="flex flex-col gap-[7px] lg:gap-1">
+                <div
+                  class={`flex flex-col gap-0 ${
+                    l?.basics?.oldPriceSize === "Normal"
+                      ? "lg:flex-row lg:gap-2"
+                      : ""
+                  } ${align === "center" ? "justify-center" : "justify-start"}`}
+                >
+                  <div
+                    class={`line-through text-base-300 text-xs ${
+                      l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                    }`}
+                  >
+                    {formatPrice(listPrice, offers?.priceCurrency)}
+                  </div>
+                  <div class="text-black leading-[130%] text-[14px] lg:text-end">
+                    {formatPrice(price, offers?.priceCurrency)}
+                  </div>
+                </div>
+                <div>
+                  {/* SKU Selector de Cor que atualmente está puxando os tamanhos disponíveis*/}
+                  {(!l?.elementsPositions?.skuSelector ||
+                    l?.elementsPositions?.skuSelector === "Top") && (
+                    <>
+                      {l?.hide?.skuSelector ? "" : (
+                        <div class="group">
+                          <ul class="flex items-center gap-1 justify-start lg:justify-end">
+                            {colorSelector}
+                          </ul>
+                        </div>
+                      )}
+                    </>
                   )}
-                </>
-              )}
-          </div>
-          </div>
-        )}
+                </div>
+              </div>
+            )}
         </div>
 
         {/* SKU Selector */}
