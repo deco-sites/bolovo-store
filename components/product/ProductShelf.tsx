@@ -19,7 +19,7 @@ export interface Props {
     headerAlignment?: "center" | "left";
     headerfontSize?: "Normal" | "Large";
   };
-  seeMore?: { text: string; link: string }
+  seeMore?: { text: string; link: string };
   cardLayout?: cardLayout;
 }
 
@@ -44,7 +44,7 @@ function ProductShelf({
       <Header
         title={title || ""}
         fontSize={layout?.headerfontSize || "Normal"}
-        alignment={layout?.headerAlignment || "left"} 
+        alignment={layout?.headerAlignment || "left"}
       />
 
       <div
@@ -65,31 +65,38 @@ function ProductShelf({
                 index={index}
               />
             </Slider.Item>
-          ))}  
-          {seeMore ? 
-            <Slider.Item
-              index={products.length}
-              class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[22.38vw] xl:w-[22.88vw] 2xl:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
-            >
-              <a class="w-full flex items-center justify-center" href={seeMore?.link}>
-                <span className="px-5 py-1.5 uppercase block mt-2 text-center border rounded-lg border-black">{seeMore?.text}</span> 
-              </a>
-            </Slider.Item> 
-          : null}
+          ))}
+          {seeMore
+            ? (
+              <Slider.Item
+                index={products.length}
+                class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[22.38vw] xl:w-[22.88vw] 2xl:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
+              >
+                <a
+                  class="w-full flex items-center justify-center"
+                  href={seeMore?.link}
+                >
+                  <span className="px-5 py-1.5 uppercase block mt-2 text-center border rounded-lg border-black">
+                    {seeMore?.text}
+                  </span>
+                </a>
+              </Slider.Item>
+            )
+            : null}
         </Slider>
         {shouldShowArrows && (
-        <>
-        <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-          <Slider.PrevButton class="btn btn-circle btn-ghost absolute right-1/2 bg-base-100">
-            <Icon size={24} id="ArrowPointingLeft" strokeWidth={3} />
-          </Slider.PrevButton>
-        </div>
-        <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-          <Slider.NextButton class="btn btn-circle btn-ghost absolute left-1/2 bg-base-100">
-            <Icon size={24} id="ArrowPointingRight" strokeWidth={3} />
-          </Slider.NextButton>
-        </div>
-        </>
+          <>
+            <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
+              <Slider.PrevButton class="btn btn-circle btn-ghost absolute right-1/2 bg-base-100">
+                <Icon size={24} id="ArrowPointingLeft" strokeWidth={3} />
+              </Slider.PrevButton>
+            </div>
+            <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
+              <Slider.NextButton class="btn btn-circle btn-ghost absolute left-1/2 bg-base-100">
+                <Icon size={24} id="ArrowPointingRight" strokeWidth={3} />
+              </Slider.NextButton>
+            </div>
+          </>
         )}
         <SliderJS rootId={id} />
         <SendEventOnLoad
