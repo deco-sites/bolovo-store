@@ -42,11 +42,11 @@ export default function FeaturedGallery({ title, featuredPhoto, directionInverse
             <h3 class=" text-base text-left uppercase font-bold">
                 {title}
             </h3>
-            <a href={featuredPhoto.href}>
-                <div class={`flex gap-2 ${MOBILE_DIRECTION[directionInverse?.mobile ?? "col-reverse"]
+            <a href={featuredPhoto.href} class=" w-full lg:w-[55%]">
+                <div class={`flex gap-2 lg:gap-4 ${MOBILE_DIRECTION[directionInverse?.mobile ?? "col-reverse"]
                     } ${DESKTOP_DIRECTION[directionInverse?.desktop ?? "row"]}`}>
-                    <Image src={featuredPhoto.src} alt={featuredPhoto.alt} width={400} height={400} loading={"lazy"} class="w-full lg:w-3/5" />
-                    <div class="w-full lg:w-2/5 bg-red-600 min-h-[400px]">
+                    <Image src={featuredPhoto.src} alt={featuredPhoto.alt} width={400} height={400} loading={"lazy"} class="w-full " />
+                    <div class="w-full lg:w-[45%] min-h-[400px]">
                         <ProductCard
                             product={idProduct[0]}
                         />
