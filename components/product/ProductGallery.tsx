@@ -11,7 +11,7 @@ export interface Columns {
 
 export interface Props {
   products: Product[] | null;
-  offset: number;
+  offset?: number;
   layout?: {
     card?: CardLayout;
     columns?: Columns;
@@ -41,7 +41,7 @@ function ProductGallery({ products, layout, offset }: Props) {
         <ProductCard
           product={product}
           preload={index === 0}
-          index={offset + index}
+          index={offset ? offset + index : undefined}
           layout={layout?.card}
           platform={platform}
         />
