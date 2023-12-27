@@ -47,16 +47,16 @@ function SearchControls(
         </div>
 
         <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none">
+          {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
           <Button
-            class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden"}
+            class="btn-ghost text-[13px] px-1 py-0 font-light uppercase leading-0 hover:bg-transparent"
             onClick={() => {
               open.value = true;
             }}
           >
+            <Icon id="FilterList" width={19} height={10} />
             Filtrar
-            <Icon id="FilterList" width={16} height={16} />
           </Button>
-          {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
         </div>
       </div>
     </Drawer>
