@@ -51,7 +51,7 @@ function ProductShelf({
         id={id}
         class="w-full grid grid-cols-[48px_1fr_48px] lg:px-4"
       >
-        <Slider class="carousel carousel-center sm:carousel-end gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
+        <Slider class="carousel carousel-start gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
@@ -70,13 +70,13 @@ function ProductShelf({
             ? (
               <Slider.Item
                 index={products.length}
-                class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[22.38vw] xl:w-[22.88vw] 2xl:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
+                class="bg-[#F6F6F6] border h-[68.4%] lg:h-[90.91%] border-black lg:border-none carousel-item min-w-[166px] w-[38.6vw] lg:w-[22.38vw] xl:w-[22.88vw] 2xl:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
               >
                 <a
                   class="w-full flex items-center justify-center"
                   href={seeMore?.link}
                 >
-                  <span className="px-5 py-1.5 uppercase block mt-2 text-center border rounded-lg border-black">
+                  <span className="text-[#121212] px-5 py-1.5 block text-center text-[13px] lg:text-[15px] leading-[130%] font-semibold lg:font-normal lg:border rounded-[15px] lg:border-[#121212]">
                     {seeMore?.text}
                   </span>
                 </a>
@@ -87,12 +87,12 @@ function ProductShelf({
         {shouldShowArrows && (
           <>
             <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-              <Slider.PrevButton class="btn btn-circle btn-ghost absolute right-1/2 bg-base-100">
+              <Slider.PrevButton class="btn btn-circle btn-ghost absolute right-1/2">
                 <Icon size={24} id="ArrowPointingLeft" strokeWidth={3} />
               </Slider.PrevButton>
             </div>
             <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-              <Slider.NextButton class="btn btn-circle btn-ghost absolute left-1/2 bg-base-100">
+              <Slider.NextButton class="btn btn-circle btn-ghost absolute left-1/2">
                 <Icon size={24} id="ArrowPointingRight" strokeWidth={3} />
               </Slider.NextButton>
             </div>
