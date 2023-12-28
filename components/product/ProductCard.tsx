@@ -21,11 +21,8 @@ export interface Layout {
   };
   hide?: {
     productName?: boolean;
-    productDescription?: boolean;
     allPrices?: boolean;
-    installments?: boolean;
     skuSelector?: boolean;
-    cta?: boolean;
   };
   onMouseOver?: {
     image?: "Change image" | "Zoom image";
@@ -57,8 +54,8 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 200;
-const HEIGHT = 279;
+const WIDTH = 190;
+const HEIGHT = 190;
 
 function ProductCard(
   { product, preload, itemListName, layout, platform, index }: Props,
@@ -74,7 +71,6 @@ function ProductCard(
   const id = `product-card-${productID}`;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
-  const description = product.description || isVariantOf?.description;
   const [front, back] = images ?? [];
   const { listPrice, price, installments } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
@@ -95,6 +91,29 @@ function ProductCard(
       </a>
     </li>
   ));
+
+  const colorSelector = variants.map(([value, link]) => (
+    <li>
+      <a href={link}>
+        <div
+          class="w-[12.7px] h-[12.7px] flex items-center justify-center"
+          title={`Cor ${value}`}
+        >
+          {/* Aqui eu optei por colocar um svg, e ai a parte do fill vai ser dinâmica de acordo com a informação que pegarmos na PDP */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12.7"
+            height="12.7"
+            viewBox="0 0 14 14"
+            fill="none"
+          >
+            <rect x="0" y="0" width="14" height="14" fill="#FF0000" />
+          </svg>
+        </div>
+      </a>
+    </li>
+  ));
+
   const cta = (
     <a
       href={url && relative(url)}
@@ -136,7 +155,7 @@ function ProductCard(
         }}
       />
       <figure
-        class="relative overflow-hidden"
+        class="relative overflow-hidden mb-7 lg:mb-12 "
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}
@@ -165,7 +184,7 @@ function ProductCard(
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="grid grid-cols-1 grid-rows-1 w-full"
+          class="grid grid-cols-1 grid-rows-1 w-full absolute"
         >
           <Image
             src={front.url!}
@@ -213,71 +232,82 @@ function ProductCard(
           {l?.onMouseOver?.showCta && cta}
         </figcaption>
       </figure>
+      {
+        /*<div>
+               Seletor de Tamanhos (Esse aqui eu optei por esconder por talvez utilizarmos ele futuramente, no caso ele ja ta funcionando direitinho)
+                {(!l?.elementsPositions?.skuSelector ||
+                  l?.elementsPositions?.skuSelector === "Top") && (
+                  <>
+                    {l?.hide?.skuSelector ? "" : (
+                      <div class="group">
+                      <ul
+                        class={`absolute bottom-0 left-0 flex items-center gap-2 w-full overflow-auto p-3 transition-opacity duration-300 opacity-0 group-hover:opacity-100 ${
+                          align === "center" ? "justify-center" : "justify-start"
+                        } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
+                      >
+                        {skuSelector}
+                      </ul>
+                      </div>
+                    )}
+                  </>
+                )}
+        </div>*/
+      }
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col p-2 gap-3 lg:gap-4">
-        {/* SKU Selector */}
-        {(!l?.elementsPositions?.skuSelector ||
-          l?.elementsPositions?.skuSelector === "Top") && (
-          <>
-            {l?.hide?.skuSelector ? "" : (
-              <ul
-                class={`flex items-center gap-2 w-full overflow-auto p-3 ${
-                  align === "center" ? "justify-center" : "justify-start"
-                } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-              >
-                {skuSelector}
-              </ul>
+      <div class="flex-auto flex flex-col pt-4 lg:pt-5 gap-3 lg:gap-4">
+        <div class="flex flex-col h-full lg:flex-row justify-between gap-[7px] lg:gap-0">
+          {l?.hide?.productName
+            ? ""
+            : (
+              <div class="flex flex-col gap-0 sm:max-w-[69.3%] pl-[1px]">
+                {l?.hide?.productName ? "" : (
+                  <h2
+                    class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"
+                    dangerouslySetInnerHTML={{ __html: name ?? "" }}
+                  />
+                )}
+              </div>
             )}
-          </>
-        )}
-
-        {l?.hide?.productName && l?.hide?.productDescription
-          ? ""
-          : (
-            <div class="flex flex-col gap-0">
-              {l?.hide?.productName ? "" : (
-                <h2
-                  class="truncate text-base lg:text-lg text-base-content"
-                  dangerouslySetInnerHTML={{ __html: name ?? "" }}
-                />
-              )}
-              {l?.hide?.productDescription ? "" : (
+          {l?.hide?.allPrices
+            ? ""
+            : (
+              <div class="flex flex-col gap-[7px] lg:gap-1">
                 <div
-                  class="truncate text-sm lg:text-sm text-neutral"
-                  dangerouslySetInnerHTML={{ __html: description ?? "" }}
-                />
-              )}
-            </div>
-          )}
-        {l?.hide?.allPrices ? "" : (
-          <div class="flex flex-col gap-2">
-            <div
-              class={`flex flex-col gap-0 ${
-                l?.basics?.oldPriceSize === "Normal"
-                  ? "lg:flex-row lg:gap-2"
-                  : ""
-              } ${align === "center" ? "justify-center" : "justify-start"}`}
-            >
-              <div
-                class={`line-through text-base-300 text-xs ${
-                  l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                }`}
-              >
-                {formatPrice(listPrice, offers?.priceCurrency)}
-              </div>
-              <div class="text-accent text-base lg:text-xl">
-                {formatPrice(price, offers?.priceCurrency)}
-              </div>
-            </div>
-            {l?.hide?.installments
-              ? ""
-              : (
-                <div class="text-base-300 text-sm lg:text-base truncate">
-                  ou {installments}
+                  class={`flex flex-col gap-0 ${
+                    l?.basics?.oldPriceSize === "Normal"
+                      ? "lg:flex-row lg:gap-2"
+                      : ""
+                  } ${align === "center" ? "justify-center" : "justify-start"}`}
+                >
+                  <div
+                    class={`line-through text-base-300 text-xs ${
+                      l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                    }`}
+                  >
+                    {formatPrice(listPrice, offers?.priceCurrency)}
+                  </div>
+                  <div class="text-black leading-[130%] text-[14px] lg:text-end">
+                    {formatPrice(price, offers?.priceCurrency)}
+                  </div>
                 </div>
-              )}
-          </div>
-        )}
+                <div>
+                  {/* SKU Selector de Cor que atualmente está puxando os tamanhos disponíveis*/}
+                  {(!l?.elementsPositions?.skuSelector ||
+                    l?.elementsPositions?.skuSelector === "Top") && (
+                    <>
+                      {l?.hide?.skuSelector ? "" : (
+                        <div class="group">
+                          <ul class="flex items-center gap-1 justify-start lg:justify-end">
+                            {colorSelector}
+                          </ul>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+        </div>
 
         {/* SKU Selector */}
         {l?.elementsPositions?.skuSelector === "Bottom" && (
@@ -293,18 +323,6 @@ function ProductCard(
             )}
           </>
         )}
-
-        {!l?.hide?.cta
-          ? (
-            <div
-              class={`flex-auto flex items-end ${
-                l?.onMouseOver?.showCta ? "lg:hidden" : ""
-              }`}
-            >
-              {cta}
-            </div>
-          )
-          : ""}
       </div>
     </div>
   );
