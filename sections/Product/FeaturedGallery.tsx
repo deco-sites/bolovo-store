@@ -4,7 +4,7 @@ import type { Product } from "apps/commerce/types.ts";
 import ProductCard from "../../components/product/ProductCard.tsx";
 export interface Props {
     title: string;
-    idProduct: Product[] | null;
+    product: Product[] | null;
     featuredPhoto: {
         src: ImageWidget;
         alt: string;
@@ -13,46 +13,48 @@ export interface Props {
     /**
      * @title reversed order?
      */
-    directionInverse: {
-        /** @default "col" */
-        mobile?: "col" | "col-reverse";
-        /** @default "row" */
-        desktop?: "row" | "row-reverse";
+    contentDirection: {
+        /** @default "imagem acima" */
+        mobile?: "imagem acima" | "imagem abaixo";
+        /** @default "imagem na direita" */
+        desktop?: "imagem na direita" | "imagem na esquerda";
     };
 }
 
 const MOBILE_DIRECTION = {
-    "col": "flex-col",
-    "col-reverse": "flex-col-reverse",
+    "imagem acima": "flex-col",
+    "imagem abaixo": "flex-col-reverse",
 };
 
 const DESKTOP_DIRECTION = {
-    "row": "lg:flex-row",
-    "row-reverse": "lg:flex-row-reverse",
+    "imagem na direita": "lg:flex-row",
+    "imagem na esquerda": "lg:flex-row-reverse",
 };
 
-export default function FeaturedGallery({ title, featuredPhoto, directionInverse, idProduct }: Props) {
+export default function FeaturedGallery({ title, featuredPhoto, contentDirection, product }: Props) {
 
-    if (!idProduct || idProduct.length === 0) {
+    if (!product || product.length === 0) {
         return null;
     }
 
     return (
-        <div class="flex px-4 flex-col gap-2 py-2">
-            <h3 class=" text-base text-left uppercase font-bold">
+        <div class="flex px-4 flex-col gap-2 py-8">
+            <h2 class=" text-base text-left uppercase font-bold">
                 {title}
-            </h3>
-            <a href={featuredPhoto.href} class=" w-full lg:w-[55%]">
-                <div class={`flex gap-2 lg:gap-4 ${MOBILE_DIRECTION[directionInverse?.mobile ?? "col-reverse"]
-                    } ${DESKTOP_DIRECTION[directionInverse?.desktop ?? "row"]}`}>
+            </h2>
+            <div class={`flex gap-2 lg:gap-4  
+                ${MOBILE_DIRECTION[contentDirection?.mobile ?? "imagem acima"]
+                } ${DESKTOP_DIRECTION[contentDirection?.desktop ?? "imagem na direita"]} `}>
+                <a href={featuredPhoto.href} class=" w-full lg:w-[55%] cursor-pointer">
                     <Image src={featuredPhoto.src} alt={featuredPhoto.alt} width={400} height={400} loading={"lazy"} class="w-full " />
-                    <div class="w-full lg:w-[45%] min-h-[400px]">
-                        <ProductCard
-                            product={idProduct[0]}
-                        />
-                    </div>
+                </a>
+                <div class="w-full lg:w-[45%] min-h-[400px]">
+                    <ProductCard
+                        product={product[0]}
+                    />
                 </div>
-            </a>
+
+            </div>
         </div>
     )
 }
