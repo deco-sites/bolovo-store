@@ -54,7 +54,7 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 190;
+const WIDTH = 151.45;
 const HEIGHT = 190;
 
 function ProductCard(
@@ -155,8 +155,8 @@ function ProductCard(
         }}
       />
       <figure
-        class="relative overflow-hidden mb-7 lg:mb-12"
-        style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
+        class="relative overflow-hidden"
+        style={{ aspectRatio: `${WIDTH} / ${HEIGHT}`, backgroundColor: '#F6F6F6' }}
       >
         {/* Wishlist button */}
         <div
@@ -191,7 +191,7 @@ function ProductCard(
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded w-full ${
+            class={`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full rounded w-full ${
               l?.onMouseOver?.image == "Zoom image"
                 ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                 : ""
@@ -254,12 +254,12 @@ function ProductCard(
         </div>*/
       }
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col pt-4 lg:pt-5 gap-3 lg:gap-4">
+      <div class="flex-auto flex flex-col pt-[15px] lg:pt-5 gap-3 lg:gap-4">
         <div class="flex flex-col h-full lg:flex-row justify-between gap-[7px] lg:gap-0">
           {l?.hide?.productName
             ? ""
             : (
-              <div class="flex flex-col gap-0 sm:max-w-[69.3%] pl-[1px]">
+              <div class="flex flex-col gap-0 sm:max-w-[69.3%] lg:pl-[1px]">
                 {l?.hide?.productName ? "" : (
                   <h2
                     class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"
