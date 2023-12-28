@@ -38,7 +38,7 @@ export default function FeaturedGallery({ title, featuredPhoto, contentDirection
     }
 
     return (
-        <div class="flex px-4 flex-col gap-2 py-8">
+        <div class="flex px-4 flex-col gap-6 py-8">
             <h2 class=" text-base text-left uppercase font-bold">
                 {title}
             </h2>
