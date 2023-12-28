@@ -25,7 +25,7 @@ function SearchControls(
       onClose={() => open.value = false}
       aside={
         <>
-          <div class="bg-base-100 flex flex-col h-full divide-y overflow-y-hidden">
+          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden">
             <div class="flex justify-between items-center">
               <h1 class="px-4 py-3">
                 <span class="font-medium text-2xl">Filtrar</span>
@@ -41,12 +41,13 @@ function SearchControls(
         </>
       }
     >
-      <div class="flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px] sm:border-b sm:border-base-200">
-        <div class="flex flex-row items-center sm:p-0 mb-2">
-          <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
+      <div class="flex flex-col justify-between mb-4 md:mb-0 md:flex-row md:h-[53px]">
+        <div class="flex flex-row items-center md:justify-center justify-start md:p-0 mb-2 md:pl-[206px] leading-4 text-[13px] md:mx-auto font-normal">
+          VOCÊ PESQUISOU POR <span class="bg-black rounded-[20px] py-1 px-3 text-[#FFF4F4] ml-[6px]">JAQUETAS</span>
         </div>
 
-        <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none">
+        <div class="flex flex-row items-center md:justify-between md:gap-4">
+          {}
           {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
           <Button
             class="btn-ghost text-[13px] px-1 py-0 font-light uppercase leading-0 hover:bg-transparent"
