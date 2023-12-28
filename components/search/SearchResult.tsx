@@ -44,28 +44,20 @@ function Result({
   const offset = pageInfo.currentPage * perPage;
 
   return (
-    <>
-      <div class="container px-4 sm:py-10">
-        <SearchControls
-          sortOptions={sortOptions}
-          filters={filters}
-          breadcrumb={breadcrumb}
-          displayFilter={layout?.variant === "drawer"}
-        />
-
-        <div class="flex flex-row">
-          {layout?.variant === "aside" && filters.length > 0 && (
-            <aside class="hidden sm:block w-min min-w-[250px]">
-              <Filters filters={filters} />
-            </aside>
-          )}
-          <div class="flex-grow">
-            <ProductGallery
-              products={products}
-              offset={offset}
-              layout={{ card: cardLayout, columns: layout?.columns }}
-            />
-          </div>
+    <div class="md:px-2 px-4 pt-2">
+      <SearchControls
+        sortOptions={sortOptions}
+        filters={filters}
+        breadcrumb={breadcrumb}
+        displayFilter={layout?.variant === "drawer"}
+      />
+      <div class="container md:px-4 px-0">
+        <div class="flex-grow">
+          <ProductGallery
+            products={products}
+            offset={offset}
+            layout={{ card: cardLayout, columns: layout?.columns }}
+          />
         </div>
 
         <div class="flex justify-center my-4">
@@ -110,7 +102,7 @@ function Result({
           },
         }}
       />
-    </>
+    </div>
   );
 }
 
