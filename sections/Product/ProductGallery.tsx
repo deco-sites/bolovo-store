@@ -16,7 +16,7 @@ export interface Props {
   cardLayout?: CardLayout;
 }
 
-function ProductArray({
+function ProductGallery({
   products,
   layout,
   title,
@@ -40,4 +40,4 @@ function ProductArray({
   );
 }
 
-export default ProductArray;
+export default ProductGallery;
