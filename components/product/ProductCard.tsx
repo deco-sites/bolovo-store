@@ -186,7 +186,7 @@ function ProductCard(
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="grid grid-cols-1 grid-rows-1 w-full relative" 
+          class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
           <Picture preload={preload}>
             <Source
