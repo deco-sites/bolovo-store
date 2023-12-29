@@ -48,10 +48,9 @@ function SearchControls(
         </div>
 
         <div class="flex flex-row items-center md:justify-between md:gap-4">
-          {}
           {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
           <Button
-            class="btn-ghost text-[13px] px-1 py-0 font-light uppercase leading-0 hover:bg-transparent"
+            class="btn-ghost btn-xs text-[13px] px-2 py-[5px] px- font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
             onClick={() => {
               open.value = true;
             }}
