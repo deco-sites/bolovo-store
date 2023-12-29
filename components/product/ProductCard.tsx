@@ -7,7 +7,7 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import Image from "apps/website/components/Image.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
 
 export interface Layout {
   basics?: {
@@ -124,6 +124,8 @@ function ProductCard(
     </a>
   );
 
+  const safeSrc = (url?: string) => url ?? "";
+
   return (
     <div
       id={id}
@@ -184,35 +186,61 @@ function ProductCard(
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="grid grid-cols-1 grid-rows-1 w-full"
+          class="grid grid-cols-1 grid-rows-1 w-full relative" 
         >
-          <Image
-            src={front.url!}
-            alt={front.alternateName}
-            width={WIDTH}
-            height={HEIGHT}
-            class={`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full rounded w-full ${
-              l?.onMouseOver?.image == "Zoom image"
-                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                : ""
-            }`}
-            sizes="(max-width: 640px) 50vw, 20vw"
-            preload={preload}
-            loading={preload ? "eager" : "lazy"}
-            decoding="async"
-          />
+          <Picture preload={preload}>
+            <Source
+              media="(max-width: 1023px)"
+              fetchPriority={preload ? "high" : "auto"}
+              src={safeSrc(front.url)}
+              width={166}
+              height={227}
+            />
+            <Source
+              media="(min-width: 1024px)"
+              fetchPriority={preload ? "high" : "auto"}
+              src={safeSrc(front.url)}
+              width={239.13}
+              height={300}
+            />
+            <img
+              className={`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full rounded w-full ${
+                l?.onMouseOver?.image == "Zoom image"
+                  ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                  : ""
+              }`}
+              alt={front.alternateName}
+              decoding="async"
+              loading={preload ? "eager" : "lazy"}
+            />
+          </Picture>
+
           {(!l?.onMouseOver?.image ||
             l?.onMouseOver?.image == "Change image") && (
-            <Image
-              src={back?.url ?? front.url!}
-              alt={back?.alternateName ?? front.alternateName}
-              width={WIDTH}
-              height={HEIGHT}
-              class="bg-base-100 col-span-full row-span-full transition-opacity rounded w-full opacity-0 lg:group-hover:opacity-100"
-              sizes="(max-width: 640px) 50vw, 20vw"
-              loading="lazy"
-              decoding="async"
-            />
+            <div class="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity">
+              <Picture preload={preload}>
+                <Source
+                  media="(max-width: 1023px)"
+                  fetchPriority={preload ? "high" : "auto"}
+                  src={safeSrc(back?.url ?? front.url)}
+                  width={166}
+                  height={227}
+                />
+                <Source
+                  media="(min-width: 1024px)"
+                  fetchPriority={preload ? "high" : "auto"}
+                  src={safeSrc(back?.url ?? front.url)}
+                  width={239.13}
+                  height={300}
+                />
+                <img
+                  className="bg-base-100 col-span-full row-span-full rounded w-full"
+                  alt={back?.alternateName ?? front.alternateName}
+                  decoding="async"
+                  loading={preload ? "eager" : "lazy"}
+                />
+              </Picture>
+            </div>
           )}
         </a>
         <figcaption
@@ -259,7 +287,7 @@ function ProductCard(
           {l?.hide?.productName
             ? ""
             : (
-              <div class="flex flex-col gap-0 sm:max-w-[69.3%] lg:pl-[1px]">
+              <div class="flex flex-col gap-0 lg:max-w-[69.3%] lg:pl-[1px]">
                 {l?.hide?.productName ? "" : (
                   <h2
                     class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"

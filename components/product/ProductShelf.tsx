@@ -38,6 +38,8 @@ function ProductShelf({
   if (!products || products.length === 0) {
     return null;
   }
+  
+  const aspectRatio = 1.254;
 
   return (
     <div class="w-full py-8 flex flex-col gap-5 px-4 mx-auto lg:gap-6 lg:py-10">
@@ -49,13 +51,13 @@ function ProductShelf({
 
       <div
         id={id}
-        class="w-full grid grid-cols-[48px_1fr_48px] lg:px-4"
+        class="w-full grid grid-cols-[38px_1fr_38px] lg:px-4"
       >
-        <Slider class="carousel carousel-start gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
+        <Slider class="w-full carousel carousel-start gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[22.38vw] xl:w-[22.88vw] 2xl:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
+              class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[calc((100%-45px)/4)] sm:first:pl-0 sm:last:pr-0"
             >
               <ProductCard
                 product={product}
@@ -70,28 +72,34 @@ function ProductShelf({
             ? (
               <Slider.Item
                 index={products.length}
-                class="bg-[#F6F6F6] border h-[68.4%] lg:h-[90.91%] border-black lg:border-none carousel-item min-w-[166px] w-[38.6vw] lg:w-[22.38vw] xl:w-[22.88vw] 2xl:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
+                class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[22.38vw] xl:w-[22.88vw] 2xl:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
               >
-                <a
-                  class="w-full flex items-center justify-center"
-                  href={seeMore?.link}
-                >
-                  <span className="text-[#121212] px-5 py-1.5 block text-center text-[13px] lg:text-[15px] leading-[130%] font-semibold lg:font-normal lg:border rounded-[15px] lg:border-[#121212]">
-                    {seeMore?.text}
-                  </span>
-                </a>
+                <div className="card card-compact group w-full">
+                  <a
+                    class="w-full flex items-center justify-center bg-[#F6F6F6] border border-black lg:border-none"
+                    href={seeMore?.link}
+                    style={{aspectRatio: `151.45 / 190 `}}
+                  >
+                    <span className="text-[#121212] px-5 py-1.5 block text-center text-[13px] lg:uppercase lg:text-[15px] leading-[130%] font-semibold lg:font-normal lg:border rounded-full lg:border-[#121212]">
+                      {seeMore?.text}
+                    </span>
+                  </a>
+                  <div class="flex-auto flex flex-col pt-[15px] lg:pt-5 gap-3 lg:gap-4">
+                  </div>
+                </div>
+                            
               </Slider.Item>
             )
-            : null}
+          : null}
         </Slider>
         {shouldShowArrows && (
           <>
-            <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
+            <div class="hidden relative kbd-lg:block z-10 col-start-1 row-start-3">
               <Slider.PrevButton class="btn btn-circle btn-ghost absolute right-1/2">
                 <Icon size={24} id="ArrowPointingLeft" strokeWidth={3} />
               </Slider.PrevButton>
             </div>
-            <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
+            <div class="hidden relative lg:block z-10 col-start-3 row-start-3">
               <Slider.NextButton class="btn btn-circle btn-ghost absolute left-1/2">
                 <Icon size={24} id="ArrowPointingRight" strokeWidth={3} />
               </Slider.NextButton>
