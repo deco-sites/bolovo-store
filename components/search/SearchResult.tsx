@@ -1,12 +1,12 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
-import Filters from "$store/components/search/Filters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
+import type { SectionProps } from "deco/types.ts";
 
 export interface Layout {
   /**
@@ -23,6 +23,7 @@ export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
   layout?: Layout;
+  textSearch?: string;
   cardLayout?: CardLayout;
 }
 
@@ -38,14 +39,19 @@ function Result({
   page,
   layout,
   cardLayout,
-}: Omit<Props, "page"> & { page: ProductListingPage }) {
+  textSearch,
+  url
+}: Omit<Props, "page"> & { page: ProductListingPage, url: string }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
+  const searchTerm = new URLSearchParams(new URL(url).search).get('q');
 
   return (
     <div class="md:px-2 px-4 pt-2">
       <SearchControls
+        searchTerm={searchTerm ?? ""}
+        textSearch={textSearch}
         sortOptions={sortOptions}
         filters={filters}
         breadcrumb={breadcrumb}
@@ -106,7 +112,9 @@ function Result({
   );
 }
 
-function SearchResult({ page, ...props }: Props) {
+function SearchResult(
+  { page, ...props }: SectionProps<ReturnType<typeof loader>>,
+) {
   if (!page) {
     return <NotFound />;
   }
@@ -115,3 +123,7 @@ function SearchResult({ page, ...props }: Props) {
 }
 
 export default SearchResult;
+
+export const loader = (props: Props, req: Request) => {
+  return { ...props, url: req.url };
+};
