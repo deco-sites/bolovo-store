@@ -72,7 +72,7 @@ function ProductShelf({
             ? (
               <Slider.Item
                 index={products.length}
-                class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[22.38vw] xl:w-[22.88vw] 2xl:w-[23.31vw] sm:first:pl-0 sm:last:pr-0"
+                class="carousel-item min-w-[166px] w-[38.6vw] lg:w-[calc((100%-45px)/4)] sm:first:pl-0 sm:last:pr-0"
               >
                 <div className="card card-compact group w-full">
                   <a
