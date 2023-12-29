@@ -26,11 +26,11 @@ import * as $$$$$$17 from "./sections/Links/Shortcuts.tsx";
 import * as $$$$$$18 from "./sections/Miscellaneous/CampaignTimer.tsx";
 import * as $$$$$$19 from "./sections/Miscellaneous/CookieConsent.tsx";
 import * as $$$$$$20 from "./sections/Newsletter/Newsletter.tsx";
-import * as $$$$$$21 from "./sections/Product/ImageGalleryFrontBack.tsx";
-import * as $$$$$$22 from "./sections/Product/ImageGallerySlider.tsx";
-import * as $$$$$$23 from "./sections/Product/NotFound.tsx";
-import * as $$$$$$24 from "./sections/Product/NotFoundChallenge.tsx";
-import * as $$$$$$25 from "./sections/Product/ProductArray.tsx";
+import * as $$$$$$21 from "./sections/Product/FeaturedGallery.tsx";
+import * as $$$$$$22 from "./sections/Product/ImageGalleryFrontBack.tsx";
+import * as $$$$$$23 from "./sections/Product/ImageGallerySlider.tsx";
+import * as $$$$$$24 from "./sections/Product/NotFound.tsx";
+import * as $$$$$$25 from "./sections/Product/NotFoundChallenge.tsx";
 import * as $$$$$$26 from "./sections/Product/ProductInfo.tsx";
 import * as $$$$$$27 from "./sections/Product/ProductShelf.tsx";
 import * as $$$$$$28 from "./sections/Product/ProductShelfTabbed.tsx";
@@ -72,12 +72,12 @@ const manifest = {
     "deco-sites/bolovo-store/sections/Miscellaneous/CookieConsent.tsx":
       $$$$$$19,
     "deco-sites/bolovo-store/sections/Newsletter/Newsletter.tsx": $$$$$$20,
+    "deco-sites/bolovo-store/sections/Product/FeaturedGallery.tsx": $$$$$$21,
     "deco-sites/bolovo-store/sections/Product/ImageGalleryFrontBack.tsx":
-      $$$$$$21,
-    "deco-sites/bolovo-store/sections/Product/ImageGallerySlider.tsx": $$$$$$22,
-    "deco-sites/bolovo-store/sections/Product/NotFound.tsx": $$$$$$23,
-    "deco-sites/bolovo-store/sections/Product/NotFoundChallenge.tsx": $$$$$$24,
-    "deco-sites/bolovo-store/sections/Product/ProductArray.tsx": $$$$$$25,
+      $$$$$$22,
+    "deco-sites/bolovo-store/sections/Product/ImageGallerySlider.tsx": $$$$$$23,
+    "deco-sites/bolovo-store/sections/Product/NotFound.tsx": $$$$$$24,
+    "deco-sites/bolovo-store/sections/Product/NotFoundChallenge.tsx": $$$$$$25,
     "deco-sites/bolovo-store/sections/Product/ProductInfo.tsx": $$$$$$26,
     "deco-sites/bolovo-store/sections/Product/ProductShelf.tsx": $$$$$$27,
     "deco-sites/bolovo-store/sections/Product/ProductShelfTabbed.tsx": $$$$$$28,
