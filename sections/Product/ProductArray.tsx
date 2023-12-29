@@ -22,6 +22,7 @@ function ProductArray({
   title,
   cardLayout,
 }: Props) {
+  
   if (!products || products.length === 0) {
     return null;
   }
