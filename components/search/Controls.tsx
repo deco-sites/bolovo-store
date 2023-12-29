@@ -3,7 +3,6 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Filters from "$store/components/search/Filters.tsx";
 import Sort from "$store/components/search/Sort.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
-import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 
@@ -11,10 +10,12 @@ export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
   & {
     displayFilter?: boolean;
+    textSearch?: string
+    searchTerm?: string
   };
 
 function SearchControls(
-  { filters, breadcrumb, displayFilter, sortOptions }: Props,
+  { filters,sortOptions, textSearch, searchTerm}: Props,
 ) {
   const open = useSignal(false);
 
@@ -43,7 +44,7 @@ function SearchControls(
     >
       <div class="flex flex-col justify-between mb-4 md:mb-0 md:flex-row md:h-[53px]">
         <div class="flex flex-row items-center md:justify-center justify-start md:p-0 mb-2 md:pl-[206px] leading-4 text-[13px] md:mx-auto font-normal">
-          VOCÊ PESQUISOU POR <span class="bg-black rounded-[20px] py-1 px-3 text-[#FFF4F4] ml-[6px]">JAQUETAS</span>
+          {textSearch} <span class="bg-black rounded-[20px] py-1 px-3 text-[#FFF4F4] ml-[6px] uppercase">{searchTerm}</span>
         </div>
 
         <div class="flex flex-row items-center md:justify-between md:gap-4">
