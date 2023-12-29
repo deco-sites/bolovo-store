@@ -22,13 +22,12 @@ function ProductArray({
   title,
   cardLayout,
 }: Props) {
-
   if (!products || products.length === 0) {
     return null;
   }
 
   return (
-    <div class="container px-[15px] sm:py-10">
+    <div class="px-[15px] sm:py-10">
       <h1 class="font-semibold text-base leading-5 pb-[25px]">{title}</h1>
       <div class="flex-grow">
         <Gallery
