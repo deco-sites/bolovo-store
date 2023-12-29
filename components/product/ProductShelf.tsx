@@ -51,7 +51,7 @@ function ProductShelf({
 
       <div
         id={id}
-        class="w-full grid grid-cols-[38px_1fr_38px] lg:px-4"
+        class="w-full grid grid-cols-[30px_1fr_30px] lg:px-4"
       >
         <Slider class="w-full carousel carousel-start gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
           {products?.map((product, index) => (
