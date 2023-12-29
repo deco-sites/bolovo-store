@@ -94,7 +94,7 @@ function ProductShelf({
         </Slider>
         {shouldShowArrows && (
           <>
-            <div class="hidden relative kbd-lg:block z-10 col-start-1 row-start-3">
+            <div class="hidden relative lg:block z-10 col-start-1 row-start-3">
               <Slider.PrevButton class="btn btn-circle btn-ghost absolute right-1/2">
                 <Icon size={24} id="ArrowPointingLeft" strokeWidth={3} />
               </Slider.PrevButton>
