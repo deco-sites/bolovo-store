@@ -48,7 +48,7 @@ function Result({
   const searchTerm = new URLSearchParams(new URL(url).search).get('q');
 
   return (
-    <div class="md:px-2 px-4 pt-2">
+    <div class="md:px-2 px-4 pt-3 md:pt-1">
       <SearchControls
         searchTerm={searchTerm ?? ""}
         textSearch={textSearch}

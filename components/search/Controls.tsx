@@ -42,7 +42,7 @@ function SearchControls(
         </>
       }
     >
-      <div class="flex flex-col justify-between mb-4 md:mb-0 md:flex-row md:h-[53px]">
+      <div class="flex flex-col justify-between mb-4 md:mb-0 md:flex-row md:h-[60px]">
         <div class="flex flex-row items-center md:justify-center justify-start md:p-0 mb-2 md:pl-[206px] leading-4 text-[13px] md:mx-auto font-normal">
           {textSearch} <span class="bg-black rounded-[20px] py-1 px-3 text-[#FFF4F4] ml-[6px] uppercase">{searchTerm}</span>
         </div>
