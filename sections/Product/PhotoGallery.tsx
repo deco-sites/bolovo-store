@@ -48,10 +48,10 @@ export default function PhotoGallery({ title, featuredPhoto, contentDirection, p
                 <a href={featuredPhoto.href} class=" w-full lg:w-2/4 cursor-pointer">
                     <Image src={featuredPhoto.src} alt={featuredPhoto.alt} width={400} height={540} loading={"lazy"} class="w-full h-full" />
                 </a>
-                <ul class="w-full lg:w-2/4 gap-4 h-auto justify-between flex flex-row flex-wrap">
+                <ul class="w-full lg:w-2/4 gap-2 lg:gap-4 h-auto justify-between flex flex-row flex-wrap">
                     {
                         products.map((product) => (
-                            <li class="w-[calc(50%-0.5rem)]">
+                            <li class="w-[calc(50%-0.25rem)] lg:w-[calc(50%-0.5rem)]">
                                 <ProductCard
                                     product={product}
                                 />
