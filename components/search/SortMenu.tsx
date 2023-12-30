@@ -26,11 +26,16 @@ export const useSort = () =>
 const applySort = (value: string) => {
   const urlSearchParams = new URLSearchParams(window.location.search);
   urlSearchParams.set(SORT_QUERY_PARAM, value);
-  window.location.search = urlSearchParams.toString();
+  urlSearchParams.delete('page');
+  const newParamsString = urlSearchParams.toString();
+  const newURL = window.location.pathname + (newParamsString ? `?${newParamsString}` : '');
+  window.history.replaceState({}, '', newURL);
+  window.location.reload();
 };
 
 function SortMenu({ sortOptions }: Props) {
   const sort = useSort();
+  console.log(sortOptions)
   return (
     <ul
       class="absolute z-10 bg-white w-full flex flex-col outline-none focus:outline-none border-x border-black border-b rounded-b-xl text-center"
