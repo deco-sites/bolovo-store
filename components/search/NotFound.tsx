@@ -2,6 +2,8 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 import SearchedWord from "$store/islands/SearchedWord.tsx";
 import { Picture, Source } from "https://denopkg.com/deco-cx/apps@0.25.13/website/components/Picture.tsx";
+import ProductShelf from "$store/components/product/ProductShelf.tsx";
+import type { Shelf } from "$store/components/search/SearchResult.tsx"
 
 export interface PropsNotFound {
     title: string;
@@ -10,7 +12,7 @@ export interface PropsNotFound {
         alt: string;
     };
     /** @default "dark" */
-    theme: "dark" | "light"
+    theme: "dark" | "light";
     stepsBySteps: RichText[];
     positionSteps: "horizontal" | "vertical";
     backgroundImage?: {
@@ -36,8 +38,26 @@ const POSITION_STEPS = {
     "vertical": "lg:flex-col items-center",
 }
 
-function Container({ props }: { props: PropsNotFound }) {
-    const { title, imagem, stepsBySteps, theme, positionSteps } = props
+// function LoaderShelf({ shelfs }: PropsNotFound) {
+
+//     const { listShelfs } = shelfs
+
+//     if (!listShelfs[0].products || listShelfs[0].products.length === 0) {
+//         return null;
+//     }
+
+//     return (
+//         <div>{
+//             listShelfs.map((shelf) => (
+//                 <ProductShelf products={shelf.products} title={shelf?.title} layout={shelf?.layout} cardLayout={shelf?.cardLayout} seeMore={shelf?.seeMore} />
+
+//             ))
+//         }</div>
+//     )
+// }
+
+function Container({ props, shelf }: { props: PropsNotFound, shelf: Shelf }) {
+    const { title, imagem, stepsBySteps, theme, positionSteps} = props
     return (
         <div class="w-full flex justify-center items-center pt-12 pb-28 px-4 flex-col gap-7">
             <Image
@@ -64,13 +84,14 @@ function Container({ props }: { props: PropsNotFound }) {
                     </li>
                 ))}
             </ul>
+            <ProductShelf {...shelf}/>
         </div>
     );
 
 }
 
 
-export default function NotFound({ props }: { props: PropsNotFound }) {
+export default function NotFound({ props, shelf }: { props: PropsNotFound, shelf: Shelf }) {
 
     const { backgroundImage, } = props
 
@@ -85,6 +106,7 @@ export default function NotFound({ props }: { props: PropsNotFound }) {
                         width={320}
                         height={465}
                     />
+                    {/* add  souce mobile e desk */}
                     <Source
                         media="(min-width: 1024px)"
                         fetchPriority={"auto"}
@@ -100,14 +122,14 @@ export default function NotFound({ props }: { props: PropsNotFound }) {
                     />
                 </Picture>
                 <div class="relative w-full h-ful bg-[#0000002e]">
-                    <Container props={props} />
+                    <Container props={props} shelf={shelf} />
                 </div>
             </div>
         )
     }
 
     return (
-        <Container props={props} />
+        <Container props={props} shelf={shelf} />
     )
 
 

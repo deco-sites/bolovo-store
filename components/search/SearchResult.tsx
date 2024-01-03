@@ -9,6 +9,11 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx"
+import ProductCard, {
+  Layout as cardLayout,
+} from "$store/components/product/ProductCard.tsx";
+import type { Product } from "apps/commerce/types.ts";
+
 export interface Layout {
   /**
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
@@ -20,12 +25,26 @@ export interface Layout {
   columns?: Columns;
 }
 
+
+
+export interface Shelf {
+  products: Product[] | null;
+  title?: string;
+  layout?: {
+    headerAlignment?: "center" | "left";
+    headerfontSize?: "Normal" | "Large";
+  };
+  seeMore?: { text: string; link: string };
+  cardLayout?: cardLayout;
+}
+
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
   layout?: Layout;
   cardLayout?: CardLayout;
   notFound: PropsNotFound;
+  // shelf: Shelf
 }
 
 function Result({
@@ -115,7 +134,8 @@ function SearchResult({ page, ...props }: Props) {
 
 
   if (!page || page?.products.length === 0) {
-    return <NotFound props={props.notFound} />;
+    // return <NotFound props={props.notFound} shelf={props.shelf} />;
+    return null
   }
 
   return <Result {...props} page={page} />;
