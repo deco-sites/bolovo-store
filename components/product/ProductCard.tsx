@@ -54,8 +54,8 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 151.45;
-const HEIGHT = 190;
+const WIDTH = 239.13;
+const HEIGHT = 300;
 
 function ProductCard(
   { product, preload, itemListName, layout, platform, index }: Props,
@@ -92,27 +92,29 @@ function ProductCard(
     </li>
   ));
 
-  const colorSelector = variants.map(([value, link]) => (
-    <li>
-      <a href={link}>
-        <div
-          class="w-[12.7px] h-[12.7px] flex items-center justify-center"
-          title={`Cor ${value}`}
-        >
-          {/* Aqui eu optei por colocar um svg, e ai a parte do fill vai ser dinâmica de acordo com a informação que pegarmos na PDP */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="12.7"
-            height="12.7"
-            viewBox="0 0 14 14"
-            fill="none"
+  const colorSelector = variants.length > 1 ? ( 
+    variants.map(([value, link]) => (
+      <li>
+        <a href={link}>
+          <div
+            class="w-[12.7px] h-[12.7px] flex items-center justify-center"
+            title={`Cor ${value}`}
           >
-            <rect x="0" y="0" width="14" height="14" fill="#FF0000" />
-          </svg>
-        </div>
-      </a>
-    </li>
-  ));
+            {/* Aqui eu optei por colocar um svg, e ai a parte do fill vai ser dinâmica de acordo com a informação que pegarmos na PDP */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12.7"
+              height="12.7"
+              viewBox="0 0 14 14"
+              fill="none"
+            >
+              <rect x="0" y="0" width="12.7" height="12.7" fill="#FF0000" />
+            </svg>
+          </div>
+        </a>
+      </li>
+    ))
+  ) : null;
 
   const cta = (
     <a
@@ -158,7 +160,7 @@ function ProductCard(
       />
       <figure
         class="relative overflow-hidden"
-        style={{ aspectRatio: `${WIDTH} / ${HEIGHT}`, backgroundColor: '#F6F6F6' }}
+        style={{ aspectRatio: `${WIDTH} / ${HEIGHT}`, backgroundColor: '#F6F6F6'}}
       >
         {/* Wishlist button */}
         <div
@@ -186,22 +188,22 @@ function ProductCard(
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="grid grid-cols-1 grid-rows-1 w-full relative"
+          class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
         >
           <Picture preload={preload}>
             <Source
               media="(max-width: 1023px)"
               fetchPriority={preload ? "high" : "auto"}
               src={safeSrc(front.url)}
-              width={166}
-              height={227}
+              width={200}
+              height={220}
             />
             <Source
               media="(min-width: 1024px)"
               fetchPriority={preload ? "high" : "auto"}
               src={safeSrc(front.url)}
-              width={239.13}
-              height={300}
+              width={380}
+              height={380}
             />
             <img
               className={`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${

@@ -34,7 +34,6 @@ const variants = {
 };
 
 function Avatar({ content, variant = "default" }: Props) {
-  console.log(content.substring(0, 2));
   return (
     <div class="avatar placeholder">
       <div
