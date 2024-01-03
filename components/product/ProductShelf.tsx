@@ -76,7 +76,7 @@ function ProductShelf({
               >
                 <div className="card card-compact group w-full">
                   <a
-                    class="w-full flex items-center justify-center bg-[#F6F6F6] border border-black lg:border-none"
+                    class="btn h-[auto] w-full flex items-center justify-center bg-[#F6F6F6] border border-black lg:border-none"
                     href={seeMore?.link}
                     style={{aspectRatio: `151.45 / 190 `}}
                   >
@@ -95,12 +95,12 @@ function ProductShelf({
         {shouldShowArrows && (
           <>
             <div class="hidden relative lg:block z-10 col-start-1 row-start-3">
-              <Slider.PrevButton class="btn btn-circle btn-ghost absolute right-1/2">
+              <Slider.PrevButton class="btn btn-circle btn-ghost !bg-[transparent] absolute right-1/2">
                 <Icon size={24} id="ArrowPointingLeft" strokeWidth={3} />
               </Slider.PrevButton>
             </div>
             <div class="hidden relative lg:block z-10 col-start-3 row-start-3">
-              <Slider.NextButton class="btn btn-circle btn-ghost absolute left-1/2">
+              <Slider.NextButton class="btn btn-circle btn-ghost !bg-[transparent] absolute left-1/2">
                 <Icon size={24} id="ArrowPointingRight" strokeWidth={3} />
               </Slider.NextButton>
             </div>
