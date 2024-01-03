@@ -7,7 +7,7 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import Image from "apps/website/components/Image.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
 
 export interface Layout {
   basics?: {
@@ -54,8 +54,8 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 350;
-const HEIGHT = 350;
+const WIDTH = 343;
+const HEIGHT = 410.5;
 
 function ProductCardGallery(
   { product, preload, itemListName, layout, platform, index }: Props,
@@ -70,16 +70,11 @@ function ProductCardGallery(
   } = product;
   const id = `product-card-${productID}`;
   const hasVariant = isVariantOf?.hasVariant ?? [];
-  console.log(hasVariant);
   const productGroupID = isVariantOf?.productGroupID;
-  console.log(productGroupID);
   const [front, back] = images ?? [];
   const { listPrice, price, installments } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
-  console.log(possibilities);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
-  console.log(variants);
-  console.log('teeeeeta')
 
   const l = layout;
   const align =
@@ -91,7 +86,7 @@ function ProductCardGallery(
       <a href={link}>
         <Avatar
           variant={link === url ? "active" : link ? "default" : "disabled"}
-          content={'M'}
+          content={value}
         />
       </a>
     </li>
@@ -113,7 +108,7 @@ function ProductCardGallery(
               viewBox="0 0 14 14"
               fill="none"
             >
-              <rect x="0" y="0" width="14" height="14" fill="#FF0000" />
+              <rect x="0" y="0" width="12.7" height="12.7" fill="#FF0000" />
             </svg>
           </div>
         </a>
@@ -130,6 +125,8 @@ function ProductCardGallery(
       {l?.basics?.ctaText || "Ver produto"}
     </a>
   );
+
+  const safeSrc = (url?: string) => url ?? "";
 
   return (
     <div
@@ -162,7 +159,7 @@ function ProductCardGallery(
         }}
       />
       <figure
-        class="relative overflow-hidden h-full"
+        class="relative overflow-hidden"
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}`, backgroundColor: '#F6F6F6'}}
       >
         {/* Wishlist button */}
@@ -191,37 +188,63 @@ function ProductCardGallery(
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="h-full lg:h-auto grid grid-cols-1 grid-rows-1 w-full absolute"
+          class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
         >
-          <Image
-            src={front.url!}
-            alt={front.alternateName}
-            width={WIDTH}
-            height={HEIGHT}
-            class={`p-[12%] pt-[7%] lg:p-0 mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
-              l?.onMouseOver?.image == "Zoom image"
-                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                : ""
-            }`}
-            sizes="(max-width: 640px) 50vw, 20vw"
-            preload={preload}
-            loading={preload ? "eager" : "lazy"}
-            decoding="async"
-          />
+          <Picture preload={preload}>
+            <Source
+              media="(max-width: 1023px)"
+              fetchPriority={preload ? "high" : "auto"}
+              src={safeSrc(front.url)}
+              width={200}
+              height={220}
+            />
+            <Source
+              media="(min-width: 1024px)"
+              fetchPriority={preload ? "high" : "auto"}
+              src={safeSrc(front.url)}
+              width={380}
+              height={380}
+            />
+            <img
+              className={`p-[12%] pt-[7%] lg:p-0 mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
+                l?.onMouseOver?.image == "Zoom image"
+                  ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                  : ""
+              }`}
+              alt={front.alternateName}
+              decoding="async"
+              loading={preload ? "eager" : "lazy"}
+            />
+          </Picture>
+
           {(!l?.onMouseOver?.image ||
             l?.onMouseOver?.image == "Change image") && (
-            <Image
-              src={back?.url ?? front.url!}
-              alt={back?.alternateName ?? front.alternateName}
-              width={356.71}
-              height={391.945}
-              class="bg-base-100 col-span-full row-span-full transition-opacity rounded w-full opacity-0 lg:group-hover:opacity-100"
-              sizes="(max-width: 640px) 50vw, 20vw"
-              loading="lazy"
-              decoding="async"
-            />
-          )}
-        </a>
+            <div class="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity">
+              <Picture preload={preload}>
+                <Source
+                  media="(max-width: 1023px)"
+                  fetchPriority={preload ? "high" : "auto"}
+                  src={safeSrc(back?.url ?? front.url)}
+                  width={166}
+                  height={227}
+                />
+                <Source
+                  media="(min-width: 1024px)"
+                  fetchPriority={preload ? "high" : "auto"}
+                  src={safeSrc(back?.url ?? front.url)}
+                  width={WIDTH}
+                  height={HEIGHT}
+                />
+                <img
+                  className="bg-base-100 col-span-full row-span-full w-full"
+                  alt={back?.alternateName ?? front.alternateName}
+                  decoding="async"
+                  loading={preload ? "eager" : "lazy"}
+                />
+              </Picture>
+            </div>
+            )}
+            </a>
         <figcaption
           class={`
           absolute bottom-1 left-0 w-full flex items-center flex-col gap-3 p-2 ${
@@ -253,7 +276,8 @@ function ProductCardGallery(
                 <div class="group">
                   <ul
                     class={` relative bottom-0 left-0 flex items-center gap-2 w-full overflow-auto p-[10.25px] transition-opacity duration-300 opacity-1 group-hover:opacity-100 ${
-                      align === "center" ? "justify-center" : "justify-start"} `}>
+                      align === "center" ? "justify-center" : "justify-start"}`}
+                  >
                         {skuSelector}
                   </ul>
                 </div>
