@@ -97,18 +97,18 @@ function ProductCardGallery(
       <li>
         <a href={link}>
           <div
-            class="w-[12.7px] h-[12.7px] flex items-center justify-center"
+            class="w-[12px] h-[12px] flex items-center justify-center"
             title={`Cor ${value}`}
           >
             {/* Aqui eu optei por colocar um svg, e ai a parte do fill vai ser dinâmica de acordo com a informação que pegarmos na PDP */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="12.7"
-              height="12.7"
-              viewBox="0 0 14 14"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
               fill="none"
             >
-              <rect x="0" y="0" width="12.7" height="12.7" fill="#FF0000" />
+              <rect x="0" y="0" width="12" height="12" fill="#FF0000" />
             </svg>
           </div>
         </a>
@@ -294,7 +294,7 @@ function ProductCardGallery(
               <div class="flex flex-col gap-0 max-w-[69.3%] lg:pl-[1px]">
                 {l?.hide?.productName ? "" : (
                   <h2
-                    class="font-semibold text-base-content text-[15px] lg:text-[16px] leading-[130%]"
+                    class="font-semibold text-base-content text-[15px] lg:text-[16px] leading-[130%] text-left"
                     dangerouslySetInnerHTML={{ __html: name ?? "" }}
                   />
                 )}
