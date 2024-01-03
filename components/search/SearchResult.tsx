@@ -7,7 +7,8 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
-
+import NotFound from "./NotFound.tsx";
+import type { PropsNotFound } from "./NotFound.tsx"
 export interface Layout {
   /**
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
@@ -24,14 +25,7 @@ export interface Props {
   page: ProductListingPage | null;
   layout?: Layout;
   cardLayout?: CardLayout;
-}
-
-function NotFound() {
-  return (
-    <div class="w-full flex justify-center items-center py-10">
-      <span>Not Found!</span>
-    </div>
-  );
+  notFound: PropsNotFound;
 }
 
 function Result({
@@ -115,8 +109,13 @@ function Result({
 }
 
 function SearchResult({ page, ...props }: Props) {
-  if (!page) {
-    return <NotFound />;
+
+
+  console.log("page", page?.pageInfo)
+
+
+  if (!page || page?.products.length === 0) {
+    return <NotFound props={props.notFound} />;
   }
 
   return <Result {...props} page={page} />;
