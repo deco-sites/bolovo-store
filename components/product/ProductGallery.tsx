@@ -36,17 +36,19 @@ function ProductGallery({ products, layout, offset }: Props) {
   const desktop = DESKTOP_COLUMNS[layout?.columns?.desktop ?? 4];
 
   return (
-    <div class={`grid ${mobile} gap-2 items-center ${desktop} sm:gap-[15px]`}>
+    <ul class={`grid ${mobile} gap-2 items-center ${desktop} sm:gap-[15px]`}>
       {products?.map((product, index) => (
-        <ProductCard
-          product={product}
-          preload={index === 0}
-          index={offset ? offset + index : undefined}
-          layout={layout?.card}
-          platform={platform}
-        />
+        <li class="h-full">
+          <ProductCard
+            product={product}
+            preload={index === 0}
+            index={offset ? offset + index : undefined}
+            layout={layout?.card}
+            platform={platform}
+          />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 

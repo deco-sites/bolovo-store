@@ -29,7 +29,7 @@ function ProductGallery({
 
   return (
     <div class="px-[15px] sm:py-10">
-      <h1 class="font-semibold text-base leading-5 pb-[25px]">{title}</h1>
+      <h2 class="font-semibold text-base leading-5 pb-[15px] lg:pb-[25px]">{title}</h2>
       <div class="flex-grow">
         <Gallery
           products={products}
