@@ -43,7 +43,7 @@ function SearchControls(
       }
     >
       <div class="md:hidden flex flex-col">
-        <div class="flex flex-row items-center px-4 justify-start  leading-4 text-[13px] font-normal h-[60px] bg-gradient-to-b from-[#dcdcdc40] to-white">
+        <div class="flex flex-row items-center px-[15px] justify-start  leading-4 text-[13px] font-normal h-[60px] shadow-[0_5px_12px_0_rgba(220,220,220,0.25)]">
           {searchTerm && (
             <div>
               {textSearch}{" "}
@@ -53,7 +53,7 @@ function SearchControls(
             </div>
           )}
         </div>
-        <div class="flex flex-row items-center justify-end w-full h-[60px] bg-gradient-to-b from-[#dcdcdc40] to-white">
+        <div class="px-[15px] flex flex-row items-center justify-end w-full h-[60px] ">
           {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
           {filters.length > 0 && (
             <Button
@@ -68,8 +68,8 @@ function SearchControls(
           )}
         </div>
       </div>
-      <div class="hidden md:flex justify-between flex-row h-[60px] ">
-        <div class="flex flex-row items-center justify-center p-0 pl-[206px] leading-4 text-[13px] mx-auto font-normal">
+      <div class="hidden md:flex px-[15px] justify-between flex-row h-[60px] mb-[22px] mt-[10px]">
+        <div class="flex flex-row items-center justify-center p-0 pl-[202px] leading-4 text-[13px] mx-auto font-normal">
           {searchTerm && (
             <div>
               {textSearch}{" "}
