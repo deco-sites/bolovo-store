@@ -3,7 +3,7 @@ import Image from "apps/website/components/Image.tsx";
 import SearchedWord from "$store/islands/SearchedWord.tsx";
 import { Picture, Source } from "https://denopkg.com/deco-cx/apps@0.25.13/website/components/Picture.tsx";
 import ProductShelf from "$store/components/product/ProductShelf.tsx";
-import type { Shelf } from "$store/components/search/SearchResult.tsx"
+import type { Props } from "$store/components/product/ProductShelf.tsx"
 
 export interface PropsNotFound {
     title: string;
@@ -21,6 +21,10 @@ export interface PropsNotFound {
         desktop: ImageWidget
         alt: string;
     };
+    shelfs: {
+        primaryShelf: Props;
+        secondShelf: Props;
+    }
 }
 
 export const BACKGROUND_COLOR = {
@@ -38,34 +42,18 @@ const POSITION_STEPS = {
     "vertical": "lg:flex-col items-center",
 }
 
-// function LoaderShelf({ shelfs }: PropsNotFound) {
+function Container({ props }: { props: PropsNotFound }) {
+    const { title, imagem, stepsBySteps, theme, positionSteps, shelfs } = props
 
-//     const { listShelfs } = shelfs
-
-//     if (!listShelfs[0].products || listShelfs[0].products.length === 0) {
-//         return null;
-//     }
-
-//     return (
-//         <div>{
-//             listShelfs.map((shelf) => (
-//                 <ProductShelf products={shelf.products} title={shelf?.title} layout={shelf?.layout} cardLayout={shelf?.cardLayout} seeMore={shelf?.seeMore} />
-
-//             ))
-//         }</div>
-//     )
-// }
-
-function Container({ props, shelf }: { props: PropsNotFound, shelf: Shelf }) {
-    const { title, imagem, stepsBySteps, theme, positionSteps} = props
     return (
-        <div class="w-full flex justify-center items-center pt-12 pb-28 px-4 flex-col gap-7">
+        <div class="w-full flex justify-center items-center pt-12 pb-28 px-4 flex-col gap-7 ">
             <Image
                 loading="lazy"
                 width={106}
                 height={106}
                 src={imagem.src}
                 alt={imagem.alt}
+                class=" animate-spin-slow"
             >
             </Image>
             <div>
@@ -75,7 +63,7 @@ function Container({ props, shelf }: { props: PropsNotFound, shelf: Shelf }) {
             <p class={`uppercase font-bold text-center ${TEXT_COLOR[theme ?? "dark"]}`}>
                 {title}
             </p>
-            <ul class={`flex w-full flex-col gap-4 pt-8 lg:pt-16 justify-evenly ${POSITION_STEPS[positionSteps ?? "horizontal"]}`}>
+            <ul class={`flex w-full flex-col gap-4 pt-8 lg:pt-16 pb-24 justify-evenly ${POSITION_STEPS[positionSteps ?? "horizontal"]}`}>
                 {stepsBySteps.map((step, index) => (
                     <li class={`flex flex-col ${POSITION_STEPS[positionSteps ?? "horizontal"]}`}>
                         <span class={`font-averia font-bold text-5xl italic text-center lg:text-start ${TEXT_COLOR[theme ?? "dark"]}`}>{index + 1}.</span>
@@ -84,14 +72,15 @@ function Container({ props, shelf }: { props: PropsNotFound, shelf: Shelf }) {
                     </li>
                 ))}
             </ul>
-            <ProductShelf {...shelf}/>
+            <ProductShelf {...shelfs.primaryShelf} />
+            <ProductShelf {...shelfs.secondShelf} />
         </div>
     );
 
 }
 
 
-export default function NotFound({ props, shelf }: { props: PropsNotFound, shelf: Shelf }) {
+export default function NotFound({ props }: { props: PropsNotFound }) {
 
     const { backgroundImage, } = props
 
@@ -122,14 +111,14 @@ export default function NotFound({ props, shelf }: { props: PropsNotFound, shelf
                     />
                 </Picture>
                 <div class="relative w-full h-ful bg-[#0000002e]">
-                    <Container props={props} shelf={shelf} />
+                    <Container props={props} />
                 </div>
             </div>
         )
     }
 
     return (
-        <Container props={props} shelf={shelf} />
+        <Container props={props} />
     )
 
 
