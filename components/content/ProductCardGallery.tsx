@@ -81,12 +81,16 @@ function ProductCardGallery(
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Center"
       ? "center"
       : "left";
-  const skuSelector = variants.map(([value, link]) => (
+
+  const sizeAndLinks = possibilities.Tamanho || {};
+  console.log(sizeAndLinks)
+
+  const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => (
     <li>
       <a href={link}>
         <Avatar
           variant={link === url ? "active" : link ? "default" : "disabled"}
-          content={value}
+          content={size === '' ? "UN" : size}
         />
       </a>
     </li>
@@ -188,22 +192,22 @@ function ProductCardGallery(
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
+          class="h-full grid items-center lg:items-start grid-cols-1 grid-rows-1 w-full relative"
         >
           <Picture preload={preload}>
             <Source
               media="(max-width: 1023px)"
               fetchPriority={preload ? "high" : "auto"}
               src={safeSrc(front.url)}
-              width={200}
-              height={220}
+              width={318.18}
+              height={350}
             />
             <Source
               media="(min-width: 1024px)"
               fetchPriority={preload ? "high" : "auto"}
               src={safeSrc(front.url)}
-              width={380}
-              height={380}
+              width={500}
+              height={500}
             />
             <img
               className={`p-[12%] pt-[7%] lg:p-0 mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
@@ -225,15 +229,15 @@ function ProductCardGallery(
                   media="(max-width: 1023px)"
                   fetchPriority={preload ? "high" : "auto"}
                   src={safeSrc(back?.url ?? front.url)}
-                  width={166}
-                  height={227}
+                  width={343}
+                  height={410.5}
                 />
                 <Source
                   media="(min-width: 1024px)"
                   fetchPriority={preload ? "high" : "auto"}
                   src={safeSrc(back?.url ?? front.url)}
-                  width={WIDTH}
-                  height={HEIGHT}
+                  width={417.783}
+                  height={500}
                 />
                 <img
                   className="bg-base-100 col-span-full row-span-full w-full"
