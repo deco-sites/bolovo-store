@@ -27,10 +27,10 @@ interface Props {
 }
 
 const variants = {
-  active: "font-semibold",
+  active: "font-semibold hover:border",
   disabled:
     `relative after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
-  default: "border border-base-200 hover:border-primary",
+  default: "hover:border",
 };
 
 function Avatar({ content, variant = "default" }: Props) {

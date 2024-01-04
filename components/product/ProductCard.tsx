@@ -81,12 +81,16 @@ function ProductCard(
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
       ? "left"
       : "center";
-  const skuSelector = variants.map(([value, link]) => (
+
+  const sizeAndLinks = possibilities.Tamanho || {};
+  console.log(sizeAndLinks)
+
+  const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => (
     <li>
       <a href={link}>
         <Avatar
           variant={link === url ? "active" : link ? "default" : "disabled"}
-          content={value}
+          content={size}
         />
       </a>
     </li>
@@ -195,8 +199,8 @@ function ProductCard(
               media="(max-width: 1023px)"
               fetchPriority={preload ? "high" : "auto"}
               src={safeSrc(front.url)}
-              width={200}
-              height={220}
+              width={263.6363}
+              height={290}
             />
             <Source
               media="(min-width: 1024px)"
@@ -225,8 +229,8 @@ function ProductCard(
                   media="(max-width: 1023px)"
                   fetchPriority={preload ? "high" : "auto"}
                   src={safeSrc(back?.url ?? front.url)}
-                  width={166}
-                  height={227}
+                  width={231.165}
+                  height={290}
                 />
                 <Source
                   media="(min-width: 1024px)"
