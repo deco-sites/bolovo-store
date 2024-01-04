@@ -56,7 +56,7 @@ function Result({
         breadcrumb={breadcrumb}
         displayFilter={layout?.variant === "drawer"}
       />
-      <div class="md:px-4 px-0">
+      <div class="lg:px-8 px-[15px]">
         <div class="flex-grow">
           <ProductGallery
             products={products}
