@@ -42,16 +42,16 @@ export default function PhotoGallery({ title, featuredPhoto, contentDirection, p
             <h2 class=" text-base text-left uppercase font-bold">
                 {title}
             </h2>
-            <div class={`flex gap-2 lg:gap-4  
+            <div class={`flex gap-5 lg:gap-[15px]  
                 ${MOBILE_DIRECTION[contentDirection?.mobile ?? "imagem acima"]
                 } ${DESKTOP_DIRECTION[contentDirection?.desktop ?? "imagem na direita"]} `}>
-                <a href={featuredPhoto.href} class=" w-full lg:w-2/4 cursor-pointer">
-                    <Image src={featuredPhoto.src} alt={featuredPhoto.alt} width={400} height={540} loading={"lazy"} class="w-full h-full pb-1" />
+                <a href={featuredPhoto.href} class=" w-full lg:w-[50.625%] cursor-pointer">
+                    <Image src={featuredPhoto.src} alt={featuredPhoto.alt} width={400} height={540} loading={"lazy"} class="w-full h-full lg:pb-1" />
                 </a>
-                <ul class="w-full lg:w-2/4 gap-2 lg:gap-4 h-auto justify-between flex flex-row flex-wrap">
+                <ul class="w-full lg:w-[48.4375%] gap-2 gap-y-[45px] lg:gap-[15px] h-auto justify-between flex flex-row flex-wrap content-between">
                     {
                         products.map((product) => (
-                            <li class="w-[calc(50%-0.25rem)] lg:w-[calc(50%-0.5rem)]">
+                            <li class="w-[calc(50%-0.25rem)] lg:w-[calc(50%-7.5px)]">
                                 <ProductCard
                                     product={product}
                                 />

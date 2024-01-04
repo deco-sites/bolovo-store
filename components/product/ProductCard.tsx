@@ -83,7 +83,6 @@ function ProductCard(
       : "center";
 
   const sizeAndLinks = possibilities.Tamanho || {};
-  console.log(sizeAndLinks)
 
   const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => (
     <li>
@@ -163,8 +162,8 @@ function ProductCard(
         }}
       />
       <figure
-        class="relative overflow-hidden"
-        style={{ aspectRatio: `${WIDTH} / ${HEIGHT}`, backgroundColor: '#F6F6F6'}}
+        class="relative overflow-hidden aspect-[219.38326/300] lg:aspect-[239.13935/300]"
+        style={{ backgroundColor: '#F6F6F6'}}
       >
         {/* Wishlist button */}
         <div
@@ -229,18 +228,18 @@ function ProductCard(
                   media="(max-width: 1023px)"
                   fetchPriority={preload ? "high" : "auto"}
                   src={safeSrc(back?.url ?? front.url)}
-                  width={231.165}
-                  height={290}
+                  width={219.38326}
+                  height={300}
                 />
                 <Source
                   media="(min-width: 1024px)"
                   fetchPriority={preload ? "high" : "auto"}
                   src={safeSrc(back?.url ?? front.url)}
-                  width={239.13}
+                  width={239.13935}
                   height={300}
                 />
                 <img
-                  className="bg-base-100 col-span-full row-span-full w-full"
+                  className="h-full bg-base-100 col-span-full row-span-full w-full"
                   alt={back?.alternateName ?? front.alternateName}
                   decoding="async"
                   loading={preload ? "eager" : "lazy"}
@@ -331,7 +330,7 @@ function ProductCard(
                     <>
                       {l?.hide?.skuSelector ? "" : (
                         <div class="group">
-                          <ul class="flex items-center gap-1 justify-start lg:justify-end">
+                          <ul class="flex items-center gap-[11px] lg:gap-1 justify-start lg:justify-end">
                             {colorSelector}
                           </ul>
                         </div>

@@ -57,7 +57,7 @@ function ProductShelf({
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[38.6vw] lg:w-[calc((100%-45px)/4)] sm:first:pl-0 sm:last:pr-0"
+              class="carousel-item w-[38.605vw] lg:w-[calc((100%-46px)/4)] sm:first:pl-0 sm:last:pr-0"
             >
               <ProductCard
                 product={product}
@@ -72,15 +72,14 @@ function ProductShelf({
             ? (
               <Slider.Item
                 index={products.length}
-                class="carousel-item w-[38.6vw] lg:w-[calc((100%-45px)/4)] sm:first:pl-0 sm:last:pr-0"
+                class="carousel-item w-[38.605vw] lg:w-[calc((100%-46px)/4)] sm:first:pl-0 sm:last:pr-0"
               >
                 <div className="card card-compact group w-full">
                   <a
-                    class="btn rounded-none h-[auto] w-full flex items-center justify-center bg-transparent lg:bg-[#F6F6F6] border border-black lg:border-none"
+                    class="btn rounded-none h-[auto] w-full flex items-center justify-center bg-transparent lg:bg-[#F6F6F6] border border-black lg:border-none aspect-[219.38326/300] lg:aspect-[239.13935/300]"
                     href={seeMore?.link}
-                    style={{aspectRatio: `151.45 / 190 `}}
                   >
-                    <span className="text-[#121212] px-5 py-1.5 block text-center text-[13px] capitalize lg:uppercase lg:text-[15px] leading-[130%] font-semibold lg:font-normal lg:border rounded-full lg:border-[#121212]">
+                    <span className="text-[#121212] px-[22px] py-1.5 block text-center text-[13px] capitalize lg:uppercase lg:text-[15px] leading-[130%] font-semibold lg:font-normal lg:border rounded-full lg:border-[#121212]">
                       {seeMore?.text}
                     </span>
                   </a>
