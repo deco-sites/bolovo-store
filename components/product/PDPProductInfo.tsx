@@ -13,9 +13,10 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import markdownToHtml from "../../sdk/marktownToHTML.ts";
+import markdownToObj from "../../sdk/marktownToHTML.ts";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import { CSS, KATEX_CSS, render } from "https://deno.land/x/gfm@0.3.0/mod.ts";
+import type { Description } from "../../sdk/marktownToHTML.ts";
 
 
 
@@ -48,6 +49,7 @@ function PDPProductInfo({ page }: { page: ProductDetailsPage }) {
     } = useOffer(offers);
     const productGroupID = isVariantOf?.productGroupID ?? "";
     const discount = price && listPrice ? listPrice - price : 0;
+    const objDescription: Description | null = description ? markdownToObj(description) : null
 
     return (
         <div class="flex flex-col w-full p-4">
@@ -146,33 +148,11 @@ function PDPProductInfo({ page }: { page: ProductDetailsPage }) {
             </div>
             {/* Description card */}
             <div class="mt-4 sm:mt-6">
-                <span class="text-sm">
-                    {console.log("prod", product)}
-                    {description && (
-                        < details >
-                            {console.log("description", markdownToHtml(description))}
-                            <summary class="cursor-pointer">Descrição</summary>
-                            <div
-                                class="ml-2 mt-2"
-                                dangerouslySetInnerHTML={{ __html: markdownToHtml(description) }}
-                            />
-                            {/* {markdownToHtml(description)} */}
-                            <style dangerouslySetInnerHTML={{ __html: CSS }} />
-                            <style dangerouslySetInnerHTML={{ __html: KATEX_CSS }} />
-                            <div
-                                class="markdown-body"
-                                style={{ padding: "16px 32px" }}
-                                dangerouslySetInnerHTML={{
-                                    __html: render(description, {
-                                        allowIframes: true,
-                                        allowMath: true,
-                                        disableHtmlSanitization: true,
-                                    }),
-                                }}
-                            />
-                        </details>
-                    )}
-                </span>
+                {objDescription && objDescription.description &&
+                    <div dangerouslySetInnerHTML={{ __html: render(objDescription.description.content) }}>
+
+                    </div>
+                }
             </div>
             {/* Analytics Event */}
             <SendEventOnLoad
