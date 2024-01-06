@@ -9,12 +9,16 @@ export default {
     extend: {
       fontFamily: {
         "acumin": ["Acumin"],
+        "averia": ["Averia"],
       },
       screens: {
         "xs": "420px",
       },
       boxShadow: {
         "menu": "inset 0px 17px 23px -30px #0000005e",
+      },
+      animation: {
+        "spin-slow": "spin 2s linear infinite",
       },
     },
   },

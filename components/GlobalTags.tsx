@@ -55,6 +55,13 @@ function GlobalTags() {
             font-style: normal;
             font-display: swap;
         }
+
+        @font-face {
+            font-family: 'Averia';
+            src: url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@1,700&family=Teko:wght@300;400;500;600;700&display=swap');
+            font-style: normal;
+            font-display: swap;
+        }
         
         `,
         }}
