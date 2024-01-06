@@ -13,10 +13,11 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import markdownToObj from "../../sdk/marktownToHTML.ts";
+import markdownToObj from "../../sdk/markdownToObj.ts";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import { CSS, KATEX_CSS, render } from "https://deno.land/x/gfm@0.3.0/mod.ts";
-import type { Description } from "../../sdk/marktownToHTML.ts";
+import type { Description } from "../../sdk/markdownToObj.ts";
+import NavigationDescription from "$store/islands/NavigationDescription.tsx";
 
 
 
@@ -149,8 +150,11 @@ function PDPProductInfo({ page }: { page: ProductDetailsPage }) {
             {/* Description card */}
             <div class="mt-4 sm:mt-6">
                 {objDescription && objDescription.description &&
-                    <div dangerouslySetInnerHTML={{ __html: render(objDescription.description.content) }}>
+                    <div>
+                        <div class="markdown-body" dangerouslySetInnerHTML={{ __html: render(objDescription.description.content) }}>
 
+                        </div>
+                        <NavigationDescription description={objDescription} />
                     </div>
                 }
             </div>

@@ -7,7 +7,7 @@ export interface Description {
     title: string;
     content: string;
   };
-  Guinde?: {
+  guide?: {
     title: string;
     content: string;
   };
@@ -30,7 +30,7 @@ function parseSections(input: string): Description {
     } else if (title === "## DESCRIÇÃO TÉCNICA") {
       result.descriptionTechnique = { title: title.trim(), content };
     } else if (title === "## GUIA DE TAMANHOS") {
-      result.Guinde = { title: title.trim(), content: content };
+      result.guide = { title: title.trim(), content: content };
     } else if (title === "## INSTRUÇÕES DE LAVAGEM") {
       result.instructions = { title: title.trim(), content };
     }
@@ -41,6 +41,8 @@ function parseSections(input: string): Description {
 
 export default function markdownToObj(markdownText: string): Description {
   const descriptionObject = parseSections(markdownText);
+
+  console.log("des", descriptionObject.instructions?.content);
 
   return descriptionObject;
 }

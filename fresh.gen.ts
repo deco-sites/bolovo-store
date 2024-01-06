@@ -18,14 +18,15 @@ import * as $$11 from "./islands/Header/Cart/wake.tsx";
 import * as $$12 from "./islands/Header/DrawerSearch.tsx";
 import * as $$13 from "./islands/Header/Drawers.tsx";
 import * as $$14 from "./islands/Header/Searchbar.tsx";
-import * as $$15 from "./islands/Newsletter.tsx";
-import * as $$16 from "./islands/OutOfStock.tsx";
-import * as $$17 from "./islands/ProductImageZoom.tsx";
-import * as $$18 from "./islands/SearchControls.tsx";
-import * as $$19 from "./islands/ShippingSimulation.tsx";
-import * as $$20 from "./islands/SliderJS.tsx";
-import * as $$21 from "./islands/WishlistButton.tsx";
-import * as $$22 from "./islands/content/IframeLoader.tsx";
+import * as $$15 from "./islands/NavigationDescription.tsx";
+import * as $$16 from "./islands/Newsletter.tsx";
+import * as $$17 from "./islands/OutOfStock.tsx";
+import * as $$18 from "./islands/ProductImageZoom.tsx";
+import * as $$19 from "./islands/SearchControls.tsx";
+import * as $$20 from "./islands/ShippingSimulation.tsx";
+import * as $$21 from "./islands/SliderJS.tsx";
+import * as $$22 from "./islands/WishlistButton.tsx";
+import * as $$23 from "./islands/content/IframeLoader.tsx";
 
 const manifest = {
   routes: {
@@ -47,14 +48,15 @@ const manifest = {
     "./islands/Header/DrawerSearch.tsx": $$12,
     "./islands/Header/Drawers.tsx": $$13,
     "./islands/Header/Searchbar.tsx": $$14,
-    "./islands/Newsletter.tsx": $$15,
-    "./islands/OutOfStock.tsx": $$16,
-    "./islands/ProductImageZoom.tsx": $$17,
-    "./islands/SearchControls.tsx": $$18,
-    "./islands/ShippingSimulation.tsx": $$19,
-    "./islands/SliderJS.tsx": $$20,
-    "./islands/WishlistButton.tsx": $$21,
-    "./islands/content/IframeLoader.tsx": $$22,
+    "./islands/NavigationDescription.tsx": $$15,
+    "./islands/Newsletter.tsx": $$16,
+    "./islands/OutOfStock.tsx": $$17,
+    "./islands/ProductImageZoom.tsx": $$18,
+    "./islands/SearchControls.tsx": $$19,
+    "./islands/ShippingSimulation.tsx": $$20,
+    "./islands/SliderJS.tsx": $$21,
+    "./islands/WishlistButton.tsx": $$22,
+    "./islands/content/IframeLoader.tsx": $$23,
   },
   baseUrl: import.meta.url,
 };
