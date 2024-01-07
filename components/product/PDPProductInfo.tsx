@@ -150,7 +150,6 @@ function PDPProductInfo({ page }: { page: ProductDetailsPage }) {
             <div class="mt-4 sm:mt-6">
                 {objDescription && objDescription.description &&
                     <div>
-
                         <NavigationDescription descriptionProps={objDescription} />
                     </div>
                 }
