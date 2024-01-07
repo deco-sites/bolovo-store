@@ -80,7 +80,6 @@ function PDPProductInfo({ page }: { page: ProductDetailsPage }) {
             </div>
             {/* Add to Cart and Favorites button */}
             <div class="mt-4 sm:mt-10 flex flex-col gap-2">
-                {console.log("teste", availability)}
                 {availability === "https://schema.org/InStock"
                     ? (
                         <>
@@ -151,10 +150,8 @@ function PDPProductInfo({ page }: { page: ProductDetailsPage }) {
             <div class="mt-4 sm:mt-6">
                 {objDescription && objDescription.description &&
                     <div>
-                        <div class="markdown-body" dangerouslySetInnerHTML={{ __html: render(objDescription.description.content) }}>
 
-                        </div>
-                        <NavigationDescription description={objDescription} />
+                        <NavigationDescription descriptionProps={objDescription} />
                     </div>
                 }
             </div>
