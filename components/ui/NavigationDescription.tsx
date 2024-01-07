@@ -3,46 +3,50 @@ import { useState, useRef, useEffect } from "preact/hooks";
 import type { Description } from "../../sdk/markdownToObj.ts";
 import { CSS, KATEX_CSS, render } from "https://deno.land/x/gfm@0.3.0/mod.ts";
 import Icon from "./Icon.tsx";
-import { createParagraph } from "$store/sdk/markdownToHtml.ts";
+import { createParagraph, createTable } from "$store/sdk/markdownToHtml.ts";
+import type { AlignText } from "$store/sdk/markdownToHtml.ts";
 export interface Props {
     descriptionProps: Description;
+}
+
+interface RenderMarkdownProps {
+    description: string;
+    type?: "paragraph" | "table";
+    alignText?: AlignText;
+}
+
+function RenderMarkdown({ description, type = "paragraph", alignText = "left" }: RenderMarkdownProps) {
+
+    const refMarkdown = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            if (refMarkdown.current && description && alignText) {
+                if (type == "paragraph") {
+                    refMarkdown.current.innerHTML = await createParagraph(description, alignText);
+                } else if (type == "table")
+                    refMarkdown.current.innerHTML = await createTable(description);
+            }
+        };
+
+        fetchData();
+
+    }, [refMarkdown, description, type, alignText])
+
+    return (
+        <span ref={refMarkdown}></span>
+    )
 }
 
 export default function NavigationDescription({ descriptionProps }: Props) {
     const { description, descriptionTechnique, guide, instructions } = descriptionProps;
     const itemVisible = useSignal(0);
-    const refDescription = useRef<HTMLInputElement>(null);
-    const refTechnique = useRef<HTMLInputElement>(null);
-    const refGuide = useRef<HTMLInputElement>(null);
-    const refInstruction = useRef<HTMLInputElement>(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            if (refTechnique.current && descriptionTechnique) {
-                refTechnique.current.innerHTML = await createParagraph(descriptionTechnique.content);
-            }
-            if (refGuide.current && guide) {
-                refGuide.current.innerHTML = await createParagraph(guide.content);
-            }
-            if (refInstruction.current && instructions) {
-                refInstruction.current.innerHTML = await createParagraph(instructions.content);
-            }
-            if (refDescription.current && description) {
-                refDescription.current.innerHTML = await createParagraph(description.content);
-            }
-        };
-
-        fetchData();
-    }, [descriptionTechnique, guide, instructions, refGuide, refTechnique, refInstruction, refDescription, description]);
 
     return (
         <div class="w-full flex flex-col ">
-            <div class="w-full text-sm flex flex-col gap-2" ref={refDescription}>
-
-            </div>
-            <style dangerouslySetInnerHTML={{ __html: CSS }} />
-            <style dangerouslySetInnerHTML={{ __html: KATEX_CSS }} />
-            <ul class="w-full flex flex-row justify-between pb-3 pt-6">
+            {description && <RenderMarkdown description={description.content} alignText={"justify"} />}
+            <ul class="w-full flex flex-row lg:justify-start lg:gap-6 justify-between pb-3 pt-6">
                 {descriptionTechnique && (
                     <li
                         class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px] cursor-pointer"
@@ -71,20 +75,20 @@ export default function NavigationDescription({ descriptionProps }: Props) {
                     </li>
                 )}
             </ul>
-            <ul class="w-full flex flex-row markdown-body">
+            <ul class="w-full flex flex-row ">
                 {descriptionTechnique && (
                     <li class={` ${itemVisible.value == 1 ? 'flex' : 'hidden'} text-xs `} style={{ fontSize: '12px' }}>
-                        <span ref={refTechnique}  ></span>
+                        <RenderMarkdown description={descriptionTechnique.content} />
                     </li>
                 )}
                 {guide && (
                     <li class={` ${itemVisible.value == 2 ? 'flex' : 'hidden'} text-xs `} style={{ fontSize: '12px' }}>
-                        <span ref={refGuide}  ></span>
+                        <RenderMarkdown description={guide.content} type={"table"} />
                     </li>
                 )}
                 {instructions && (
                     <li class={` ${itemVisible.value == 3 ? 'flex' : 'hidden'} text-xs `} style={{ fontSize: '12px' }}>
-                        <div ref={refInstruction} />
+                        <RenderMarkdown description={instructions.content} />
                     </li>
                 )}
             </ul>
