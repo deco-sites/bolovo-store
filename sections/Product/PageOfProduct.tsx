@@ -17,11 +17,11 @@ export default function PageOfProduct({ page, pdpImage }: Props) {
     }
 
     return (
-        <div>
-            <div>
+        <div class="container flex flex-col lg:flex-row lg:gap-24 py-11">
+            <div class="w-full lg:w-3/5">
                 <PDPGallerySlider layoutImage={pdpImage} page={page} />
             </div>
-            <div>
+            <div class="w-full lg:w-2/5 lg:max-w-[400px]">
                 <PDPProductInfo page={page} />
             </div>
         </div>

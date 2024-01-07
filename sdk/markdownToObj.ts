@@ -42,7 +42,5 @@ function parseSections(input: string): Description {
 export default function markdownToObj(markdownText: string): Description {
   const descriptionObject = parseSections(markdownText);
 
-  console.log("des", descriptionObject.instructions?.content);
-
   return descriptionObject;
 }

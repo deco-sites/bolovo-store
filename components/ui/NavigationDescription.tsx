@@ -4,14 +4,14 @@ import type { Description } from "../../sdk/markdownToObj.ts";
 import { CSS, KATEX_CSS, render } from "https://deno.land/x/gfm@0.3.0/mod.ts";
 import Icon from "./Icon.tsx";
 import { createParagraph } from "$store/sdk/markdownToHtml.ts";
-
 export interface Props {
-    description: Description;
+    descriptionProps: Description;
 }
 
-export default function NavigationDescription({ description }: Props) {
-    const { descriptionTechnique, guide, instructions } = description;
+export default function NavigationDescription({ descriptionProps }: Props) {
+    const { description, descriptionTechnique, guide, instructions } = descriptionProps;
     const itemVisible = useSignal(0);
+    const refDescription = useRef<HTMLInputElement>(null);
     const refTechnique = useRef<HTMLInputElement>(null);
     const refGuide = useRef<HTMLInputElement>(null);
     const refInstruction = useRef<HTMLInputElement>(null);
@@ -27,19 +27,25 @@ export default function NavigationDescription({ description }: Props) {
             if (refInstruction.current && instructions) {
                 refInstruction.current.innerHTML = await createParagraph(instructions.content);
             }
+            if (refDescription.current && description) {
+                refDescription.current.innerHTML = await createParagraph(description.content);
+            }
         };
 
         fetchData();
-    }, [descriptionTechnique, guide, instructions, refGuide, refTechnique, refInstruction]);
+    }, [descriptionTechnique, guide, instructions, refGuide, refTechnique, refInstruction, refDescription, description]);
 
     return (
-        <div class="w-full flex flex-col pb-3 pt-6">
-            <style />
-            <style />
-            <ul class="w-full flex flex-row pb-2 justify-between">
+        <div class="w-full flex flex-col ">
+            <div class="w-full text-sm flex flex-col gap-2" ref={refDescription}>
+
+            </div>
+            <style dangerouslySetInnerHTML={{ __html: CSS }} />
+            <style dangerouslySetInnerHTML={{ __html: KATEX_CSS }} />
+            <ul class="w-full flex flex-row justify-between pb-3 pt-6">
                 {descriptionTechnique && (
                     <li
-                        class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px]"
+                        class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px] cursor-pointer"
                         onClick={() => (itemVisible.value = 1)}
                     >
                         <span>COMPOSIÇÃO</span>
@@ -48,7 +54,7 @@ export default function NavigationDescription({ description }: Props) {
                 )}
                 {guide && (
                     <li
-                        class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px]"
+                        class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px] cursor-pointer"
                         onClick={() => (itemVisible.value = 2)}
                     >
                         <span>MEDIDAS</span>
@@ -57,7 +63,7 @@ export default function NavigationDescription({ description }: Props) {
                 )}
                 {instructions && (
                     <li
-                        class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px]"
+                        class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px] cursor-pointer"
                         onClick={() => (itemVisible.value = 3)}
                     >
                         <span>LAVAGEM</span>
