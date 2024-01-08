@@ -1,12 +1,12 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
-import Filters from "$store/components/search/Filters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
+import type { SectionProps } from "deco/types.ts";
 
 export interface Layout {
   /**
@@ -23,6 +23,7 @@ export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
   layout?: Layout;
+  textSearch?: string;
   cardLayout?: CardLayout;
 }
 
@@ -38,34 +39,30 @@ function Result({
   page,
   layout,
   cardLayout,
-}: Omit<Props, "page"> & { page: ProductListingPage }) {
+  textSearch,
+  searchTerm
+}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
   return (
-    <>
-      <div class="container px-4 sm:py-10">
-        <SearchControls
-          sortOptions={sortOptions}
-          filters={filters}
-          breadcrumb={breadcrumb}
-          displayFilter={layout?.variant === "drawer"}
-        />
-
-        <div class="flex flex-row">
-          {layout?.variant === "aside" && filters.length > 0 && (
-            <aside class="hidden sm:block w-min min-w-[250px]">
-              <Filters filters={filters} />
-            </aside>
-          )}
-          <div class="flex-grow">
-            <ProductGallery
-              products={products}
-              offset={offset}
-              layout={{ card: cardLayout, columns: layout?.columns }}
-            />
-          </div>
+    <div>
+      <SearchControls
+        searchTerm={searchTerm}
+        textSearch={textSearch}
+        sortOptions={sortOptions}
+        filters={filters}
+        breadcrumb={breadcrumb}
+        displayFilter={layout?.variant === "drawer"}
+      />
+      <div class="lg:px-8 px-[15px]">
+        <div class="flex-grow">
+          <ProductGallery
+            products={products}
+            offset={offset}
+            layout={{ card: cardLayout, columns: layout?.columns }}
+          />
         </div>
 
         <div class="flex justify-center my-4">
@@ -110,11 +107,13 @@ function Result({
           },
         }}
       />
-    </>
+    </div>
   );
 }
 
-function SearchResult({ page, ...props }: Props) {
+function SearchResult(
+  { page, ...props }: SectionProps<ReturnType<typeof loader>>,
+) {
   if (!page) {
     return <NotFound />;
   }
@@ -123,3 +122,8 @@ function SearchResult({ page, ...props }: Props) {
 }
 
 export default SearchResult;
+
+export const loader = (props: Props, req: Request) => {
+  const term = new URLSearchParams(new URL(req.url).search).get('q');
+  return { ...props, searchTerm: term ?? "" };
+};

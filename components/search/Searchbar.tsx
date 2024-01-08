@@ -19,10 +19,11 @@ import { useSuggestions } from "$store/sdk/useSuggestions.ts";
 import { useUI } from "$store/sdk/useUI.ts";
 import { Suggestion } from "apps/commerce/types.ts";
 import { Resolved } from "deco/engine/core/resolver.ts";
-import { useEffect, useRef } from "preact/compat";
+import { TargetedEvent, useEffect, useRef } from "preact/compat";
 import type { Platform } from "$store/apps/site.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
+import { useSignal } from "@preact/signals"
 
 
 // Editable props
@@ -64,6 +65,7 @@ function Searchbar({
 }: Props) {
   const id = useId();
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchInputRefMobile = useRef<HTMLInputElement>(null);
   const { displaySearchDrawer, displaySearchPopup } = useUI();
 
   useEffect(() => {
@@ -72,14 +74,37 @@ function Searchbar({
     }
   }, [displaySearchPopup.value]);
 
+  const hasValue = useSignal(false)
+  const handleChange = (e: TargetedEvent) => {
+
+    if (searchInputRef.current?.value) {
+      hasValue.value = true
+    } else {
+      e.preventDefault();
+      hasValue.value = false
+      return false
+    }
+  };
+
+  const handleChangeMob = (e: TargetedEvent) => {
+
+    if (searchInputRefMobile.current?.value) {
+      hasValue.value = true
+    } else {
+      e.preventDefault();
+      hasValue.value = false
+      return false
+    }
+  };
 
   return (
     <div class="w-full">
       <div class="w-full hidden lg:grid gap-8">
         <form
           id={id}
-          action={action}
+          action={hasValue.value ? action : ''}
           class="join h-[30px] justify-cente items-center rounded-none"
+          onSubmit={handleChange}
         >
           <input
             ref={searchInputRef}
@@ -120,11 +145,12 @@ function Searchbar({
           id={id}
           action={action}
           class="join h-[30px] justify-cente items-center rounded-none border-b border-black"
+          onSubmit={handleChangeMob}
         >
           <input
-            ref={searchInputRef}
+            ref={searchInputRefMobile}
             id="search-input"
-            class=" join-item outline-0 flex-grow border-none h-auto font-normal"
+            class="join-item outline-0 flex-grow border-none h-auto font-normal"
             name={name}
             placeholder={placeholder}
             role="combobox"
