@@ -11,7 +11,7 @@ export interface Columns {
 
 export interface Props {
   products: Product[] | null;
-  offset: number;
+  offset?: number;
   layout?: {
     card?: CardLayout;
     columns?: Columns;
@@ -24,10 +24,10 @@ const MOBILE_COLUMNS = {
 };
 
 const DESKTOP_COLUMNS = {
-  2: "sm:grid-cols-2",
-  3: "sm:grid-cols-3",
-  4: "sm:grid-cols-4",
-  5: "sm:grid-cols-5",
+  2: "lg:grid-cols-2",
+  3: "lg:grid-cols-3",
+  4: "lg:grid-cols-4",
+  5: "lg:grid-cols-5",
 };
 
 function ProductGallery({ products, layout, offset }: Props) {
@@ -36,17 +36,19 @@ function ProductGallery({ products, layout, offset }: Props) {
   const desktop = DESKTOP_COLUMNS[layout?.columns?.desktop ?? 4];
 
   return (
-    <div class={`grid ${mobile} gap-2 items-center ${desktop} sm:gap-10`}>
+    <ul class={`grid ${mobile} gap-2 items-center ${desktop} lg:px-[17px] lg:gap-[15px]`}>
       {products?.map((product, index) => (
-        <ProductCard
-          product={product}
-          preload={index === 0}
-          index={offset + index}
-          layout={layout?.card}
-          platform={platform}
-        />
+        <li class="h-full">
+          <ProductCard
+            product={product}
+            preload={index === 0}
+            index={offset ? offset + index : undefined}
+            layout={layout?.card}
+            platform={platform}
+          />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 

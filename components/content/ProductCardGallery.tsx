@@ -54,10 +54,10 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 239.13;
-const HEIGHT = 300;
+const WIDTH = 343;
+const HEIGHT = 410.5;
 
-function ProductCard(
+function ProductCardGallery(
   { product, preload, itemListName, layout, platform, index }: Props,
 ) {
   const {
@@ -78,9 +78,9 @@ function ProductCard(
 
   const l = layout;
   const align =
-    !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
-      ? "left"
-      : "center";
+    !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Center"
+      ? "center"
+      : "left";
 
   const sizeAndLinks = possibilities.Tamanho || {};
 
@@ -89,7 +89,7 @@ function ProductCard(
       <a href={link}>
         <Avatar
           variant={link === url ? "active" : link ? "default" : "disabled"}
-          content={size}
+          content={size === '' ? "UN" : size}
         />
       </a>
     </li>
@@ -162,8 +162,8 @@ function ProductCard(
         }}
       />
       <figure
-        class="relative overflow-hidden aspect-[219.38326/300] lg:aspect-[239.13935/300]"
-        style={{ backgroundColor: '#F6F6F6'}}
+        class="relative overflow-hidden"
+        style={{ aspectRatio: `${WIDTH} / ${HEIGHT}`, backgroundColor: '#F6F6F6'}}
       >
         {/* Wishlist button */}
         <div
@@ -191,25 +191,25 @@ function ProductCard(
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
+          class="h-full grid items-center lg:items-start grid-cols-1 grid-rows-1 w-full relative"
         >
           <Picture preload={preload}>
             <Source
               media="(max-width: 1023px)"
               fetchPriority={preload ? "high" : "auto"}
               src={safeSrc(front.url)}
-              width={263.6363}
-              height={290}
+              width={318.18}
+              height={350}
             />
             <Source
               media="(min-width: 1024px)"
               fetchPriority={preload ? "high" : "auto"}
               src={safeSrc(front.url)}
-              width={380}
-              height={380}
+              width={500}
+              height={500}
             />
             <img
-              className={`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
+              className={`p-[12%] pt-[7%] lg:p-0 mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
                 l?.onMouseOver?.image == "Zoom image"
                   ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                   : ""
@@ -228,29 +228,29 @@ function ProductCard(
                   media="(max-width: 1023px)"
                   fetchPriority={preload ? "high" : "auto"}
                   src={safeSrc(back?.url ?? front.url)}
-                  width={219.38326}
-                  height={300}
+                  width={343}
+                  height={410.5}
                 />
                 <Source
                   media="(min-width: 1024px)"
                   fetchPriority={preload ? "high" : "auto"}
                   src={safeSrc(back?.url ?? front.url)}
-                  width={239.13935}
-                  height={300}
+                  width={417.783}
+                  height={500}
                 />
                 <img
-                  className="h-full bg-base-100 col-span-full row-span-full w-full"
+                  className="bg-base-100 col-span-full row-span-full w-full"
                   alt={back?.alternateName ?? front.alternateName}
                   decoding="async"
                   loading={preload ? "eager" : "lazy"}
                 />
               </Picture>
             </div>
-          )}
-        </a>
+            )}
+            </a>
         <figcaption
           class={`
-          absolute bottom-1 left-0 w-full flex flex-col gap-3 p-2 ${
+          absolute bottom-1 left-0 w-full flex items-center flex-col gap-3 p-2 ${
             l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
               ? "transition-opacity opacity-0 lg:group-hover:opacity-100"
               : "lg:hidden"
@@ -265,37 +265,34 @@ function ProductCard(
           {l?.onMouseOver?.showCta && cta}
         </figcaption>
       </figure>
-      {
-        /*<div>
-               Seletor de Tamanhos (Esse aqui eu optei por esconder por talvez utilizarmos ele futuramente, no caso ele ja ta funcionando direitinho)
-                {(!l?.elementsPositions?.skuSelector ||
-                  l?.elementsPositions?.skuSelector === "Top") && (
-                  <>
-                    {l?.hide?.skuSelector ? "" : (
-                      <div class="group">
-                      <ul
-                        class={`absolute bottom-0 left-0 flex items-center gap-2 w-full overflow-auto p-3 transition-opacity duration-300 opacity-0 group-hover:opacity-100 ${
-                          align === "center" ? "justify-center" : "justify-start"
-                        } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-                      >
+      {/* Seletor de Tamanhos */}
+      <div class="hidden lg:flex justify-center">
+        {(!l?.elementsPositions?.skuSelector ||
+          l?.elementsPositions?.skuSelector === "Top") && (
+            <>
+              {l?.hide?.skuSelector ? "" : (
+                <div class="group">
+                  <ul
+                    class={` relative bottom-0 left-0 flex items-center gap-2 w-full overflow-auto p-[10.25px] transition-opacity duration-300 opacity-1 group-hover:opacity-100 ${
+                      align === "center" ? "justify-center" : "justify-start"}`}
+                  >
                         {skuSelector}
-                      </ul>
-                      </div>
-                    )}
-                  </>
-                )}
-        </div>*/
-      }
+                  </ul>
+                </div>
+              )}
+          </>
+        )}
+      </div>
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col pt-[15px] lg:pt-5 gap-3 lg:gap-4">
-        <div class="flex flex-col h-full lg:flex-row justify-between gap-[7px] lg:gap-0">
+        <div class="flex h-full justify-between gap-[7px] lg:gap-0">
           {l?.hide?.productName
             ? ""
             : (
-              <div class="flex flex-col gap-0 lg:max-w-[69.3%] lg:pl-[1px]">
+              <div class="flex flex-col gap-0 max-w-[69.3%] lg:pl-[1px]">
                 {l?.hide?.productName ? "" : (
                   <h2
-                    class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"
+                    class="font-semibold text-base-content text-[15px] lg:text-[16px] leading-[130%] text-left"
                     dangerouslySetInnerHTML={{ __html: name ?? "" }}
                   />
                 )}
@@ -319,7 +316,7 @@ function ProductCard(
                   >
                     {formatPrice(listPrice, offers?.priceCurrency)}
                   </div>
-                  <div class="text-black leading-[130%] text-[14px] lg:text-end">
+                  <div class="text-black leading-[130%] text-[14px] lg:text-[15px] lg:text-end">
                     {formatPrice(price, offers?.priceCurrency)}
                   </div>
                 </div>
@@ -330,7 +327,7 @@ function ProductCard(
                     <>
                       {l?.hide?.skuSelector ? "" : (
                         <div class="group">
-                          <ul class="flex items-center gap-[11px] lg:gap-1 justify-start lg:justify-end">
+                          <ul class="flex items-center gap-1 justify-start lg:justify-end">
                             {colorSelector}
                           </ul>
                         </div>
@@ -361,4 +358,4 @@ function ProductCard(
   );
 }
 
-export default ProductCard;
+export default ProductCardGallery;
