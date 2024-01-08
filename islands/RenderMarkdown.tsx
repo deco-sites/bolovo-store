@@ -29,6 +29,6 @@ export default function RenderMarkdown({ description, type = "paragraph", alignT
     }, [refMarkdown, description, type, alignText])
 
     return (
-        <span ref={refMarkdown}></span>
+        <span class={`w-full flex flex-col ${type === "table" ? "gap-4" : ""}`} ref={refMarkdown}></span>
     )
 } 

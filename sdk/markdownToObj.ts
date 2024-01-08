@@ -1,25 +1,25 @@
-export interface Description {
-  description?: {
-    title: string;
-    content: string;
-  };
-  descriptionTechnique?: {
-    title: string;
-    content: string;
-  };
-  guide?: {
-    title: string;
-    content: string;
-  };
-  instructions?: {
-    title: string;
-    content: string;
-  };
+export interface SectionDescription {
+  title: string;
+  content: string;
+  type?: "table" | "paragraph";
 }
+
+export interface Description {
+  description?: SectionDescription;
+  descriptionTabs?: SectionDescription[];
+}
+
+const TITLE = {
+  "## DESCRIÇÃO TÉCNICA": "COMPOSIÇÃO",
+  "## GUIA DE TAMANHOS": "MEDIDAS",
+  "## INSTRUÇÕES DE LAVAGEM": "LAVAGEM",
+};
 
 function parseSections(input: string): Description {
   const sections = input.split("- - -");
-  const result: Description = {};
+  const result: Description = {
+    descriptionTabs: [],
+  };
 
   sections.forEach((section) => {
     const [title, ...contentArray] = section.trim().split("\n");
@@ -27,12 +27,35 @@ function parseSections(input: string): Description {
 
     if (title === "## DESCRIÇÃO") {
       result.description = { title: title.trim(), content };
-    } else if (title === "## DESCRIÇÃO TÉCNICA") {
-      result.descriptionTechnique = { title: title.trim(), content };
-    } else if (title === "## GUIA DE TAMANHOS") {
-      result.guide = { title: title.trim(), content: content };
-    } else if (title === "## INSTRUÇÕES DE LAVAGEM") {
-      result.instructions = { title: title.trim(), content };
+    } else if (
+      title === "## DESCRIÇÃO TÉCNICA" || title === "## GUIA DE TAMANHOS" ||
+      title === "## INSTRUÇÕES DE LAVAGEM"
+    ) {
+      const existingTab = result.descriptionTabs?.find((tab) =>
+        tab.title === title.trim()
+      );
+
+      if (!existingTab) {
+        if (title === "## DESCRIÇÃO TÉCNICA") {
+          result.descriptionTabs?.push({
+            title: "COMPOSIÇÃO",
+            content,
+            type: "paragraph",
+          });
+        } else if (title === "## GUIA DE TAMANHOS") {
+          result.descriptionTabs?.push({
+            title: "MEDIDAS",
+            content,
+            type: "table",
+          });
+        } else if (title === "## INSTRUÇÕES DE LAVAGEM") {
+          result.descriptionTabs?.push({
+            title: "LAVAGEM",
+            content,
+            type: "paragraph",
+          });
+        }
+      }
     }
   });
 

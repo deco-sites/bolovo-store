@@ -2,11 +2,11 @@ import { marked } from "https://deno.land/x/marked/mod.ts";
 
 export async function createTable(
   guide: string,
-  tableClass: string = "",
-  headerClass: string = "",
-  bodyClass: string = "border border-black uppercase text-xs",
+  tableClass: string = "w-full",
+  headerClass: string = "uppercase",
+  bodyClass: string = "border border-black uppercase text-[11px]",
   rowClass: string = "",
-  cellClass: string = "p-1",
+  cellClass: string = "p-1 uppercase",
 ) {
   const customRenderer = new marked.Renderer();
 
@@ -47,7 +47,6 @@ export async function createTable(
 export type AlignText = "center" | "justify" | "left";
 
 export async function createParagraph(paragraph: string, alignText: AlignText) {
-  console.log("create", paragraph, alignText);
 
   const customRenderer = new marked.Renderer();
 
