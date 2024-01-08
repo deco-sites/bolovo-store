@@ -9,10 +9,10 @@ export interface Props {
 
 export default function NavigationDescription({ descriptionProps, tabIndex }: Props) {
     const { description, descriptionTabs } = descriptionProps;
-    const itemVisible = useSignal(0)
+    const itemVisible = useSignal(-1)
 
     return (
-        <div class="w-full flex flex-col ">
+        <div class="w-full flex flex-col mt-6">
             {description && <RenderMarkdown description={description.content} alignText={"justify"} />}
             <ul class="w-full flex flex-row lg:justify-start lg:gap-6 justify-between pb-3 pt-6">
                 {descriptionTabs && descriptionTabs.map((tab, index) => (

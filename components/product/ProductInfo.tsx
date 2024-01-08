@@ -84,11 +84,11 @@ function ProductInfo({ page, layout }: Props) {
         </div>
       </div>
       {/* Sku Selector */}
-      <div class="mt-4 sm:mt-6">
+      <div class="mt-4 sm:mt-11">
         <ProductSelector product={product} />
       </div>
       {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
+      <div class="mt-4 sm:mt-11  flex flex-col gap-2">
         {availability === "https://schema.org/InStock"
           ? (
             <>
