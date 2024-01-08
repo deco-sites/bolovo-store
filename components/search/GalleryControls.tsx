@@ -13,7 +13,7 @@ export type Props =
     displayFilter?: boolean;
   };
 
-function SearchControls(
+function GalleryControls(
   { filters, breadcrumb, displayFilter, sortOptions }: Props,
 ) {
   const open = useSignal(false);
@@ -63,4 +63,4 @@ function SearchControls(
   );
 }
 
-export default SearchControls;
+export default GalleryControls;
