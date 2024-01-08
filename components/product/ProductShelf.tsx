@@ -13,21 +13,19 @@ import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 
 export interface Props {
-  products: Product[] | null;
   title?: string;
   layout?: {
     headerAlignment?: "center" | "left";
     headerfontSize?: "Normal" | "Large";
   };
   seeMore?: { text: string; link: string };
-  cardLayout?: cardLayout;
+  products: Product[] | null;
 }
 
 function ProductShelf({
   products,
   title,
   layout,
-  cardLayout,
   seeMore,
 }: Props) {
   const id = useId();
@@ -42,7 +40,7 @@ function ProductShelf({
   const aspectRatio = 1.254;
 
   return (
-    <div class="w-full py-8 flex flex-col gap-5 px-4 mx-auto lg:gap-6 lg:py-10">
+    <div class="w-full py-8 flex flex-col gap-5 px-[15px] mx-auto lg:gap-6 lg:py-10">
       <Header
         title={title || ""}
         fontSize={layout?.headerfontSize || "Normal"}
@@ -51,7 +49,7 @@ function ProductShelf({
 
       <div
         id={id}
-        class="w-full grid grid-cols-[30px_1fr_30px] lg:px-4"
+        class="w-full grid grid-cols-[30px_1fr_30px] lg:px-[17px]"
       >
         <Slider class="w-full carousel carousel-start gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
           {products?.map((product, index) => (
@@ -62,7 +60,6 @@ function ProductShelf({
               <ProductCard
                 product={product}
                 itemListName={title}
-                layout={cardLayout}
                 platform={platform}
                 index={index}
               />

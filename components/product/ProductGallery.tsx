@@ -36,7 +36,7 @@ function ProductGallery({ products, layout, offset }: Props) {
   const desktop = DESKTOP_COLUMNS[layout?.columns?.desktop ?? 4];
 
   return (
-    <ul class={`grid ${mobile} gap-2 items-center ${desktop} lg:gap-[15px]`}>
+    <ul class={`grid ${mobile} gap-2 items-center ${desktop} lg:px-[17px] lg:gap-[15px]`}>
       {products?.map((product, index) => (
         <li class="h-full">
           <ProductCard

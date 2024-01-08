@@ -4,7 +4,6 @@ import type { Product } from "apps/commerce/types.ts";
 import ProductCard from "../../components/product/ProductCard.tsx";
 export interface Props {
     title: string;
-    products: Product[] | null;
     featuredPhoto: {
         src: ImageWidget;
         alt: string;
@@ -19,6 +18,7 @@ export interface Props {
         /** @default "imagem na direita" */
         desktop?: "imagem na direita" | "imagem na esquerda";
     };
+    products: Product[] | null;
 }
 
 const MOBILE_DIRECTION = {
@@ -27,8 +27,8 @@ const MOBILE_DIRECTION = {
 };
 
 const DESKTOP_DIRECTION = {
-    "imagem na direita": "lg:flex-row",
-    "imagem na esquerda": "lg:flex-row-reverse",
+    "imagem na esquerda": "lg:flex-row",
+    "imagem na direita": "lg:flex-row-reverse",
 };
 
 export default function PhotoGallery({ title, featuredPhoto, contentDirection, products }: Props) {
