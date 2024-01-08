@@ -1,42 +1,10 @@
 import { useSignal } from "@preact/signals";
-import { useState, useRef, useEffect } from "preact/hooks";
 import type { Description } from "../../sdk/markdownToObj.ts";
-import { CSS, KATEX_CSS, render } from "https://deno.land/x/gfm@0.3.0/mod.ts";
 import Icon from "./Icon.tsx";
-import { createParagraph, createTable } from "$store/sdk/markdownToHtml.ts";
-import type { AlignText } from "$store/sdk/markdownToHtml.ts";
+import RenderMarkdown from "../../islands/RenderMarkdown.tsx";
 export interface Props {
     descriptionProps: Description;
-}
 
-interface RenderMarkdownProps {
-    description: string;
-    type?: "paragraph" | "table";
-    alignText?: AlignText;
-}
-
-function RenderMarkdown({ description, type = "paragraph", alignText = "left" }: RenderMarkdownProps) {
-
-    const refMarkdown = useRef<HTMLInputElement>(null);
-
-    useEffect(() => {
-
-        const fetchData = async () => {
-            if (refMarkdown.current && description && alignText) {
-                if (type == "paragraph") {
-                    refMarkdown.current.innerHTML = await createParagraph(description, alignText);
-                } else if (type == "table")
-                    refMarkdown.current.innerHTML = await createTable(description);
-            }
-        };
-
-        fetchData();
-
-    }, [refMarkdown, description, type, alignText])
-
-    return (
-        <span ref={refMarkdown}></span>
-    )
 }
 
 export default function NavigationDescription({ descriptionProps }: Props) {
