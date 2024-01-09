@@ -53,7 +53,7 @@ function PDPProductInfo({ page }: { page: ProductDetailsPage }) {
     const objDescription: Description | null = description ? markdownToObj(description) : null
 
     return (
-        <div class="flex flex-col w-full p-4 lg:p-0">
+        <div class="flex flex-col w-full p-4 md:p-0">
             <div class="">
                 <h1>
                     <span class="font-semibold text-base capitalize">
