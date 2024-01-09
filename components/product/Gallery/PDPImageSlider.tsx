@@ -34,8 +34,10 @@ export default function PDPGallerySlider({ layoutImage, page }: { layoutImage: P
   return (
     <div id={id} class="grid grid-flow-row sm:grid-flow-col">
       {/* Image Slider */}
-      <div class="relative order-1 sm:order-2">
-        <Slider class="carousel carousel-center gap-6 w-screen sm:w-[40vw]">
+      <div class="relative order-1 sm:order-2 md:pl-12 lg:pl-24"
+        style={{ height: 100 / images.length + "%" }}
+      >
+        <Slider class="carousel carousel-center w-full sm:h-full flex-col snap-y snap-mandatory overflow-y-scroll scroll-smooth">
           {images.map((img, index) => (
             <Slider.Item
               index={index}
@@ -57,48 +59,26 @@ export default function PDPGallerySlider({ layoutImage, page }: { layoutImage: P
           ))}
         </Slider>
 
-        <Slider.PrevButton
-          class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
-          disabled
-        >
-          <Icon size={24} id="ChevronLeft" strokeWidth={3} />
-        </Slider.PrevButton>
-
-        <Slider.NextButton
-          class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
-          disabled={images.length < 2}
-        >
-          <Icon size={24} id="ChevronRight" strokeWidth={3} />
-        </Slider.NextButton>
-
-        <div class="absolute top-2 right-2 bg-base-100 rounded-full">
-          <ProductImageZoom
-            images={images}
-            width={700}
-            height={Math.trunc(700 * height / width)}
-          />
-        </div>
       </div>
 
       {/* Dots */}
-      <ul class="carousel carousel-center gap-1 px-4 sm:px-0 sm:flex-col order-2 sm:order-1">
-        {images.map((img, index) => (
-          <li class="carousel-item min-w-[63px] sm:min-w-[100px]">
+      <ul class="carousel carousel-center px-4 sm:px-0 sm:flex-col order-2 sm:order-1 w-[1px] bg-[#D0D0D0] h-[90%]"
+        style={{ height: 90 / images.length + "%" }}
+      >
+        {images.map((__, index) => (
+          <li class={`carousel-item w-[1px]`}
+            style={{ height: 100 / images.length + "%" }}
+          >
             <Slider.Dot index={index}>
-              <Image
-                style={{ aspectRatio }}
-                class="group-disabled:border-base-300 border rounded "
-                width={63}
-                height={87.5}
-                src={img.url!}
-                alt={img.alternateName}
-              />
+              <div
+                class="opacity-0 group-disabled:bg-black group-disabled:opacity-100 ease-out duration-700 w-[1px] h-full"
+              ></div>
             </Slider.Dot>
           </li>
         ))}
       </ul>
 
       <SliderJS rootId={id} />
-    </div>
+    </div >
   );
 }
