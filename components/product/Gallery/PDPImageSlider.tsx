@@ -32,19 +32,19 @@ export default function PDPGallerySlider({ layoutImage, page }: { layoutImage: P
   const aspectRatio = `${width} / ${height}`;
 
   return (
-    <div id={id} class="grid grid-flow-row sm:grid-flow-col">
+    <div id={id} class="flex flex-col lg:flex-row h-full w-full max-h-[100%] lg:max-h-[500px] xl:max-h-[552px] 2xl:max-h-[813px] relative">
       {/* Image Slider */}
-      <div class="relative order-1 sm:order-2 md:pl-12 lg:pl-24"
-        style={{ height: 100 / images.length + "%" }}
+      <div class="relative order-1 sm:order-2 h-full"
+      // style={{ height: 100 / images.length + "%" }}
       >
-        <Slider class="carousel carousel-center w-full sm:h-full flex-col snap-y snap-mandatory overflow-y-scroll scroll-smooth">
+        <Slider class="carousel carousel-center w-full sm:h-full flex-row lg:flex-col lg:snap-y lg:snap-mandatory lg:overflow-y-scroll scroll-smooth">
           {images.map((img, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-full"
+              class="carousel-item w-full h-full"
             >
               <Image
-                class="w-full"
+                class="w-full object-cover"
                 sizes="(max-width: 640px) 100vw, 40vw"
                 style={{ aspectRatio }}
                 src={img.url!}
@@ -61,17 +61,16 @@ export default function PDPGallerySlider({ layoutImage, page }: { layoutImage: P
 
       </div>
 
-      {/* Dots */}
-      <ul class="carousel carousel-center px-4 sm:px-0 sm:flex-col order-2 sm:order-1 w-[1px] bg-[#D0D0D0] h-[90%]"
-        style={{ height: 90 / images.length + "%" }}
+      {/* Dots mobile*/}
+      <ul class="flex carousel carousel-center sm:px-0 order-2 lg:order-1 w-[90%] ml-[5%] lg:w-[1px] absolute lg:relative top-[90%] lg:top-0 flex-row lg:flex-col z-10 bg-[#D0D0D0] h-[2px] lg:h-[90%]"
       >
         {images.map((__, index) => (
-          <li class={`carousel-item w-[1px]`}
+          <li class={`carousel-item h-full`}
             style={{ height: 100 / images.length + "%" }}
           >
-            <Slider.Dot index={index}>
+            <Slider.Dot index={index} customClass={"w-full h-full"}>
               <div
-                class="opacity-0 group-disabled:bg-black group-disabled:opacity-100 ease-out duration-700 w-[1px] h-full"
+                class="opacity-0 group-disabled:bg-black group-disabled:opacity-100 ease-out duration-700 w-full h-full"
               ></div>
             </Slider.Dot>
           </li>
