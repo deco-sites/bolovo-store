@@ -32,7 +32,7 @@ export default function PDPGallerySlider({ layoutImage, page }: { layoutImage: P
   const aspectRatio = `${width} / ${height}`;
 
   return (
-    <div id={id} class="flex flex-col lg:flex-row h-full w-full max-h-[100%] lg:max-h-[570px] xl:max-h-[680px] 2xl:max-h-[813px] relative">
+    <div id={id} class="flex flex-col lg:flex-row h-full w-full max-h-[100%] lg:max-h-[570px] xl:max-h-[600px] 2xl:max-h-[813px] relative">
       {/* Image Slider */}
       <div class="relative order-1 sm:order-2 h-full"
       >
@@ -61,7 +61,7 @@ export default function PDPGallerySlider({ layoutImage, page }: { layoutImage: P
       </div>
 
       {/* Dots*/}
-      <ul class={`grid grid-cols-${images.length} lg:grid-cols-1 lg:grid-rows-${images.length} carousel carousel-center order-2 lg:order-1 w-[90%] ml-[5%] lg:ml-0 lg:mr-24 xl:mr-32  lg:w-[1px] absolute lg:relative top-[95%] lg:top-0 flex-row lg:flex-col z-10 bg-[#D0D0D0] h-[2px] lg:h-[90%]`}
+      <ul class={`grid grid-cols-${images.length} lg:grid-cols-1 lg:grid-rows-${images.length} carousel carousel-center order-2 lg:order-1 w-[90%] ml-[5%] lg:ml-0 lg:mr-24 xl:mr-20 2xl:mr-28  lg:w-[1px] absolute lg:relative top-[95%] lg:top-0 flex-row lg:flex-col z-10 bg-[#D0D0D0] h-[2px] lg:h-[90%]`}
       >
         {images.map((__, index) => (
           <li class={`carousel-item h-full`}
