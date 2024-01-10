@@ -2,6 +2,7 @@ import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import ProductCard, {
   Layout as cardLayout,
 } from "$store/components/product/ProductCard.tsx";
+import { AppContext } from "apps/vnda/mod.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import Header from "$store/components/ui/SectionHeader.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
@@ -9,7 +10,7 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import type { Product } from "apps/commerce/types.ts";
+import type { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 
 export interface Props {
@@ -22,21 +23,65 @@ export interface Props {
     text: string; 
     link: string 
   };
-  products: Product[] | null;
+  relatedProducts?: ProductDetailsPage | null;
 }
 
-function ProductShelf({
-  products,
+export const loader = async (props: Props, req: Request, ctx: AppContext) => {
+  console.log("Props.RelatedProducts: " + props.relatedProducts)
+  const [productWithAdditionalProperty] = await ctx.get({
+    "__resolveType": "vnda/loaders/productList.ts",
+    "tags": [],
+    count: 1,
+    "ids": [props.relatedProducts?.product.inProductGroupWithID],
+  }) as unknown as Product[];
+
+  console.log("Props.RelatedProducts?.product.inProductGroupWithID: " + props.relatedProducts?.product.inProductGroupWithID)
+
+  const tag = productWithAdditionalProperty?.additionalProperty?.find(({ name }) => {
+    try {
+      return name?.includes("relacionados");
+    } catch (error) {
+      return false;
+    }
+  });
+
+  if (!tag) {
+    const allTagData = await ctx.get({
+      "__resolveType": "vnda/loaders/productList.ts",
+      "tags": "todos",
+    });
+
+    return {
+      ...props,
+      relatedProductsList: allTagData ?? [],
+    };
+  }
+
+  const data = await ctx.get({
+    "__resolveType": "vnda/loaders/productList.ts",
+    "tags": tag.name,
+  });
+
+  return {
+    ...props,
+    relatedProductsList: data ?? [],
+  };
+};
+
+function ProductRelatedShelf({
+  relatedProductsList, 
   title,
   layout,
-  seeMore,
-}: Props) {
+  seeMore
+}: Props & 
+{relatedProductsList: Product[]}) 
+{
   const id = useId();
   const platform = usePlatform();
 
-  const shouldShowArrows = ((products?.length || 0) + (seeMore ? 1 : 0)) > 4;
+  const shouldShowArrows = ((relatedProductsList?.length || 0) + (seeMore ? 1 : 0)) > 4;
 
-  if (!products || products.length === 0) {
+  if (!relatedProductsList) {
     return null;
   }
 
@@ -53,8 +98,9 @@ function ProductShelf({
         class="w-full grid grid-cols-[30px_1fr_30px] lg:px-[17px]"
       >
         <Slider class="w-full carousel carousel-start gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
-          {products?.map((product, index) => (
+          {relatedProductsList?.map((product: Product, index: number) => (
             <Slider.Item
+              key={product.productID}
               index={index}
               class="carousel-item w-[38.605vw] lg:w-[calc((100%-46px)/4)] sm:first:pl-0 sm:last:pr-0"
             >
@@ -69,7 +115,7 @@ function ProductShelf({
           {seeMore
             ? (
               <Slider.Item
-                index={products.length}
+                index={relatedProductsList?.length}
                 class="carousel-item w-[38.605vw] lg:w-[calc((100%-46px)/4)] sm:first:pl-0 sm:last:pr-0"
               >
                 <div className="card card-compact group w-full">
@@ -109,7 +155,7 @@ function ProductShelf({
             name: "view_item_list",
             params: {
               item_list_name: title,
-              items: products.map((product) =>
+              items: relatedProductsList?.map((product: Product) =>
                 mapProductToAnalyticsItem({
                   product,
                   ...(useOffer(product.offers)),
@@ -123,4 +169,4 @@ function ProductShelf({
   );
 }
 
-export default ProductShelf;
+export default ProductRelatedShelf;
