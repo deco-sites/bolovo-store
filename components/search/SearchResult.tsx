@@ -128,7 +128,7 @@ export const loader = (props: Props, req: Request) => {
   const separatorIndex = req.url.indexOf(separatorCharacter);
 
   if (separatorIndex !== -1) {
-    const searchedLabel = req.url.substring(separatorIndex + separatorCharacter.length);
+    const searchedLabel = req.url.substring(separatorIndex + separatorCharacter.length).replaceAll("+", " ");
     return { ...props, searchedLabel };
   } else {
     const searchedLabel = "";
