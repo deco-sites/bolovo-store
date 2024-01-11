@@ -9,7 +9,7 @@ export default {
     extend: {
       fontFamily: {
         "acumin": ["Acumin"],
-        "averia": ["Averia"],
+        "averia": ["Averia Serif Libre"],
       },
       screens: {
         "xs": "420px",
