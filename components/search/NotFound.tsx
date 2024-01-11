@@ -20,7 +20,7 @@ interface Shelf {
 
 export interface PropsNotFound {
     title: string;
-    imagem?: {
+    image?: {
         active?: boolean;
         src?: ImageWidget;
         alt: string;
@@ -56,22 +56,22 @@ const POSITION_STEPS = {
 }
 
 function Container({ props, searchedLabel }: { props: PropsNotFound, searchedLabel: string }) {
-    const { title, imagem, stepsBySteps, theme, positionSteps } = props;
+    const { title, image, stepsBySteps, theme, positionSteps } = props;
 
     return (
         <div class={`w-full flex justify-center items-center pt-12 pb-28 lg:pb-44 px-4 flex-col gap-7 ${TEXT_COLOR[theme ?? "dark"]}`}>
-            {imagem?.active && imagem.src &&
+            {image?.active && image.src &&
                 <Image
-                    loading="lazy"
+                    loading="eager"
                     width={106}
                     height={106}
-                    src={imagem.src}
-                    alt={imagem.alt}
+                    src={image.src}
+                    alt={image.alt}
                     class=" animate-spin-slow"
                 >
                 </Image>
             }
-            <div class={`${!imagem?.active && "mt-24"}`}>
+            <div class={`${!image?.active && "mt-24"}`}>
                 <SearchedWord theme={theme} searchedLabel={searchedLabel} />
             </div>
             <p class={`uppercase font-bold text-center`}>
