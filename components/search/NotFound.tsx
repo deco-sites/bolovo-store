@@ -37,9 +37,7 @@ export interface PropsNotFound {
         positionSteps: "horizontal" | "vertical";
         items: Step[];
     }
-    shelfList?: {
-        shelfs?: Shelf[];
-    }
+    shelfs?: Shelf[];
 }
 
 export const BACKGROUND_COLOR = {
@@ -96,7 +94,7 @@ function Container({ props, searchedLabel }: { props: PropsNotFound, searchedLab
 
 export default function NotFound({ props, searchedLabel }: { props: PropsNotFound, searchedLabel: string }) {
 
-    const { backgroundImage, shelfList } = props
+    const { backgroundImage, shelfs } = props
 
     return (
         <div class="flex flex-col w-full h-full">
@@ -144,8 +142,8 @@ export default function NotFound({ props, searchedLabel }: { props: PropsNotFoun
                     <Container props={props} searchedLabel={searchedLabel} />
                 </div>
             </div>{
-                shelfList?.shelfs && shelfList.shelfs.map((shelf) => (
-                    <ProductShelf {...shelf.shelf} />
+                shelfs && shelfs.map((item) => (
+                    <ProductShelf {...item.shelf} />
                 ))
             }
         </div>
