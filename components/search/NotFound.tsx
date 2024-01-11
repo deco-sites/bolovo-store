@@ -20,23 +20,23 @@ interface Shelf {
 
 export interface PropsNotFound {
     title: string;
+    /** @default "dark" */
+    theme: "dark" | "light";
     image?: {
         active?: boolean;
         src?: ImageWidget;
         alt: string;
     };
-    /** @default "dark" */
-    theme: "dark" | "light";
-    steps: {
-        positionSteps: "horizontal" | "vertical";
-        items: Step[];
-    }
     backgroundImage?: {
         active?: boolean;
         mobile?: ImageWidget;
         desktop?: ImageWidget
         alt: string;
     };
+    steps: {
+        positionSteps: "horizontal" | "vertical";
+        items: Step[];
+    }
     shelfList?: {
         shelfs?: Shelf[];
     }
