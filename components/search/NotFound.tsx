@@ -1,6 +1,6 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
-import SearchedWord from "$store/islands/SearchedWord.tsx";
+import SearchedWord from "$store/components/ui/SearchedWord.tsx";
 import { Picture, Source } from "https://denopkg.com/deco-cx/apps@0.25.13/website/components/Picture.tsx";
 import ProductShelf from "$store/components/product/ProductShelf.tsx";
 import type { Props } from "$store/components/product/ProductShelf.tsx"
@@ -51,7 +51,7 @@ const POSITION_STEPS = {
     "vertical": "lg:flex-col",
 }
 
-function Container({ props }: { props: PropsNotFound }) {
+function Container({ props, searchedLabel }: { props: PropsNotFound, searchedLabel: string }) {
     const { title, imagem, stepsBySteps, theme, positionSteps } = props;
 
     return (
@@ -68,7 +68,7 @@ function Container({ props }: { props: PropsNotFound }) {
                 </Image>
             }
             <div class={`${!imagem?.active && "mt-24"}`}>
-                <SearchedWord theme={theme} />
+                <SearchedWord theme={theme} searchedLabel={searchedLabel} />
             </div>
             <p class={`uppercase font-bold text-center`}>
                 {title}
@@ -88,7 +88,7 @@ function Container({ props }: { props: PropsNotFound }) {
 }
 
 
-export default function NotFound({ props }: { props: PropsNotFound }) {
+export default function NotFound({ props, searchedLabel }: { props: PropsNotFound, searchedLabel: string }) {
 
     const { backgroundImage, shelfs } = props
     const { primaryShelf, secondShelf } = shelfs;
@@ -136,7 +136,7 @@ export default function NotFound({ props }: { props: PropsNotFound }) {
                 }
 
                 <div class="relative w-full h-ful">
-                    <Container props={props} />
+                    <Container props={props} searchedLabel={searchedLabel} />
                 </div>
             </div>
             <ProductShelf {...primaryShelf} />

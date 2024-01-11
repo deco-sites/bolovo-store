@@ -9,6 +9,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx"
+import { SectionProps } from "https://denopkg.com/deco-cx/deco@1.50.2/types.ts";
 export interface Layout {
   /**
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
@@ -108,13 +109,29 @@ function Result({
   );
 }
 
-function SearchResult({ page, ...props }: Props) {
+function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
+
+  const { page, notFound, searchedLabel } = props;
 
   if (!page || page?.products.length === 0) {
-    return <NotFound props={props.notFound} />;
+    return <NotFound props={notFound} searchedLabel={searchedLabel} />;
   }
 
   return <Result {...props} page={page} />;
 }
 
 export default SearchResult;
+
+export const loader = (props: Props, req: Request) => {
+  const separatorCharacter = "?q=";
+
+  const separatorIndex = req.url.indexOf(separatorCharacter);
+
+  if (separatorIndex !== -1) {
+    const searchedLabel = req.url.substring(separatorIndex + separatorCharacter.length);
+    return { ...props, searchedLabel };
+  } else {
+    const searchedLabel = "";
+    return { ...props, searchedLabel };
+  }
+};
