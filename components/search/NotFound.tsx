@@ -13,6 +13,11 @@ interface Step {
     textStep: string;
 }
 
+interface Shelf {
+    /**@label Shelf */
+    shelf: Props;
+}
+
 export interface PropsNotFound {
     title: string;
     imagem?: {
@@ -30,9 +35,8 @@ export interface PropsNotFound {
         desktop?: ImageWidget
         alt: string;
     };
-    shelfs: {
-        primaryShelf: Props;
-        secondShelf: Props;
+    shelfList?: {
+        shelfs?: Shelf[];
     }
 }
 
@@ -90,8 +94,7 @@ function Container({ props, searchedLabel }: { props: PropsNotFound, searchedLab
 
 export default function NotFound({ props, searchedLabel }: { props: PropsNotFound, searchedLabel: string }) {
 
-    const { backgroundImage, shelfs } = props
-    const { primaryShelf, secondShelf } = shelfs;
+    const { backgroundImage, shelfList } = props
 
     return (
         <div class="flex flex-col w-full h-full">
@@ -138,9 +141,11 @@ export default function NotFound({ props, searchedLabel }: { props: PropsNotFoun
                 <div class="relative w-full h-ful">
                     <Container props={props} searchedLabel={searchedLabel} />
                 </div>
-            </div>
-            <ProductShelf {...primaryShelf} />
-            <ProductShelf {...secondShelf} />
+            </div>{
+                shelfList?.shelfs && shelfList.shelfs.map((shelf) => (
+                    <ProductShelf {...shelf.shelf} />
+                ))
+            }
         </div>
 
     )
