@@ -8,7 +8,6 @@ import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 
@@ -29,7 +28,7 @@ function ProductShelf({
   seeMore,
 }: Props) {
   const id = useId();
-  const platform = usePlatform();
+  const platform = "vnda"
 
   const shouldShowArrows = ((products?.length || 0) + (seeMore ? 1 : 0)) > 4;
 
