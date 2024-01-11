@@ -6,8 +6,8 @@ import ProductShelf from "$store/components/product/ProductShelf.tsx";
 import type { Props } from "$store/components/product/ProductShelf.tsx"
 
 interface Step {
+    label: string;
     /** 
-     * @label Step
      * @format html 
     */
     textStep: string;
@@ -27,8 +27,10 @@ export interface PropsNotFound {
     };
     /** @default "dark" */
     theme: "dark" | "light";
-    stepsBySteps: Step[];
-    positionSteps: "horizontal" | "vertical";
+    steps: {
+        positionSteps: "horizontal" | "vertical";
+        items: Step[];
+    }
     backgroundImage?: {
         active?: boolean;
         mobile?: ImageWidget;
@@ -56,7 +58,7 @@ const POSITION_STEPS = {
 }
 
 function Container({ props, searchedLabel }: { props: PropsNotFound, searchedLabel: string }) {
-    const { title, image, stepsBySteps, theme, positionSteps } = props;
+    const { title, image, steps, theme } = props;
 
     return (
         <div class={`w-full flex justify-center items-center pt-12 pb-28 lg:pb-44 px-4 flex-col gap-7 ${TEXT_COLOR[theme ?? "dark"]}`}>
@@ -77,12 +79,12 @@ function Container({ props, searchedLabel }: { props: PropsNotFound, searchedLab
             <p class={`uppercase font-bold text-center`}>
                 {title}
             </p>
-            <ul class={`flex w-full flex-col gap-4 pt-4 lg:pt-8 justify-evenly px-2 ${POSITION_STEPS[positionSteps ?? "horizontal"]}`}>
-                {stepsBySteps.map((step, index) => (
-                    <li class={`flex flex-col gap-1 items-center lg:min-w-[33%] justify-center ${POSITION_STEPS[positionSteps ?? "horizontal"]}`}>
+            <ul class={`flex w-full flex-col gap-4 pt-4 lg:pt-8 justify-evenly px-2 ${POSITION_STEPS[steps.positionSteps ?? "horizontal"]}`}>
+                {steps.items.map((item, index) => (
+                    <li class={`flex flex-col gap-1 items-center lg:min-w-[33%] justify-center ${POSITION_STEPS[steps.positionSteps ?? "horizontal"]}`}>
                         <span class={`font-averia font-bold  text-4xl italic text-center lg:text-start`}>{index + 1}.</span>
                         <span class={`uppercase  text-center text-sm flex justify-center items-end flex-wrap`}
-                            dangerouslySetInnerHTML={{ __html: step.textStep }} ></span>
+                            dangerouslySetInnerHTML={{ __html: item.textStep }} ></span>
                     </li>
                 ))}
             </ul>
