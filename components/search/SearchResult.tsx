@@ -1,6 +1,5 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
-import Filters from "$store/components/search/Filters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
@@ -9,7 +8,8 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx"
-import { SectionProps } from "https://denopkg.com/deco-cx/deco@1.50.2/types.ts";
+import type { SectionProps } from "deco/types.ts";
+
 export interface Layout {
   /**
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
@@ -25,6 +25,7 @@ export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
   layout?: Layout;
+  textSearch?: string;
   cardLayout?: CardLayout;
   notFound: PropsNotFound;
 }
@@ -33,34 +34,30 @@ function Result({
   page,
   layout,
   cardLayout,
-}: Omit<Props, "page"> & { page: ProductListingPage }) {
+  textSearch,
+  searchTerm
+}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
   return (
-    <>
-      <div class="container px-4 sm:py-10">
-        <SearchControls
-          sortOptions={sortOptions}
-          filters={filters}
-          breadcrumb={breadcrumb}
-          displayFilter={layout?.variant === "drawer"}
-        />
-
-        <div class="flex flex-row">
-          {layout?.variant === "aside" && filters.length > 0 && (
-            <aside class="hidden sm:block w-min min-w-[250px]">
-              <Filters filters={filters} />
-            </aside>
-          )}
-          <div class="flex-grow">
-            <ProductGallery
-              products={products}
-              offset={offset}
-              layout={{ card: cardLayout, columns: layout?.columns }}
-            />
-          </div>
+    <div>
+      <SearchControls
+        searchTerm={searchTerm}
+        textSearch={textSearch}
+        sortOptions={sortOptions}
+        filters={filters}
+        breadcrumb={breadcrumb}
+        displayFilter={layout?.variant === "drawer"}
+      />
+      <div class="lg:px-8 px-[15px]">
+        <div class="flex-grow">
+          <ProductGallery
+            products={products}
+            offset={offset}
+            layout={{ card: cardLayout, columns: layout?.columns }}
+          />
         </div>
 
         <div class="flex justify-center my-4">
@@ -105,16 +102,16 @@ function Result({
           },
         }}
       />
-    </>
+    </div>
   );
 }
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
 
-  const { page, notFound, searchedLabel } = props;
+  const { page, notFound, searchTerm } = props;
 
   if (!page || page?.products.length === 0) {
-    return <NotFound props={notFound} searchedLabel={searchedLabel} />;
+    return <NotFound props={notFound} searchedLabel={searchTerm} />;
   }
 
   return <Result {...props} page={page} />;
@@ -123,15 +120,6 @@ function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
 export default SearchResult;
 
 export const loader = (props: Props, req: Request) => {
-  const separatorCharacter = "?q=";
-
-  const separatorIndex = req.url.indexOf(separatorCharacter);
-
-  if (separatorIndex !== -1) {
-    const searchedLabel = req.url.substring(separatorIndex + separatorCharacter.length).replaceAll("+", " ");
-    return { ...props, searchedLabel };
-  } else {
-    const searchedLabel = "";
-    return { ...props, searchedLabel };
-  }
+  const term = new URLSearchParams(new URL(req.url).search).get('q');
+  return { ...props, searchTerm: term ?? "" };
 };
