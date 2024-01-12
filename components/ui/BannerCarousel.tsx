@@ -156,7 +156,7 @@ function Dots({ images, autoplay }: Props) {
             <Slider.Dot index={index}>
               <div class="py-5">
                 <div
-                  class="w-16 sm:w-20 h-0.5 rounded group-disabled:animate-progress bg-gradient-to-r from-base-100 from-[length:var(--dot-progress)] to-black to-[length:var(--dot-progress)]"
+                  class="w-16 sm:w-20 h-0.5 rounded group-disabled:animate-progress bg-gradient-to-r from-black from-[length:var(--dot-progress)] to-base-100 to-[length:var(--dot-progress)]"
                   style={{ animationDuration: `${autoplay?.interval}s` }}
                 />
               </div>
