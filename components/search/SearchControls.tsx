@@ -5,6 +5,7 @@ import Sort from "$store/components/search/Sort.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
 import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
+import openChat from "apps/ai-assistants/actions/chat.ts";
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -21,22 +22,71 @@ function SearchControls(
 
   return (
     <Drawer
+      class="drawer-end "
       loading="lazy"
       open={open.value}
       onClose={() => open.value = false}
       aside={
         <>
           <div class="bg-base-100 flex flex-col h-full overflow-y-hidden">
-            <div class="flex justify-between items-center">
-              <h1 class="px-4 py-3">
-                <span class="font-medium text-2xl">Filtrar</span>
-              </h1>
-              <Button class="btn btn-ghost" onClick={() => open.value = false}>
-                <Icon id="XMark" size={24} strokeWidth={2} />
+            <div class="flex flex-row w-full justify-end items-center">
+              <span class="font-medium text-sm leading-[18px]">
+                Fechar
+              </span>
+              <Button
+                class="btn btn-ghost hover:bg-transparent disabled:bg-transparent block p-[15px]"
+                onClick={() => open.value = false}
+              >
+                <Icon
+                  id="XMark"
+                  size={15}
+                  strokeWidth={2}
+                  class="text-[#121212]"
+                />
               </Button>
             </div>
+            <div class="flex flex-row justify-between pl-[21px] pr-[15px] text-[15px] mt-5">
+              <span class="font-semibold uppercase">FILTROS</span>
+              <span class="font-normal uppercase">2 APLICADOS</span>
+            </div>
+            <ul class="flex flex-row gap-[7px] items-center pl-[21px] pr-[15px] pt-5">
+              <li class="border border-black rounded-[20px] items-center">
+                <div class="flex flex-row">
+                  <span class="items-center pl-3 mt-[2px] mr-[5px]">GG/XL</span>
+                  <button
+                    class="ml-[5px] bg-black rounded-full block p-[7px]"
+                    onClick={() => open.value = false}
+                  >
+                    <Icon
+                      id="XMark"
+                      size={15}
+                      strokeWidth={2}
+                      class="text-white"
+                    />
+                  </button>
+                </div>
+              </li>
+            </ul>
+            <div class="border-b pb-[25px] border-opacity-30 border-[#121212] mr-[15px] ml-[21px]" />
             <div class="flex-grow overflow-auto">
               <Filters filters={filters} />
+              <div class="w-full pl-[21px] pr-[15px] mt-14">
+                <div class="pb-2">
+                  <Button
+                    class="btn btn-active btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black text-[15px] font-normal"
+                    data-deco="buy-button"
+                  >
+                    APLICAR FILTROS
+                  </Button>
+                </div>
+                <div class="pb-4">
+                  <a class="inline-block w-full" href="/">
+                    <Button class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white text-[15px] font-normal">
+                      REMOVER TODOS OS FILTROS
+                    </Button>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </>

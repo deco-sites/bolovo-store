@@ -11,7 +11,7 @@ const colors: Record<string, string> = {
   "cinza-escura": "bg-[#A9A9A9] ring-[#A9A9A9]",
   "laranja": "bg-[#FFA500] ring-[#FFA500]",
   "marrom": "bg-[#A52A2A] ring-[#A52A2A]",
-  "preta": "bg-[#161616] ring-[#161616]",
+  "preto": "bg-[#121212] ring-[#161616]",
   "verde-clara": "bg-[#90EE90] ring-[#90EE90]",
   "vermelha": "bg-[#FF0000] ring-[#FF0000]",
 
@@ -22,7 +22,7 @@ const colors: Record<string, string> = {
 };
 
 interface Props {
-  variant?: "active" | "disabled" | "default";
+  variant?: "active" | "disabled" | "default" | "size" | "color";
   content: string;
 }
 
@@ -31,22 +31,46 @@ const variants = {
   disabled:
     `relative after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
   default: "hover:border",
+  size: "bg-black",
+  color: "bg-blue-400",
 };
 
 function Avatar({ content, variant = "default" }: Props) {
-  return (
-    <div class="avatar placeholder">
-      <div
-        class={`rounded-full w-8 h-8 ${colors[content] ?? colors[variant]} ${
-          variants[variant]
-        }`}
-      >
-        <span class="uppercase text-[14px] text-[#121212] leading-[130%]">
+  if (variant == "color") {
+    return (
+      <div class="avatar placeholder border border-black">
+        <div
+          class={`w-[29px] h-[30px] ${colors[content] ?? colors[variant]}`}
+        />
+      </div>
+    );
+  }
+
+  if (variant == "size") {
+    return (
+      <div class="avatar placeholder">
+        <span class="uppercase text-[15px] text-[#121212] leading-8">
           {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
         </span>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (variant == "default") {
+    return (
+      <div class="avatar placeholder">
+        <div
+          class={`rounded-full w-8 h-8 ${colors[content] ?? colors[variant]} ${
+            variants[variant]
+          }`}
+        >
+          <span class="uppercase text-[15px] text-[#121212] leading-[130%]">
+            {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
+          </span>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Avatar;
