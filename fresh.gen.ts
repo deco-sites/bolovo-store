@@ -23,10 +23,11 @@ import * as $$16 from "./islands/Newsletter.tsx";
 import * as $$17 from "./islands/OutOfStock.tsx";
 import * as $$18 from "./islands/ProductImageZoom.tsx";
 import * as $$19 from "./islands/SearchControls.tsx";
-import * as $$20 from "./islands/ShippingSimulation.tsx";
-import * as $$21 from "./islands/SliderJS.tsx";
-import * as $$22 from "./islands/WishlistButton.tsx";
-import * as $$23 from "./islands/content/IframeLoader.tsx";
+import * as $$20 from "./islands/SelectedFilters.tsx";
+import * as $$21 from "./islands/ShippingSimulation.tsx";
+import * as $$22 from "./islands/SliderJS.tsx";
+import * as $$23 from "./islands/WishlistButton.tsx";
+import * as $$24 from "./islands/content/IframeLoader.tsx";
 
 const manifest = {
   routes: {
@@ -53,10 +54,11 @@ const manifest = {
     "./islands/OutOfStock.tsx": $$17,
     "./islands/ProductImageZoom.tsx": $$18,
     "./islands/SearchControls.tsx": $$19,
-    "./islands/ShippingSimulation.tsx": $$20,
-    "./islands/SliderJS.tsx": $$21,
-    "./islands/WishlistButton.tsx": $$22,
-    "./islands/content/IframeLoader.tsx": $$23,
+    "./islands/SelectedFilters.tsx": $$20,
+    "./islands/ShippingSimulation.tsx": $$21,
+    "./islands/SliderJS.tsx": $$22,
+    "./islands/WishlistButton.tsx": $$23,
+    "./islands/content/IframeLoader.tsx": $$24,
   },
   baseUrl: import.meta.url,
 };

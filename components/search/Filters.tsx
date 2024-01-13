@@ -13,7 +13,7 @@ interface Props {
   filters: ProductListingPage["filters"];
 }
 
-const isToggle = (filter: Filter): filter is FilterToggle =>
+export const isToggle = (filter: Filter): filter is FilterToggle =>
   filter["@type"] == "FilterToggle";
 
 function ValueItem(
@@ -21,7 +21,9 @@ function ValueItem(
 ) {
   return (
     <a href={url} rel="nofollow" class="flex items-center gap-2">
-      <span class="text-sm text-[#121212] font-normal leading-8 uppercase">{label}</span>
+      <span class="text-sm text-[#121212] font-normal leading-8 uppercase">
+        {label}
+      </span>
     </a>
   );
 }
@@ -29,15 +31,17 @@ function ValueItem(
 function FilterValues({ label, values }: FilterToggle) {
   const flexDirection = label == "cor"
     ? "grid grid-cols-8 gap-[18px]"
-    : label == "property2" ? "flex-row flex flex-wrap" : "flex-col flex flex-wrap";
+    : label == "property2"
+    ? "flex-row flex flex-wrap gap-2 "
+    : "flex-col flex flex-wrap gap-2 ";
   return (
-    <ul class={`gap-2  ${flexDirection}`}>
+    <ul class={`${flexDirection}`}>
       {values.map((item) => {
         const { url, selected, value, quantity } = item;
-
+       
         if (label == "cor") {
           return (
-            <a href={url} rel="nofollow">
+            <a class="w-[30px] h-[30px]" href={url} rel="nofollow">
               <Avatar
                 content={value}
                 variant={selected ? "active" : "color"}
@@ -78,16 +82,17 @@ function Filters({ filters }: Props) {
   const sortedFilters = filtersOrder.map((label) =>
     filters.find((filter) => filter.label === label)
   ).filter(Boolean);
-  console.log(filters);
+  
+  
   return (
-    <ul class="flex flex-col gap-4 p-4">
+    <ul class="flex flex-col gap-4 pl-[21px] pr-[15px]">
       {sortedFilters
         .filter(isToggle)
         .map((filter) => (
           <>
             {filter.label == "cor"
               ? (
-                <li class="flex flex-col gap-4">
+                <li class="flex flex-col gap-4 mb-4 mt-2">
                   <span class="font-semibold text-[15px] leading-9 uppercase">
                     {filter.label}
                   </span>

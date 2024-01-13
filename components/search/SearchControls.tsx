@@ -5,7 +5,8 @@ import Sort from "$store/components/search/Sort.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
 import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
-import openChat from "apps/ai-assistants/actions/chat.ts";
+import SelectedFilters from "$store/islands/SelectedFilters.tsx";
+import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -22,13 +23,13 @@ function SearchControls(
 
   return (
     <Drawer
-      class="drawer-end "
+      class="drawer-end"
       loading="lazy"
       open={open.value}
       onClose={() => open.value = false}
       aside={
         <>
-          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden">
+          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[408px]">
             <div class="flex flex-row w-full justify-end items-center">
               <span class="font-medium text-sm leading-[18px]">
                 Fechar
@@ -47,26 +48,11 @@ function SearchControls(
             </div>
             <div class="flex flex-row justify-between pl-[21px] pr-[15px] text-[15px] mt-5">
               <span class="font-semibold uppercase">FILTROS</span>
-              <span class="font-normal uppercase">2 APLICADOS</span>
+              <span class="font-normal uppercase">{selectedFilters.value.length} APLICADOS</span>
             </div>
-            <ul class="flex flex-row gap-[7px] items-center pl-[21px] pr-[15px] pt-5">
-              <li class="border border-black rounded-[20px] items-center">
-                <div class="flex flex-row">
-                  <span class="items-center pl-3 mt-[2px] mr-[5px]">GG/XL</span>
-                  <button
-                    class="ml-[5px] bg-black rounded-full block p-[7px]"
-                    onClick={() => open.value = false}
-                  >
-                    <Icon
-                      id="XMark"
-                      size={15}
-                      strokeWidth={2}
-                      class="text-white"
-                    />
-                  </button>
-                </div>
-              </li>
-            </ul>
+            <div>
+              <SelectedFilters filters={filters} />
+            </div>
             <div class="border-b pb-[25px] border-opacity-30 border-[#121212] mr-[15px] ml-[21px]" />
             <div class="flex-grow overflow-auto">
               <Filters filters={filters} />
