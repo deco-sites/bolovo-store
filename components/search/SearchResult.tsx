@@ -40,12 +40,13 @@ function Result({
   layout,
   cardLayout,
   textSearch,
-  searchTerm
-}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string }) {
+  searchTerm,
+  url
+}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, url: string }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
-
+    
   return (
     <div>
       <SearchControls
@@ -125,5 +126,5 @@ export default SearchResult;
 
 export const loader = (props: Props, req: Request) => {
   const term = new URLSearchParams(new URL(req.url).search).get('q');
-  return { ...props, searchTerm: term ?? "" };
+  return { ...props, searchTerm: term ?? "", url: req.url };
 };
