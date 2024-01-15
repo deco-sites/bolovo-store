@@ -1,7 +1,7 @@
 import { AvatarPDP } from "$store/components/ui/Avatar.tsx";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
-import { usePartialSection } from "deco/hooks/usePartialSection.ts";
+import { relative } from "$store/sdk/url.ts";
 
 interface Props {
   product: Product;
@@ -15,16 +15,22 @@ function VariantSelector({ product }: Props) {
 
   const sizeAndLinks = possibilities.Tamanho || {};
 
-  const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => (
-    <li>
-      <a href={link}>
-        <AvatarPDP
-          variant={link === url ? "activePdp" : link ? "default" : "disabled"}
-          content={size === '' ? "UN" : size}
-        />
-      </a>
-    </li>
-  ));
+  const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => {
+    const relativeUrl = relative(url);
+    const relativeLink = relative(link);
+
+    return (
+
+      <li>
+        <button f-partial={relativeLink} f-client-nav>
+          <AvatarPDP
+            variant={relativeLink === relativeUrl ? "activePdp" : relativeLink ? "default" : "disabled"}
+            content={size === '' ? "UN" : size}
+          />
+        </button>
+      </li>
+    )
+  })
 
   const colorSelector = variants.length > 1 ? (
     variants.map(([value, link]) => (

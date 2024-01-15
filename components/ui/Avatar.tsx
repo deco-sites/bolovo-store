@@ -3,6 +3,8 @@
  * TODO: Figure out a better name for this component.
  */
 
+import { usePartialSection } from "https://denopkg.com/deco-cx/deco@1.49.0/hooks/usePartialSection.ts";
+
 const colors: Record<string, string> = {
   "azul-clara": "bg-[#87CEFA] ring-[#87CEFA]",
   "azul-marinho": "bg-[#000080] ring-[#000080]",
@@ -57,7 +59,7 @@ export function AvatarPDP({ content, variant = "default" }: Props) {
       <div
         class={`rounded-full w-8 h-5 ${colors[content] ?? colors[variant]} ${variants[variant]
           }`}
-      >
+          >
         <span class="uppercase text-[14px] leading-[130%]">
           {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
         </span>
