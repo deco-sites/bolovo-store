@@ -3,8 +3,6 @@
  * TODO: Figure out a better name for this component.
  */
 
-import { usePartialSection } from "https://denopkg.com/deco-cx/deco@1.49.0/hooks/usePartialSection.ts";
-
 const colors: Record<string, string> = {
   "azul-clara": "bg-[#87CEFA] ring-[#87CEFA]",
   "azul-marinho": "bg-[#000080] ring-[#000080]",

@@ -21,7 +21,7 @@ import NavigationDescription from "$store/islands/NavigationDescription.tsx";
 
 
 
-function PDPProductInfo({ page }: { page: ProductDetailsPage }) {
+function PDPProductInfo({ page, reloadInSelector }: { page: ProductDetailsPage, reloadInSelector: boolean }) {
     const platform = usePlatform();
 
     if (page === null) {
@@ -76,7 +76,7 @@ function PDPProductInfo({ page }: { page: ProductDetailsPage }) {
             </div>
             {/* Sku Selector */}
             <div class="mt-4 sm:mt-6">
-                <ProductSelector product={product} />
+                <ProductSelector product={product} reloadInSelector={reloadInSelector} />
             </div>
             {/* Add to Cart and Favorites button */}
             <div class="mt-4 sm:mt-10 flex flex-col gap-2">
