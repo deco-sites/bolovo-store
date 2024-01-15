@@ -59,6 +59,13 @@ function parseSections(input: string): Description {
     }
   });
 
+  if (result.descriptionTabs) {
+    [result.descriptionTabs[0], result.descriptionTabs[1]] = [
+      result.descriptionTabs[1],
+      result.descriptionTabs[0],
+    ];
+  }
+
   return result;
 }
 
