@@ -3,7 +3,7 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { relative } from "$store/sdk/url.ts";
 
-function VariantSelector({ product, reloadInSelector}: { product: Product, reloadInSelector: boolean }) {
+function VariantSelector({ product, reloadInSelector }: { product: Product, reloadInSelector: boolean }) {
   const { url, isVariantOf } = product;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const possibilities = useVariantPossibilities(hasVariant, product);
@@ -71,7 +71,7 @@ function VariantSelector({ product, reloadInSelector}: { product: Product, reloa
     <ul class="flex flex-col gap-6 lg:gap-11">
       {/* Seletor de cores */}
       <div class="group">
-        <ul class="flex items-center gap-5 justify-start ">
+        <ul class="flex items-center gap-[26px] lg:gap-[24px] justify-start ">
           {colorSelector}
         </ul>
       </div>
