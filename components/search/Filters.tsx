@@ -1,77 +1,103 @@
+import { Color } from "$store/components/search/SearchResult.tsx";
 import Avatar from "$store/components/ui/Avatar.tsx";
-import { formatPrice } from "$store/sdk/format.ts";
 import type {
   Filter,
   FilterToggle,
   FilterToggleValue,
   ProductListingPage,
 } from "apps/commerce/types.ts";
-import { parseRange } from "apps/commerce/utils/filters.ts";
 import Icon from "$store/components/ui/Icon.tsx";
+import ValueItem from "$store/islands/ValueItem.tsx";
 
 interface Props {
   filters: ProductListingPage["filters"];
+  filterColors: Color[];
+}
+
+export type FilterToggleValueWithHex = FilterToggleValue & {
+  hex?: string;
+};
+
+type FilterValuesProps = {
+  label: string;
+  values: FilterToggleValueWithHex[];
+  filterColors?: Color[];
+};
+
+function removeDuplicates(array: FilterToggleValueWithHex[]) {
+  const result: FilterToggleValueWithHex[] = [];
+  array.forEach((current) => {
+    const format = current.label.trim().toLowerCase();
+    const jáExiste = result.some((exist) => {
+      const rótuloExistenteFormatado = exist.label.trim()
+        .toLowerCase();
+      return rótuloExistenteFormatado == format;
+    });
+
+    if (!jáExiste) {
+      result.push(current);
+    }
+  });
+
+  return result;
 }
 
 export const isToggle = (filter: Filter): filter is FilterToggle =>
   filter["@type"] == "FilterToggle";
 
-function ValueItem(
-  { url, selected, label, quantity }: FilterToggleValue,
-) {
-  return (
-    <a href={url} rel="nofollow" class="flex items-center gap-2">
-      <span class="text-sm text-[#121212] font-normal leading-8 uppercase">
-        {label}
-      </span>
-    </a>
-  );
-}
+function FilterValues({ label, values, filterColors }: FilterValuesProps) {
+  const unduplicatedValues = removeDuplicates(values);
 
-function FilterValues({ label, values }: FilterToggle) {
   const flexDirection = label == "cor"
     ? "grid grid-cols-8 gap-[18px]"
     : label == "property2"
-    ? "flex-row flex flex-wrap gap-2 "
+    ? "flex flex-wrap gap-2 flex-grow"
     : "flex-col flex flex-wrap gap-2 ";
+
+  const matchingColors: FilterToggleValueWithHex[] = values?.map(
+    (value) => {
+      const matchedColor = filterColors?.find(
+        (color) => color.label === value.label,
+      );
+      if (matchedColor) {
+        return {
+          ...value,
+          hex: matchedColor.hex,
+        };
+      } else {
+        return value;
+      }
+    },
+  );
   return (
     <ul class={`${flexDirection}`}>
       {values.map((item) => {
         const { url, selected, value, quantity } = item;
-       
-        if (label == "cor") {
+
+        if (label == "cor" && matchingColors) {
           return (
-            <a class="w-[30px] h-[30px]" href={url} rel="nofollow">
-              <Avatar
-                content={value}
-                variant={selected ? "active" : "color"}
-              />
-            </a>
+            <ValueItem
+              type={label}
+              {...item}
+              children={
+                <Avatar
+                  content={value}
+                  variant={selected ? "active" : "color"}
+                />
+              }
+            />
           );
         }
         if (label == "property2") {
           return (
-            <a href={url} rel="nofollow">
-              <Avatar
-                content={value}
-                variant={selected ? "active" : "size"}
-              />
-            </a>
-          );
-        }
-
-        if (label == "price") {
-          const range = parseRange(item.value);
-
-          return range && (
             <ValueItem
+              type={label}
               {...item}
-              label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
             />
           );
         }
 
-        return <ValueItem {...item} />;
+        return <ValueItem type={label} {...item} />;
       })}
     </ul>
   );
@@ -82,8 +108,7 @@ function Filters({ filters }: Props) {
   const sortedFilters = filtersOrder.map((label) =>
     filters.find((filter) => filter.label === label)
   ).filter(Boolean);
-  
-  
+
   return (
     <ul class="flex flex-col gap-4 pl-[21px] pr-[15px]">
       {sortedFilters
