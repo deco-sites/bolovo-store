@@ -3,11 +3,7 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { relative } from "$store/sdk/url.ts";
 
-interface Props {
-  product: Product;
-}
-
-function VariantSelector({ product }: Props) {
+function VariantSelector({ product, reloadInSelector}: { product: Product, reloadInSelector: boolean }) {
   const { url, isVariantOf } = product;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const possibilities = useVariantPossibilities(hasVariant, product);
@@ -16,6 +12,20 @@ function VariantSelector({ product }: Props) {
   const sizeAndLinks = possibilities.Tamanho || {};
 
   const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => {
+
+    if (reloadInSelector) {
+      return (
+        <li>
+          <a href={link}>
+            <AvatarPDP
+              variant={link === url ? "activePdp" : link ? "default" : "disabled"}
+              content={size === '' ? "UN" : size}
+            />
+          </a>
+        </li>
+      )
+    }
+
     const relativeUrl = relative(url);
     const relativeLink = relative(link);
 
