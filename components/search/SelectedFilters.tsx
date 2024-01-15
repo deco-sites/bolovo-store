@@ -11,9 +11,7 @@ export interface Props {
 
 type SelectedFilter = { url: string; label: string; type: string };
 
-export const selectedFilters = signal<
-  SelectedFilter[]
->([]);
+export const selectedFilters = signal<SelectedFilter[]>([]);
 
 function SelectedFilters({ filters, class: _class = "" }: Props) {
   const selected = filters.reduce<SelectedFilter[]>((acc, filter) => {
@@ -37,7 +35,7 @@ function SelectedFilters({ filters, class: _class = "" }: Props) {
   );
 
   return (
-    <ul class="flex flex-row gap-[7px] items-center pl-[21px] pr-[15px] pt-5">
+    <ul class="flex flex-wrap gap-[7px] items-center pl-[21px] pr-[15px] pt-5">
       {selectedFilters.value.map((item) => (
         <li class="border border-black rounded-[20px] items-center">
           <div class="flex flex-row">

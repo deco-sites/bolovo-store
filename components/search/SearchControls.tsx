@@ -7,6 +7,7 @@ import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import SelectedFilters from "$store/islands/SelectedFilters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
+import ApplyFiltersJS from "deco-sites/bolovo-store/islands/ApplyFiltersJS.tsx";
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -14,12 +15,18 @@ export type Props =
     displayFilter?: boolean;
     textSearch?: string;
     searchTerm?: string;
+    url: string;
   };
 
 function SearchControls(
-  { filters, sortOptions, textSearch, searchTerm }: Props,
+  { filters, sortOptions, textSearch, searchTerm, url, breadcrumb }: Props,
 ) {
   const open = useSignal(false);
+  const removeFilters = () => {
+    const urlNoQuery = url.split("&")[0];
+    window.history.replaceState({}, "", urlNoQuery);
+    window.location.reload();
+  };
 
   return (
     <Drawer
@@ -48,7 +55,9 @@ function SearchControls(
             </div>
             <div class="flex flex-row justify-between pl-[21px] pr-[15px] text-[15px] mt-5">
               <span class="font-semibold uppercase">FILTROS</span>
-              <span class="font-normal uppercase">{selectedFilters.value.length} APLICADOS</span>
+              <span class="font-normal uppercase">
+                {selectedFilters.value.length} APLICADOS
+              </span>
             </div>
             <div>
               <SelectedFilters filters={filters} />
@@ -59,19 +68,33 @@ function SearchControls(
               <div class="w-full pl-[21px] pr-[15px] mt-14">
                 <div class="pb-2">
                   <Button
+                    // onClick={() =>
+                    //   selectedFilters.value.length < 1 ? removeFilters() : null}
                     class="btn btn-active btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black text-[15px] font-normal"
-                    data-deco="buy-button"
+                    id="apply-filters"
                   >
                     APLICAR FILTROS
                   </Button>
+                  <ApplyFiltersJS
+                    rootId="apply-filters"
+                    buttonId="apply-filters"
+                  />
                 </div>
-                <div class="pb-4">
-                  <a class="inline-block w-full" href="/">
-                    <Button class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white text-[15px] font-normal">
-                      REMOVER TODOS OS FILTROS
-                    </Button>
-                  </a>
-                </div>
+                {selectedFilters.value.length > 0 && (
+                  <div class="pb-4 inline-block w-full">
+                    <a
+                      class="inline-block w-full"
+                      href={breadcrumb?.itemListElement.at(-1)?.item ?? ""}
+                    >
+                      <Button
+                        onClick={() => removeFilters()}
+                        class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white text-[15px] font-normal"
+                      >
+                        REMOVER TODOS OS FILTROS
+                      </Button>
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </div>

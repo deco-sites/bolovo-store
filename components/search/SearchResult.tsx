@@ -19,12 +19,26 @@ export interface Layout {
   columns?: Columns;
 }
 
+export interface Color {
+  /**
+   * @title Nome
+   */
+  label: string;
+  /**
+   * @title Cor
+   * @format color
+   */
+  hex: string;
+}
+
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
   layout?: Layout;
   textSearch?: string;
   cardLayout?: CardLayout;
+  /** @title Cores do Filtro */
+  filterColors?: Color[];
 }
 
 function NotFound() {
@@ -54,6 +68,7 @@ function Result({
         textSearch={textSearch}
         sortOptions={sortOptions}
         filters={filters}
+        url={url}
         breadcrumb={breadcrumb}
         displayFilter={layout?.variant === "drawer"}
       />
