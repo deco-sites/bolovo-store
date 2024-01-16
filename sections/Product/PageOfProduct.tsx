@@ -16,7 +16,7 @@ export default function PageOfProduct({ page, pdpImage, reloadInSelector = false
     }
 
     return (
-        <div class=" pt-0 lg:py-11 lg:px-6 xl:px-24 2xl:px-36 3xl flex justify-between flex-col lg:flex-row md:gap-12 lg:gap-24 py-11 ">
+        <div class=" pt-0 lg:py-11 lg:px-[8%] flex justify-center flex-col lg:flex-row md:gap-12 lg:gap-[6%] py-11 ">
             <div class="w-full lg:w-3/5">
                 <PDPGallerySlider layoutImage={pdpImage} page={page} />
             </div>
