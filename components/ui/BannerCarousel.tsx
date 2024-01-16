@@ -12,7 +12,7 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
 export interface Autoplay {
   /** @description Activate or deactivate Carousel autoplay */
   activate?: boolean;
-/**
+  /**
    * @title Autoplay interval
    * @description time (in seconds) to start the carousel autoplay
    */
@@ -86,7 +86,7 @@ const DEFAULT_PROPS = {
   autoplay: {
     activate: true,
     interval: 5,
-  }
+  },
 };
 
 function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
@@ -156,7 +156,7 @@ function Dots({ images, autoplay }: Props) {
             <Slider.Dot index={index}>
               <div class="py-5">
                 <div
-                  class="w-16 sm:w-20 h-0.5 rounded group-disabled:animate-progress bg-gradient-to-r from-base-100 from-[length:var(--dot-progress)] to-[rgba(255,255,255,0.4)] to-[length:var(--dot-progress)]"
+                  class="w-16 sm:w-20 h-0.5 rounded group-disabled:animate-progress bg-gradient-to-r from-black from-[length:var(--dot-progress)] to-base-100 to-[length:var(--dot-progress)]"
                   style={{ animationDuration: `${autoplay?.interval}s` }}
                 />
               </div>
@@ -213,11 +213,22 @@ function BannerCarousel(props: Props) {
         ))}
       </Slider>
 
-      <Buttons />
+      {images && images.length > 1
+        ? (
+          <>
+            <Buttons />
+            <Dots images={images} autoplay={autoplay} />
+          </>
+        )
+        : null}
 
-      <Dots images={images} autoplay={autoplay} />
-
-      <SliderJS rootId={id} interval={autoplay?.interval && autoplay.interval * 1e3} infinite />
+      <SliderJS
+        rootId={id}
+        interval={autoplay?.interval && images && images.length > 1
+          ? autoplay.interval * 1e3
+          : undefined}
+        infinite
+      />
     </div>
   );
 }
