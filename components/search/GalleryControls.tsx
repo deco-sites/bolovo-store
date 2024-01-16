@@ -40,7 +40,7 @@ function GalleryControls(
         onClose={() => open.value = false}
         aside={
           <>
-            <div class="bg-base-100 flex flex-col h-full divide-y overflow-y-hidden">
+            <div class="bg-base-100 flex flex-col h-full divide-y overflow-y-visible">
               <div class="flex justify-between items-center">
                 <h1 class="px-4 py-3">
                   <span class="font-medium text-2xl">Filtrar</span>
@@ -59,12 +59,11 @@ function GalleryControls(
           </>
         }
       >
-        <div className="flex mb-5
-         flex-col lg:flex-row justify-between lg:w-[calc(100vw-45px)]">
-          <div className="flex px-2 mb-[10px] lg:mb-0 lg:px-0 max-w-[100vw] justify-start items-start overflow-x-auto shadow-[0_5px_12px_0_rgba(220,220,220,0.25)] lg:shadow-none">
-          <div className="absolute inset-y-0 right-0 w-[15%] lg:w-1/4 bg-gradient-to-r from-transparent to-white via-white pointer-events-none"></div>
+        <div className="flex mb-5 flex-col lg:flex-row justify-between lg:w-[calc(100vw-45px)]">
+          <div className="flex relative px-2 mb-[10px] lg:mb-0 lg:px-0 max-w-[100vw] justify-start items-start overflow-x-auto overflow-y-visible shadow-[0_5px_12px_0_rgba(220,220,220,0.25)] lg:shadow-none">
+            <div className="absolute inset-y-0 right-0 w-[15%] lg:w-[3%] bg-gradient-to-r from-transparent via-white to-white pointer-events-none"></div>
             {list && (  
-              <Slider class="py-[17.5px] carousel carousel-start gap-4 lg:gap-7 row-start-2 row-end-5">
+              <Slider class="py-[17.5px] carousel carousel-start gap-4 lg:gap-7 row-start-2 row-end-5 overflow-x-scroll">
                 {list?.map(({ label, href }, index) => (
                   <Slider.Item
                     index={index}

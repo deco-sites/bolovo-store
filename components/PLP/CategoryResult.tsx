@@ -132,7 +132,5 @@ export const loader = (props: Props, req: Request) => {
 
   const lastSegment = segments[segments.length - 1];
 
-  console.log(lastSegment);
-
   return { ...props, currentCategory: lastSegment || "" };
 };
