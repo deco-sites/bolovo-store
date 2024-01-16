@@ -6,6 +6,8 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
+import NotFound from "./NotFound.tsx";
+import type { PropsNotFound } from "./NotFound.tsx"
 import type { SectionProps } from "deco/types.ts";
 
 export interface Layout {
@@ -25,14 +27,7 @@ export interface Props {
   layout?: Layout;
   textSearch?: string;
   cardLayout?: CardLayout;
-}
-
-function NotFound() {
-  return (
-    <div class="w-full flex justify-center items-center py-10">
-      <span>Not Found!</span>
-    </div>
-  );
+  notFound: PropsNotFound;
 }
 
 function Result({
@@ -111,11 +106,12 @@ function Result({
   );
 }
 
-function SearchResult(
-  { page, ...props }: SectionProps<ReturnType<typeof loader>>,
-) {
-  if (!page) {
-    return <NotFound />;
+function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
+
+  const { page, notFound, searchTerm } = props;
+
+  if (!page || page?.products.length === 0) {
+    return <NotFound props={notFound} searchedLabel={searchTerm} />;
   }
 
   return <Result {...props} page={page} />;
