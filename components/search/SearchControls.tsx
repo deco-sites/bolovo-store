@@ -43,7 +43,7 @@ function SearchControls(
       }
     >
       <div class="md:hidden flex flex-col">
-        <div class="flex flex-row items-center px-[15px] justify-start  leading-4 text-[13px] font-normal h-[60px] shadow-[0_5px_12px_0_rgba(220,220,220,0.25)]">
+        <div class="flex flex-row items-center px-[15px] justify-start leading-4 text-[13px] font-normal h-[60px] shadow-[0_5px_12px_0_rgba(220,220,220,0.25)]">
           {searchTerm && (
             <div>
               {textSearch}{" "}
