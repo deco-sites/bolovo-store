@@ -1,7 +1,7 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 import SearchedWord from "$store/components/ui/SearchedWord.tsx";
-import { Picture, Source } from "https://denopkg.com/deco-cx/apps@0.25.13/website/components/Picture.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
 import ProductShelf from "$store/components/product/ProductShelf.tsx";
 import type { Props } from "$store/components/product/ProductShelf.tsx"
 
