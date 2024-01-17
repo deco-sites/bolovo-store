@@ -6,37 +6,50 @@ export interface Props {
   buttonId: string;
 }
 
-function buildParams(rootElement: HTMLElement) {
+function buildParams() {
   const url = new URL(window.location.href);
   const existingParams = new URLSearchParams(url.search);
+  const keysToRemove = [];
+  const qValue = existingParams.get('q');
+  if (qValue) {
+    existingParams.set('q', qValue);
+  }
 
-  for (const [key, value] of url.searchParams.entries()) {
+  for (const [key, value] of existingParams.entries()) {
     if (
+      key !== 'q' &&
       !selectedFilters.peek().some((filter) =>
-        filter.label == value && `type_tags[${filter.type}][]` == key
+        filter.label === value && `type_tags[${filter.type}][]` === key
       )
     ) {
-      url.searchParams.delete(key);
+      keysToRemove.push(key);
     }
   }
 
-  url.search = existingParams.toString();
-  selectedFilters.value.forEach(({ type, label }) => {
-    const selectLabel = type != "property2" ? label.toLowerCase() : label;
-    if (url.searchParams.has(`type_tags[${type}][]`, selectLabel)) return;
-
-    url.searchParams.append(`type_tags[${type}][]`, selectLabel);
+  keysToRemove.forEach((key) => {
+    existingParams.delete(key);
   });
 
-  return url.href;
+  selectedFilters.peek().forEach(({ type, label }) => {
+    const selectLabel = type !== "property2" ? label.toLowerCase() : label;
+    if (existingParams.has(`type_tags[${type}][]`, selectLabel)) return;
+
+    existingParams.append(`type_tags[${type}][]`, selectLabel);
+  });
+
+  url.search = existingParams.toString();
+
+  if (window.location.href !== url.href) {
+    return url.href;
+  }
 }
 
-function setup({ rootId, buttonId }: Props) {
-  const root = document.getElementById(rootId);
+
+function setup({ buttonId }: Props) {
   const applyButton = document.getElementById(buttonId);
 
   applyButton?.addEventListener("click", () => {
-    const url = buildParams(root!);
+    const url = buildParams();
     if (url) {
       applyButton.querySelector("span")?.classList.add("loading");
       window.location.href = url;
@@ -44,7 +57,7 @@ function setup({ rootId, buttonId }: Props) {
   });
 }
 
-function ApplyRangeFilters({ rootId, buttonId }: Props) {
+function ApplyFilters({ rootId, buttonId }: Props) {
   useEffect(() => {
     setup({ rootId, buttonId });
   }, [rootId, buttonId]);
@@ -52,4 +65,4 @@ function ApplyRangeFilters({ rootId, buttonId }: Props) {
   return <div data-apply-range-filters-controller-js />;
 }
 
-export default ApplyRangeFilters;
+export default ApplyFilters;
