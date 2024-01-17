@@ -1,15 +1,13 @@
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import PDPGallerySlider from "../../components/product/Gallery/PDPImageSlider.tsx";
-import type { PDPImageProps } from "../../components/product/Gallery/PDPImageSlider.tsx";
 import PDPProductInfo from "../../components/product/PDPProductInfo.tsx";
 export interface Props {
     /** @title Integration */
     page: ProductDetailsPage | null;
-    pdpImage: PDPImageProps;
     reloadInSelector?: boolean;
 }
 
-export default function PageOfProduct({ page, pdpImage, reloadInSelector = false }: Props) {
+export default function PageOfProduct({ page, reloadInSelector = false }: Props) {
 
     if (page === null) {
         throw new Error("Missing Product Details Page Info");
@@ -18,7 +16,7 @@ export default function PageOfProduct({ page, pdpImage, reloadInSelector = false
     return (
         <div class=" pt-0 lg:py-11 lg:px-[8%] flex justify-center flex-col lg:flex-row md:gap-12 lg:gap-[6%] py-11 ">
             <div class="w-full lg:w-3/5">
-                <PDPGallerySlider layoutImage={pdpImage} page={page} />
+                <PDPGallerySlider page={page} />
             </div>
             <div class="w-full lg:w-2/5 lg:max-w-[400px]">
                 <PDPProductInfo page={page} reloadInSelector={reloadInSelector} />

@@ -1,17 +1,11 @@
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
-
-export interface PDPImageProps {
-  layoutImage: {
-    width: number;
-    height: number;
-  };
-}
 
 /**
  * @title Product Image Slider
@@ -19,7 +13,7 @@ export interface PDPImageProps {
  * On mobile, there's one single column with 3 rows. Note that the orders are different from desktop to mobile, that's why
  * we rearrange each cell with col-start- directives
  */
-export default function PDPGallerySlider({ layoutImage, page }: { layoutImage: PDPImageProps, page: ProductDetailsPage | null; }) {
+export default function PDPGallerySlider({ page }: { page: ProductDetailsPage | null; }) {
   const id = useId();
 
   if (page === null) {
@@ -27,9 +21,6 @@ export default function PDPGallerySlider({ layoutImage, page }: { layoutImage: P
   }
 
   const { product: { image: images = [] } } = page
-  const { layoutImage: { width, height } } = layoutImage
-
-  const aspectRatio = `${width} / ${height}`;
 
   return (
     <div id={id} class="flex flex-col lg:flex-row h-full w-full relative lg:sizeImage">
@@ -44,18 +35,44 @@ export default function PDPGallerySlider({ layoutImage, page }: { layoutImage: P
               index={index}
               class="carousel-item w-full h-full"
             >
-              <Image
-                class="w-full object-cover"
-                sizes="(max-width: 640px) 100vw, 40vw"
-                style={{ aspectRatio }}
-                src={img.url!}
-                alt={img.alternateName}
-                width={width}
-                height={height}
-                // Preload LCP image for better web vitals
-                preload={index === 0}
-                loading={index === 0 ? "eager" : "lazy"}
-              />
+              <Picture class ="w-full h-full">
+                <Source
+                  media="(max-width: 640px)"
+                  fetchPriority={"high"}
+                  src={img.url!}
+                  width={400}
+                  height={400}
+                />
+                <Source
+                  media="(min-width: 641px) and (max-width: 1023px)"
+                  fetchPriority={"high"}
+                  src={img.url!}
+                  width={641}
+                  height={641}
+                />
+                <Source
+                  media="(min-width: 1023px) and (max-width: 1499px)"
+                  fetchPriority={"high"}
+                  src={img.url!}
+                  width={436}
+                  height={482}
+                />
+                <Source
+                  media="(min-width: 1500px)"
+                  fetchPriority={"high"}
+                  src={img.url!}
+                  width={681}
+                  height={708}
+                />
+                <img
+                  class="w-full h-full object-cover "
+                  loading="eager"
+                  width={370}
+                  height={400}
+                  src={img.url!}
+                  alt={img.alternateName}
+                />
+              </Picture>
             </Slider.Item>
           ))}
         </Slider>
