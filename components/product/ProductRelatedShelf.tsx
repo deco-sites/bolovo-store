@@ -27,23 +27,14 @@ export interface Props {
 }
 
 export const loader = async (props: Props, req: Request, ctx: AppContext) => {
-  console.log("Props.RelatedProducts: " + props.relatedProducts)
-  const [productWithAdditionalProperty] = await ctx.get({
-    "__resolveType": "vnda/loaders/productList.ts",
-    "tags": [],
-    count: 1,
-    "ids": [props.relatedProducts?.product.inProductGroupWithID],
-  }) as unknown as Product[];
 
-  console.log("Props.RelatedProducts?.product.inProductGroupWithID: " + props.relatedProducts?.product.inProductGroupWithID)
+  const additionalProperties = props.relatedProducts?.product.additionalProperty;
 
-  const tag = productWithAdditionalProperty?.additionalProperty?.find(({ name }) => {
-    try {
-      return name?.includes("relacionados");
-    } catch (error) {
-      return false;
-    }
-  });
+  const categoryProperty = additionalProperties?.find(property => property.name === "categoria");
+
+  const category = categoryProperty?.value;
+
+  const tag = `relacionados-${category?.toLowerCase()}`;
 
   if (!tag) {
     const allTagData = await ctx.get({
@@ -59,7 +50,7 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
 
   const data = await ctx.get({
     "__resolveType": "vnda/loaders/productList.ts",
-    "tags": tag.name,
+    "tags": tag,
   });
 
   return {
