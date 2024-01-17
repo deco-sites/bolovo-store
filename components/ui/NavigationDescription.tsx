@@ -24,33 +24,6 @@ export default function NavigationDescription({ descriptionProps, tabIndex }: Pr
                         <Icon id="ArrowDown" size={11} class={` ${itemVisible.value == index ? 'flex' : 'hidden'}`} />
                     </li>
                 ))}
-                {/* {descriptionTechnique && (
-                    <li
-                        class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px] cursor-pointer"
-                        onClick={() => (itemVisible.value = 1)}
-                    >
-                        <span>COMPOSIÇÃO</span>
-                        <Icon id="ArrowDown" size={11} class={` ${itemVisible.value == 1 ? 'flex' : 'hidden'}`} />
-                    </li>
-                )}
-                {guide && (
-                    <li
-                        class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px] cursor-pointer"
-                        onClick={() => (itemVisible.value = 2)}
-                    >
-                        <span>MEDIDAS</span>
-                        <Icon id="ArrowDown" size={11} class={` ${itemVisible.value == 2 ? 'flex' : 'hidden'}`} />
-                    </li>
-                )}
-                {instructions && (
-                    <li
-                        class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px] cursor-pointer"
-                        onClick={() => (itemVisible.value = 3)}
-                    >
-                        <span>LAVAGEM</span>
-                        <Icon id="ArrowDown" size={11} class={` ${itemVisible.value == 3 ? 'flex' : 'hidden'}`} />
-                    </li>
-                )} */}
             </ul>
             <ul class="w-full flex flex-row ">
                 {descriptionTabs && descriptionTabs.map((description, index) => (
@@ -58,22 +31,6 @@ export default function NavigationDescription({ descriptionProps, tabIndex }: Pr
                         <RenderMarkdown description={description.content} type={description.type} />
                     </li>
                 ))}
-
-                {/* {descriptionTechnique && (
-                    <li class={` ${itemVisible.value == 1 ? 'flex' : 'hidden'} text-xs `} style={{ fontSize: '12px' }}>
-                        <RenderMarkdown description={descriptionTechnique.content} />
-                    </li>
-                )}
-                {guide && (
-                    <li class={` ${itemVisible.value == 2 ? 'flex' : 'hidden'} text-xs `} style={{ fontSize: '12px' }}>
-                        <RenderMarkdown description={guide.content} type={"table"} />
-                    </li>
-                )}
-                {instructions && (
-                    <li class={` ${itemVisible.value == 3 ? 'flex' : 'hidden'} text-xs `} style={{ fontSize: '12px' }}>
-                        <RenderMarkdown description={instructions.content} />
-                    </li>
-                )} */}
             </ul>
         </div>
     );
