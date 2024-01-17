@@ -32,10 +32,7 @@ export default function PDPGallerySlider({ layoutImage, page }: { layoutImage: P
   const aspectRatio = `${width} / ${height}`;
 
   return (
-    <div id={id} class="flex flex-col lg:flex-row h-full w-full relative "
-      style={{ maxHeight: "calc(100vw * 16 / 34)" }}
-
-    >
+    <div id={id} class="flex flex-col lg:flex-row h-full w-full relative lg:sizeImage">
       {/* Image Slider */}
       <div class="relative order-1 sm:order-2 h-full w-full"
 
@@ -65,21 +62,8 @@ export default function PDPGallerySlider({ layoutImage, page }: { layoutImage: P
 
       </div>
 
-      {/* Dots*/}
-      <ul class={`grid grid-cols-${images.length} lg:grid-cols-1 lg:grid-rows-${images.length} carousel carousel-center order-2 lg:order-1 w-[90%] ml-[5%] lg:ml-0 lg:mr-[10%] lg:w-[1px] absolute lg:relative top-[95%] lg:top-0 flex-row lg:flex-col z-10 bg-[#D0D0D0] h-[2px] lg:h-[90%]`}
-      >
-        {images.map((__, index) => (
-          <li class={`carousel-item h-full`}
-          >
-            <Slider.Dot index={index} customClass={"w-full h-full"}>
-              <div
-                class="opacity-0 group-disabled:bg-black group-disabled:opacity-100 ease-out duration-700 w-full h-full"
-              ></div>
-            </Slider.Dot>
-          </li>
-        ))}
-      </ul>
-
+      {/* Progress*/}
+      <Slider.Progress />
       <SliderJS rootId={id} />
     </div >
   );
