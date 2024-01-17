@@ -35,38 +35,38 @@ export default function PDPGallerySlider({ page }: { page: ProductDetailsPage | 
               index={index}
               class="carousel-item w-full h-full"
             >
-              <Picture class ="w-full h-full">
+              <Picture class="w-full h-full" preload={index === 0}>
                 <Source
                   media="(max-width: 640px)"
-                  fetchPriority={"high"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                   src={img.url!}
-                  width={400}
-                  height={400}
+                  width={320}
+                  height={320}
                 />
                 <Source
                   media="(min-width: 641px) and (max-width: 1023px)"
-                  fetchPriority={"high"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                   src={img.url!}
                   width={641}
                   height={641}
                 />
                 <Source
                   media="(min-width: 1023px) and (max-width: 1499px)"
-                  fetchPriority={"high"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                   src={img.url!}
                   width={436}
                   height={482}
                 />
                 <Source
                   media="(min-width: 1500px)"
-                  fetchPriority={"high"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                   src={img.url!}
                   width={681}
                   height={708}
                 />
                 <img
                   class="w-full h-full object-cover "
-                  loading="eager"
+                  loading={index === 0 ? "eager" : "lazy"}
                   width={370}
                   height={400}
                   src={img.url!}
