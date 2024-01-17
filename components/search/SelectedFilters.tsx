@@ -3,6 +3,7 @@ import type { Filter } from "apps/commerce/types.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import { signal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
 export interface Props {
   filters: Filter[];
@@ -39,16 +40,17 @@ function SelectedFilters({ filters, class: _class = "" }: Props) {
       {selectedFilters.value.map((item) => (
         <li class="border border-black rounded-[20px] items-center">
           <div class="flex flex-row">
-            <span class="items-center pl-3 mt-[2px] mr-[5px]">
+            <span class="items-center pl-3 mt-[2px] mr-[5px] capitalize">
               {item.label}
             </span>
             <button
+              id="remove-filter"
               class="ml-[5px] bg-black rounded-full block p-[7px]"
               key={item.label}
               onClick={() => {
                 selectedFilters.value = selectedFilters.peek().filter((
                   filter,
-                ) => filter.label !== item.label);
+                ) => filter.label != item.label);
               }}
             >
               <Icon

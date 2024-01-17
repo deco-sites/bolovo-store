@@ -7,7 +7,7 @@ import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import SelectedFilters from "$store/islands/SelectedFilters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
-import ApplyFiltersJS from "deco-sites/bolovo-store/islands/ApplyFiltersJS.tsx";
+import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -36,7 +36,7 @@ function SearchControls(
       onClose={() => open.value = false}
       aside={
         <>
-          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[408px]">
+          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[408px] w-full">
             <div class="flex flex-row w-full justify-end items-center">
               <span class="font-medium text-sm leading-[18px]">
                 Fechar
