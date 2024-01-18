@@ -8,6 +8,7 @@ import type { ProductListingPage } from "apps/commerce/types.ts";
 import SelectedFilters from "$store/islands/SelectedFilters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
+import type {Color, FilterName} from "$store/components/search/SearchResult.tsx"
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -16,10 +17,19 @@ export type Props =
     textSearch?: string;
     searchTerm?: string;
     url: string;
+    filterColors?: Color[]
+    filtersNames?: FilterName[]
+    textFilters?: string
+    appliedFiltersText?:string
+    applyFiltersText?: string
+    removeFiltersText?: string
   };
 
 function SearchControls(
-  { filters, sortOptions, textSearch, searchTerm, url, breadcrumb }: Props,
+  { filters, sortOptions, textSearch, searchTerm, url, breadcrumb, filterColors, filtersNames, textFilters,
+    appliedFiltersText,
+    applyFiltersText,
+    removeFiltersText, }: Props,
 ) {
   const open = useSignal(false);
   const removeFilters = () => {
@@ -54,9 +64,9 @@ function SearchControls(
               </Button>
             </div>
             <div class="flex flex-row justify-between pl-[21px] pr-[15px] text-[15px] mt-5">
-              <span class="font-semibold uppercase">FILTROS</span>
+              <span class="font-semibold uppercase">{textFilters}</span>
               <span class="font-normal uppercase">
-                {selectedFilters.value.length} APLICADOS
+                {selectedFilters.value.length}{" "}{appliedFiltersText}
               </span>
             </div>
             <div>
@@ -64,16 +74,14 @@ function SearchControls(
             </div>
             <div class="border-b pb-[25px] border-opacity-30 border-[#121212] mr-[15px] ml-[21px]" />
             <div class="flex-grow overflow-auto">
-              <Filters filters={filters} />
+              <Filters filters={filters} filterColors={filterColors} filterNames={filtersNames} />
               <div class="w-full pl-[21px] pr-[15px] mt-14">
                 <div class="pb-2">
                   <Button
-                    // onClick={() =>
-                    //   selectedFilters.value.length < 1 ? removeFilters() : null}
                     class="btn btn-active btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black text-[15px] font-normal"
                     id="apply-filters"
                   >
-                    APLICAR FILTROS
+                    {applyFiltersText}
                   </Button>
                   <ApplyFiltersJS
                     rootId="apply-filters"
@@ -90,7 +98,7 @@ function SearchControls(
                         onClick={() => removeFilters()}
                         class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white text-[15px] font-normal"
                       >
-                        REMOVER TODOS OS FILTROS
+                        {removeFiltersText}
                       </Button>
                     </a>
                   </div>

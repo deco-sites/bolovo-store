@@ -4,21 +4,15 @@ import { ComponentChildren } from "preact";
 
 export default function ValueItem({
   url,
-  selected,
   label,
   type,
   children,
-  hideCheckbox,
-  withBorder,
   class: _class,
 }: Omit<FilterToggleValueWithHex, "label"> & {
   label: string;
   type: string;
-  hideCheckbox?: boolean;
-  withBorder?: boolean;
   children?: ComponentChildren;
   class?: string;
-  hasSelected?: boolean;
 }) {
   const isSelected = selectedFilters.value.some((value) =>
     label === value.label
@@ -63,7 +57,7 @@ export default function ValueItem({
           >
             <div class="flex items-center">
               <span
-                class={`${
+                class={`${ label === "cor" && isSelected ? "border border-black":
                   isSelected ? "bg-black rounded-[20px] text-white px-3" : ""
                 }  flex items-center gap-2.5 font-normal uppercase`}
               >

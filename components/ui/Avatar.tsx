@@ -2,6 +2,7 @@
  * This component renders the filter and selectors for skus.
  * TODO: Figure out a better name for this component.
  */
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
 const colors: Record<string, string> = {
   "azul-clara": "bg-[#87CEFA] ring-[#87CEFA]",
@@ -24,6 +25,8 @@ const colors: Record<string, string> = {
 interface Props {
   variant?: "active" | "disabled" | "default" | "size" | "color";
   content: string;
+  colorHex?: string
+  filterImage?: ImageWidget
 }
 
 const variants = {
@@ -35,23 +38,15 @@ const variants = {
   color: "bg-blue-400",
 };
 
-function Avatar({ content, variant = "default" }: Props) {
+function Avatar({ content, variant = "default",  colorHex, filterImage}: Props) {
   if (variant == "color") {
     return (
-      <div class="avatar placeholder border border-black">
-        <div
-          class={`w-[29px] h-[30px] ${colors[content] ?? colors[variant]}`}
-        />
-      </div>
-    );
-  }
-
-  if (variant == "size") {
-    return (
       <div class="avatar placeholder">
-        <span class="uppercase text-[15px] text-[#121212] leading-8">
-          {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
-        </span>
+        {filterImage ? <img src={filterImage} class="w-[29px] h-[30px]" /> :  
+         <div
+        style={{backgroundColor: colorHex}}
+          class={`w-[29px] h-[30px] ${colorHex ? "" : colors[content] ?? colors[variant]}`}
+        />}
       </div>
     );
   }
