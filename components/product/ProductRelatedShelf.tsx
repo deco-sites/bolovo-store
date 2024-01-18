@@ -1,6 +1,6 @@
 import { AppContext } from "apps/vnda/mod.ts";
 import type { Product, ProductDetailsPage } from "apps/commerce/types.ts";
-import ProductShelf from "$store/components/product/ProductShelf.tsx"
+import ProductShelf from "$store/components/product/ProductShelf.tsx";
 
 export interface Props {
   title?: string;
@@ -8,18 +8,20 @@ export interface Props {
     headerAlignment?: "center" | "left";
     headerfontSize?: "Normal" | "Large";
   };
-  seeMore?: { 
-    text: string; 
-    link: string 
+  seeMore?: {
+    text: string;
+    link: string;
   };
   relatedProducts?: ProductDetailsPage | null;
 }
 
 export const loader = async (props: Props, req: Request, ctx: AppContext) => {
+  const additionalProperties = props.relatedProducts?.product
+    .additionalProperty;
 
-  const additionalProperties = props.relatedProducts?.product.additionalProperty;
-
-  const categoryProperty = additionalProperties?.find(property => property.name === "categoria");
+  const categoryProperty = additionalProperties?.find((property) =>
+    property.name === "categoria"
+  );
 
   const category = categoryProperty?.value;
 
@@ -49,21 +51,20 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
 };
 
 function ProductRelatedShelf({
-  relatedProductsList, 
+  relatedProductsList,
   title,
   layout,
-  seeMore
-}: Props & 
-{relatedProductsList: Product[]}) 
-{
-
+  seeMore,
+}:
+  & Props
+  & { relatedProductsList: Product[] }) {
   return (
     <ProductShelf
-        products={relatedProductsList}
-        title={title}
-        layout={layout}
-        seeMore={seeMore}
-      />
+      products={relatedProductsList}
+      title={title}
+      layout={layout}
+      seeMore={seeMore}
+    />
   );
 }
 
