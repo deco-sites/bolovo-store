@@ -3,7 +3,6 @@ import type { Filter } from "apps/commerce/types.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import { signal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
-import { IS_BROWSER } from "$fresh/runtime.ts";
 
 export interface Props {
   filters: Filter[];

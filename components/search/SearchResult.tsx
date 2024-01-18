@@ -7,6 +7,7 @@ import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import type { SectionProps } from "deco/types.ts";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Layout {
   /**
@@ -19,16 +20,32 @@ export interface Layout {
   columns?: Columns;
 }
 
+export interface FilterName {
+    /**
+   * @title Filter name
+   */
+    filter: string;
+     /**
+   * @title New filter name
+   */
+   label: string;
+
+}
+
 export interface Color {
   /**
-   * @title Nome
+   * @title Color name
    */
   label: string;
   /**
-   * @title Cor
+   * @title Color
    * @format color
    */
-  hex: string;
+  hex?: string;
+   /**
+   * @title Image
+   */
+  src?: ImageWidget
 }
 
 export interface Props {
@@ -36,9 +53,13 @@ export interface Props {
   page: ProductListingPage | null;
   layout?: Layout;
   textSearch?: string;
-  cardLayout?: CardLayout;
-  /** @title Cores do Filtro */
   filterColors?: Color[];
+  filtersNames?: FilterName[];
+  cardLayout?: CardLayout;  
+  textFilters?: string
+  appliedFiltersText?:string
+  applyFiltersText?: string
+  removeFiltersText?: string
 }
 
 function NotFound() {
@@ -53,8 +74,14 @@ function Result({
   page,
   layout,
   cardLayout,
+  filterColors,
+  filtersNames,
   textSearch,
   searchTerm,
+  textFilters,
+  appliedFiltersText,
+  applyFiltersText,
+  removeFiltersText,
   url
 }: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, url: string }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
@@ -67,6 +94,12 @@ function Result({
         searchTerm={searchTerm}
         textSearch={textSearch}
         sortOptions={sortOptions}
+        filtersNames={filtersNames}
+        filterColors={filterColors}
+        textFilters={textFilters}
+        appliedFiltersText={appliedFiltersText}
+        applyFiltersText={applyFiltersText}
+        removeFiltersText={removeFiltersText}
         filters={filters}
         url={url}
         breadcrumb={breadcrumb}
