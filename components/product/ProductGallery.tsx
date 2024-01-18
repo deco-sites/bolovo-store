@@ -120,6 +120,7 @@ function ProductGallery({ products, layout, offset, photoOnPLP, page }: Props) {
   const linePhotoOnPLPMobile = ORDER[photoOnPLP && photoOnPLP.line === 1 ? 0 : ((photoOnPLP?.line ?? 0) - 1) * (layout?.columns?.mobile ?? 2) - 1]
   const linePhotoOnPLPDesktop = ORDER_DESKTOP[photoOnPLP && photoOnPLP.line === 1 ? 0 : ((photoOnPLP?.line ?? 0) - 1) * (layout?.columns?.desktop ?? 4) - 1]
 
+
   return (
     <ul class={`grid ${mobile} gap-2 items-center ${desktop} lg:px-[17px] lg:gap-[15px] col`}>
       {products?.map((product, index) => (
@@ -134,7 +135,19 @@ function ProductGallery({ products, layout, offset, photoOnPLP, page }: Props) {
           />
         </li>
       ))}
-      {photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page && <PhotoOnPLP section={photoOnPLP} customClass={`${mobilePhotoOnPLP} ${desktopPhotoOnPLP} ${linePhotoOnPLPMobile} ${linePhotoOnPLPDesktop}`} customClassProducts={mobile} />}
+      {photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page && 
+      <PhotoOnPLP 
+      variant={photoOnPLP.imageAndProducts.variant}
+      src={photoOnPLP.imageAndProducts.src}
+      alt={photoOnPLP.imageAndProducts.alt}
+      href={photoOnPLP.imageAndProducts.href}
+      contentDirection={photoOnPLP.imageAndProducts.contentDirection}
+      products={photoOnPLP.imageAndProducts.products}
+      activeText={photoOnPLP.imageAndProducts.activeText}
+      title={photoOnPLP.imageAndProducts.title}
+      paragraph={photoOnPLP.imageAndProducts.paragraph}
+      customClass={`${mobilePhotoOnPLP} ${desktopPhotoOnPLP} ${linePhotoOnPLPMobile} ${linePhotoOnPLPDesktop}`} 
+      customClassProducts={mobile} />}
     </ul>
   );
 }
