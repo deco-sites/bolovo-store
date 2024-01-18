@@ -1,6 +1,6 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
-import PhotoOnPLP from "../../components/search/PhotosOnPLP.tsx";
+import PhotoAndProducts from "../../components/search/PhotoAndProducts.tsx";
 
 export interface Props {
     title: string;
@@ -32,7 +32,7 @@ export default function FeaturedGallery({ product, featuredPhoto, contentDirecti
             <h2 class=" text-base text-left uppercase font-bold">
                 {title}
             </h2>
-            <PhotoOnPLP
+            <PhotoAndProducts
                 src={featuredPhoto.src}
                 alt={featuredPhoto.alt}
                 href={featuredPhoto.href}

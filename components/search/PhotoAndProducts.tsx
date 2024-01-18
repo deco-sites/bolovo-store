@@ -2,8 +2,6 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import ProductCard from "../../components/product/ProductCard.tsx";
-import type { ProductListingPage } from "apps/commerce/types.ts";
-import type { SectionProps } from "deco/types.ts";
 
 export interface ImageAndProducts {
     variant: "1x1" | "2x2" | "2x1";
@@ -59,7 +57,7 @@ const VARIANT_IMAGE_HEIGHT = {
 }
 
 
-export default function PhotoOnPLP({ variant = "2x2", activeText = false, title = "", paragraph = "", src, alt, href, contentDirection, products, customClass, customClassProducts }: {
+export default function PhotoAndProducts({ variant = "2x2", activeText = false, title = "", paragraph = "", src, alt, href, contentDirection, products, customClass, customClassProducts }: {
     variant?: "1x1" | "2x2" | "2x1";
     src: ImageWidget;
     alt: string;

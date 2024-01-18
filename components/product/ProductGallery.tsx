@@ -3,7 +3,7 @@ import ProductCard, {
 } from "$store/components/product/ProductCard.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product } from "apps/commerce/types.ts";
-import PhotoOnPLP, { Section } from "$store/components/search/PhotosOnPLP.tsx"
+import PhotoAndProducts, { Section } from "$store/components/search/PhotoAndProducts.tsx"
 import type { ProductListingPage } from "apps/commerce/types.ts";
 
 
@@ -136,7 +136,7 @@ function ProductGallery({ products, layout, offset, photoOnPLP, page }: Props) {
         </li>
       ))}
       {photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page && 
-      <PhotoOnPLP 
+      <PhotoAndProducts 
       variant={photoOnPLP.imageAndProducts.variant}
       src={photoOnPLP.imageAndProducts.src}
       alt={photoOnPLP.imageAndProducts.alt}
