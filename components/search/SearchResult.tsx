@@ -9,7 +9,7 @@ import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx"
 import type { SectionProps } from "deco/types.ts";
-import type { Section } from "$store/components/search/PhotosOnPLP.tsx"
+import type { Section } from "$store/components/search/PhotoAndProducts.tsx"
 
 export interface Layout {
   /**
