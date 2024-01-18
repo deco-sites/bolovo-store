@@ -9,6 +9,7 @@ import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx"
 import type { SectionProps } from "deco/types.ts";
+import type { Section } from "$store/components/search/PhotosOnPLP.tsx"
 
 export interface Layout {
   /**
@@ -28,6 +29,7 @@ export interface Props {
   textSearch?: string;
   cardLayout?: CardLayout;
   notFound: PropsNotFound;
+  photoOnPLP: Section[];
 }
 
 function Result({
@@ -35,11 +37,13 @@ function Result({
   layout,
   cardLayout,
   textSearch,
-  searchTerm
-}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string }) {
+  searchTerm,
+  section,
+}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
+
 
   return (
     <div>
@@ -57,6 +61,8 @@ function Result({
             products={products}
             offset={offset}
             layout={{ card: cardLayout, columns: layout?.columns }}
+            photoOnPLP={section}
+            page={page}
           />
         </div>
 
@@ -108,18 +114,26 @@ function Result({
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
 
-  const { page, notFound, searchTerm } = props;
+  const { page, notFound, searchTerm, section } = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
   }
 
-  return <Result {...props} page={page} />;
+  return <Result {...props} page={page} section={section} />;
 }
 
 export default SearchResult;
 
 export const loader = (props: Props, req: Request) => {
+
+  const { photoOnPLP } = { ...props }
+
+  const section = photoOnPLP.find(({ matcher }) =>
+    new URLPattern({ pathname: matcher }).test(req.url)
+  );
+
   const term = new URLSearchParams(new URL(req.url).search).get('q');
-  return { ...props, searchTerm: term ?? "" };
+
+  return { ...props, searchTerm: term ?? "", section };
 };
