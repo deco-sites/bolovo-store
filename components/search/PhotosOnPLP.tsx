@@ -2,6 +2,8 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import ProductCard from "../../components/product/ProductCard.tsx";
+import type { ProductListingPage } from "apps/commerce/types.ts";
+import type { SectionProps } from "deco/types.ts";
 
 
 interface Photo {
@@ -10,15 +12,20 @@ interface Photo {
     alt: string;
     href: string;
     /** @description When activating text, a gradient will be activated to improve highlighting in the text */
-    activeText: boolean;
+    activeText?: boolean;
     /** @format html */
     title?: string;
     /** @format html */
     paragraph?: string;
 }
 
-export interface Props {
-    urlPage: string;
+/**
+ * @titleBy matcher
+ */
+export interface Section {
+    matcher: string;
+    line: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25;
+    page: number;
     photo: Photo;
     /**
      * @title reversed order?
@@ -52,40 +59,41 @@ const VARIANT_IMAGE_HEIGHT = {
 }
 
 
-export default function PhotoOnPLP({ photo, contentDirection, products }: Props) {
+export default function PhotoOnPLP({ section, customClass, customClassProducts }: { section: Section, customClass: string, customClassProducts: string }) {
+
+    const { products, photo, contentDirection } = section
 
     if (!products || products.length === 0) {
         return null;
     }
 
     return (
-        <div class="flex flex-col gap-6 py-8 lg:px-4">
+        <div class={`flex flex-col gap-6 py-8 mx-[-15px] lg:mx-0 ${customClass}`}>
             <div class={`flex gap-5 lg:gap-[15px] w-full
                 ${MOBILE_DIRECTION[contentDirection?.mobile ?? "imagem acima"]
                 } ${DESKTOP_DIRECTION[contentDirection?.desktop ?? "imagem na direita"]} `}>
-                <a href={photo.href} class=" w-full lg:w-[53%] cursor-pointer">
-                    <div class="w-full relative">
-                        <Image src={photo.src} alt={photo.alt} width={VARIANT_IMAGE_WIDTH[photo.variant]} height={VARIANT_IMAGE_HEIGHT[photo.variant]} loading={"lazy"} class="w-full h-full lg:pb-1" />
-                        <div class="absolute left-0 top-0 w-full h-full p-4 flex flex-col justify-end items-start bg-gradient-to-t from-[#000000b3] to-transparent gap-3">
+                <a href={photo.href} class=" w-full lg:w-2/4 cursor-pointer">
+                    <div class="w-full h-full relative">
+                        <Image src={photo.src} alt={photo.alt} width={VARIANT_IMAGE_WIDTH[photo.variant]} height={VARIANT_IMAGE_HEIGHT[photo.variant]} loading={"lazy"} class="w-full h-full object-cover" />
+                        {photo.activeText && <div class="absolute left-0 top-0 w-full h-full p-4 flex flex-col justify-end items-start bg-gradient-to-t from-[#00000040] to-transparent gap-3">
                             {photo.title && <span class=" text-5xl font-medium font-eb-garamond" dangerouslySetInnerHTML={{ __html: photo.title }} ></span>}
                             {photo.paragraph && <span class=" text-sm " dangerouslySetInnerHTML={{ __html: photo.paragraph }} ></span>}
-                        </div>
+                        </div>}
                     </div>
                 </a>
-                <ul class="w-full lg:w-[47%] gap-2 gap-y-[45px] lg:gap-[15px] h-auto justify-between flex flex-row flex-wrap content-between">
+                <ul class={`w-full lg:w-2/4 gap-2 lg:gap-[15px] h-auto grid ${customClassProducts} lg:grid-cols-2 px-[15px] lg:px-0`}>
                     {
                         products.map((product) => (
-                            <li class="w-[calc(50%-0.25rem)] lg:w-[calc(50%-7.5px)]">
+                            <li class="w-full">
                                 <ProductCard
                                     product={product}
                                 />
                             </li>
                         ))
-
                     }
                 </ul>
 
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
