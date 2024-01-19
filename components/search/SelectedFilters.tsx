@@ -49,7 +49,7 @@ function SelectedFilters({ filters, class: _class = "" }: Props) {
               onClick={() => {
                 selectedFilters.value = selectedFilters.peek().filter((
                   filter,
-                ) => filter.label != item.label);
+                ) => filter.label !== item.label);
               }}
             >
               <Icon

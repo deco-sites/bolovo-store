@@ -7,7 +7,7 @@ import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
-import type { PropsNotFound } from "./NotFound.tsx"
+import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
@@ -31,38 +31,37 @@ export interface Props {
   notFound: PropsNotFound;
   filterColors?: Color[];
   filtersNames?: FilterName[];
-  textFilters?: string
-  appliedFiltersText?:string
-  applyFiltersText?: string
-  removeFiltersText?: string
+  textFilters?: string;
+  appliedFiltersText?: string;
+  applyFiltersText?: string;
+  removeFiltersText?: string;
 }
 
 export interface FilterName {
   /**
- * @title Filter name
- */
+   * @title Filter name
+   */
   filter: string;
-   /**
- * @title New filter name
- */
- label: string;
-
+  /**
+   * @title New filter name
+   */
+  label: string;
 }
 
 export interface Color {
-/**
- * @title Color name
- */
-label: string;
-/**
- * @title Color
- * @format color
- */
-hex?: string;
- /**
- * @title Image
- */
-src?: ImageWidget
+  /**
+   * @title Color name
+   */
+  label: string;
+  /**
+   * @title Color
+   * @format color
+   */
+  hex?: string;
+  /**
+   * @title Image
+   */
+  src?: ImageWidget;
 }
 
 function Result({
@@ -77,9 +76,12 @@ function Result({
   appliedFiltersText,
   applyFiltersText,
   removeFiltersText,
-  url
-
-}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, url: string}) {
+  url,
+}: Omit<Props, "page"> & {
+  page: ProductListingPage;
+  searchTerm: string;
+  url: string;
+}) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
@@ -157,7 +159,6 @@ function Result({
 }
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
-
   const { page, notFound, searchTerm } = props;
 
   if (!page || page?.products.length === 0) {
@@ -170,6 +171,6 @@ function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
 export default SearchResult;
 
 export const loader = (props: Props, req: Request) => {
-  const term = new URLSearchParams(new URL(req.url).search).get('q');
+  const term = new URLSearchParams(new URL(req.url).search).get("q");
   return { ...props, searchTerm: term ?? "", url: req.url };
 };

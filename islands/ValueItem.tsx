@@ -12,57 +12,72 @@ export default function ValueItem({
 }: Omit<FilterToggleValueWithHex, "label"> & {
   label: string;
   type: string;
-  colorHex?: string
-  filterImage?: ImageWidget
+  colorHex?: string;
+  filterImage?: ImageWidget;
   class?: string;
 }) {
-  const isSelected = selectedFilters.value.some((value) =>
-    label === value.label
+  const isSelected = selectedFilters.value.some(
+    (value) => label === value.label
   );
-  if(type === "cor"){
-    return <button
-    onClick={() => {
-      const selected = selectedFilters.peek();
-      const filters = selected.some((filter) => filter.label == label)
-        ? selected.filter((filter) => filter.label != label)
-        : selected.concat({
-          type,
-          url,
-          label,
-        });
-      selectedFilters.value = filters;
-    }}
-    class={_class}
-  >
-    <div >
-      {filterImage ? <img src={filterImage} class={`w-[29px] h-[30px] ${isSelected ? "border-[1.5px] border-black" : ""}`} /> :  
-        <div
-          style={{backgroundColor: colorHex}}
-          class={`w-[29px] h-[30px] ${isSelected ? "border-[1.5px] border-black" : ""}`}
-        />}
-    </div>
-  </button>
-  }else{
+  if (type === "cor") {
     return (
       <button
         onClick={() => {
-        const selected = selectedFilters.peek();
-        const filters = selected.some((filter) => filter.label == label)
-        ? selected.filter((filter) => filter.label != label)
-        : selected.concat({
-          type,
-          url,
-          label,
-        });
-        selectedFilters.value = filters}}
+          const selected = selectedFilters.peek();
+          const filters = selected.some((filter) => filter.label == label)
+            ? selected.filter((filter) => filter.label != label)
+            : selected.concat({
+                type,
+                url,
+                label,
+              });
+          selectedFilters.value = filters;
+        }}
         class={_class}
-        >
-          <div class="flex items-center">
-            <span
-              class={`${isSelected ? "bg-black rounded-[20px] text-white px-3" : ""}  flex items-center gap-2.5 font-normal uppercase`}
-            >
-              {label}
-            </span>
+      >
+        <div>
+          {filterImage ? (
+            <img
+              src={filterImage}
+              class={`w-[29px] h-[30px] ${
+                isSelected ? "border-[1.5px] border-black" : ""
+              }`}
+            />
+          ) : (
+            <div
+              style={{ backgroundColor: colorHex }}
+              class={`w-[29px] h-[30px] ${
+                isSelected ? "border-[1.5px] border-black" : ""
+              }`}
+            />
+          )}
+        </div>
+      </button>
+    );
+  } else {
+    return (
+      <button
+        onClick={() => {
+          const selected = selectedFilters.peek();
+          const filters = selected.some((filter) => filter.label == label)
+            ? selected.filter((filter) => filter.label != label)
+            : selected.concat({
+                type,
+                url,
+                label,
+              });
+          selectedFilters.value = filters;
+        }}
+        class={_class}
+      >
+        <div class="flex items-center">
+          <span
+            class={`${
+              isSelected ? "bg-black rounded-[20px] text-white px-3" : ""
+            }  flex items-center gap-2.5 font-normal uppercase`}
+          >
+            {label}
+          </span>
         </div>
       </button>
     );

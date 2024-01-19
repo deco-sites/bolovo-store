@@ -8,7 +8,10 @@ import type { ProductListingPage } from "apps/commerce/types.ts";
 import SelectedFilters from "$store/islands/SelectedFilters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
-import type {Color, FilterName} from "$store/components/search/SearchResult.tsx"
+import type {
+  Color,
+  FilterName,
+} from "$store/components/search/SearchResult.tsx";
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -17,19 +20,29 @@ export type Props =
     textSearch?: string;
     searchTerm?: string;
     url: string;
-    filterColors?: Color[]
-    filtersNames?: FilterName[]
-    textFilters?: string
-    appliedFiltersText?:string
-    applyFiltersText?: string
-    removeFiltersText?: string
+    filterColors?: Color[];
+    filtersNames?: FilterName[];
+    textFilters?: string;
+    appliedFiltersText?: string;
+    applyFiltersText?: string;
+    removeFiltersText?: string;
   };
 
 function SearchControls(
-  { filters, sortOptions, textSearch, searchTerm, url, breadcrumb, filterColors, filtersNames, textFilters,
+  {
+    filters,
+    sortOptions,
+    textSearch,
+    searchTerm,
+    url,
+    breadcrumb,
+    filterColors,
+    filtersNames,
+    textFilters,
     appliedFiltersText,
     applyFiltersText,
-    removeFiltersText, }: Props,
+    removeFiltersText,
+  }: Props,
 ) {
   const open = useSignal(false);
   const removeFilters = () => {
@@ -66,7 +79,7 @@ function SearchControls(
             <div class="flex flex-row justify-between pl-[21px] pr-[15px] text-[15px] mt-5">
               <span class="font-semibold uppercase">{textFilters}</span>
               <span class="font-normal uppercase">
-                {selectedFilters.value.length}{" "}{appliedFiltersText}
+                {selectedFilters.value.length} {appliedFiltersText}
               </span>
             </div>
             <div>
@@ -74,11 +87,15 @@ function SearchControls(
             </div>
             <div class="border-b pb-[25px] border-opacity-30 border-[#121212] mr-[15px] ml-[21px]" />
             <div class="flex-grow overflow-auto">
-              <Filters filters={filters} filterColors={filterColors ?? []} filterNames={filtersNames} />
+              <Filters
+                filters={filters}
+                filterColors={filterColors ?? []}
+                filterNames={filtersNames}
+              />
               <div class="w-full pl-[21px] pr-[15px] mt-14">
                 <div class="pb-2">
                   <Button
-                    class="btn btn-active btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black text-[15px] font-normal"
+                    class="btn btn-active btn-primary btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black text-[15px] font-normal"
                     id="apply-filters"
                   >
                     {applyFiltersText}
@@ -124,7 +141,7 @@ function SearchControls(
           {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
           {filters.length > 0 && (
             <Button
-              class="btn-ghost btn-xs text-[13px] px-2 py-[5px] px- font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
+              class="btn-ghost btn-xs text-[13px] px-2 py-[5px] font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
               onClick={() => {
                 open.value = true;
               }}
