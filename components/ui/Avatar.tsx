@@ -11,7 +11,7 @@ const colors: Record<string, string> = {
   "cinza-escura": "bg-[#A9A9A9] ring-[#A9A9A9]",
   "laranja": "bg-[#FFA500] ring-[#FFA500]",
   "marrom": "bg-[#A52A2A] ring-[#A52A2A]",
-  "preto": "bg-[#121212] ring-[#161616]",
+  "preta": "bg-[#161616] ring-[#161616]",
   "verde-clara": "bg-[#90EE90] ring-[#90EE90]",
   "vermelha": "bg-[#FF0000] ring-[#FF0000]",
 
@@ -19,37 +19,51 @@ const colors: Record<string, string> = {
   "active": "",
   "disabled": "bg-neutral-content text-neutral",
   "default": "bg-base-100 text-primary",
+  "activePdp": "text-white",
 };
 
 interface Props {
-  variant?: "active" | "disabled" | "default" | "size" | "color";
+  variant?: "active" | "disabled" | "default" | "activePdp";
   content: string;
 }
 
 const variants = {
   active: "font-semibold hover:border",
+  activePdp: "bg-black",
   disabled:
     `relative after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
-  default: "hover:border",
+  default: "hover:border ",
 };
 
-function Avatar({ content, variant = "default"}: Props) {
-
-  if (variant === "default") {
-    return (
-      <div class="avatar placeholder">
-        <div
-          class={`rounded-full w-8 h-8 ${colors[content] ?? colors[variant]} ${
-            variants[variant]
-          }`}
-        >
-          <span class="uppercase text-[15px] text-[#121212] leading-[130%]">
-            {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
-          </span>
-        </div>
+function Avatar({ content, variant = "default" }: Props) {
+  return (
+    <div class="avatar placeholder">
+      <div
+        class={`rounded-full w-8 h-8 ${colors[content] ?? colors[variant]} ${
+          variants[variant]
+        }`}
+      >
+        <span class="uppercase text-[14px] text-[#121212] leading-[130%]">
+          {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
+        </span>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
+export function AvatarPDP({ content, variant = "default" }: Props) {
+  return (
+    <div class="avatar placeholder">
+      <div
+        class={`rounded-full w-8 h-5 ${colors[content] ?? colors[variant]} ${variants[variant]
+          }`}
+          >
+        <span class="uppercase text-[14px] leading-[130%]">
+          {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
+        </span>
+      </div>
+    </div>
+  );
 }
 
 export default Avatar;
