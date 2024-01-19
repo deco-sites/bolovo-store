@@ -46,13 +46,13 @@ const DESKTOP_DIRECTION = {
 };
 
 const VARIANT_IMAGE_WIDTH = {
-    "1x1": 431,
+    "1x1": 280,
     "2x1": 431,
-    "2x2": 431,
+    "2x2": 400,
 }
 const VARIANT_IMAGE_HEIGHT = {
     "1x1": 350,
-    "2x1": 539,
+    "2x1": 292,
     "2x2": 540,
 }
 
@@ -97,7 +97,7 @@ export default function PhotoAndProducts({ variant = "2x2", activeText = false, 
     }
 
     return (
-        <div class={`flex flex-col gap-6 py-8 mx-[-15px] lg:mx-0 ${customClass}`}>
+        <div class={`flex flex-col gap-6 lg:mx-0 ${customClass}`}>
             <div class={`flex gap-5 lg:gap-[15px] w-full
                 ${MOBILE_DIRECTION[contentDirection?.mobile ?? "imagem acima"]
                 } ${DESKTOP_DIRECTION[contentDirection?.desktop ?? "imagem na direita"]} `}>
@@ -110,7 +110,7 @@ export default function PhotoAndProducts({ variant = "2x2", activeText = false, 
                         </div>}
                     </div>
                 </a>
-                <ul class={`w-full gap-2 lg:gap-[15px] h-auto grid ${customClassProducts} ${variant === "1x1" ? "lg:grid-cols-3" : "lg:grid-cols-2 "} px-[15px] lg:px-0 ${VARIANT_WIDTH_CONTAINER_PRODUCTS[variant]}`}>
+                <ul class={`w-full gap-2 lg:gap-[15px] h-auto grid ${customClassProducts} ${variant === "1x1" ? "lg:grid-cols-3" : "lg:grid-cols-2 "} lg:px-0 ${VARIANT_WIDTH_CONTAINER_PRODUCTS[variant]}`}>
                     {
                         products.map((product) => (
                             <li class="w-full">
