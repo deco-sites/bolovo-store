@@ -34,11 +34,11 @@ export default function ValueItem({
     }}
     class={_class}
   >
-    <div class={`${isSelected ? "border-[1.5px] border-black" : ""}`}>
-      {filterImage ? <img src={filterImage} class="w-[29px] h-[30px]" /> :  
+    <div >
+      {filterImage ? <img src={filterImage} class={`w-[29px] h-[30px] ${isSelected ? "border-[1.5px] border-black" : ""}`} /> :  
         <div
           style={{backgroundColor: colorHex}}
-          class={`w-[29px] h-[30px]`}
+          class={`w-[29px] h-[30px] ${isSelected ? "border-[1.5px] border-black" : ""}`}
         />}
     </div>
   </button>
