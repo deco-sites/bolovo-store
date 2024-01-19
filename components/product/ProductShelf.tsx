@@ -17,7 +17,10 @@ export interface Props {
     headerAlignment?: "center" | "left";
     headerfontSize?: "Normal" | "Large";
   };
-  seeMore?: { text: string; link: string };
+  seeMore?: { 
+    text: string; 
+    link: string 
+  };
   products: Product[] | null;
 }
 
@@ -35,8 +38,6 @@ function ProductShelf({
   if (!products || products.length === 0) {
     return null;
   }
-  
-  const aspectRatio = 1.254;
 
   return (
     <div class="w-full py-8 flex flex-col gap-5 px-[15px] mx-auto lg:gap-6 lg:py-10">
