@@ -47,13 +47,24 @@ const DESKTOP_DIRECTION = {
 
 const VARIANT_IMAGE_WIDTH = {
     "1x1": 431,
-    "2x1": 400,
-    "2x2": 400,
+    "2x1": 431,
+    "2x2": 431,
 }
 const VARIANT_IMAGE_HEIGHT = {
-    "1x1": 292,
-    "2x1": 540,
+    "1x1": 350,
+    "2x1": 539,
     "2x2": 540,
+}
+
+const VARIANT_WIDTH_CONTAINER_IMAGE = {
+    "1x1": "lg:w-[calc(25%-11px)]",
+    "2x1": "lg:w-2/4",
+    "2x2": "lg:w-2/4",
+}
+const VARIANT_WIDTH_CONTAINER_PRODUCTS = {
+    "1x1": "lg:w-[75%]",
+    "2x1": "lg:w-2/4",
+    "2x2": "lg:w-2/4",
 }
 
 
@@ -90,7 +101,7 @@ export default function PhotoAndProducts({ variant = "2x2", activeText = false, 
             <div class={`flex gap-5 lg:gap-[15px] w-full
                 ${MOBILE_DIRECTION[contentDirection?.mobile ?? "imagem acima"]
                 } ${DESKTOP_DIRECTION[contentDirection?.desktop ?? "imagem na direita"]} `}>
-                <a href={href} class=" w-full lg:w-2/4 cursor-pointer">
+                <a href={href} class={` w-full cursor-pointer ${VARIANT_WIDTH_CONTAINER_IMAGE[variant]}`}>
                     <div class="w-full h-full relative">
                         <Image src={src} alt={alt} width={VARIANT_IMAGE_WIDTH[variant]} height={VARIANT_IMAGE_HEIGHT[variant]} loading={"lazy"} class="w-full h-full object-cover" />
                         {activeText && <div class="absolute left-0 top-0 w-full h-full p-4 flex flex-col justify-end items-start bg-gradient-to-t from-[#00000040] to-transparent gap-3">
@@ -99,7 +110,7 @@ export default function PhotoAndProducts({ variant = "2x2", activeText = false, 
                         </div>}
                     </div>
                 </a>
-                <ul class={`w-full lg:w-2/4 gap-2 lg:gap-[15px] h-auto grid ${customClassProducts} lg:grid-cols-2 px-[15px] lg:px-0`}>
+                <ul class={`w-full gap-2 lg:gap-[15px] h-auto grid ${customClassProducts} ${variant === "1x1" ? "lg:grid-cols-3" : "lg:grid-cols-2 "} px-[15px] lg:px-0 ${VARIANT_WIDTH_CONTAINER_PRODUCTS[variant]}`}>
                     {
                         products.map((product) => (
                             <li class="w-full">

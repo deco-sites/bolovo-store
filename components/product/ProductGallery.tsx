@@ -122,7 +122,7 @@ function ProductGallery({ products, layout, offset, photoOnPLP, page }: Props) {
 
 
   return (
-    <ul class={`grid ${mobile} gap-2 items-center ${desktop} lg:px-[17px] lg:gap-[15px] col`}>
+    <ul class={`grid ${mobile} gap-2 items-center ${desktop} lg:px-[17px] lg:gap-[15px]`}>
       {products?.map((product, index) => (
         <li class={`h-full ${ORDER[index]}`}
         >
