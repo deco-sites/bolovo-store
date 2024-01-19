@@ -46,7 +46,7 @@ function SearchControls(
       onClose={() => open.value = false}
       aside={
         <>
-          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full">
+          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[408px] w-full">
             <div class="flex flex-row w-full justify-end items-center">
               <span class="font-medium text-sm leading-[18px]">
                 Fechar
