@@ -135,19 +135,19 @@ function ProductGallery({ products, layout, offset, photoOnPLP, page }: Props) {
           />
         </li>
       ))}
-      {photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page && 
-      <PhotoAndProducts 
-      variant={photoOnPLP.imageAndProducts.variant}
-      src={photoOnPLP.imageAndProducts.src}
-      alt={photoOnPLP.imageAndProducts.alt}
-      href={photoOnPLP.imageAndProducts.href}
-      contentDirection={photoOnPLP.imageAndProducts.contentDirection}
-      products={photoOnPLP.imageAndProducts.products}
-      activeText={photoOnPLP.imageAndProducts.activeText}
-      title={photoOnPLP.imageAndProducts.title}
-      paragraph={photoOnPLP.imageAndProducts.paragraph}
-      customClass={`${mobilePhotoOnPLP} ${desktopPhotoOnPLP} ${linePhotoOnPLPMobile} ${linePhotoOnPLPDesktop}`} 
-      customClassProducts={mobile} />}
+      {photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page &&
+        <PhotoAndProducts
+          variant={photoOnPLP.imageAndProducts.variant}
+          src={photoOnPLP.imageAndProducts.src}
+          alt={photoOnPLP.imageAndProducts.alt}
+          href={photoOnPLP.imageAndProducts.href}
+          contentDirection={photoOnPLP.imageAndProducts.contentDirection}
+          products={photoOnPLP.imageAndProducts.products}
+          activeText={photoOnPLP.imageAndProducts.activeText}
+          title={photoOnPLP.imageAndProducts.title}
+          paragraph={photoOnPLP.imageAndProducts.paragraph}
+          customClass={`${mobilePhotoOnPLP} ${desktopPhotoOnPLP} ${linePhotoOnPLPMobile} ${linePhotoOnPLPDesktop} mx-[-15px] py-8`}
+          customClassProducts={`${mobile} px-[15px]`} />}
     </ul>
   );
 }
