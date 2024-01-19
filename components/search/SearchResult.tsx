@@ -29,6 +29,9 @@ export interface Props {
   textSearch?: string;
   cardLayout?: CardLayout;
   notFound: PropsNotFound;
+  /**
+  * @title Highlights 
+  */
   photoOnPLP: Section[];
 }
 
