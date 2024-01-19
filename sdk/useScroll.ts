@@ -7,6 +7,6 @@ if (IS_BROWSER) {
   document.addEventListener("scroll", () => scroll.value = window.scrollY, {
     passive: true,
   });
-} 
+}
 
 export const useScroll = () => scroll;

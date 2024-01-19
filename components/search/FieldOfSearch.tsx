@@ -48,10 +48,15 @@ export default function FieldOfSearch(props: Props) {
       />
       <div
         class=" ease-in-out duration-300 relative overflow-hidden "
-        style={{ opacity: open ? "1" : "0", zIndex: open ? 1 : -2, width: open ? "250px" : "32px" }}>
+        style={{
+          opacity: open ? "1" : "0",
+          zIndex: open ? 1 : -2,
+          width: open ? "250px" : "32px",
+        }}
+      >
         {!lazy.value && children}
         <label class="hidden group-checked:flex" for={id}>Close</label>
       </div>
-    </div >
+    </div>
   );
 }

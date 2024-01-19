@@ -18,7 +18,7 @@ interface Props {
 
 export type FilterToggleValueWithHex = FilterToggleValue & {
   hex?: string;
-  src?: ImageWidget
+  src?: ImageWidget;
 };
 
 type FilterValuesProps = {
@@ -30,24 +30,23 @@ type FilterValuesProps = {
 export const isToggle = (filter: Filter): filter is FilterToggle =>
   filter["@type"] == "FilterToggle";
 
-function FilterValues({ label, values, filterColors}: FilterValuesProps) {
+function FilterValues({ label, values, filterColors }: FilterValuesProps) {
   const flexDirection = label == "cor"
     ? "flex flex-wrap overflow-hidden md:grid md:grid-cols-8 grid-cols-5 gap-[18px]"
     : label == "property2"
     ? "flex flex-wrap gap-2 flex-grow "
     : "flex-col flex flex-wrap gap-2 ";
-  
+
   const matchingColors: FilterToggleValueWithHex[] = values?.map(
     (value) => {
       const matchedColor = filterColors?.find(
         (color) => color.label === value.value,
-        
       );
       if (matchedColor) {
         return {
           ...value,
           hex: matchedColor.hex,
-          src: matchedColor.src
+          src: matchedColor.src,
         };
       } else {
         return value;
@@ -59,7 +58,7 @@ function FilterValues({ label, values, filterColors}: FilterValuesProps) {
     <ul class={`${flexDirection}`}>
       {matchingColors.map((item) => {
         const { hex, src } = item;
-        if (label == "cor" ) {
+        if (label == "cor") {
           return (
             <ValueItem
               type={label}
@@ -98,7 +97,7 @@ function Filters({ filters, filterColors, filterNames }: Props) {
       if (matchedName) {
         return {
           ...filter,
-          newLabel: matchedName.label
+          newLabel: matchedName.label,
         };
       } else {
         return filter;
@@ -116,7 +115,7 @@ function Filters({ filters, filterColors, filterNames }: Props) {
               ? (
                 <li class="flex flex-col gap-4 mb-4 mt-2">
                   <span class="font-semibold text-[15px] leading-9 uppercase">
-                    { filter.newLabel ? filter.newLabel : filter.label }
+                    {filter.newLabel ? filter.newLabel : filter.label}
                   </span>
                   <FilterValues {...filter} filterColors={filterColors} />
                 </li>
@@ -131,7 +130,7 @@ function Filters({ filters, filterColors, filterNames }: Props) {
                       class="min-h-[40px] min-w-full"
                     />
                     <div class="collapse-title relative min-w-full flex font-semibold uppercase text-[15px] leading-9 flex-grow w-full min-h-[40px] items-center px-0 py-0">
-                     { filter.newLabel ? filter.newLabel : filter.label }
+                      {filter.newLabel ? filter.newLabel : filter.label}
                       <Icon
                         id="ChevronDown"
                         size={11}

@@ -18,9 +18,13 @@ function GlobalTags() {
           __html: `          
           @font-face {
             font-family: 'Acumin';
-            src: url("${asset("/fonts/AcuminPro-Italic.woff2")}") format('woff2'),
+            src: url("${
+            asset("/fonts/AcuminPro-Italic.woff2")
+          }") format('woff2'),
                 url("${asset("/fonts/AcuminPro-Italic.woff")}") format('woff'),
-                url("${asset("/fonts/AcuminPro-Italic.ttf")}") format('truetype');
+                url("${
+            asset("/fonts/AcuminPro-Italic.ttf")
+          }") format('truetype');
             font-weight: normal;
             font-style: italic;
             font-display: swap;
@@ -28,9 +32,15 @@ function GlobalTags() {
         
         @font-face {
             font-family: 'Acumin';
-            src: url("${asset("/fonts/AcuminPro-BoldItalic.woff2")}")  format('woff2'),
-                url("${asset("/fonts/AcuminPro-BoldItalic.woff")}")  format('woff'),
-                url("${asset("/fonts/AcuminPro-BoldItalic.ttf")}")  format('truetype');
+            src: url("${
+            asset("/fonts/AcuminPro-BoldItalic.woff2")
+          }")  format('woff2'),
+                url("${
+            asset("/fonts/AcuminPro-BoldItalic.woff")
+          }")  format('woff'),
+                url("${
+            asset("/fonts/AcuminPro-BoldItalic.ttf")
+          }")  format('truetype');
             font-weight: bold;
             font-style: italic;
             font-display: swap;
@@ -38,9 +48,13 @@ function GlobalTags() {
         
         @font-face {
             font-family: 'Acumin';
-            src: url("${asset("/fonts/AcuminPro-Regular.woff2")}") format('woff2'),
+            src: url("${
+            asset("/fonts/AcuminPro-Regular.woff2")
+          }") format('woff2'),
                 url("${asset("/fonts/AcuminPro-Regular.woff")}") format('woff'),
-                url("${asset("/fonts/AcuminPro-Regular.ttf")}") format('truetype');
+                url("${
+            asset("/fonts/AcuminPro-Regular.ttf")
+          }") format('truetype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
@@ -58,7 +72,6 @@ function GlobalTags() {
         `,
         }}
       />
-
     </Head>
   );
 }

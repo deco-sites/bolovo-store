@@ -10,14 +10,14 @@ function buildParams() {
   const url = new URL(window.location.href);
   const existingParams = new URLSearchParams(url.search);
   const keysToRemove = [];
-  const qValue = existingParams.get('q');
+  const qValue = existingParams.get("q");
   if (qValue) {
-    existingParams.set('q', qValue);
+    existingParams.set("q", qValue);
   }
 
   for (const [key, value] of existingParams.entries()) {
     if (
-      key !== 'q' &&
+      key !== "q" &&
       !selectedFilters.peek().some((filter) =>
         filter.label === value && `type_tags[${filter.type}][]` === key
       )
@@ -43,7 +43,6 @@ function buildParams() {
     return url.href;
   }
 }
-
 
 function setup({ buttonId }: Props) {
   const applyButton = document.getElementById(buttonId);
