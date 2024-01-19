@@ -58,52 +58,37 @@ function ProductInfo({ page, layout }: Props) {
   const discount = price && listPrice ? listPrice - price : 0;
 
   return (
-    <div class="flex flex-col">
-      {/* Breadcrumb */}
-      <Breadcrumb
-        itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-      />
-      {/* Code and name */}
-      <div class="mt-4 sm:mt-8">
-        <div>
-          {gtin && (
-            <span class="text-sm text-base-300">
-              Cod. {gtin}
-            </span>
-          )}
-        </div>
+    <div class="flex flex-col w-screen p-4">
+      <div class="">
         <h1>
-          <span class="font-medium text-xl capitalize">
+          <span class="font-semibold text-base capitalize">
             {layout?.name === "concat"
               ? `${isVariantOf?.name} ${name}`
               : layout?.name === "productGroup"
-              ? isVariantOf?.name
-              : name}
+                ? isVariantOf?.name
+                : name}
           </span>
         </h1>
-      </div>
-      {/* Prices */}
-      <div class="mt-4">
-        <div class="flex flex-row gap-2 items-center">
-          {(listPrice ?? 0) > price && (
-            <span class="line-through text-base-300 text-xs">
-              {formatPrice(listPrice, offers?.priceCurrency)}
+        {/* Prices */}
+        <div>
+          <div class="flex flex-row gap-2 items-center">
+            {(listPrice ?? 0) > price && (
+              <span class="line-through text-base-300 text-xs">
+                {formatPrice(listPrice, offers?.priceCurrency)}
+              </span>
+            )}
+            <span class=" text-base">
+              {formatPrice(price, offers?.priceCurrency)}
             </span>
-          )}
-          <span class="font-medium text-xl text-secondary">
-            {formatPrice(price, offers?.priceCurrency)}
-          </span>
+          </div>
         </div>
-        <span class="text-sm text-base-300">
-          {installments}
-        </span>
       </div>
       {/* Sku Selector */}
-      <div class="mt-4 sm:mt-6">
+      <div class="mt-4 sm:mt-11">
         <ProductSelector product={product} />
       </div>
       {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
+      <div class="mt-4 sm:mt-11  flex flex-col gap-2">
         {availability === "https://schema.org/InStock"
           ? (
             <>
