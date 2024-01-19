@@ -74,7 +74,7 @@ function SearchControls(
             </div>
             <div class="border-b pb-[25px] border-opacity-30 border-[#121212] mr-[15px] ml-[21px]" />
             <div class="flex-grow overflow-auto">
-              <Filters filters={filters} filterColors={filterColors} filterNames={filtersNames} />
+              <Filters filters={filters} filterColors={filterColors ?? []} filterNames={filtersNames} />
               <div class="w-full pl-[21px] pr-[15px] mt-14">
                 <div class="pb-2">
                   <Button

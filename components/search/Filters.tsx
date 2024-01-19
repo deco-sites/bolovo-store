@@ -1,5 +1,4 @@
 import { Color, FilterName } from "$store/components/search/SearchResult.tsx";
-import Avatar from "$store/components/ui/Avatar.tsx";
 import type {
   Filter,
   FilterToggle,
@@ -9,6 +8,7 @@ import type {
 import Icon from "$store/components/ui/Icon.tsx";
 import ValueItem from "$store/islands/ValueItem.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 
 interface Props {
   filters: ProductListingPage["filters"];
@@ -31,13 +31,11 @@ export const isToggle = (filter: Filter): filter is FilterToggle =>
   filter["@type"] == "FilterToggle";
 
 function FilterValues({ label, values, filterColors}: FilterValuesProps) {
-
   const flexDirection = label == "cor"
     ? "grid grid-cols-8 gap-[18px]"
     : label == "property2"
-    ? "flex flex-wrap gap-2 flex-grow"
+    ? "flex flex-wrap gap-2 flex-grow "
     : "flex-col flex flex-wrap gap-2 ";
-
   
   const matchingColors: FilterToggleValueWithHex[] = values?.map(
     (value) => {
@@ -60,21 +58,14 @@ function FilterValues({ label, values, filterColors}: FilterValuesProps) {
   return (
     <ul class={`${flexDirection}`}>
       {matchingColors.map((item) => {
-        const { selected, value, hex, src } = item;
-
+        const { hex, src } = item;
         if (label == "cor" ) {
           return (
             <ValueItem
               type={label}
               {...item}
-              children={
-                <Avatar
-                  filterImage={src}
-                  colorHex={hex}
-                  content={value}
-                  variant={selected ? "active" : "color"}
-                />
-              }
+              filterImage={src}
+              colorHex={hex}
             />
           );
         }
@@ -113,7 +104,7 @@ function Filters({ filters, filterColors, filterNames }: Props) {
       }
     },
   );
-  
+
   return (
     <ul class="flex flex-col gap-4 pl-[21px] pr-[15px]">
       {namedFilters
