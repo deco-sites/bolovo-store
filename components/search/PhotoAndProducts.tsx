@@ -7,7 +7,7 @@ export interface ImageAndProducts {
     variant: "1x1" | "2x2" | "2x1";
     src: ImageWidget;
     alt: string;
-    href: string;
+    href?: string;
     /**
  * @title reversed order?
  */
@@ -17,7 +17,6 @@ export interface ImageAndProducts {
         /** @default "imagem na direita" */
         desktop?: "imagem na direita" | "imagem na esquerda";
     };
-    activeText?: boolean;
     /** @format html */
     title?: string;
     /** @format html */
@@ -68,8 +67,8 @@ const VARIANT_WIDTH_CONTAINER_PRODUCTS = {
 }
 
 
-export default function PhotoAndProducts({ variant = "2x2", activeText = false, title = "", paragraph = "", src, alt, href, contentDirection, products, customClass, customClassProducts }: {
-    variant?: "1x1" | "2x2" | "2x1";
+export default function PhotoAndProducts({ variant = "2x2", title = "", paragraph = "", src, alt, href, contentDirection, products, customClass, customClassProducts }: {
+    variant?: "1x1" | "2x1" | "2x2";
     src: ImageWidget;
     alt: string;
     href: string;
@@ -83,7 +82,6 @@ export default function PhotoAndProducts({ variant = "2x2", activeText = false, 
         desktop?: "imagem na direita" | "imagem na esquerda";
     };
     products: Product[] | null;
-    activeText?: boolean;
     /** @format html */
     title?: string;
     /** @format html */
@@ -104,7 +102,7 @@ export default function PhotoAndProducts({ variant = "2x2", activeText = false, 
                 <a href={href} class={` w-full cursor-pointer ${VARIANT_WIDTH_CONTAINER_IMAGE[variant]}`}>
                     <div class="w-full h-full relative">
                         <Image src={src} alt={alt} width={VARIANT_IMAGE_WIDTH[variant]} height={VARIANT_IMAGE_HEIGHT[variant]} loading={"lazy"} class="w-full h-full object-cover" />
-                        {activeText && <div class="absolute left-0 top-0 w-full h-full p-4 flex flex-col justify-end items-start bg-gradient-to-t from-[#00000040] to-transparent gap-3">
+                        {title || paragraph && <div class="absolute left-0 top-0 w-full h-full p-4 flex flex-col justify-end items-start bg-gradient-to-t from-[#00000040] to-transparent gap-3">
                             {title && <span class=" text-5xl font-medium font-eb-garamond" dangerouslySetInnerHTML={{ __html: title }} ></span>}
                             {paragraph && <span class=" text-sm " dangerouslySetInnerHTML={{ __html: paragraph }} ></span>}
                         </div>}
