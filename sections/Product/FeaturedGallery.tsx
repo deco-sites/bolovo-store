@@ -1,7 +1,7 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import Image from "apps/website/components/Image.tsx";
 import type { Product } from "apps/commerce/types.ts";
-import PhotoAndProducts from "../../components/search/PhotoAndProducts.tsx";
-
+import ProductCardGallery from "../../components/content/ProductCardGallery.tsx";
 export interface Props {
     title: string;
     featuredPhoto: {
@@ -21,7 +21,17 @@ export interface Props {
     product: Product[] | null;
 }
 
-export default function FeaturedGallery({ product, featuredPhoto, contentDirection, title }: Props ) {
+const MOBILE_DIRECTION = {
+    "imagem acima": "flex-col",
+    "imagem abaixo": "flex-col-reverse",
+};
+
+const DESKTOP_DIRECTION = {
+    "imagem na direita": "lg:flex-row-reverse",
+    "imagem na esquerda": "lg:flex-row",
+};
+
+export default function FeaturedGallery({ title, featuredPhoto, contentDirection, product }: Props) {
 
     if (!product || product.length === 0) {
         return null;
@@ -32,12 +42,18 @@ export default function FeaturedGallery({ product, featuredPhoto, contentDirecti
             <h2 class=" text-base text-left uppercase font-bold">
                 {title}
             </h2>
-            <PhotoAndProducts
-                src={featuredPhoto.src}
-                alt={featuredPhoto.alt}
-                href={featuredPhoto.href}
-                contentDirection={contentDirection}
-                products={product} />
+            <div class={`flex gap-2 lg:gap-[15px]  
+                ${MOBILE_DIRECTION[contentDirection?.mobile ?? "imagem acima"]
+                } ${DESKTOP_DIRECTION[contentDirection?.desktop ?? "imagem na direita"]} `}>
+                <a href={featuredPhoto.href} class="flex w-full lg:w-[55.15%] cursor-pointer">
+                    <Image src={featuredPhoto.src} alt={featuredPhoto.alt} width={400} height={400} loading={"lazy"} class="aspect-square w-full lg:pb-[5px]" />
+                </a>
+                <div class="flex w-full lg:w-[44.08%] min-h-[400px]">
+                    <ProductCardGallery
+                        product={product[0]}
+                    />
+                </div>
+            </div>
         </div>
     )
 }
