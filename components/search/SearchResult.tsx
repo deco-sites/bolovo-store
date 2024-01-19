@@ -11,23 +11,10 @@ import type { PropsNotFound } from "./NotFound.tsx"
 import type { SectionProps } from "deco/types.ts";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx"
 
-export interface Layout {
-  /**
-   * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
-   */
-  variant?: "aside" | "drawer";
-  /**
-   * @description Number of products per line on grid
-   */
-  columns?: Columns;
-}
-
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
-  layout?: Layout;
   textSearch?: string;
-  cardLayout?: CardLayout;
   notFound: PropsNotFound;
   /**
   * @title Highlights 
@@ -37,8 +24,6 @@ export interface Props {
 
 function Result({
   page,
-  layout,
-  cardLayout,
   textSearch,
   searchTerm,
   section,
@@ -56,14 +41,12 @@ function Result({
         sortOptions={sortOptions}
         filters={filters}
         breadcrumb={breadcrumb}
-        displayFilter={layout?.variant === "drawer"}
       />
       <div class="lg:px-8 px-[15px]">
         <div class="flex-grow">
           <ProductGallery
             products={products}
             offset={offset}
-            layout={{ card: cardLayout, columns: layout?.columns }}
             photoOnPLP={section}
             page={page}
           />
