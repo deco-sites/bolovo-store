@@ -8,7 +8,6 @@ import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 
@@ -18,7 +17,10 @@ export interface Props {
     headerAlignment?: "center" | "left";
     headerfontSize?: "Normal" | "Large";
   };
-  seeMore?: { text: string; link: string };
+  seeMore?: { 
+    text: string; 
+    link: string 
+  };
   products: Product[] | null;
 }
 
@@ -29,15 +31,13 @@ function ProductShelf({
   seeMore,
 }: Props) {
   const id = useId();
-  const platform = usePlatform();
+  const platform = "vnda"
 
   const shouldShowArrows = ((products?.length || 0) + (seeMore ? 1 : 0)) > 4;
 
   if (!products || products.length === 0) {
     return null;
   }
-  
-  const aspectRatio = 1.254;
 
   return (
     <div class="w-full py-8 flex flex-col gap-5 px-[15px] mx-auto lg:gap-6 lg:py-10">

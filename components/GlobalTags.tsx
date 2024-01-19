@@ -55,7 +55,6 @@ function GlobalTags() {
             font-style: normal;
             font-display: swap;
         }
-        
         `,
         }}
       />
