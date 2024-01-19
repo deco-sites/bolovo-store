@@ -32,7 +32,7 @@ export const isToggle = (filter: Filter): filter is FilterToggle =>
 
 function FilterValues({ label, values, filterColors}: FilterValuesProps) {
   const flexDirection = label == "cor"
-    ? "grid grid-cols-8 gap-[18px]"
+    ? "flex flex-wrap overflow-hidden md:grid md:grid-cols-8 grid-cols-5 gap-[18px]"
     : label == "property2"
     ? "flex flex-wrap gap-2 flex-grow "
     : "flex-col flex flex-wrap gap-2 ";
@@ -66,6 +66,7 @@ function FilterValues({ label, values, filterColors}: FilterValuesProps) {
               {...item}
               filterImage={src}
               colorHex={hex}
+              class="w-[29px] h-[30px]"
             />
           );
         }
