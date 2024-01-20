@@ -3,7 +3,7 @@ import ProductCard, {
 } from "$store/components/product/ProductCard.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product } from "apps/commerce/types.ts";
-import PhotoAndProducts, { Section } from "$store/components/search/PhotoAndProducts.tsx"
+import { PhotoAndProducts, Section } from "$store/components/search/PhotoAndProducts.tsx"
 import type { ProductListingPage } from "apps/commerce/types.ts";
 
 
@@ -21,6 +21,7 @@ export interface Props {
   };
   photoOnPLP?: Section;
   page: ProductListingPage | null;
+  isMobile: boolean;
 }
 
 const MOBILE_COLUMNS = {
@@ -109,45 +110,48 @@ const ORDER_DESKTOP: OrderType = {
   25: "lg:order-[25]",
 };
 
-function ProductGallery({ products, layout, offset, photoOnPLP, page }: Props) {
+const GRID_ROW_START = {
+  1: "row-start-1",
+  2: "row-start-2",
+  3: "row-start-3",
+}
+
+function ProductGallery({ products, layout, offset, photoOnPLP, page, isMobile }: Props) {
   const platform = usePlatform();
   const mobile = MOBILE_COLUMNS[layout?.columns?.mobile ?? 2];
   const desktop = DESKTOP_COLUMNS[layout?.columns?.desktop ?? 4];
 
-  const mobilePhotoOnPLP = MOBILE_COLUMN_SPAN[layout?.columns?.mobile ?? 2];
-  const desktopPhotoOnPLP = DESKTOP_COLUMN_SPAN[layout?.columns?.desktop ?? 4];
-
-  const linePhotoOnPLPMobile = ORDER[photoOnPLP && photoOnPLP.line === 1 ? 0 : ((photoOnPLP?.line ?? 0) - 1) * (layout?.columns?.mobile ?? 2) - 1]
-  const linePhotoOnPLPDesktop = ORDER_DESKTOP[photoOnPLP && photoOnPLP.line === 1 ? 0 : ((photoOnPLP?.line ?? 0) - 1) * (layout?.columns?.desktop ?? 4) - 1]
-
+  const row: number = photoOnPLP?.line ?? 0;
+  const line = row === 1 ? 0 : isMobile ? (row - 1) * 2 : (row - 1) * 4;
 
   return (
-    <ul class={`grid ${mobile} gap-2 items-center ${desktop} lg:px-[17px] lg:gap-[15px]`}>
+    <ul class={`grid ${mobile} gap-2 items-center ${desktop} lg:px-[17px] lg:gap-[15px] col-`}>
       {products?.map((product, index) => (
-        <li class={`h-full ${ORDER[index]}`}
-        >
-          <ProductCard
-            product={product}
-            preload={index === 0}
-            index={offset ? offset + index : undefined}
-            layout={layout?.card}
-            platform={platform}
-          />
-        </li>
+
+        photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page && index === line ?
+          <PhotoAndProducts
+            variant={photoOnPLP.imageAndProducts.variant}
+            src={photoOnPLP.imageAndProducts.src}
+            alt={photoOnPLP.imageAndProducts.alt}
+            href={photoOnPLP.imageAndProducts.href}
+            contentDirection={photoOnPLP.imageAndProducts.contentDirection}
+            products={photoOnPLP.imageAndProducts.products}
+            title={photoOnPLP.imageAndProducts.title}
+            paragraph={photoOnPLP.imageAndProducts.paragraph}
+            customClassImage={`mx-[-15px] lg:mx-0 h-full`}
+            row={row}
+            customClassProducts={`${mobile} px-[15px]`} />
+          :
+          <li class={`h-full`}>
+            <ProductCard
+              product={product}
+              preload={index === 0}
+              index={offset ? offset + index : undefined}
+              layout={layout?.card}
+              platform={platform}
+            />
+          </li>
       ))}
-      {photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page &&
-        <PhotoAndProducts
-          variant={photoOnPLP.imageAndProducts.variant}
-          src={photoOnPLP.imageAndProducts.src}
-          alt={photoOnPLP.imageAndProducts.alt}
-          href={photoOnPLP.imageAndProducts.href}
-          contentDirection={photoOnPLP.imageAndProducts.contentDirection}
-          products={photoOnPLP.imageAndProducts.products}
-          activeText={photoOnPLP.imageAndProducts.activeText}
-          title={photoOnPLP.imageAndProducts.title}
-          paragraph={photoOnPLP.imageAndProducts.paragraph}
-          customClass={`${mobilePhotoOnPLP} ${desktopPhotoOnPLP} ${linePhotoOnPLPMobile} ${linePhotoOnPLPDesktop} mx-[-15px] py-8`}
-          customClassProducts={`${mobile} px-[15px]`} />}
     </ul>
   );
 }
