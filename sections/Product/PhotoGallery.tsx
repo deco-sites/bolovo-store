@@ -4,6 +4,11 @@ import { PhotoAndProducts } from "../../components/search/PhotoAndProducts.tsx";
 export interface Props {
     title: string;
     featuredPhoto: {
+        /**
+         * @title Preload image
+         * @default false
+         */
+        preload?: boolean;
         src: ImageWidget;
         alt: string;
         href: string;
@@ -43,6 +48,7 @@ export default function PhotoGallery({ title, featuredPhoto, contentDirection, p
                     href={featuredPhoto.href}
                     layoutDesktop={contentDirection.desktop}
                     products={products}
+                    preLoad={featuredPhoto.preload}
                     customClassImage={`${MOBILE_DIRECTION[contentDirection.mobile ?? "imagem acima"]} lg:row-start-1`}
                 />
             </ul>

@@ -5,6 +5,11 @@ import ProductCard from "../../components/product/ProductCard.tsx";
 
 export interface ImageAndProducts {
     variant: "1x1" | "2x2" | "2x1";
+    /**
+     * @title Preload image
+     * @default false
+     */
+    preLoad?: boolean;
     src: ImageWidget;
     alt: string;
     href?: string;
@@ -54,12 +59,13 @@ const GRID_SPAN: {
 
 }
 
-export function PhotoAndProducts({ variant = "2x2", title = "", paragraph = "", src, alt, href = "", row, layoutDesktop = "imagem na direita", products, customClassImage }: {
+export function PhotoAndProducts({ variant = "2x2", title = "", paragraph = "", src, alt, href = "", row, layoutDesktop = "imagem na direita", preLoad = false, products, customClassImage }: {
     variant?: "1x1" | "2x1" | "2x2";
     src: ImageWidget;
     alt: string;
     href?: string;
     layoutDesktop?: "imagem na direita" | "imagem na esquerda";
+    preLoad?: boolean
     products: Product[] | null;
     /** @format html */
     title?: string;
@@ -78,7 +84,7 @@ export function PhotoAndProducts({ variant = "2x2", title = "", paragraph = "", 
             <li class={`${GRID_SPAN[variant + " " + layoutDesktop]} ${customClassImage} h-full `} style={{ gridRowStart: row?.toString() }}>
                 < a href={href} class={` w-full cursor-pointer h-full`}>
                     <div class="w-full h-full relative">
-                        <Image src={src} alt={alt} width={VARIANT_IMAGE_WIDTH[variant]} height={VARIANT_IMAGE_HEIGHT[variant]} loading={"lazy"} class="w-full h-full object-cover" />
+                        <Image src={src} alt={alt} width={VARIANT_IMAGE_WIDTH[variant]} height={VARIANT_IMAGE_HEIGHT[variant]} loading={preLoad ? "eager" : "lazy"} preload={preLoad} decoding="auto" class="w-full h-full object-cover" />
                         {(title || paragraph) && <div class="absolute left-0 top-0 w-full h-full p-4 flex flex-col justify-end items-start bg-gradient-to-t from-[#00000040] to-transparent gap-3">
                             {title && <span class=" text-5xl font-medium font-eb-garamond" dangerouslySetInnerHTML={{ __html: title }} ></span>}
                             {paragraph && <span class=" text-sm " dangerouslySetInnerHTML={{ __html: paragraph }} ></span>}
