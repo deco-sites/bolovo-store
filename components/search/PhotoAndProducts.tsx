@@ -66,12 +66,23 @@ const VARIANT_WIDTH_CONTAINER_PRODUCTS = {
     "2x2": "lg:w-2/4",
 }
 
+const GRID_SPACE: {
+    [key: string]: string;
+} = {
+    "1x1 imagem na esquerda": "col-span-2 lg:col-span-1",
+    "2x1 imagem na esquerda": "col-span-2",
+    "2x2 imagem na esquerda": "col-span-2 lg:row-span-2",
+    "1x1 imagem na direita": "lg:col-start-4 lg:col-end-5 col-span-2 ",
+    "2x1 imagem na direita": "lg:col-start-3 col-span-2",
+    "2x2 imagem na direita": "lg:col-start-3 col-span-2 row-span-2",
 
-export default function PhotoAndProducts({ variant = "2x2", title = "", paragraph = "", src, alt, href, contentDirection, products, customClass, customClassProducts }: {
+}
+
+export function PhotoAndProducts({ variant = "2x2", title = "", paragraph = "", src, alt, href = "", row, contentDirection, products, customClassImage, customClassProducts }: {
     variant?: "1x1" | "2x1" | "2x2";
     src: ImageWidget;
     alt: string;
-    href: string;
+    href?: string;
     /**
     * @title reversed order?
     */
@@ -86,7 +97,8 @@ export default function PhotoAndProducts({ variant = "2x2", title = "", paragrap
     title?: string;
     /** @format html */
     paragraph?: string;
-    customClass?: string;
+    row?: number;
+    customClassImage?: string;
     customClassProducts?: string;
 }) {
 
@@ -95,32 +107,28 @@ export default function PhotoAndProducts({ variant = "2x2", title = "", paragrap
     }
 
     return (
-        <div class={`flex flex-col gap-6 lg:mx-0 ${customClass}`}>
-            <div class={`flex gap-5 lg:gap-[15px] w-full
-                ${MOBILE_DIRECTION[contentDirection?.mobile ?? "imagem acima"]
-                } ${DESKTOP_DIRECTION[contentDirection?.desktop ?? "imagem na direita"]} `}>
-                <a href={href} class={` w-full cursor-pointer ${VARIANT_WIDTH_CONTAINER_IMAGE[variant]}`}>
+        <>
+            <li class={`${GRID_SPACE[variant + " " + contentDirection.desktop]} ${customClassImage} h-full `} style={{ gridRowStart: row?.toString() }}>
+                < a href={href} class={` w-full cursor-pointer ${VARIANT_WIDTH_CONTAINER_IMAGE[variant]}`}>
                     <div class="w-full h-full relative">
                         <Image src={src} alt={alt} width={VARIANT_IMAGE_WIDTH[variant]} height={VARIANT_IMAGE_HEIGHT[variant]} loading={"lazy"} class="w-full h-full object-cover" />
-                        {title || paragraph && <div class="absolute left-0 top-0 w-full h-full p-4 flex flex-col justify-end items-start bg-gradient-to-t from-[#00000040] to-transparent gap-3">
+                        {(title || paragraph) && <div class="absolute left-0 top-0 w-full h-full p-4 flex flex-col justify-end items-start bg-gradient-to-t from-[#00000040] to-transparent gap-3">
                             {title && <span class=" text-5xl font-medium font-eb-garamond" dangerouslySetInnerHTML={{ __html: title }} ></span>}
                             {paragraph && <span class=" text-sm " dangerouslySetInnerHTML={{ __html: paragraph }} ></span>}
                         </div>}
                     </div>
                 </a>
-                <ul class={`w-full gap-2 lg:gap-[15px] h-auto grid ${customClassProducts} ${variant === "1x1" ? "lg:grid-cols-3" : "lg:grid-cols-2 "} lg:px-0 ${VARIANT_WIDTH_CONTAINER_PRODUCTS[variant]}`}>
-                    {
-                        products.map((product) => (
-                            <li class="w-full">
-                                <ProductCard
-                                    product={product}
-                                />
-                            </li>
-                        ))
-                    }
-                </ul>
+            </li >
+            {
+                products.map((product) => (
+                    <li class="h-full ">
+                        <ProductCard
+                            product={product}
+                        />
+                    </li>
+                ))
+            }
+        </>
 
-            </div >
-        </div >
     )
 }

@@ -5,7 +5,7 @@ import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
+import ProductGallery from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx"
 import type { SectionProps } from "deco/types.ts";
@@ -27,7 +27,8 @@ function Result({
   textSearch,
   searchTerm,
   section,
-}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section }) {
+  isMobile,
+}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section, isMobile: boolean }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
@@ -49,6 +50,7 @@ function Result({
             offset={offset}
             photoOnPLP={section}
             page={page}
+            isMobile={isMobile}
           />
         </div>
 
@@ -100,13 +102,13 @@ function Result({
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
 
-  const { page, notFound, searchTerm, section } = props;
+  const { page, notFound, searchTerm, section, isMobile } = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
   }
 
-  return <Result {...props} page={page} section={section} />;
+  return <Result {...props} page={page} section={section} isMobile={isMobile} />;
 }
 
 export default SearchResult;
@@ -121,5 +123,7 @@ export const loader = (props: Props, req: Request) => {
 
   const term = new URLSearchParams(new URL(req.url).search).get('q');
 
-  return { ...props, searchTerm: term ?? "", section };
+  const isMobile = req.headers.get("user-agent")!.includes('Mobile')
+
+  return { ...props, searchTerm: term ?? "", section, isMobile };
 };

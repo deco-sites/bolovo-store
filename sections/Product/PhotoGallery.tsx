@@ -1,8 +1,6 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import Image from "apps/website/components/Image.tsx";
 import type { Product } from "apps/commerce/types.ts";
-import ProductCard from "../../components/product/ProductCard.tsx";
-import PhotoAndProducts from "../../components/search/PhotoAndProducts.tsx";
+import { PhotoAndProducts } from "../../components/search/PhotoAndProducts.tsx";
 export interface Props {
     title: string;
     featuredPhoto: {
@@ -22,6 +20,11 @@ export interface Props {
     products: Product[] | null;
 }
 
+const MOBILE_DIRECTION = {
+    "imagem acima": "row-start-1",
+    "imagem abaixo": "row-start-3",
+};
+
 export default function PhotoGallery({ title, featuredPhoto, contentDirection, products }: Props) {
 
     if (!products || products.length === 0) {
@@ -33,14 +36,17 @@ export default function PhotoGallery({ title, featuredPhoto, contentDirection, p
             <h2 class=" text-base text-left uppercase font-bold">
                 {title}
             </h2>
-            <PhotoAndProducts
-                src={featuredPhoto.src}
-                alt={featuredPhoto.alt}
-                href={featuredPhoto.href}
-                contentDirection={contentDirection}
-                products={products}
-                customClassProducts={"grid-cols-2 px-0"}
-            />
+            <ul class="grid grid-cols-2 gap-2 gap-y-5 lg:gap-y-[15px] items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px]">
+                <PhotoAndProducts
+                    src={featuredPhoto.src}
+                    alt={featuredPhoto.alt}
+                    href={featuredPhoto.href}
+                    contentDirection={contentDirection}
+                    products={products}
+                    customClassImage={`${MOBILE_DIRECTION[contentDirection.mobile ?? "imagem acima"]} lg:row-start-1`}
+                    customClassProducts={"grid-cols-2 px-0"}
+                />
+            </ul>
         </div>
     )
 }
