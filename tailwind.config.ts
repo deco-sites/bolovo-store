@@ -10,6 +10,7 @@ export default {
       fontFamily: {
         "acumin": ["Acumin"],
         "averia": ["Averia Serif Libre"],
+        "eb-garamond": ["EB Garamond"],
       },
       screens: {
         "xs": "420px",
