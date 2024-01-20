@@ -1,7 +1,7 @@
 import ProductCard from "$store/components/product/ProductCard.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product } from "apps/commerce/types.ts";
-import { PhotoAndProducts, Section } from "$store/components/search/PhotoAndProducts.tsx"
+import PhotoAndProducts, { Section } from "$store/components/search/PhotoAndProducts.tsx"
 import type { ProductListingPage } from "apps/commerce/types.ts";
 
 export interface Props {

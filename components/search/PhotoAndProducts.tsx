@@ -59,7 +59,7 @@ const GRID_SPAN: {
 
 }
 
-export function PhotoAndProducts({ variant = "2x2", title = "", paragraph = "", src, alt, href = "", row, layoutDesktop = "imagem na direita", preLoad = false, products, customClassImage }: {
+export default function PhotoAndProducts({ variant = "2x2", title = "", paragraph = "", src, alt, href = "", row, layoutDesktop = "imagem na direita", preLoad = false, products, customClassImage }: {
     variant?: "1x1" | "2x1" | "2x2";
     src: ImageWidget;
     alt: string;

@@ -1,6 +1,6 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
-import { PhotoAndProducts } from "../../components/search/PhotoAndProducts.tsx";
+import PhotoAndProducts from "../../components/search/PhotoAndProducts.tsx";
 export interface Props {
     title: string;
     featuredPhoto: {
