@@ -36,15 +36,14 @@ export default function PhotoGallery({ title, featuredPhoto, contentDirection, p
             <h2 class=" text-base text-left uppercase font-bold">
                 {title}
             </h2>
-            <ul class="grid grid-cols-2 gap-2 gap-y-5 lg:gap-y-[15px] items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px]">
+            <ul class="grid grid-cols-2 gap-2 gap-y-5 lg:gap-y-[15px] items-center lg:grid-cols-4 lg:gap-[15px]">
                 <PhotoAndProducts
                     src={featuredPhoto.src}
                     alt={featuredPhoto.alt}
                     href={featuredPhoto.href}
-                    contentDirection={contentDirection}
+                    layoutDesktop={contentDirection.desktop}
                     products={products}
                     customClassImage={`${MOBILE_DIRECTION[contentDirection.mobile ?? "imagem acima"]} lg:row-start-1`}
-                    customClassProducts={"grid-cols-2 px-0"}
                 />
             </ul>
         </div>
