@@ -10,16 +10,16 @@ export interface Banner {
   matcher: string;
   /** @description text to be rendered on top of the image */
   title?: string;
-  /** 
-   * @description text to be rendered on top of the image 
+  /**
+   * @description text to be rendered on top of the image
    * @format html
-  */
+   */
   subtitle?: string;
   image: {
     /**
-    * @description Check this option when this banner is the biggest image on the screen for image optimizations
-    * @default false
-    */
+     * @description Check this option when this banner is the biggest image on the screen for image optimizations
+     * @default false
+     */
     preload?: boolean;
     /** @description Image for big screens */
     desktop: ImageWidget;
@@ -59,7 +59,10 @@ function Banner(props: SectionProps<ReturnType<typeof loader>>) {
 
   return (
     <a href={href} class="grid grid-cols-1 grid-rows-1">
-      <Picture preload={image.preload} class="col-start-1 col-span-1 row-start-1 row-span-1">
+      <Picture
+        preload={image.preload}
+        class="col-start-1 col-span-1 row-start-1 row-span-1"
+      >
         <Source
           media="(max-width: 641px)"
           fetchPriority={image.preload ? "high" : "auto"}
@@ -88,23 +91,34 @@ function Banner(props: SectionProps<ReturnType<typeof loader>>) {
           width={1500}
           height={504}
         />
-        <img class="w-full"
+        <img
+          class="w-full"
           loading="eager"
           decoding="auto"
           src={image.desktop}
           alt={image.alt ?? title}
           width={430}
-          height={548} />
+          height={548}
+        />
       </Picture>
 
-      {(title || subtitle) && < div class=" flex flex-col py-5 px-4 lg:py-9 lg:px-6 items-start justify-end sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full gap-3">
-        {title && <h1 class=" text-6xl lg:text-[5rem] font-normal text-base-100 font-eb-garamond">
-          {title}
-        </h1>}
-        {subtitle && <span class="text-base-100 text-xs lg:text-base" dangerouslySetInnerHTML={{ __html: subtitle }}>
-        </span>}
-      </div>}
-    </a >
+      {(title || subtitle) && (
+        <div class=" flex flex-col py-5 px-4 lg:py-9 lg:px-6 items-start justify-end sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full gap-3">
+          {title && (
+            <h1 class=" text-6xl lg:text-[5rem] font-normal text-base-100 font-eb-garamond">
+              {title}
+            </h1>
+          )}
+          {subtitle && (
+            <span
+              class="text-base-100 text-xs lg:text-base"
+              dangerouslySetInnerHTML={{ __html: subtitle }}
+            >
+            </span>
+          )}
+        </div>
+      )}
+    </a>
   );
 }
 
