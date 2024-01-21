@@ -16,6 +16,11 @@ export interface Banner {
   */
   subtitle?: string;
   image: {
+    /**
+    * @description Check this option when this banner is the biggest image on the screen for image optimizations
+    * @default false
+    */
+    preload?: boolean;
     /** @description Image for big screens */
     desktop: ImageWidget;
     /** @description Image for small screens */
@@ -54,34 +59,34 @@ function Banner(props: SectionProps<ReturnType<typeof loader>>) {
 
   return (
     <a href={href} class="grid grid-cols-1 grid-rows-1">
-      <Picture preload class="col-start-1 col-span-1 row-start-1 row-span-1">
+      <Picture preload={image.preload} class="col-start-1 col-span-1 row-start-1 row-span-1">
         <Source
           media="(max-width: 641px)"
-          fetchPriority={"high"}
+          fetchPriority={image.preload ? "high" : "auto"}
           src={image.mobile}
-          width={200}
-          height={253}
+          width={320}
+          height={406}
         />
         <Source
           media="(min-width: 641px) and (max-width: 1023px)"
-          fetchPriority={"high"}
+          fetchPriority={image.preload ? "high" : "auto"}
           src={image.mobile}
           width={500}
           height={634}
         />
         <Source
           media="(min-width: 1024px) and (max-width: 1499px)"
-          fetchPriority={"high"}
+          fetchPriority={image.preload ? "high" : "auto"}
           src={image.desktop}
           width={1000}
-          height={309}
+          height={336}
         />
         <Source
           media="(min-width: 1500px)"
-          fetchPriority={"high"}
+          fetchPriority={image.preload ? "high" : "auto"}
           src={image.desktop}
           width={1500}
-          height={463}
+          height={504}
         />
         <img class="w-full"
           loading="eager"
