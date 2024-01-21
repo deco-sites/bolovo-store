@@ -1,10 +1,14 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import Image from "apps/website/components/Image.tsx";
 import type { Product } from "apps/commerce/types.ts";
-import ProductCard from "../../components/product/ProductCard.tsx";
+import PhotoAndProducts from "../../components/search/PhotoAndProducts.tsx";
 export interface Props {
     title: string;
     featuredPhoto: {
+        /**
+         * @title Preload image
+         * @default false
+         */
+        preload?: boolean;
         src: ImageWidget;
         alt: string;
         href: string;
@@ -22,13 +26,8 @@ export interface Props {
 }
 
 const MOBILE_DIRECTION = {
-    "imagem acima": "flex-col",
-    "imagem abaixo": "flex-col-reverse",
-};
-
-const DESKTOP_DIRECTION = {
-    "imagem na esquerda": "lg:flex-row",
-    "imagem na direita": "lg:flex-row-reverse",
+    "imagem acima": "row-start-1",
+    "imagem abaixo": "row-start-3",
 };
 
 export default function PhotoGallery({ title, featuredPhoto, contentDirection, products }: Props) {
@@ -42,26 +41,17 @@ export default function PhotoGallery({ title, featuredPhoto, contentDirection, p
             <h2 class=" text-base text-left uppercase font-bold">
                 {title}
             </h2>
-            <div class={`flex gap-5 lg:gap-[15px]  
-                ${MOBILE_DIRECTION[contentDirection?.mobile ?? "imagem acima"]
-                } ${DESKTOP_DIRECTION[contentDirection?.desktop ?? "imagem na direita"]} `}>
-                <a href={featuredPhoto.href} class=" w-full lg:w-[50.625%] cursor-pointer">
-                    <Image src={featuredPhoto.src} alt={featuredPhoto.alt} width={400} height={540} loading={"lazy"} class="w-full h-full lg:pb-1" />
-                </a>
-                <ul class="w-full lg:w-[48.4375%] gap-2 gap-y-[45px] lg:gap-[15px] h-auto justify-between flex flex-row flex-wrap content-between">
-                    {
-                        products.map((product) => (
-                            <li class="w-[calc(50%-0.25rem)] lg:w-[calc(50%-7.5px)]">
-                                <ProductCard
-                                    product={product}
-                                />
-                            </li>
-                        ))
-
-                    }
-                </ul>
-
-            </div>
+            <ul class="grid grid-cols-2 gap-2 gap-y-5 lg:gap-y-[15px] items-center lg:grid-cols-4 lg:gap-[15px]">
+                <PhotoAndProducts
+                    src={featuredPhoto.src}
+                    alt={featuredPhoto.alt}
+                    href={featuredPhoto.href}
+                    layoutDesktop={contentDirection.desktop}
+                    products={products}
+                    preLoad={featuredPhoto.preload}
+                    customClassImage={`${MOBILE_DIRECTION[contentDirection.mobile ?? "imagem acima"]} lg:row-start-1`}
+                />
+            </ul>
         </div>
     )
 }
