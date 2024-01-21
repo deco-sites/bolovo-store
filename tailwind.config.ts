@@ -8,6 +8,7 @@ export default {
     container: { center: true },
     extend: {
       fontFamily: {
+        "rubik": ["Rubik"],
         "acumin": ["Acumin"],
         "averia": ["Averia Serif Libre"],
         "eb-garamond": ["EB Garamond"],
