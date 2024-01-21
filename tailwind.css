@@ -26,6 +26,10 @@
     overflow: hidden;
     height: 100vh;
   }
+
+  .sizeImage{
+    max-height: calc(100vw * 16 / 34);
+  }
 }
 
 .group:disabled .group-disabled\:animate-progress {
