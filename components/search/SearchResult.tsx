@@ -5,30 +5,22 @@ import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
+import ProductGallery from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
-import type { PropsNotFound } from "./NotFound.tsx";
+import type { PropsNotFound } from "./NotFound.tsx"
 import type { SectionProps } from "deco/types.ts";
+import type { Section } from "$store/components/search/PhotoAndProducts.tsx"
 import type { ImageWidget } from "apps/admin/widgets.ts";
-
-export interface Layout {
-  /**
-   * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
-   */
-  variant?: "aside" | "drawer";
-  /**
-   * @description Number of products per line on grid
-   */
-  columns?: Columns;
-}
 
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
-  layout?: Layout;
   textSearch?: string;
-  cardLayout?: CardLayout;
   notFound: PropsNotFound;
+  /**
+  * @title Highlights 
+  */
+  photoOnPLP: Section[];
   filterColors?: Color[];
   filtersNames?: FilterName[];
   textFilters?: string;
@@ -66,29 +58,25 @@ export interface Color {
 
 function Result({
   page,
-  layout,
-  cardLayout,
-  filterColors,
-  filtersNames,
   textSearch,
   searchTerm,
+  section,
+  isMobile,
+  filterColors,
+  filtersNames,
   textFilters,
   appliedFiltersText,
   applyFiltersText,
   removeFiltersText,
   url,
-}: Omit<Props, "page"> & {
-  page: ProductListingPage;
-  searchTerm: string;
-  url: string;
-}) {
+}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section, isMobile: boolean, url: string}) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
   return (
     <div>
-      <SearchControls
+       <SearchControls
         searchTerm={searchTerm}
         textSearch={textSearch}
         sortOptions={sortOptions}
@@ -101,14 +89,15 @@ function Result({
         filters={filters}
         url={url}
         breadcrumb={breadcrumb}
-        displayFilter={layout?.variant === "drawer"}
       />
       <div class="lg:px-8 px-[15px]">
         <div class="flex-grow">
           <ProductGallery
             products={products}
             offset={offset}
-            layout={{ card: cardLayout, columns: layout?.columns }}
+            photoOnPLP={section}
+            page={page}
+            isMobile={isMobile}
           />
         </div>
 
@@ -159,18 +148,29 @@ function Result({
 }
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
-  const { page, notFound, searchTerm } = props;
+
+  const { page, notFound, searchTerm, section, isMobile } = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
   }
 
-  return <Result {...props} page={page} />;
+  return <Result {...props} page={page} section={section} isMobile={isMobile} />;
 }
 
 export default SearchResult;
 
 export const loader = (props: Props, req: Request) => {
-  const term = new URLSearchParams(new URL(req.url).search).get("q");
-  return { ...props, searchTerm: term ?? "", url: req.url };
+
+  const { photoOnPLP } = { ...props }
+
+  const section = photoOnPLP.find(({ matcher }) =>
+    new URLPattern({ pathname: matcher }).test(req.url)
+  );
+
+  const term = new URLSearchParams(new URL(req.url).search).get('q');
+
+  const isMobile = req.headers.get("user-agent")!.includes('Mobile')
+
+  return { ...props, searchTerm: term ?? "", section, isMobile, url: req.url};
 };
