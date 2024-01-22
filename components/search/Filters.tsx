@@ -8,7 +8,7 @@ import type {
 import Icon from "$store/components/ui/Icon.tsx";
 import ValueItem from "$store/islands/ValueItem.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
+import { compareSizes } from "deco-sites/bolovo-store/sdk/useVariantPossiblities.ts";
 
 interface Props {
   filters: ProductListingPage["filters"];
@@ -31,11 +31,12 @@ export const isToggle = (filter: Filter): filter is FilterToggle =>
   filter["@type"] == "FilterToggle";
 
 function FilterValues({ label, values, filterColors }: FilterValuesProps) {
-  const flexDirection = label == "cor"
+  const flexDirection = label === "cor"
     ? "flex flex-wrap overflow-hidden md:grid md:grid-cols-8 grid-cols-5 gap-[18px]"
-    : label == "property2"
-    ? "flex flex-wrap gap-2 flex-grow "
+    : label === "property2"
+    ? "flex gap-x-[53px] flex-wrap justify-between "
     : "flex-col flex flex-wrap gap-2 ";
+
 
   const matchingColors: FilterToggleValueWithHex[] = values?.map(
     (value) => {
@@ -72,6 +73,7 @@ function FilterValues({ label, values, filterColors }: FilterValuesProps) {
         if (label == "property2") {
           return (
             <ValueItem
+              class="leading-[32.2px] mt-[1px]"
               type={label}
               {...item}
             />
@@ -84,10 +86,10 @@ function FilterValues({ label, values, filterColors }: FilterValuesProps) {
   );
 }
 
-function Filters({ filters, filterColors, filterNames }: Props) {
-  const filtersOrder = ["cor", "property2", "categoria"];
-  const sortedFilters = filtersOrder.map((label) =>
-    filters.find((filter) => filter.label === label)
+function Filters({ filters, filterColors = [], filterNames = [] }: Props) {
+ 
+  const sortedFilters = filterNames.map((label) =>
+    filters.find((filter) => filter.label === label.filter)
   ).filter(Boolean);
   const namedFilters = sortedFilters?.map(
     (filter) => {
@@ -104,32 +106,34 @@ function Filters({ filters, filterColors, filterNames }: Props) {
       }
     },
   );
-
+  namedFilters[1]?.values.sort(compareSizes)
+ 
   return (
-    <ul class="flex flex-col gap-4 pl-[21px] pr-[15px]">
+    <ul class="flex flex-col gap-[10px] pl-[21px] pr-[15px]">
       {namedFilters
         .filter(isToggle)
         .map((filter) => (
           <>
             {filter.label == "cor"
               ? (
-                <li class="flex flex-col gap-4 mb-4 mt-2">
-                  <span class="font-semibold text-[15px] leading-9 uppercase">
-                    {filter.newLabel ? filter.newLabel : filter.label}
-                  </span>
-                  <FilterValues {...filter} filterColors={filterColors} />
+                <li class="border-y border-opacity-30 border-[#121212]">
+                  <div class="flex flex-col gap-[7px] mb-4 mt-4">
+                    <span class="font-semibold text-[15px] leading-[34.5px] uppercase">
+                      {filter.newLabel ? filter.newLabel : filter.label}
+                    </span>
+                    <FilterValues {...filter} filterColors={filterColors} />
+                  </div>
                 </li>
               )
               : (
                 <div>
-                  <div class="border-b border-opacity-30 border-[#121212]" />
-                  <div class="collapse items-start w-full mt-4">
+                  <div class="collapse items-start w-full mb-[10px]">
                     <input
                       type="checkbox"
                       id="toggle"
-                      class="min-h-[40px] min-w-full"
+                      class="min-h-[34.5px] min-w-full"
                     />
-                    <div class="collapse-title relative min-w-full flex font-semibold uppercase text-[15px] leading-9 flex-grow w-full min-h-[40px] items-center px-0 py-0">
+                    <div class="collapse-title relative min-w-full flex font-semibold uppercase text-[15px] leading-[34.5px] flex-grow w-full min-h-[34.5px] items-center px-0 py-0">
                       {filter.newLabel ? filter.newLabel : filter.label}
                       <Icon
                         id="ChevronDown"
@@ -143,6 +147,7 @@ function Filters({ filters, filterColors, filterNames }: Props) {
                       <FilterValues {...filter} />
                     </div>
                   </div>
+                  <div class="border-b border-opacity-30 border-[#121212]" />
                 </div>
               )}
           </>
