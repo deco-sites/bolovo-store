@@ -10,7 +10,10 @@ import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx"
 import type { SectionProps } from "deco/types.ts";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx"
+<<<<<<< HEAD
 import type { ImageWidget } from "apps/admin/widgets.ts";
+=======
+>>>>>>> main
 
 export interface Props {
   /** @title Integration */
@@ -21,6 +24,7 @@ export interface Props {
   * @title Highlights 
   */
   photoOnPLP: Section[];
+<<<<<<< HEAD
   filterColors?: Color[];
   filtersNames?: FilterName[];
   textFilters?: string;
@@ -54,6 +58,8 @@ export interface Color {
    * @title Image
    */
   src?: ImageWidget;
+=======
+>>>>>>> main
 }
 
 function Result({
@@ -62,6 +68,7 @@ function Result({
   searchTerm,
   section,
   isMobile,
+<<<<<<< HEAD
   filterColors,
   filtersNames,
   textFilters,
@@ -70,9 +77,13 @@ function Result({
   removeFiltersText,
   url,
 }: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section, isMobile: boolean, url: string}) {
+=======
+}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section, isMobile: boolean }) {
+>>>>>>> main
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
+
 
   return (
     <div>
@@ -172,5 +183,10 @@ export const loader = (props: Props, req: Request) => {
 
   const isMobile = req.headers.get("user-agent")!.includes('Mobile')
 
+<<<<<<< HEAD
   return { ...props, searchTerm: term ?? "", section, isMobile, url: req.url};
 };
+=======
+  return { ...props, searchTerm: term ?? "", section, isMobile };
+};
+>>>>>>> main
