@@ -35,16 +35,15 @@ function SelectedFilters({ filters, class: _class = "" }: Props) {
   );
 
   return (
-    <ul class="flex flex-wrap gap-[7px] items-center pl-[21px] pr-[15px] pt-5">
+    <ul class="flex flex-wrap gap-[7px] items-center pl-[21px] pr-[15px] pt-[10px] pb-6 sm:pb-[25px]">
       {selectedFilters.value.map((item) => (
-        <li class="border border-black rounded-[20px] items-center">
-          <div class="flex flex-row">
-            <span class="items-center pl-3 mt-[2px] mr-[5px] capitalize">
+        <li class="border border-black h-6 rounded-[20px] flex flex-row items-center">
+            <div class="pl-3 h-6 mr-[5px] items-center uppercase">
               {item.label}
-            </span>
+            </div>
             <button
               id="remove-filter"
-              class="ml-[5px] bg-black rounded-full block p-[7px]"
+              class="ml-[5px] w-6 h-6 bg-primary rounded-full"
               key={item.label}
               onClick={() => {
                 selectedFilters.value = selectedFilters.peek().filter((
@@ -56,10 +55,9 @@ function SelectedFilters({ filters, class: _class = "" }: Props) {
                 id="XMark"
                 size={15}
                 strokeWidth={2}
-                class="text-white"
+                class="text-white mx-auto h-[20px]"
               />
             </button>
-          </div>
         </li>
       ))}
     </ul>

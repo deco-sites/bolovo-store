@@ -73,7 +73,7 @@ export default function ValueItem({
         <div class="flex items-center">
           <span
             class={`${
-              isSelected ? "bg-black rounded-[20px] text-white px-3" : ""
+              isSelected ? "bg-primary rounded-[20px] text-white px-3" : ""
             }  flex items-center gap-2.5 font-normal uppercase`}
           >
             {label}

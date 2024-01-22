@@ -60,7 +60,7 @@ function SearchControls(
       aside={
         <>
           <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full">
-            <div class="flex flex-row w-full justify-end items-center">
+            <div class="hidden sm:flex flex-row w-full justify-end items-center">
               <span class="font-medium text-sm leading-[18px]">
                 Fechar
               </span>
@@ -76,21 +76,32 @@ function SearchControls(
                 />
               </Button>
             </div>
-            <div class="flex flex-row justify-between pl-[21px] pr-[15px] text-[15px] mt-5">
+            <div class="flex flex-row justify-between pl-[21px] pr-[15px] items-center text-[15px] sm:mt-5 mt-14">
               <span class="font-semibold uppercase">{textFilters}</span>
-              <span class="font-normal uppercase">
+              <span class="sm:hidden flex"><Button
+                class="btn btn-ghost hover:bg-transparent disabled:bg-transparent block"
+                onClick={() => open.value = false}
+              >
+                <Icon
+                  id="XMark"
+                  size={18}
+                  strokeWidth={2}
+                  class="text-[#121212]"
+                />
+              </Button></span>
+              <span class="sm:flex hidden font-normal uppercase">
                 {selectedFilters.value.length} {appliedFiltersText}
               </span>
             </div>
             <div>
               <SelectedFilters filters={filters} />
             </div>
-            <div class="border-b pb-[25px] border-opacity-30 border-[#121212] mr-[15px] ml-[21px]" />
+
             <div class="flex-grow overflow-auto">
               <Filters
                 filters={filters}
                 filterColors={filterColors ?? []}
-                filterNames={filtersNames}
+                filterNames={filtersNames ?? []}
               />
               <div class="w-full pl-[21px] pr-[15px] mt-14">
                 <div class="pb-2">
