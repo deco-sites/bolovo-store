@@ -30,12 +30,16 @@ const MOBILE_DIRECTION = {
     "imagem abaixo": "row-start-3",
 };
 
+<<<<<<< HEAD
 export default function PhotoGallery(
   { title, featuredPhoto, contentDirection, products }: Props,
 ) {
   if (!products || products.length === 0) {
     return null;
   }
+=======
+export default function PhotoGallery({ title, featuredPhoto, contentDirection, products }: Props) {
+>>>>>>> main
 
     if (!products || products.length === 0) {
         return null;
