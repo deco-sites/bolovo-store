@@ -17,7 +17,7 @@ export default function ValueItem({
   class?: string;
 }) {
   const isSelected = selectedFilters.value.some(
-    (value) => label === value.label
+    (value) => label === value.label,
   );
   if (type === "cor") {
     return (
@@ -27,30 +27,32 @@ export default function ValueItem({
           const filters = selected.some((filter) => filter.label == label)
             ? selected.filter((filter) => filter.label != label)
             : selected.concat({
-                type,
-                url,
-                label,
-              });
+              type,
+              url,
+              label,
+            });
           selectedFilters.value = filters;
         }}
         class={_class}
       >
         <div>
-          {filterImage ? (
-            <img
-              src={filterImage}
-              class={`w-[29px] h-[30px] ${
-                isSelected ? "border-[1.5px] border-black" : ""
-              }`}
-            />
-          ) : (
-            <div
-              style={{ backgroundColor: colorHex }}
-              class={`w-[29px] h-[30px] ${
-                isSelected ? "border-[1.5px] border-black" : ""
-              }`}
-            />
-          )}
+          {filterImage
+            ? (
+              <img
+                src={filterImage}
+                class={`w-[29px] h-[30px] ${
+                  isSelected ? "border-[1.5px] border-black" : ""
+                }`}
+              />
+            )
+            : (
+              <div
+                style={{ backgroundColor: colorHex }}
+                class={`w-[29px] h-[30px] ${
+                  isSelected ? "border-[1.5px] border-black" : ""
+                }`}
+              />
+            )}
         </div>
       </button>
     );
@@ -62,10 +64,10 @@ export default function ValueItem({
           const filters = selected.some((filter) => filter.label == label)
             ? selected.filter((filter) => filter.label != label)
             : selected.concat({
-                type,
-                url,
-                label,
-              });
+              type,
+              url,
+              label,
+            });
           selectedFilters.value = filters;
         }}
         class={_class}

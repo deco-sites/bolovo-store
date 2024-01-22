@@ -37,7 +37,6 @@ function FilterValues({ label, values, filterColors }: FilterValuesProps) {
     ? "flex gap-x-[53px] flex-wrap justify-between "
     : "flex-col flex flex-wrap gap-2 ";
 
-
   const matchingColors: FilterToggleValueWithHex[] = values?.map(
     (value) => {
       const matchedColor = filterColors?.find(
@@ -87,7 +86,6 @@ function FilterValues({ label, values, filterColors }: FilterValuesProps) {
 }
 
 function Filters({ filters, filterColors = [], filterNames = [] }: Props) {
- 
   const sortedFilters = filterNames.map((label) =>
     filters.find((filter) => filter.label === label.filter)
   ).filter(Boolean);
@@ -106,8 +104,8 @@ function Filters({ filters, filterColors = [], filterNames = [] }: Props) {
       }
     },
   );
-  namedFilters[1]?.values.sort(compareSizes)
- 
+  namedFilters[1]?.values.sort(compareSizes);
+
   return (
     <ul class="flex flex-col gap-[10px] pl-[21px] pr-[15px]">
       {namedFilters

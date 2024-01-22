@@ -38,26 +38,26 @@ function SelectedFilters({ filters, class: _class = "" }: Props) {
     <ul class="flex flex-wrap gap-[7px] items-center pl-[21px] pr-[15px] pt-[10px] pb-6 sm:pb-[25px]">
       {selectedFilters.value.map((item) => (
         <li class="border border-black h-6 rounded-[20px] flex flex-row items-center">
-            <div class="pl-3 h-6 mr-[5px] items-center uppercase">
-              {item.label}
-            </div>
-            <button
-              id="remove-filter"
-              class="ml-[5px] w-6 h-6 bg-primary rounded-full"
-              key={item.label}
-              onClick={() => {
-                selectedFilters.value = selectedFilters.peek().filter((
-                  filter,
-                ) => filter.label !== item.label);
-              }}
-            >
-              <Icon
-                id="XMark"
-                size={15}
-                strokeWidth={2}
-                class="text-white mx-auto h-[20px]"
-              />
-            </button>
+          <div class="pl-3 h-6 mr-[5px] items-center uppercase">
+            {item.label}
+          </div>
+          <button
+            id="remove-filter"
+            class="ml-[5px] w-6 h-6 bg-primary rounded-full"
+            key={item.label}
+            onClick={() => {
+              selectedFilters.value = selectedFilters.peek().filter((
+                filter,
+              ) => filter.label !== item.label);
+            }}
+          >
+            <Icon
+              id="XMark"
+              size={15}
+              strokeWidth={2}
+              class="text-white mx-auto h-[20px]"
+            />
+          </button>
         </li>
       ))}
     </ul>
