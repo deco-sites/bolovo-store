@@ -1,4 +1,8 @@
-import type { FilterToggleValue, ProductLeaf, PropertyValue } from "apps/commerce/types.ts";
+import type {
+  FilterToggleValue,
+  ProductLeaf,
+  PropertyValue,
+} from "apps/commerce/types.ts";
 
 export type Possibilities = Record<string, Record<string, string | undefined>>;
 
@@ -43,11 +47,21 @@ export const useVariantPossibilities = (
   return possibilities;
 };
 
-
-export function compareSizes(a :FilterToggleValue , b: FilterToggleValue) {
-  const sizeA = a.value.split(' ')[0];
-  const sizeB = b.value.split(' ')[0];
-  const sizeOrder = ['P', 'P | S', 'M', 'M | M', 'G', 'G | L', 'GG', 'GG | XL', 'XGG', 'XGG | XXL'];
+export function compareSizes(a: FilterToggleValue, b: FilterToggleValue) {
+  const sizeA = a.value.split(" ")[0];
+  const sizeB = b.value.split(" ")[0];
+  const sizeOrder = [
+    "P",
+    "P | S",
+    "M",
+    "M | M",
+    "G",
+    "G | L",
+    "GG",
+    "GG | XL",
+    "XGG",
+    "XGG | XXL",
+  ];
 
   return sizeOrder.indexOf(sizeA) - sizeOrder.indexOf(sizeB);
 }

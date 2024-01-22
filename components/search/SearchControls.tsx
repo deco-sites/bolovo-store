@@ -78,17 +78,19 @@ function SearchControls(
             </div>
             <div class="flex flex-row justify-between pl-[21px] pr-[15px] items-center text-[15px] sm:mt-5 mt-14">
               <span class="font-semibold uppercase">{textFilters}</span>
-              <span class="sm:hidden flex"><Button
-                class="btn btn-ghost hover:bg-transparent disabled:bg-transparent block"
-                onClick={() => open.value = false}
-              >
-                <Icon
-                  id="XMark"
-                  size={18}
-                  strokeWidth={2}
-                  class="text-[#121212]"
-                />
-              </Button></span>
+              <span class="sm:hidden flex">
+                <Button
+                  class="btn btn-ghost hover:bg-transparent disabled:bg-transparent block"
+                  onClick={() => open.value = false}
+                >
+                  <Icon
+                    id="XMark"
+                    size={18}
+                    strokeWidth={2}
+                    class="text-[#121212]"
+                  />
+                </Button>
+              </span>
               <span class="sm:flex hidden font-normal uppercase">
                 {selectedFilters.value.length} {appliedFiltersText}
               </span>
