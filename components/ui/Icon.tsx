@@ -51,6 +51,7 @@ export type AvailableIcons =
   | "Boleto"
   | "Hiper"
   | "Close"
+  | "ArrowDown"
   | "FilterArrowRight"
   | "FilterArrowLeft"
 
