@@ -22,20 +22,22 @@ export interface Props {
   photoOnPLP: Section[];
 }
 
-function Result({
+export function Result({
   page,
-  textSearch,
   searchTerm,
+  textSearch,
   section,
   isMobile,
-}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section, isMobile: boolean }) {
+  isCategory = false
+}: { page: ProductListingPage, searchTerm?: string, textSearch?: string,  section?: Section, isMobile: boolean, isCategory?: boolean }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
 
   return (
-    <div>
+    <>
+    {!isCategory &&
       <SearchControls
         searchTerm={searchTerm}
         textSearch={textSearch}
@@ -43,6 +45,7 @@ function Result({
         filters={filters}
         breadcrumb={breadcrumb}
       />
+    }
       <div class="lg:px-8 px-[15px]">
         <div class="flex-grow">
           <ProductGallery
@@ -96,19 +99,19 @@ function Result({
           },
         }}
       />
-    </div>
+    </>
   );
 }
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
 
-  const { page, notFound, searchTerm, section, isMobile } = props;
+  const { page, notFound, searchTerm, textSearch , section, isMobile } = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
   }
 
-  return <Result {...props} page={page} section={section} isMobile={isMobile} />;
+  return <Result {...props} page={page} section={section} isMobile={isMobile} textSearch={textSearch}/>;
 }
 
 export default SearchResult;
