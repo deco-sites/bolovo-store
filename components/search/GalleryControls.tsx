@@ -8,20 +8,22 @@ import Sort from "$store/components/search/Sort.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
 import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
+import type Props from "$store/components/PLP/CategoryResult.tsx"
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
   & {
     displayFilter?: boolean;
-    list?: Array<{
-      label?: string;
-      href?: string;
-    }>;
     currentCategory?: string;
+    parentCategory?: string;
+    subCategories: {
+      label: string;
+      url: string;
+    }[];
   }; 
 
 function GalleryControls(
-  { filters, displayFilter, sortOptions, list, currentCategory}: Props,
+  { filters, displayFilter, sortOptions, subCategories, currentCategory, parentCategory}: Props,
 ) {
   const open = useSignal(false);
   const id = useId();
@@ -60,23 +62,54 @@ function GalleryControls(
         }
       >
         <div className="flex mb-5 flex-col lg:flex-row justify-between lg:w-[calc(100vw-45px)]">
-          <div className="flex relative px-2 mb-[10px] lg:mb-0 lg:px-0 max-w-[100vw] justify-start items-start overflow-x-auto overflow-y-visible shadow-[0_5px_12px_0_rgba(220,220,220,0.25)] lg:shadow-none">
-            <div className="absolute inset-y-0 right-0 w-[15%] lg:w-[10%] bg-gradient-to-r from-transparent via-white to-white pointer-events-none"></div>
-            {list && (  
+          <div className="flex lg:w-[88%] items-center relative px-2 mb-[10px] lg:mb-0 lg:px-0 max-w-[100vw] justify-start overflow-x-auto overflow-y-visible shadow-[0_5px_12px_0_rgba(220,220,220,0.25)] lg:shadow-none">
+            <div className="absolute inset-y-0 right-0 w-[10%] lg:w-[6.5%] bg-gradient-to-r from-transparent via-white to-white pointer-events-none"></div>
+            {parentCategory && (
+              <>
+            <a
+              href={`/` + parentCategory}
+              class="group leading-none py-[5px] px-3 pr-5 flex w-auto lg:h-auto rounded-[20px] items-center">
+                <span
+                  class={`text-[14px] lg:text-[15px] font-medium uppercase text-[#000]
+                  }`}
+                >
+                  {parentCategory}
+                </span>
+                <span class="ml-5 text-black">{'>'}</span>
+            </a>  
               <Slider class="py-[17.5px] carousel carousel-start gap-4 lg:gap-7 row-start-2 row-end-5 overflow-x-scroll">
-                {list?.map(({ label, href }, index) => (
+                <Slider.Item
+                    index={0}
+                    class="flex carousel-item sm:first:pl-0 last:pr-6 sm:last:pr-14"
+                >
+                  <a
+                    href={!parentCategory ? `/` + currentCategory : `/` + parentCategory}
+                    class={`group btn-ghost leading-none btn-xs py-[5px] px-3 flex w-auto lg:h-auto rounded-[20px] bg-transparent hover:bg-black hover:border hover:border-black ${
+                      currentCategory ==  parentCategory ? '!bg-black' : ''
+                    }`}
+                  >
+                    <span
+                      class={`text-[13px] uppercase text-[#121212] group-hover:text-white ${
+                        currentCategory == parentCategory ? "text-white" : ""
+                      }`}
+                    >
+                      Ver Todos
+                    </span>
+                  </a>
+                </Slider.Item>
+                {subCategories?.map(({ label, url }, index) => (
                   <Slider.Item
                     index={index}
                     class="flex carousel-item sm:first:pl-0 last:pr-6 sm:last:pr-14"
                   >
                     <a
-                      href={href}
+                      href={`/` + parentCategory + url}
                       class={`group btn-ghost leading-none btn-xs py-[5px] px-3 flex w-auto lg:h-auto rounded-[20px] bg-transparent hover:bg-black hover:border hover:border-black ${
                         currentCategory == removeAcentos((label || '').toLowerCase()) ? '!bg-black' : ''
                       }`}
                     >
                       <span
-                        class={`text-[13px] uppercase leading-none text-[#121212] group-hover:text-white ${
+                        class={`text-[13px] uppercase text-[#121212] group-hover:text-white ${
                           currentCategory ==  removeAcentos((label || '').toLowerCase()) ? '!text-white' : ''
                         }`}
                       >
@@ -86,6 +119,7 @@ function GalleryControls(
                   </Slider.Item>
                 ))}
               </Slider>
+              </>
             )}
             <SliderJS rootId={id} />
           </div>

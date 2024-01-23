@@ -19,15 +19,28 @@ export interface Layout {
   columns?: Columns;
 }
 
+/**
+ * @titleBy category
+ */
+export interface CategoryArray{
+  /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
+  matcher: string;
+  category: string;
+  url: string
+  /**
+ * @description Subcategorias existentes
+ */
+  items?: { 
+    label: string; 
+    url: string
+  }[]; 
+}
+
 export interface Props {
   /** @title Integration */
-  page: ProductListingPage | null;
   layout?: Layout;
-  list?: Array<{
-    label?: string;
-    href?: string;
-  }>;
-  cardLayout?: CardLayout;
+  categories: CategoryArray[];
+  page: ProductListingPage | null;
 }
 
 function NotFound() {
@@ -41,10 +54,18 @@ function NotFound() {
 function Result({
   page,
   layout,
-  cardLayout,
-  list,
-  currentCategory
-}: Omit<Props, "page"> & { page: ProductListingPage, list?: Array<{ label?: string; href?: string }>, currentCategory?: string }) {
+  currentCategory,
+  parentCategory,
+  subCategories,
+}: Omit<Props, "page"> & { 
+  page: ProductListingPage;
+  currentCategory?: string | undefined;
+  subCategories: {
+    label: string;
+    url: string;
+  }[];
+  parentCategory?: string | undefined;
+}) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
@@ -52,8 +73,9 @@ function Result({
   return (
     <div>
       <GalleryControls
+        subCategories={subCategories}
+        parentCategory={parentCategory}
         currentCategory={currentCategory}
-        list={list}
         sortOptions={sortOptions}
         filters={filters}
         breadcrumb={breadcrumb}
@@ -64,7 +86,6 @@ function Result({
           <ProductGallery
             products={products}
             offset={offset}
-            layout={{ card: cardLayout, columns: layout?.columns }}
           />
         </div>
 
@@ -121,16 +142,58 @@ function CategoryResult(
     return <NotFound />;
   }
 
-  return <Result {...props} page={page} />;
+  return <Result {...props} page={page}  />;
 }
 
-export default CategoryResult;
-
 export const loader = (props: Props, req: Request) => {
+  
+  const { categories } = props;
+
   const url = new URL(req.url);
-  const segments = url.pathname.split('/').filter(Boolean);
+  const urlSegments = url.pathname.split('/').filter(Boolean);
+  const firstSegment = urlSegments.length > 0 ? urlSegments[0] : null;
+  const secondSegment = urlSegments.length > 1 ? urlSegments[1] : null;
 
-  const lastSegment = segments[segments.length - 1];
+  const foundCategory = categories?.filter(({ category }) => category === firstSegment);
 
-  return { ...props, currentCategory: lastSegment || "" };
+  if (foundCategory && foundCategory.length > 0) {
+
+    let currentCategory: string | undefined;
+    let subCategories: { label: string; url: string }[] = [];
+
+    if (secondSegment) {
+      const foundSubCategory = foundCategory[0]?.items?.find(
+        (subCategory) => subCategory.url === `/${secondSegment}`
+      );
+      
+      currentCategory = foundSubCategory?.label;
+    }
+    else{
+      currentCategory = foundCategory[0]?.category;
+    }
+    const parentCategory = foundCategory[0]?.category ? foundCategory[0]?.category : undefined;
+
+    if (foundCategory[0]?.items) {
+      subCategories = foundCategory[0].items.map((subCategory) => ({
+        label: subCategory.label,
+        url: subCategory.url,
+      }));
+    }
+
+    return {
+      ...props,
+      currentCategory,
+      subCategories: subCategories.length > 0 ? subCategories : [],
+      parentCategory,
+    };
+  } else {
+    return {
+      ...props,
+      parentCategory: urlSegments[0] || '',
+      currentCategory: urlSegments[0] || '',
+      subCategories: [],
+    };
+  }
 };
+
+export default CategoryResult;
