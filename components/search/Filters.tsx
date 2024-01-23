@@ -34,8 +34,8 @@ function FilterValues({ label, values, filterColors }: FilterValuesProps) {
   const flexDirection = label === "cor"
     ? "flex flex-wrap overflow-hidden md:grid md:grid-cols-8 grid-cols-5 gap-[18px]"
     : label === "property2"
-    ? "flex gap-x-[53px] flex-wrap justify-between "
-    : "flex-col flex flex-wrap gap-2 ";
+    ? "flex flex-wrap items-center flex-grow justify-between gap-y-1 pl-[9px] pr-[3px]"
+    : "flex-col flex flex-wrap gap-2 pl-[9px] pr-[3px]";
 
   const matchingColors: FilterToggleValueWithHex[] = values?.map(
     (value) => {
@@ -104,17 +104,18 @@ function Filters({ filters, filterColors = [], filterNames = [] }: Props) {
       }
     },
   );
+
   namedFilters[1]?.values.sort(compareSizes);
 
   return (
-    <ul class="flex flex-col gap-[10px] pl-[21px] pr-[15px]">
+    <ul class="flex flex-col gap-[10px]">
       {namedFilters
         .filter(isToggle)
-        .map((filter) => (
+        .map((filter, index) => (
           <>
-            {filter.label == "cor"
+            {filter.label == "cor" && index === 0
               ? (
-                <li class="border-y border-opacity-30 border-[#121212]">
+                <li class="border-y border-opacity-30 border-[#121212] ml-[21px] mr-[15px]">
                   <div class="flex flex-col gap-[7px] mb-4 mt-4">
                     <span class="font-semibold text-[15px] leading-[34.5px] uppercase">
                       {filter.newLabel ? filter.newLabel : filter.label}
@@ -123,7 +124,16 @@ function Filters({ filters, filterColors = [], filterNames = [] }: Props) {
                   </div>
                 </li>
               )
-              : (
+              : filter.label == "cor" && index !== 0 ?
+              <li class="border-b border-opacity-30 border-[#121212] ml-[21px] mr-[15px]">
+              <div class="flex flex-col gap-[7px] mb-4 ">
+                <span class="font-semibold text-[15px] leading-[34.5px] uppercase">
+                  {filter.newLabel ? filter.newLabel : filter.label}
+                </span>
+                <FilterValues {...filter} filterColors={filterColors} />
+              </div>
+            </li> 
+            : (
                 <div>
                   <div class="collapse items-start w-full mb-[10px]">
                     <input
@@ -131,21 +141,21 @@ function Filters({ filters, filterColors = [], filterNames = [] }: Props) {
                       id="toggle"
                       class="min-h-[34.5px] min-w-full"
                     />
-                    <div class="collapse-title relative min-w-full flex font-semibold uppercase text-[15px] leading-[34.5px] flex-grow w-full min-h-[34.5px] items-center px-0 py-0">
+                    <div class="collapse-title relative min-w-full flex font-semibold uppercase text-[15px] leading-[34.5px] flex-grow w-full min-h-[34.5px] items-center pl-[21px] py-0">
                       {filter.newLabel ? filter.newLabel : filter.label}
                       <Icon
                         id="ChevronDown"
                         size={11}
                         strokeWidth={2}
                         fill="none"
-                        class="absolute right-0 transition-transform duration-300 transform"
+                        class="absolute right-0 transition-transform duration-300 transform mr-[15px]"
                       />
                     </div>
-                    <div class="collapse-content px-0">
+                    <div class="collapse-content px-0 py-0">
                       <FilterValues {...filter} />
                     </div>
                   </div>
-                  <div class="border-b border-opacity-30 border-[#121212]" />
+                  <div class="border-b border-opacity-30 border-[#121212] ml-[21px] mr-[15px]" />
                 </div>
               )}
           </>

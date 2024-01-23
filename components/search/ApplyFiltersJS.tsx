@@ -11,6 +11,8 @@ function buildParams() {
   const existingParams = new URLSearchParams(url.search);
   const keysToRemove = [];
   const qValue = existingParams.get("q");
+  const sortValue = existingParams.get("sort");
+
   if (qValue) {
     existingParams.set("q", qValue);
   }
@@ -29,6 +31,10 @@ function buildParams() {
   keysToRemove.forEach((key) => {
     existingParams.delete(key);
   });
+
+  if (sortValue) {
+    existingParams.set("sort", sortValue);
+  }
 
   selectedFilters.peek().forEach(({ type, label }) => {
     const selectLabel = type !== "property2" ? label.toLowerCase() : label;
