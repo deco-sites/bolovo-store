@@ -17,7 +17,7 @@ export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
   textSearch?: string;
-  buttonPagnation?: ButtonsPaginationProps;
+  buttonsPagination?: ButtonsPaginationProps;
   notFound: PropsNotFound;
   /**
   * @title Highlights 
@@ -71,7 +71,7 @@ function Result({
   applyFiltersText,
   removeFiltersText,
   url,
-  buttonPagnation,
+  buttonsPagination,
 }: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section, isMobile: boolean, url: string}) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
@@ -103,7 +103,7 @@ function Result({
             isMobile={isMobile}
           />
         </div>
-        <ButtonsPagination page={page} props={buttonPagnation} />
+        <ButtonsPagination page={page} props={buttonsPagination} />
       </div>
       <SendEventOnLoad
         event={{
@@ -129,13 +129,13 @@ function Result({
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
 
-  const { page, notFound, searchTerm, section, isMobile, buttonPagnation } = props;
+  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
   }
 
-  return <Result {...props} page={page} section={section} isMobile={isMobile} buttonPagnation={buttonPagnation} />;
+  return <Result {...props} page={page} section={section} isMobile={isMobile} buttonsPagination={buttonsPagination} />;
 }
 
 export default SearchResult;
