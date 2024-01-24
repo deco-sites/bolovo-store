@@ -89,35 +89,37 @@ function ProductCardGallery(
       <a href={link}>
         <Avatar
           variant={link === url ? "active" : link ? "default" : "disabled"}
-          content={size === '' ? "UN" : size}
+          content={size === "" ? "UN" : size}
         />
       </a>
     </li>
   ));
 
-  const colorSelector = variants.length > 1 ? ( 
-    variants.map(([value, link]) => (
-      <li>
-        <a href={link}>
-          <div
-            class="w-[12px] h-[12px] flex items-center justify-center"
-            title={`Cor ${value}`}
-          >
-            {/* Aqui eu optei por colocar um svg, e ai a parte do fill vai ser dinâmica de acordo com a informação que pegarmos na PDP */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
+  const colorSelector = variants.length > 1
+    ? (
+      variants.map(([value, link]) => (
+        <li>
+          <a href={link}>
+            <div
+              class="w-[12px] h-[12px] flex items-center justify-center"
+              title={`Cor ${value}`}
             >
-              <rect x="0" y="0" width="12" height="12" fill="#FF0000" />
-            </svg>
-          </div>
-        </a>
-      </li>
-    ))
-  ) : null;
+              {/* Aqui eu optei por colocar um svg, e ai a parte do fill vai ser dinâmica de acordo com a informação que pegarmos na PDP */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+              >
+                <rect x="0" y="0" width="12" height="12" fill="#FF0000" />
+              </svg>
+            </div>
+          </a>
+        </li>
+      ))
+    )
+    : null;
 
   const cta = (
     <a
@@ -163,7 +165,10 @@ function ProductCardGallery(
       />
       <figure
         class="relative overflow-hidden"
-        style={{ aspectRatio: `${WIDTH} / ${HEIGHT}`, backgroundColor: '#F6F6F6'}}
+        style={{
+          aspectRatio: `${WIDTH} / ${HEIGHT}`,
+          backgroundColor: "#F6F6F6",
+        }}
       >
         {/* Wishlist button */}
         <div
@@ -246,8 +251,8 @@ function ProductCardGallery(
                 />
               </Picture>
             </div>
-            )}
-            </a>
+          )}
+        </a>
         <figcaption
           class={`
           absolute bottom-1 left-0 w-full flex items-center flex-col gap-3 p-2 ${
@@ -269,17 +274,18 @@ function ProductCardGallery(
       <div class="hidden lg:flex justify-center">
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
-            <>
-              {l?.hide?.skuSelector ? "" : (
-                <div class="group">
-                  <ul
-                    class={` relative bottom-0 left-0 flex items-center gap-2 w-full overflow-auto p-[10.25px] transition-opacity duration-300 opacity-1 group-hover:opacity-100 ${
-                      align === "center" ? "justify-center" : "justify-start"}`}
-                  >
-                        {skuSelector}
-                  </ul>
-                </div>
-              )}
+          <>
+            {l?.hide?.skuSelector ? "" : (
+              <div class="group">
+                <ul
+                  class={` relative bottom-0 left-0 flex items-center gap-2 w-full overflow-auto p-[10.25px] transition-opacity duration-300 opacity-1 group-hover:opacity-100 ${
+                    align === "center" ? "justify-center" : "justify-start"
+                  }`}
+                >
+                  {skuSelector}
+                </ul>
+              </div>
+            )}
           </>
         )}
       </div>

@@ -25,7 +25,11 @@ function Header(props: Props) {
                       ? "text-primary-content"
                       : "text-base-content"
                   }
-                  ${props.fontSize === "Normal" ? "text-[14px] lg:text-base" : "lg:text-xl"}
+                  ${
+                    props.fontSize === "Normal"
+                      ? "text-[14px] lg:text-base"
+                      : "lg:text-xl"
+                  }
                 `}
                 >
                   {props.title}

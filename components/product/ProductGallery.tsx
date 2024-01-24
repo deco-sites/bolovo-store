@@ -39,7 +39,7 @@ function ProductGallery({ products, offset, photoOnPLP, page, isMobile }: Props)
           <li class={`h-full`}>
             <ProductCard
               product={product}
-              preload={index === 0}
+              preload={index === 0} 
               index={offset ? offset + index : undefined}
               platform={platform}
             />
