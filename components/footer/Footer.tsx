@@ -8,11 +8,11 @@ import MobileApps from "$store/components/footer/MobileApps.tsx";
 import PaymentMethods from "$store/components/footer/PaymentMethods.tsx";
 import RegionSelector from "$store/components/footer/RegionSelector.tsx";
 import Social from "$store/components/footer/Social.tsx";
-import Contacts from "$store/components/footer/Contacts.tsx"
+import Contacts from "$store/components/footer/Contacts.tsx";
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
-import type {ContactsProps} from "$store/components/footer/Contacts.tsx"
+import type { ContactsProps } from "$store/components/footer/Contacts.tsx";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 
 export type Item = {
@@ -26,12 +26,12 @@ export type Section = {
 
 export interface SocialItem {
   label:
-  | "Instagram"
-  | "Youtube"
-  | "Spotify"
-  | "WhatsApp";
+    | "Instagram"
+    | "Youtube"
+    | "Spotify"
+    | "WhatsApp";
   link: string;
-  newTab?: boolean
+  newTab?: boolean;
 }
 
 export interface PaymentItem {
@@ -111,8 +111,8 @@ export interface Props {
     text?: string;
   };
   contacts?: ContactsProps[];
-   /** @format html */
-  extraInfo?: string
+  /** @format html */
+  extraInfo?: string;
   layout?: Layout;
 }
 
@@ -124,11 +124,11 @@ function Footer({
     form: { placeholder: "", buttonText: "", helpText: "" },
   },
   items = [
-    {label:"login", href:"/"},
-    {label:"ajuda", href:"/"},
-    {label:"contato", href:"/"},
-    {label:"lojas", href:"/"},
-    {label:"compre pelo whatsapp", href:"/"},
+    { label: "login", href: "/" },
+    { label: "ajuda", href: "/" },
+    { label: "contato", href: "/" },
+    { label: "lojas", href: "/" },
+    { label: "compre pelo whatsapp", href: "/" },
   ],
   social = {
     title: "Redes sociais",
@@ -143,11 +143,12 @@ function Footer({
   extraLinks = [],
   backToTheTop,
   contacts = [
-    {title:"instagram:", text:"@bolovopinheiros"},
-    {title:"whats loja:", text:"(11) 91725-0298"},
-    {title:"telefone:", text:"(11) 3086-1020"},
+    { title: "instagram:", text: "@bolovopinheiros" },
+    { title: "whats loja:", text: "(11) 91725-0298" },
+    { title: "telefone:", text: "(11) 3086-1020" },
   ],
-  extraInfo = "© BOLOVO | VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34",
+  extraInfo =
+    "© BOLOVO | VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34",
   layout = {
     backgroundColor: "Primary",
     variation: "Variation 1",
@@ -197,7 +198,9 @@ function Footer({
   const _links = layout?.hide?.extraLinks
     ? <></>
     : <ExtraLinks content={extraLinks} />;
-  const _contacts = layout?.hide?.contacts ? <></> : <Contacts content={contacts} />
+  const _contacts = layout?.hide?.contacts
+    ? <></>
+    : <Contacts content={contacts} />;
 
   return (
     <footer
@@ -210,8 +213,8 @@ function Footer({
           <div class="flex flex-col gap-[15px] mx-[15px]">
             <div class="flex flex-col pb-20 md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
               <div class="lg:mb-0 mb-6">
-               {_logo}
-               {_payments}
+                {_logo}
+                {_payments}
               </div>
               {_sectionLinks}
               <div class="flex flex-col gap-5 lg:my-0 my-6">
@@ -224,10 +227,10 @@ function Footer({
             </div>
             <Divider />
             <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px]">
-               <div
-                 class="text-center"
-                 dangerouslySetInnerHTML={{ __html: extraInfo}}
-               />
+              <div
+                class="text-center"
+                dangerouslySetInnerHTML={{ __html: extraInfo }}
+              />
             </div>
           </div>
         )}

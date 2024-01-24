@@ -20,19 +20,23 @@ function GalleryControls(
 
   return (
     <Drawer
+      class="drawer-end"
       loading="lazy"
       open={open.value}
       onClose={() => open.value = false}
       aside={
         <>
           <div class="bg-base-100 flex flex-col h-full divide-y overflow-y-hidden">
-            <div class="flex justify-between items-center">
-              <h1 class="px-4 py-3">
-                <span class="font-medium text-2xl">Filtrar</span>
+            <div class="flex justify-end items-center">
+              <h1 class="px-[15px] py-[15px]">
+                <span class="font-medium text-sm leading-[18px]">Fechar</span>
+                <Button
+                  class="btn btn-ghost"
+                  onClick={() => open.value = false}
+                >
+                  <Icon id="XMark" size={12} strokeWidth={2} />
+                </Button>
               </h1>
-              <Button class="btn btn-ghost" onClick={() => open.value = false}>
-                <Icon id="XMark" size={24} strokeWidth={2} />
-              </Button>
             </div>
             <div class="flex-grow overflow-auto">
               <Filters filters={filters} />

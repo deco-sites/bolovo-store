@@ -31,7 +31,8 @@ export async function loader(
 ) {
   const fields = ["media_url", "media_type", "permalink"];
   const joinFields = fields.join(",");
-  const url = `https://graph.instagram.com/me/media?access_token=${facebookToken}&fields=${joinFields}`;
+  const url =
+    `https://graph.instagram.com/me/media?access_token=${facebookToken}&fields=${joinFields}`;
 
   const { data } = (await fetch(url).then((r) => r.json()).catch((err) => {
     console.error("error fetching posts from instagram", err);
@@ -57,17 +58,17 @@ export default function InstagramPosts({
     },
   ],
 }: SectionProps<typeof loader>) {
-
   if (data.length == 0) {
     return (
       null
-    )
+    );
   }
 
   return (
-
     <div class="w-full py-8 flex flex-col gap-4">
-      <h3 class=" text-base md:text-center text-left px-4 font-bold">{title}</h3>
+      <h3 class=" text-base md:text-center text-left px-4 font-bold">
+        {title}
+      </h3>
       <div class="flex overflow-x-scroll sm:overflow-clip">
         <div
           class={`flex flex-row items-center justify-center place-items-center sm:w-full w-max px-4 sm:px-0`}
@@ -80,15 +81,20 @@ export default function InstagramPosts({
               title="Visite nosso instagram"
               class=" overflow-hidden w-full group relative"
             >
-              <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center flex-row gap-3 opacity-0 group-hover:opacity-100 transition duration-400 bg-[#0000005e]" >
-                <div class="flex 2/4 gap-1" >
+              <div class="absolute top-0 left-0 w-full h-full flex justify-center items-center flex-row gap-3 opacity-0 group-hover:opacity-100 transition duration-400 bg-[#0000005e]">
+                <div class="flex 2/4 gap-1">
                   <Icon id="LikeIntagram" size={24} colorRendering="#fff" />
                   <span class="text-white font-bold">
                     200
                   </span>
                 </div>
-                <div class="flex 2/4 gap-1" >
-                  <Icon id="CommentIntagram" width={24} height={24} class="scale-x-[-1]" />
+                <div class="flex 2/4 gap-1">
+                  <Icon
+                    id="CommentIntagram"
+                    width={24}
+                    height={24}
+                    class="scale-x-[-1]"
+                  />
                   <span class="text-white font-bold">
                     12
                   </span>

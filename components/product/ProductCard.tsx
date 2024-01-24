@@ -95,29 +95,31 @@ function ProductCard(
     </li>
   ));
 
-  const colorSelector = variants.length > 1 ? ( 
-    variants.map(([value, link]) => (
-      <li>
-        <a href={link}>
-          <div
-            class="w-[12px] h-[12px] flex items-center justify-center"
-            title={`Cor ${value}`}
-          >
-            {/* Aqui eu optei por colocar um svg, e ai a parte do fill vai ser dinâmica de acordo com a informação que pegarmos na PDP */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
+  const colorSelector = variants.length > 1
+    ? (
+      variants.map(([value, link]) => (
+        <li>
+          <a href={link}>
+            <div
+              class="w-[12px] h-[12px] flex items-center justify-center"
+              title={`Cor ${value}`}
             >
-              <rect x="0" y="0" width="12" height="12" fill="#FF0000" />
-            </svg>
-          </div>
-        </a>
-      </li>
-    ))
-  ) : null;
+              {/* Aqui eu optei por colocar um svg, e ai a parte do fill vai ser dinâmica de acordo com a informação que pegarmos na PDP */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+              >
+                <rect x="0" y="0" width="12" height="12" fill="#FF0000" />
+              </svg>
+            </div>
+          </a>
+        </li>
+      ))
+    )
+    : null;
 
   const cta = (
     <a
@@ -163,7 +165,7 @@ function ProductCard(
       />
       <figure
         class="relative overflow-hidden aspect-[219.38326/300] lg:aspect-[239.13935/300]"
-        style={{ backgroundColor: '#F6F6F6'}}
+        style={{ backgroundColor: "#F6F6F6" }}
       >
         {/* Wishlist button */}
         <div

@@ -38,7 +38,6 @@ export default function SearchButton({ label, img }: Props) {
           aria-label="search icon button"
           onClick={() => {
             displaySearchDrawer.value = !displaySearchDrawer.value;
-
           }}
         >
           <Icon id="MagnifyingGlass" size={19} strokeWidth={0.1} />
