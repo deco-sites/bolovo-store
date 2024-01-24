@@ -17,9 +17,9 @@ export interface Props {
     headerAlignment?: "center" | "left";
     headerfontSize?: "Normal" | "Large";
   };
-  seeMore?: { 
-    text: string; 
-    link: string 
+  seeMore?: {
+    text: string;
+    link: string;
   };
   products: Product[] | null;
 }
@@ -31,7 +31,7 @@ function ProductShelf({
   seeMore,
 }: Props) {
   const id = useId();
-  const platform = "vnda"
+  const platform = "vnda";
 
   const shouldShowArrows = ((products?.length || 0) + (seeMore ? 1 : 0)) > 4;
 
@@ -83,10 +83,9 @@ function ProductShelf({
                   <div class="flex-auto flex flex-col pt-[15px] lg:pt-5 gap-3 lg:gap-4">
                   </div>
                 </div>
-                            
               </Slider.Item>
             )
-          : null}
+            : null}
         </Slider>
         {shouldShowArrows && (
           <>

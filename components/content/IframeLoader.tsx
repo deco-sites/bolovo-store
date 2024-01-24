@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'preact/hooks';
+import { useEffect, useRef } from "preact/hooks";
 import { useSignal } from "@preact/signals";
 
 interface IframeLoaderProps {
-    videoLink: string;
+  videoLink: string;
 }
 
 const IframeLoader = ({ videoLink }: IframeLoaderProps) => {
@@ -11,7 +11,6 @@ const IframeLoader = ({ videoLink }: IframeLoaderProps) => {
   const targetElement = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
-
     const currentElement = targetElement.current;
 
     if (!currentElement) {
@@ -27,7 +26,7 @@ const IframeLoader = ({ videoLink }: IframeLoaderProps) => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     observer.observe(currentElement);
@@ -37,16 +36,17 @@ const IframeLoader = ({ videoLink }: IframeLoaderProps) => {
 
   return (
     <iframe
-        width={"400"}
-        height={"225"}
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        class="w-full h-full"
-        allowFullScreen
-        ref={targetElement}
-    ></iframe>
-);
+      width={"400"}
+      height={"225"}
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      class="w-full h-full"
+      allowFullScreen
+      ref={targetElement}
+    >
+    </iframe>
+  );
 };
 
 export default IframeLoader;

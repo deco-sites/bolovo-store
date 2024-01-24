@@ -10,6 +10,7 @@ import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx"
 import type { SectionProps } from "deco/types.ts";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx"
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Props {
   /** @title Integration */
@@ -20,6 +21,39 @@ export interface Props {
   * @title Highlights 
   */
   photoOnPLP: Section[];
+  filterColors?: Color[];
+  filtersNames?: FilterName[];
+  textFilters?: string;
+  appliedFiltersText?: string;
+  applyFiltersText?: string;
+  removeFiltersText?: string;
+}
+
+export interface FilterName {
+  /**
+   * @title Filter name
+   */
+  filter: string;
+  /**
+   * @title New filter name
+   */
+  label: string;
+}
+
+export interface Color {
+  /**
+   * @title Color name
+   */
+  label: string;
+  /**
+   * @title Color
+   * @format color
+   */
+  hex?: string;
+  /**
+   * @title Image
+   */
+  src?: ImageWidget;
 }
 
 function Result({
@@ -28,19 +62,32 @@ function Result({
   searchTerm,
   section,
   isMobile,
-}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section, isMobile: boolean }) {
+  filterColors,
+  filtersNames,
+  textFilters,
+  appliedFiltersText,
+  applyFiltersText,
+  removeFiltersText,
+  url,
+}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section, isMobile: boolean, url: string}) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
-
   return (
     <div>
-      <SearchControls
+       <SearchControls
         searchTerm={searchTerm}
         textSearch={textSearch}
         sortOptions={sortOptions}
+        filtersNames={filtersNames}
+        filterColors={filterColors}
+        textFilters={textFilters}
+        appliedFiltersText={appliedFiltersText}
+        applyFiltersText={applyFiltersText}
+        removeFiltersText={removeFiltersText}
         filters={filters}
+        url={url}
         breadcrumb={breadcrumb}
       />
       <div class="lg:px-8 px-[15px]">
@@ -125,5 +172,5 @@ export const loader = (props: Props, req: Request) => {
 
   const isMobile = req.headers.get("user-agent")!.includes('Mobile')
 
-  return { ...props, searchTerm: term ?? "", section, isMobile };
+  return { ...props, searchTerm: term ?? "", section, isMobile, url: req.url};
 };

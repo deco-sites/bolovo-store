@@ -63,8 +63,12 @@ export default function AddToCartButton(props: Props) {
   const btnProps = useAddToCart(props);
 
   return (
-    <Button {...btnProps} data-deco="add-to-cart" class="w-full uppercase h-[30px] rounded-full bg-white border-black border-2 text-sm text-black no-animation btn btn-active btn-sm  hover:bg-white
-    ">
+    <Button
+      {...btnProps}
+      data-deco="add-to-cart"
+      class="w-full uppercase h-[30px] rounded-full bg-white border-black border-2 text-sm text-black no-animation btn btn-active btn-sm  hover:bg-white
+    "
+    >
       Comprar
     </Button>
   );
