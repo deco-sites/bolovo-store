@@ -10,11 +10,13 @@ import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx"
 import type { SectionProps } from "deco/types.ts";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx"
+import ButtonsPagination, { ButtonsPaginationProps } from "./ButtonsPagination.tsx";
 
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
   textSearch?: string;
+  buttonPagnation?: ButtonsPaginationProps;
   notFound: PropsNotFound;
   /**
   * @title Highlights 
@@ -28,6 +30,7 @@ function Result({
   searchTerm,
   section,
   isMobile,
+  buttonPagnation,
 }: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section, isMobile: boolean }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
@@ -53,30 +56,7 @@ function Result({
             isMobile={isMobile}
           />
         </div>
-
-        <div class="flex justify-center my-4">
-          <div class="join">
-            <a
-              aria-label="previous page link"
-              rel="prev"
-              href={pageInfo.previousPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronLeft" size={24} strokeWidth={2} />
-            </a>
-            <span class="btn btn-ghost join-item">
-              Page {pageInfo.currentPage + 1}
-            </span>
-            <a
-              aria-label="next page link"
-              rel="next"
-              href={pageInfo.nextPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronRight" size={24} strokeWidth={2} />
-            </a>
-          </div>
-        </div>
+        <ButtonsPagination page={page} props={buttonPagnation} />
       </div>
       <SendEventOnLoad
         event={{
@@ -96,19 +76,19 @@ function Result({
           },
         }}
       />
-    </div>
+    </div >
   );
 }
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
 
-  const { page, notFound, searchTerm, section, isMobile } = props;
+  const { page, notFound, searchTerm, section, isMobile, buttonPagnation } = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
   }
 
-  return <Result {...props} page={page} section={section} isMobile={isMobile} />;
+  return <Result {...props} page={page} section={section} isMobile={isMobile} buttonPagnation={buttonPagnation} />;
 }
 
 export default SearchResult;
