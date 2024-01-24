@@ -54,7 +54,9 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   const prev = root?.querySelector(`[${ATTRIBUTES['data-slide="prev"']}]`);
   const next = root?.querySelector(`[${ATTRIBUTES['data-slide="next"']}]`);
   const dots = root?.querySelectorAll(`[${ATTRIBUTES["data-dot"]}]`);
-  const progress: HTMLProgressElement | null | undefined = root?.querySelector(`[${ATTRIBUTES["data-progress"]}]`);
+  const progress: HTMLProgressElement | null | undefined = root?.querySelector(
+    `[${ATTRIBUTES["data-progress"]}]`,
+  );
 
   if (!root || !slider || !items || items.length === 0) {
     console.warn(
@@ -159,10 +161,10 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
             if (progress.id == "0" && index === items.length - 1) {
               progress.style.height = `${1 / items.length * 100}%`;
               progress.style.width = `${1 / items.length * 100}%`;
-              progress.id = "1"
+              progress.id = "1";
             } else {
-              progress.style.height = `${(index + 1) / items.length * 100}%`
-              progress.style.width = `${(index + 1) / items.length * 100}%`
+              progress.style.height = `${(index + 1) / items.length * 100}%`;
+              progress.style.width = `${(index + 1) / items.length * 100}%`;
             }
           }
         }

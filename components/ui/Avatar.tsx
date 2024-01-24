@@ -55,9 +55,10 @@ export function AvatarPDP({ content, variant = "default" }: Props) {
   return (
     <div class="avatar placeholder">
       <div
-        class={`rounded-full w-8 h-5 ${colors[content] ?? colors[variant]} ${variants[variant]
-          }`}
-          >
+        class={`rounded-full w-8 h-5 ${colors[content] ?? colors[variant]} ${
+          variants[variant]
+        }`}
+      >
         <span class="uppercase text-[14px] leading-[130%]">
           {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
         </span>

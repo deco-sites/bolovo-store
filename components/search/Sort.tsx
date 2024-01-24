@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 import SortMenu from "./SortMenu.tsx";
 import { ProductListingPage } from "apps/commerce/types.ts";
-import Icon from "$store/components/ui/Icon.tsx"
+import Icon from "$store/components/ui/Icon.tsx";
 import Button from "deco-sites/bolovo-store/components/ui/Button.tsx";
 
 export type Props = Pick<ProductListingPage, "sortOptions">;
@@ -33,7 +33,9 @@ function Sort({ sortOptions }: Props) {
     <div class="relative z-20 w-auto mb-1" ref={sortContainerRef}>
       <Button
         class={`btn-ghost btn-xs text-[13px] px-2 py-[5px] font-light uppercase leading-0 hover:bg-transparent ${
-          isOpen ? "border rounded-b-none border-black rounded-t-lg hover:border hover:border-black" : "hover:border hover:border-black rounded-[20px]"
+          isOpen
+            ? "border rounded-b-none border-black rounded-t-lg hover:border hover:border-black"
+            : "hover:border hover:border-black rounded-[20px]"
         }`}
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="listbox"
