@@ -9,7 +9,7 @@ import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
 import { useCart } from "apps/vnda/hooks/useCart.ts";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
-import InnerHTML from  "$store/components/ui/InnerHTML.tsx"
+import InnerHTML from "$store/components/ui/InnerHTML.tsx";
 
 interface Props {
   items: Item[];
@@ -27,17 +27,17 @@ interface Props {
   onUpdateQuantity: ItemProps["onUpdateQuantity"];
   itemToAnalyticsItem: ItemProps["itemToAnalyticsItem"];
   cartTranslations?: {
-    freeShippingText?: HTMLWidget
-    ctaCheckout?: string
-    ctaBackStore?: string
-    modalCloseText?: string,
-    cartIsEmpty?: string,
-    buttonCartIsEmpty?: string,
-    cartTitle?: string
-    gotFreeShipping?: string
-    cartTotalText?: string
-    installmentsText?: string
-  }
+    freeShippingText?: HTMLWidget;
+    ctaCheckout?: string;
+    ctaBackStore?: string;
+    modalCloseText?: string;
+    cartIsEmpty?: string;
+    buttonCartIsEmpty?: string;
+    cartTitle?: string;
+    gotFreeShipping?: string;
+    cartTotalText?: string;
+    installmentsText?: string;
+  };
 }
 
 function Cart({
@@ -69,30 +69,40 @@ function Cart({
   const installments = numberFormated.replace(".", ",");
   return (
     <div>
-      {isEmtpy ? 
-      <div class="md:hidden flex flex-row w-full justify-end items-center">
-        <span class="text-base mt-2">{cartTranslations?.modalCloseText}</span>
-        <Button
-          class="btn btn-ghost hover:bg-transparent disabled:bg-transparent md:hidden block p-4"
-          onClick={() => displayCart.value = false}
-          >
-            <Icon
-              id="XMark"
-              size={25}
-              strokeWidth={2}
-              class="text-[#121212]"
-            />
-        </Button>
-      </div>
-      : <></>}
+      {isEmtpy
+        ? (
+          <div class="md:hidden flex flex-row w-full justify-end items-center">
+            <span class="text-base mt-2">
+              {cartTranslations?.modalCloseText}
+            </span>
+            <Button
+              class="btn btn-ghost hover:bg-transparent disabled:bg-transparent md:hidden block p-4"
+              onClick={() => displayCart.value = false}
+            >
+              <Icon
+                id="XMark"
+                size={25}
+                strokeWidth={2}
+                class="text-[#121212]"
+              />
+            </Button>
+          </div>
+        )
+        : <></>}
       <div
         class="flex flex-col justify-center items-center overflow-hidden w-full"
-        style={{ minWidth: "calc(min(90vw, 425px))", maxWidth: "425px", height: "90vh"}}
+        style={{
+          minWidth: "calc(min(90vw, 425px))",
+          maxWidth: "425px",
+          height: "90vh",
+        }}
       >
         {isEmtpy
           ? (
             <div class="flex flex-col gap-6">
-              <span class="font-medium text-2xl">{cartTranslations?.cartIsEmpty}</span>
+              <span class="font-medium text-2xl">
+                {cartTranslations?.cartIsEmpty}
+              </span>
               <Button
                 class="btn-outline"
                 onClick={() => {
@@ -107,7 +117,9 @@ function Cart({
             <>
               <div class="flex flex-row justify-between w-full md:mt-0 mt-4">
                 <div class="flex flex-col md:flex-row text-[15px] leading-[17px] justify-between w-full px-[18px] py-3">
-                  <span class="font-semibold">{cartTranslations?.cartTitle}</span>
+                  <span class="font-semibold">
+                    {cartTranslations?.cartTitle}
+                  </span>
                   <span class="font-normal md:mt-0 mt-1">
                     {items.length} {items.length > 1 ? "ITEMS" : "ITEM"}
                   </span>
@@ -146,7 +158,9 @@ function Cart({
               <div class="border-t border-[#121212] opacity-30 w-[91%] flex justify-center px-[18px]" />
               <div class="pt-8 pb-2 flex flex-col justify-end items-end gap-2 w-full px-[18px]">
                 <div class="flex justify-between items-center w-full font-semibold">
-                  <span class="text-[15px] leading-5">{cartTranslations?.cartTotalText}</span>
+                  <span class="text-[15px] leading-5">
+                    {cartTranslations?.cartTotalText}
+                  </span>
                   <span class="font-bold text-lg leading-6">
                     {formatPrice(total, currency, locale)}
                   </span>
@@ -162,7 +176,9 @@ function Cart({
                     ? ""
                     : (
                       <div class="flex flex-row items-center font-semibold">
-                        <span class="mt-1">{cartTranslations?.gotFreeShipping}</span>
+                        <span class="mt-1">
+                          {cartTranslations?.gotFreeShipping}
+                        </span>
                         <img
                           src="/image/Dog.gif"
                           alt="Dog"
@@ -172,7 +188,14 @@ function Cart({
                         />
                       </div>
                     )}
-                  <span class="font-normal "> <InnerHTML html={ cartTranslations?.installmentsText?.replace("$valor",`<span>${installments}</span>`)} /></span>
+                  <span class="font-normal ">
+                    <InnerHTML
+                      html={cartTranslations?.installmentsText?.replace(
+                        "$valor",
+                        `<span>${installments}</span>`,
+                      )}
+                    />
+                  </span>
                 </div>
               </div>
               {/* Free Shipping Bar */}

@@ -5,6 +5,13 @@ import Sort from "$store/components/search/Sort.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
 import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
+import SelectedFilters from "$store/islands/SelectedFilters.tsx";
+import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
+import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
+import type {
+  Color,
+  FilterName,
+} from "$store/components/search/SearchResult.tsx";
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -12,31 +19,121 @@ export type Props =
     displayFilter?: boolean;
     textSearch?: string;
     searchTerm?: string;
+    url: string;
+    filterColors?: Color[];
+    filtersNames?: FilterName[];
+    textFilters?: string;
+    appliedFiltersText?: string;
+    applyFiltersText?: string;
+    removeFiltersText?: string;
   };
 
 function SearchControls(
-  { filters, sortOptions, textSearch, searchTerm }: Props,
+  {
+    filters,
+    sortOptions,
+    textSearch,
+    searchTerm,
+    url,
+    breadcrumb,
+    filterColors,
+    filtersNames,
+    textFilters,
+    appliedFiltersText,
+    applyFiltersText,
+    removeFiltersText,
+  }: Props,
 ) {
   const open = useSignal(false);
+  const removeFilters = () => {
+    const urlNoQuery = url.split("&")[0];
+    window.history.replaceState({}, "", urlNoQuery);
+    window.location.reload();
+  };
 
   return (
     <Drawer
+      class="drawer-end"
       loading="lazy"
       open={open.value}
       onClose={() => open.value = false}
       aside={
         <>
-          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden">
-            <div class="flex justify-between items-center">
-              <h1 class="px-4 py-3">
-                <span class="font-medium text-2xl">Filtrar</span>
-              </h1>
-              <Button class="btn btn-ghost" onClick={() => open.value = false}>
-                <Icon id="XMark" size={24} strokeWidth={2} />
+          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full">
+            <div class="hidden sm:flex flex-row w-full justify-end items-center">
+              <span class="font-medium text-sm leading-[18px]">
+                Fechar
+              </span>
+              <Button
+                class="btn btn-ghost hover:bg-transparent disabled:bg-transparent block p-[15px]"
+                onClick={() => open.value = false}
+              >
+                <Icon
+                  id="XMark"
+                  size={15}
+                  strokeWidth={2}
+                  class="text-[#121212]"
+                />
               </Button>
             </div>
+            <div class="flex flex-row justify-between pl-[21px] pr-[15px] items-center text-[15px] sm:mt-5 mt-14">
+              <span class="font-semibold uppercase">{textFilters}</span>
+              <span class="sm:hidden flex">
+                <Button
+                  class="btn btn-ghost hover:bg-transparent disabled:bg-transparent block"
+                  onClick={() => open.value = false}
+                >
+                  <Icon
+                    id="XMark"
+                    size={18}
+                    strokeWidth={2}
+                    class="text-[#121212]"
+                  />
+                </Button>
+              </span>
+              <span class="sm:flex hidden font-normal uppercase">
+                {selectedFilters.value.length} {appliedFiltersText}
+              </span>
+            </div>
+            <div>
+              <SelectedFilters filters={filters} />
+            </div>
+
             <div class="flex-grow overflow-auto">
-              <Filters filters={filters} />
+              <Filters
+                filters={filters}
+                filterColors={filterColors ?? []}
+                filterNames={filtersNames ?? []}
+              />
+              <div class="w-full pl-[21px] pr-[15px] mt-14">
+                <div class="pb-2">
+                  <Button
+                    class="btn btn-active btn-primary btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black text-[15px] font-normal"
+                    id="apply-filters"
+                  >
+                    {applyFiltersText}
+                  </Button>
+                  <ApplyFiltersJS
+                    rootId="apply-filters"
+                    buttonId="apply-filters"
+                  />
+                </div>
+                {selectedFilters.value.length > 0 && (
+                  <div class="pb-4 inline-block w-full">
+                    <a
+                      class="inline-block w-full"
+                      href={breadcrumb?.itemListElement.at(-1)?.item ?? ""}
+                    >
+                      <Button
+                        onClick={() => removeFilters()}
+                        class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white text-[15px] font-normal"
+                      >
+                        {removeFiltersText}
+                      </Button>
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </>
@@ -57,7 +154,7 @@ function SearchControls(
           {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
           {filters.length > 0 && (
             <Button
-              class="btn-ghost btn-xs text-[13px] px-2 py-[5px] px- font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
+              class="btn-ghost btn-xs text-[13px] px-2 py-[5px] font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
               onClick={() => {
                 open.value = true;
               }}

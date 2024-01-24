@@ -5,7 +5,5 @@ export interface Props {
 }
 
 export default function InnerHTML(props: Props) {
-  return (
-    <div dangerouslySetInnerHTML={{ __html: props.html }} />
-  );
+  return <div dangerouslySetInnerHTML={{ __html: props.html }} />;
 }
