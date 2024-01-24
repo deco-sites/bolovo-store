@@ -47,7 +47,6 @@ export async function createTable(
 export type AlignText = "center" | "justify" | "left";
 
 export async function createParagraph(paragraph: string, alignText: AlignText) {
-
   const customRenderer = new marked.Renderer();
 
   customRenderer.paragraph = function (text: string) {

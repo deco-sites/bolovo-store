@@ -65,8 +65,8 @@ function ProductInfo({ page, layout }: Props) {
             {layout?.name === "concat"
               ? `${isVariantOf?.name} ${name}`
               : layout?.name === "productGroup"
-                ? isVariantOf?.name
-                : name}
+              ? isVariantOf?.name
+              : name}
           </span>
         </h1>
         {/* Prices */}

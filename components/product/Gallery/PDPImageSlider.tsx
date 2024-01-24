@@ -13,23 +13,25 @@ import Image from "apps/website/components/Image.tsx";
  * On mobile, there's one single column with 3 rows. Note that the orders are different from desktop to mobile, that's why
  * we rearrange each cell with col-start- directives
  */
-export default function PDPGallerySlider({ page }: { page: ProductDetailsPage | null; }) {
+export default function PDPGallerySlider(
+  { page }: { page: ProductDetailsPage | null },
+) {
   const id = useId();
 
   if (page === null) {
     throw new Error("Missing Product Details Page Info");
   }
 
-  const { product: { image: images = [] } } = page
+  const { product: { image: images = [] } } = page;
 
   return (
-    <div id={id} class="flex flex-col lg:flex-row h-full w-full relative lg:sizeImage">
+    <div
+      id={id}
+      class="flex flex-col lg:flex-row h-full w-full relative lg:sizeImage"
+    >
       {/* Image Slider */}
-      <div class="relative order-1 sm:order-2 h-full w-full"
-
-      >
-        <Slider class="carousel carousel-center w-full sm:h-full flex-row lg:flex-col lg:snap-y lg:snap-mandatory lg:overflow-y-scroll scroll-smooth"
-        >
+      <div class="relative order-1 sm:order-2 h-full w-full">
+        <Slider class="carousel carousel-center w-full sm:h-full flex-row lg:flex-col lg:snap-y lg:snap-mandatory lg:overflow-y-scroll scroll-smooth">
           {images.map((img, index) => (
             <Slider.Item
               index={index}
@@ -76,12 +78,11 @@ export default function PDPGallerySlider({ page }: { page: ProductDetailsPage | 
             </Slider.Item>
           ))}
         </Slider>
-
       </div>
 
       {/* Progress*/}
       <Slider.Progress />
       <SliderJS rootId={id} />
-    </div >
+    </div>
   );
 }
