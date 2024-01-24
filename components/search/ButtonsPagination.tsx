@@ -20,7 +20,7 @@ const DEFAULT_PROPS: ButtonsPaginationProps = {
 
 function LinkNumberPage({ currentPage, number, href = "#" }: { currentPage: number, number: number, href?: string }) {
     return (
-        <a href={href + number} class={`${currentPage === number ? 'font-bold' : 'font-normal'} btn btn-ghost join-item text-[15px] px-1`}>
+        <a href={href + number} class={`${currentPage === number ? 'font-bold' : 'font-normal'} btn btn-ghost join-item text-[15px] px-1 hover:font-bold hover:bg-transparent ease-in duration-500`}>
             {number}
         </a>
     )
@@ -41,7 +41,7 @@ export default function ButtonsPagination({ props, page }: { props?: ButtonsPagi
 
     return (
         <div class="flex justify-center my-4 items-center flex-col gap-2">
-            <a href={"#"} class="uppercase btn btn-ghost font-normal">
+            <a href={"#"} class="uppercase btn btn-ghost font-normal hover:font-bold hover:bg-transparent  ease-in duration-500">
                 {labelButtonTop}
             </a>
             <div class="join bg-red w-full justify-between items-center">
