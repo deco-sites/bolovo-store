@@ -1,4 +1,6 @@
-import BannerGrid, { Props } from "../../components/content/BannerGrid.tsx";
+import BannerGrid, {
+  Props as BannerGridProps,
+} from "../../components/content/BannerGrid.tsx";
 import type { SectionProps } from "deco/types.ts";
 
 /**
@@ -6,10 +8,10 @@ import type { SectionProps } from "deco/types.ts";
  */
 export interface BannerGrid {
   matcher: string;
-  banner: Props;
+  banner: BannerGridProps;
 }
 
-export interface PropsBannerGrid {
+export interface Props {
   bannersGrid: BannerGrid[];
 }
 
@@ -24,7 +26,7 @@ export default function BannerCategoryGrid(
 
   return <BannerGrid {...bannerGrid.banner} />;
 }
-export const loader = (props: PropsBannerGrid, req: Request) => {
+export const loader = (props: Props, req: Request) => {
   const { bannersGrid } = { ...props };
 
   const bannerGrid = bannersGrid.find(({ matcher }) =>
