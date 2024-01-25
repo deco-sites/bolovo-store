@@ -12,21 +12,11 @@ import type { PropsNotFound } from "$store/components/search/NotFound.tsx"
 import type { SectionProps } from "deco/types.ts";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx"
 
-export interface Layout {
-  /**
-   * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
-   */
-  variant?: "aside" | "drawer";
-  /**
-   * @description Number of products per line on grid
-   */
-}
-
 /**
  * @titleBy category
  */
-export interface CategoryArray{
-  /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
+export interface Category{
+  /** @description RegExp to enable this category on the current URL. Use /camisetas to display this on camisetas category  */
   matcher: string;
   category: string;
   url: string
@@ -41,7 +31,7 @@ export interface CategoryArray{
 
 export interface Props {
   /** @title Integration */
-  categories: CategoryArray[];
+  categories: Category[];
   page: ProductListingPage | null;
   /**
   * @title Highlights 
@@ -55,16 +45,18 @@ function ResultCategory({
   currentCategory,
   parentCategory,
   subCategories,
+  categoryURL,
   section,
   isMobile,
 }: Omit<Props, "page"> & { 
   page: ProductListingPage;
-  currentCategory?: string | undefined;
+  currentCategory?: string;
   subCategories: {
     label: string;
     url: string;
   }[];
-  parentCategory?: string | undefined;
+  parentCategory?: string;
+  categoryURL?: string;
   isMobile: boolean;
   section?: Section;
   
@@ -79,6 +71,7 @@ function ResultCategory({
         subCategories={subCategories}
         parentCategory={parentCategory}
         currentCategory={currentCategory}
+        categoryURL={categoryURL}
         sortOptions={sortOptions}
         filters={filters}
         breadcrumb={breadcrumb}
@@ -109,18 +102,21 @@ export const loader = (props: Props, req: Request) => {
   
   const { categories, photoOnPLP } = props;
 
+  const url = new URL(req.url);
+
   const section = photoOnPLP?.find(({ matcher }) =>
-    new URLPattern({ pathname: matcher }).test(req.url)
+    new URLPattern({ pathname: matcher }).test(url)
   );
 
   const isMobile = req.headers.get("user-agent")!.includes('Mobile')
 
-  const url = new URL(req.url);
   const urlSegments = url.pathname.split('/').filter(Boolean);
   const firstSegment = urlSegments.length > 0 ? urlSegments[0] : null;
   const secondSegment = urlSegments.length > 1 ? urlSegments[1] : null;
 
   const foundCategory = categories?.filter(({ category }) => category === firstSegment);
+
+  const categoryURL = foundCategory[0]?.url;
 
   if (foundCategory && foundCategory.length > 0) {
 
@@ -129,7 +125,7 @@ export const loader = (props: Props, req: Request) => {
 
     if (secondSegment) {
       const foundSubCategory = foundCategory[0]?.items?.find(
-        (subCategory) => subCategory.url === `/${secondSegment}`
+        (subCategory) => subCategory.url === url.pathname
       );
       
       currentCategory = foundSubCategory?.label;
@@ -151,6 +147,7 @@ export const loader = (props: Props, req: Request) => {
       currentCategory,
       subCategories: subCategories.length > 0 ? subCategories : [],
       parentCategory,
+      categoryURL,
       section,
       isMobile
     };
@@ -160,6 +157,7 @@ export const loader = (props: Props, req: Request) => {
       parentCategory: urlSegments[0] || '',
       currentCategory: urlSegments[0] || '',
       subCategories: [],
+      categoryURL,
       section,
       isMobile
     };

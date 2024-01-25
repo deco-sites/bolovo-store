@@ -16,14 +16,15 @@ export type Props =
     displayFilter?: boolean;
     currentCategory?: string;
     parentCategory?: string;
-    subCategories: {
+    subCategories?: {
       label: string;
       url: string;
     }[];
+    categoryURL?: string;
   }; 
 
 function GalleryControls(
-  { filters, displayFilter, sortOptions, subCategories, currentCategory, parentCategory}: Props,
+  { filters, displayFilter, sortOptions, subCategories, currentCategory, parentCategory, categoryURL}: Props,
 ) {
   const open = useSignal(false);
   const id = useId();
@@ -31,6 +32,8 @@ function GalleryControls(
   function removeAcentos(str: string) {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
+
+  console.log(currentCategory)
 
   return (
     
@@ -67,7 +70,7 @@ function GalleryControls(
             {parentCategory && (
               <>
             <a
-              href={`/` + parentCategory}
+              href={categoryURL}
               class="group leading-none py-[5px] px-3 pr-5 flex w-auto lg:h-auto rounded-[20px] items-center">
                 <span
                   class={`text-[14px] lg:text-[15px] font-medium uppercase text-[#000]
@@ -83,7 +86,7 @@ function GalleryControls(
                     class="flex carousel-item sm:first:pl-0 last:pr-6 sm:last:pr-14"
                 >
                   <a
-                    href={!parentCategory ? `/` + currentCategory : `/` + parentCategory}
+                    href={categoryURL}
                     class={`group btn-ghost leading-none btn-xs py-[5px] px-3 flex w-auto lg:h-auto rounded-[20px] bg-transparent hover:bg-black hover:border hover:border-black ${
                       currentCategory ==  parentCategory ? '!bg-black' : ''
                     }`}
@@ -103,7 +106,7 @@ function GalleryControls(
                     class="flex carousel-item sm:first:pl-0 last:pr-6 sm:last:pr-14"
                   >
                     <a
-                      href={`/` + parentCategory + url}
+                      href={url}
                       class={`group btn-ghost leading-none btn-xs py-[5px] px-3 flex w-auto lg:h-auto rounded-[20px] bg-transparent hover:bg-black hover:border hover:border-black ${
                         currentCategory == removeAcentos((label || '').toLowerCase()) ? '!bg-black' : ''
                       }`}
@@ -121,7 +124,6 @@ function GalleryControls(
               </Slider>
               </>
             )}
-            <SliderJS rootId={id} />
           </div>
           <div class="flex flex-row items-center gap-4 min-w-[211px] px-2 justify-end lg:px-0">
             {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
