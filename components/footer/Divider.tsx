@@ -1,7 +1,8 @@
-export default function Divider() {
-  return (
-    <div class="w-full flex">
-      <div class="w-full border-b"></div>
-    </div>
+interface Props{
+  class?: string
+}
+
+export default function Divider({class: _class = "",}: Props) {
+  return ( <div class={`w-full flex border-b ${_class}`}></div>
   );
 }

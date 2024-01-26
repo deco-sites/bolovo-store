@@ -12,8 +12,6 @@ export interface Form {
 export interface Props {
   content: {
     title?: string;
-    /** @format textarea */
-    description?: string;
     form?: Form;
   };
   layout?: {
@@ -54,32 +52,30 @@ function Newsletter(
       class={`flex ${
         tiled
           ? "flex-col gap-4 lg:flex-row lg:w-full lg:justify-between"
-          : "flex-col gap-4 max-w-[378px] w-full"
+          : "flex-row justify-center w-full"
       }`}
     >
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-row gap-4">
         {content?.title && (
-          <h3 class={tiled ? "text-2xl lg:text-3xl" : "text-base leading-[26px] font-bold text-[#121212]"}>
+          <h3 class={tiled ? "text-2xl lg:text-3xl" : "w-[288px] text-[15px] font-medium leading-[16.5px] text-primary uppercase text-right"}>
             {content?.title}
           </h3>
         )}
-        {content?.description && <div>{content?.description}</div>}
       </div>
-      <div class="flex flex-col">
         <form
-          class="form-control"
+          class="form-control w-[321px] ml-[29px] mr-8"
           onSubmit={handleSubmit}
         >
           <div class="flex flex-wrap gap-3 h-[38px] relative items-center">
             <input
               name="email"
-              class="flex-auto h-[38px] md:flex-none rounded-[20px] input input-bordered w-full text-base-content join-item"
+              class="flex-auto h-[38px] md:flex-none rounded-[20px] input input-bordered border-primary w-full text-base-content join-item pl-[21px] placeholder:text-[12px] placeholder:uppercase placeholder:font-normal"
               placeholder={content?.form?.placeholder || "Digite seu email"}
               required
             />
             <button
               type="submit"
-              class="bg-[#121212] h-[30px] px-[30px] py-[5px] text-white rounded-[15px] disabled:loading text-base leading-5 font-normal uppercase join-item absolute right-1"
+              class="bg-primary h-[38px] px-[20px] py-[5px] text-white rounded-[19px] disabled:loading text-sm leading-[18px] font-normal uppercase join-item absolute right-0"
               disabled={loading}
             >
               {content?.form?.buttonText || "Inscrever"}
@@ -97,11 +93,10 @@ function Newsletter(
         }
         {content?.form?.helpText && (
           <div
-            class="text-[10px] font-normal leading-4 text-[#121212]"
+            class="w-[458px] text-[11px] font-normal  leading-[16.4px] text-primary"
             dangerouslySetInnerHTML={{ __html: content?.form?.helpText }}
           />
         )}
-      </div>
     </div>
   );
 }
