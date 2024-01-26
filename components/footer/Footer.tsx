@@ -8,21 +8,42 @@ import MobileApps from "$store/components/footer/MobileApps.tsx";
 import PaymentMethods from "$store/components/footer/PaymentMethods.tsx";
 import RegionSelector from "$store/components/footer/RegionSelector.tsx";
 import Social from "$store/components/footer/Social.tsx";
-import Contacts from "$store/components/footer/Contacts.tsx"
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
 import type {ContactsProps} from "$store/components/footer/Contacts.tsx"
+import LanguageSwitcher from "$store/components/header/Buttons/Language.tsx";
+import { Country } from "$store/components/header/Header.tsx";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
+import Image from "apps/website/components/Image.tsx";
 
 export type Item = {
   label: string;
   href: string;
+  /** @format html */
+  extraInfo?: HTMLWidget;
 };
 
 export type Section = {
+  label: string;
   items: Item[];
 };
+
+export interface FooterLogos {
+  src: ImageWidget;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
+export interface FooterTexts {
+  footerTitle: ImageWidget;
+  alt: string;
+  subTitle: string;
+  /** @format html */
+  text: string;
+}
+
 
 export interface SocialItem {
   label:
@@ -95,7 +116,7 @@ export interface Props {
     description?: string;
     form?: NewsletterForm;
   };
-  items?: Section;
+  sections?: Section[];
   social?: {
     title?: string;
     items: SocialItem[];
@@ -110,6 +131,9 @@ export interface Props {
   backToTheTop?: {
     text?: string;
   };
+  footerTexts?: FooterTexts;
+  footerLogos?: FooterLogos[]
+  countryFlag: Country[];
   contacts?: ContactsProps[];
    /** @format html */
   extraInfo?: string
@@ -123,13 +147,41 @@ function Footer({
     description: "",
     form: { placeholder: "", buttonText: "", helpText: "" },
   },
-  items = [
-    {label:"login", href:"/"},
-    {label:"ajuda", href:"/"},
-    {label:"contato", href:"/"},
-    {label:"lojas", href:"/"},
-    {label:"compre pelo whatsapp", href:"/"},
-  ],
+  footerTexts,
+  footerLogos,
+  sections = [{
+    "label": "Sobre",
+    "items": [
+      {
+        "href": "/quem-somos",
+        "label": "Quem somos",
+      },
+      {
+        "href": "/termos-de-uso",
+        "label": "Termos de uso",
+      },
+      {
+        "href": "/trabalhe-conosco",
+        "label": "Trabalhe conosco",
+      },
+    ],
+  }, {
+    "label": "Atendimento",
+    "items": [
+      {
+        "href": "/centraldeatendimento",
+        "label": "Central de atendimento",
+      },
+      {
+        "href": "/whatsapp",
+        "label": "Fale conosco pelo WhatsApp",
+      },
+      {
+        "href": "/trocaedevolucao",
+        "label": "Troca e devolução",
+      },
+    ],
+  }],
   social = {
     title: "Redes sociais",
     items: [{ label: "Instagram", link: "/" }],
@@ -147,6 +199,7 @@ function Footer({
     {title:"whats loja:", text:"(11) 91725-0298"},
     {title:"telefone:", text:"(11) 3086-1020"},
   ],
+  countryFlag,
   extraInfo = "© BOLOVO | VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34",
   layout = {
     backgroundColor: "Primary",
@@ -177,10 +230,10 @@ function Footer({
   );
   const _sectionLinks = layout?.hide?.sectionLinks ? <></> : (
     <FooterItems
-      items={items}
-      justify={layout?.variation == "Variation 2" ||
-        layout?.variation == "Variation 3"}
-    />
+    sections={sections}
+    justify={layout?.variation == "Variation 2" ||
+      layout?.variation == "Variation 3"}
+  />
   );
   const _social = layout?.hide?.socialLinks
     ? <></>
@@ -197,7 +250,6 @@ function Footer({
   const _links = layout?.hide?.extraLinks
     ? <></>
     : <ExtraLinks content={extraLinks} />;
-  const _contacts = layout?.hide?.contacts ? <></> : <Contacts content={contacts} />
 
   return (
     <footer
@@ -205,24 +257,46 @@ function Footer({
         ColorClasses(layout)
       }`}
     >
-      <div class="lg:container mx-6 lg:mx-auto">
+      <div class="w-full">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
-          <div class="flex flex-col gap-[15px] mx-[15px]">
-            <div class="flex flex-col pb-20 md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
-              <div class="lg:mb-0 mb-6">
-               {_logo}
-               {_payments}
-              </div>
+          <div class="flex flex-col w-full flex-grow gap-5">
+            <Divider class="border-primary" />
+            <div class="flex flex-row justify-center pt-[45px] pb-[51px]">
+              {_newsletter}
+            </div>
+            <Divider class="border-primary" />
+            <div class="w-full flex flex-row items-center justify-between pl-[29px] pr-[25px] pt-[25px]">
+              {footerLogos?.map((logo) => <img src={logo.src} width={logo.width} height={logo.height} alt={logo.alt} />)}
+            </div>
+            <div class="text-center w-full pb-[49px] pt-[10px]">
+              <Image
+                class="mx-auto"
+                src={footerTexts?.footerTitle ?? ""}
+                alt={footerTexts?.alt}
+                width={514}
+                height={38}
+              />
+              <p class="pb-9 text-[11px] font-normal text-primary pt-5">{footerTexts?.subTitle}</p>
+              <div
+                 class="mx-auto max-w-[512px] font-normal text-xs leading-[22.8px] tracking-[2%]"
+                 dangerouslySetInnerHTML={{ __html: footerTexts?.text ?? ""}}
+               />
+            </div>
+            <div class="flex pb-[34px] w-full flex-grow gap-[30px] pl-[29px] pr-[25px]">
               {_sectionLinks}
-              <div class="flex flex-col gap-5 lg:my-0 my-6">
-                {_contacts}
+            </div>
+            <div class="border-b ml-7 mr-[25px]" />
+            <div class="flex flex-row justify-between items-center pl-[29px] pr-[25px] w-full">
+              <div class="flex flex-row items-center">
+                <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[9px]">SIGA A BOLOVO</span>
                 {_social}
               </div>
-              <div class="lg:mx-0 mx-auto">
-                {_newsletter}
+              <div class="flex flex-row items-center">
+                <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-1">MUDAR PAÍS</span>
+                <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" />
               </div>
             </div>
-            <Divider />
+            <Divider class="border-primary" />
             <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px]">
                <div
                  class="text-center"
