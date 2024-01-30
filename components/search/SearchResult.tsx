@@ -7,11 +7,13 @@ import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
-import type { PropsNotFound } from "./NotFound.tsx"
+import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
-import type { Section } from "$store/components/search/PhotoAndProducts.tsx"
+import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import ButtonsPagination, { ButtonsPaginationProps } from "./ButtonsPagination.tsx";
+import ButtonsPagination, {
+  ButtonsPaginationProps,
+} from "./ButtonsPagination.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -20,9 +22,9 @@ export interface Props {
   buttonsPagination?: ButtonsPaginationProps;
   notFound: PropsNotFound;
   /**
-  * @title Highlights 
-  */
-  photoOnPLP: Section[];
+   * @title Highlights
+   */
+  photoOnPLP?: Section[];
   filterColors?: Color[];
   filtersNames?: FilterName[];
   textFilters?: string;
@@ -58,7 +60,7 @@ export interface Color {
   src?: ImageWidget;
 }
 
-function Result({
+export function Result({
   page,
   textSearch,
   searchTerm,
@@ -72,27 +74,38 @@ function Result({
   removeFiltersText,
   url,
   buttonsPagination,
-}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section, isMobile: boolean, url: string}) {
+  isCategory = false,
+}: Omit<Props, "page"> & {
+  page: ProductListingPage;
+  searchTerm: string;
+  section?: Section;
+  isMobile: boolean;
+  url: string;
+  isCategory?: boolean;
+}) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
   return (
-    <div>
-       <SearchControls
-        searchTerm={searchTerm}
-        textSearch={textSearch}
-        sortOptions={sortOptions}
-        filtersNames={filtersNames}
-        filterColors={filterColors}
-        textFilters={textFilters}
-        appliedFiltersText={appliedFiltersText}
-        applyFiltersText={applyFiltersText}
-        removeFiltersText={removeFiltersText}
-        filters={filters}
-        url={url}
-        breadcrumb={breadcrumb}
-      />
+    <>
+      {!isCategory &&
+        (
+          <SearchControls
+            searchTerm={searchTerm}
+            textSearch={textSearch}
+            sortOptions={sortOptions}
+            filtersNames={filtersNames}
+            filterColors={filterColors}
+            textFilters={textFilters}
+            appliedFiltersText={appliedFiltersText}
+            applyFiltersText={applyFiltersText}
+            removeFiltersText={removeFiltersText}
+            filters={filters}
+            url={url}
+            breadcrumb={breadcrumb}
+          />
+        )}
       <div class="lg:px-8 px-[15px]">
         <div class="flex-grow">
           <ProductGallery
@@ -123,34 +136,41 @@ function Result({
           },
         }}
       />
-    </div >
+    </>
   );
 }
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
-
-  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } = props;
+  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } =
+    props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
   }
 
-  return <Result {...props} page={page} section={section} isMobile={isMobile} buttonsPagination={buttonsPagination} />;
+  return (
+    <Result
+      {...props}
+      page={page}
+      section={section}
+      isMobile={isMobile}
+      buttonsPagination={buttonsPagination}
+    />
+  );
 }
 
 export default SearchResult;
 
 export const loader = (props: Props, req: Request) => {
+  const { photoOnPLP } = { ...props };
 
-  const { photoOnPLP } = { ...props }
-
-  const section = photoOnPLP.find(({ matcher }) =>
+  const section = photoOnPLP?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
-  const term = new URLSearchParams(new URL(req.url).search).get('q');
+  const term = new URLSearchParams(new URL(req.url).search).get("q");
 
-  const isMobile = req.headers.get("user-agent")!.includes('Mobile')
+  const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 
-  return { ...props, searchTerm: term ?? "", section, isMobile, url: req.url};
+  return { ...props, searchTerm: term ?? "", section, isMobile, url: req.url };
 };

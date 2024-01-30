@@ -2,49 +2,88 @@ import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import GalleryControls from "$store/islands/GalleryControls.tsx";
+import {Result}  from "$store/components/search/SearchResult.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
+import ProductGallery from "../product/ProductGallery.tsx";
+import NotFound from "./NotFound.tsx";
+import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
+import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+import { FilterName } from "$store/components/search/SearchResult.tsx";
+import { Color } from "$store/components/search/SearchResult.tsx";
+import ButtonsPagination, {
+  ButtonsPaginationProps,
+} from "./ButtonsPagination.tsx";   
 
-export interface Layout {
+/** @titleBy category */
+export interface Category {
+  /** @description RegExp to enable this category on the current URL. Use /camisetas to display this on camisetas category  */
+  matcher: string;
+  category: string;
+  url: string;
   /**
-   * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
+   * @description Subcategorias existentes
    */
-  variant?: "aside" | "drawer";
-  /**
-   * @description Number of products per line on grid
-   */
-  columns?: Columns;
+  items?: {
+    label: string;
+    url: string;
+  }[];
 }
 
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
-  layout?: Layout;
-  list?: Array<{
-    label?: string;
-    href?: string;
-  }>;
-  cardLayout?: CardLayout;
+  categories?: Category[];
+  buttonsPagination?: ButtonsPaginationProps;
+  /**
+  * @title Highlights 
+  */
+  photoOnPLP?: Section[];
+  notFound: PropsNotFound;
+  filterColors?: Color[];
+  filtersNames?: FilterName[];
+  textFilters?: string;
+  appliedFiltersText?: string;
+  applyFiltersText?: string;
+  removeFiltersText?: string;
 }
 
-function NotFound() {
-  return (
-    <div class="w-full flex justify-center items-center py-10">
-      <span>Not Found!</span>
-    </div>
-  );
-}
-
-function Result({
+function ResultCategory({
   page,
-  layout,
-  cardLayout,
-  list,
-  currentCategory
-}: Omit<Props, "page"> & { page: ProductListingPage, list?: Array<{ label?: string; href?: string }>, currentCategory?: string }) {
+  currentCategory,
+  parentCategory,
+  subCategories,
+  categoryURL,
+  section,
+  isMobile,
+  filterColors,
+  filtersNames,
+  textFilters,
+  appliedFiltersText,
+  applyFiltersText,
+  removeFiltersText,
+  url,
+  buttonsPagination,
+  notFound,
+  photoOnPLP,
+}: Omit<Props, "page"> & {
+  page: ProductListingPage;
+  currentCategory?: string;
+  subCategories: {
+    label: string;
+    url: string;
+  }[];
+  parentCategory?: string;
+  categoryURL?: string;
+  isMobile: boolean;
+  section?: Section;
+  url: string;
+  notFound: PropsNotFound; 
+  photoOnPLP?: Section[];
+}) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
@@ -52,87 +91,131 @@ function Result({
   return (
     <div>
       <GalleryControls
+        subCategories={subCategories}
+        parentCategory={parentCategory}
         currentCategory={currentCategory}
-        list={list}
+        categoryURL={categoryURL}
         sortOptions={sortOptions}
+        filtersNames={filtersNames}
+        filterColors={filterColors}
+        textFilters={textFilters}
+        appliedFiltersText={appliedFiltersText}
+        applyFiltersText={applyFiltersText}
+        removeFiltersText={removeFiltersText}
         filters={filters}
+        url={url}
         breadcrumb={breadcrumb}
-        displayFilter={layout?.variant === "drawer"}
       />
-      <div class="lg:px-8 px-[15px]">
-        <div class="flex-grow">
-          <ProductGallery
-            products={products}
-            offset={offset}
-            layout={{ card: cardLayout, columns: layout?.columns }}
-          />
-        </div>
-
-        <div class="flex justify-center my-4">
-          <div class="join">
-            <a
-              aria-label="previous page link"
-              rel="prev"
-              href={pageInfo.previousPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronLeft" size={24} strokeWidth={2} />
-            </a>
-            <span class="btn btn-ghost join-item">
-              Page {pageInfo.currentPage + 1}
-            </span>
-            <a
-              aria-label="next page link"
-              rel="next"
-              href={pageInfo.nextPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronRight" size={24} strokeWidth={2} />
-            </a>
-          </div>
-        </div>
-      </div>
-      <SendEventOnLoad
-        event={{
-          name: "view_item_list",
-          params: {
-            // TODO: get category name from search or cms setting
-            item_list_name: "",
-            item_list_id: "",
-            items: page.products?.map((product, index) =>
-              mapProductToAnalyticsItem({
-                ...(useOffer(product.offers)),
-                index: offset + index,
-                product,
-                breadcrumbList: page.breadcrumb,
-              })
-            ),
-          },
-        }}
+      <Result
+        page={page}
+        searchTerm={""}
+        textSearch={""}
+        section={section}
+        isMobile={isMobile}
+        buttonsPagination={buttonsPagination}
+        isCategory={true}
+        notFound={notFound}  
+        photoOnPLP={photoOnPLP}
+        url={url}
       />
     </div>
   );
 }
 
-function CategoryResult(
-  { page, ...props }: SectionProps<ReturnType<typeof loader>>,
-) {
-  if (!page) {
-    return <NotFound />;
+function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
+  const { page, notFound, section, isMobile, buttonsPagination, url, currentCategory, subCategories, parentCategory, categoryURL, photoOnPLP } = props;
+
+  if (!page || page?.products.length === 0) {
+    return <NotFound props={notFound} searchedLabel={""} />;
   }
 
-  return <Result {...props} page={page} />;
+  return (
+    <ResultCategory
+      {...props}
+      page={page}
+      section={section}
+      isMobile={isMobile} 
+      buttonsPagination={buttonsPagination}
+      notFound={notFound}
+      url={url}
+      currentCategory={currentCategory}
+      subCategories={subCategories}
+      parentCategory={parentCategory}
+      categoryURL={categoryURL}
+      photoOnPLP={photoOnPLP}
+    />
+  );
 }
 
-export default CategoryResult;
-
 export const loader = (props: Props, req: Request) => {
+  const { categories, photoOnPLP } = { ...props }
+
   const url = new URL(req.url);
-  const segments = url.pathname.split('/').filter(Boolean);
 
-  const lastSegment = segments[segments.length - 1];
+  const section = photoOnPLP?.find(({ matcher }) =>
+    new URLPattern({ pathname: matcher }).test(url)
+  );
 
-  console.log(lastSegment);
+  const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 
-  return { ...props, currentCategory: lastSegment || "" };
+  const urlSegments = url.pathname.split("/").filter(Boolean);
+  const firstSegment = urlSegments.length > 0 ? urlSegments[0] : null;
+  const secondSegment = urlSegments.length > 1 ? urlSegments[1] : null;
+
+  const foundCategory = categories?.filter(({ category }) =>
+    category === firstSegment
+  );
+
+  const categoryURL = foundCategory?.[0]?.url;
+
+  if (foundCategory && foundCategory.length > 0) {
+    let currentCategory: string | undefined;
+    let subCategories: { label: string; url: string }[] = [];
+
+    if (secondSegment) {
+      const foundSubCategory = foundCategory[0]?.items?.find(
+        (subCategory) => subCategory.url === url.pathname,
+      );
+
+      currentCategory = foundSubCategory?.label;
+    } else {
+      currentCategory = foundCategory[0]?.category;
+    }
+    const parentCategory = foundCategory[0]?.category
+      ? foundCategory[0]?.category
+      : undefined;
+
+    if (foundCategory[0]?.items) {
+      subCategories = foundCategory[0].items.map((subCategory) => ({
+        label: subCategory.label,
+        url: subCategory.url,
+      }));
+    }
+
+    return {
+      ...props,
+      currentCategory,
+      subCategories: subCategories.length > 0 ? subCategories : [],
+      parentCategory,
+      categoryURL,
+      section,
+      isMobile,
+      url: req.url,
+      photoOnPLP
+    };
+  } else {
+    return {
+      ...props,
+      parentCategory: urlSegments[0] || "",
+      currentCategory: urlSegments[0] || "",
+      subCategories: [],
+      categoryURL,
+      section,
+      isMobile,
+      url: req.url,
+      photoOnPLP
+    };
+  }
 };
+
+export default CategoryResult;
