@@ -16,6 +16,7 @@ import LanguageSwitcher from "$store/components/header/Buttons/Language.tsx";
 import { Country } from "$store/components/header/Header.tsx";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
+import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
 
 export type Item = {
   label: string;
@@ -74,8 +75,10 @@ export interface RegionOptions {
 export interface NewsletterForm {
   placeholder?: string;
   buttonText?: string;
-  /** @format html */
-  helpText?: string;
+ /** @format html */
+ helpTextDesktop?: string;
+ /** @format html */
+ helpTextMobile?: string;
 }
 
 export interface Layout {
@@ -111,7 +114,8 @@ export interface Props {
     description?: string;
   };
   newsletter?: {
-    title?: string;
+    titleDesktop?: string;
+    titleMobile?: string;
     /** @format textarea */
     description?: string;
     form?: NewsletterForm;
@@ -143,9 +147,10 @@ export interface Props {
 function Footer({
   logo,
   newsletter = {
-    title: "Newsletter",
+    titleDesktop: "Newsletter",
+    titleMobile: "Newsletter",
     description: "",
-    form: { placeholder: "", buttonText: "", helpText: "" },
+    form: { placeholder: "", buttonText: "", helpTextDesktop: "", helpTextMobile: "" },
   },
   footerTexts,
   footerLogos,
@@ -259,49 +264,61 @@ function Footer({
     >
       <div class="w-full">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
-          <div class="flex flex-col w-full flex-grow gap-5">
-            <Divider class="border-primary" />
-            <div class="flex flex-row justify-center pt-[45px] pb-[51px]">
-              {_newsletter}
-            </div>
-            <Divider class="border-primary" />
-            <div class="w-full flex flex-row items-center justify-between pl-[29px] pr-[25px] pt-[25px]">
-              {footerLogos?.map((logo) => <img src={logo.src} width={logo.width} height={logo.height} alt={logo.alt} />)}
-            </div>
-            <div class="text-center w-full pb-[49px] pt-[10px]">
-              <Image
-                class="mx-auto"
-                src={footerTexts?.footerTitle ?? ""}
-                alt={footerTexts?.alt}
-                width={514}
-                height={38}
-              />
-              <p class="pb-9 text-[11px] font-normal text-primary pt-5">{footerTexts?.subTitle}</p>
-              <div
-                 class="mx-auto max-w-[512px] font-normal text-xs leading-[22.8px] tracking-[2%]"
-                 dangerouslySetInnerHTML={{ __html: footerTexts?.text ?? ""}}
-               />
-            </div>
-            <div class="flex pb-[34px] w-full flex-grow gap-[30px] pl-[29px] pr-[25px]">
-              {_sectionLinks}
-            </div>
-            <div class="border-b ml-7 mr-[25px]" />
-            <div class="flex flex-row justify-between items-center pl-[29px] pr-[25px] w-full">
-              <div class="flex flex-row items-center">
-                <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[9px]">SIGA A BOLOVO</span>
-                {_social}
+          <div>
+              <Divider class="border-primary" />
+              <div class="flex flex-row justify-center pt-[45px] pb-[51px] md:pt-[65px] md:pb-[71px] md:bg-transparent bg-[#F6F6F6]">
+                {_newsletter}
               </div>
-              <div class="flex flex-row items-center">
-                <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-1">MUDAR PAÍS</span>
-                <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" />
+              <Divider class="border-primary" />
+            <div class="flex flex-col w-full flex-grow gap-5">
+              <div class="w-full flex flex-row items-center justify-between pl-[29px] pr-[25px] pt-[57px] md:pt-[45px]">
+                {footerLogos?.map((logo) => <img src={logo.src} width={logo.width} height={logo.height} alt={logo.alt} />)}
               </div>
-            </div>
-            <Divider class="border-primary" />
-            <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px]">
-               <div
-                 class="text-center"
-                 dangerouslySetInnerHTML={{ __html: extraInfo}}
-               />
+              <div class="text-center w-full pb-[49px] pt-[10px]">
+                <Image
+                  class="md:mx-auto px-4 md:px-0"
+                  src={footerTexts?.footerTitle ?? ""}
+                  alt={footerTexts?.alt}
+                  width={514}
+                  height={38}
+                />
+                <p class="pb-9 text-[11px] font-normal text-primary pt-5">{footerTexts?.subTitle}</p>
+                <div
+                  class="md:mx-auto px-4 md:px-0 md:max-w-[512px] w-full font-normal text-xs leading-[22.8px] tracking-[2%]"
+                  dangerouslySetInnerHTML={{ __html: footerTexts?.text ?? ""}}
+                />
+              </div>
+              <div class="md:hidden mx-auto flex flex-row items-center">
+                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-1">MUDAR PAÍS</span>
+                  <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" />
+                </div>
+              <div class="flex pb-[34px] w-full flex-grow gap-[30px] pl-[29px] pr-[25px]">
+                {_sectionLinks}
+              </div>
+              <div class="border-b ml-7 mr-[25px]" />
+              <div class="flex flex-row justify-between items-center md:pl-[29px] md:pr-[25px] px-[15px] md:px-0 w-full">
+                  <a class="md:hidden flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px]">
+                    <span class="block rounded-full bg-primary items-center pt-[6.5px] pb-[9px] pr-[7px] pl-2">
+                      <Icon size={23} id="WhatsApp" />
+                    </span>
+                    <span class="text-sm font-medium leading-[22.4px] text-right w-full pr-[19px]">COMPRE PELO WHATS</span>
+                  </a>
+                <div class="flex flex-row items-center">
+                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[9px] md:flex hidden">SIGA A BOLOVO</span>
+                  {_social}
+                </div>
+                <div class="md:flex hidden flex-row items-center">
+                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-1">MUDAR PAÍS</span>
+                  <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" />
+                </div>
+              </div>
+              <Divider class="border-primary" />
+              <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px]">
+                <div
+                  class="text-center"
+                  dangerouslySetInnerHTML={{ __html: extraInfo}}
+                />
+              </div>
             </div>
           </div>
         )}

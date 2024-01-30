@@ -6,12 +6,15 @@ export interface Form {
   placeholder?: string;
   buttonText?: string;
   /** @format html */
-  helpText?: string;
+  helpTextDesktop?: string;
+  /** @format html */
+  helpTextMobile?: string;
 }
 
 export interface Props {
   content: {
-    title?: string;
+    titleDesktop?: string;
+    titleMobile?: string;
     form?: Form;
   };
   layout?: {
@@ -52,36 +55,41 @@ function Newsletter(
       class={`flex ${
         tiled
           ? "flex-col gap-4 lg:flex-row lg:w-full lg:justify-between"
-          : "flex-row justify-center w-full"
+          : "md:flex-row flex-col  justify-center w-full"
       }`}
     >
       <div class="flex flex-row gap-4">
-        {content?.title && (
-          <h3 class={tiled ? "text-2xl lg:text-3xl" : "w-[288px] text-[15px] font-medium leading-[16.5px] text-primary uppercase text-right"}>
-            {content?.title}
+        {content?.titleDesktop && (
+          <h3 class={tiled ? "text-2xl lg:text-3xl" : "md:flex hidden md:w-[288px] text-[15px] mr-8 font-medium leading-[16.5px] text-primary uppercase text-right"}>
+            {content?.titleDesktop}
+          </h3>
+        )}
+         {content?.titleMobile && (
+          <h3 class={tiled ? "text-2xl lg:text-3xl" : "flex md:hidden mx-auto md:w-[288px] text-[15px] font-medium leading-[16.5px] text-primary uppercase text-right"}>
+            {content?.titleMobile}
           </h3>
         )}
       </div>
-        <form
-          class="form-control w-[321px] ml-[29px] mr-8"
-          onSubmit={handleSubmit}
-        >
-          <div class="flex flex-wrap gap-3 h-[38px] relative items-center">
-            <input
-              name="email"
-              class="flex-auto h-[38px] md:flex-none rounded-[20px] input input-bordered border-primary w-full text-base-content join-item pl-[21px] placeholder:text-[12px] placeholder:uppercase placeholder:font-normal"
-              placeholder={content?.form?.placeholder || "Digite seu email"}
-              required
-            />
-            <button
-              type="submit"
-              class="bg-primary h-[38px] px-[20px] py-[5px] text-white rounded-[19px] disabled:loading text-sm leading-[18px] font-normal uppercase join-item absolute right-0"
-              disabled={loading}
-            >
-              {content?.form?.buttonText || "Inscrever"}
-            </button>
-          </div>
-        </form>
+          <form
+            class="md:form-control md:my-0 my-[14px] w-[321px] md:mx-0 mx-auto"
+            onSubmit={handleSubmit}
+          >
+            <div class="flex flex-wrap gap-3 h-[38px] relative items-center">
+              <input
+                name="email"
+                class="flex-auto h-[38px] md:flex-none rounded-[20px] input input-bordered border-primary w-full text-base-content join-item pl-[21px] placeholder:text-[12px] placeholder:uppercase placeholder:font-normal"
+                placeholder={content?.form?.placeholder || "Digite seu email"}
+                required
+              />
+              <button
+                type="submit"
+                class="bg-primary h-[38px] px-[20px] py-[5px] text-white rounded-[19px] disabled:loading text-sm leading-[18px] font-normal uppercase join-item absolute right-0"
+                disabled={loading}
+              >
+                {content?.form?.buttonText || "Inscrever"}
+              </button>
+            </div>
+          </form>
         {
           showMessage.value == "error" ? 
           <div class="text-sm leading-none text-[#d44c47] mt-1">
@@ -91,10 +99,16 @@ function Newsletter(
             E-mail cadastrado com sucesso !
           </div> : ""
         }
-        {content?.form?.helpText && (
+        {content?.form?.helpTextDesktop && (
           <div
-            class="w-[458px] text-[11px] font-normal  leading-[16.4px] text-primary"
-            dangerouslySetInnerHTML={{ __html: content?.form?.helpText }}
+            class="w-[458px] text-[11px] ml-[29px] font-normal md:flex hidden leading-[16.4px] text-primary"
+            dangerouslySetInnerHTML={{ __html: content?.form?.helpTextDesktop }}
+          />
+        )}
+        {content?.form?.helpTextMobile && (
+          <div
+            class="text-[11px] font-normal mx-auto leading-[16.4px] text-primary md:hidden w-full px-[18px] flex text-center"
+            dangerouslySetInnerHTML={{ __html: content?.form?.helpTextMobile }}
           />
         )}
     </div>

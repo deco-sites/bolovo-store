@@ -61,12 +61,12 @@ export default function FooterItems(
           </ul>
 
           {/* Mobile view */}
-          <ul class="flex flex-col md:hidden gap-4">
+          <ul class="flex flex-col md:hidden gap-4 w-full">
             {sections.map((section) => (
               <li>
-                <div class="collapse collapse-arrow ">
-                  <input type="checkbox" class="min-h-[0]" />
-                  <div class="collapse-title min-h-[0] !p-0 flex gap-2">
+                <div class="collapse collapse-arrow w-full">
+                  <input type="checkbox" class="min-h-[0] min-w-full" />
+                  <div class="collapse-title min-h-[0] !p-0 flex gap-2 border-b w-full min-w-full !right-0">
                     <span>{section.label}</span>
                   </div>
                   <div class="collapse-content">
