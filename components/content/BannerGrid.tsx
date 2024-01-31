@@ -98,7 +98,7 @@ const DEFAULT_PROPS: Props = {
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/82727553-f670-4e7c-b9c2-9452aed1955f",
       srcDesktop:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7b3a9d75-57a5-43cf-a3c5-f689a997f24e",
-      text: "Bolovo Store Productions"
+      text: "Bolovo Store Productions",
     },
     {
       href: "a",
@@ -106,7 +106,7 @@ const DEFAULT_PROPS: Props = {
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/c5c6bdf6-5555-488c-8b14-719e4158dea6",
       srcDesktop:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/3e2b7824-d75c-4704-8d32-621bfc9b20cf",
-      text: "Bolovo Store Productions"
+      text: "Bolovo Store Productions",
     },
   ],
   borderRadius: {
@@ -166,7 +166,7 @@ function BannerGrid(props: Props) {
                 loading={preload ? "eager" : "lazy"}
               />
             </Picture>
-            <AltSlider text={text}/>
+            <AltSlider text={text} />
           </a>
         ))}
       </div>
@@ -174,4 +174,4 @@ function BannerGrid(props: Props) {
   );
 }
 
-export default BannerGrid
+export default BannerGrid;

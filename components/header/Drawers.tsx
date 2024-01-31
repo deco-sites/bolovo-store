@@ -7,7 +7,7 @@ import Icon from "$store/components/ui/Icon.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ComponentChildren } from "preact";
-import type { MiniCartProps } from '$store/components/minicart/vnda/Cart.tsx'
+import type { MiniCartProps } from "$store/components/minicart/vnda/Cart.tsx";
 import { lazy, Suspense } from "preact/compat";
 
 const Menu = lazy(() => import("$store/components/header/Menu.tsx"));
@@ -16,7 +16,7 @@ const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
 export interface Props {
   menu: MenuProps;
   searchbar?: SearchbarProps;
-  miniCart?: MiniCartProps
+  miniCart?: MiniCartProps;
   /**
    * @ignore_gen true
    */
@@ -37,7 +37,10 @@ const Aside = (
         <span class="font-semibold text-sm">{title}</span>
       </h1>
       {onClose && (
-        <Button class="btn btn-ghost hover:bg-transparent disabled:bg-transparent p-0" onClick={onClose}>
+        <Button
+          class="btn btn-ghost hover:bg-transparent disabled:bg-transparent p-0"
+          onClick={onClose}
+        >
           <Icon id="XMark" size={15} strokeWidth={2} class="text-[#121212]" />
         </Button>
       )}

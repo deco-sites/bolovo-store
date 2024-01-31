@@ -26,16 +26,17 @@ export const useSort = () =>
 const applySort = (value: string) => {
   const urlSearchParams = new URLSearchParams(window.location.search);
   urlSearchParams.set(SORT_QUERY_PARAM, value);
-  urlSearchParams.delete('page');
+  urlSearchParams.delete("page");
   const newParamsString = urlSearchParams.toString();
-  const newURL = window.location.pathname + (newParamsString ? `?${newParamsString}` : '');
-  window.history.replaceState({}, '', newURL);
+  const newURL = window.location.pathname +
+    (newParamsString ? `?${newParamsString}` : "");
+  window.history.replaceState({}, "", newURL);
   window.location.reload();
 };
 
 function SortMenu({ sortOptions }: Props) {
   const sort = useSort();
-  console.log(sortOptions)
+  console.log(sortOptions);
   return (
     <ul
       class="absolute z-10 bg-white w-full flex flex-col outline-none focus:outline-none border-x border-black border-b rounded-b-xl text-center"
@@ -49,7 +50,9 @@ function SortMenu({ sortOptions }: Props) {
           label,
       })).filter(({ label }) => label).map(({ value, label }, index) => (
         <li
-          class={`cursor-pointer select-none relative flex justify-between py-[5px] items-center px-[11px] lg:(block p-0 border-0) ${index == sortOptions.length - 1 ? "": "border-b"}`}
+          class={`cursor-pointer select-none relative flex justify-between py-[5px] items-center px-[11px] lg:(block p-0 border-0) ${
+            index == sortOptions.length - 1 ? "" : "border-b"
+          }`}
           onClick={() => applySort(value)}
           role="option"
           aria-selected={value === sort}

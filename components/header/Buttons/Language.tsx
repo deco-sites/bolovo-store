@@ -3,13 +3,15 @@ import Image from "apps/website/components/Image.tsx";
 import { usePartialSection } from "deco/hooks/usePartialSection.ts";
 import type { Country } from "$store/components/header/Header.tsx";
 
-export default function LanguageSwitcher({ countryFlag, width, height, textClass, class: _class = ""}: {
-  countryFlag: Country[];
-  width?: number
-  height?:number
-  textClass?: string
-  class?: string
-}) {
+export default function LanguageSwitcher(
+  { countryFlag, width, height, textClass, class: _class = "" }: {
+    countryFlag: Country[];
+    width?: number;
+    height?: number;
+    textClass?: string;
+    class?: string;
+  },
+) {
   return (
     <>
       <details class={`dropdown px-0 ${_class}`}>
@@ -22,7 +24,9 @@ export default function LanguageSwitcher({ countryFlag, width, height, textClass
               height={height ?? 12}
               class={`w-[${width}] h-[${height}] mr-1`}
             />
-            <span class={`${textClass ?? "text-[15px]"} uppercase font-normal`}>{countryFlag[0].countryLabel}</span>
+            <span class={`${textClass ?? "text-[15px]"} uppercase font-normal`}>
+              {countryFlag[0].countryLabel}
+            </span>
           </div>
           <Icon
             id="ChevronDown"

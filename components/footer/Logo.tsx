@@ -1,8 +1,7 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import InnerHTML from "$store/components/ui/InnerHTML.tsx"
+import InnerHTML from "$store/components/ui/InnerHTML.tsx";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
-
 
 export interface Props {
   logo?: {

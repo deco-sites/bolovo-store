@@ -11,15 +11,17 @@ const newsletter = async (
   ctx: AppContext,
 ): Promise<number> => {
   const form = new FormData();
-  const baseUrl = ctx.commerce?.platform == "vnda" ? `${ctx.commerce?.publicUrl}webform` : "";
+  const baseUrl = ctx.commerce?.platform == "vnda"
+    ? `${ctx.commerce?.publicUrl}webform`
+    : "";
   const { email } = props;
   form.append("key", "bolovo-newsletter");
   form.append("reply_to", email);
   form.append("vnda", "");
   form.append("email", email);
-  console.log(ctx)
+  console.log(ctx);
 
-  const response =  await fetchSafe(baseUrl, {
+  const response = await fetchSafe(baseUrl, {
     method: "POST",
     body: form,
   });

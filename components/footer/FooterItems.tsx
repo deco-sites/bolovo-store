@@ -1,16 +1,17 @@
 import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
 
 export interface WhatsApp {
-  whatsAppButtonText?: string
-  whatsAppNumber?: string
-  whatsAppText?:string
+  whatsAppButtonText?: string;
+  whatsAppNumber?: string;
+  whatsAppText?: string;
 }
 
 export type Item = {
   label: string;
   href?: string;
   /** @format html */
-  extraInfo?: string
+  extraInfo?: string;
+  newTab?: boolean
 };
 
 export type Section = {
@@ -19,11 +20,15 @@ export type Section = {
 };
 
 export default function FooterItems(
-  { sections, justify = true,  whatsApp = {
-    whatsAppButtonText:"COMPRE PELO WHATS",
-    whatsAppNumber: "11917250298",
-    whatsAppText: "Olá, gostaria de comprar um produto"
-  }, }: { sections: Section[]; justify: boolean, whatsApp?: WhatsApp },
+  {
+    sections,
+    justify = true,
+    whatsApp = {
+      whatsAppButtonText: "COMPRE PELO WHATS",
+      whatsAppNumber: "11917250298",
+      whatsAppText: "Olá, gostaria de comprar um produto",
+    },
+  }: { sections: Section[]; justify: boolean; whatsApp?: WhatsApp },
 ) {
   return (
     <>
@@ -44,26 +49,50 @@ export default function FooterItems(
                   <ul class={`flex flex-col flex-wrap text-sm`}>
                     {section.items?.map((item) => (
                       <li>
-                        {item.extraInfo ? 
-                        <div class="flex flex-row items-center">
-                          <span class="block leading-[26.4px] font-normal text-xs uppercase text-primary">{item.label}</span>
-                          <a href={item.href} class="block leading-[26.4px] font-normal text-xs text-primary pl-1">
-                            <div class="block leading-[26.4px] font-normal text-xs text-primary" dangerouslySetInnerHTML={{ __html: item.extraInfo }} /> 
-                          </a>
-                        </div> : 
-                        <a href={item.href} class="block leading-[26.4px] font-normal text-xs uppercase text-primary">
-                          {item.label}
-                        </a>
-                        }
+                        {item.extraInfo
+                          ? (
+                            <div class="flex flex-row items-center">
+                              <span class="block leading-[26.4px] font-normal text-xs uppercase text-primary">
+                                {item.label}
+                              </span>
+                              <a
+                                target={item.newTab ? "_blank" : ""}
+                                href={item.href}
+                                class="block leading-[26.4px] font-normal text-xs text-primary pl-1"
+                              >
+                                <div
+                                  class="block leading-[26.4px] font-normal text-xs text-primary"
+                                  dangerouslySetInnerHTML={{
+                                    __html: item.extraInfo,
+                                  }}
+                                />
+                              </a>
+                            </div>
+                          )
+                          : (
+                            <a
+                              href={item.href}
+                              class="block leading-[26.4px] font-normal text-xs uppercase text-primary"
+                            >
+                              {item.label}
+                            </a>
+                          )}
                       </li>
                     ))}
-                    {section.label === "CONTATO" &&  
-                    <a href={`https://api.whatsapp.com/send?phone=55${whatsApp?.whatsAppNumber}&text=${whatsApp?.whatsAppText}`} class="flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px] mt-[14px]">
-                      <span class="block rounded-full bg-primary items-center pt-[6.5px] pb-[9px] pr-[7px] pl-2">
-                        <Icon size={23} id="WhatsApp" />
-                      </span>
-                      <span class="text-sm font-medium leading-[22.4px] text-right w-full pr-[19px]">{whatsApp?.whatsAppButtonText}</span>
-                     </a> }
+                    {section.label === "CONTATO" &&
+                      (
+                        <a
+                          href={`https://api.whatsapp.com/send?phone=55${whatsApp?.whatsAppNumber}&text=${whatsApp?.whatsAppText}`}
+                          class="flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px] mt-[14px]"
+                        >
+                          <span class="block rounded-full bg-primary items-center pt-[6.5px] pb-[9px] pr-[7px] pl-2">
+                            <Icon size={23} id="WhatsApp" />
+                          </span>
+                          <span class="text-sm font-medium leading-[22.4px] text-right w-full pr-[19px]">
+                            {whatsApp?.whatsAppButtonText}
+                          </span>
+                        </a>
+                      )}
                   </ul>
                 </div>
               </li>
@@ -77,7 +106,9 @@ export default function FooterItems(
                 <div class="collapse collapse-arrow w-full rounded-none">
                   <input type="checkbox" class="min-h-[0] min-w-full" />
                   <div class="collapse-title col-start-0  min-h-[0] px-0 py-0 pb-1 flex gap-2 w-full min-w-full font-medium after:!right-1">
-                    <span class="border-b w-full text-sm leading-[22.4px] uppercase">{section.label}</span>
+                    <span class="border-b w-full text-sm leading-[22.4px] uppercase">
+                      {section.label}
+                    </span>
                   </div>
                   <div class="collapse-content px-0">
                     <ul
