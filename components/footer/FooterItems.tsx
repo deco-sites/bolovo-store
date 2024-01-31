@@ -64,20 +64,20 @@ export default function FooterItems(
           <ul class="flex flex-col md:hidden gap-4 w-full">
             {sections.map((section) => (
               <li>
-                <div class="collapse collapse-arrow w-full">
+                <div class="collapse collapse-arrow w-full rounded-none">
                   <input type="checkbox" class="min-h-[0] min-w-full" />
-                  <div class="collapse-title min-h-[0] !p-0 flex gap-2 border-b w-full min-w-full !right-0">
-                    <span>{section.label}</span>
+                  <div class="collapse-title col-start-0  min-h-[0] px-0 py-0 pb-1 flex gap-2 w-full min-w-full font-medium after:!right-1">
+                    <span class="border-b w-full text-sm leading-[22.4px] uppercase">{section.label}</span>
                   </div>
-                  <div class="collapse-content">
+                  <div class="collapse-content px-0">
                     <ul
-                      class={`flex flex-col gap-1 pl-5 pt-2`}
+                      class={`flex flex-col pt-2`}
                     >
                       {section.items?.map((item) => (
                         <li>
                           <a
                             href={item.href}
-                            class="block py-1 link link-hover"
+                            class="block text-xs leading-[25.2px] font-normal uppercase text-primary"
                           >
                             {item.label}
                           </a>

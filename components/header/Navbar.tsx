@@ -96,7 +96,7 @@ function Navbar(
         <div class="flex-none flex items-center justify-end gap-1 pr-0 min-w-[33%] w-auto">
           <SearchButton label={label} img={img} />
           <Searchbar searchbar={searchbar} />
-          <LanguageSwitcher countryFlag={countryFlag} />
+          <LanguageSwitcher countryFlag={countryFlag} class="w-auto" />
           {helpItem && (
             <a
               class="btn btn-sm btn-ghost px-2 hover:bg-transparent font-normal text-base uppercase"

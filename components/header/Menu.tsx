@@ -148,7 +148,7 @@ function Menu(
         </li>
       </ul>
       <div class="flex flex-col py-2 border-y border-black">
-        <span class="py-8 block">
+        <span class="py-8 block w-full">
           <div>
             <a
               class="btn btn-square w-auto justify-start btn-sm btn-ghost hover:bg-transparent flex flex-row"
@@ -160,7 +160,7 @@ function Menu(
             </a>
           </div>
           <div class="w-full">
-            <LanguageSwitcher countryFlag={countryFlag} />
+            <LanguageSwitcher countryFlag={countryFlag} class="w-full" />
           </div>
         </span>
       </div>

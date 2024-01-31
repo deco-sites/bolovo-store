@@ -274,7 +274,7 @@ function Footer({
               <div class="w-full flex flex-row items-center justify-between pl-[29px] pr-[25px] pt-[57px] md:pt-[45px]">
                 {footerLogos?.map((logo) => <img src={logo.src} width={logo.width} height={logo.height} alt={logo.alt} />)}
               </div>
-              <div class="text-center w-full pb-[49px] pt-[10px]">
+              <div class="text-center w-full pb-[19px] md:pb-[49px] pt-[10px]">
                 <Image
                   class="md:mx-auto px-4 md:px-0"
                   src={footerTexts?.footerTitle ?? ""}
@@ -288,11 +288,11 @@ function Footer({
                   dangerouslySetInnerHTML={{ __html: footerTexts?.text ?? ""}}
                 />
               </div>
-              <div class="md:hidden mx-auto flex flex-row items-center">
-                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-1">MUDAR PAÍS</span>
-                  <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" />
-                </div>
-              <div class="flex pb-[34px] w-full flex-grow gap-[30px] pl-[29px] pr-[25px]">
+              <div class="md:hidden flex flex-row items-center justify-center mb-[34px]">
+                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[11px]">MUDAR PAÍS</span>
+                  <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" class="w-auto" />
+              </div>
+              <div class="flex pb-[34px] w-full flex-grow gap-[30px] md:pl-[29px] ms:px-0 px-[15px] md:pr-[25px]">
                 {_sectionLinks}
               </div>
               <div class="border-b ml-7 mr-[25px]" />
@@ -309,13 +309,13 @@ function Footer({
                 </div>
                 <div class="md:flex hidden flex-row items-center">
                   <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-1">MUDAR PAÍS</span>
-                  <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" />
+                  <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" class="w-auto" />
                 </div>
               </div>
               <Divider class="border-primary" />
               <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px]">
                 <div
-                  class="text-center"
+                  class="text-center font-normal text-xs"
                   dangerouslySetInnerHTML={{ __html: extraInfo}}
                 />
               </div>
