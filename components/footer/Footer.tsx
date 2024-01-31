@@ -8,11 +8,19 @@ import MobileApps from "$store/components/footer/MobileApps.tsx";
 import PaymentMethods from "$store/components/footer/PaymentMethods.tsx";
 import RegionSelector from "$store/components/footer/RegionSelector.tsx";
 import Social from "$store/components/footer/Social.tsx";
+<<<<<<< HEAD
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
 import LanguageSwitcher from "$store/components/header/Buttons/Language.tsx";
 import { Country } from "$store/components/header/Header.tsx";
+=======
+import Contacts from "$store/components/footer/Contacts.tsx";
+import Newsletter from "$store/islands/Newsletter.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
+import type { ContactsProps } from "$store/components/footer/Contacts.tsx";
+>>>>>>> main
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
@@ -139,11 +147,15 @@ export interface Props {
   backToTheTop?: {
     text?: string;
   };
+<<<<<<< HEAD
   footerTexts?: FooterTexts;
   footerLogos?: FooterLogos[];
   changeCountryText?: string;
   countryFlag: Country[];
   followBolovoText?: string;
+=======
+  contacts?: ContactsProps[];
+>>>>>>> main
   /** @format html */
   extraInfo?: string;
   layout?: Layout;
@@ -163,6 +175,7 @@ function Footer({
       helpTextMobile: "",
     },
   },
+<<<<<<< HEAD
   followBolovoText = "SIGA A BOLOVO",
   changeCountryText = "MUDAR PAÍS",
   whatsApp = {
@@ -205,6 +218,15 @@ function Footer({
       },
     ],
   }],
+=======
+  items = [
+    { label: "login", href: "/" },
+    { label: "ajuda", href: "/" },
+    { label: "contato", href: "/" },
+    { label: "lojas", href: "/" },
+    { label: "compre pelo whatsapp", href: "/" },
+  ],
+>>>>>>> main
   social = {
     title: "Redes sociais",
     items: [{ label: "Instagram", link: "/" }],
@@ -217,7 +239,15 @@ function Footer({
   regionOptions = { currency: [], language: [] },
   extraLinks = [],
   backToTheTop,
+<<<<<<< HEAD
   countryFlag,
+=======
+  contacts = [
+    { title: "instagram:", text: "@bolovopinheiros" },
+    { title: "whats loja:", text: "(11) 91725-0298" },
+    { title: "telefone:", text: "(11) 3086-1020" },
+  ],
+>>>>>>> main
   extraInfo =
     "© BOLOVO | VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34",
   layout = {
@@ -269,6 +299,12 @@ function Footer({
   const _links = layout?.hide?.extraLinks
     ? <></>
     : <ExtraLinks content={extraLinks} />;
+<<<<<<< HEAD
+=======
+  const _contacts = layout?.hide?.contacts
+    ? <></>
+    : <Contacts content={contacts} />;
+>>>>>>> main
 
   return (
     <footer
@@ -278,6 +314,7 @@ function Footer({
     >
       <div class="w-full">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
+<<<<<<< HEAD
           <div>
             <Divider class="border-primary" />
             <div class="flex flex-row justify-center pt-[45px] pb-[51px] md:pt-[65px] md:pb-[71px] md:bg-transparent bg-[#F6F6F6]">
@@ -365,6 +402,29 @@ function Footer({
                   dangerouslySetInnerHTML={{ __html: extraInfo }}
                 />
               </div>
+=======
+          <div class="flex flex-col gap-[15px] mx-[15px]">
+            <div class="flex flex-col pb-20 md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
+              <div class="lg:mb-0 mb-6">
+                {_logo}
+                {_payments}
+              </div>
+              {_sectionLinks}
+              <div class="flex flex-col gap-5 lg:my-0 my-6">
+                {_contacts}
+                {_social}
+              </div>
+              <div class="lg:mx-0 mx-auto">
+                {_newsletter}
+              </div>
+            </div>
+            <Divider />
+            <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px]">
+              <div
+                class="text-center"
+                dangerouslySetInnerHTML={{ __html: extraInfo }}
+              />
+>>>>>>> main
             </div>
           </div>
         )}

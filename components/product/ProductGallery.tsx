@@ -27,6 +27,7 @@ function ProductGallery(
       class={`grid grid-cols-2 gap-2 items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px] col-`}
     >
       {products?.map((product, index) => (
+<<<<<<< HEAD
         photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page &&
           index === line
           ? (
@@ -42,6 +43,29 @@ function ProductGallery(
               paragraph={photoOnPLP.imageAndProducts.paragraph}
               customClassImage={`mx-[-15px] lg:mx-0 h-full py-4 lg:py-0`}
               row={row}
+=======
+
+        photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page && index === line ?
+          <PhotoAndProducts
+            variant={photoOnPLP.imageAndProducts.variant}
+            src={photoOnPLP.imageAndProducts.src}
+            alt={photoOnPLP.imageAndProducts.alt}
+            href={photoOnPLP.imageAndProducts.href}
+            preLoad={photoOnPLP.imageAndProducts.preLoad}
+            layoutDesktop={photoOnPLP.imageAndProducts.layoutDesktop}
+            products={photoOnPLP.imageAndProducts.products}
+            title={photoOnPLP.imageAndProducts.title}
+            paragraph={photoOnPLP.imageAndProducts.paragraph}
+            customClassImage={`mx-[-15px] lg:mx-0 h-full py-4 lg:py-0`}
+            row={row} />
+          :
+          <li class={`h-full`}>
+            <ProductCard
+              product={product}
+              preload={index === 0} 
+              index={offset ? offset + index : undefined}
+              platform={platform}
+>>>>>>> main
             />
           )
           : (

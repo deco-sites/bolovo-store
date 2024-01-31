@@ -10,43 +10,115 @@ import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
+<<<<<<< HEAD
+=======
+import type { ImageWidget } from "apps/admin/widgets.ts";
+import ButtonsPagination, {
+  ButtonsPaginationProps,
+} from "./ButtonsPagination.tsx";
+>>>>>>> main
 
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
   textSearch?: string;
+  buttonsPagination?: ButtonsPaginationProps;
   notFound: PropsNotFound;
   /**
    * @title Highlights
    */
+<<<<<<< HEAD
   photoOnPLP: Section[];
+=======
+  photoOnPLP?: Section[];
+  filterColors?: Color[];
+  filtersNames?: FilterName[];
+  textFilters?: string;
+  appliedFiltersText?: string;
+  applyFiltersText?: string;
+  removeFiltersText?: string;
+>>>>>>> main
 }
 
-function Result({
+export interface FilterName {
+  /**
+   * @title Filter name
+   */
+  filter: string;
+  /**
+   * @title New filter name
+   */
+  label: string;
+}
+
+export interface Color {
+  /**
+   * @title Color name
+   */
+  label: string;
+  /**
+   * @title Color
+   * @format color
+   */
+  hex?: string;
+  /**
+   * @title Image
+   */
+  src?: ImageWidget;
+}
+
+export function Result({
   page,
   textSearch,
   searchTerm,
   section,
   isMobile,
+<<<<<<< HEAD
+=======
+  filterColors,
+  filtersNames,
+  textFilters,
+  appliedFiltersText,
+  applyFiltersText,
+  removeFiltersText,
+  url,
+  buttonsPagination,
+  isCategory = false,
+>>>>>>> main
 }: Omit<Props, "page"> & {
   page: ProductListingPage;
   searchTerm: string;
   section?: Section;
   isMobile: boolean;
+<<<<<<< HEAD
+=======
+  url: string;
+  isCategory?: boolean;
+>>>>>>> main
 }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
   return (
-    <div>
-      <SearchControls
-        searchTerm={searchTerm}
-        textSearch={textSearch}
-        sortOptions={sortOptions}
-        filters={filters}
-        breadcrumb={breadcrumb}
-      />
+    <>
+      {!isCategory &&
+        (
+          <SearchControls
+            searchTerm={searchTerm}
+            textSearch={textSearch}
+            sortOptions={sortOptions}
+            filtersNames={filtersNames}
+            filterColors={filterColors}
+            textFilters={textFilters}
+            appliedFiltersText={appliedFiltersText}
+            applyFiltersText={applyFiltersText}
+            removeFiltersText={removeFiltersText}
+            filters={filters}
+            url={url}
+            breadcrumb={breadcrumb}
+          />
+        )}
       <div class="lg:px-8 px-[15px]">
         <div class="flex-grow">
           <ProductGallery
@@ -57,30 +129,7 @@ function Result({
             isMobile={isMobile}
           />
         </div>
-
-        <div class="flex justify-center my-4">
-          <div class="join">
-            <a
-              aria-label="previous page link"
-              rel="prev"
-              href={pageInfo.previousPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronLeft" size={24} strokeWidth={2} />
-            </a>
-            <span class="btn btn-ghost join-item">
-              Page {pageInfo.currentPage + 1}
-            </span>
-            <a
-              aria-label="next page link"
-              rel="next"
-              href={pageInfo.nextPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronRight" size={24} strokeWidth={2} />
-            </a>
-          </div>
-        </div>
+        <ButtonsPagination page={page} props={buttonsPagination} />
       </div>
       <SendEventOnLoad
         event={{
@@ -100,12 +149,17 @@ function Result({
           },
         }}
       />
-    </div>
+    </>
   );
 }
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
+<<<<<<< HEAD
   const { page, notFound, searchTerm, section, isMobile } = props;
+=======
+  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } =
+    props;
+>>>>>>> main
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
@@ -117,6 +171,10 @@ function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
       page={page}
       section={section}
       isMobile={isMobile}
+<<<<<<< HEAD
+=======
+      buttonsPagination={buttonsPagination}
+>>>>>>> main
     />
   );
 }
@@ -126,7 +184,11 @@ export default SearchResult;
 export const loader = (props: Props, req: Request) => {
   const { photoOnPLP } = { ...props };
 
+<<<<<<< HEAD
   const section = photoOnPLP.find(({ matcher }) =>
+=======
+  const section = photoOnPLP?.find(({ matcher }) =>
+>>>>>>> main
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
@@ -134,5 +196,5 @@ export const loader = (props: Props, req: Request) => {
 
   const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 
-  return { ...props, searchTerm: term ?? "", section, isMobile };
+  return { ...props, searchTerm: term ?? "", section, isMobile, url: req.url };
 };
