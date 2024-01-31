@@ -26,11 +26,7 @@ export default function Social(
             </h2>
           )}
           <ul
-<<<<<<< HEAD
             class={`flex md:gap-[7px] gap-2 ${
-=======
-            class={`flex gap-1 ${
->>>>>>> main
               vertical
                 ? "lg:flex-col lg:items-start"
                 : "flex-wrap lg:mx-0 mx-auto items-center"

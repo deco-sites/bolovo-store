@@ -8,15 +8,10 @@ export interface WhatsApp {
 
 export type Item = {
   label: string;
-<<<<<<< HEAD
   href?: string;
   /** @format html */
   extraInfo?: string;
   newTab?: boolean
-=======
-  href: string;
-  newTab?: boolean;
->>>>>>> main
 };
 
 export type Section = {
@@ -37,11 +32,7 @@ export default function FooterItems(
 ) {
   return (
     <>
-<<<<<<< HEAD
       {sections.length > 0 && (
-=======
-      {items.items.length > 0 && (
->>>>>>> main
         <>
           {/* Tablet and Desktop view */}
           <ul
@@ -49,7 +40,6 @@ export default function FooterItems(
               justify && "lg:justify-between"
             }`}
           >
-<<<<<<< HEAD
             {sections.map((section) => (
               <li class="w-full flex flex-grow">
                 <div class="flex flex-col gap-[14px] w-full flex-grow">
@@ -137,33 +127,6 @@ export default function FooterItems(
                     </ul>
                   </div>
                 </div>
-=======
-            <div class={`flex flex-col gap-4 flex-wrap text-sm`}>
-              {items.items.map((item) => (
-                <li>
-                  <a
-                    target={item.newTab ? "_blank" : ""}
-                    href={item.href}
-                    class="block font-semibold text-base leading-[19px] uppercase"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </div>
-          </ul>
-
-          {/* Mobile view */}
-          <ul class="flex flex-col mx-auto md:hidden gap-4">
-            {items.items.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  class="block font-semibold text-base leading-[19px] uppercase"
-                >
-                  {item.label}
-                </a>
->>>>>>> main
               </li>
             ))}
           </ul>

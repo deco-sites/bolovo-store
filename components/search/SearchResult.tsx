@@ -10,13 +10,10 @@ import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
-<<<<<<< HEAD
-=======
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
->>>>>>> main
 
 export interface Props {
   /** @title Integration */
@@ -27,9 +24,6 @@ export interface Props {
   /**
    * @title Highlights
    */
-<<<<<<< HEAD
-  photoOnPLP: Section[];
-=======
   photoOnPLP?: Section[];
   filterColors?: Color[];
   filtersNames?: FilterName[];
@@ -37,7 +31,6 @@ export interface Props {
   appliedFiltersText?: string;
   applyFiltersText?: string;
   removeFiltersText?: string;
->>>>>>> main
 }
 
 export interface FilterName {
@@ -73,8 +66,6 @@ export function Result({
   searchTerm,
   section,
   isMobile,
-<<<<<<< HEAD
-=======
   filterColors,
   filtersNames,
   textFilters,
@@ -84,17 +75,13 @@ export function Result({
   url,
   buttonsPagination,
   isCategory = false,
->>>>>>> main
 }: Omit<Props, "page"> & {
   page: ProductListingPage;
   searchTerm: string;
   section?: Section;
   isMobile: boolean;
-<<<<<<< HEAD
-=======
   url: string;
   isCategory?: boolean;
->>>>>>> main
 }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
@@ -154,12 +141,8 @@ export function Result({
 }
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
-<<<<<<< HEAD
-  const { page, notFound, searchTerm, section, isMobile } = props;
-=======
   const { page, notFound, searchTerm, section, isMobile, buttonsPagination } =
     props;
->>>>>>> main
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
@@ -171,10 +154,7 @@ function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
       page={page}
       section={section}
       isMobile={isMobile}
-<<<<<<< HEAD
-=======
       buttonsPagination={buttonsPagination}
->>>>>>> main
     />
   );
 }
@@ -184,11 +164,7 @@ export default SearchResult;
 export const loader = (props: Props, req: Request) => {
   const { photoOnPLP } = { ...props };
 
-<<<<<<< HEAD
-  const section = photoOnPLP.find(({ matcher }) =>
-=======
   const section = photoOnPLP?.find(({ matcher }) =>
->>>>>>> main
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
