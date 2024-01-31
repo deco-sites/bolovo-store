@@ -12,12 +12,10 @@ export interface LinkContent {
   title: string;
   subtitle: string;
   alternateName: string;
-  link: string
+  link: string;
 }
 
-
 function RenderImages({ images }: { images: LinkContent[] | undefined }) {
-
   if (images == undefined) {
     return null;
   }
@@ -26,7 +24,10 @@ function RenderImages({ images }: { images: LinkContent[] | undefined }) {
     <div class="flex items-start gap-2 justify-between w-full flex-nowrap px-2">
       {images.map((imageData) => {
         return (
-          <a href={imageData.link} class="w-1/3 max-w-[180px] lg:max-w-[242px] group hover:scale-105 ease-in duration-200">
+          <a
+            href={imageData.link}
+            class="w-1/3 max-w-[180px] lg:max-w-[242px] group hover:scale-105 ease-in duration-200"
+          >
             <figure class="flex flex-col items-center w-full gap-y-[15px] ">
               <Image
                 src={imageData.image}
@@ -40,9 +41,11 @@ function RenderImages({ images }: { images: LinkContent[] | undefined }) {
                 {imageData.title}
               </figcaption>
             </figure>
-            <p class="text-center text-sm text-[#1212124D] mt-2">{imageData.subtitle}</p>
+            <p class="text-center text-sm text-[#1212124D] mt-2">
+              {imageData.subtitle}
+            </p>
           </a>
-        )
+        );
       })}
     </div>
   );
@@ -52,7 +55,10 @@ function ContentBlog({ item }: { item: ContentBlogItem }) {
   const { label, linksContent } = item;
 
   return (
-    <nav class="group flex items-center cursor-pointer px-0" style={{ height: navbarHeight }}>
+    <nav
+      class="group flex items-center cursor-pointer px-0"
+      style={{ height: navbarHeight }}
+    >
       <div class="relative flex items-center group-hover:border-b-2 border-black">
         <span class="uppercase">
           {label}

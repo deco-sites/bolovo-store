@@ -18,14 +18,15 @@ function ProductGallery({
   layout,
   title,
 }: Props) {
-  
   if (!products || products.length === 0) {
     return null;
   }
 
   return (
     <div class="px-[15px] sm:py-10">
-      <h2 class="font-semibold text-base leading-5 pb-[15px] lg:pb-[25px]">{title}</h2>
+      <h2 class="font-semibold text-base leading-5 pb-[15px] lg:pb-[25px]">
+        {title}
+      </h2>
       <div class="flex-grow">
         <Gallery
           products={products}

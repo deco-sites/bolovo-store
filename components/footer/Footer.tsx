@@ -11,7 +11,6 @@ import Social from "$store/components/footer/Social.tsx";
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
-import type {ContactsProps} from "$store/components/footer/Contacts.tsx"
 import LanguageSwitcher from "$store/components/header/Buttons/Language.tsx";
 import { Country } from "$store/components/header/Header.tsx";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
@@ -23,6 +22,7 @@ export type Item = {
   href: string;
   /** @format html */
   extraInfo?: HTMLWidget;
+  newTab?: boolean
 };
 
 export type Section = {
@@ -46,19 +46,19 @@ export interface FooterTexts {
 }
 
 export interface WhatsApp {
-  whatsAppButtonText?: string
-  whatsAppNumber?: string
-  whatsAppText?:string
+  whatsAppButtonText?: string;
+  whatsAppNumber?: string;
+  whatsAppText?: string;
 }
 
 export interface SocialItem {
   label:
-  | "Instagram"
-  | "Youtube"
-  | "Spotify"
-  | "WhatsApp";
+    | "Instagram"
+    | "Youtube"
+    | "Spotify"
+    | "WhatsApp";
   link: string;
-  newTab?: boolean
+  newTab?: boolean;
 }
 
 export interface PaymentItem {
@@ -80,10 +80,10 @@ export interface RegionOptions {
 export interface NewsletterForm {
   placeholder?: string;
   buttonText?: string;
- /** @format html */
- helpTextDesktop?: string;
- /** @format html */
- helpTextMobile?: string;
+  /** @format html */
+  helpTextDesktop?: string;
+  /** @format html */
+  helpTextMobile?: string;
 }
 
 export interface Layout {
@@ -109,7 +109,6 @@ export interface Layout {
     regionOptions?: boolean;
     extraLinks?: boolean;
     backToTheTop?: boolean;
-    contacts?: boolean;
   };
 }
 
@@ -141,15 +140,14 @@ export interface Props {
     text?: string;
   };
   footerTexts?: FooterTexts;
-  footerLogos?: FooterLogos[]
+  footerLogos?: FooterLogos[];
   changeCountryText?: string;
   countryFlag: Country[];
-  contacts?: ContactsProps[];
   followBolovoText?: string;
-   /** @format html */
-  extraInfo?: string
+  /** @format html */
+  extraInfo?: string;
   layout?: Layout;
-  whatsApp?: WhatsApp
+  whatsApp?: WhatsApp;
 }
 
 function Footer({
@@ -158,14 +156,19 @@ function Footer({
     titleDesktop: "Newsletter",
     titleMobile: "Newsletter",
     description: "",
-    form: { placeholder: "", buttonText: "", helpTextDesktop: "", helpTextMobile: "" },
+    form: {
+      placeholder: "",
+      buttonText: "",
+      helpTextDesktop: "",
+      helpTextMobile: "",
+    },
   },
   followBolovoText = "SIGA A BOLOVO",
   changeCountryText = "MUDAR PAÍS",
   whatsApp = {
-    whatsAppButtonText:"COMPRE PELO WHATS",
+    whatsAppButtonText: "COMPRE PELO WHATS",
     whatsAppNumber: "11917250298",
-    whatsAppText: "Olá, gostaria de comprar um produto"
+    whatsAppText: "Olá, gostaria de comprar um produto",
   },
   footerTexts,
   footerLogos,
@@ -215,7 +218,8 @@ function Footer({
   extraLinks = [],
   backToTheTop,
   countryFlag,
-  extraInfo = "© BOLOVO | VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34",
+  extraInfo =
+    "© BOLOVO | VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34",
   layout = {
     backgroundColor: "Primary",
     variation: "Variation 1",
@@ -229,7 +233,6 @@ function Footer({
       regionOptions: false,
       extraLinks: false,
       backToTheTop: false,
-      contacts: false,
     },
   },
 }: Props) {
@@ -245,11 +248,11 @@ function Footer({
   );
   const _sectionLinks = layout?.hide?.sectionLinks ? <></> : (
     <FooterItems
-    whatsApp={whatsApp}
-    sections={sections}
-    justify={layout?.variation == "Variation 2" ||
-      layout?.variation == "Variation 3"}
-  />
+      whatsApp={whatsApp}
+      sections={sections}
+      justify={layout?.variation == "Variation 2" ||
+        layout?.variation == "Variation 3"}
+    />
   );
   const _social = layout?.hide?.socialLinks
     ? <></>
@@ -276,14 +279,21 @@ function Footer({
       <div class="w-full">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
           <div>
-              <Divider class="border-primary" />
-              <div class="flex flex-row justify-center pt-[45px] pb-[51px] md:pt-[65px] md:pb-[71px] md:bg-transparent bg-[#F6F6F6]">
-                {_newsletter}
-              </div>
-              <Divider class="border-primary" />
+            <Divider class="border-primary" />
+            <div class="flex flex-row justify-center pt-[45px] pb-[51px] md:pt-[65px] md:pb-[71px] md:bg-transparent bg-[#F6F6F6]">
+              {_newsletter}
+            </div>
+            <Divider class="border-primary" />
             <div class="flex flex-col w-full flex-grow gap-5">
               <div class="w-full flex flex-row items-center justify-between pl-[29px] pr-[25px] pt-[57px] md:pt-[45px]">
-                {footerLogos?.map((logo) => <img src={logo.src} width={logo.width} height={logo.height} alt={logo.alt} />)}
+                {footerLogos?.map((logo) => (
+                  <img
+                    src={logo.src}
+                    width={logo.width}
+                    height={logo.height}
+                    alt={logo.alt}
+                  />
+                ))}
               </div>
               <div class="text-center w-full pb-[19px] md:pb-[49px] pt-[10px]">
                 <Image
@@ -293,41 +303,66 @@ function Footer({
                   width={514}
                   height={38}
                 />
-                <p class="pb-9 text-[11px] font-normal text-primary pt-5">{footerTexts?.subTitle}</p>
+                <p class="pb-9 text-[11px] font-normal text-primary pt-5">
+                  {footerTexts?.subTitle}
+                </p>
                 <div
                   class="md:mx-auto px-4 md:px-0 md:max-w-[512px] w-full font-normal text-xs leading-[22.8px] tracking-[2%]"
-                  dangerouslySetInnerHTML={{ __html: footerTexts?.text ?? ""}}
+                  dangerouslySetInnerHTML={{ __html: footerTexts?.text ?? "" }}
                 />
               </div>
               <div class="md:hidden flex flex-row items-center justify-center mb-[34px]">
-                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[11px]">{changeCountryText}</span>
-                  <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" class="w-auto" />
+                <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[11px]">
+                  {changeCountryText}
+                </span>
+                <LanguageSwitcher
+                  countryFlag={countryFlag}
+                  width={24}
+                  height={24}
+                  textClass="text-[14px]"
+                  class="w-auto"
+                />
               </div>
               <div class="flex pb-[34px] w-full flex-grow gap-[30px] md:pl-[29px] ms:px-0 px-[15px] md:pr-[25px]">
                 {_sectionLinks}
               </div>
               <div class="border-b ml-7 mr-[25px]" />
               <div class="flex flex-row justify-between items-center md:pl-[29px] md:pr-[25px] px-[15px] md:px-0 w-full">
-                  <a href={`https://api.whatsapp.com/send?phone=55${whatsApp.whatsAppNumber}&text=${whatsApp.whatsAppText}`} class="md:hidden flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px]">
-                    <span class="block rounded-full bg-primary items-center pt-[6.5px] pb-[9px] pr-[7px] pl-2">
-                      <Icon size={23} id="WhatsApp" />
-                    </span>
-                    <span class="text-sm font-medium leading-[22.4px] text-right w-full pr-[19px]">{whatsApp.whatsAppButtonText}</span>
-                  </a>
+                <a
+                  href={`https://api.whatsapp.com/send?phone=55${whatsApp.whatsAppNumber}&text=${whatsApp.whatsAppText}`}
+                  class="md:hidden flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px]"
+                >
+                  <span class="block rounded-full bg-primary items-center pt-[6.5px] pb-[9px] pr-[7px] pl-2">
+                    <Icon size={23} id="WhatsApp" />
+                  </span>
+                  <span class="text-sm font-medium leading-[22.4px] text-right w-full pr-[19px]">
+                    {whatsApp.whatsAppButtonText}
+                  </span>
+                </a>
                 <div class="flex flex-row items-center">
-                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[9px] md:flex hidden">{followBolovoText}</span>
+                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[9px] md:flex hidden">
+                    {followBolovoText}
+                  </span>
                   {_social}
                 </div>
                 <div class="md:flex hidden flex-row items-center">
-                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-1">{changeCountryText}</span>
-                  <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" class="w-auto" />
+                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-1">
+                    {changeCountryText}
+                  </span>
+                  <LanguageSwitcher
+                    countryFlag={countryFlag}
+                    width={24}
+                    height={24}
+                    textClass="text-[14px]"
+                    class="w-auto"
+                  />
                 </div>
               </div>
               <Divider class="border-primary" />
               <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px]">
                 <div
                   class="text-center font-normal text-xs"
-                  dangerouslySetInnerHTML={{ __html: extraInfo}}
+                  dangerouslySetInnerHTML={{ __html: extraInfo }}
                 />
               </div>
             </div>

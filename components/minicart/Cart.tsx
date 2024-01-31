@@ -1,7 +1,7 @@
 // import { platform } from "$store/apps/storefront.ts";
 import { lazy } from "preact/compat";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import type { MiniCartProps } from  '$store/components/minicart/vnda/Cart.tsx'
+import type { MiniCartProps } from "$store/components/minicart/vnda/Cart.tsx";
 
 const CartVTEX = lazy(() => import("./vtex/Cart.tsx"));
 const CartVNDA = lazy(() => import("./vnda/Cart.tsx"));
@@ -11,28 +11,31 @@ const CartShopify = lazy(() => import("./shopify/Cart.tsx"));
 
 export interface Props {
   platform: ReturnType<typeof usePlatform>;
-  miniCart: MiniCartProps
+  miniCart: MiniCartProps;
 }
 
 function Cart({ platform, miniCart }: Props) {
-  const { freeShippingTarget, freeShippingValueColor, cartTranslations} = miniCart;
+  const { freeShippingTarget, freeShippingValueColor, cartTranslations } =
+    miniCart;
 
   if (platform === "vtex") {
     return <CartVTEX />;
   }
 
   if (platform === "vnda") {
-    return <CartVNDA 
-             freeShippingTarget={freeShippingTarget}  
-             freeShippingValueColor={freeShippingValueColor} 
-             cartTranslations={cartTranslations}
-            />;
+    return (
+      <CartVNDA
+        freeShippingTarget={freeShippingTarget}
+        freeShippingValueColor={freeShippingValueColor}
+        cartTranslations={cartTranslations}
+      />
+    );
   }
 
   if (platform === "wake") {
     return <CartWake />;
   }
-  
+
   if (platform === "linx") {
     return <CartLinx />;
   }

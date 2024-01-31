@@ -104,8 +104,16 @@ function MenuItem({ item }: { item: NavItemProps }) {
 }
 
 function Menu(
-  { items, contentItem, logo, searchBar, countryFlag, accountText, social, accountHref }:
-    Props,
+  {
+    items,
+    contentItem,
+    logo,
+    searchBar,
+    countryFlag,
+    accountText,
+    social,
+    accountHref,
+  }: Props,
 ) {
   const { displayMenu } = useUI();
   const contentSocial = {

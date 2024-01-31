@@ -7,7 +7,7 @@ export interface SocialItem {
     | "Spotify"
     | "WhatsApp";
   link: string;
-  newTab?: boolean
+  newTab?: boolean;
 }
 
 export default function Social(
@@ -20,16 +20,22 @@ export default function Social(
     <>
       {content && content.items && content.items.length > 0 && (
         <div class="flex flex-col gap-4">
-          {content.title && <h2 class="text-base font-bold leading-[26px] lg:mx-0 mx-auto">{content.title}</h2>}
+          {content.title && (
+            <h2 class="text-base font-bold leading-[26px] lg:mx-0 mx-auto">
+              {content.title}
+            </h2>
+          )}
           <ul
             class={`flex md:gap-[7px] gap-2 ${
-              vertical ? "lg:flex-col lg:items-start" : "flex-wrap lg:mx-0 mx-auto items-center"
+              vertical
+                ? "lg:flex-col lg:items-start"
+                : "flex-wrap lg:mx-0 mx-auto items-center"
             }`}
           >
             {content.items.map((item) => {
               return (
                 <li>
-                <a
+                  <a
                     href={item.link}
                     target={item.newTab ? "_blank" : ""}
                     rel="noopener noreferrer"

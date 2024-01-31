@@ -7,9 +7,9 @@ import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
-import type { PropsNotFound } from "./NotFound.tsx"
+import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
-import type { Section } from "$store/components/search/PhotoAndProducts.tsx"
+import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -17,8 +17,8 @@ export interface Props {
   textSearch?: string;
   notFound: PropsNotFound;
   /**
-  * @title Highlights 
-  */
+   * @title Highlights
+   */
   photoOnPLP: Section[];
 }
 
@@ -28,11 +28,15 @@ function Result({
   searchTerm,
   section,
   isMobile,
-}: Omit<Props, "page"> & { page: ProductListingPage, searchTerm: string, section?: Section, isMobile: boolean }) {
+}: Omit<Props, "page"> & {
+  page: ProductListingPage;
+  searchTerm: string;
+  section?: Section;
+  isMobile: boolean;
+}) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
-
 
   return (
     <div>
@@ -101,29 +105,34 @@ function Result({
 }
 
 function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
-
   const { page, notFound, searchTerm, section, isMobile } = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
   }
 
-  return <Result {...props} page={page} section={section} isMobile={isMobile} />;
+  return (
+    <Result
+      {...props}
+      page={page}
+      section={section}
+      isMobile={isMobile}
+    />
+  );
 }
 
 export default SearchResult;
 
 export const loader = (props: Props, req: Request) => {
-
-  const { photoOnPLP } = { ...props }
+  const { photoOnPLP } = { ...props };
 
   const section = photoOnPLP.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
-  const term = new URLSearchParams(new URL(req.url).search).get('q');
+  const term = new URLSearchParams(new URL(req.url).search).get("q");
 
-  const isMobile = req.headers.get("user-agent")!.includes('Mobile')
+  const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 
   return { ...props, searchTerm: term ?? "", section, isMobile };
 };
