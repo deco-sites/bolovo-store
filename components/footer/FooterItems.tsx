@@ -1,5 +1,11 @@
 import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
 
+export interface WhatsApp {
+  whatsAppButtonText?: string
+  whatsAppNumber?: string
+  whatsAppText?:string
+}
+
 export type Item = {
   label: string;
   href?: string;
@@ -13,7 +19,11 @@ export type Section = {
 };
 
 export default function FooterItems(
-  { sections, justify = true }: { sections: Section[]; justify: boolean },
+  { sections, justify = true,  whatsApp = {
+    whatsAppButtonText:"COMPRE PELO WHATS",
+    whatsAppNumber: "11917250298",
+    whatsAppText: "Olá, gostaria de comprar um produto"
+  }, }: { sections: Section[]; justify: boolean, whatsApp?: WhatsApp },
 ) {
   return (
     <>
@@ -48,12 +58,12 @@ export default function FooterItems(
                       </li>
                     ))}
                     {section.label === "CONTATO" &&  
-                    <a class="flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px] mt-[14px]">
-             <span class="block rounded-full bg-primary items-center pt-[6.5px] pb-[9px] pr-[7px] pl-2">
-                <Icon size={23} id="WhatsApp" />
-              </span>
-              <span class="text-sm font-medium leading-[22.4px] text-right w-full pr-[19px]">COMPRE PELO WHATS</span>
-            </a> }
+                    <a href={`https://api.whatsapp.com/send?phone=55${whatsApp?.whatsAppNumber}&text=${whatsApp?.whatsAppText}`} class="flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px] mt-[14px]">
+                      <span class="block rounded-full bg-primary items-center pt-[6.5px] pb-[9px] pr-[7px] pl-2">
+                        <Icon size={23} id="WhatsApp" />
+                      </span>
+                      <span class="text-sm font-medium leading-[22.4px] text-right w-full pr-[19px]">{whatsApp?.whatsAppButtonText}</span>
+                     </a> }
                   </ul>
                 </div>
               </li>
