@@ -3,15 +3,16 @@ import Image from "apps/website/components/Image.tsx";
 import { usePartialSection } from "deco/hooks/usePartialSection.ts";
 import type { Country } from "$store/components/header/Header.tsx";
 
-export default function LanguageSwitcher({ countryFlag, width, height, textClass}: {
+export default function LanguageSwitcher({ countryFlag, width, height, textClass, class: _class = ""}: {
   countryFlag: Country[];
   width?: number
   height?:number
   textClass?: string
+  class?: string
 }) {
   return (
     <>
-      <details class="dropdown px-0 w-full md:w-auto">
+      <details class={`dropdown px-0 ${_class}`}>
         <summary class=" btn px-0 md:px-2 flex flex-row flex-grow md:flex-nowrap border-none hover:border-none justify-between md:justify-normal bg-transparent hover:bg-transparent w-full">
           <div class="flex flex-row items-center">
             <Image
