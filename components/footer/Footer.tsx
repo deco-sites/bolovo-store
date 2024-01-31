@@ -45,6 +45,11 @@ export interface FooterTexts {
   text: string;
 }
 
+export interface WhatsApp {
+  whatsAppButtonText?: string
+  whatsAppNumber?: string
+  whatsAppText?:string
+}
 
 export interface SocialItem {
   label:
@@ -137,11 +142,14 @@ export interface Props {
   };
   footerTexts?: FooterTexts;
   footerLogos?: FooterLogos[]
+  changeCountryText?: string;
   countryFlag: Country[];
   contacts?: ContactsProps[];
+  followBolovoText?: string;
    /** @format html */
   extraInfo?: string
   layout?: Layout;
+  whatsApp?: WhatsApp
 }
 
 function Footer({
@@ -151,6 +159,13 @@ function Footer({
     titleMobile: "Newsletter",
     description: "",
     form: { placeholder: "", buttonText: "", helpTextDesktop: "", helpTextMobile: "" },
+  },
+  followBolovoText = "SIGA A BOLOVO",
+  changeCountryText = "MUDAR PAÍS",
+  whatsApp = {
+    whatsAppButtonText:"COMPRE PELO WHATS",
+    whatsAppNumber: "11917250298",
+    whatsAppText: "Olá, gostaria de comprar um produto"
   },
   footerTexts,
   footerLogos,
@@ -199,11 +214,6 @@ function Footer({
   regionOptions = { currency: [], language: [] },
   extraLinks = [],
   backToTheTop,
-  contacts = [
-    {title:"instagram:", text:"@bolovopinheiros"},
-    {title:"whats loja:", text:"(11) 91725-0298"},
-    {title:"telefone:", text:"(11) 3086-1020"},
-  ],
   countryFlag,
   extraInfo = "© BOLOVO | VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34",
   layout = {
@@ -235,6 +245,7 @@ function Footer({
   );
   const _sectionLinks = layout?.hide?.sectionLinks ? <></> : (
     <FooterItems
+    whatsApp={whatsApp}
     sections={sections}
     justify={layout?.variation == "Variation 2" ||
       layout?.variation == "Variation 3"}
@@ -289,7 +300,7 @@ function Footer({
                 />
               </div>
               <div class="md:hidden flex flex-row items-center justify-center mb-[34px]">
-                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[11px]">MUDAR PAÍS</span>
+                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[11px]">{changeCountryText}</span>
                   <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" class="w-auto" />
               </div>
               <div class="flex pb-[34px] w-full flex-grow gap-[30px] md:pl-[29px] ms:px-0 px-[15px] md:pr-[25px]">
@@ -297,18 +308,18 @@ function Footer({
               </div>
               <div class="border-b ml-7 mr-[25px]" />
               <div class="flex flex-row justify-between items-center md:pl-[29px] md:pr-[25px] px-[15px] md:px-0 w-full">
-                  <a class="md:hidden flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px]">
+                  <a href={`https://api.whatsapp.com/send?phone=55${whatsApp.whatsAppNumber}&text=${whatsApp.whatsAppText}`} class="md:hidden flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px]">
                     <span class="block rounded-full bg-primary items-center pt-[6.5px] pb-[9px] pr-[7px] pl-2">
                       <Icon size={23} id="WhatsApp" />
                     </span>
-                    <span class="text-sm font-medium leading-[22.4px] text-right w-full pr-[19px]">COMPRE PELO WHATS</span>
+                    <span class="text-sm font-medium leading-[22.4px] text-right w-full pr-[19px]">{whatsApp.whatsAppButtonText}</span>
                   </a>
                 <div class="flex flex-row items-center">
-                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[9px] md:flex hidden">SIGA A BOLOVO</span>
+                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-[9px] md:flex hidden">{followBolovoText}</span>
                   {_social}
                 </div>
                 <div class="md:flex hidden flex-row items-center">
-                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-1">MUDAR PAÍS</span>
+                  <span class="font-medium leading-[22.4px] text-sm uppercase text-primary mr-1">{changeCountryText}</span>
                   <LanguageSwitcher countryFlag={countryFlag} width={24} height={24} textClass="text-[14px]" class="w-auto" />
                 </div>
               </div>
