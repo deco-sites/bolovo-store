@@ -1,19 +1,9 @@
 import { useSignal } from "@preact/signals";
-import { useState } from "preact/hooks";
 import Icon from "../../ui/Icon.tsx";
-import type { Product, PropertyValue } from "apps/commerce/types.ts";
-import {
-  useVariantPossibilities,
-  variantAvailability,
-} from "$store/sdk/useVariantPossiblities.ts";
+import type { Product } from "apps/commerce/types.ts";
+import { variantAvailability } from "$store/sdk/useVariantPossiblities.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import Avatar from "../../ui/Avatar.tsx";
-import { useUI } from "../../../sdk/useUI.ts";
-import { sendEvent } from "../../../sdk/analytics.tsx";
 import { useCart } from "apps/vnda/hooks/useCart.ts";
-import ProductSelector from "$store/components/product/ProductVariantSelector.tsx";
-import { skuid } from "$store/sdk/url.ts";
-import { disableAll } from "../../../../../../AppData/Local/deno/npm/registry.npmjs.org/loglevel/1.9.1/index.d.ts";
 
 export interface PropsT {
   /** @description: sku name */
@@ -28,30 +18,21 @@ export interface PropsT {
 
 export interface Props {
   product: Product;
+  customClass: string;
 }
 
-export default function QuickShop({ product }: Props) {
+export default function QuickShop({ product, customClass }: Props) {
   const {
-    url,
     productID,
-    name,
-    image: images,
     offers,
     isVariantOf,
     additionalProperty = [],
   } = product;
 
-  const loading = useSignal(0);
-
-  const id = `product-card-${productID}`;
-  const hasVariant = isVariantOf?.hasVariant ?? [];
-  const productGroupID = isVariantOf?.productGroupID;
-  const [front, back] = images ?? [];
-  const { listPrice, price, installments, availability } = useOffer(offers);
-  const possibilities = useVariantPossibilities(hasVariant, product);
-
+  const { availability } = useOffer(offers);
   const variants = isVariantOf && variantAvailability(isVariantOf);
 
+  const loading = useSignal(0);
   const show = useSignal(false);
 
   const { addItem } = useCart();
@@ -80,52 +61,32 @@ export default function QuickShop({ product }: Props) {
       <>
         {variants && variants.length !== 1
           ? variants?.map((variant) => (
-            <li>
+            <li
+              class={`ease-in-out duration-500 delay-300`}
+            >
               {variant.inStock
                 ? (
                   <button
                     onClick={async () => {
                       await onAddItem(variant.id ?? "");
                     }}
+                    class="hover:font-semibold"
                   >
                     {variant?.size?.substring(2, 0)}
                   </button>
                 )
                 : (
-                  <button class="text-[#E0E0E0] cursor-not-allowed relative false md:w-[calc(10.3%_-_5px)] flex items-center justify-center group/number">
+                  <button class="text-[#E0E0E0] cursor-not-allowed relative false w-auto flex items-center justify-center group/number ">
                     <span class="cursor-not-allowed false flex h-6 w-6 text-center items-center justify-center">
                       {variant?.size?.substring(2, 0)}
                     </span>
-                    <span class="false absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[34px]">
+                    <span class="false absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[24px]">
                     </span>
                   </button>
                 )}
             </li>
           ))
-          : (
-            <li class="w-full">
-              {availability === "https://schema.org/InStock"
-                ? (
-                  <button
-                    class="text-primary w-full m-auto uppercase hover:font-bold"
-                    onClick={async () => {
-                      await onAddItem(productID ?? "");
-                    }}
-                  >
-                    Adicionar ao carrinho
-                  </button>
-                )
-                : (
-                  <button class="text-[#E0E0E0] cursor-not-allowed relative false md:w-[calc(10.3%_-_5px)] flex items-center justify-center group/number">
-                    <span class="cursor-not-allowed false flex h-6 w-6 text-center items-center justify-center uppercase">
-                      Produto indisponivel
-                    </span>
-                    <span class="false absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[34px]">
-                    </span>
-                  </button>
-                )}
-            </li>
-          )}
+          : <BuyButton />}
       </>
     );
   }
@@ -136,7 +97,7 @@ export default function QuickShop({ product }: Props) {
         {availability === "https://schema.org/InStock"
           ? (
             <button
-              class="text-primary w-full m-auto bg-black"
+              class="text-primary w-full m-auto uppercase hover:font-semibold"
               onClick={async () => {
                 await onAddItem(productID ?? "");
               }}
@@ -145,8 +106,8 @@ export default function QuickShop({ product }: Props) {
             </button>
           )
           : (
-            <button class="text-[#E0E0E0] cursor-not-allowed relative false md:w-[calc(10.3%_-_5px)] flex items-center justify-center group/number">
-              <span class="cursor-not-allowed false flex h-6 w-6 text-center items-center justify-center">
+            <button class="text-[#E0E0E0] cursor-not-allowed relative false w-auto flex items-center justify-center group/number ">
+              <span class="cursor-not-allowed false flex h-6 w-6 text-center items-center justify-center uppercase">
                 Produto indisponivel
               </span>
               <span class="false absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[34px]">
@@ -159,40 +120,50 @@ export default function QuickShop({ product }: Props) {
 
   return (
     <div
-      className={`flex flex-row-reverse p-2 absolute bottom-0 right-0 z-10 ease-in-out duration-500 transition-width ${
+      className={`flex flex-row-reverse p-2 absolute bottom-0 right-0 z-10 ease-in-out duration-500 transition-width w-full min-h-[40px] ${
         show.value || loading.value !== 0
-          ? "w-full bg-base-100"
-          : "w-auto bg-transparent"
-      }`}
+          ? " bg-base-100 translate-y-0"
+          : " bg-transparent lg:bg-white translate-y-[100%]"
+      } ${customClass}`}
     >
-      {loading.value === 0
-        ? (
-          <>
-            <button onClick={() => show.value = !show.value}>
-              {!show.value
-                ? <Icon id="QuickShop" size={24} />
-                : <Icon id="Close" size={24} class="ml-2" />}
-            </button>
-            <ul
-              class={`${
-                show.value ? "w-full flex" : "w-0 hidden"
-              } flex-row gap-2 justify-around`}
-            >
-              {console.log("variants", variants?.length)}
-              {variants ? <SkuSelector /> : <BuyButton />}
-            </ul>
-          </>
-        )
-        : loading.value === 1
-        ? (
-          <span className="loading loading-spinner loading-lg m-auto h-5 w-5">
-          </span>
-        )
-        : (
-          <div class="m-auto">
-            <Icon id="Check" size={24} />
-          </div>
-        )}
+      {loading.value === 0 && (
+        <>
+          <button
+            onClick={() => show.value = !show.value}
+            class={`${
+              !show.value ? "translate-y-[-145%]" : "translate-y-0"
+            }`}
+          >
+            {!show.value
+              ? (
+                <Icon
+                  id="QuickShop"
+                  width={17}
+                  height={18}
+                  class="m-2 lg:hidden"
+                />
+              )
+              : <Icon id="Close" size={21} class="ml-2 lg:hidden mt-[-2px]" />}
+          </button>
+          <ul
+            class={`${
+              show.value ? "w-full flex" : "w-0 hidden"
+            } flex-row gap-2 justify-around lg:w-full lg:flex text-[15px]`}
+          >
+            {variants ? <SkuSelector /> : <BuyButton />}
+          </ul>
+        </>
+      )}
+
+      {loading.value === 1 && (
+        <span className="loading loading-spinner m-auto h-[23px] w-[23px]">
+        </span>
+      )}
+      {loading.value === 2 && (
+        <div class="m-auto">
+          <Icon id="Check" size={24} />
+        </div>
+      )}
     </div>
   );
 }

@@ -168,7 +168,10 @@ function ProductCard(
         class="relative overflow-hidden aspect-[219.38326/300] lg:aspect-[239.13935/300]"
         style={{ backgroundColor: "#F6F6F6" }}
       >
-        <QuickShop product={product} />
+        <QuickShop
+          product={product}
+          customClass={"lg:group-hover:translate-y-0 lg:group-hover:bg-base-100"}
+        />
         {/* Wishlist button */}
         <div
           class={`absolute top-2 z-10
