@@ -55,10 +55,7 @@ function DrawerSearch({ searchbar, loading = "lazy" }: Props) {
     <div style={{ display: displaySearchDrawer.value ? "flex" : "none" }}>
       <Aside
         onClose={() => {
-          console.log(
-            "click",
-            displaySearchDrawer.value = !displaySearchDrawer.value,
-          );
+          displaySearchDrawer.value = !displaySearchDrawer.value;
         }}
       >
         {searchbar && displaySearchDrawer.value && (

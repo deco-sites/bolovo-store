@@ -19,7 +19,6 @@ const newsletter = async (
   form.append("reply_to", email);
   form.append("vnda", "");
   form.append("email", email);
-  console.log(ctx);
 
   const response = await fetchSafe(baseUrl, {
     method: "POST",
