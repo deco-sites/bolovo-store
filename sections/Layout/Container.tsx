@@ -6,7 +6,7 @@ interface Props {
 
 function Container({ children }: Props) {
   return (
-    <div class="container">
+    <div class="w-full">
       <children.Component {...children.props} />
     </div>
   );

@@ -26,23 +26,24 @@ function Newsletter(
 ) {
   const { tiled = false } = layout;
   const loading = useSignal(false);
-  const showMessage = useSignal("")
-  
+  const showMessage = useSignal("");
+
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     try {
       loading.value = true;
-      const email = (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
+      const email =
+        (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
       const status = await invoke({
-        key:"deco-sites/bolovo-store/loaders/newsletter.ts",
+        key: "deco-sites/bolovo-store/loaders/newsletter.ts",
         props: {
           email: email,
-        }
-      },)
-      if(status >= 400){
-        showMessage.value = "error"
-      }else{
-        showMessage.value = "success"
+        },
+      });
+      if (status >= 400) {
+        showMessage.value = "error";
+      } else {
+        showMessage.value = "success";
       }
     } finally {
       loading.value = false;
@@ -59,7 +60,11 @@ function Newsletter(
     >
       <div class="flex flex-col gap-4">
         {content?.title && (
-          <h3 class={tiled ? "text-2xl lg:text-3xl" : "text-base leading-[26px] font-bold text-[#121212]"}>
+          <h3
+            class={tiled
+              ? "text-2xl lg:text-3xl"
+              : "text-base leading-[26px] font-bold text-[#121212]"}
+          >
             {content?.title}
           </h3>
         )}
@@ -86,15 +91,19 @@ function Newsletter(
             </button>
           </div>
         </form>
-        {
-          showMessage.value == "error" ? 
-          <div class="text-sm leading-none text-[#d44c47] mt-1">
-            Aconteceu algum erro ao cadastrar o email, tente novamente!
-          </div> : showMessage.value == "success" ? 
-          <div class="text-sm leading-none text-green-600 mt-1">
-            E-mail cadastrado com sucesso !
-          </div> : ""
-        }
+        {showMessage.value == "error"
+          ? (
+            <div class="text-sm leading-none text-[#d44c47] mt-1">
+              Aconteceu algum erro ao cadastrar o email, tente novamente!
+            </div>
+          )
+          : showMessage.value == "success"
+          ? (
+            <div class="text-sm leading-none text-green-600 mt-1">
+              E-mail cadastrado com sucesso !
+            </div>
+          )
+          : ""}
         {content?.form?.helpText && (
           <div
             class="text-[10px] font-normal leading-4 text-[#121212]"

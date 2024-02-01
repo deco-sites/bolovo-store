@@ -17,7 +17,10 @@ export interface Props {
     headerAlignment?: "center" | "left";
     headerfontSize?: "Normal" | "Large";
   };
-  seeMore?: { text: string; link: string };
+  seeMore?: {
+    text: string;
+    link: string;
+  };
   products: Product[] | null;
 }
 
@@ -28,15 +31,13 @@ function ProductShelf({
   seeMore,
 }: Props) {
   const id = useId();
-  const platform = "vnda"
+  const platform = "vnda";
 
   const shouldShowArrows = ((products?.length || 0) + (seeMore ? 1 : 0)) > 4;
 
   if (!products || products.length === 0) {
     return null;
   }
-  
-  const aspectRatio = 1.254;
 
   return (
     <div class="w-full py-8 flex flex-col gap-5 px-[15px] mx-auto lg:gap-6 lg:py-10">
@@ -82,10 +83,9 @@ function ProductShelf({
                   <div class="flex-auto flex flex-col pt-[15px] lg:pt-5 gap-3 lg:gap-4">
                   </div>
                 </div>
-                            
               </Slider.Item>
             )
-          : null}
+            : null}
         </Slider>
         {shouldShowArrows && (
           <>

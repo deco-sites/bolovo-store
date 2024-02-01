@@ -9,6 +9,7 @@ import * as $AddToCartButton_vnda from "./islands/AddToCartButton/vnda.tsx";
 import * as $AddToCartButton_vtex from "./islands/AddToCartButton/vtex.tsx";
 import * as $AddToCartButton_wake from "./islands/AddToCartButton/wake.tsx";
 import * as $Alert from "./islands/Alert.tsx";
+import * as $ApplyFiltersJS from "./islands/ApplyFiltersJS.tsx";
 import * as $GalleryControls from "./islands/GalleryControls.tsx";
 import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
 import * as $Header_Cart_linx from "./islands/Header/Cart/linx.tsx";
@@ -19,12 +20,16 @@ import * as $Header_Cart_wake from "./islands/Header/Cart/wake.tsx";
 import * as $Header_DrawerSearch from "./islands/Header/DrawerSearch.tsx";
 import * as $Header_Drawers from "./islands/Header/Drawers.tsx";
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
+import * as $NavigationDescription from "./islands/NavigationDescription.tsx";
 import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
 import * as $ProductImageZoom from "./islands/ProductImageZoom.tsx";
+import * as $RenderMarkdown from "./islands/RenderMarkdown.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
+import * as $SelectedFilters from "./islands/SelectedFilters.tsx";
 import * as $ShippingSimulation from "./islands/ShippingSimulation.tsx";
 import * as $SliderJS from "./islands/SliderJS.tsx";
+import * as $ValueItem from "./islands/ValueItem.tsx";
 import * as $WishlistButton from "./islands/WishlistButton.tsx";
 import * as $content_IframeLoader from "./islands/content/IframeLoader.tsx";
 import { type Manifest } from "$fresh/server.ts";
@@ -40,6 +45,7 @@ const manifest = {
     "./islands/AddToCartButton/vtex.tsx": $AddToCartButton_vtex,
     "./islands/AddToCartButton/wake.tsx": $AddToCartButton_wake,
     "./islands/Alert.tsx": $Alert,
+    "./islands/ApplyFiltersJS.tsx": $ApplyFiltersJS,
     "./islands/GalleryControls.tsx": $GalleryControls,
     "./islands/Header/Buttons.tsx": $Header_Buttons,
     "./islands/Header/Cart/linx.tsx": $Header_Cart_linx,
@@ -50,12 +56,16 @@ const manifest = {
     "./islands/Header/DrawerSearch.tsx": $Header_DrawerSearch,
     "./islands/Header/Drawers.tsx": $Header_Drawers,
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
+    "./islands/NavigationDescription.tsx": $NavigationDescription,
     "./islands/Newsletter.tsx": $Newsletter,
     "./islands/OutOfStock.tsx": $OutOfStock,
     "./islands/ProductImageZoom.tsx": $ProductImageZoom,
+    "./islands/RenderMarkdown.tsx": $RenderMarkdown,
     "./islands/SearchControls.tsx": $SearchControls,
+    "./islands/SelectedFilters.tsx": $SelectedFilters,
     "./islands/ShippingSimulation.tsx": $ShippingSimulation,
     "./islands/SliderJS.tsx": $SliderJS,
+    "./islands/ValueItem.tsx": $ValueItem,
     "./islands/WishlistButton.tsx": $WishlistButton,
     "./islands/content/IframeLoader.tsx": $content_IframeLoader,
   },

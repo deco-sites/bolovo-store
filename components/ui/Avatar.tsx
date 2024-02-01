@@ -19,18 +19,20 @@ const colors: Record<string, string> = {
   "active": "",
   "disabled": "bg-neutral-content text-neutral",
   "default": "bg-base-100 text-primary",
+  "activePdp": "text-white",
 };
 
 interface Props {
-  variant?: "active" | "disabled" | "default";
+  variant?: "active" | "disabled" | "default" | "activePdp";
   content: string;
 }
 
 const variants = {
   active: "font-semibold hover:border",
+  activePdp: "bg-black",
   disabled:
     `relative after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
-  default: "hover:border",
+  default: "hover:border ",
 };
 
 function Avatar({ content, variant = "default" }: Props) {
@@ -42,6 +44,22 @@ function Avatar({ content, variant = "default" }: Props) {
         }`}
       >
         <span class="uppercase text-[14px] text-[#121212] leading-[130%]">
+          {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export function AvatarPDP({ content, variant = "default" }: Props) {
+  return (
+    <div class="avatar placeholder">
+      <div
+        class={`rounded-full w-8 h-5 ${colors[content] ?? colors[variant]} ${
+          variants[variant]
+        }`}
+      >
+        <span class="uppercase text-[14px] leading-[130%]">
           {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
         </span>
       </div>

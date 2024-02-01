@@ -51,8 +51,9 @@ export type AvailableIcons =
   | "Boleto"
   | "Hiper"
   | "Close"
+  | "ArrowDown"
   | "FilterArrowRight"
-  | "FilterArrowLeft"
+  | "FilterArrowLeft";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

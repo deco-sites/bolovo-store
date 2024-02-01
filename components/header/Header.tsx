@@ -87,7 +87,6 @@ function Header({
   const platform = usePlatform();
   const items = menu.items ?? [];
 
-
   return (
     <>
       <header style={{ height: headerHeight }}>
