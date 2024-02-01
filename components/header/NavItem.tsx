@@ -19,10 +19,12 @@ export interface Image {
   image: ImageWidget;
   label?: string;
   alternateName?: string;
-  link?: string
+  link?: string;
 }
 
-function RenderLinks({ links, isChild = false }: { links: Links[] | undefined, isChild: boolean }) {
+function RenderLinks(
+  { links, isChild = false }: { links: Links[] | undefined; isChild: boolean },
+) {
   if (!links || links.length === 0) {
     return null;
   }
@@ -33,8 +35,9 @@ function RenderLinks({ links, isChild = false }: { links: Links[] | undefined, i
         return (
           <ul>
             <a
-              class={`text-base ${isChild ? "font-normal" : "font-semibold"
-                } leading-9 whitespace-nowrap hover:underline ease-in-out duration-200`}
+              class={`text-base ${
+                isChild ? "font-normal" : "font-semibold"
+              } leading-9 whitespace-nowrap hover:underline ease-in-out duration-200`}
               href={link.href}
             >
               {link.label}
@@ -43,7 +46,7 @@ function RenderLinks({ links, isChild = false }: { links: Links[] | undefined, i
               <RenderLinks links={link.children} isChild={true} />
             </li>
           </ul>
-        )
+        );
       })}
     </>
   );
@@ -58,7 +61,10 @@ function RenderImages({ images }: Image[] | undefined) {
     <div class="flex items-start px-2 justify-end w-2/4 flex-wrap">
       {images.map((imageData) => {
         return (
-          <a href={imageData.link} class=" w-1/3 max-w-[180px] lg:max-w-[242px] hover:scale-105 ease-in duration-200">
+          <a
+            href={imageData.link}
+            class=" w-1/3 max-w-[180px] lg:max-w-[242px] hover:scale-105 ease-in duration-200"
+          >
             <figure class="flex flex-col items-center w-full px-2 gap-y-[15px] ">
               <Image
                 src={imageData.image}
@@ -73,7 +79,7 @@ function RenderImages({ images }: Image[] | undefined) {
               </figcaption>
             </figure>
           </a>
-        )
+        );
       })}
     </div>
   );
@@ -82,7 +88,10 @@ function RenderImages({ images }: Image[] | undefined) {
 function NavItem(item: NavItemProps) {
   const { label, links, images } = item;
   return (
-    <nav class="group flex items-center cursor-pointer px-0" style={{ height: navbarHeight }}>
+    <nav
+      class="group flex items-center cursor-pointer px-0"
+      style={{ height: navbarHeight }}
+    >
       <div class="relative flex items-center pr-4">
         <Icon
           id="Bars3"
@@ -101,10 +110,9 @@ function NavItem(item: NavItemProps) {
           {label}
         </span>
       </div>
-      <div class="hidden group-hover:flex bg-base-100 z-50 items-start justify-between w-full border-b-2 border-base-200 flex-row-reverse pt-[55px] pb-14 top-full absolute left-0 shadow-menu"
-      >
+      <div class="hidden group-hover:flex bg-base-100 z-50 items-start justify-between w-full border-b-2 border-base-200 flex-row-reverse pt-[55px] pb-14 top-full absolute left-0 shadow-menu">
         <div class="flex items-start justify-between flex-row w-full">
-          <ul class="flex flex-1 items-start px-2 w-2/4 justify-start gap-8 flex-wrap xl:gap-16 2xl:gap-24">
+          <ul class="flex flex-1 items-start px-[15px] w-2/4 justify-start gap-8 flex-wrap xl:gap-16 2xl:gap-24">
             <RenderLinks links={links} />
           </ul>
           <RenderImages images={images} />

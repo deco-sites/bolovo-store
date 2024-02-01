@@ -13,6 +13,7 @@ const ATTRIBUTES = {
   'data-slide="prev"': 'data-slide="prev"',
   'data-slide="next"': 'data-slide="next"',
   "data-dot": "data-dot",
+  "data-progress": "data-progress",
 };
 
 // Percentage of the item that has to be inside the container
@@ -53,6 +54,9 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   const prev = root?.querySelector(`[${ATTRIBUTES['data-slide="prev"']}]`);
   const next = root?.querySelector(`[${ATTRIBUTES['data-slide="next"']}]`);
   const dots = root?.querySelectorAll(`[${ATTRIBUTES["data-dot"]}]`);
+  const progress: HTMLProgressElement | null | undefined = root?.querySelector(
+    `[${ATTRIBUTES["data-progress"]}]`,
+  );
 
   if (!root || !slider || !items || items.length === 0) {
     console.warn(
@@ -151,6 +155,16 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
               next?.setAttribute("disabled", "");
             } else {
               next?.removeAttribute("disabled");
+            }
+          }
+          if (progress) {
+            if (progress.id == "0" && index === items.length - 1) {
+              progress.style.height = `${1 / items.length * 100}%`;
+              progress.style.width = `${1 / items.length * 100}%`;
+              progress.id = "1";
+            } else {
+              progress.style.height = `${(index + 1) / items.length * 100}%`;
+              progress.style.width = `${(index + 1) / items.length * 100}%`;
             }
           }
         }

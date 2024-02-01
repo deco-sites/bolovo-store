@@ -32,7 +32,7 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
         pattern="[00-9]*"
         max={QUANTITY_MAX_VALUE}
         min={1}
-        value={quantity.toString().padStart(2, '0')}
+        value={quantity.toString().padStart(2, "0")}
         disabled={disabled}
         onBlur={(e) => onChange?.(e.currentTarget.valueAsNumber)}
         maxLength={3}
