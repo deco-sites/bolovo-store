@@ -72,7 +72,7 @@ function ProductCard(
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, price, installments } = useOffer(offers);
+  const { listPrice, price, currency } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
@@ -314,15 +314,17 @@ function ProductCard(
                       : ""
                   } ${align === "center" ? "justify-center" : "justify-start"}`}
                 >
-                  <div
-                    class={`line-through text-base-300 text-xs ${
-                      l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                    }`}
-                  >
-                    {formatPrice(listPrice, offers?.priceCurrency)}
-                  </div>
+                  {listPrice && listPrice !== price && (
+                    <div
+                      class={`line-through text-base-300 text-xs ${
+                        l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                      }`}
+                    >
+                      {formatPrice(listPrice, currency)}
+                    </div>
+                  )}
                   <div class="text-black leading-[130%] text-[14px] lg:text-end">
-                    {formatPrice(price, offers?.priceCurrency)}
+                    {formatPrice(price, currency)}
                   </div>
                 </div>
                 <div>

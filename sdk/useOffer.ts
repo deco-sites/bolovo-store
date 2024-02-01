@@ -50,13 +50,16 @@ const installmentToString = (
   }`;
 };
 
-export const useOffer = (aggregateOffer?: AggregateOffer) => {
-  const offer = aggregateOffer?.offers[0];
+export const useOffer = (aggregateOffer?: AggregateOffer, isIntl?: boolean) => {
+  const offer = isIntl
+    ? aggregateOffer?.offers.find((offer) => offer.priceCurrency === "USD")
+    : aggregateOffer?.offers[0];
   const listPrice = offer?.priceSpecification.find((spec) =>
     spec.priceType === "https://schema.org/ListPrice"
   );
   const installment = offer?.priceSpecification.reduce(bestInstallment, null);
   const seller = offer?.seller;
+  const currency = offer?.priceCurrency ?? "BRL";
   const price = offer?.price;
   const availability = offer?.availability;
 
@@ -65,6 +68,7 @@ export const useOffer = (aggregateOffer?: AggregateOffer) => {
     listPrice: listPrice?.price,
     availability,
     seller,
+    currency,
     installments: installment && price
       ? installmentToString(installment, price)
       : null,
