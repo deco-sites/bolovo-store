@@ -41,7 +41,7 @@ export default function QuickShop({ product }: Props) {
     additionalProperty = [],
   } = product;
 
-  const [loading, setLoading] = useState(false);
+  const loading = useSignal(0);
 
   const id = `product-card-${productID}`;
   const hasVariant = isVariantOf?.hasVariant ?? [];
@@ -57,7 +57,7 @@ export default function QuickShop({ product }: Props) {
   const { addItem } = useCart();
   const onAddItem = async (id: string) => {
     try {
-      setLoading(true);
+      loading.value = 1;
 
       await addItem({
         quantity: 1,
@@ -66,42 +66,88 @@ export default function QuickShop({ product }: Props) {
           additionalProperty.map(({ name, value }) => [name, value]),
         ),
       });
-
-      sendEvent({
-        name: "add_to_cart",
-        params: {
-          items: [{
-            quantity: 1,
-            price,
-            item_url: url,
-            item_name: name,
-            item_id: productID,
-            item_variant: name,
-          }],
-        },
-      });
     } finally {
-      setLoading(false);
+      loading.value = 2;
+      setTimeout(() => {
+        loading.value = 0;
+        show.value = false;
+      }, 1000);
     }
   };
 
-  const skuSelector = variants?.map((variant) => {
+  function SkuSelector() {
     return (
-      <li>
-        {variant.inStock
+      <>
+        {variants && variants.length !== 1
+          ? variants?.map((variant) => (
+            <li>
+              {variant.inStock
+                ? (
+                  <button
+                    onClick={async () => {
+                      await onAddItem(variant.id ?? "");
+                    }}
+                  >
+                    {variant?.size?.substring(2, 0)}
+                  </button>
+                )
+                : (
+                  <button class="text-[#E0E0E0] cursor-not-allowed relative false md:w-[calc(10.3%_-_5px)] flex items-center justify-center group/number">
+                    <span class="cursor-not-allowed false flex h-6 w-6 text-center items-center justify-center">
+                      {variant?.size?.substring(2, 0)}
+                    </span>
+                    <span class="false absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[34px]">
+                    </span>
+                  </button>
+                )}
+            </li>
+          ))
+          : (
+            <li class="w-full">
+              {availability === "https://schema.org/InStock"
+                ? (
+                  <button
+                    class="text-primary w-full m-auto uppercase hover:font-bold"
+                    onClick={async () => {
+                      await onAddItem(productID ?? "");
+                    }}
+                  >
+                    Adicionar ao carrinho
+                  </button>
+                )
+                : (
+                  <button class="text-[#E0E0E0] cursor-not-allowed relative false md:w-[calc(10.3%_-_5px)] flex items-center justify-center group/number">
+                    <span class="cursor-not-allowed false flex h-6 w-6 text-center items-center justify-center uppercase">
+                      Produto indisponivel
+                    </span>
+                    <span class="false absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[34px]">
+                    </span>
+                  </button>
+                )}
+            </li>
+          )}
+      </>
+    );
+  }
+
+  function BuyButton() {
+    return (
+      <li class="w-full">
+        {availability === "https://schema.org/InStock"
           ? (
             <button
+              class="text-primary w-full m-auto bg-black"
               onClick={async () => {
-                await onAddItem(variant.id ?? "");
+                await onAddItem(productID ?? "");
               }}
             >
-              {variant?.size?.substring(2, 0)}
+              Adicionar ao carrinho
             </button>
           )
           : (
             <button class="text-[#E0E0E0] cursor-not-allowed relative false md:w-[calc(10.3%_-_5px)] flex items-center justify-center group/number">
               <span class="cursor-not-allowed false flex h-6 w-6 text-center items-center justify-center">
-                {variant?.size?.substring(2, 0)}
+                Produto indisponivel
               </span>
               <span class="false absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[34px]">
               </span>
@@ -109,15 +155,17 @@ export default function QuickShop({ product }: Props) {
           )}
       </li>
     );
-  });
+  }
 
   return (
     <div
       className={`flex flex-row-reverse p-2 absolute bottom-0 right-0 z-10 ease-in-out duration-500 transition-width ${
-        show.value || loading ? "w-full bg-base-100" : "w-auto bg-transparent"
+        show.value || loading.value !== 0
+          ? "w-full bg-base-100"
+          : "w-auto bg-transparent"
       }`}
     >
-      {!loading
+      {loading.value === 0
         ? (
           <>
             <button onClick={() => show.value = !show.value}>
@@ -130,13 +178,20 @@ export default function QuickShop({ product }: Props) {
                 show.value ? "w-full flex" : "w-0 hidden"
               } flex-row gap-2 justify-around`}
             >
-              {skuSelector}
+              {console.log("variants", variants?.length)}
+              {variants ? <SkuSelector /> : <BuyButton />}
             </ul>
           </>
         )
-        : (
+        : loading.value === 1
+        ? (
           <span className="loading loading-spinner loading-lg m-auto h-5 w-5">
           </span>
+        )
+        : (
+          <div class="m-auto">
+            <Icon id="Check" size={24} />
+          </div>
         )}
     </div>
   );
