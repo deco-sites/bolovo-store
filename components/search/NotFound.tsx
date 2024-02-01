@@ -1,9 +1,9 @@
+import type { Props } from "$store/components/product/ProductShelf.tsx";
+import ProductShelf from "$store/components/product/ProductShelf.tsx";
+import SearchedWord from "$store/components/ui/SearchedWord.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
-import SearchedWord from "$store/components/ui/SearchedWord.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import ProductShelf from "$store/components/product/ProductShelf.tsx";
-import type { Props } from "$store/components/product/ProductShelf.tsx";
 
 interface Step {
   label: string;
