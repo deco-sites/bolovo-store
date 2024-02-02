@@ -118,6 +118,20 @@ export default function QuickShop({ product, customClass }: Props) {
     );
   }
 
+  function defineAction(id: string) {
+    console.log(variants, variants?.length);
+
+    if (variants) {
+      if (variants.length > 1) {
+        show.value = !show.value;
+      } else {
+        onAddItem(id);
+      }
+    } else {
+      onAddItem(id);
+    }
+  }
+
   return (
     <div
       className={`flex flex-row-reverse p-2 absolute bottom-0 right-0 z-10 ease-in-out duration-500 transition-width w-full min-h-[40px] ${
@@ -129,10 +143,8 @@ export default function QuickShop({ product, customClass }: Props) {
       {loading.value === 0 && (
         <>
           <button
-            onClick={() => show.value = !show.value}
-            class={`${
-              !show.value ? "translate-y-[-145%]" : "translate-y-0"
-            }`}
+            onClick={() => defineAction(productID)}
+            class={`${!show.value ? "translate-y-[-145%]" : "translate-y-0"}`}
           >
             {!show.value
               ? (
@@ -143,7 +155,13 @@ export default function QuickShop({ product, customClass }: Props) {
                   class="m-2 lg:hidden"
                 />
               )
-              : <Icon id="Close" size={21} class="ml-2 lg:hidden mt-[-2px] text-[#b8b8b8]" />}
+              : (
+                <Icon
+                  id="Close"
+                  size={21}
+                  class="ml-2 lg:hidden mt-[-2px] text-[#b8b8b8]"
+                />
+              )}
           </button>
           <ul
             class={`${
