@@ -2,7 +2,7 @@ import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import GalleryControls from "$store/islands/GalleryControls.tsx";
-import {Result}  from "$store/components/search/SearchResult.tsx";
+import { Result } from "$store/components/search/SearchResult.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
@@ -16,8 +16,8 @@ import { FilterName } from "$store/components/search/SearchResult.tsx";
 import { Color } from "$store/components/search/SearchResult.tsx";
 import ButtonsPagination, {
   ButtonsPaginationProps,
-} from "./ButtonsPagination.tsx";   
-import type { CardSEO } from "$store/components/search/SearchResult.tsx"
+} from "./ButtonsPagination.tsx";
+import type { CardSEO } from "$store/components/search/SearchResult.tsx";
 
 /** @titleBy category */
 export interface Category {
@@ -40,8 +40,8 @@ export interface Props {
   categories?: Category[];
   buttonsPagination?: ButtonsPaginationProps;
   /**
-  * @title Highlights 
-  */
+   * @title Highlights
+   */
   photoOnPLP?: Section[];
   notFound: PropsNotFound;
   filterColors?: Color[];
@@ -50,7 +50,7 @@ export interface Props {
   appliedFiltersText?: string;
   applyFiltersText?: string;
   removeFiltersText?: string;
-  cardSEO?: CardSEO[]
+  cardSEO?: CardSEO[];
 }
 
 function ResultCategory({
@@ -84,9 +84,9 @@ function ResultCategory({
   isMobile: boolean;
   section?: Section;
   url: string;
-  notFound: PropsNotFound; 
+  notFound: PropsNotFound;
   photoOnPLP?: Section[];
-  card?:CardSEO
+  card?: CardSEO;
 }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
@@ -118,7 +118,7 @@ function ResultCategory({
         isMobile={isMobile}
         buttonsPagination={buttonsPagination}
         isCategory={true}
-        notFound={notFound}  
+        notFound={notFound}
         photoOnPLP={photoOnPLP}
         url={url}
         card={card}
@@ -128,7 +128,19 @@ function ResultCategory({
 }
 
 function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
-  const { page, notFound, section, isMobile, buttonsPagination, url, currentCategory, subCategories, parentCategory, categoryURL, photoOnPLP } = props;
+  const {
+    page,
+    notFound,
+    section,
+    isMobile,
+    buttonsPagination,
+    url,
+    currentCategory,
+    subCategories,
+    parentCategory,
+    categoryURL,
+    photoOnPLP,
+  } = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={""} />;
@@ -139,7 +151,7 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
       {...props}
       page={page}
       section={section}
-      isMobile={isMobile} 
+      isMobile={isMobile}
       buttonsPagination={buttonsPagination}
       notFound={notFound}
       url={url}
@@ -153,7 +165,7 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
 }
 
 export const loader = (props: Props, req: Request) => {
-  const { categories, photoOnPLP, cardSEO } = { ...props }
+  const { categories, photoOnPLP, cardSEO } = { ...props };
 
   const url = new URL(req.url);
 
@@ -172,7 +184,7 @@ export const loader = (props: Props, req: Request) => {
   );
 
   const card = cardSEO?.find(({ matcher }) =>
-  new URLPattern({ pathname: matcher }).test(req.url)
+    new URLPattern({ pathname: matcher }).test(req.url)
   );
 
   const categoryURL = foundCategory?.[0]?.url;
@@ -211,7 +223,7 @@ export const loader = (props: Props, req: Request) => {
       isMobile,
       url: req.url,
       photoOnPLP,
-      card
+      card,
     };
   } else {
     return {
@@ -224,7 +236,7 @@ export const loader = (props: Props, req: Request) => {
       isMobile,
       url: req.url,
       photoOnPLP,
-      card
+      card,
     };
   }
 };
