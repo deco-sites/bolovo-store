@@ -148,7 +148,7 @@ export default function QuickShop({ product, customClass }: Props) {
           <ul
             class={`${
               show.value ? "w-full flex" : "w-0 hidden"
-            } flex-row gap-2 justify-around lg:w-full lg:flex text-[15px]`}
+            } flex-row gap-2 justify-around lg:w-full lg:flex text-[15px] flex-wrap gap-x-1`}
           >
             {variants ? <SkuSelector /> : <BuyButton />}
           </ul>
