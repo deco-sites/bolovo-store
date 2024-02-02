@@ -3,6 +3,7 @@ import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product } from "apps/commerce/types.ts";
 import PhotoAndProducts, { Section } from "$store/components/search/PhotoAndProducts.tsx"
 import type { ProductListingPage } from "apps/commerce/types.ts";
+import type { CardSEO } from "$store/components/search/SearchResult.tsx"
 
 export interface Props {
   products: Product[] | null;
@@ -10,9 +11,10 @@ export interface Props {
   photoOnPLP?: Section;
   page: ProductListingPage | null;
   isMobile: boolean;
+  cardSEO?: CardSEO
 }
 
-function ProductGallery({ products, offset, photoOnPLP, page, isMobile }: Props) {
+function ProductGallery({ products, offset, photoOnPLP, page, isMobile, cardSEO}: Props) {
   const platform = usePlatform();
 
   const row: number = photoOnPLP?.line ?? 0;
@@ -21,7 +23,10 @@ function ProductGallery({ products, offset, photoOnPLP, page, isMobile }: Props)
   return (
     <ul class={`grid grid-cols-2 gap-2 items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px] col-`}>
       {products?.map((product, index) => (
-
+        cardSEO && index === 0 ? 
+        <div class="card card-compact w-full h-full rounded-none bg-[#F6F6F6]">
+          <h1 dangerouslySetInnerHTML={{ __html: cardSEO.text }} class="text-sm leading-[16px] md:max-w-[293px] w-full font-normal text-left md:pl-8 pl-6 pr-6 md:pr-0 pb-8 absolute bottom-0" />
+        </div> : 
         photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page && index === line ?
           <PhotoAndProducts
             variant={photoOnPLP.imageAndProducts.variant}

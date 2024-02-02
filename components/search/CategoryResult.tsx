@@ -17,6 +17,7 @@ import { Color } from "$store/components/search/SearchResult.tsx";
 import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";   
+import type { CardSEO } from "$store/components/search/SearchResult.tsx"
 
 /** @titleBy category */
 export interface Category {
@@ -49,6 +50,7 @@ export interface Props {
   appliedFiltersText?: string;
   applyFiltersText?: string;
   removeFiltersText?: string;
+  cardSEO?: CardSEO[]
 }
 
 function ResultCategory({
@@ -68,6 +70,7 @@ function ResultCategory({
   url,
   buttonsPagination,
   notFound,
+  card,
   photoOnPLP,
 }: Omit<Props, "page"> & {
   page: ProductListingPage;
@@ -83,6 +86,7 @@ function ResultCategory({
   url: string;
   notFound: PropsNotFound; 
   photoOnPLP?: Section[];
+  card?:CardSEO
 }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
@@ -117,6 +121,7 @@ function ResultCategory({
         notFound={notFound}  
         photoOnPLP={photoOnPLP}
         url={url}
+        card={card}
       />
     </div>
   );
@@ -148,7 +153,7 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
 }
 
 export const loader = (props: Props, req: Request) => {
-  const { categories, photoOnPLP } = { ...props }
+  const { categories, photoOnPLP, cardSEO } = { ...props }
 
   const url = new URL(req.url);
 
@@ -164,6 +169,10 @@ export const loader = (props: Props, req: Request) => {
 
   const foundCategory = categories?.filter(({ category }) =>
     category === firstSegment
+  );
+
+  const card = cardSEO?.find(({ matcher }) =>
+  new URLPattern({ pathname: matcher }).test(req.url)
   );
 
   const categoryURL = foundCategory?.[0]?.url;
@@ -201,7 +210,8 @@ export const loader = (props: Props, req: Request) => {
       section,
       isMobile,
       url: req.url,
-      photoOnPLP
+      photoOnPLP,
+      card
     };
   } else {
     return {
@@ -213,7 +223,8 @@ export const loader = (props: Props, req: Request) => {
       section,
       isMobile,
       url: req.url,
-      photoOnPLP
+      photoOnPLP,
+      card
     };
   }
 };
