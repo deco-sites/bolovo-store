@@ -67,9 +67,7 @@ export default function QuickShop({ product, customClass }: Props) {
               {variant.inStock
                 ? (
                   <button
-                    onClick={async () => {
-                      await onAddItem(variant.id ?? "");
-                    }}
+                    onClick={() => onAddItem(productID ?? "")}
                     class="hover:font-semibold"
                   >
                     {variant?.size?.substring(2, 0)}
@@ -98,9 +96,7 @@ export default function QuickShop({ product, customClass }: Props) {
           ? (
             <button
               class="text-primary w-full m-auto uppercase hover:font-semibold"
-              onClick={async () => {
-                await onAddItem(productID ?? "");
-              }}
+              onClick={() => onAddItem(productID ?? "")}
             >
               Adicionar ao carrinho
             </button>
@@ -110,7 +106,7 @@ export default function QuickShop({ product, customClass }: Props) {
               <span class="cursor-not-allowed false flex h-6 w-6 text-center items-center justify-center uppercase">
                 Produto indisponivel
               </span>
-              <span class="false absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[34px]">
+              <span class="absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[34px]">
               </span>
             </button>
           )}
@@ -119,8 +115,6 @@ export default function QuickShop({ product, customClass }: Props) {
   }
 
   function defineAction(id: string) {
-    console.log(variants, variants?.length);
-
     if (variants) {
       if (variants.length > 1) {
         show.value = !show.value;
