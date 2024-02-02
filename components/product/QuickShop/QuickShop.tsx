@@ -143,7 +143,7 @@ export default function QuickShop({ product, customClass }: Props) {
                   class="m-2 lg:hidden"
                 />
               )
-              : <Icon id="Close" size={21} class="ml-2 lg:hidden mt-[-2px]" />}
+              : <Icon id="Close" size={21} class="ml-2 lg:hidden mt-[-2px] text-[#b8b8b8]" />}
           </button>
           <ul
             class={`${
