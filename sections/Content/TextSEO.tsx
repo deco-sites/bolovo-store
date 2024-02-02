@@ -1,41 +1,53 @@
 import type { SectionProps } from "deco/types.ts";
 
 export interface Text {
-    /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
-    matcher: string;
-    /** @format html */
-    text: string
-    shadow?: boolean
-    content : {
-        top: string
-        bottom: string
-    }
+  /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
+  matcher: string;
+  /** @format html */
+  text: string;
+  shadow?: boolean;
+  content: {
+    top: string;
+    bottom: string;
+  };
 }
 
 export interface Props {
-    texts: Text[]
+  texts: Text[];
 }
 
-export default function TextSEO(props: SectionProps<ReturnType<typeof loader>>){
-    const { text } = props;
+export default function TextSEO(
+  props: SectionProps<ReturnType<typeof loader>>,
+) {
+  const { text } = props;
 
-    if(!text){
-        return null;
-    }
+  if (!text) {
+    return null;
+  }
 
-    return(
-        <div class={`text-center ${text.shadow ? "bg-gradient-to-b from-[#F6F6F6] to-white" : ""} w-full`}> 
-          <h1 style={{paddingTop: text.content.top + "px", paddingBottom: text.content.bottom + "px"}} dangerouslySetInnerHTML={{ __html: text.text }} class="text-sm leading-[18px] font-normal max-w-[724px] w-full mx-auto" />
-        </div>
-    )
+  return (
+    <div
+      class={`text-center ${
+        text.shadow ? "bg-gradient-to-b from-[#F6F6F6] to-white" : ""
+      } w-full`}
+    >
+      <h1
+        style={{
+          paddingTop: text.content.top + "px",
+          paddingBottom: text.content.bottom + "px",
+        }}
+        dangerouslySetInnerHTML={{ __html: text.text }}
+        class="text-sm leading-[18px] font-normal max-w-[724px] w-full mx-auto"
+      />
+    </div>
+  );
 }
 
 export const loader = (props: Props, req: Request) => {
-    const { texts } = props ;
-    const text = texts.find(({ matcher }) =>
-      new URLPattern({ pathname: matcher }).test(req.url)
-    );
-  
-    return { text };
-  };
-  
+  const { texts } = props;
+  const text = texts.find(({ matcher }) =>
+    new URLPattern({ pathname: matcher }).test(req.url)
+  );
+
+  return { text };
+};

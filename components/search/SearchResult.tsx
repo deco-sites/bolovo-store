@@ -14,7 +14,7 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
-import type { Text } from "$store/sections/Content/TextSEO.tsx"
+import type { Text } from "$store/sections/Content/TextSEO.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -32,15 +32,15 @@ export interface Props {
   appliedFiltersText?: string;
   applyFiltersText?: string;
   removeFiltersText?: string;
-  cardSEO?: CardSEO[]
+  cardSEO?: CardSEO[];
 }
 
-export interface CardSEO{
-      /** @title WARNING: Be careful not to configure the SEO Text on the same page where you are configuring the SEO Card */
-      /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
-      matcher: string;
-      /** @format html */
-      text: string;
+export interface CardSEO {
+  /** @title WARNING: Be careful not to configure the SEO Text on the same page where you are configuring the SEO Card */
+  /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
+  matcher: string;
+  /** @format html */
+  text: string;
 }
 
 export interface FilterName {
@@ -93,7 +93,7 @@ export function Result({
   isMobile: boolean;
   url: string;
   isCategory?: boolean;
-  card?: CardSEO
+  card?: CardSEO;
 }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
@@ -182,12 +182,19 @@ export const loader = (props: Props, req: Request) => {
   );
 
   const card = cardSEO?.find(({ matcher }) =>
-  new URLPattern({ pathname: matcher }).test(req.url)
-);
+    new URLPattern({ pathname: matcher }).test(req.url)
+  );
 
   const term = new URLSearchParams(new URL(req.url).search).get("q");
 
   const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 
-  return { ...props, searchTerm: term ?? "", section, isMobile, url: req.url, card };
+  return {
+    ...props,
+    searchTerm: term ?? "",
+    section,
+    isMobile,
+    url: req.url,
+    card,
+  };
 };
