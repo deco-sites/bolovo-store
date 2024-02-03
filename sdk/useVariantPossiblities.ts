@@ -70,8 +70,8 @@ export function compareSizes(a: FilterToggleValue, b: FilterToggleValue) {
 
 export interface VariantAvailability {
   size?: string;
-  id?: string;
-  inStock?: boolean;
+  id: string;
+  inStock: boolean;
 }
 
 export function variantAvailability(

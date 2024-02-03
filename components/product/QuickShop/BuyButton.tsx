@@ -16,7 +16,7 @@ export default function BuyButton(
         ? (
           <button
             class="text-primary w-full m-auto uppercase hover:font-semibold"
-            onClick={() => onAddItem(productID ?? "", additionalProperty)}
+            onClick={() => onAddItem(productID, additionalProperty)}
           >
             Adicionar ao carrinho
           </button>
