@@ -1,6 +1,5 @@
 import type {
   FilterToggleValue,
-  Product,
   ProductGroup,
   ProductLeaf,
   PropertyValue,
@@ -69,7 +68,7 @@ export function compareSizes(a: FilterToggleValue, b: FilterToggleValue) {
   return sizeOrder.indexOf(sizeA) - sizeOrder.indexOf(sizeB);
 }
 
-interface VariantAvailability {
+export interface VariantAvailability {
   size?: string;
   id?: string;
   inStock?: boolean;
