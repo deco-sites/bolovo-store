@@ -11,7 +11,7 @@ export default function BuyButton(
   { availability, productID, additionalProperty, onAddItem }: Props,
 ) {
   return (
-    <li class="w-full">
+    <li class="w-full hidden lg:flex">
       {availability === "https://schema.org/InStock"
         ? (
           <button
