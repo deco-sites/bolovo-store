@@ -22,6 +22,8 @@ export interface Props {
   customClass: string;
 }
 
+type Steps = "loading" | "success" | "waiting" | "show";
+
 export default function QuickShop({ product, customClass }: Props) {
   const {
     productID,
@@ -33,37 +35,37 @@ export default function QuickShop({ product, customClass }: Props) {
   const { availability } = useOffer(offers);
   const variants = isVariantOf && variantAvailability(isVariantOf);
 
-  const stepsQuickShop = useSignal(0);
-  const showQuickShop = useSignal(false);
+  const step = useSignal<Steps>("waiting");
 
   const { addItem } = useCart();
   const onAddItem = async (
-  id: string,
-  additionalProperty: PropertyValue[],
-) => {
-  try {
-    stepsQuickShop.value = 1;
+    id: string,
+    additionalProperty: PropertyValue[],
+  ) => {
+    try {
+      step.value = "loading";
 
-    await addItem({
-      quantity: 1,
-      itemId: await id,
-      attributes: Object.fromEntries(
-        additionalProperty.map(({ name, value }) => [name, value]),
-      ),
-    });
-  } finally {
-    stepsQuickShop.value = 2;
-    setTimeout(() => {
-      stepsQuickShop.value = 0;
-      showQuickShop.value = false;
-    }, 1000);
-  }
-};
+      await addItem({
+        quantity: 1,
+        itemId: await id,
+        attributes: Object.fromEntries(
+          additionalProperty.map(({ name, value }) => [name, value]),
+        ),
+      });
+    } finally {
+      step.value = "success";
+      setTimeout(() => {
+        step.value = "waiting";
+      }, 1000);
+    }
+  };
 
   function defineAction(id: string) {
     if (variants) {
       if (variants.length > 1) {
-        showQuickShop.value = !showQuickShop.value;
+        step.value = step.value === "show"
+          ? "waiting"
+          : "show";
       } else {
         onAddItem(id, additionalProperty);
       }
@@ -75,20 +77,23 @@ export default function QuickShop({ product, customClass }: Props) {
   return (
     <div
       className={`flex flex-row-reverse p-2 absolute bottom-0 right-0 z-10 ease-in-out duration-500 transition-width w-full min-h-[40px] ${
-        showQuickShop.value || stepsQuickShop.value !== 0
+        step.value !== "waiting"
           ? " bg-base-100 translate-y-0"
           : " bg-transparent lg:bg-white translate-y-[100%]"
       } ${customClass}`}
     >
-      {stepsQuickShop.value === 0 && (
+      {(step.value != "loading" &&
+        step.value != "success") && (
         <>
           <button
             onClick={() => defineAction(productID)}
             class={`${
-              !showQuickShop.value ? "translate-y-[-145%]" : "translate-y-0"
+              step.value === "waiting"
+                ? "translate-y-[-145%]"
+                : "translate-y-0"
             }`}
           >
-            {!showQuickShop.value
+            {step.value === "waiting"
               ? (
                 <Icon
                   id="QuickShop"
@@ -105,11 +110,7 @@ export default function QuickShop({ product, customClass }: Props) {
                 />
               )}
           </button>
-          <ul
-            class={`${
-              showQuickShop.value ? "w-full flex" : "w-0 hidden"
-            } flex-row gap-2 justify-around lg:w-full lg:flex text-[15px] flex-wrap gap-x-1`}
-          >
+          <ul class="w-full flex flex-row gap-2 justify-around lg:w-full lg:flex text-[15px] flex-wrap gap-x-1">
             {variants && (
               <SkuSelector
                 variants={variants}
@@ -123,11 +124,11 @@ export default function QuickShop({ product, customClass }: Props) {
         </>
       )}
 
-      {stepsQuickShop.value === 1 && (
+      {step.value === "loading" && (
         <span className="loading loading-spinner m-auto h-[23px] w-[23px]">
         </span>
       )}
-      {stepsQuickShop.value === 2 && (
+      {step.value === "success" && (
         <div class="m-auto">
           <Icon id="Check" size={24} />
         </div>
