@@ -52,6 +52,8 @@ export default function QuickShop({ product, customClass }: Props) {
           additionalProperty.map(({ name, value }) => [name, value]),
         ),
       });
+    } catch {
+      step.value = "waiting";
     } finally {
       step.value = "success";
       setTimeout(() => {
@@ -63,9 +65,7 @@ export default function QuickShop({ product, customClass }: Props) {
   function defineAction(id: string) {
     if (variants) {
       if (variants.length > 1) {
-        step.value = step.value === "show"
-          ? "waiting"
-          : "show";
+        step.value = step.value === "show" ? "waiting" : "show";
       } else {
         onAddItem(id, additionalProperty);
       }
@@ -88,9 +88,7 @@ export default function QuickShop({ product, customClass }: Props) {
           <button
             onClick={() => defineAction(productID)}
             class={`${
-              step.value === "waiting"
-                ? "translate-y-[-145%]"
-                : "translate-y-0"
+              step.value === "waiting" ? "translate-y-[-145%]" : "translate-y-0"
             }`}
           >
             {step.value === "waiting"
