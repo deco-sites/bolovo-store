@@ -1,11 +1,6 @@
 import BackToTop from "$store/components/footer/BackToTop.tsx";
 import ColorClasses from "$store/components/footer/ColorClasses.tsx";
-import ExtraLinks from "$store/components/footer/ExtraLinks.tsx";
 import FooterItems from "$store/components/footer/FooterItems.tsx";
-import Logo from "$store/components/footer/Logo.tsx";
-import MobileApps from "$store/components/footer/MobileApps.tsx";
-import PaymentMethods from "$store/components/footer/PaymentMethods.tsx";
-import RegionSelector from "$store/components/footer/RegionSelector.tsx";
 import Social from "$store/components/footer/Social.tsx";
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
@@ -59,22 +54,6 @@ export interface SocialItem {
   newTab?: boolean;
 }
 
-export interface PaymentItem {
-  label: "Diners" | "Elo" | "Mastercard" | "Hiper" | "Visa" | "Amex" | "Boleto";
-}
-
-export interface MobileApps {
-  /** @description Link to the app */
-  apple?: string;
-  /** @description Link to the app */
-  android?: string;
-}
-
-export interface RegionOptions {
-  currency?: Item[];
-  language?: Item[];
-}
-
 export interface NewsletterForm {
   placeholder?: string;
   buttonText?: string;
@@ -92,23 +71,16 @@ export interface Layout {
     | "Base 100"
     | "Base 100 inverted";
   hide?: {
-    logo?: boolean;
     newsletter?: boolean;
     sectionLinks?: boolean;
     socialLinks?: boolean;
-    paymentMethods?: boolean;
-    mobileApps?: boolean;
-    regionOptions?: boolean;
     extraLinks?: boolean;
     backToTheTop?: boolean;
   };
 }
 
 export interface Props {
-  logo?: {
-    image: ImageWidget;
-    description?: string;
-  };
+
   newsletter?: {
     titleDesktop?: string;
     titleMobile?: string;
@@ -121,12 +93,6 @@ export interface Props {
     title?: string;
     items: SocialItem[];
   };
-  payments?: {
-    title?: string;
-    items: PaymentItem[];
-  };
-  mobileApps?: MobileApps;
-  regionOptions?: RegionOptions;
   extraLinks?: Item[];
   backToTheTop?: {
     text?: string;
@@ -143,7 +109,6 @@ export interface Props {
 }
 
 function Footer({
-  logo,
   newsletter = {
     titleDesktop: "Newsletter",
     titleMobile: "Newsletter",
@@ -201,13 +166,6 @@ function Footer({
     title: "Redes sociais",
     items: [{ label: "Instagram", link: "/" }],
   },
-  payments = {
-    title: "Formas de pagamento",
-    items: [{ label: "Mastercard" }, { label: "Visa" }],
-  },
-  mobileApps = { apple: "/", android: "/" },
-  regionOptions = { currency: [], language: [] },
-  extraLinks = [],
   backToTheTop,
   countryFlag,
   extraInfo =
@@ -215,19 +173,14 @@ function Footer({
   layout = {
     backgroundColor: "Primary",
     hide: {
-      logo: false,
       newsletter: false,
       sectionLinks: false,
       socialLinks: false,
-      paymentMethods: false,
-      mobileApps: false,
-      regionOptions: false,
       extraLinks: false,
       backToTheTop: false,
     },
   },
 }: Props) {
-  const _logo = layout?.hide?.logo ? <></> : <Logo logo={logo} />;
   const _newsletter = layout?.hide?.newsletter ? <></> : (
     <Newsletter
       content={newsletter}
@@ -243,18 +196,6 @@ function Footer({
   const _social = layout?.hide?.socialLinks
     ? <></>
     : <Social content={social} />;
-  const _payments = layout?.hide?.paymentMethods
-    ? <></>
-    : <PaymentMethods content={payments} />;
-  const _apps = layout?.hide?.mobileApps
-    ? <></>
-    : <MobileApps content={mobileApps} />;
-  const _region = layout?.hide?.regionOptions
-    ? <></>
-    : <RegionSelector content={regionOptions} />;
-  const _links = layout?.hide?.extraLinks
-    ? <></>
-    : <ExtraLinks content={extraLinks} />;
 
   return (
     <footer
