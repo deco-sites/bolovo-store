@@ -26,7 +26,7 @@ export default function TextSEO(
 
   return (
     <div
-      class="text-center w-full"
+      class="text-center px-[15px] md:px-0 w-full"
     >
       <h1
         style={{
