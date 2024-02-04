@@ -80,7 +80,6 @@ export interface Layout {
 }
 
 export interface Props {
-
   newsletter?: {
     titleDesktop?: string;
     titleMobile?: string;
@@ -93,7 +92,6 @@ export interface Props {
     title?: string;
     items: SocialItem[];
   };
-  extraLinks?: Item[];
   backToTheTop?: {
     text?: string;
   };
@@ -120,13 +118,9 @@ function Footer({
       helpTextMobile: "",
     },
   },
-  followBolovoText = "SIGA A BOLOVO",
-  changeCountryText = "MUDAR PAÍS",
-  whatsApp = {
-    whatsAppButtonText: "COMPRE PELO WHATS",
-    whatsAppNumber: "11917250298",
-    whatsAppText: "Olá, gostaria de comprar um produto",
-  },
+  followBolovoText,
+  changeCountryText,
+  whatsApp,
   footerTexts,
   footerLogos,
   sections = [{
@@ -162,14 +156,10 @@ function Footer({
       },
     ],
   }],
-  social = {
-    title: "Redes sociais",
-    items: [{ label: "Instagram", link: "/" }],
-  },
+  social,
   backToTheTop,
   countryFlag,
-  extraInfo =
-    "© BOLOVO | VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34",
+  extraInfo,
   layout = {
     backgroundColor: "Primary",
     hide: {
