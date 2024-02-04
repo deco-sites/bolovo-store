@@ -5,7 +5,6 @@ export interface Text {
   matcher: string;
   /** @format html */
   text: string;
-  shadow?: boolean;
   content: {
     top: string;
     bottom: string;
@@ -27,9 +26,7 @@ export default function TextSEO(
 
   return (
     <div
-      class={`text-center ${
-        text.shadow ? "bg-gradient-to-b from-[#F6F6F6] to-white" : ""
-      } w-full`}
+      class="text-center w-full"
     >
       <h1
         style={{
