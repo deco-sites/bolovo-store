@@ -242,7 +242,7 @@ function Footer({
               </div>
               <div class="border-b ml-7 mr-[25px]" />
               <div class="flex flex-row justify-between items-center md:pl-[29px] md:pr-[25px] px-[15px] md:px-0 w-full">
-                <a
+                {whatsApp && <a
                   href={`https://api.whatsapp.com/send?phone=${whatsApp.whatsAppNumber}&text=${whatsApp.whatsAppText}`}
                   class="md:hidden flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px]"
                 >
@@ -252,7 +252,7 @@ function Footer({
                   <span class="text-sm font-medium leading-[22px] text-right w-full pr-[19px]">
                     {whatsApp.whatsAppButtonText}
                   </span>
-                </a>
+                </a>}
                 <div class="flex flex-row items-center">
                   <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-[9px] md:flex hidden">
                     {followBolovoText}
@@ -275,7 +275,7 @@ function Footer({
               <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px] border-t border-primary">
                 <div
                   class="text-center font-normal text-xs pt-[15px]"
-                  dangerouslySetInnerHTML={{ __html: extraInfo }}
+                  dangerouslySetInnerHTML={{ __html: extraInfo ?? "" }}
                 />
               </div>
             </div>
