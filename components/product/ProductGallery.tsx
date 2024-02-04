@@ -34,7 +34,7 @@ function ProductGallery(
             <div class="card card-compact w-full h-full rounded-none bg-[#F6F6F6]">
               <h1
                 dangerouslySetInnerHTML={{ __html: cardSEO.text }}
-                class="text-sm leading-[16px] md:max-w-[293px] w-full font-normal text-left md:pl-8 pl-6 pr-6 md:pr-0 pb-8 absolute bottom-0"
+                class="text-sm leading-[16px] md:max-w-[293px] w-full font-normal text-left md:pl-7 pl-6 pr-6 md:pr-3 pb-8 absolute bottom-0"
               />
             </div>
           )
