@@ -26,7 +26,7 @@ export default function Social(
             </h2>
           )}
           <ul
-            class={`flex gap-1 ${
+            class={`flex md:gap-[7px] gap-2 ${
               vertical
                 ? "lg:flex-col lg:items-start"
                 : "flex-wrap lg:mx-0 mx-auto items-center"
@@ -42,7 +42,7 @@ export default function Social(
                     aria-label={`${item.label} Logo`}
                     class="flex gap-2 items-center"
                   >
-                    <span class="block rounded-full bg-black p-2">
+                    <span class="block rounded-full bg-[#C6C6C6] p-[9px]">
                       <Icon size={20} id={item.label} />
                     </span>
                     {vertical && (
