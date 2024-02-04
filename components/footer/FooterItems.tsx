@@ -43,7 +43,7 @@ export default function FooterItems(
             {sections.map((section) => (
               <li class="w-full flex flex-grow">
                 <div class="flex flex-col gap-[14px] w-full flex-grow">
-                  <span class="font-medium text-sm leading-[22.4px] uppercase border-b">
+                  <span class="font-medium text-sm leading-[22px] uppercase border-b">
                     {section.label}
                   </span>
                   <ul class={`flex flex-col flex-wrap text-sm`}>
@@ -52,16 +52,16 @@ export default function FooterItems(
                         {item.extraInfo
                           ? (
                             <div class="flex flex-row items-center">
-                              <span class="block leading-[26.4px] font-normal text-xs uppercase text-primary">
+                              <span class="block leading-[26px] font-normal text-xs uppercase text-primary">
                                 {item.label}
                               </span>
                               <a
                                 target={item.newTab ? "_blank" : ""}
                                 href={item.href}
-                                class="block leading-[26.4px] font-normal text-xs text-primary pl-1"
+                                class="block leading-[26px] font-normal text-xs text-primary pl-1"
                               >
                                 <div
-                                  class="block leading-[26.4px] font-normal text-xs text-primary"
+                                  class="block leading-[26px] font-normal text-xs text-primary"
                                   dangerouslySetInnerHTML={{
                                     __html: item.extraInfo,
                                   }}
@@ -79,16 +79,16 @@ export default function FooterItems(
                           )}
                       </li>
                     ))}
-                    {section.label === "CONTATO" &&
+                    {section.label === "CONTATO" && whatsApp &&
                       (
                         <a
-                          href={`https://api.whatsapp.com/send?phone=55${whatsApp?.whatsAppNumber}&text=${whatsApp?.whatsAppText}`}
+                          href={`https://api.whatsapp.com/send?phone=${whatsApp?.whatsAppNumber}&text=${whatsApp?.whatsAppText}`}
                           class="flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px] mt-[14px]"
                         >
-                          <span class="block rounded-full bg-primary items-center pt-[6.5px] pb-[9px] pr-[7px] pl-2">
+                          <span class="block rounded-full bg-primary items-center pt-[6px] pb-[9px] pr-[7px] pl-2">
                             <Icon size={23} id="WhatsApp" />
                           </span>
-                          <span class="text-sm font-medium leading-[22.4px] text-right w-full pr-[19px]">
+                          <span class="text-sm font-medium leading-[22px] text-right w-full pr-[19px]">
                             {whatsApp?.whatsAppButtonText}
                           </span>
                         </a>
@@ -106,7 +106,7 @@ export default function FooterItems(
                 <div class="collapse collapse-arrow w-full rounded-none">
                   <input type="checkbox" class="min-h-[0] min-w-full" />
                   <div class="collapse-title col-start-0  min-h-[0] px-0 py-0 pb-1 flex gap-2 w-full min-w-full font-medium after:!right-1">
-                    <span class="border-b w-full text-sm leading-[22.4px] uppercase">
+                    <span class="border-b w-full text-sm leading-[22px] uppercase">
                       {section.label}
                     </span>
                   </div>
@@ -118,7 +118,7 @@ export default function FooterItems(
                         <li>
                           <a
                             href={item.href}
-                            class="block text-xs leading-[25.2px] font-normal uppercase text-primary"
+                            class="block text-xs leading-[25px] font-normal uppercase text-primary"
                           >
                             {item.label}
                           </a>
