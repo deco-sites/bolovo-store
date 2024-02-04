@@ -42,7 +42,7 @@ export async function loader(
   };
 
   return {
-    data: data.slice(0, numberOfPosts ?? 5) ?? [],
+    data: data?.slice(0, numberOfPosts ?? 5) ?? [],
     title,
   };
 }
