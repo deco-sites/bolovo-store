@@ -3,7 +3,6 @@ import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Props {
   sectionMenu: {
-    /** @title */
     sectionTitle: string;
     menuItems: {
       label: string;
@@ -40,8 +39,8 @@ function AsideMenu(
   );
 
   return (
-    <aside class="w-full text-primary font-medium flex lg:justify-end">
-      <ul class="lg:flex flex-col gap-[10px] w-full hidden">
+    <aside class="lg:min-w-[20%] font-medium text-secondary-focus flex lg:justify-end">
+      <ul class="lg:join join-vertical gap-[10px] w-full hidden">
         {sectionMenu.map((sectionItem, index) => (
           <>
             <li
@@ -55,14 +54,19 @@ function AsideMenu(
               (item, index) => (
                 <li key={index}>
                   <a
-                  class={`${
-                    currentUrl === item.href ? "bg-primary text-white " : ""
-                  } ${
-                    desktopButtonAlign === "center"
-                      ? "justify-center"
-                      : "justify-start"
-                  } flex items-center font-normal px-[10px] py-1 uppercase`}
-                    
+                    class={`
+                  ${
+                      currentUrl === item.href
+                        ? "bg-secondary-focus text-base-100 border-none"
+                        : ""
+                    } ${sectionItem?.menuItems.length - 1 === index && "mb-2"}
+                    ${
+                      desktopButtonAlign === "center"
+                        ? "justify-center"
+                        : "justify-start"
+                    }
+                  btn btn-ghost btn-block border-2 border-neutral-100 hover:bg-secondary-focus hover:text-base-100
+                `}
                     href={item.href}
                   >
                     {item.label}
@@ -73,38 +77,41 @@ function AsideMenu(
           </>
         ))}
       </ul>
-      <div class="lg:hidden block w-full pb-5">
-        <div tabIndex={0} class="collapse collapse-arrow w-full rounded-none text-sm font-normal">
-          <input type="checkbox" class="h-0 min-w-full" />
-          <div class="collapse-title items-center text-sm text-white leading-[22px] uppercase bg-primary col-start-0 h-0 px-0 pl-3 py-0 flex gap-2 w-full min-w-full font-medium">
+      <div class="lg:hidden w-full pb-5">
+        <div class="dropdown w-full text-sm font-normal">
+          <label
+            tabIndex={0}
+            class="btn btn-secondary btn-block justify-between border-none"
+          >
             {currentRoute?.label ?? "Menu"}
-          </div>
-          <ul class="collapse-content px-0 !pb-0 bg-neutral-100 rounded-none w-full gap-3">
+            <Icon id="ChevronDown" width={26} height={26} />
+          </label>
+          <ul class="shadow menu dropdown-content z-10 bg-base-100 mt-5 rounded-box w-full gap-2">
             {sectionMenu.map((sectionItem) => (
-              <div class="my-5 mx-2">
+              <>
                 <li class="text-primary font-semibold">
                   {sectionItem?.sectionTitle}
                 </li>
                 {sectionItem?.menuItems.map(
                   (item, index) => (
                     <li key={index}>
-                    <a
-                    class={`${
-                      currentUrl === item.href ? "bg-primary text-white " : ""
-                    } ${
-                      desktopButtonAlign === "center"
-                        ? "justify-center"
-                        : "justify-start"
-                    } flex items-center font-normal px-[10px] py-1 uppercase`}
-                      
-                      href={item.href}
-                    >
-                      {item.label}
-                    </a>
-                  </li>
+                      <a
+                        class={`
+                      ${
+                          currentUrl === item.href
+                            ? "bg-primary text-base-100 border-none"
+                            : "text-secondary"
+                        }
+                      hover:bg-primary hover:text-base-100
+                    `}
+                        href={item.href}
+                      >
+                        {item.label}
+                      </a>
+                    </li>
                   ),
                 )}
-              </div>
+              </>
             ))}
           </ul>
         </div>
