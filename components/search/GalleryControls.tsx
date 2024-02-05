@@ -66,7 +66,6 @@ function GalleryControls(
   }
 
   return (
-    <div className="flex w-full lg:px-[15px]">
       <Drawer
         class="drawer-end"
         loading="lazy"
@@ -74,7 +73,7 @@ function GalleryControls(
         onClose={() => open.value = false}
         aside={
           <>
-            <div class="bg-base-100 flex flex-col h-full divide-y overflow-y-hidden">
+            <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full">
               <div class="flex justify-end items-center">
                 <span class="font-medium text-sm leading-[18px]">
                   Fechar
@@ -154,9 +153,9 @@ function GalleryControls(
           </>
         }
       >
-         <div className="flex mb-5 flex-col lg:flex-row justify-between lg:w-[calc(100vw-45px)]">
-          <div className="flex lg:w-[88%] items-center relative px-2 mb-[10px] lg:mb-0 lg:px-0 max-w-[100vw] justify-start overflow-x-auto overflow-y-visible shadow-[0_5px_12px_0_rgba(220,220,220,0.25)] lg:shadow-none">
-            <div className="absolute inset-y-0 right-0 w-[10%] lg:w-[6.5%] bg-gradient-to-r from-transparent via-white to-white pointer-events-none"></div>
+         <div class="flex mb-5 flex-col lg:flex-row justify-between lg:w-[calc(100vw-45px)]">
+          <div class="flex lg:w-[88%] items-center relative px-2 mb-[10px] lg:mb-0 lg:px-0 max-w-[100vw] justify-start overflow-x-auto overflow-y-visible shadow-[0_5px_12px_0_rgba(220,220,220,0.25)] lg:shadow-none">
+            <div class="absolute inset-y-0 right-0 w-[10%] lg:w-[6.5%] bg-gradient-to-r from-transparent via-white to-white pointer-events-none"></div>
             {parentCategory && (
               <>
             <a
@@ -233,7 +232,6 @@ function GalleryControls(
           </div>
         </div>
       </Drawer>
-    </div>
   );
 }
 
