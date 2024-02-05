@@ -1,20 +1,26 @@
 import { AvatarPDP } from "$store/components/ui/Avatar.tsx";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
-import type { Product } from "apps/commerce/types.ts";
+import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import { relative } from "$store/sdk/url.ts";
 
 function VariantSelector(
-  { product, reloadInSelector }: {
+  { product, reloadInSelector, loader }: {
     product: Product;
     reloadInSelector: boolean;
+    loader: ProductListingPage;
   },
 ) {
   const { url, isVariantOf } = product;
   const hasVariant = isVariantOf?.hasVariant ?? [];
+  // console.log(hasVariant)
   const possibilities = useVariantPossibilities(hasVariant, product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
+  // console.log("variants: ", variants)
+
   const sizeAndLinks = possibilities.Tamanho || {};
+  const colors = possibilities.variante_cor || {};
+  console.log("cor encontrada: ", colors)
 
   const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => {
     if (reloadInSelector) {

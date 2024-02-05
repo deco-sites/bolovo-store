@@ -84,6 +84,7 @@ function PDPProductInfo(
         <ProductSelector
           product={product}
           reloadInSelector={reloadInSelector}
+          loader={''}
         />
       </div>
       {/* Add to Cart and Favorites button */}
