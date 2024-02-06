@@ -6,9 +6,8 @@ import type {Props as TextContentProps } from "deco-sites/bolovo-store/sections/
 
 export interface Props {
   title: string;
-  asideMenu: AsideProps;
-  /** @format html */
-  textContent: string;
+  asideMenu: Section; 
+  content: Section;
 }
 
 function InstitutionalPage({
