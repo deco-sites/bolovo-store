@@ -8,6 +8,7 @@ import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
   export interface Props {
     cards: {
       heading: {
+        /** @title */
         title: string;
         // icon?: AvailableIcons | SocialIcons | PaymentIcons;
       };
