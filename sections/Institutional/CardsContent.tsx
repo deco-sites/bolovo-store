@@ -4,6 +4,7 @@ import type { AvailableIcons } from "deco-sites/bolovo-store/components/ui/Icon.
   export interface Props {
     cards: {
       heading: {
+        /** @title */
         title: string;
         icon?: AvailableIcons;
       };
