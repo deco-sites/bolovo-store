@@ -61,7 +61,7 @@ function AsideMenu(
                     desktopButtonAlign === "center"
                       ? "justify-center"
                       : "justify-start"
-                  } flex items-center font-normal px-[10px]`}
+                  } flex items-center font-normal px-[10px] uppercase`}
                     
                     href={item.href}
                   >
@@ -91,20 +91,20 @@ function AsideMenu(
                 {sectionItem?.menuItems.map(
                   (item, index) => (
                     <li key={index}>
-                      <a
-                        class={`
-                      ${
-                          currentUrl === item.href
-                            ? "bg-primary text-white border-none"
-                            : "text-primary"
-                        }
-                      hover:bg-primary hover:text-white
-                    `}
-                        href={item.href}
-                      >
-                        {item.label}
-                      </a>
-                    </li>
+                    <a
+                    class={`${
+                      currentUrl === item.href ? "bg-primary text-white " : ""
+                    } ${
+                      desktopButtonAlign === "center"
+                        ? "justify-center"
+                        : "justify-start"
+                    } flex items-center font-normal px-[10px] uppercase`}
+                      
+                      href={item.href}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
                   ),
                 )}
               </>
