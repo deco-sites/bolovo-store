@@ -1,5 +1,8 @@
 import type { SectionProps } from "deco/types.ts";
 import Icon from "$store/components/ui/Icon.tsx";
+import { JSX } from "preact";
+
+export type AsideMenu = JSX.Element
 
 export interface Props {
   sectionMenu: {
@@ -38,15 +41,19 @@ function AsideMenu(
     item.href === currentUrl
   );
 
+  if(!sectionMenu) {
+    return null 
+  }
+
   return (
-    <aside class="lg:min-w-[20%] font-medium text-secondary-focus flex lg:justify-end">
+    <aside class="w-full text-primary font-medium flex lg:justify-end">
       <ul class="lg:join join-vertical gap-[10px] w-full hidden">
         {sectionMenu.map((sectionItem, index) => (
           <>
             <li
               class={`${
                 index !== 0 && "border-t"
-              } text-primary border-dashed pt-2 font-bold`}
+              } text-primary pt-2 font-medium`}
             >
               {sectionItem?.sectionTitle}
             </li>
@@ -57,7 +64,7 @@ function AsideMenu(
                     class={`
                   ${
                       currentUrl === item.href
-                        ? "bg-secondary-focus text-base-100 border-none"
+                        ? "bg-primary text-white border-none"
                         : ""
                     } ${sectionItem?.menuItems.length - 1 === index && "mb-2"}
                     ${
@@ -65,7 +72,7 @@ function AsideMenu(
                         ? "justify-center"
                         : "justify-start"
                     }
-                  btn btn-ghost btn-block border-2 border-neutral-100 hover:bg-secondary-focus hover:text-base-100
+                  btn btn-ghost btn-block border border-primary py-2 hover:bg-primary font-normal hover:text-white
                 `}
                     href={item.href}
                   >
