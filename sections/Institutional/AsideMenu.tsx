@@ -1,11 +1,9 @@
 import type { SectionProps } from "deco/types.ts";
 import Icon from "$store/components/ui/Icon.tsx";
-import { JSX } from "preact";
-
-export type AsideMenu = JSX.Element
 
 export interface Props {
   sectionMenu: {
+    /** @title */
     sectionTitle: string;
     menuItems: {
       label: string;
@@ -84,11 +82,11 @@ function AsideMenu(
           </>
         ))}
       </ul>
-      <div class="lg:hidden w-full pb-5">
-        <div class="dropdown w-full text-sm font-normal">
+      <div class="lg:hidden block w-full pb-5">
+        <div class="dropdown bg-prima w-full text-sm font-normal">
           <label
             tabIndex={0}
-            class="btn btn-primary btn-block justify-between border-none"
+            class="btn btn-secondary btn-block justify-between border-none"
           >
             {currentRoute?.label ?? "Menu"}
             <Icon id="ChevronDown" width={26} height={26} />
@@ -106,10 +104,10 @@ function AsideMenu(
                         class={`
                       ${
                           currentUrl === item.href
-                            ? "bg-primary text-white border-none"
-                            : "text-prima"
+                            ? "bg-primary text-base-100 border-none"
+                            : "text-secondary"
                         }
-                      hover:bg-primary hover:text-white
+                      hover:bg-primary hover:text-base-100
                     `}
                         href={item.href}
                       >
