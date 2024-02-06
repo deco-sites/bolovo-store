@@ -2,7 +2,7 @@ import { Section } from "deco/blocks/section.ts";
 
 export interface Props {
   title: string;
-  asideMenu: Section;
+  asideMenu: Section; 
   content: Section;
 }
 
