@@ -28,7 +28,7 @@ import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
     return (
       <div class="flex flex-wrap gap-[30px] pb-12">
         {cards.map((card) => (
-          <div class="card card-bordered border-2 border-neutral-100 w-[360px]">
+          <div class="card card-bordered rounded-none border-2 border-neutral-100 w-[360px]">
             <div class="card-body p-4">
               <div class="flex items-center gap-[10px] min-h-12 text-primary">
                 {/* <Icon id={card.heading.icon ?? "MapPin"} width={24} height={24} /> */}
