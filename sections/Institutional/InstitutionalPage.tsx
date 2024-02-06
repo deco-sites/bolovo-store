@@ -13,8 +13,8 @@ function InstitutionalPage({
 }: Props) {
   return (
     <>
-      <div class="flex flex-col lg:flex-row px-4 w-full justify-between mt-[15px]">
-        <div class="lg:max-w-[20%] w-full">
+      <div class="flex flex-col lg:flex-row px-4 w-full mt-[15px]">
+        <div class="lg:max-w-[20%]">
           <AsideComponent {...asideProps} />
         </div>
         <article class="lg:pl-[30px] lg:max-w-[80%] w-full">
@@ -22,7 +22,9 @@ function InstitutionalPage({
             {title}
           </h3>
           {/* @ts-ignore opting for a ignore here so we can use a union type for the content section prop, and display it nicely in the admin panel */}
-          <ContentComponent {...contentProps} />
+          <div class="mt-5 lg:mt-0">
+            <ContentComponent {...contentProps} />
+          </div>
         </article>
       </div>
     </>
