@@ -41,7 +41,7 @@ function AsideMenu(
 
   return (
     <aside class="w-full text-primary font-medium flex lg:justify-end">
-      <ul class="lg:join join-vertical gap-[10px] w-full hidden">
+      <ul class="lg:flex flex-col gap-[10px] w-full hidden">
         {sectionMenu.map((sectionItem, index) => (
           <>
             <li
@@ -55,19 +55,14 @@ function AsideMenu(
               (item, index) => (
                 <li key={index}>
                   <a
-                    class={`
-                  ${
-                      currentUrl === item.href
-                        ? "bg-primary text-white border-none"
-                        : ""
-                    } ${sectionItem?.menuItems.length - 1 === index && "mb-2"}
-                    ${
-                      desktopButtonAlign === "center"
-                        ? "justify-center"
-                        : "justify-start"
-                    }
-                  btn btn-ghost btn-block border border-primary py-2 hover:bg-primary font-normal hover:text-white
-                `}
+                  class={`${
+                    currentUrl === item.href ? "bg-primary text-white " : ""
+                  } ${
+                    desktopButtonAlign === "center"
+                      ? "justify-center"
+                      : "justify-start"
+                  } flex items-center font-normal px-[10px]`}
+                    
                     href={item.href}
                   >
                     {item.label}
