@@ -79,10 +79,10 @@ function AsideMenu(
         ))}
       </ul>
       <div class="lg:hidden block w-full pb-5">
-        <div class="dropdown bg-prima w-full text-sm font-normal">
+        <div class="dropdown w-full text-sm font-normal">
           <label
             tabIndex={0}
-            class="btn btn-secondary btn-block justify-between border-none"
+            class="btn btn-primary btn-block justify-between border-none"
           >
             {currentRoute?.label ?? "Menu"}
             <Icon id="ChevronDown" width={26} height={26} />
@@ -100,10 +100,10 @@ function AsideMenu(
                         class={`
                       ${
                           currentUrl === item.href
-                            ? "bg-primary text-base-100 border-none"
-                            : "text-secondary"
+                            ? "bg-primary text-white border-none"
+                            : "text-primary"
                         }
-                      hover:bg-primary hover:text-base-100
+                      hover:bg-primary hover:text-white
                     `}
                         href={item.href}
                       >
