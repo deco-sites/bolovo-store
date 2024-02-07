@@ -38,7 +38,6 @@ export default function LanguageSwitcher(
           cookieValue.value = decodeURIComponent(
             cookie.substring(cookieName.length + 1),
           );
-          console.log("Cookies", cookieValue.value);
           return; // Interrompe a execução após encontrar o cookie
         }
       }
@@ -49,15 +48,6 @@ export default function LanguageSwitcher(
 
     teste();
   }, [cookieValue.value]);
-
-  countryFlag.map((item) => {
-    console.log(
-      item.languageAbbreviation.toLowerCase() ===
-        cookieValue.value.toLowerCase(),
-      item.languageAbbreviation.toLowerCase(),
-      cookieValue.value.toLowerCase(),
-    );
-  });
 
   return (
     <>
