@@ -61,7 +61,7 @@ function AsideMenu(
                     desktopButtonAlign === "center"
                       ? "justify-center"
                       : "justify-start"
-                  } flex items-center font-normal px-[10px] uppercase`}
+                  } flex items-center font-normal px-[10px] py-1 uppercase`}
                     
                     href={item.href}
                   >
