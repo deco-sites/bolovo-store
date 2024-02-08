@@ -4,10 +4,9 @@ import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import { relative } from "$store/sdk/url.ts";
 
 function VariantSelector(
-  { product, reloadInSelector, loader }: {
+  { product, reloadInSelector }: {
     product: Product;
     reloadInSelector: boolean;
-    loader: ProductListingPage;
   },
 ) {
   const { url, isVariantOf } = product;
@@ -17,7 +16,6 @@ function VariantSelector(
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
   // console.log("variants: ", variants)
-  const { products, filters, breadcrumb, pageInfo, sortOptions } = loader;
   const sizeAndLinks = possibilities.Tamanho || {};
   const colors = possibilities.variante_cor || {};
   // console.log("cor encontrada: ", possibilities)
