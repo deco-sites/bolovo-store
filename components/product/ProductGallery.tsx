@@ -31,10 +31,10 @@ function ProductGallery(
       {products?.map((product, index) => (
         cardSEO && index === 0
           ? (
-            <div class="card card-compact w-full h-full rounded-none bg-[#F6F6F6]">
-              <h1
+            <div class="card card-compact w-full h-full rounded-none bg-[#F6F6F6] overflow-y-auto">
+              <div
                 dangerouslySetInnerHTML={{ __html: cardSEO.text }}
-                class="text-sm leading-[16px] md:max-w-[293px] w-full font-normal text-left md:pl-7 pl-6 pr-6 md:pr-3 pb-8 absolute bottom-0"
+                class="text-sm leading-[16px] md:max-w-[293px] sm:h-auto h-full md:w-full font-normal text-left md:pl-7 pl-6 pr-6 md:pr-3 lg:pb-8 pb-4 absolute bottom-0"
               />
             </div>
           )
