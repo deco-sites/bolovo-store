@@ -11,18 +11,22 @@ import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import { ProductDetailsPage } from "apps/commerce/types.ts";
+import { ProductDetailsPage, Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import markdownToObj from "../../sdk/markdownToObj.ts";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import { CSS, KATEX_CSS, render } from "https://deno.land/x/gfm@0.3.0/mod.ts";
 import type { Description } from "../../sdk/markdownToObj.ts";
 import NavigationDescription from "$store/islands/NavigationDescription.tsx";
+import { Color, FilterName } from "$store/components/search/SearchResult.tsx";
 
 function PDPProductInfo(
-  { page, reloadInSelector }: {
+  { page, reloadInSelector, filterColors , filtersNames}: {
     page: ProductDetailsPage;
     reloadInSelector: boolean;
+    filterColors?: Color[];
+    filtersNames?: FilterName[];
+    colorRelated?: Product[];
   },
 ) {
   const platform = usePlatform();
