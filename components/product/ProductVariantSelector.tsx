@@ -4,9 +4,10 @@ import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import { relative } from "$store/sdk/url.ts";
 
 function VariantSelector(
-  { product, reloadInSelector }: {
+  { product, reloadInSelector, colorRelated }: {
     product: Product;
     reloadInSelector: boolean;
+    colorRelated?: Product[];
   },
 ) {
   const { url, isVariantOf } = product;
