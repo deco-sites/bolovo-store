@@ -17,10 +17,11 @@ function VariantSelector(
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
   // console.log("variants: ", variants)
-
+  const { products, filters, breadcrumb, pageInfo, sortOptions } = loader;
   const sizeAndLinks = possibilities.Tamanho || {};
   const colors = possibilities.variante_cor || {};
-  console.log("cor encontrada: ", colors)
+  // console.log("cor encontrada: ", possibilities)
+  // console.log( "loader", products)
 
   const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => {
     if (reloadInSelector) {
