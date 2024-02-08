@@ -14,6 +14,7 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
+import type { Text } from "$store/sections/Content/TextSEO.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -31,6 +32,15 @@ export interface Props {
   appliedFiltersText?: string;
   applyFiltersText?: string;
   removeFiltersText?: string;
+  cardSEO?: CardSEO[];
+}
+
+export interface CardSEO {
+  /** @title WARNING: Be careful not to configure the SEO Text on the same page where you are configuring the SEO Card */
+  /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
+  matcher: string;
+  /** @format html */
+  text: string;
 }
 
 export interface FilterName {
@@ -73,6 +83,7 @@ export function Result({
   applyFiltersText,
   removeFiltersText,
   url,
+  card,
   buttonsPagination,
   isCategory = false,
 }: Omit<Props, "page"> & {
@@ -82,6 +93,7 @@ export function Result({
   isMobile: boolean;
   url: string;
   isCategory?: boolean;
+  card?: CardSEO;
 }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
@@ -114,6 +126,7 @@ export function Result({
             photoOnPLP={section}
             page={page}
             isMobile={isMobile}
+            cardSEO={card}
           />
         </div>
         <ButtonsPagination page={page} props={buttonsPagination} />
@@ -162,9 +175,13 @@ function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
 export default SearchResult;
 
 export const loader = (props: Props, req: Request) => {
-  const { photoOnPLP } = { ...props };
+  const { photoOnPLP, cardSEO } = { ...props };
 
   const section = photoOnPLP?.find(({ matcher }) =>
+    new URLPattern({ pathname: matcher }).test(req.url)
+  );
+
+  const card = cardSEO?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
@@ -172,5 +189,12 @@ export const loader = (props: Props, req: Request) => {
 
   const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 
-  return { ...props, searchTerm: term ?? "", section, isMobile, url: req.url };
+  return {
+    ...props,
+    searchTerm: term ?? "",
+    section,
+    isMobile,
+    url: req.url,
+    card,
+  };
 };

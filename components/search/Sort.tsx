@@ -30,7 +30,10 @@ function Sort({ sortOptions }: Props) {
   }, [sortContainerRef]);
 
   return (
-    <div class="relative z-20 w-auto mb-[0.35rem] lg:mb-1" ref={sortContainerRef}>
+    <div
+      class="relative z-20 w-auto mb-[0.35rem] lg:mb-1"
+      ref={sortContainerRef}
+    >
       <Button
         class={`btn-ghost btn-xs text-[13px] px-2 py-[5px] font-light uppercase leading-0 hover:bg-transparent ${
           isOpen
