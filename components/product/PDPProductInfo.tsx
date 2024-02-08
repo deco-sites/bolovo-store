@@ -21,7 +21,7 @@ import NavigationDescription from "$store/islands/NavigationDescription.tsx";
 import { Color, FilterName } from "$store/components/search/SearchResult.tsx";
 
 function PDPProductInfo(
-  { page, reloadInSelector, filterColors , filtersNames}: {
+  { page, reloadInSelector, filterColors , filtersNames, colorRelated}: {
     page: ProductDetailsPage;
     reloadInSelector: boolean;
     filterColors?: Color[];
@@ -88,6 +88,7 @@ function PDPProductInfo(
         <ProductSelector
           product={product}
           reloadInSelector={reloadInSelector}
+          colorRelated={colorRelated}
         />
       </div>
       {/* Add to Cart and Favorites button */}
