@@ -124,16 +124,18 @@ function Filters({ filters, filterColors = [], filterNames = [] }: Props) {
                   </div>
                 </li>
               )
-              : filter.label == "cor" && index !== 0 ?
-              <li class="border-b border-opacity-30 border-[#121212] ml-[21px] mr-[15px]">
-              <div class="flex flex-col gap-[7px] mb-4 ">
-                <span class="font-semibold text-[15px] leading-[34.5px] uppercase">
-                  {filter.newLabel ? filter.newLabel : filter.label}
-                </span>
-                <FilterValues {...filter} filterColors={filterColors} />
-              </div>
-            </li> 
-            : (
+              : filter.label == "cor" && index !== 0
+              ? (
+                <li class="border-b border-opacity-30 border-[#121212] ml-[21px] mr-[15px]">
+                  <div class="flex flex-col gap-[7px] mb-4 ">
+                    <span class="font-semibold text-[15px] leading-[34.5px] uppercase">
+                      {filter.newLabel ? filter.newLabel : filter.label}
+                    </span>
+                    <FilterValues {...filter} filterColors={filterColors} />
+                  </div>
+                </li>
+              )
+              : (
                 <div>
                   <div class="collapse items-start w-full mb-[10px]">
                     <input

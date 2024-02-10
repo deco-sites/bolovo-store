@@ -76,7 +76,9 @@ export default function ValueItem({
           <span
             class={`${
               isSelected ? "bg-primary rounded-[20px] text-white " : ""
-            } ${type === "property2" ? "px-3" : "px-[10px]"} flex items-center font-normal uppercase`}
+            } ${
+              type === "property2" ? "px-3" : "px-[10px]"
+            } flex items-center font-normal uppercase`}
           >
             {label}
           </span>

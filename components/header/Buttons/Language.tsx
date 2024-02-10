@@ -3,22 +3,30 @@ import Image from "apps/website/components/Image.tsx";
 import { usePartialSection } from "deco/hooks/usePartialSection.ts";
 import type { Country } from "$store/components/header/Header.tsx";
 
-export default function LanguageSwitcher({ countryFlag }: {
-  countryFlag: Country[];
-}) {
+export default function LanguageSwitcher(
+  { countryFlag, width, height, textClass, class: _class = "" }: {
+    countryFlag: Country[];
+    width?: number;
+    height?: number;
+    textClass?: string;
+    class?: string;
+  },
+) {
   return (
     <>
-      <details class="dropdown px-0 w-full md:w-auto">
-        <summary class=" btn px-0 md:px-2 flex flex-row flex-grow md:flex-nowrap border-none hover:border-none justify-between md:justify-normal bg-transparent hover:bg-transparent w-full uppercase text-base font-normal">
+      <details class={`dropdown px-0 ${_class}`}>
+        <summary class=" btn px-0 md:px-2 flex flex-row flex-grow md:flex-nowrap border-none hover:border-none justify-between md:justify-normal bg-transparent hover:bg-transparent w-full">
           <div class="flex flex-row items-center">
             <Image
               src={countryFlag[0].countryImg.img}
               alt={countryFlag[0].countryImg.alt}
-              width={19}
-              height={12}
-              class="w-[19px] h-3 mr-1"
+              width={width ?? 19}
+              height={height ?? 12}
+              class={`w-[${width}] h-[${height}] mr-1`}
             />
-            <span>{countryFlag[0].countryLabel}</span>
+            <span class={`${textClass ?? "text-[15px]"} uppercase font-normal`}>
+              {countryFlag[0].countryLabel}
+            </span>
           </div>
           <Icon
             id="ChevronDown"
