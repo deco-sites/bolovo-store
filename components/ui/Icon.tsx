@@ -53,7 +53,9 @@ export type AvailableIcons =
   | "Close"
   | "ArrowDown"
   | "FilterArrowRight"
-  | "FilterArrowLeft";
+  | "FilterArrowLeft"
+  | "QuickShop"
+  | "Check";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
