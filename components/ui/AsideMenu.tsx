@@ -74,17 +74,14 @@ function AsideMenu(
         ))}
       </ul>
       <div class="lg:hidden block w-full pb-5">
-        <div class="dropdown w-full text-sm font-normal">
-          <label
-            tabIndex={0}
-            class="btn btn-primary btn-block justify-between border-none"
-          >
+        <div tabIndex={0} class="collapse collapse-arrow w-full rounded-none text-sm font-normal">
+          <input type="checkbox" class="h-0 min-w-full" />
+          <div class="collapse-title items-center text-sm text-white leading-[22px] uppercase bg-primary col-start-0 h-0 px-0 pl-3 py-0 flex gap-2 w-full min-w-full font-medium">
             {currentRoute?.label ?? "Menu"}
-            <Icon id="ChevronDown" width={26} height={26} />
-          </label>
-          <ul class="shadow menu dropdown-content z-10 bg-base-100 mt-5 rounded-box w-full gap-2">
+          </div>
+          <ul class="collapse-content px-0 !pb-0 bg-neutral-100 rounded-none w-full gap-3">
             {sectionMenu.map((sectionItem) => (
-              <>
+              <div class="my-5 mx-2">
                 <li class="text-primary font-semibold">
                   {sectionItem?.sectionTitle}
                 </li>
@@ -98,7 +95,7 @@ function AsideMenu(
                       desktopButtonAlign === "center"
                         ? "justify-center"
                         : "justify-start"
-                    } flex items-center font-normal px-[10px] uppercase`}
+                    } flex items-center font-normal px-[10px] py-1 uppercase`}
                       
                       href={item.href}
                     >
@@ -107,7 +104,7 @@ function AsideMenu(
                   </li>
                   ),
                 )}
-              </>
+              </div>
             ))}
           </ul>
         </div>
