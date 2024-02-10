@@ -22,7 +22,7 @@ export default function LanguageSwitcher(
     location.reload();
   }
   useEffect(() => {
-    async function teste() {
+    async function Validate() {
       const cookieName = "language";
 
       // Divide a string de cookies em pares chave/valor
@@ -47,7 +47,7 @@ export default function LanguageSwitcher(
       cookieValue.value = countryFlag[0].languageAbbreviation;
     }
 
-    teste();
+    Validate();
   }, [cookieValue.value]);
 
   countryFlag.map((item) => {
