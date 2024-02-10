@@ -88,7 +88,7 @@ export default function QuickShop({ product, customClass }: Props) {
           <button
             onClick={() => defineAction(productID)}
             class={`${
-              step.value === "waiting" ? "translate-y-[-145%]" : "translate-y-0"
+              step.value === "waiting" ? "translate-y-[-145%] h-min" : "translate-y-0"
             }`}
           >
             {step.value === "waiting"
