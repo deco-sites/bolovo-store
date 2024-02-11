@@ -4,7 +4,7 @@ import FooterItems from "$store/components/footer/FooterItems.tsx";
 import Social from "$store/components/footer/Social.tsx";
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import LanguageSwitcher from "$store/components/header/Buttons/Language.tsx";
+import LanguageSwitcher from "$store/islands/Header/ButtonLanguage.tsx";
 import { Country } from "$store/components/header/Header.tsx";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";

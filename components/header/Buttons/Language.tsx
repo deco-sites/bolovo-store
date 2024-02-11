@@ -90,7 +90,7 @@ export default function LanguageSwitcher(
           {countryFlag.map((iten) => {
             return (
               <button
-                class="cursor-pointer m-1 flex justify-center items-center uppercase gap-2 h-8 px-0 flex-row flex-nowrap border-none hover:border-none bg-transparent hover:bg-transparent w-max text-base font-normal" 
+                class="cursor-pointer m-1 flex justify-center items-center uppercase gap-2 h-8 px-0 flex-row flex-nowrap border-none hover:border-none bg-transparent hover:bg-transparent w-max text-base font-normal"
                 onClick={() => setLanguageCookie(iten.languageAbbreviation)}
               >
                 <Image
