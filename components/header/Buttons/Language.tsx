@@ -22,7 +22,7 @@ export default function LanguageSwitcher(
     location.reload();
   }
   useEffect(() => {
-    async function teste() {
+    async function Validate() {
       const cookieName = "language";
 
       // Divide a string de cookies em pares chave/valor
@@ -46,7 +46,7 @@ export default function LanguageSwitcher(
       cookieValue.value = countryFlag[0].languageAbbreviation;
     }
 
-    teste();
+    Validate();
   }, [cookieValue.value]);
 
   return (
@@ -90,9 +90,7 @@ export default function LanguageSwitcher(
           {countryFlag.map((iten) => {
             return (
               <button
-                class="cursor-pointer m-1 flex justify-center items-center uppercase gap-2 h-8 px-0 flex-row flex-nowrap border-none hover:border-none bg-transparent hover:bg-transparent w-max text-base font-normal" // {...usePartialSection({
-                //   props: { Abbreviation: iten.languageAbbreviation },
-                // })}
+                class="cursor-pointer m-1 flex justify-center items-center uppercase gap-2 h-8 px-0 flex-row flex-nowrap border-none hover:border-none bg-transparent hover:bg-transparent w-max text-base font-normal" 
                 onClick={() => setLanguageCookie(iten.languageAbbreviation)}
               >
                 <Image
