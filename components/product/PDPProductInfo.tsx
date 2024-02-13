@@ -50,12 +50,24 @@ function PDPProductInfo(
     seller = "1",
     installments,
     availability,
+    priceIntl = 0,
+    listPriceIntl,
+    sellerIntl = "1",
+    installmentsIntl,
+    availabilityIntl,
   } = useOffer(offers);
   const productGroupID = isVariantOf?.productGroupID ?? "";
-  const discount = price && listPrice ? listPrice - price : 0;
   const objDescription: Description | null = description
-    ? markdownToObj(description)
-    : null;
+  ? markdownToObj(description)
+  : null;
+  
+  const currency = offers?.offers[1]?.priceCurrency || offers?.priceCurrency ||
+  "BRL";
+  const productPrice = priceIntl || price;
+  const productListPrice = listPriceIntl || listPrice || 0;
+  const discount = productPrice && productListPrice ? productListPrice - productPrice : 0;
+  
+  console.log("price", offers?.offers[1], availabilityIntl)
 
   return (
     <div class="flex flex-col w-full p-4 lg:p-0">
@@ -68,13 +80,13 @@ function PDPProductInfo(
         {/* Prices */}
         <div>
           <div class="flex flex-row gap-2 items-center">
-            {(listPrice ?? 0) > price && (
+            {(productListPrice ?? 0) > productListPrice && (
               <span class="line-through text-base-300 text-xs">
-                {formatPrice(listPrice, offers?.priceCurrency)}
+                {formatPrice(productListPrice, currency)}
               </span>
             )}
             <span class=" text-base">
-              {formatPrice(price, offers?.priceCurrency)}
+              {formatPrice(productPrice, currency)}
             </span>
           </div>
         </div>
