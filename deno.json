@@ -2,8 +2,8 @@
   "imports": {
     "deco-sites/bolovo-store/": "./",
     "$store/": "./",
-    "deco/": "https://denopkg.com/deco-cx/deco@1.52.18/",
-    "apps/": "../apps/",
+    "deco/": "https://denopkg.com/deco-cx/deco@1.53.1/",
+    "apps/": "https://denopkg.com/deco-cx/apps@0.32.35/",
     "$fresh/": "https://deno.land/x/fresh@1.6.3/",
     "preact": "https://esm.sh/preact@10.19.2",
     "preact/": "https://esm.sh/preact@10.19.2/",

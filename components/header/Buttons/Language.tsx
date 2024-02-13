@@ -38,7 +38,6 @@ export default function LanguageSwitcher(
           cookieValue.value = decodeURIComponent(
             cookie.substring(cookieName.length + 1),
           );
-          console.log("Cookies", cookieValue.value);
           return; // Interrompe a execução após encontrar o cookie
         }
       }
@@ -49,15 +48,6 @@ export default function LanguageSwitcher(
 
     Validate();
   }, [cookieValue.value]);
-
-  countryFlag.map((item) => {
-    console.log(
-      item.languageAbbreviation.toLowerCase() ===
-        cookieValue.value.toLowerCase(),
-      item.languageAbbreviation.toLowerCase(),
-      cookieValue.value.toLowerCase(),
-    );
-  });
 
   return (
     <>
@@ -100,9 +90,7 @@ export default function LanguageSwitcher(
           {countryFlag.map((iten) => {
             return (
               <button
-                class="cursor-pointer m-1 flex justify-center items-center uppercase gap-2 h-8 px-0 flex-row flex-nowrap border-none hover:border-none bg-transparent hover:bg-transparent w-max text-base font-normal" // {...usePartialSection({
-                //   props: { Abbreviation: iten.languageAbbreviation },
-                // })}
+                class="cursor-pointer m-1 flex justify-center items-center uppercase gap-2 h-8 px-0 flex-row flex-nowrap border-none hover:border-none bg-transparent hover:bg-transparent w-max text-base font-normal"
                 onClick={() => setLanguageCookie(iten.languageAbbreviation)}
               >
                 <Image
