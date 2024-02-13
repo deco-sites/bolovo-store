@@ -80,11 +80,11 @@ function ProductCard(
 
   const { activePriceIntl } = useUI();
 
-  const currency = activePriceIntl.value &&
-      offers?.offers[1]?.priceCurrency ||
-    offers?.priceCurrency ||
-    "BRL";
-  const productPrice = activePriceIntl.value && priceIntl || price;
+  const currency = activePriceIntl.value
+    ? offers?.offers[1]?.priceCurrency || "USD"
+    : offers?.priceCurrency ||
+      "BRL";
+  const productPrice = activePriceIntl.value ? priceIntl || 0 : price;
   const productListPrice = activePriceIntl.value && listPriceIntl || listPrice;
 
   const l = layout;
@@ -148,8 +148,10 @@ function ProductCard(
     <div
       id={id}
       class={`card card-compact group w-full ${
-        align === "center" ? "text-center" : "text-start"
-      } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
+        productPrice === 0 && "opacity-70"
+      } ${align === "center" ? "text-center" : "text-start"} ${
+        l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
+      }
         ${
         l?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
@@ -333,7 +335,7 @@ function ProductCard(
                     {formatPrice(productListPrice, currency)}
                   </div>
                   <div class="text-black leading-[130%] text-[14px] lg:text-end">
-                    {formatPrice(productPrice, currency)}
+                    {formatPrice(productPrice, currency)|| 'US$ 0,00'}
                   </div>
                 </div>
                 <div>
