@@ -7,15 +7,15 @@ export interface Props extends Omit<BtnProps, "onAddItem" | "platform"> {
 }
 
 function AddToCartButton(props: Props) {
-  const { addItem } = useCart();
-  const onAddItem = () =>
-    addItem({
-      quantity: 1,
-      itemId: props.productID,
-      attributes: Object.fromEntries(
-        props.additionalProperty.map(({ name, value }) => [name, value]),
-      ),
-    });
+    const { addItem } = useCart();
+    const onAddItem = () =>
+      addItem({
+        quantity: 1,
+        itemId: props.productID,
+        attributes: Object.fromEntries(
+          props.additionalProperty.map(({ name, value }) => [name, value]),
+        ),
+      });
 
   return <Button onAddItem={onAddItem} {...props} />;
 }
