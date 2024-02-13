@@ -9,6 +9,7 @@ import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useUI } from "../../sdk/useUI.ts";
+import QuickShop from "$store/islands/QuickShop.tsx";
 
 export interface Layout {
   basics?: {
@@ -99,7 +100,7 @@ function ProductCard(
     <li>
       <a href={link}>
         <Avatar
-          variant={link === url ? "active" : link ? "default" : "disabled"}
+          variant={"default"}
           content={size}
         />
       </a>
@@ -147,7 +148,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`card card-compact group w-full ${
+      class={`card card-compact group w-full relative ${
         productPrice === 0 && "opacity-70"
       } ${align === "center" ? "text-center" : "text-start"} ${
         l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
@@ -180,6 +181,10 @@ function ProductCard(
         class="relative overflow-hidden aspect-[219.38326/300] lg:aspect-[239.13935/300]"
         style={{ backgroundColor: "#F6F6F6" }}
       >
+        <QuickShop
+          product={product}
+          customClass={"lg:group-hover:translate-y-0 lg:group-hover:bg-base-100"}
+        />
         {/* Wishlist button */}
         <div
           class={`absolute top-2 z-10
@@ -281,25 +286,28 @@ function ProductCard(
         </figcaption>
       </figure>
       {
-        /*<div>
-               Seletor de Tamanhos (Esse aqui eu optei por esconder por talvez utilizarmos ele futuramente, no caso ele ja ta funcionando direitinho)
-                {(!l?.elementsPositions?.skuSelector ||
-                  l?.elementsPositions?.skuSelector === "Top") && (
-                  <>
-                    {l?.hide?.skuSelector ? "" : (
-                      <div class="group">
-                      <ul
-                        class={`absolute bottom-0 left-0 flex items-center gap-2 w-full overflow-auto p-3 transition-opacity duration-300 opacity-0 group-hover:opacity-100 ${
-                          align === "center" ? "justify-center" : "justify-start"
-                        } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-                      >
-                        {skuSelector}
-                      </ul>
-                      </div>
-                    )}
-                  </>
-                )}
-        </div>*/
+        /* {
+        <div>
+          Seletor de Tamanhos (Esse aqui eu optei por esconder por talvez
+          utilizarmos ele futuramente, no caso ele ja ta funcionando direitinho)
+          {(!l?.elementsPositions?.skuSelector ||
+            l?.elementsPositions?.skuSelector === "Top") && (
+            <>
+              {l?.hide?.skuSelector ? "" : (
+                <div class="group">
+                  <ul
+                    class={`absolute bottom-0 left-0 flex items-center gap-2 w-full overflow-auto p-3 transition-opacity duration-300 opacity-0 group-hover:opacity-100 ${
+                      align === "center" ? "justify-center" : "justify-start"
+                    } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
+                  >
+                    {skuSelector}
+                  </ul>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      } */
       }
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col pt-[15px] lg:pt-5 gap-3 lg:gap-4">
