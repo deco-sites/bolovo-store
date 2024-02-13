@@ -9,6 +9,9 @@ import { Props as AlertProps } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 import type { ContentBlogItem } from "./ContentItem.tsx";
+import { getCookies } from "std/http/cookie.ts";
+import type { SectionProps } from "deco/types.ts";
+import { useUI } from "../../sdk/useUI.ts";
 
 export interface Country {
   countryLabel: string;
@@ -72,19 +75,20 @@ export interface Props {
   countryFlag: Country[];
 }
 
-function Header({
-  promotionBar,
-  searchbar,
-  menu,
-  contentBlog,
-  logo,
-  buttonSearch,
-  miniCart,
-  helpItem,
-  accountHref,
-  countryFlag,
-}: Props) {
+function Header(props: SectionProps<ReturnType<typeof loader>>) {
   const platform = usePlatform();
+
+  const {
+    menu,
+    searchbar,
+    miniCart,
+    promotionBar,
+    logo,
+    buttonSearch,
+    helpItem,
+    countryFlag,
+    accountHref,
+  } = props;
   const items = menu.items ?? [];
 
   return (
@@ -117,3 +121,16 @@ function Header({
 }
 
 export default Header;
+
+export const loader = (props: Props, req: Request) => {
+  const { activePriceIntl } = useUI();
+  const cookies = getCookies(req.headers);
+
+  if (cookies.language === "en") {
+    activePriceIntl.value = true;
+  } else {
+    activePriceIntl.value = false;
+  }
+
+  return { ...props };
+};

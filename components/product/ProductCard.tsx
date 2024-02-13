@@ -8,6 +8,7 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
+import { useUI } from "../../sdk/useUI.ts";
 
 export interface Layout {
   basics?: {
@@ -77,10 +78,14 @@ function ProductCard(
   const possibilities = useVariantPossibilities(hasVariant, product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
-  const currency = offers?.offers[1]?.priceCurrency || offers?.priceCurrency ||
+  const { activePriceIntl } = useUI();
+
+  const currency = activePriceIntl.value &&
+      offers?.offers[1]?.priceCurrency ||
+    offers?.priceCurrency ||
     "BRL";
-  const productPrice = priceIntl || price;
-  const productListPrice = listPriceIntl || listPrice;
+  const productPrice = activePriceIntl.value && priceIntl || price;
+  const productListPrice = activePriceIntl.value && listPriceIntl || listPrice;
 
   const l = layout;
   const align =
