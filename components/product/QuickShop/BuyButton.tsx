@@ -22,8 +22,8 @@ export default function BuyButton(
           </button>
         )
         : (
-          <button class="text-[#E0E0E0] cursor-not-allowed relative false w-auto flex items-center justify-center group/number ">
-            <span class="cursor-not-allowed false flex h-6 w-6 text-center items-center justify-center uppercase">
+          <button class="text-[#E0E0E0] cursor-not-allowed relative false flex items-center justify-center group/number w-full">
+            <span class="cursor-not-allowed false flex h-6 text-center items-center justify-center uppercase w-full">
               Produto indisponivel
             </span>
             <span class="absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[34px]">
