@@ -5,13 +5,13 @@ interface Props {
   productID: string;
   additionalProperty: PropertyValue[];
   availability: ItemAvailability | undefined;
+  priceIntl: boolean;
   onAddItem: (productID: string, additionalProperty: PropertyValue[]) => void;
 }
 
 export default function BuyButton(
-  { availability, productID, additionalProperty, onAddItem }: Props,
+  { availability, productID, additionalProperty, priceIntl, onAddItem }: Props,
 ) {
-  const { activePriceIntl } = useUI();
 
   return (
     <li class="w-full hidden lg:flex">
@@ -21,13 +21,13 @@ export default function BuyButton(
             class="text-primary w-full m-auto uppercase hover:font-semibold"
             onClick={() => onAddItem(productID, additionalProperty)}
           >
-            {activePriceIntl.value.active ? "add to cart" : "Adicionar ao carrinho"}
+            {priceIntl ? "add to cart" : "Adicionar ao carrinho"}
           </button>
         )
         : (
           <button class="text-[#E0E0E0] cursor-not-allowed relative false flex items-center justify-center group/number w-full">
             <span class="cursor-not-allowed false flex h-6 text-center items-center justify-center uppercase w-full">
-              {activePriceIntl.value.active ? "out of stock" : " Produto indisponivel"}
+              {priceIntl ? "out of stock" : " Produto indisponivel"}
             </span>
             <span class="absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[34px]">
             </span>

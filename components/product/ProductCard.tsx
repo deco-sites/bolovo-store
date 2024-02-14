@@ -187,6 +187,7 @@ function ProductCard(
             <QuickShop
               product={product}
               customClass={`lg:group-hover:translate-y-0 lg:group-hover:bg-base-100`}
+              priceIntl={activePriceIntl.value.active}
             />
           )}
         {/* Wishlist button */}

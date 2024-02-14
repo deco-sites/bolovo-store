@@ -7,11 +7,12 @@ interface Props {
   productID: string;
   availability: ItemAvailability | undefined;
   additionalProperty: PropertyValue[];
+  priceIntl:boolean;
   onAddItem: (id: string, additionalProperty: PropertyValue[]) => void;
 }
 
 export default function SkuSelector(
-  { variants, productID, availability, additionalProperty, onAddItem }: Props,
+  { variants, productID, availability, additionalProperty, priceIntl, onAddItem }: Props,
 ) {
   if (
     variants === undefined || variants === null || variants?.length == 0
@@ -52,6 +53,7 @@ export default function SkuSelector(
             additionalProperty={additionalProperty}
             availability={availability}
             onAddItem={onAddItem}
+            priceIntl={priceIntl}
           />
         )}
     </>
