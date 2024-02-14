@@ -81,12 +81,12 @@ function ProductCardGallery(
 
   const { activePriceIntl } = useUI();
 
-  const currency = activePriceIntl.value
+  const currency = activePriceIntl.value.active
     ? offers?.offers[1]?.priceCurrency || "USD"
     : offers?.priceCurrency ||
       "BRL";
-  const productPrice = activePriceIntl.value ? priceIntl || 0 : price;
-  const productListPrice = activePriceIntl.value && listPriceIntl || listPrice;
+  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
+  const productListPrice = activePriceIntl.value.active && listPriceIntl || listPrice;
 
   const l = layout;
   const align =

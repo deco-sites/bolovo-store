@@ -127,10 +127,14 @@ export const loader = (props: Props, req: Request) => {
   const cookies = getCookies(req.headers);
 
   if (cookies.language === "en") {
-    activePriceIntl.value = true;
+    activePriceIntl.value.active = true;
+    activePriceIntl.value.value = cookies.language;
   } else {
-    activePriceIntl.value = false;
+    activePriceIntl.value.active = false;
+    activePriceIntl.value.value = cookies.language;
   }
+
+  console.log("header server", activePriceIntl.value)
 
   return { ...props };
 };

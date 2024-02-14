@@ -3,6 +3,7 @@ import Image from "apps/website/components/Image.tsx";
 import { useSignal } from "@preact/signals";
 import type { Country } from "$store/components/header/Header.tsx";
 import { useEffect } from "preact/hooks";
+import { useUI } from "../../../sdk/useUI.ts";
 
 export interface Props {
   countryFlag: Country[];
@@ -15,7 +16,10 @@ export interface Props {
 export default function LanguageSwitcher(
   { countryFlag, width, height, textClass, class: _class = "" }: Props,
 ) {
-  const cookieValue = useSignal(countryFlag[0].languageAbbreviation);
+  const { activePriceIntl } = useUI();
+  const cookieValue = useSignal<string>(
+    activePriceIntl.value.value || countryFlag[0].languageAbbreviation,
+  );
 
   function setLanguageCookie(languageCode: string) {
     document.cookie = "language=" + languageCode.toLowerCase() + "; path=/";
@@ -23,6 +27,7 @@ export default function LanguageSwitcher(
   }
   useEffect(() => {
     async function Validate() {
+      console.log("useEffect");
       const cookieName = "language";
 
       // Divide a string de cookies em pares chave/valor
@@ -38,6 +43,10 @@ export default function LanguageSwitcher(
           cookieValue.value = decodeURIComponent(
             cookie.substring(cookieName.length + 1),
           );
+          activePriceIntl.value.value = cookieValue.value;
+          activePriceIntl.value.active = cookieValue.value === "en"
+            ? true
+            : false;
           return; // Interrompe a execução após encontrar o cookie
         }
       }
@@ -45,7 +54,6 @@ export default function LanguageSwitcher(
       // Se o cookie não for encontrado, use um valor padrão
       cookieValue.value = countryFlag[0].languageAbbreviation;
     }
-
     Validate();
   }, [cookieValue.value]);
 

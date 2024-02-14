@@ -32,25 +32,25 @@ function Notify({ productID }: Props) {
   return (
     <form class="form-control justify-start gap-2" onSubmit={handleSubmit}>
       <span class="text-base">
-        {activePriceIntl.value
+        {activePriceIntl.value.active
           ? "This product is currently unavailable."
           : "Este produto está indisponivel no momento"}
       </span>
       <span class="text-sm">
-        {activePriceIntl.value
+        {activePriceIntl.value.active
           ? "Notify me when it becomes available."
           : "Avise-me quando estiver disponivel"}
       </span>
 
       <input
-        placeholder={activePriceIntl.value ? "Name" : "Nome"}
+        placeholder={activePriceIntl.value.active ? "Name" : "Nome"}
         class="input input-bordered"
         name="name"
       />
       <input placeholder="Email" class="input input-bordered" name="email" />
 
       <button class="btn disabled:loading" disabled={loading}>
-        {activePriceIntl.value ? "Send" : "Enviar"}
+        {activePriceIntl.value.active ? "Send" : "Enviar"}
       </button>
     </form>
   );
