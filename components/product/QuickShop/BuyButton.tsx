@@ -1,5 +1,4 @@
 import type { ItemAvailability, PropertyValue } from "apps/commerce/types.ts";
-import { useUI } from "../../../sdk/useUI.ts";
 
 interface Props {
   productID: string;
