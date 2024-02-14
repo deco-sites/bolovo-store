@@ -77,6 +77,7 @@ export interface Props {
 
 function Header(props: SectionProps<ReturnType<typeof loader>>) {
   const platform = usePlatform();
+  const { activePriceIntl } = useUI();
 
   const {
     menu,
@@ -99,6 +100,7 @@ function Header(props: SectionProps<ReturnType<typeof loader>>) {
           searchbar={searchbar}
           miniCart={miniCart}
           platform={platform}
+          priceIntl={activePriceIntl.value.active}
         >
           <div class="bg-base-100 fixed w-full z-50">
             <Alert {...promotionBar} />
