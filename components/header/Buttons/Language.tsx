@@ -11,10 +11,18 @@ export interface Props {
   height?: number;
   textClass?: string;
   class?: string;
+  classFlags?: string;
 }
 
 export default function LanguageSwitcher(
-  { countryFlag, width, height, textClass, class: _class = "" }: Props,
+  {
+    countryFlag,
+    width,
+    height,
+    textClass,
+    class: _class = "",
+    classFlags = "",
+  }: Props,
 ) {
   const { activePriceIntl } = useUI();
   const cookieValue = useSignal<string>(
@@ -72,8 +80,8 @@ export default function LanguageSwitcher(
                 <Image
                   src={iten.countryImg.img}
                   alt={iten.countryImg.alt}
-                  width={width ?? 19}
-                  height={height ?? 12}
+                  width={19}
+                  height={12}
                   className={`w-[${width}] h-[${height}] mr-1`}
                 />
                 <span
@@ -93,7 +101,9 @@ export default function LanguageSwitcher(
             fill="none"
           />
         </summary>
-        <ul class="p-2 shadow menu w-auto dropdown-content z-[1] bg-base-100 rounded-box">
+        <ul
+          class={`p-2 shadow menu w-auto dropdown-content z-[1] bg-base-100 rounded-box ${classFlags}`}
+        >
           {countryFlag.map((iten) => {
             return (
               <button
