@@ -3,100 +3,57 @@ import { Color } from "$store/components/search/SearchResult.tsx";
 interface Props {
   /** @title Color props */
   colors: Color[];
-  
 }
-
 /** @title Color Map Configuration */
 const loader = ({ colors }: Props): Color[] => colors;
 
-// export const Preview = (props: Props) => {
-//   const { layout } = props;
+function colorSelector(colors: Color[]) {
+  return colors.map((colorVariant, index) => { // Adicione o retorno aqui
+    const selectedColor = colors.find(color => color.label.toLowerCase() === colorVariant.label.toLowerCase());
+    if (!selectedColor) return null;
 
-//   return (
-//     <div class="h-full w-full grid place-items-center">
-//       <div class="max-w-xs">
-//         <ProductCard
-//           layout={layout}
-//           platform={usePlatform()}
-//           product={{
-//             "@type": "Product",
-//             "category": "Masculino>Camisetas Gola Lisa",
-//             "productID": "165",
-//             "url": "",
-//             "name": "Product Test",
-//             "description": "Product Description",
-//             "brand": {
-//               "@type": "Brand",
-//               "@id": "2000000",
-//               "name": "deco.cx",
-//             },
-//             "inProductGroupWithID": "33",
-//             "sku": "165",
-//             "gtin": "789456123003305",
-//             "additionalProperty": [
-//               {
-//                 "@type": "PropertyValue",
-//                 "name": "TAMANHO",
-//                 "value": "GG",
-//                 "valueReference": "SPECIFICATION",
-//               },
-//             ],
-//             "isVariantOf": {
-//               "@type": "ProductGroup",
-//               "productGroupID": "33",
-//               "hasVariant": [],
-//               "name": "Camiseta Masculina Gola Lisa Olive",
-//               "additionalProperty": [],
-//             },
-//             "image": [
-//               {
-//                 "@type": "ImageObject",
-//                 "alternateName": "test",
-//                 "url":
-//                   "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2291/b9e0a819-6a75-47af-84fe-90b44fecda5f",
-//               },
-//               {
-//                 "@type": "ImageObject",
-//                 "alternateName": "test",
-//                 "url":
-//                   "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2291/b9e0a819-6a75-47af-84fe-90b44fecda5f",
-//               },
-//             ],
-//             "offers": {
-//               "@type": "AggregateOffer",
-//               "priceCurrency": "BRL",
-//               "highPrice": 69.3,
-//               "lowPrice": 69.3,
-//               "offerCount": 1,
-//               "offers": [
-//                 {
-//                   "@type": "Offer",
-//                   "price": 69.3,
-//                   "seller": "1",
-//                   "priceValidUntil": "2024-09-04T13:03:31Z",
-//                   "inventoryLevel": { "value": 10000 },
-//                   "teasers": [],
-//                   "priceSpecification": [
-//                     {
-//                       "@type": "UnitPriceSpecification",
-//                       "priceType": "https://schema.org/ListPrice",
-//                       "price": 179,
-//                     },
-//                     {
-//                       "@type": "UnitPriceSpecification",
-//                       "priceType": "https://schema.org/SalePrice",
-//                       "price": 69.3,
-//                     },
-//                   ],
-//                   "availability": "https://schema.org/InStock",
-//                 },
-//               ],
-//             },
-//           }}
-//         />
-//       </div>
-//     </div>
-//   );
-// };
+    const isSvg = selectedColor.hex !== undefined;
+
+    return (
+      <li key={index}>
+        <div
+          className="w-[22px] h-[22px] flex items-center justify-center border"
+          title={`Cor ${colorVariant.label}`}
+        >
+          {isSvg ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 22 22"
+              fill="none"
+            >
+              <rect x="0" y="0" width="22" height="22" fill={selectedColor.hex} />
+            </svg>
+          ) : (
+            <img src={selectedColor.src} alt={`Cor ${colorVariant.label}`} />
+          )}
+        </div>
+      </li>
+    );
+  });
+}
+
+export const Preview = (props: Props) => {
+  const { colors } = props;
+
+  return (
+    <div class="flex flex-col gap-[7px] mb-4 mt-4">
+      <span class="font-semibold text-[15px] leading-[34.5px] uppercase">
+        CORES
+      </span>
+      <div class="group">
+        <ul class="flex items-center gap-[26px] lg:gap-[24px] justify-start ">
+          {colorSelector(colors)}
+        </ul>
+      </div>
+    </div>
+  );
+};
 
 export default loader;
