@@ -70,7 +70,7 @@ export default function AddToCartButton(props: Props) {
       class="w-full uppercase h-[30px] rounded-full bg-white border-black border-2 text-sm text-black no-animation btn btn-active btn-sm  hover:bg-white
     "
     >
-      {activePriceIntl.value ? "Buy" : "Comprar"}
+      {activePriceIntl.value.active ? "Buy" : "Comprar"}
     </Button>
   );
 }

@@ -9,7 +9,7 @@ const displayCart = signal(false);
 const displayMenu = signal(false);
 const displaySearchPopup = signal(false);
 const displaySearchDrawer = signal(false);
-const activePriceIntl = signal(false)
+const activePriceIntl = signal({value: "", active: false})
 
 const state = {
   displayCart,

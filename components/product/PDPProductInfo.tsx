@@ -64,11 +64,11 @@ function PDPProductInfo(
 
   const { activePriceIntl } = useUI();
 
-  const currency = activePriceIntl.value
+  const currency = activePriceIntl.value.active
     ? offers?.offers[1]?.priceCurrency || "USD"
     : offers?.priceCurrency ||
       "BRL";
-  const productPrice = activePriceIntl.value ? priceIntl || 0 : price;
+  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
   const productListPrice = listPriceIntl || listPrice || 0;
   const discount = productPrice && productListPrice
     ? productListPrice - productPrice
@@ -105,7 +105,7 @@ function PDPProductInfo(
       </div>
       {/* Add to Cart and Favorites button */}
       <div class="mt-4 sm:mt-10 flex flex-col gap-2">
-        {activePriceIntl.value
+        {activePriceIntl.value.active
           ? productPrice
             ? (
               <>
