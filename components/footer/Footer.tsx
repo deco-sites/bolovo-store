@@ -15,7 +15,7 @@ export type Item = {
   href: string;
   /** @format html */
   extraInfo?: HTMLWidget;
-  newTab?: boolean
+  newTab?: boolean;
 };
 
 export type Section = {
@@ -194,55 +194,57 @@ function Footer({
       }`}
     >
       <div class="w-full">
-          <div>
-            <div class="flex flex-row justify-center pt-[45px] pb-[51px] md:pt-[65px] md:pb-[71px] md:bg-transparent bg-[#F6F6F6] border-y border-primary">
-              {_newsletter}
+        <div>
+          <div class="flex flex-row justify-center pt-[45px] pb-[51px] md:pt-[65px] md:pb-[71px] md:bg-transparent bg-[#F6F6F6] border-y border-primary">
+            {_newsletter}
+          </div>
+          <div class="flex flex-col w-full flex-grow gap-5">
+            <div class="w-full flex flex-row items-center justify-between pl-[29px] pr-[25px] pt-[57px] md:pt-[45px]">
+              {footerLogos?.map((logo) => (
+                <img
+                  src={logo.src}
+                  width={logo.width}
+                  height={logo.height}
+                  alt={logo.alt}
+                />
+              ))}
             </div>
-            <div class="flex flex-col w-full flex-grow gap-5">
-              <div class="w-full flex flex-row items-center justify-between pl-[29px] pr-[25px] pt-[57px] md:pt-[45px]">
-                {footerLogos?.map((logo) => (
-                  <img
-                    src={logo.src}
-                    width={logo.width}
-                    height={logo.height}
-                    alt={logo.alt}
-                  />
-                ))}
-              </div>
-              <div class="text-center w-full pb-[19px] md:pb-[49px] pt-[10px]">
-                <Image
-                  class="md:mx-auto px-4 md:px-0"
-                  src={footerTexts?.footerTitle ?? ""}
-                  alt={footerTexts?.alt}
-                  width={514}
-                  height={38}
-                />
-                <p class="pb-9 text-[11px] font-normal text-primary pt-5">
-                  {footerTexts?.subTitle}
-                </p>
-                <div
-                  class="md:mx-auto px-4 md:px-0 md:max-w-[512px] w-full font-normal text-xs leading-[22px] tracking-[2%]"
-                  dangerouslySetInnerHTML={{ __html: footerTexts?.text ?? "" }}
-                />
-              </div>
-              <div class="md:hidden flex flex-row items-center justify-center mb-[34px]">
-                <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-[11px]">
-                  {changeCountryText}
-                </span>
-                <LanguageSwitcher
-                  countryFlag={countryFlag}
-                  width={24}
-                  height={24}
-                  textClass="text-[14px]"
-                  class="w-auto"
-                />
-              </div>
-              <div class="flex pb-[34px] w-full flex-grow gap-[30px] md:pl-[29px] ms:px-0 px-[15px] md:pr-[25px]">
-                {_sectionLinks}
-              </div>
-              <div class="border-b ml-7 mr-[25px]" />
-              <div class="flex flex-row justify-between items-center md:pl-[29px] md:pr-[25px] px-[15px] md:px-0 w-full">
-                {whatsApp && <a
+            <div class="text-center w-full pb-[19px] md:pb-[49px] pt-[10px]">
+              <Image
+                class="md:mx-auto px-4 md:px-0"
+                src={footerTexts?.footerTitle ?? ""}
+                alt={footerTexts?.alt}
+                width={514}
+                height={38}
+              />
+              <p class="pb-9 text-[11px] font-normal text-primary pt-5">
+                {footerTexts?.subTitle}
+              </p>
+              <div
+                class="md:mx-auto px-4 md:px-0 md:max-w-[512px] w-full font-normal text-xs leading-[22px] tracking-[2%]"
+                dangerouslySetInnerHTML={{ __html: footerTexts?.text ?? "" }}
+              />
+            </div>
+            <div class="md:hidden flex flex-row items-center justify-center mb-[34px]">
+              <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-[11px]">
+                {changeCountryText}
+              </span>
+              <LanguageSwitcher
+                countryFlag={countryFlag}
+                width={24}
+                height={24}
+                textClass="text-[14px]"
+                class="w-auto "
+                classFlags="shadow-[0px_-3px_7px_2px_rgba(0, 0, 0, 0.1)] bottom-full"
+              />
+            </div>
+            <div class="flex pb-[34px] w-full flex-grow gap-[30px] md:pl-[29px] ms:px-0 px-[15px] md:pr-[25px]">
+              {_sectionLinks}
+            </div>
+            <div class="border-b ml-7 mr-[25px]" />
+            <div class="flex flex-row justify-between items-center md:pl-[29px] md:pr-[25px] px-[15px] md:px-0 w-full">
+              {whatsApp && (
+                <a
                   href={`https://api.whatsapp.com/send?phone=${whatsApp.whatsAppNumber}&text=${whatsApp.whatsAppText}`}
                   class="md:hidden flex flex-row rounded-[19px] border border-primary items-center cursor-pointer h-[38px] w-[214px]"
                 >
@@ -252,34 +254,36 @@ function Footer({
                   <span class="text-sm font-medium leading-[22px] text-right w-full pr-[19px]">
                     {whatsApp.whatsAppButtonText}
                   </span>
-                </a>}
-                <div class="flex flex-row items-center">
-                  <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-[9px] md:flex hidden">
-                    {followBolovoText}
-                  </span>
-                  {_social}
-                </div>
-                <div class="md:flex hidden flex-row items-center">
-                  <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-1">
-                    {changeCountryText}
-                  </span>
-                  <LanguageSwitcher
-                    countryFlag={countryFlag}
-                    width={24}
-                    height={24}
-                    textClass="text-[14px]"
-                    class="w-auto"
-                  />
-                </div>
+                </a>
+              )}
+              <div class="flex flex-row items-center">
+                <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-[9px] md:flex hidden">
+                  {followBolovoText}
+                </span>
+                {_social}
               </div>
-              <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px] border-t border-primary">
-                <div
-                  class="text-center font-normal text-xs pt-[15px]"
-                  dangerouslySetInnerHTML={{ __html: extraInfo ?? "" }}
+              <div class="md:flex hidden flex-row items-center">
+                <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-1">
+                  {changeCountryText}
+                </span>
+                <LanguageSwitcher
+                  countryFlag={countryFlag}
+                  width={24}
+                  height={24}
+                  textClass="text-[14px] mt-1"
+                  class="w-auto"
+                  classFlags="shadow-[0px_-3px_7px_2px_rgba(0,0,0,0.1)] bottom-full"
                 />
               </div>
             </div>
+            <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px] border-t border-primary">
+              <div
+                class="text-center font-normal text-xs pt-[15px]"
+                dangerouslySetInnerHTML={{ __html: extraInfo ?? "" }}
+              />
+            </div>
           </div>
+        </div>
       </div>
       {layout?.hide?.backToTheTop
         ? <></>
