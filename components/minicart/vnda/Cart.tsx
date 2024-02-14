@@ -1,6 +1,7 @@
 import { itemToAnalyticsItem, useCart } from "apps/vnda/hooks/useCart.ts";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import BaseCart from "../common/Cart.tsx";
+import type { Item } from "../common/CartItem.tsx";
 
 export interface MiniCartProps {
   /**
@@ -38,18 +39,43 @@ const normalizeUrl = (url: string) =>
   url.startsWith("//") ? `https:${url}` : url;
 
 function Cart(
-  { freeShippingTarget, freeShippingValueColor, cartTranslations }:
-    MiniCartProps,
+  { miniCartProps, priceIntl }: {
+    miniCartProps: MiniCartProps;
+    priceIntl: boolean;
+  },
 ) {
+  const { freeShippingTarget, freeShippingValueColor, cartTranslations } =
+    miniCartProps;
+
   const { cart, loading, updateItem, update } = useCart();
+
+  console.log("total", cart);
+
   const items = cart.value?.orderForm?.items ?? [];
   const total = cart.value?.orderForm?.total ?? 0;
   const subtotal = cart.value?.orderForm?.subtotal ?? 0;
   const discounts = cart.value?.orderForm?.subtotal_discount ?? 0;
-  const locale = "pt-BR";
-  const currency = "BRL";
+  const locale = priceIntl ? "en-US" : "pt-BR";
+  const currency = priceIntl ? "USD" : "BRL";
   const coupon = cart.value?.orderForm?.coupon_code ?? undefined;
   const token = cart.value?.orderForm?.token;
+
+  async function TotalIntil(items: any): Promise<number> {
+    let priceTotalIntl = 0;
+
+    await Promise.all(
+      items.map(async (item: any) => {
+        priceTotalIntl += await item.variant_intl_price;
+        console.log("en", item.variant_intl_price);
+      }),
+    );
+
+    return priceTotalIntl;
+  }
+
+  const totalIntl = TotalIntil(items);
+
+  console.log("total", totalIntl);
 
   return (
     <BaseCart
@@ -60,10 +86,11 @@ function Cart(
         price: {
           sale: item.variant_price,
           list: item.variant_price,
+          listIntl: item.variant_intl_price,
         },
       }))}
       cartTranslations={cartTranslations}
-      total={total}
+      total={priceIntl ? totalIntl : total}
       subtotal={subtotal}
       discounts={discounts}
       locale={locale}
@@ -81,6 +108,7 @@ function Cart(
 
         return item && itemToAnalyticsItem(item, index);
       }}
+      priceIntl={priceIntl}
     />
   );
 }

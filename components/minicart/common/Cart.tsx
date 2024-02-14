@@ -38,6 +38,7 @@ interface Props {
     cartTotalText?: string;
     installmentsText?: string;
   };
+  priceIntl: boolean;
 }
 
 function Cart({
@@ -56,6 +57,7 @@ function Cart({
   onUpdateQuantity,
   onAddCoupon,
   cartTranslations,
+  priceIntl,
 }: Props) {
   const { displayCart } = useUI();
   const isEmtpy = items.length === 0;
@@ -150,6 +152,7 @@ function Cart({
                       currency={currency}
                       onUpdateQuantity={onUpdateQuantity}
                       itemToAnalyticsItem={itemToAnalyticsItem}
+                      priceIntl={priceIntl}
                     />
                   </li>
                 ))}
@@ -188,27 +191,33 @@ function Cart({
                         />
                       </div>
                     )}
-                  <span class="font-normal ">
-                    <InnerHTML
-                      html={cartTranslations?.installmentsText?.replace(
-                        "$valor",
-                        `<span>${installments}</span>`,
-                      )}
-                    />
-                  </span>
+                  {!priceIntl &&
+                    (
+                      <span class="font-normal ">
+                        <InnerHTML
+                          html={cartTranslations?.installmentsText?.replace(
+                            "$valor",
+                            `<span>${installments}</span>`,
+                          )}
+                        />
+                      </span>
+                    )}
                 </div>
               </div>
               {/* Free Shipping Bar */}
-              <div class="px-[18px] w-full">
-                <FreeShippingProgressBar
-                  freeShippingValueColor={freeShippingValueColor}
-                  freeShippingText={cartTranslations?.freeShippingText}
-                  total={total}
-                  locale={locale}
-                  currency={currency}
-                  target={freeShippingTarget}
-                />
-              </div>
+              {!priceIntl &&
+                (
+                  <div class="px-[18px] w-full">
+                    <FreeShippingProgressBar
+                      freeShippingValueColor={freeShippingValueColor}
+                      freeShippingText={cartTranslations?.freeShippingText}
+                      total={total}
+                      locale={locale}
+                      currency={currency}
+                      target={freeShippingTarget}
+                    />
+                  </div>
+                )}
               {/* Cart Footer */}
               <footer class="w-full px-[18px]">
                 <div class="pb-2">
