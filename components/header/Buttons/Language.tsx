@@ -27,7 +27,6 @@ export default function LanguageSwitcher(
   }
   useEffect(() => {
     async function Validate() {
-      console.log("useEffect");
       const cookieName = "language";
 
       // Divide a string de cookies em pares chave/valor
