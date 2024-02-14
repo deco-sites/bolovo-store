@@ -86,7 +86,8 @@ function ProductCard(
     : offers?.priceCurrency ||
       "BRL";
   const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
-  const productListPrice = activePriceIntl.value.active && listPriceIntl || listPrice;
+  const productListPrice = activePriceIntl.value.active && listPriceIntl ||
+    listPrice;
 
   const l = layout;
   const align =
@@ -149,7 +150,7 @@ function ProductCard(
     <div
       id={id}
       class={`card card-compact group w-full relative ${
-        productPrice === 0 && "opacity-70"
+        productPrice === 0 && "opacity-70 pointer-events-none cursor-none"
       } ${align === "center" ? "text-center" : "text-start"} ${
         l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
       }
@@ -181,10 +182,13 @@ function ProductCard(
         class="relative overflow-hidden aspect-[219.38326/300] lg:aspect-[239.13935/300]"
         style={{ backgroundColor: "#F6F6F6" }}
       >
-        <QuickShop
-          product={product}
-          customClass={"lg:group-hover:translate-y-0 lg:group-hover:bg-base-100"}
-        />
+        {productPrice !== 0 &&
+          (
+            <QuickShop
+              product={product}
+              customClass={`lg:group-hover:translate-y-0 lg:group-hover:bg-base-100`}
+            />
+          )}
         {/* Wishlist button */}
         <div
           class={`absolute top-2 z-10
@@ -343,7 +347,7 @@ function ProductCard(
                     {formatPrice(productListPrice, currency)}
                   </div>
                   <div class="text-black leading-[130%] text-[14px] lg:text-end">
-                    {formatPrice(productPrice, currency)|| 'US$ 0,00'}
+                    {formatPrice(productPrice, currency) || "US$ 0,00"}
                   </div>
                 </div>
                 <div>
