@@ -156,6 +156,7 @@ function PDPProductInfo(
                     price={price}
                     discount={discount}
                     additionalProperty={additionalProperty}
+                    priceIntl={activePriceIntl.value.active}
                   />
                 )}
                 {platform === "shopify" && (
@@ -170,7 +171,12 @@ function PDPProductInfo(
                 )}
               </>
             )
-            : <OutOfStock productID={productID} />
+            : (
+              <OutOfStock
+                productID={productID}
+                priceIntl={activePriceIntl.value.active}
+              />
+            )
           : availability === "https://schema.org/InStock"
           ? (
             <>
