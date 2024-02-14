@@ -34,8 +34,8 @@ import * as $$$$$$24 from "./sections/Product/ImageGalleryFrontBack.tsx";
 import * as $$$$$$25 from "./sections/Product/ImageGallerySlider.tsx";
 import * as $$$$$$26 from "./sections/Product/NotFound.tsx";
 import * as $$$$$$27 from "./sections/Product/NotFoundChallenge.tsx";
-import * as $$$$$$28 from "./sections/Product/PageOfProduct.tsx";
-import * as $$$$$$29 from "./sections/Product/PhotoGallery.tsx";
+import * as $$$$$$28 from "./sections/Product/PhotoGallery.tsx";
+import * as $$$$$$29 from "./sections/Product/ProductDetails.tsx";
 import * as $$$$$$30 from "./sections/Product/ProductGallery.tsx";
 import * as $$$$$$31 from "./sections/Product/ProductInfo.tsx";
 import * as $$$$$$32 from "./sections/Product/ProductRelatedShelf.tsx";
@@ -88,8 +88,8 @@ const manifest = {
     "deco-sites/bolovo-store/sections/Product/ImageGallerySlider.tsx": $$$$$$25,
     "deco-sites/bolovo-store/sections/Product/NotFound.tsx": $$$$$$26,
     "deco-sites/bolovo-store/sections/Product/NotFoundChallenge.tsx": $$$$$$27,
-    "deco-sites/bolovo-store/sections/Product/PageOfProduct.tsx": $$$$$$28,
-    "deco-sites/bolovo-store/sections/Product/PhotoGallery.tsx": $$$$$$29,
+    "deco-sites/bolovo-store/sections/Product/PhotoGallery.tsx": $$$$$$28,
+    "deco-sites/bolovo-store/sections/Product/ProductDetails.tsx": $$$$$$29,
     "deco-sites/bolovo-store/sections/Product/ProductGallery.tsx": $$$$$$30,
     "deco-sites/bolovo-store/sections/Product/ProductInfo.tsx": $$$$$$31,
     "deco-sites/bolovo-store/sections/Product/ProductRelatedShelf.tsx":

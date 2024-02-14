@@ -2,7 +2,7 @@ import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import GalleryControls from "$store/islands/GalleryControls.tsx";
-import {Result}  from "$store/components/search/SearchResult.tsx";
+import { Result } from "$store/components/search/SearchResult.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
@@ -16,7 +16,7 @@ import { FilterName } from "$store/components/search/SearchResult.tsx";
 import { Color } from "$store/components/search/SearchResult.tsx";
 import ButtonsPagination, {
   ButtonsPaginationProps,
-} from "./ButtonsPagination.tsx";   
+} from "./ButtonsPagination.tsx";
 
 /** @titleBy category */
 export interface Category {
@@ -39,8 +39,8 @@ export interface Props {
   categories?: Category[];
   buttonsPagination?: ButtonsPaginationProps;
   /**
-  * @title Highlights 
-  */
+   * @title Highlights
+   */
   photoOnPLP?: Section[];
   notFound: PropsNotFound;
   filterColors?: Color[];
@@ -81,7 +81,7 @@ function ResultCategory({
   isMobile: boolean;
   section?: Section;
   url: string;
-  notFound: PropsNotFound; 
+  notFound: PropsNotFound;
   photoOnPLP?: Section[];
 }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
@@ -114,7 +114,7 @@ function ResultCategory({
         isMobile={isMobile}
         buttonsPagination={buttonsPagination}
         isCategory={true}
-        notFound={notFound}  
+        notFound={notFound}
         photoOnPLP={photoOnPLP}
         url={url}
       />
@@ -123,7 +123,19 @@ function ResultCategory({
 }
 
 function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
-  const { page, notFound, section, isMobile, buttonsPagination, url, currentCategory, subCategories, parentCategory, categoryURL, photoOnPLP } = props;
+  const {
+    page,
+    notFound,
+    section,
+    isMobile,
+    buttonsPagination,
+    url,
+    currentCategory,
+    subCategories,
+    parentCategory,
+    categoryURL,
+    photoOnPLP,
+  } = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={""} />;
@@ -134,7 +146,7 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
       {...props}
       page={page}
       section={section}
-      isMobile={isMobile} 
+      isMobile={isMobile}
       buttonsPagination={buttonsPagination}
       notFound={notFound}
       url={url}
@@ -148,7 +160,7 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
 }
 
 export const loader = (props: Props, req: Request) => {
-  const { categories, photoOnPLP } = { ...props }
+  const { categories, photoOnPLP } = { ...props };
 
   const url = new URL(req.url);
 
@@ -201,7 +213,7 @@ export const loader = (props: Props, req: Request) => {
       section,
       isMobile,
       url: req.url,
-      photoOnPLP
+      photoOnPLP,
     };
   } else {
     return {
@@ -213,7 +225,7 @@ export const loader = (props: Props, req: Request) => {
       section,
       isMobile,
       url: req.url,
-      photoOnPLP
+      photoOnPLP,
     };
   }
 };
