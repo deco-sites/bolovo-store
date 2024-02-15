@@ -9,7 +9,12 @@ import { Props as AlertProps } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 import type { ContentBlogItem } from "./ContentItem.tsx";
-import { getCookies } from "std/http/cookie.ts";
+import {
+  Cookie,
+  deleteCookie,
+  getCookies,
+  setCookie,
+} from "std/http/cookie.ts";
 import type { SectionProps } from "deco/types.ts";
 import { useUI } from "../../sdk/useUI.ts";
 
@@ -131,12 +136,24 @@ export const loader = (props: Props, req: Request) => {
   if (cookies.language === "en") {
     activePriceIntl.value.active = true;
     activePriceIntl.value.value = cookies.language;
+
+    const headers = new Headers();
+    const cookie: Cookie = {
+      name: "language",
+      value: "en",
+      path: "/",
+      maxAge: 3600,
+      secure: true,
+      httpOnly: true,
+      sameSite: "Lax",
+    };
+    setCookie(headers, cookie);
   } else {
     activePriceIntl.value.active = false;
     activePriceIntl.value.value = cookies.language;
+    const headers = new Headers();
+    deleteCookie(headers, "language");
   }
-
-  console.log("header server", activePriceIntl.value)
 
   return { ...props };
 };
