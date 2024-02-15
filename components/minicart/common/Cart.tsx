@@ -224,7 +224,10 @@ function Cart({
               {/* Cart Footer */}
               <footer class="w-full px-[18px]">
                 <div class="pb-2">
-                  <a class="inline-block w-full" href={checkoutHref}>
+                  <a
+                    class="inline-block w-full"
+                    href={checkoutHref}
+                  >
                     <Button
                       class="btn btn-active btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black"
                       data-deco="buy-button"
