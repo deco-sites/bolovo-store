@@ -1,8 +1,8 @@
 import { itemToAnalyticsItem, useCart } from "apps/vnda/hooks/useCart.ts";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import BaseCart from "../common/Cart.tsx";
-import type { Item } from "../common/CartItem.tsx";
-
+import { useEffect } from "preact/hooks";
+import { useSignal } from "@preact/signals";
 export interface MiniCartProps {
   /**
    * @format color
@@ -49,8 +49,6 @@ function Cart(
 
   const { cart, loading, updateItem, update } = useCart();
 
-  console.log("total", cart);
-
   const items = cart.value?.orderForm?.items ?? [];
   const total = cart.value?.orderForm?.total ?? 0;
   const subtotal = cart.value?.orderForm?.subtotal ?? 0;
@@ -60,22 +58,20 @@ function Cart(
   const coupon = cart.value?.orderForm?.coupon_code ?? undefined;
   const token = cart.value?.orderForm?.token;
 
-  async function TotalIntil(items: any): Promise<number> {
-    let priceTotalIntl = 0;
+  const priceTotalIntl = useSignal(0);
 
-    await Promise.all(
-      items.map(async (item: any) => {
-        priceTotalIntl += await item.variant_intl_price;
-        console.log("en", item.variant_intl_price);
-      }),
-    );
+  useEffect(() => {
+    async function PriceIntl() {
+      priceTotalIntl.value = 0;
+      if (items.length !== 0) {
+        for (const item of items) {
+          priceTotalIntl.value += await item.variant_intl_price * item.quantity;
+        }
+      }
+    }
 
-    return priceTotalIntl;
-  }
-
-  const totalIntl = TotalIntil(items);
-
-  console.log("total", totalIntl);
+    PriceIntl();
+  }, [items]);
 
   return (
     <BaseCart
@@ -90,7 +86,7 @@ function Cart(
         },
       }))}
       cartTranslations={cartTranslations}
-      total={priceIntl ? totalIntl : total}
+      total={priceIntl ? priceTotalIntl.value : total}
       subtotal={subtotal}
       discounts={discounts}
       locale={locale}
