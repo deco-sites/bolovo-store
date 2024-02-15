@@ -20,6 +20,11 @@ export type Props =
     textSearch?: string;
     searchTerm?: string;
     url: string;
+    labelOrdenation: string;
+    labelsOfFilters: {
+      labelFilter: string;
+      labelClose: string;
+    };
     filterColors?: Color[];
     filtersNames?: FilterName[];
     textFilters?: string;
@@ -42,7 +47,12 @@ function SearchControls(
     appliedFiltersText,
     applyFiltersText,
     removeFiltersText,
-  }: Props,
+    priceIntl = false,
+    labelOrdenation,
+    labelsOfFilters,
+  }: Omit<Props, "page"> & {
+    priceIntl?: boolean;
+  },
 ) {
   const open = useSignal(false);
   const removeFilters = () => {
@@ -62,7 +72,7 @@ function SearchControls(
           <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full">
             <div class="hidden sm:flex flex-row w-full justify-end items-center">
               <span class="font-medium text-sm leading-[18px]">
-                Fechar
+                {labelsOfFilters.labelClose}
               </span>
               <Button
                 class="btn btn-ghost hover:bg-transparent disabled:bg-transparent block p-[15px]"
@@ -151,7 +161,13 @@ function SearchControls(
           )}
         </div>
         <div class="px-[15px] flex flex-row items-center justify-end w-full h-[60px] ">
-          {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
+          {sortOptions.length > 0 && (
+            <Sort
+              sortOptions={sortOptions}
+              priceIntl={priceIntl}
+              label={labelOrdenation}
+            />
+          )}
           {filters.length > 0 && (
             <Button
               class="btn-ghost btn-xs text-[13px] px-2 py-[5px] font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
@@ -160,7 +176,7 @@ function SearchControls(
               }}
             >
               <Icon id="FilterList" width={19} height={10} />
-              Filtrar
+              {labelsOfFilters.labelFilter}
             </Button>
           )}
         </div>
@@ -177,7 +193,13 @@ function SearchControls(
           )}
         </div>
         <div class="flex flex-row items-center justify-between w-auto gap-4 pr-1">
-          {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
+          {sortOptions.length > 0 && (
+            <Sort
+              sortOptions={sortOptions}
+              priceIntl={priceIntl}
+              label={labelOrdenation}
+            />
+          )}
           {filters.length > 0 && (
             <Button
               class="btn-ghost btn-xs text-[13px] px-2 py-[5px] px- font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
@@ -186,7 +208,7 @@ function SearchControls(
               }}
             >
               <Icon id="FilterList" width={19} height={10} />
-              Filtrar
+              {labelsOfFilters.labelFilter}
             </Button>
           )}
         </div>
