@@ -4,9 +4,10 @@ import type { Product } from "apps/commerce/types.ts";
 import { relative } from "$store/sdk/url.ts";
 
 function VariantSelector(
-  { product, reloadInSelector }: {
+  { product, reloadInSelector, priceIntl = false }: {
     product: Product;
     reloadInSelector: boolean;
+    priceIntl?: boolean;
   },
 ) {
   const { url, isVariantOf } = product;
@@ -28,6 +29,7 @@ function VariantSelector(
                 ? "default"
                 : "disabled"}
               content={size === "" ? "UN" : size}
+              priceIntl={priceIntl}
             />
           </a>
         </li>
@@ -47,6 +49,7 @@ function VariantSelector(
               ? "default"
               : "disabled"}
             content={size === "" ? "UN" : size}
+            priceIntl={priceIntl}
           />
         </button>
       </li>

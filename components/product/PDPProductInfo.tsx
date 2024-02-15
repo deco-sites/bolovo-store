@@ -101,6 +101,7 @@ function PDPProductInfo(
         <ProductSelector
           product={product}
           reloadInSelector={reloadInSelector}
+          priceIntl={activePriceIntl.value.active}
         />
       </div>
       {/* Add to Cart and Favorites button */}
