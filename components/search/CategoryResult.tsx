@@ -38,6 +38,10 @@ export interface Category {
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
+  /**
+   * @default Ver Tudos
+   */
+  labelViewAll?: string;
   categories?: Category[];
   buttonsPagination?: ButtonsPaginationProps;
   /**
@@ -92,6 +96,7 @@ function ResultCategory({
     labelFilter: "Filtrar",
     labelClose: "Fechar",
   },
+  labelViewAll = "Ver Todos",
 }: Omit<Props, "page"> & {
   page: ProductListingPage;
   currentCategory?: string;
@@ -133,6 +138,7 @@ function ResultCategory({
         priceIntl={activePriceIntl.value.active}
         labelOrdenation={labelOrdenation}
         labelsOfFilters={labelsOfFilters}
+        labelViewAll={labelViewAll}
       />
       <Result
         page={page}

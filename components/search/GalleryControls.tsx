@@ -38,6 +38,7 @@ type Props =
     applyFiltersText?: string;
     removeFiltersText?: string;
     priceIntl?: boolean;
+    labelViewAll: string;
   };
 
 function GalleryControls(
@@ -60,6 +61,7 @@ function GalleryControls(
     labelOrdenation,
     labelsOfFilters,
     priceIntl = false,
+    labelViewAll,
   }: Props,
 ) {
   const open = useSignal(false);
@@ -196,7 +198,7 @@ function GalleryControls(
                         currentCategory == parentCategory ? "text-white" : ""
                       }`}
                     >
-                      Ver Todos
+                      {labelViewAll}
                     </span>
                   </a>
                 </Slider.Item>
