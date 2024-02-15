@@ -15,6 +15,7 @@ import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
 import type { Text } from "$store/sections/Content/TextSEO.tsx";
+import { useUI } from "../../sdk/useUI.ts";
 
 export interface Props {
   /** @title Integration */
@@ -26,6 +27,20 @@ export interface Props {
    * @title Highlights
    */
   photoOnPLP?: Section[];
+    /**
+   * @default ORDENAR
+   */
+    labelOrdenation?: string;
+    labelsOfFilters?: {
+      /**
+       * @default Filtrar
+       */
+      labelFilter?: string;
+      /**
+       * @default Fechar
+       */
+      labelClose?: string;
+    };
   filterColors?: Color[];
   filtersNames?: FilterName[];
   textFilters?: string;
@@ -86,6 +101,11 @@ export function Result({
   card,
   buttonsPagination,
   isCategory = false,
+  labelOrdenation = "ORDENAR",
+  labelsOfFilters = {
+    labelFilter: "Filtrar",
+    labelClose: "Fechar",
+  },
 }: Omit<Props, "page"> & {
   page: ProductListingPage;
   searchTerm: string;
@@ -98,6 +118,8 @@ export function Result({
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
+
+  const {activePriceIntl} = useUI();
 
   return (
     <>
@@ -116,6 +138,9 @@ export function Result({
             filters={filters}
             url={url}
             breadcrumb={breadcrumb}
+            priceIntl={activePriceIntl.value.active}
+            labelOrdenation = {labelOrdenation}
+            labelsOfFilters={labelsOfFilters}
           />
         )}
       <div class="lg:px-8 px-[15px]">
