@@ -21,9 +21,10 @@ import NavigationDescription from "$store/islands/NavigationDescription.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 
 function PDPProductInfo(
-  { page, reloadInSelector }: {
+  { page, reloadInSelector, buyButton }: {
     page: ProductDetailsPage;
     reloadInSelector: boolean;
+    buyButton:string;
   },
 ) {
   const platform = usePlatform();
@@ -157,7 +158,7 @@ function PDPProductInfo(
                     price={price}
                     discount={discount}
                     additionalProperty={additionalProperty}
-                    priceIntl={activePriceIntl.value.active}
+                    buyButton={buyButton}
                   />
                 )}
                 {platform === "shopify" && (
@@ -228,6 +229,7 @@ function PDPProductInfo(
                   price={price}
                   discount={discount}
                   additionalProperty={additionalProperty}
+                  buyButton={buyButton}
                 />
               )}
               {platform === "shopify" && (

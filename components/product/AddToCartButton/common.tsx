@@ -11,7 +11,7 @@ export interface Props {
   price: number;
   discount: number;
   url: string;
-  priceIntl?: boolean;
+  buyButton?: string;
   onAddItem: () => Promise<void>;
 }
 
@@ -22,7 +22,6 @@ const useAddToCart = ({
   productGroupID,
   productID,
   url,
-  priceIntl = false,
   onAddItem,
 }: Props) => {
   const [loading, setLoading] = useState(false);
@@ -71,7 +70,7 @@ export default function AddToCartButton(props: Props) {
       class="w-full uppercase h-[30px] rounded-full bg-white border-black border-2 text-sm text-black no-animation btn btn-active btn-sm  hover:bg-white
     "
     >
-      {props.priceIntl ? "Buy" : "Comprar"}
+      {props.buyButton}
     </Button>
   );
 }
