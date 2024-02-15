@@ -168,41 +168,44 @@ function Cart({
                     {formatPrice(total, currency, locale)}
                   </span>
                 </div>
-                <div
-                  class={`flex flex-row items-center leading-5 text-[15px] w-full ${
-                    freeShippingTarget - total > 0
-                      ? "justify-end"
-                      : "justify-between"
-                  }`}
-                >
-                  {freeShippingTarget - total > 0
-                    ? ""
-                    : (
-                      <div class="flex flex-row items-center font-semibold">
-                        <span class="mt-1">
-                          {cartTranslations?.gotFreeShipping}
-                        </span>
-                        <img
-                          src="/image/Dog.gif"
-                          alt="Dog"
-                          width="46"
-                          height="46"
-                          class="ml-1"
-                        />
-                      </div>
-                    )}
-                  {!priceIntl &&
-                    (
-                      <span class="font-normal ">
-                        <InnerHTML
-                          html={cartTranslations?.installmentsText?.replace(
-                            "$valor",
-                            `<span>${installments}</span>`,
-                          )}
-                        />
-                      </span>
-                    )}
-                </div>
+                {!priceIntl &&
+                  (
+                    <div
+                      class={`flex flex-row items-center leading-5 text-[15px] w-full ${
+                        freeShippingTarget - total > 0
+                          ? "justify-end"
+                          : "justify-between"
+                      }`}
+                    >
+                      {freeShippingTarget - total > 0
+                        ? ""
+                        : (
+                          <div class="flex flex-row items-center font-semibold">
+                            <span class="mt-1">
+                              {cartTranslations?.gotFreeShipping}
+                            </span>
+                            <img
+                              src="/image/Dog.gif"
+                              alt="Dog"
+                              width="46"
+                              height="46"
+                              class="ml-1"
+                            />
+                          </div>
+                        )}
+                      {!priceIntl &&
+                        (
+                          <span class="font-normal ">
+                            <InnerHTML
+                              html={cartTranslations?.installmentsText?.replace(
+                                "$valor",
+                                `<span>${installments}</span>`,
+                              )}
+                            />
+                          </span>
+                        )}
+                    </div>
+                  )}
               </div>
               {/* Free Shipping Bar */}
               {!priceIntl &&
