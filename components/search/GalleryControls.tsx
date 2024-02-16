@@ -121,7 +121,7 @@ function GalleryControls(
               </span>
             </div>
             <div>
-              <SelectedFilters filters={filters} />
+              <SelectedFilters filters={filters} priceIntl={priceIntl} />
             </div>
 
             <div class="flex-grow overflow-auto">
@@ -129,6 +129,7 @@ function GalleryControls(
                 filters={filters}
                 filterColors={filterColors ?? []}
                 filterNames={filtersNames ?? []}
+                priceIntl={priceIntl}
               />
               <div class="w-full pl-[21px] pr-[15px] mt-14">
                 <div class="pb-2">
