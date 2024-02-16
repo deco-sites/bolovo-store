@@ -14,6 +14,7 @@ interface Props {
   filters: ProductListingPage["filters"];
   filterColors: Color[];
   filterNames?: FilterName[];
+  priceIntl?: boolean;
 }
 
 export type FilterToggleValueWithHex = FilterToggleValue & {
@@ -25,12 +26,15 @@ type FilterValuesProps = {
   label: string;
   values: FilterToggleValueWithHex[];
   filterColors?: Color[];
+  priceIntl?: boolean;
 };
 
 export const isToggle = (filter: Filter): filter is FilterToggle =>
   filter["@type"] == "FilterToggle";
 
-function FilterValues({ label, values, filterColors }: FilterValuesProps) {
+function FilterValues(
+  { label, values, filterColors, priceIntl }: FilterValuesProps,
+) {
   const flexDirection = label === "cor"
     ? "flex flex-wrap overflow-hidden md:grid md:grid-cols-8 grid-cols-5 gap-[18px]"
     : label === "property2"
@@ -75,6 +79,7 @@ function FilterValues({ label, values, filterColors }: FilterValuesProps) {
               class="leading-[32.2px] mt-[1px]"
               type={label}
               {...item}
+              priceIntl={priceIntl}
             />
           );
         }
@@ -85,7 +90,9 @@ function FilterValues({ label, values, filterColors }: FilterValuesProps) {
   );
 }
 
-function Filters({ filters, filterColors = [], filterNames = [] }: Props) {
+function Filters(
+  { filters, filterColors = [], filterNames = [], priceIntl = false }: Props,
+) {
   const sortedFilters = filterNames.map((label) =>
     filters.find((filter) => filter.label === label.filter)
   ).filter(Boolean);
@@ -154,7 +161,7 @@ function Filters({ filters, filterColors = [], filterNames = [] }: Props) {
                       />
                     </div>
                     <div class="collapse-content px-0 py-0">
-                      <FilterValues {...filter} />
+                      <FilterValues {...filter} priceIntl={priceIntl} />
                     </div>
                   </div>
                   <div class="border-b border-opacity-30 border-[#121212] ml-[21px] mr-[15px]" />
