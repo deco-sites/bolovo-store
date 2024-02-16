@@ -25,6 +25,7 @@ const colors: Record<string, string> = {
 interface Props {
   variant?: "active" | "disabled" | "default" | "activePdp";
   content: string;
+  priceIntl?: boolean;
 }
 
 const variants = {
@@ -51,7 +52,9 @@ function Avatar({ content, variant = "default" }: Props) {
   );
 }
 
-export function AvatarPDP({ content, variant = "default" }: Props) {
+export function AvatarPDP(
+  { content, variant = "default", priceIntl }: Props,
+) {
   return (
     <div class="avatar placeholder">
       <div
@@ -60,7 +63,13 @@ export function AvatarPDP({ content, variant = "default" }: Props) {
         }`}
       >
         <span class="uppercase text-[14px] leading-[130%]">
-          {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
+          {content
+            ? (colors[content]
+              ? ""
+              : priceIntl
+              ? content.substring(4).replace("|", "")
+              : content.substring(0, 2))
+            : ""}
         </span>
       </div>
     </div>

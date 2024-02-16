@@ -17,6 +17,7 @@ export interface Item {
   price: {
     sale: number;
     list: number;
+    listIntl?: number;
   };
 }
 
@@ -26,6 +27,7 @@ export interface Props {
 
   locale: string;
   currency: string;
+  priceIntl?: boolean;
 
   onUpdateQuantity: (quantity: number, index: number) => Promise<void>;
   itemToAnalyticsItem: (index: number) => AnalyticsItem | null | undefined;
@@ -37,13 +39,16 @@ function CartItem(
     index,
     locale,
     currency,
+    priceIntl,
     onUpdateQuantity,
     itemToAnalyticsItem,
   }: Props,
 ) {
-  const { image, name, price: { sale, list }, quantity } = item;
+  const { image, name, price: { sale, list, listIntl }, quantity } = item;
   const isGift = sale < 0.01;
   const [loading, setLoading] = useState(false);
+
+  const priceProduct = priceIntl ? listIntl : list;
 
   const withLoading = useCallback(
     <A,>(cb: (args: A) => Promise<void>) => async (e: A) => {
@@ -77,7 +82,7 @@ function CartItem(
         </p>
         <div class="flex items-center gap-2 flex-row w-full justify-between">
           <span class="text-sm font-normal text-[#121212]">
-            {formatPrice(list, currency, locale)}
+            {formatPrice(priceProduct, currency, locale)}
           </span>
           <span class="text-sm text-[#121212] font-normal">
             Tam: G
