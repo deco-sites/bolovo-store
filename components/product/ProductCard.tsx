@@ -8,6 +8,7 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
+import { useUI } from "../../sdk/useUI.ts";
 import QuickShop from "$store/islands/QuickShop.tsx";
 
 export interface Layout {
@@ -73,9 +74,20 @@ function ProductCard(
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, price, installments } = useOffer(offers);
+  const { listPrice, listPriceIntl, price, priceIntl = 0, installments } =
+    useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
+
+  const { activePriceIntl } = useUI();
+
+  const currency = activePriceIntl.value.active
+    ? offers?.offers[1]?.priceCurrency || "USD"
+    : offers?.priceCurrency ||
+      "BRL";
+  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
+  const productListPrice = activePriceIntl.value.active && listPriceIntl ||
+    listPrice;
 
   const l = layout;
   const align =
@@ -138,8 +150,10 @@ function ProductCard(
     <div
       id={id}
       class={`card card-compact group w-full relative ${
-        align === "center" ? "text-center" : "text-start"
-      } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
+        productPrice === 0 && "opacity-70 pointer-events-none cursor-none"
+      } ${align === "center" ? "text-center" : "text-start"} ${
+        l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
+      }
         ${
         l?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
@@ -168,10 +182,14 @@ function ProductCard(
         class="relative overflow-hidden aspect-[219.38326/300] lg:aspect-[239.13935/300]"
         style={{ backgroundColor: "#F6F6F6" }}
       >
-        <QuickShop
-          product={product}
-          customClass={"lg:group-hover:translate-y-0 lg:group-hover:bg-base-100"}
-        />
+        {productPrice !== 0 &&
+          (
+            <QuickShop
+              product={product}
+              customClass={`lg:group-hover:translate-y-0 lg:group-hover:bg-base-100`}
+              priceIntl={activePriceIntl.value.active}
+            />
+          )}
         {/* Wishlist button */}
         <div
           class={`absolute top-2 z-10
@@ -327,10 +345,10 @@ function ProductCard(
                       l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
                     }`}
                   >
-                    {formatPrice(listPrice, offers?.priceCurrency)}
+                    {formatPrice(productListPrice, currency)}
                   </div>
                   <div class="text-black leading-[130%] text-[14px] lg:text-end">
-                    {formatPrice(price, offers?.priceCurrency)}
+                    {formatPrice(productPrice, currency) || "US$ 0,00"}
                   </div>
                 </div>
                 <div>

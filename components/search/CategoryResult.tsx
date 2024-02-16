@@ -18,6 +18,7 @@ import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
 import type { CardSEO } from "$store/components/search/SearchResult.tsx";
+import { useUI } from "../../sdk/useUI.ts";
 
 /** @titleBy category */
 export interface Category {
@@ -37,6 +38,10 @@ export interface Category {
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
+  /**
+   * @default Ver Tudos
+   */
+  labelViewAll?: string;
   categories?: Category[];
   buttonsPagination?: ButtonsPaginationProps;
   /**
@@ -44,6 +49,20 @@ export interface Props {
    */
   photoOnPLP?: Section[];
   notFound: PropsNotFound;
+  /**
+   * @default ORDENAR
+   */
+  labelOrdenation?: string;
+  labelsOfFilters?: {
+    /**
+     * @default Filtrar
+     */
+    labelFilter?: string;
+    /**
+     * @default Fechar
+     */
+    labelClose?: string;
+  };
   filterColors?: Color[];
   filtersNames?: FilterName[];
   textFilters?: string;
@@ -72,6 +91,12 @@ function ResultCategory({
   notFound,
   card,
   photoOnPLP,
+  labelOrdenation = "ORDENAR",
+  labelsOfFilters = {
+    labelFilter: "Filtrar",
+    labelClose: "Fechar",
+  },
+  labelViewAll = "Ver Todos",
 }: Omit<Props, "page"> & {
   page: ProductListingPage;
   currentCategory?: string;
@@ -91,6 +116,7 @@ function ResultCategory({
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
+  const { activePriceIntl } = useUI();
 
   return (
     <div>
@@ -109,6 +135,10 @@ function ResultCategory({
         filters={filters}
         url={url}
         breadcrumb={breadcrumb}
+        priceIntl={activePriceIntl.value.active}
+        labelOrdenation={labelOrdenation}
+        labelsOfFilters={labelsOfFilters}
+        labelViewAll={labelViewAll}
       />
       <Result
         page={page}

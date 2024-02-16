@@ -6,7 +6,7 @@ import Button from "deco-sites/bolovo-store/components/ui/Button.tsx";
 
 export type Props = Pick<ProductListingPage, "sortOptions">;
 
-function Sort({ sortOptions }: Props) {
+function Sort({ sortOptions, priceIntl, label }:Omit<Props, "page"> & {priceIntl:boolean, label:string}) {
   const sortContainerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -49,10 +49,10 @@ function Sort({ sortOptions }: Props) {
             <Icon id="FilterArrowLeft" />
             <Icon id="FilterArrowRight" />
           </span>
-          ORDENAR
+          {label}
         </span>
       </Button>
-      {isOpen && <SortMenu sortOptions={sortOptions} />}
+      {isOpen && <SortMenu sortOptions={sortOptions} priceIntl={priceIntl} />}
     </div>
   );
 }

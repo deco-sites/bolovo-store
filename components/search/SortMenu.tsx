@@ -5,14 +5,19 @@ export type Props = Pick<ProductListingPage, "sortOptions">;
 
 // TODO: move this to the loader
 const portugueseMappings = {
-  "relevance:desc": "Relevância",
-  "price:desc": "Maior Preço",
-  "price:asc": "Menor Preço",
-  "orders:desc": "Mais vendidos",
-  "name:desc": "Nome - de Z a A",
-  "name:asc": "Nome - de A a Z",
-  // "release:desc": "Relevância - Decrescente",
-  "discount:desc": "Maior desconto",
+  "": "Relevância",
+  "highest_price": "Maior Preço",
+  "lowest_price": "Menor Preço",
+  "oldest": "Mais antigo",
+  "newest": "Mais recentes",
+};
+// TODO: move this to the loader
+const inglesMappings = {
+  "": "Relevance",
+  "highest_price": "Highest Price",
+  "lowest_price": "Lowest Price",
+  "oldest": "Oldest",
+  "newest": "Most recent",
 };
 
 const SORT_QUERY_PARAM = "sort";
@@ -34,8 +39,13 @@ const applySort = (value: string) => {
   window.location.reload();
 };
 
-function SortMenu({ sortOptions }: Props) {
+function SortMenu(
+  { sortOptions, priceIntl }: Omit<Props, "page"> & { priceIntl: boolean },
+) {
   const sort = useSort();
+
+  console.log("price", priceIntl, sortOptions);
+
   return (
     <ul
       class="absolute z-10 bg-white w-full flex flex-col outline-none focus:outline-none border-x border-black border-b rounded-b-xl text-center"
@@ -45,8 +55,10 @@ function SortMenu({ sortOptions }: Props) {
     >
       {sortOptions.map(({ value, label }) => ({
         value,
-        label: portugueseMappings[label as keyof typeof portugueseMappings] ??
-          label,
+        label: priceIntl
+          ? inglesMappings[value as keyof typeof inglesMappings]
+          : portugueseMappings[value as keyof typeof portugueseMappings] ??
+            label,
       })).filter(({ label }) => label).map(({ value, label }, index) => (
         <li
           class={`cursor-pointer select-none relative flex justify-between py-[5px] items-center px-[11px] lg:(block p-0 border-0) ${

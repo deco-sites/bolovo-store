@@ -8,6 +8,7 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
+import { useUI } from "../../sdk/useUI.ts";
 
 export interface Layout {
   basics?: {
@@ -72,9 +73,20 @@ function ProductCardGallery(
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, price, installments } = useOffer(offers);
+  const { listPrice, listPriceIntl, priceIntl, price, installments } = useOffer(
+    offers,
+  );
   const possibilities = useVariantPossibilities(hasVariant, product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
+
+  const { activePriceIntl } = useUI();
+
+  const currency = activePriceIntl.value.active
+    ? offers?.offers[1]?.priceCurrency || "USD"
+    : offers?.priceCurrency ||
+      "BRL";
+  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
+  const productListPrice = activePriceIntl.value.active && listPriceIntl || listPrice;
 
   const l = layout;
   const align =
@@ -137,8 +149,10 @@ function ProductCardGallery(
     <div
       id={id}
       class={`card card-compact group w-full ${
-        align === "center" ? "text-center" : "text-start"
-      } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
+        productPrice === 0 && "opacity-70"
+      }  ${align === "center" ? "text-center" : "text-start"} ${
+        l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
+      }
         ${
         l?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
@@ -320,10 +334,10 @@ function ProductCardGallery(
                       l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
                     }`}
                   >
-                    {formatPrice(listPrice, offers?.priceCurrency)}
+                    {formatPrice(productListPrice, currency)}
                   </div>
                   <div class="text-black leading-[130%] text-[14px] lg:text-[15px] lg:text-end">
-                    {formatPrice(price, offers?.priceCurrency)}
+                    {formatPrice(productPrice, currency) || " US$ 0,00"}
                   </div>
                 </div>
                 <div>
