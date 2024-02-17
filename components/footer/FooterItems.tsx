@@ -11,7 +11,7 @@ export type Item = {
   href?: string;
   /** @format html */
   extraInfo?: string;
-  newTab?: boolean
+  newTab?: boolean;
 };
 
 export type Section = {

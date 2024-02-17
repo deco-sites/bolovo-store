@@ -16,12 +16,8 @@ export interface Props {
 }
 
 export const loader = async (props: Props, req: Request, ctx: AppContext) => {
-  const additionalProperties = props.relatedProducts?.product
-    .additionalProperty;
-
-  const categoryProperty = additionalProperties?.find((property) =>
-    property.name === "categoria"
-  );
+  const categoryProperty = props.relatedProducts?.product
+    .additionalProperty?.find((property) => property.name === "categoria");
 
   const category = categoryProperty?.value;
 
