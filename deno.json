@@ -48,9 +48,5 @@
     }
   },
   "nodeModulesDir": true,
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-    "experimentalDecorators": true
-  }
+  "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact", "experimentalDecorators": true }
 }
