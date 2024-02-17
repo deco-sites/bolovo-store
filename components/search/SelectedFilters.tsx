@@ -7,13 +7,14 @@ import { useEffect } from "preact/hooks";
 export interface Props {
   filters: Filter[];
   class?: string;
+  priceIntl: boolean;
 }
 
 type SelectedFilter = { url: string; label: string; type: string };
 
 export const selectedFilters = signal<SelectedFilter[]>([]);
 
-function SelectedFilters({ filters, class: _class = "" }: Props) {
+function SelectedFilters({ filters, class: _class = "", priceIntl }: Props) {
   const selected = filters.reduce<SelectedFilter[]>((acc, filter) => {
     if (!isToggle(filter)) return acc;
 
@@ -39,7 +40,11 @@ function SelectedFilters({ filters, class: _class = "" }: Props) {
       {selectedFilters.value.map((item) => (
         <li class="border border-black h-6 rounded-[20px] flex flex-row items-center">
           <div class="pl-3 h-6 mr-[5px] items-center uppercase">
-            {item.label}
+            {item.type === "property2"
+              ? priceIntl
+                ? item.label.substring(4).replace("|", "")
+                : item.label.substring(2, 0)
+              : item.label}
           </div>
           <button
             id="remove-filter"

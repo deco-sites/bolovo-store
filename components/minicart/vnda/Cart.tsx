@@ -1,7 +1,8 @@
 import { itemToAnalyticsItem, useCart } from "apps/vnda/hooks/useCart.ts";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import BaseCart from "../common/Cart.tsx";
-
+import { useEffect } from "preact/hooks";
+import { useSignal } from "@preact/signals";
 export interface MiniCartProps {
   /**
    * @format color
@@ -38,18 +39,39 @@ const normalizeUrl = (url: string) =>
   url.startsWith("//") ? `https:${url}` : url;
 
 function Cart(
-  { freeShippingTarget, freeShippingValueColor, cartTranslations }:
-    MiniCartProps,
+  { miniCartProps, priceIntl }: {
+    miniCartProps: MiniCartProps;
+    priceIntl: boolean;
+  },
 ) {
+  const { freeShippingTarget, freeShippingValueColor, cartTranslations } =
+    miniCartProps;
+
   const { cart, loading, updateItem, update } = useCart();
+
   const items = cart.value?.orderForm?.items ?? [];
   const total = cart.value?.orderForm?.total ?? 0;
   const subtotal = cart.value?.orderForm?.subtotal ?? 0;
   const discounts = cart.value?.orderForm?.subtotal_discount ?? 0;
-  const locale = "pt-BR";
-  const currency = "BRL";
+  const locale = priceIntl ? "en-US" : "pt-BR";
+  const currency = priceIntl ? "USD" : "BRL";
   const coupon = cart.value?.orderForm?.coupon_code ?? undefined;
   const token = cart.value?.orderForm?.token;
+
+  const priceTotalIntl = useSignal(0);
+
+  useEffect(() => {
+    async function PriceIntl() {
+      priceTotalIntl.value = 0;
+      if (items.length !== 0) {
+        for (const item of items) {
+          priceTotalIntl.value += await item.variant_intl_price * item.quantity;
+        }
+      }
+    }
+
+    PriceIntl();
+  }, [items]);
 
   return (
     <BaseCart
@@ -60,10 +82,11 @@ function Cart(
         price: {
           sale: item.variant_price,
           list: item.variant_price,
+          listIntl: item.variant_intl_price,
         },
       }))}
       cartTranslations={cartTranslations}
-      total={total}
+      total={priceIntl ? priceTotalIntl.value : total}
       subtotal={subtotal}
       discounts={discounts}
       locale={locale}
@@ -72,7 +95,7 @@ function Cart(
       freeShippingValueColor={freeShippingValueColor ?? "#121212"}
       freeShippingTarget={freeShippingTarget ?? 0}
       coupon={coupon}
-      checkoutHref={`/checkout/${token}`}
+      checkoutHref={`/checkout/${token} `}
       onAddCoupon={(code) => update({ coupon_code: code })}
       onUpdateQuantity={(quantity: number, index: number) =>
         updateItem({ quantity, itemId: items[index].id })}
@@ -81,6 +104,7 @@ function Cart(
 
         return item && itemToAnalyticsItem(item, index);
       }}
+      priceIntl={priceIntl}
     />
   );
 }

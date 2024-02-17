@@ -11,6 +11,7 @@ export interface Props {
   price: number;
   discount: number;
   url: string;
+  buyButton?: string;
   onAddItem: () => Promise<void>;
 }
 
@@ -69,7 +70,7 @@ export default function AddToCartButton(props: Props) {
       class="w-full uppercase h-[30px] rounded-full bg-white border-black border-2 text-sm text-black no-animation btn btn-active btn-sm  hover:bg-white
     "
     >
-      Comprar
+      {props.buyButton}
     </Button>
   );
 }

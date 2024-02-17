@@ -20,11 +20,14 @@ export interface PropsT {
 export interface Props {
   product: Product;
   customClass: string;
+  priceIntl?: boolean;
 }
 
 type Steps = "loading" | "success" | "waiting" | "show";
 
-export default function QuickShop({ product, customClass }: Props) {
+export default function QuickShop(
+  { product, customClass, priceIntl = false }: Props,
+) {
   const {
     productID,
     offers,
@@ -88,7 +91,9 @@ export default function QuickShop({ product, customClass }: Props) {
           <button
             onClick={() => defineAction(productID)}
             class={`${
-              step.value === "waiting" ? "translate-y-[-145%] h-min" : "translate-y-0"
+              step.value === "waiting"
+                ? "translate-y-[-145%] h-min"
+                : "translate-y-0"
             }`}
           >
             {step.value === "waiting"
@@ -116,6 +121,7 @@ export default function QuickShop({ product, customClass }: Props) {
                 availability={availability}
                 additionalProperty={additionalProperty}
                 onAddItem={onAddItem}
+                priceIntl={priceIntl}
               />
             )}
           </ul>

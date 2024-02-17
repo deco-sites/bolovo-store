@@ -38,6 +38,7 @@ interface Props {
     cartTotalText?: string;
     installmentsText?: string;
   };
+  priceIntl: boolean;
 }
 
 function Cart({
@@ -56,6 +57,7 @@ function Cart({
   onUpdateQuantity,
   onAddCoupon,
   cartTranslations,
+  priceIntl,
 }: Props) {
   const { displayCart } = useUI();
   const isEmtpy = items.length === 0;
@@ -150,6 +152,7 @@ function Cart({
                       currency={currency}
                       onUpdateQuantity={onUpdateQuantity}
                       itemToAnalyticsItem={itemToAnalyticsItem}
+                      priceIntl={priceIntl}
                     />
                   </li>
                 ))}
@@ -165,54 +168,66 @@ function Cart({
                     {formatPrice(total, currency, locale)}
                   </span>
                 </div>
-                <div
-                  class={`flex flex-row items-center leading-5 text-[15px] w-full ${
-                    freeShippingTarget - total > 0
-                      ? "justify-end"
-                      : "justify-between"
-                  }`}
-                >
-                  {freeShippingTarget - total > 0
-                    ? ""
-                    : (
-                      <div class="flex flex-row items-center font-semibold">
-                        <span class="mt-1">
-                          {cartTranslations?.gotFreeShipping}
-                        </span>
-                        <img
-                          src="/image/Dog.gif"
-                          alt="Dog"
-                          width="46"
-                          height="46"
-                          class="ml-1"
-                        />
-                      </div>
-                    )}
-                  <span class="font-normal ">
-                    <InnerHTML
-                      html={cartTranslations?.installmentsText?.replace(
-                        "$valor",
-                        `<span>${installments}</span>`,
-                      )}
-                    />
-                  </span>
-                </div>
+                {!priceIntl &&
+                  (
+                    <div
+                      class={`flex flex-row items-center leading-5 text-[15px] w-full ${
+                        freeShippingTarget - total > 0
+                          ? "justify-end"
+                          : "justify-between"
+                      }`}
+                    >
+                      {freeShippingTarget - total > 0
+                        ? ""
+                        : (
+                          <div class="flex flex-row items-center font-semibold">
+                            <span class="mt-1">
+                              {cartTranslations?.gotFreeShipping}
+                            </span>
+                            <img
+                              src="/image/Dog.gif"
+                              alt="Dog"
+                              width="46"
+                              height="46"
+                              class="ml-1"
+                            />
+                          </div>
+                        )}
+                      {!priceIntl &&
+                        (
+                          <span class="font-normal ">
+                            <InnerHTML
+                              html={cartTranslations?.installmentsText?.replace(
+                                "$valor",
+                                `<span>${installments}</span>`,
+                              )}
+                            />
+                          </span>
+                        )}
+                    </div>
+                  )}
               </div>
               {/* Free Shipping Bar */}
-              <div class="px-[18px] w-full">
-                <FreeShippingProgressBar
-                  freeShippingValueColor={freeShippingValueColor}
-                  freeShippingText={cartTranslations?.freeShippingText}
-                  total={total}
-                  locale={locale}
-                  currency={currency}
-                  target={freeShippingTarget}
-                />
-              </div>
+              {!priceIntl &&
+                (
+                  <div class="px-[18px] w-full">
+                    <FreeShippingProgressBar
+                      freeShippingValueColor={freeShippingValueColor}
+                      freeShippingText={cartTranslations?.freeShippingText}
+                      total={total}
+                      locale={locale}
+                      currency={currency}
+                      target={freeShippingTarget}
+                    />
+                  </div>
+                )}
               {/* Cart Footer */}
               <footer class="w-full px-[18px]">
                 <div class="pb-2">
-                  <a class="inline-block w-full" href={checkoutHref}>
+                  <a
+                    class="inline-block w-full"
+                    href={checkoutHref}
+                  >
                     <Button
                       class="btn btn-active btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black"
                       data-deco="buy-button"

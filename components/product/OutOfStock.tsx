@@ -5,9 +5,10 @@ import type { JSX } from "preact";
 
 export interface Props {
   productID: Product["productID"];
+  priceIntl?: boolean;
 }
 
-function Notify({ productID }: Props) {
+function Notify({ productID, priceIntl = false }: Props) {
   const loading = useSignal(false);
 
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
@@ -29,13 +30,27 @@ function Notify({ productID }: Props) {
 
   return (
     <form class="form-control justify-start gap-2" onSubmit={handleSubmit}>
-      <span class="text-base">Este produto está indisponivel no momento</span>
-      <span class="text-sm">Avise-me quando estiver disponivel</span>
+      <span class="text-base">
+        {priceIntl
+          ? "This product is currently unavailable."
+          : "Este produto está indisponivel no momento"}
+      </span>
+      <span class="text-sm">
+        {priceIntl
+          ? "Notify me when it becomes available."
+          : "Avise-me quando estiver disponivel"}
+      </span>
 
-      <input placeholder="Nome" class="input input-bordered" name="name" />
+      <input
+        placeholder={priceIntl ? "Name" : "Nome"}
+        class="input input-bordered"
+        name="name"
+      />
       <input placeholder="Email" class="input input-bordered" name="email" />
 
-      <button class="btn disabled:loading" disabled={loading}>Enviar</button>
+      <button class="btn disabled:loading" disabled={loading}>
+        {priceIntl ? "Send" : "Enviar"}
+      </button>
     </form>
   );
 }

@@ -4,7 +4,7 @@ import FooterItems from "$store/components/footer/FooterItems.tsx";
 import Social from "$store/components/footer/Social.tsx";
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import LanguageSwitcher from "$store/components/header/Buttons/Language.tsx";
+import LanguageSwitcher from "$store/islands/Header/ButtonLanguage.tsx";
 import { Country } from "$store/components/header/Header.tsx";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
@@ -234,7 +234,8 @@ function Footer({
                 width={24}
                 height={24}
                 textClass="text-[14px]"
-                class="w-auto"
+                class="w-auto "
+                classFlags="shadow-[0px_-3px_7px_2px_rgba(0, 0, 0, 0.1)] bottom-full"
               />
             </div>
             <div class="flex pb-[34px] w-full flex-grow gap-[30px] md:pl-[29px] ms:px-0 px-[15px] md:pr-[25px]">
@@ -269,8 +270,9 @@ function Footer({
                   countryFlag={countryFlag}
                   width={24}
                   height={24}
-                  textClass="text-[14px]"
+                  textClass="text-[14px] mt-1"
                   class="w-auto"
+                  classFlags="shadow-[0px_-3px_7px_2px_rgba(0,0,0,0.1)] bottom-full"
                 />
               </div>
             </div>

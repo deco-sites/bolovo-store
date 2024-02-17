@@ -9,6 +9,14 @@ import { Props as AlertProps } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 import type { ContentBlogItem } from "./ContentItem.tsx";
+import {
+  Cookie,
+  deleteCookie,
+  getCookies,
+  setCookie,
+} from "std/http/cookie.ts";
+import type { SectionProps } from "deco/types.ts";
+import { useUI } from "../../sdk/useUI.ts";
 
 export interface Country {
   countryLabel: string;
@@ -72,19 +80,21 @@ export interface Props {
   countryFlag: Country[];
 }
 
-function Header({
-  promotionBar,
-  searchbar,
-  menu,
-  contentBlog,
-  logo,
-  buttonSearch,
-  miniCart,
-  helpItem,
-  accountHref,
-  countryFlag,
-}: Props) {
+function Header(props: SectionProps<ReturnType<typeof loader>>) {
   const platform = usePlatform();
+  const { activePriceIntl } = useUI();
+
+  const {
+    menu,
+    searchbar,
+    miniCart,
+    promotionBar,
+    logo,
+    buttonSearch,
+    helpItem,
+    countryFlag,
+    accountHref,
+  } = props;
   const items = menu.items ?? [];
 
   return (
@@ -95,6 +105,7 @@ function Header({
           searchbar={searchbar}
           miniCart={miniCart}
           platform={platform}
+          priceIntl={activePriceIntl.value.active}
         >
           <div class="bg-base-100 fixed w-full z-50">
             <Alert {...promotionBar} />
@@ -117,3 +128,32 @@ function Header({
 }
 
 export default Header;
+
+export const loader = (props: Props, req: Request) => {
+  const { activePriceIntl } = useUI();
+  const cookies = getCookies(req.headers);
+
+  if (cookies.language === "en") {
+    activePriceIntl.value.active = true;
+    activePriceIntl.value.value = cookies.language;
+
+    const headers = new Headers();
+    const cookie: Cookie = {
+      name: "language",
+      value: "en",
+      path: "/",
+      maxAge: 3600,
+      secure: true,
+      httpOnly: true,
+      sameSite: "Lax",
+    };
+    setCookie(headers, cookie);
+  } else {
+    activePriceIntl.value.active = false;
+    activePriceIntl.value.value = cookies.language;
+    const headers = new Headers();
+    deleteCookie(headers, "language");
+  }
+
+  return { ...props };
+};
