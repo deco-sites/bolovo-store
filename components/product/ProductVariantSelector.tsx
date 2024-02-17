@@ -21,6 +21,7 @@ function VariantSelector(
   const { url, isVariantOf } = product;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const possibilities = useVariantPossibilities(hasVariant, product);
+  
   const sizeAndLinks = possibilities.Tamanho || {};
   
   const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => {
