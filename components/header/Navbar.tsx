@@ -12,7 +12,7 @@ import type { NavItemProps } from "./NavItem.tsx";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
-import LanguageSwitcher from "./Buttons/Language.tsx";
+import LanguageSwitcher from "$store/islands/Header/ButtonLanguage.tsx";
 import type { Country } from "./Header.tsx";
 import DrawerSearch from "$store/islands/Header/DrawerSearch.tsx";
 import type { ContentBlogItem } from "./ContentItem.tsx";

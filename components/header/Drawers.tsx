@@ -21,6 +21,7 @@ export interface Props {
    * @ignore_gen true
    */
   children?: ComponentChildren;
+  priceIntl?: boolean;
   platform: ReturnType<typeof usePlatform>;
 }
 
@@ -57,7 +58,7 @@ const Aside = (
   </div>
 );
 
-function Drawers({ menu, searchbar, miniCart, children, platform }: Props) {
+function Drawers({ menu, searchbar, miniCart, children, platform, priceIntl=false }: Props) {
   const { displayCart, displayMenu } = useUI();
 
   return (
@@ -86,7 +87,7 @@ function Drawers({ menu, searchbar, miniCart, children, platform }: Props) {
             title={miniCart?.cartTranslations?.modalCloseText ?? "Fechar"}
             onClose={() => displayCart.value = false}
           >
-            <Cart platform={platform} miniCart={miniCart} />
+            <Cart platform={platform} miniCart={miniCart} priceIntl={priceIntl} />
           </Aside>
         }
       >

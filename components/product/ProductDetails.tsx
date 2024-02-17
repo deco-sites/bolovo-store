@@ -10,6 +10,10 @@ export interface Props {
   /** @title Integration */
   page: ProductDetailsPage | null;
   reloadInSelector?: boolean;
+  /**
+   * @default Comprar
+   */
+  buyButton?: string
   /** @title Color Configuration */
   colors: Color[];
   notFound: PropsNotFound;
@@ -49,7 +53,7 @@ export const loader = async (
 };
 
 function PageOfProduct(
-  { page, reloadInSelector = false, colorRelated, colors, notFound }:
+  { page, reloadInSelector = false, colorRelated, colors, notFound, buyButton = "Comprar" }:
     & Props
     & { colorRelated: Product[] },
 ) {
@@ -68,6 +72,7 @@ function PageOfProduct(
           reloadInSelector={reloadInSelector}
           colorRelated={colorRelated}
           colors={colors}
+          buyButton={buyButton}
         />
       </div>
     </div>

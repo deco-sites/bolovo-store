@@ -18,12 +18,14 @@ import ProductSelector from "./ProductVariantSelector.tsx";
 import { CSS, KATEX_CSS, render } from "https://deno.land/x/gfm@0.3.0/mod.ts";
 import type { Description } from "../../sdk/markdownToObj.ts";
 import NavigationDescription from "$store/islands/NavigationDescription.tsx";
+import { useUI } from "../../sdk/useUI.ts";
 import { Color } from "$store/components/search/SearchResult.tsx";
 
 function PDPProductInfo(
-  { page, reloadInSelector, colorRelated, colors }: {
+  { page, reloadInSelector, buyButton, colorRelated, colors }: {
     page: ProductDetailsPage;
     reloadInSelector: boolean;
+    buyButton:string;
     colorRelated?: Product[];
     colors: Color[];
   },
@@ -76,12 +78,28 @@ function PDPProductInfo(
     seller = "1",
     installments,
     availability,
+    priceIntl = 0,
+    listPriceIntl,
+    sellerIntl = "1",
+    installmentsIntl,
+    availabilityIntl,
   } = useOffer(offers);
   const productGroupID = isVariantOf?.productGroupID ?? "";
-  const discount = price && listPrice ? listPrice - price : 0;
   const objDescription: Description | null = description
     ? markdownToObj(description)
     : null;
+
+  const { activePriceIntl } = useUI();
+
+  const currency = activePriceIntl.value.active
+    ? offers?.offers[1]?.priceCurrency || "USD"
+    : offers?.priceCurrency ||
+      "BRL";
+  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
+  const productListPrice = listPriceIntl || listPrice || 0;
+  const discount = productPrice && productListPrice
+    ? productListPrice - productPrice
+    : 0;
 
   return (
     <div class="flex flex-col w-full p-4 lg:p-0">
@@ -94,13 +112,13 @@ function PDPProductInfo(
         {/* Prices */}
         <div>
           <div class="flex flex-row gap-2 items-center">
-            {(listPrice ?? 0) > price && (
+            {(productListPrice ?? 0) > productListPrice && (
               <span class="line-through text-base-300 text-xs">
-                {formatPrice(listPrice, offers?.priceCurrency)}
+                {formatPrice(productListPrice, currency)}
               </span>
             )}
             <span class=" text-base">
-              {formatPrice(price, offers?.priceCurrency)}
+              {formatPrice(productPrice, currency) ?? " US$ 0,00"}
             </span>
           </div>
         </div>
@@ -110,13 +128,86 @@ function PDPProductInfo(
         <ProductSelector
           product={product}
           reloadInSelector={reloadInSelector}
+          priceIntl={activePriceIntl.value.active}
           colorRelated={colorVariants}
           colors={colors}
         />
       </div>
       {/* Add to Cart and Favorites button */}
       <div class="mt-4 sm:mt-10 flex flex-col gap-2">
-        {availability === "https://schema.org/InStock"
+        {activePriceIntl.value.active
+          ? productPrice
+            ? (
+              <>
+                {platform === "vtex" && (
+                  <>
+                    <AddToCartButtonVTEX
+                      url={url || ""}
+                      name={name}
+                      productID={productID}
+                      productGroupID={productGroupID}
+                      price={price}
+                      discount={discount}
+                      seller={seller}
+                    />
+                    <WishlistButton
+                      variant="full"
+                      productID={productID}
+                      productGroupID={productGroupID}
+                    />
+                  </>
+                )}
+                {platform === "wake" && (
+                  <AddToCartButtonWake
+                    url={url || ""}
+                    name={name}
+                    productID={productID}
+                    productGroupID={productGroupID}
+                    price={price}
+                    discount={discount}
+                  />
+                )}
+                {platform === "linx" && (
+                  <AddToCartButtonLinx
+                    url={url || ""}
+                    name={name}
+                    productID={productID}
+                    productGroupID={productGroupID}
+                    price={price}
+                    discount={discount}
+                  />
+                )}
+                {platform === "vnda" && (
+                  <AddToCartButtonVNDA
+                    url={url || ""}
+                    name={name}
+                    productID={productID}
+                    productGroupID={productGroupID}
+                    price={price}
+                    discount={discount}
+                    additionalProperty={additionalProperty}
+                    buyButton={buyButton}
+                  />
+                )}
+                {platform === "shopify" && (
+                  <AddToCartButtonShopify
+                    url={url || ""}
+                    name={name}
+                    productID={productID}
+                    productGroupID={productGroupID}
+                    price={price}
+                    discount={discount}
+                  />
+                )}
+              </>
+            )
+            : (
+              <OutOfStock
+                productID={productID}
+                priceIntl={activePriceIntl.value.active}
+              />
+            )
+          : availability === "https://schema.org/InStock"
           ? (
             <>
               {platform === "vtex" && (
@@ -166,6 +257,7 @@ function PDPProductInfo(
                   price={price}
                   discount={discount}
                   additionalProperty={additionalProperty}
+                  buyButton={buyButton}
                 />
               )}
               {platform === "shopify" && (

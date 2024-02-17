@@ -12,12 +12,10 @@ const CartShopify = lazy(() => import("./shopify/Cart.tsx"));
 export interface Props {
   platform: ReturnType<typeof usePlatform>;
   miniCart: MiniCartProps;
+  priceIntl: boolean;
 }
 
-function Cart({ platform, miniCart }: Props) {
-  const { freeShippingTarget, freeShippingValueColor, cartTranslations } =
-    miniCart;
-
+function Cart({ platform, miniCart, priceIntl }: Props) {
   if (platform === "vtex") {
     return <CartVTEX />;
   }
@@ -25,9 +23,8 @@ function Cart({ platform, miniCart }: Props) {
   if (platform === "vnda") {
     return (
       <CartVNDA
-        freeShippingTarget={freeShippingTarget}
-        freeShippingValueColor={freeShippingValueColor}
-        cartTranslations={cartTranslations}
+        miniCartProps={miniCart}
+        priceIntl={priceIntl}
       />
     );
   }

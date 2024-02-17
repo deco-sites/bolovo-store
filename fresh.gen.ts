@@ -11,6 +11,7 @@ import * as $AddToCartButton_wake from "./islands/AddToCartButton/wake.tsx";
 import * as $Alert from "./islands/Alert.tsx";
 import * as $ApplyFiltersJS from "./islands/ApplyFiltersJS.tsx";
 import * as $GalleryControls from "./islands/GalleryControls.tsx";
+import * as $Header_ButtonLanguage from "./islands/Header/ButtonLanguage.tsx";
 import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
 import * as $Header_Cart_linx from "./islands/Header/Cart/linx.tsx";
 import * as $Header_Cart_shopify from "./islands/Header/Cart/shopify.tsx";
@@ -48,6 +49,7 @@ const manifest = {
     "./islands/Alert.tsx": $Alert,
     "./islands/ApplyFiltersJS.tsx": $ApplyFiltersJS,
     "./islands/GalleryControls.tsx": $GalleryControls,
+    "./islands/Header/ButtonLanguage.tsx": $Header_ButtonLanguage,
     "./islands/Header/Buttons.tsx": $Header_Buttons,
     "./islands/Header/Cart/linx.tsx": $Header_Cart_linx,
     "./islands/Header/Cart/shopify.tsx": $Header_Cart_shopify,
