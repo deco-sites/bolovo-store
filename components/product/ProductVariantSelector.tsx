@@ -20,7 +20,7 @@ function VariantSelector(
   const { url, isVariantOf } = product;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const possibilities = useVariantPossibilities(hasVariant, product);
-
+  const variants = Object.entries(Object.values(possibilities)[0] ?? {});
   const sizeAndLinks = possibilities.Tamanho || {};
   const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => {
     if (reloadInSelector) {
