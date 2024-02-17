@@ -11,7 +11,7 @@ import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import { ProductDetailsPage } from "apps/commerce/types.ts";
+import { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import markdownToObj from "../../sdk/markdownToObj.ts";
 import ProductSelector from "./ProductVariantSelector.tsx";
@@ -19,15 +19,41 @@ import { CSS, KATEX_CSS, render } from "https://deno.land/x/gfm@0.3.0/mod.ts";
 import type { Description } from "../../sdk/markdownToObj.ts";
 import NavigationDescription from "$store/islands/NavigationDescription.tsx";
 import { useUI } from "../../sdk/useUI.ts";
+import { Color } from "$store/components/search/SearchResult.tsx";
 
 function PDPProductInfo(
-  { page, reloadInSelector, buyButton }: {
+  { page, reloadInSelector, buyButton, colorRelated, colors }: {
     page: ProductDetailsPage;
     reloadInSelector: boolean;
     buyButton:string;
+    colorRelated?: Product[];
+    colors: Color[];
   },
 ) {
   const platform = usePlatform();
+  const colorVariants  = [];
+
+  if (colorRelated) {
+    for (const relatedProduct of colorRelated) {
+      const additionalProperties = relatedProduct.additionalProperty;
+      if (additionalProperties && additionalProperties.length > 0) {
+        for (const property of additionalProperties) {
+          const { value } = property;
+          if (value && property.name !== "Tamanho") {
+              const parsedValue = JSON.parse(value);
+              if (parsedValue && parsedValue.type === "cor") {
+                const colorVariant = { 
+                    name: parsedValue.name as string, 
+                    url: relatedProduct.url as string 
+                };
+                colorVariants.push(colorVariant);
+                break;
+              }
+          }
+        }
+      }
+    }
+  }
 
   if (page === null) {
     throw new Error("Missing Product Details Page Info");
@@ -103,6 +129,8 @@ function PDPProductInfo(
           product={product}
           reloadInSelector={reloadInSelector}
           priceIntl={activePriceIntl.value.active}
+          colorRelated={colorVariants}
+          colors={colors}
         />
       </div>
       {/* Add to Cart and Favorites button */}
