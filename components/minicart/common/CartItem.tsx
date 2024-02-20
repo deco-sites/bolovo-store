@@ -85,9 +85,7 @@ function CartItem(
           <span class="text-sm font-normal text-[#121212]">
             {formatPrice(priceProduct, currency, locale)}
           </span>
-          <span class="text-sm text-[#121212] font-normal">
-           Tam: {size}
-          </span>
+          {size && <span class="text-sm text-[#121212] font-normal">Tam: {size.split(" |")[0]}</span>}
         </div>
         <div class="flex flex-row justify-between items-center">
           <QuantitySelector
