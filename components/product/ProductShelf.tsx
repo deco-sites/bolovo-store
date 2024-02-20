@@ -10,6 +10,8 @@ import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
+import type { AppContext } from "$store/apps/site.ts";
+import { Color } from "$store/components/search/SearchResult.tsx";
 
 export interface Props {
   title?: string;
@@ -22,14 +24,58 @@ export interface Props {
     link: string;
   };
   products: Product[] | null;
+  colors: Color[];
+  /** @description Choose if you would like to showcase the color variants in the product cards  */
+  showColorVariants?: boolean;
 }
 
-function ProductShelf({
-  products,
-  title,
-  layout,
-  seeMore,
-}: Props) {
+export const loader = async (
+  props: Props,
+  req: Request,
+  ctx: AppContext,
+) => {
+  const colorRelated: { [productName: string]: Product[] } = {};
+
+  for (const product of props.products || []) {
+    let camisetaVariantProperty;
+
+    for (const property of product.additionalProperty || []) {
+      if (property.valueReference === "TAGS") {
+        try {
+          const data = JSON.parse(property.value || "");
+
+          if (data.type === "variante_cor") {
+            camisetaVariantProperty = data.name;
+            break;
+          }
+        } catch (error) {
+          console.error("Erro ao fazer parse do valor como JSON:", error);
+        }
+      }
+    }
+
+    if (camisetaVariantProperty) {
+      const productList = await ctx.get({
+        "__resolveType": "vnda/loaders/productList.ts",
+        "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
+      });
+      if (product.name !== undefined && Array.isArray(productList)) {
+        colorRelated[product.name] = productList;
+      }
+    }
+  }
+
+  return {
+    ...props,
+    colorVariant: colorRelated || {},
+  };
+};
+
+function ProductShelf(
+  { products, title, layout, seeMore, colors, colorVariant, showColorVariants }:
+    & Props
+    & { colorVariant: { [productName: string]: Product[] } },
+) {
   const id = useId();
   const platform = "vnda";
 
@@ -62,6 +108,9 @@ function ProductShelf({
                 itemListName={title}
                 platform={platform}
                 index={index}
+                colorRelated={colorVariant[product.name as string] || []}
+                colors={colors}
+                showColorVariants={showColorVariants}
               />
             </Slider.Item>
           ))}
