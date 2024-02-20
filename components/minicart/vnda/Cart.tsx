@@ -72,7 +72,7 @@ function Cart(
 
     PriceIntl();
   }, [items]);
-  
+
   return (
     <BaseCart
       items={items.map((item) => ({
@@ -84,7 +84,7 @@ function Cart(
           list: item.variant_price,
           listIntl: item.variant_intl_price,
         },
-        size: item.extra.Tamanho.split(" |")[0]
+        size: item.extra.Tamanho
       }))}
       cartTranslations={cartTranslations}
       total={priceIntl ? priceTotalIntl.value : total}
