@@ -107,15 +107,15 @@ function CookieConsent(props: Props) {
               !layout?.content || layout?.content === "Tiled" ? "lg:gap-2" : ""
             }`}
           >
-            <h3 class="text-xl">{title}</h3>
+            <h3 class="text-base leading-6 font-medium uppercase">{title}</h3>
             {text && (
               <div
-                class="text-base"
+                class="text-smfont-normal"
                 dangerouslySetInnerHTML={{ __html: text }}
               />
             )}
 
-            <a href={policy.link} class="text-sm link link-secondary">
+            <a href={policy.link} class="text-sm link link-primary">
               {policy.text}
             </a>
           </div>
@@ -127,10 +127,10 @@ function CookieConsent(props: Props) {
                 : ""
             }`}
           >
-            <button class="btn" data-button-cc-accept>
+            <button class="btn btn-sm bg-primary hover:bg-primary text-white rounded-none" data-button-cc-accept>
               {buttons.allowText}
             </button>
-            <button class="btn btn-outline" data-button-cc-close>
+            <button class="btn btn-sm rounded-none border hover:bg-transparent bg-transparent border-primary text-primary" data-button-cc-close>
               {buttons.cancelText}
             </button>
           </div>
