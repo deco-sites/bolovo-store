@@ -19,6 +19,7 @@ export interface Item {
     list: number;
     listIntl?: number;
   };
+  size?: string
 }
 
 export interface Props {
@@ -44,7 +45,7 @@ function CartItem(
     itemToAnalyticsItem,
   }: Props,
 ) {
-  const { image, name, price: { sale, list, listIntl }, quantity } = item;
+  const { image, name, price: { sale, list, listIntl }, quantity, size } = item;
   const isGift = sale < 0.01;
   const [loading, setLoading] = useState(false);
 
@@ -85,7 +86,7 @@ function CartItem(
             {formatPrice(priceProduct, currency, locale)}
           </span>
           <span class="text-sm text-[#121212] font-normal">
-            Tam: G
+           Tam: {size}
           </span>
         </div>
         <div class="flex flex-row justify-between items-center">
