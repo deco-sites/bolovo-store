@@ -39,7 +39,7 @@ export const loader = async (
         "__resolveType": "vnda/loaders/productList.ts",
         "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
       });
-      console.log(product.inProductGroupWithID)
+      console.log(product.inProductGroupWithID);
       if (product.name !== undefined && Array.isArray(productList)) {
         colorRelated[product.name] = productList;
       }
@@ -52,19 +52,17 @@ export const loader = async (
   };
 };
 
-
 function ProductGallery({
   products,
   title,
   colorVariant,
   filterColors,
-  showColorVariants = true
+  showColorVariants = true,
 }:
-& Props
-& { colorVariant: { [productName: string]: Product[] } }
-& { filterColors?: Color[] }
-& { showColorVariants?: boolean }
-) {
+  & Props
+  & { colorVariant: { [productName: string]: Product[] } }
+  & { filterColors?: Color[] }
+  & { showColorVariants?: boolean }) {
   if (!products || products.length === 0) {
     return null;
   }
