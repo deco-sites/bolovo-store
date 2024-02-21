@@ -37,8 +37,7 @@ export const loader = async (
   const { showColorVariants } = props;
   const colorRelated: { [productName: string]: Product[] } = {};
 
-  if(showColorVariants){
-
+  if (showColorVariants) {
     for (const product of props.products || []) {
       let camisetaVariantProperty;
 

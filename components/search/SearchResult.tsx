@@ -1,7 +1,7 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import type { ProductListingPage, Product } from "apps/commerce/types.ts";
+import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
@@ -116,9 +116,7 @@ export function Result({
   url: string;
   isCategory?: boolean;
   card?: CardSEO;
-}
-  & {colorVariant: { [productName: string]: Product[] }}
-) {
+} & { colorVariant: { [productName: string]: Product[] } }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
@@ -185,8 +183,13 @@ export function Result({
   );
 }
 
-function SearchResult(props: SectionProps<ReturnType<typeof loader>> & { colorVariant: { [productName: string]: Product[] } }) {
-  const { page, notFound, searchTerm, section, isMobile, buttonsPagination} = props;
+function SearchResult(
+  props: SectionProps<ReturnType<typeof loader>> & {
+    colorVariant: { [productName: string]: Product[] };
+  },
+) {
+  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } =
+    props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
@@ -202,7 +205,6 @@ function SearchResult(props: SectionProps<ReturnType<typeof loader>> & { colorVa
     />
   );
 }
-
 
 export default SearchResult;
 

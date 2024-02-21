@@ -146,58 +146,59 @@ function ProductCard(
     </li>
   ));
 
-  const colorSelector = colorVariants?.length && colorVariants.length > 1 && showColorVariants
-    ? (
-      colorVariants.map((colorVariant, index) => {
-        // Encontre a cor correspondente no array de cores retornado pelo loader
-        const selectedColor = colors?.find((color) =>
-          color.label.toLowerCase() === colorVariant.name.toLowerCase()
-        );
-        if (!selectedColor) return null;
+  const colorSelector =
+    colorVariants?.length && colorVariants.length > 1 && showColorVariants
+      ? (
+        colorVariants.map((colorVariant, index) => {
+          // Encontre a cor correspondente no array de cores retornado pelo loader
+          const selectedColor = colors?.find((color) =>
+            color.label.toLowerCase() === colorVariant.name.toLowerCase()
+          );
+          if (!selectedColor) return null;
 
-        // Verifique se a cor selecionada é um SVG ou uma imagem
-        const isSvg = selectedColor.hex !== undefined;
+          // Verifique se a cor selecionada é um SVG ou uma imagem
+          const isSvg = selectedColor.hex !== undefined;
 
-        return (
-          <li key={index}>
-            <a href={colorVariant.url}>
-              <div
-                className="w-[12px] h-[12px] flex items-center justify-center border"
-                title={`Cor ${colorVariant.name}`}
-              >
-                {isSvg
-                  ? (
-                    // Se a cor for um SVG
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="12"
-                      height="12"
-                      viewBox="0 0 12 12"
-                      fill="none"
-                    >
-                      <rect
-                        x="0"
-                        y="0"
+          return (
+            <li key={index}>
+              <a href={colorVariant.url}>
+                <div
+                  className="w-[12px] h-[12px] flex items-center justify-center border"
+                  title={`Cor ${colorVariant.name}`}
+                >
+                  {isSvg
+                    ? (
+                      // Se a cor for um SVG
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
                         width="12"
                         height="12"
-                        fill={selectedColor.hex}
+                        viewBox="0 0 12 12"
+                        fill="none"
+                      >
+                        <rect
+                          x="0"
+                          y="0"
+                          width="12"
+                          height="12"
+                          fill={selectedColor.hex}
+                        />
+                      </svg>
+                    )
+                    : (
+                      // Se a cor for uma imagem
+                      <img
+                        src={selectedColor.src}
+                        alt={`Cor ${colorVariant.name}`}
                       />
-                    </svg>
-                  )
-                  : (
-                    // Se a cor for uma imagem
-                    <img
-                      src={selectedColor.src}
-                      alt={`Cor ${colorVariant.name}`}
-                    />
-                  )}
-              </div>
-            </a>
-          </li>
-        );
-      })
-    )
-    : null;
+                    )}
+                </div>
+              </a>
+            </li>
+          );
+        })
+      )
+      : null;
 
   const cta = (
     <a
