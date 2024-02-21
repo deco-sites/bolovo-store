@@ -1,9 +1,7 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
-import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import type { ProductListingPage } from "apps/commerce/types.ts";
+import type { ProductListingPage, Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery from "../product/ProductGallery.tsx";
 import NotFound from "./NotFound.tsx";
@@ -14,8 +12,8 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
-import type { Text } from "$store/sections/Content/TextSEO.tsx";
 import { useUI } from "../../sdk/useUI.ts";
+import type { AppContext } from "$store/apps/site.ts";
 
 export interface Props {
   /** @title Integration */
@@ -27,22 +25,24 @@ export interface Props {
    * @title Highlights
    */
   photoOnPLP?: Section[];
-    /**
+  /**
    * @default ORDENAR
    */
-    labelOrdenation?: string;
-    labelsOfFilters?: {
-      /**
-       * @default Filtrar
-       */
-      labelFilter?: string;
-      /**
-       * @default Fechar
-       */
-      labelClose?: string;
-    };
+  labelOrdenation?: string;
+  labelsOfFilters?: {
+    /**
+     * @default Filtrar
+     */
+    labelFilter?: string;
+    /**
+     * @default Fechar
+     */
+    labelClose?: string;
+  };
   filterColors?: Color[];
   filtersNames?: FilterName[];
+  /** @description Choose if you would like to showcase the color variants in the product cards  */
+  showColorVariants?: boolean;
   textFilters?: string;
   appliedFiltersText?: string;
   applyFiltersText?: string;
@@ -93,6 +93,8 @@ export function Result({
   isMobile,
   filterColors,
   filtersNames,
+  colorVariant,
+  showColorVariants,
   textFilters,
   appliedFiltersText,
   applyFiltersText,
@@ -114,12 +116,14 @@ export function Result({
   url: string;
   isCategory?: boolean;
   card?: CardSEO;
-}) {
+}
+  & {colorVariant: { [productName: string]: Product[] }}
+) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
-  const {activePriceIntl} = useUI();
+  const { activePriceIntl } = useUI();
 
   return (
     <>
@@ -139,7 +143,7 @@ export function Result({
             url={url}
             breadcrumb={breadcrumb}
             priceIntl={activePriceIntl.value.active}
-            labelOrdenation = {labelOrdenation}
+            labelOrdenation={labelOrdenation}
             labelsOfFilters={labelsOfFilters}
           />
         )}
@@ -152,6 +156,9 @@ export function Result({
             page={page}
             isMobile={isMobile}
             cardSEO={card}
+            colorVariant={colorVariant}
+            colors={filterColors}
+            showColorVariants={showColorVariants}
           />
         </div>
         <ButtonsPagination page={page} props={buttonsPagination} />
@@ -178,9 +185,8 @@ export function Result({
   );
 }
 
-function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
-  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } =
-    props;
+function SearchResult(props: SectionProps<ReturnType<typeof loader>> & { colorVariant: { [productName: string]: Product[] } }) {
+  const { page, notFound, searchTerm, section, isMobile, buttonsPagination} = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
@@ -197,10 +203,11 @@ function SearchResult(props: SectionProps<ReturnType<typeof loader>>) {
   );
 }
 
+
 export default SearchResult;
 
-export const loader = (props: Props, req: Request) => {
-  const { photoOnPLP, cardSEO } = { ...props };
+export const loader = async (props: Props, req: Request, ctx: AppContext) => {
+  const { photoOnPLP, cardSEO, showColorVariants } = props;
 
   const section = photoOnPLP?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
@@ -214,6 +221,38 @@ export const loader = (props: Props, req: Request) => {
 
   const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 
+  const colorRelated: { [productName: string]: Product[] } = {};
+
+  if (showColorVariants) {
+    for (const product of props.page?.products || []) {
+      let camisetaVariantProperty;
+
+      for (const property of product.additionalProperty || []) {
+        if (property.valueReference === "TAGS") {
+          try {
+            const data = JSON.parse(property.value || "");
+            if (data.type === "variante_cor") {
+              camisetaVariantProperty = data.name;
+              break;
+            }
+          } catch (error) {
+            console.error("Erro ao fazer parse do valor como JSON:", error);
+          }
+        }
+      }
+
+      if (camisetaVariantProperty) {
+        const productList = await ctx.get({
+          "__resolveType": "vnda/loaders/productList.ts",
+          "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
+        });
+        if (productList && Array.isArray(productList)) {
+          colorRelated[product.name || ""] = productList;
+        }
+      }
+    }
+  }
+
   return {
     ...props,
     searchTerm: term ?? "",
@@ -221,5 +260,6 @@ export const loader = (props: Props, req: Request) => {
     isMobile,
     url: req.url,
     card,
+    colorVariant: colorRelated || {},
   };
 };

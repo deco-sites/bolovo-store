@@ -1,17 +1,10 @@
-import { SendEventOnLoad } from "$store/components/Analytics.tsx";
-import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
 import GalleryControls from "$store/islands/GalleryControls.tsx";
 import { Result } from "$store/components/search/SearchResult.tsx";
-import { useOffer } from "$store/sdk/useOffer.ts";
-import type { ProductListingPage } from "apps/commerce/types.ts";
-import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import ProductGallery from "../product/ProductGallery.tsx";
+import type { ProductListingPage, Product } from "apps/commerce/types.ts";
 import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
-import type { ImageWidget } from "apps/admin/widgets.ts";
 import { FilterName } from "$store/components/search/SearchResult.tsx";
 import { Color } from "$store/components/search/SearchResult.tsx";
 import ButtonsPagination, {
@@ -19,6 +12,7 @@ import ButtonsPagination, {
 } from "./ButtonsPagination.tsx";
 import type { CardSEO } from "$store/components/search/SearchResult.tsx";
 import { useUI } from "../../sdk/useUI.ts";
+import type { AppContext } from "$store/apps/site.ts";
 
 /** @titleBy category */
 export interface Category {
@@ -65,6 +59,8 @@ export interface Props {
   };
   filterColors?: Color[];
   filtersNames?: FilterName[];
+  /** @description Choose if you would like to showcase the color variants in the product cards  */
+  showColorVariants?: boolean;
   textFilters?: string;
   appliedFiltersText?: string;
   applyFiltersText?: string;
@@ -82,6 +78,8 @@ function ResultCategory({
   isMobile,
   filterColors,
   filtersNames,
+  colorVariant,
+  showColorVariants,
   textFilters,
   appliedFiltersText,
   applyFiltersText,
@@ -112,7 +110,9 @@ function ResultCategory({
   notFound: PropsNotFound;
   photoOnPLP?: Section[];
   card?: CardSEO;
-}) {
+}
+& {colorVariant: { [productName: string]: Product[] }}
+) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
@@ -150,8 +150,11 @@ function ResultCategory({
         isCategory={true}
         notFound={notFound}
         photoOnPLP={photoOnPLP}
+        filterColors={filterColors}
         url={url}
         card={card}
+        colorVariant={colorVariant}
+        showColorVariants={showColorVariants}
       />
     </div>
   );
@@ -194,8 +197,42 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
   );
 }
 
-export const loader = (props: Props, req: Request) => {
-  const { categories, photoOnPLP, cardSEO } = { ...props };
+export const loader = (props: Props, req: Request, ctx: AppContext) => {
+  const { categories, photoOnPLP, cardSEO, showColorVariants } = { ...props };
+
+  const colorRelated: { [productName: string]: Product[] } = {};
+
+  if(showColorVariants){
+
+    for (const product of props.page?.products || []) {
+      let camisetaVariantProperty;
+  
+      for (const property of product.additionalProperty || []) {
+        if (property.valueReference === "TAGS") {
+          try {
+            const data = JSON.parse(property.value || "");
+  
+            if (data.type === "variante_cor") {
+              camisetaVariantProperty = data.name;
+              break;
+            }
+          } catch (error) {
+            console.error("Erro ao fazer parse do valor como JSON:", error);
+          }
+        }
+      }
+  
+      if (camisetaVariantProperty) {
+        const productList = ctx.get({
+          "__resolveType": "vnda/loaders/productList.ts",
+          "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
+        });
+        if (product.name !== undefined && Array.isArray(productList)) {
+          colorRelated[product.name] = productList;
+        }
+      }
+    }
+  }
 
   const url = new URL(req.url);
 
@@ -254,6 +291,7 @@ export const loader = (props: Props, req: Request) => {
       url: req.url,
       photoOnPLP,
       card,
+      colorVariant: colorRelated || {},
     };
   } else {
     return {
@@ -267,6 +305,7 @@ export const loader = (props: Props, req: Request) => {
       url: req.url,
       photoOnPLP,
       card,
+      colorVariant: colorRelated || {},
     };
   }
 };

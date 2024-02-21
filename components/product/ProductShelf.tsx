@@ -34,33 +34,37 @@ export const loader = async (
   req: Request,
   ctx: AppContext,
 ) => {
+  const { showColorVariants } = props;
   const colorRelated: { [productName: string]: Product[] } = {};
 
-  for (const product of props.products || []) {
-    let camisetaVariantProperty;
+  if(showColorVariants){
 
-    for (const property of product.additionalProperty || []) {
-      if (property.valueReference === "TAGS") {
-        try {
-          const data = JSON.parse(property.value || "");
+    for (const product of props.products || []) {
+      let camisetaVariantProperty;
 
-          if (data.type === "variante_cor") {
-            camisetaVariantProperty = data.name;
-            break;
+      for (const property of product.additionalProperty || []) {
+        if (property.valueReference === "TAGS") {
+          try {
+            const data = JSON.parse(property.value || "");
+
+            if (data.type === "variante_cor") {
+              camisetaVariantProperty = data.name;
+              break;
+            }
+          } catch (error) {
+            console.error("Erro ao fazer parse do valor como JSON:", error);
           }
-        } catch (error) {
-          console.error("Erro ao fazer parse do valor como JSON:", error);
         }
       }
-    }
 
-    if (camisetaVariantProperty) {
-      const productList = await ctx.get({
-        "__resolveType": "vnda/loaders/productList.ts",
-        "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
-      });
-      if (product.name !== undefined && Array.isArray(productList)) {
-        colorRelated[product.name] = productList;
+      if (camisetaVariantProperty) {
+        const productList = await ctx.get({
+          "__resolveType": "vnda/loaders/productList.ts",
+          "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
+        });
+        if (product.name !== undefined && Array.isArray(productList)) {
+          colorRelated[product.name] = productList;
+        }
       }
     }
   }
