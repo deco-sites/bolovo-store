@@ -6,19 +6,24 @@ import PhotoAndProducts, {
 } from "$store/components/search/PhotoAndProducts.tsx";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import type { CardSEO } from "$store/components/search/SearchResult.tsx";
+import { Color } from "$store/components/search/SearchResult.tsx";
 
 export interface Props {
   products: Product[] | null;
   offset?: number;
   photoOnPLP?: Section;
-  page: ProductListingPage | null;
-  isMobile: boolean;
+  page?: ProductListingPage | null;
+  isMobile?: boolean;
   cardSEO?: CardSEO;
 }
 
 function ProductGallery(
-  { products, offset, photoOnPLP, page, isMobile, cardSEO }: Props,
-) {
+  { products, offset, photoOnPLP, page, isMobile, cardSEO, colorVariant, colors, showColorVariants}:
+  & Props
+  & { colorVariant?: { [productName: string]: Product[] }  }
+  & { colors?: Color[] }
+  & { showColorVariants?: boolean }
+  ) {
   const platform = usePlatform();
 
   const row: number = photoOnPLP?.line ?? 0;
@@ -62,6 +67,9 @@ function ProductGallery(
                 preload={index === 0}
                 index={offset ? offset + index : undefined}
                 platform={platform}
+                colorRelated={colorVariant ? colorVariant[product.name as string] || [] : []}
+                colors={colors}
+                showColorVariants={showColorVariants}
               />
             </li>
           )

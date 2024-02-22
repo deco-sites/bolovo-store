@@ -10,6 +10,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import QuickShop from "$store/islands/QuickShop.tsx";
+import { Color } from "$store/components/search/SearchResult.tsx";
 
 export interface Layout {
   basics?: {
@@ -49,6 +50,9 @@ interface Props {
 
   layout?: Layout;
   platform?: Platform;
+  colorRelated?: Product[];
+  colors?: Color[];
+  showColorVariants?: boolean;
 }
 
 const relative = (url: string) => {
@@ -60,7 +64,17 @@ const WIDTH = 239.13;
 const HEIGHT = 300;
 
 function ProductCard(
-  { product, preload, itemListName, layout, platform, index }: Props,
+  {
+    product,
+    preload,
+    itemListName,
+    layout,
+    platform,
+    index,
+    colorRelated,
+    colors,
+    showColorVariants,
+  }: Props,
 ) {
   const {
     url,
@@ -97,6 +111,30 @@ function ProductCard(
 
   const sizeAndLinks = possibilities.Tamanho || {};
 
+  const colorVariants = [];
+
+  if (colorRelated && showColorVariants) {
+    for (const relatedProduct of colorRelated) {
+      for (const property of relatedProduct.additionalProperty || []) {
+        if (property.valueReference === "TAGS") {
+          try {
+            const parsedValue = JSON.parse(property.value || "");
+            if (parsedValue && parsedValue.type === "cor") {
+              const colorVariant = {
+                name: parsedValue.name as string,
+                url: relatedProduct.url as string,
+              };
+              colorVariants.push(colorVariant);
+              break;
+            }
+          } catch (error) {
+            console.error("Erro ao fazer parse do valor como JSON:", error);
+          }
+        }
+      }
+    }
+  }
+
   const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => (
     <li>
       <a href={link}>
@@ -108,31 +146,59 @@ function ProductCard(
     </li>
   ));
 
-  const colorSelector = variants.length > 1
-    ? (
-      variants.map(([value, link]) => (
-        <li>
-          <a href={link}>
-            <div
-              class="w-[12px] h-[12px] flex items-center justify-center"
-              title={`Cor ${value}`}
-            >
-              {/* Aqui eu optei por colocar um svg, e ai a parte do fill vai ser dinâmica de acordo com a informação que pegarmos na PDP */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-              >
-                <rect x="0" y="0" width="12" height="12" fill="#FF0000" />
-              </svg>
-            </div>
-          </a>
-        </li>
-      ))
-    )
-    : null;
+  const colorSelector =
+    colorVariants?.length && colorVariants.length > 1 && showColorVariants
+      ? (
+        colorVariants.map((colorVariant, index) => {
+          // Encontre a cor correspondente no array de cores retornado pelo loader
+          const selectedColor = colors?.find((color) =>
+            color.label.toLowerCase() === colorVariant.name.toLowerCase()
+          );
+          if (!selectedColor) return null;
+
+          // Verifique se a cor selecionada é um SVG ou uma imagem
+          const isSvg = selectedColor.hex !== undefined;
+
+          return (
+            <li key={index}>
+              <a href={colorVariant.url}>
+                <div
+                  className="w-[12px] h-[12px] flex items-center justify-center border"
+                  title={`Cor ${colorVariant.name}`}
+                >
+                  {isSvg
+                    ? (
+                      // Se a cor for um SVG
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                      >
+                        <rect
+                          x="0"
+                          y="0"
+                          width="12"
+                          height="12"
+                          fill={selectedColor.hex}
+                        />
+                      </svg>
+                    )
+                    : (
+                      // Se a cor for uma imagem
+                      <img
+                        src={selectedColor.src}
+                        alt={`Cor ${colorVariant.name}`}
+                      />
+                    )}
+                </div>
+              </a>
+            </li>
+          );
+        })
+      )
+      : null;
 
   const cta = (
     <a
@@ -290,30 +356,6 @@ function ProductCard(
           {l?.onMouseOver?.showCta && cta}
         </figcaption>
       </figure>
-      {
-        /* {
-        <div>
-          Seletor de Tamanhos (Esse aqui eu optei por esconder por talvez
-          utilizarmos ele futuramente, no caso ele ja ta funcionando direitinho)
-          {(!l?.elementsPositions?.skuSelector ||
-            l?.elementsPositions?.skuSelector === "Top") && (
-            <>
-              {l?.hide?.skuSelector ? "" : (
-                <div class="group">
-                  <ul
-                    class={`absolute bottom-0 left-0 flex items-center gap-2 w-full overflow-auto p-3 transition-opacity duration-300 opacity-0 group-hover:opacity-100 ${
-                      align === "center" ? "justify-center" : "justify-start"
-                    } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-                  >
-                    {skuSelector}
-                  </ul>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      } */
-      }
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col pt-[15px] lg:pt-5 gap-3 lg:gap-4">
         <div class="flex flex-col h-full lg:flex-row justify-between gap-[7px] lg:gap-0">
@@ -352,19 +394,12 @@ function ProductCard(
                   </div>
                 </div>
                 <div>
-                  {/* SKU Selector de Cor que atualmente está puxando os tamanhos disponíveis*/}
-                  {(!l?.elementsPositions?.skuSelector ||
-                    l?.elementsPositions?.skuSelector === "Top") && (
-                    <>
-                      {l?.hide?.skuSelector ? "" : (
-                        <div class="group">
-                          <ul class="flex items-center gap-[11px] lg:gap-1 justify-start lg:justify-end">
-                            {colorSelector}
-                          </ul>
-                        </div>
-                      )}
-                    </>
-                  )}
+                  {/* Seletor de Cores */}
+                  <div class="group">
+                    <ul class="flex items-center gap-[11px] lg:gap-1 justify-start lg:justify-end">
+                      {colorSelector}
+                    </ul>
+                  </div>
                 </div>
               </div>
             )}
