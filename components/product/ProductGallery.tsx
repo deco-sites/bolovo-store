@@ -46,6 +46,7 @@ function ProductGallery(
           : photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page &&
               index === line
           ? (
+            <>
             <PhotoAndProducts
               variant={photoOnPLP.imageAndProducts.variant}
               src={photoOnPLP.imageAndProducts.src}
@@ -59,6 +60,18 @@ function ProductGallery(
               customClassImage={`mx-[-15px] lg:mx-0 h-full py-4 lg:py-0`}
               row={row}
             />
+            <li class={`h-full`}>
+              <ProductCard
+                product={product}
+                preload={index === 0}
+                index={offset ? offset + index : undefined}
+                platform={platform}
+                colorRelated={colorVariant ? colorVariant[product.name as string] || [] : []}
+                colors={colors}
+                showColorVariants={showColorVariants}
+              />
+            </li>
+            </>
           )
           : (
             <li class={`h-full`}>
