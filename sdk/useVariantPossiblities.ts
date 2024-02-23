@@ -77,7 +77,7 @@ export interface VariantAvailability {
 export function variantAvailability(
   { hasVariant }: ProductGroup,
 ) {
-  const arrayVairants: VariantAvailability[] = [];
+  const arrayVariants: VariantAvailability[] = [];
 
   if (hasVariant) {
     hasVariant.map((item) => {
@@ -87,13 +87,13 @@ export function variantAvailability(
 
       if (index) {
         if (availability === "https://schema.org/InStock") {
-          arrayVairants.push({
+          arrayVariants.push({
             size: index.value,
             inStock: true,
             id: productID,
           });
         } else {
-          arrayVairants.push({
+          arrayVariants.push({
             size: index.value,
             inStock: false,
             id: productID,
@@ -101,14 +101,14 @@ export function variantAvailability(
         }
       } else {
         if (availability === "https://schema.org/InStock") {
-          arrayVairants.push({ inStock: true, id: productID });
+          arrayVariants.push({ inStock: true, id: productID });
         } else {
-          arrayVairants.push({ inStock: false, id: productID });
+          arrayVariants.push({ inStock: false, id: productID });
         }
       }
     });
   }else{
     return null
   }
-  return arrayVairants
+  return arrayVariants
 }
