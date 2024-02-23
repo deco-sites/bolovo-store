@@ -44,8 +44,6 @@ function SortMenu(
 ) {
   const sort = useSort();
 
-  console.log("price", priceIntl, sortOptions);
-
   return (
     <ul
       class="absolute z-10 bg-white w-full flex flex-col outline-none focus:outline-none border-x border-black border-b rounded-b-xl text-center"
