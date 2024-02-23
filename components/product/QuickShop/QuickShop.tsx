@@ -34,12 +34,11 @@ export default function QuickShop(
     isVariantOf,
     additionalProperty = [],
   } = product;
-
+  
   const { availability } = useOffer(offers);
   const variants = isVariantOf && variantAvailability(isVariantOf);
-
   const step = useSignal<Steps>("waiting");
-
+  
   const { addItem } = useCart();
   const onAddItem = async (
     id: string,
