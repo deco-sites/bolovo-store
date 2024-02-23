@@ -19,7 +19,7 @@ export interface Item {
     list: number;
     listIntl?: number;
   };
-  size?: string
+  size?: string;
 }
 
 export interface Props {
@@ -85,7 +85,13 @@ function CartItem(
           <span class="text-sm font-normal text-[#121212]">
             {formatPrice(priceProduct, currency, locale)}
           </span>
-          {size && <span class="text-sm text-[#121212] font-normal">Tam: {size.split(" |")[0]}</span>}
+          {size && (
+            <span class="text-sm text-[#121212] font-normal">
+              Tam: {priceIntl
+                ? size.substring(4).replace("|", "")
+                : size.substring(0, 2)}
+            </span>
+          )}
         </div>
         <div class="flex flex-row justify-between items-center">
           <QuantitySelector
