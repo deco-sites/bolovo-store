@@ -96,7 +96,7 @@ function Searchbar({
 
   return (
     <div class="w-full">
-      <div class="w-full hidden lg:grid gap-8">
+      <div class="w-full hidden lg:flex gap-8">
         <form
           id={id}
           action={hasValue.value ? action : ""}
@@ -117,7 +117,7 @@ function Searchbar({
             ? (
               <Button
                 type="submit"
-                class=" btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
+                class=" join-item btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
                 aria-label="search icon button"
               >
                 <Image
@@ -132,7 +132,7 @@ function Searchbar({
             : (
               <Button
                 type="button"
-                class=" btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
+                class=" join-item btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
                 aria-label="search icon button"
                 onClick={() => {
                   displaySearchDrawer.value = false;

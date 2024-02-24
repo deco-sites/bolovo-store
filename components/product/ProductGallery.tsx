@@ -18,12 +18,22 @@ export interface Props {
 }
 
 function ProductGallery(
-  { products, offset, photoOnPLP, page, isMobile, cardSEO, colorVariant, colors, showColorVariants}:
-  & Props
-  & { colorVariant?: { [productName: string]: Product[] }  }
-  & { colors?: Color[] }
-  & { showColorVariants?: boolean }
-  ) {
+  {
+    products,
+    offset,
+    photoOnPLP,
+    page,
+    isMobile,
+    cardSEO,
+    colorVariant,
+    colors,
+    showColorVariants,
+  }:
+    & Props
+    & { colorVariant?: { [productName: string]: Product[] } }
+    & { colors?: Color[] }
+    & { showColorVariants?: boolean },
+) {
   const platform = usePlatform();
 
   const row: number = photoOnPLP?.line ?? 0;
@@ -46,19 +56,34 @@ function ProductGallery(
           : photoOnPLP && page?.pageInfo.currentPage === photoOnPLP.page &&
               index === line
           ? (
-            <PhotoAndProducts
-              variant={photoOnPLP.imageAndProducts.variant}
-              src={photoOnPLP.imageAndProducts.src}
-              alt={photoOnPLP.imageAndProducts.alt}
-              href={photoOnPLP.imageAndProducts.href}
-              preLoad={photoOnPLP.imageAndProducts.preLoad}
-              layoutDesktop={photoOnPLP.imageAndProducts.layoutDesktop}
-              products={photoOnPLP.imageAndProducts.products}
-              title={photoOnPLP.imageAndProducts.title}
-              paragraph={photoOnPLP.imageAndProducts.paragraph}
-              customClassImage={`mx-[-15px] lg:mx-0 h-full py-4 lg:py-0`}
-              row={row}
-            />
+            <>
+              <PhotoAndProducts
+                variant={photoOnPLP.imageAndProducts.variant}
+                src={photoOnPLP.imageAndProducts.src}
+                alt={photoOnPLP.imageAndProducts.alt}
+                href={photoOnPLP.imageAndProducts.href}
+                preLoad={photoOnPLP.imageAndProducts.preLoad}
+                layoutDesktop={photoOnPLP.imageAndProducts.layoutDesktop}
+                products={photoOnPLP.imageAndProducts.products}
+                title={photoOnPLP.imageAndProducts.title}
+                paragraph={photoOnPLP.imageAndProducts.paragraph}
+                customClassImage={`mx-[-15px] lg:mx-0 h-full py-4 lg:py-0`}
+                row={row}
+              />
+              <li class={`h-full`}>
+                <ProductCard
+                  product={product}
+                  preload={index === 0}
+                  index={offset ? offset + index : undefined}
+                  platform={platform}
+                  colorRelated={colorVariant
+                    ? colorVariant[product.name as string] || []
+                    : []}
+                  colors={colors}
+                  showColorVariants={showColorVariants}
+                />
+              </li>
+            </>
           )
           : (
             <li class={`h-full`}>
@@ -67,7 +92,9 @@ function ProductGallery(
                 preload={index === 0}
                 index={offset ? offset + index : undefined}
                 platform={platform}
-                colorRelated={colorVariant ? colorVariant[product.name as string] || [] : []}
+                colorRelated={colorVariant
+                  ? colorVariant[product.name as string] || []
+                  : []}
                 colors={colors}
                 showColorVariants={showColorVariants}
               />
