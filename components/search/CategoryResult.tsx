@@ -1,6 +1,6 @@
 import GalleryControls from "$store/islands/GalleryControls.tsx";
 import { Result } from "$store/components/search/SearchResult.tsx";
-import type { ProductListingPage, Product } from "apps/commerce/types.ts";
+import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
@@ -13,6 +13,8 @@ import ButtonsPagination, {
 import type { CardSEO } from "$store/components/search/SearchResult.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
+import BannerInCategory from "$store/components/search/BannerInCategory.tsx";
+import type { Props as BannerProps } from "$store/components/search/BannerInCategory.tsx";
 
 /** @titleBy category */
 export interface Category {
@@ -37,6 +39,7 @@ export interface Props {
    */
   labelViewAll?: string;
   categories?: Category[];
+  banners?: BannerProps[];
   buttonsPagination?: ButtonsPaginationProps;
   /**
    * @title Highlights
@@ -95,6 +98,7 @@ function ResultCategory({
     labelClose: "Fechar",
   },
   labelViewAll = "Ver Todos",
+  banner,
 }: Omit<Props, "page"> & {
   page: ProductListingPage;
   currentCategory?: string;
@@ -110,9 +114,8 @@ function ResultCategory({
   notFound: PropsNotFound;
   photoOnPLP?: Section[];
   card?: CardSEO;
-}
-& {colorVariant: { [productName: string]: Product[] }}
-) {
+  banner?: BannerProps;
+} & { colorVariant: { [productName: string]: Product[] } }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
@@ -139,6 +142,7 @@ function ResultCategory({
         labelOrdenation={labelOrdenation}
         labelsOfFilters={labelsOfFilters}
         labelViewAll={labelViewAll}
+        banner={banner}
       />
       <Result
         page={page}
@@ -173,6 +177,7 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
     parentCategory,
     categoryURL,
     photoOnPLP,
+    banner,
   } = props;
 
   if (!page || page?.products.length === 0) {
@@ -193,25 +198,27 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
       parentCategory={parentCategory}
       categoryURL={categoryURL}
       photoOnPLP={photoOnPLP}
+      banner={banner}
     />
   );
 }
 
 export const loader = (props: Props, req: Request, ctx: AppContext) => {
-  const { categories, photoOnPLP, cardSEO, showColorVariants } = { ...props };
+  const { categories, photoOnPLP, cardSEO, showColorVariants, banners } = {
+    ...props,
+  };
 
   const colorRelated: { [productName: string]: Product[] } = {};
 
-  if(showColorVariants){
-
+  if (showColorVariants) {
     for (const product of props.page?.products || []) {
       let camisetaVariantProperty;
-  
+
       for (const property of product.additionalProperty || []) {
         if (property.valueReference === "TAGS") {
           try {
             const data = JSON.parse(property.value || "");
-  
+
             if (data.type === "variante_cor") {
               camisetaVariantProperty = data.name;
               break;
@@ -221,7 +228,7 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
           }
         }
       }
-  
+
       if (camisetaVariantProperty) {
         const productList = ctx.get({
           "__resolveType": "vnda/loaders/productList.ts",
@@ -253,6 +260,12 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
   const card = cardSEO?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
+
+  const banner = banners?.find(({ matcher }) =>
+    new URLPattern({ pathname: matcher }).test(req.url)
+  );
+
+  console.log("banner", banner);
 
   const categoryURL = foundCategory?.[0]?.url;
 
@@ -292,6 +305,7 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
       photoOnPLP,
       card,
       colorVariant: colorRelated || {},
+      banner,
     };
   } else {
     return {
@@ -306,6 +320,7 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
       photoOnPLP,
       card,
       colorVariant: colorRelated || {},
+      banner,
     };
   }
 };

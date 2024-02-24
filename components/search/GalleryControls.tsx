@@ -13,6 +13,8 @@ import type {
   Color,
   FilterName,
 } from "$store/components/search/SearchResult.tsx";
+import type { Props as BannerProps } from "$store/components/search/BannerInCategory.tsx";
+import BannerInCategory from "$store/components/search/BannerInCategory.tsx";
 
 type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -62,7 +64,10 @@ function GalleryControls(
     labelsOfFilters,
     priceIntl = false,
     labelViewAll,
-  }: Props,
+    banner,
+  }: Omit<Props, "page"> & {
+    banner: BannerProps;
+  },
 ) {
   const open = useSignal(false);
 
@@ -84,7 +89,7 @@ function GalleryControls(
       onClose={() => open.value = false}
       aside={
         <>
-          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full">
+          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full ">
             <div class="flex justify-end items-center">
               <span class="font-medium text-sm leading-[18px]">
                 {labelsOfFilters.labelClose}
@@ -165,8 +170,8 @@ function GalleryControls(
         </>
       }
     >
-      <div class="flex mb-5 flex-col lg:flex-row justify-between lg:w-[calc(100vw-45px)]">
-        <div class="flex lg:w-[88%] items-center relative px-2 mb-[10px] lg:mb-0 lg:px-0 max-w-[100vw] justify-start overflow-x-auto overflow-y-visible shadow-[0_5px_12px_0_rgba(220,220,220,0.25)] lg:shadow-none">
+      <div class="flex mb-5 flex-col lg:flex-row justify-between lg:w-full flex-wrap">
+        <div class="flex lg:w-[calc(100%-227px)] pb-0 order-1 items-center relative px-2 mb-0 lg:px-0 max-w-[100vw] justify-start overflow-x-auto overflow-y-visible shadow-[0_5px_12px_0_rgba(220,220,220,0.25)] lg:shadow-none">
           <div class="absolute inset-y-0 right-0 w-[10%] lg:w-[6.5%] bg-gradient-to-r from-transparent via-white to-white pointer-events-none">
           </div>
           {parentCategory && (
@@ -234,7 +239,8 @@ function GalleryControls(
             </>
           )}
         </div>
-        <div class="flex flex-row items-center gap-4 min-w-[211px] px-2 justify-end lg:px-0">
+        <BannerInCategory props={banner} />
+        <div class="flex flex-row items-center gap-4 min-w-[211px] px-2 justify-end lg:px-0 order-3 lg:order-2 mt-3 lg:mt-0 lg:pr-4">
           {sortOptions.length > 0 && (
             <Sort
               sortOptions={sortOptions}
