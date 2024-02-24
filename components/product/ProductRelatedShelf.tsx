@@ -15,7 +15,7 @@ export interface Props {
   };
   relatedProducts?: ProductDetailsPage | null;
   colors: Color[];
-  /** @description Choose if you would like to showcase the color variants in the product cards  */
+  /** @description Choose if you would like to showcase the color variants in the product cards */
   showColorVariants?: boolean;
 }
 
