@@ -240,7 +240,7 @@ function GalleryControls(
           )}
         </div>
         <BannerInCategory props={banner} />
-        <div class="flex flex-row items-center gap-4 min-w-[211px] px-2 justify-end lg:px-0 order-3 lg:order-2 mt-3 lg:mt-0 lg:pr-4">
+        <div class="flex flex-row items-center gap-4 min-w-[211px] lg:max-w-[227px] px-2 justify-end lg:px-0 order-3 lg:order-2 mt-3 lg:mt-0 lg:pr-4">
           {sortOptions.length > 0 && (
             <Sort
               sortOptions={sortOptions}
