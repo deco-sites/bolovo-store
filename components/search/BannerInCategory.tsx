@@ -112,7 +112,12 @@ function BannerInCategory({ props }: { props: Props | undefined }) {
             {subtitle && (
               <span
                 class="text-base-100 text-xs lg:text-base gap-0 p-0"
-                dangerouslySetInnerHTML={{ __html: subtitle }}
+                dangerouslySetInnerHTML={{
+                  __html: subtitle.replace(/<div.*?>/g, "").replace(
+                    /<\/div>/g,
+                    "",
+                  ),
+                }}
               >
               </span>
             )}
