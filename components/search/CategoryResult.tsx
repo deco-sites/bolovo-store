@@ -1,6 +1,6 @@
 import GalleryControls from "$store/islands/GalleryControls.tsx";
 import { Result } from "$store/components/search/SearchResult.tsx";
-import type { ProductListingPage, Product } from "apps/commerce/types.ts";
+import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
@@ -110,9 +110,7 @@ function ResultCategory({
   notFound: PropsNotFound;
   photoOnPLP?: Section[];
   card?: CardSEO;
-}
-& {colorVariant: { [productName: string]: Product[] }}
-) {
+} & { colorVariant: { [productName: string]: Product[] } }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
@@ -202,16 +200,15 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
 
   const colorRelated: { [productName: string]: Product[] } = {};
 
-  if(showColorVariants){
-
+  if (showColorVariants) {
     for (const product of props.page?.products || []) {
       let camisetaVariantProperty;
-  
+
       for (const property of product.additionalProperty || []) {
         if (property.valueReference === "TAGS") {
           try {
             const data = JSON.parse(property.value || "");
-  
+
             if (data.type === "variante_cor") {
               camisetaVariantProperty = data.name;
               break;
@@ -221,7 +218,7 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
           }
         }
       }
-  
+
       if (camisetaVariantProperty) {
         const productList = ctx.get({
           "__resolveType": "vnda/loaders/productList.ts",
@@ -236,9 +233,10 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
 
   const url = new URL(req.url);
 
-  const section = photoOnPLP?.find(({ matcher }) =>
-    new URLPattern({ pathname: matcher }).test(url)
-  );
+  const section = !url.search &&
+    photoOnPLP?.find(({ matcher }) =>
+      new URLPattern({ pathname: matcher }).test(url)
+    );
 
   const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 
