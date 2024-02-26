@@ -1,5 +1,5 @@
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
+import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import { MenuButton, SearchButton } from "$store/islands/Header/Buttons.tsx";
 import CartButtonLinx from "$store/islands/Header/Cart/linx.tsx";
 import CartButtonShopify from "$store/islands/Header/Cart/shopify.tsx";
@@ -56,7 +56,7 @@ function Navbar(
             style={{ minHeight: navbarHeight }}
             aria-label="Store logo"
           >
-            <Image src={logo.src} alt={logo.alt} width={134} height={40} />
+            <Icon id="StoreLogo" width={134} height={40} /> 
           </a>
         )}
         <div class="flex items-center gap-[7px] ">
@@ -89,7 +89,7 @@ function Navbar(
               aria-label="Store logo"
               class="block w-[145px]"
             >
-              <Image src={logo.src} alt={logo.alt} width={145} height={43} />
+              <Icon id="StoreLogo" width={145} height={43} /> 
             </a>
           )}
         </div>
