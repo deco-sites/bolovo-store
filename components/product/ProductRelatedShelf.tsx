@@ -1,7 +1,8 @@
-import { AppContext } from "apps/vnda/mod.ts";
+import type { AppContext } from "$store/apps/site.ts";
 import type { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import ProductShelf from "$store/components/product/ProductShelf.tsx";
 import { Color } from "$store/components/search/SearchResult.tsx";
+import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
 
 export interface Props {
   title?: string;
@@ -27,7 +28,6 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
 
   const tag = `relacionados-${category?.toLowerCase()}`;
 
-  console.log("TAG:", tag);
 
   let data: Product[] = [];
 
@@ -46,37 +46,14 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   }
 
   const { showColorVariants } = props;
-  const colorRelated: { [productName: string]: Product[] } = {};
+  let colorRelated: { [productName: string]: Product[] } = {};
+
 
   if (showColorVariants) {
-    for (const product of data || []) {
-      let camisetaVariantProperty;
-
-      for (const property of product.additionalProperty || []) {
-        if (property.valueReference === "TAGS") {
-          try {
-            const data = JSON.parse(property.value || "");
-
-            if (data.type === "variante_cor") {
-              camisetaVariantProperty = data.name;
-              break;
-            }
-          } catch (error) {
-            console.error("Erro ao fazer parse do valor como JSON:", error);
-          }
-        }
-      }
-
-      if (camisetaVariantProperty) {
-        const productList = await ctx.get<Product[]>({ 
-          "__resolveType": "vnda/loaders/productList.ts",
-          "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
-        });
-
-        if (product.name !== undefined && Array.isArray(productList)) {
-          colorRelated[product.name] = productList;
-        }
-      }
+    try {
+      colorRelated = await getColorRelatedProducts(data, ctx);
+    } catch (error) {
+      console.error("Erro ao obter produtos relacionados por cor:", error);
     }
   }
 
