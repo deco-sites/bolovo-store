@@ -120,7 +120,7 @@ function Filters(
         .filter(isToggle)
         .map((filter, index) => (
           <>
-            {filter.label == "cor" && index === 0
+            {filter.label === "cor" && index === 0
               ? (
                 <li class="border-y border-opacity-30 border-[#121212] ml-[21px] mr-[15px]">
                   <div class="flex flex-col gap-[7px] mb-4 mt-4">
@@ -131,7 +131,7 @@ function Filters(
                   </div>
                 </li>
               )
-              : filter.label == "cor" && index !== 0
+              : filter.label === "cor" && index !== 0
               ? (
                 <li class="border-b border-opacity-30 border-[#121212] ml-[21px] mr-[15px]">
                   <div class="flex flex-col gap-[7px] mb-4 ">
