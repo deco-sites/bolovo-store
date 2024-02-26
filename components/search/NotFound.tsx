@@ -166,7 +166,7 @@ export default function NotFound(
           <Container props={props} searchedLabel={searchedLabel} />
         </div>
       </div>
-      {shelfs && shelfs.map((item) => <ProductShelf {...item.shelf} colorVariant={{}}/>)}
+      {shelfs && shelfs.map((item) => <ProductShelf {...item.shelf}/>)}
     </div>
   );
 }

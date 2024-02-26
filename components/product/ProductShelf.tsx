@@ -55,7 +55,7 @@ export const loader = async (
 function ProductShelf(
   { products, title, layout, seeMore, colors, colorVariant, showColorVariants }:
     & Props
-    & { colorVariant: { [productName: string]: Product[] } },
+    & { colorVariant?: { [productName: string]: Product[] } },
 ) {
   const id = useId();
   const platform = "vnda";
@@ -89,7 +89,7 @@ function ProductShelf(
                 itemListName={title}
                 platform={platform}
                 index={index}
-                colorRelated={colorVariant[product.name as string] || []}
+                colorRelated={(colorVariant && colorVariant[product.name as string]) || []}
                 colors={colors}
                 showColorVariants={showColorVariants}
               />
