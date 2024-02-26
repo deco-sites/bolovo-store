@@ -14,6 +14,7 @@ import ButtonsPagination, {
 } from "./ButtonsPagination.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
+import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -223,35 +224,13 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
 
   const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 
-  const colorRelated: { [productName: string]: Product[] } = {};
+  let colorRelated: { [productName: string]: Product[] } = {};
 
   if (showColorVariants) {
-    for (const product of props.page?.products || []) {
-      let camisetaVariantProperty;
-
-      for (const property of product.additionalProperty || []) {
-        if (property.valueReference === "TAGS") {
-          try {
-            const data = JSON.parse(property.value || "");
-            if (data.type === "variante_cor") {
-              camisetaVariantProperty = data.name;
-              break;
-            }
-          } catch (error) {
-            console.error("Erro ao fazer parse do valor como JSON:", error);
-          }
-        }
-      }
-
-      if (camisetaVariantProperty) {
-        const productList = await ctx.get({
-          "__resolveType": "vnda/loaders/productList.ts",
-          "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
-        });
-        if (productList && Array.isArray(productList)) {
-          colorRelated[product.name || ""] = productList;
-        }
-      }
+    try {
+      colorRelated = await getColorRelatedProducts(props.page?.products, ctx);
+    } catch (error) {
+      console.error("Erro ao obter produtos relacionados por cor:", error);
     }
   }
 

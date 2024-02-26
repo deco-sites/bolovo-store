@@ -12,6 +12,7 @@ import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import type { AppContext } from "$store/apps/site.ts";
 import { Color } from "$store/components/search/SearchResult.tsx";
+import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
 
 export interface Props {
   title?: string;
@@ -35,36 +36,13 @@ export const loader = async (
   ctx: AppContext,
 ) => {
   const { showColorVariants } = props;
-  const colorRelated: { [productName: string]: Product[] } = {};
+  let colorRelated: { [productName: string]: Product[] } = {};
 
-  if (showColorVariants) {
-    for (const product of props.products || []) {
-      let camisetaVariantProperty;
-
-      for (const property of product.additionalProperty || []) {
-        if (property.valueReference === "TAGS") {
-          try {
-            const data = JSON.parse(property.value || "");
-
-            if (data.type === "variante_cor") {
-              camisetaVariantProperty = data.name;
-              break;
-            }
-          } catch (error) {
-            console.error("Erro ao fazer parse do valor como JSON:", error);
-          }
-        }
-      }
-
-      if (camisetaVariantProperty) {
-        const productList = await ctx.get({
-          "__resolveType": "vnda/loaders/productList.ts",
-          "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
-        });
-        if (product.name !== undefined && Array.isArray(productList)) {
-          colorRelated[product.name] = productList;
-        }
-      }
+  if (showColorVariants && props.products) {
+    try {
+      colorRelated = await getColorRelatedProducts(props.products, ctx);
+    } catch (error) {
+      console.error("Erro ao obter produtos relacionados por cor:", error);
     }
   }
 
