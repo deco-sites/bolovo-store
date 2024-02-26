@@ -1,13 +1,11 @@
 import { useEffect, useRef } from "preact/hooks";
-import { useSignal } from "@preact/signals";
 
 interface IframeLoaderProps {
   videoLink: string;
+  preload?: boolean
 }
 
-const IframeLoader = ({ videoLink }: IframeLoaderProps) => {
-  const isVisible = useSignal(false);
-
+const IframeLoader = ({ videoLink, preload }: IframeLoaderProps) => {
   const targetElement = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
@@ -44,6 +42,7 @@ const IframeLoader = ({ videoLink }: IframeLoaderProps) => {
       class="w-full h-full"
       allowFullScreen
       ref={targetElement}
+      loading={preload ? "eager" : "lazy"}
     >
     </iframe>
   );
