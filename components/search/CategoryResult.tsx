@@ -1,6 +1,6 @@
 import GalleryControls from "$store/islands/GalleryControls.tsx";
 import { Result } from "$store/components/search/SearchResult.tsx";
-import type { ProductListingPage, Product } from "apps/commerce/types.ts";
+import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
@@ -110,9 +110,7 @@ function ResultCategory({
   notFound: PropsNotFound;
   photoOnPLP?: Section[];
   card?: CardSEO;
-}
-& {colorVariant: { [productName: string]: Product[] }}
-) {
+} & { colorVariant: { [productName: string]: Product[] } }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
@@ -197,21 +195,16 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
   );
 }
 
-export const loader = (props: Props, req: Request, ctx: AppContext) => {
-  const { categories, photoOnPLP, cardSEO, showColorVariants } = { ...props };
-
+export async function getColorRelatedProducts(products: Product[] | undefined, ctx: AppContext) {
   const colorRelated: { [productName: string]: Product[] } = {};
 
-  if(showColorVariants){
-
-    for (const product of props.page?.products || []) {
+    for (const product of products || []) {
       let camisetaVariantProperty;
-  
+
       for (const property of product.additionalProperty || []) {
         if (property.valueReference === "TAGS") {
           try {
             const data = JSON.parse(property.value || "");
-  
             if (data.type === "variante_cor") {
               camisetaVariantProperty = data.name;
               break;
@@ -221,16 +214,30 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
           }
         }
       }
-  
+
       if (camisetaVariantProperty) {
-        const productList = ctx.get({
+        const productList = await ctx.get({
           "__resolveType": "vnda/loaders/productList.ts",
           "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
         });
-        if (product.name !== undefined && Array.isArray(productList)) {
-          colorRelated[product.name] = productList;
+        if (productList && Array.isArray(productList)) {
+          colorRelated[product.name || ""] = productList;
         }
       }
+    }
+
+  return colorRelated;
+}
+
+export const loader = async (props: Props, req: Request, ctx: AppContext) => {
+  const { categories, photoOnPLP, cardSEO, showColorVariants } = { ...props };
+  let colorRelated: { [productName: string]: Product[] } = {};
+
+  if (showColorVariants) {
+    try {
+      colorRelated = await getColorRelatedProducts(props.page?.products, ctx);
+    } catch (error) {
+      console.error("Erro ao obter produtos relacionados por cor:", error);
     }
   }
 
