@@ -58,6 +58,13 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     `[${ATTRIBUTES["data-progress"]}]`,
   );
 
+  const clearAutoplayTimeout = () => {
+    if (timeout) {
+      clearInterval(timeout); // Limpa o intervalo se estiver definido
+      timeout = setInterval(onClickNext, interval); // Define um novo intervalo
+    }
+  };
+
   if (!root || !slider || !items || items.length === 0) {
     console.warn(
       "Missing necessary slider attributes. It will not work as intended. Necessary elements:",
@@ -104,6 +111,8 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
       behavior: scroll,
       left: item.offsetLeft - root.offsetLeft,
     });
+
+    clearAutoplayTimeout();
   };
 
   const onClickPrev = () => {
@@ -181,7 +190,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   prev?.addEventListener("click", onClickPrev);
   next?.addEventListener("click", onClickNext);
 
-  const timeout = interval && setInterval(onClickNext, interval);
+  let timeout = interval && setInterval(onClickNext, interval);
 
   // Unregister callbacks
   return () => {
