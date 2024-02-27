@@ -60,8 +60,8 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
 
   const clearAutoplayTimeout = () => {
     if (timeout) {
-      clearInterval(timeout); // Limpa o intervalo se estiver definido
-      timeout = setInterval(onClickNext, interval); // Define um novo intervalo
+      clearInterval(timeout);
+      timeout = setInterval(onClickNext, interval); 
     }
   };
 
