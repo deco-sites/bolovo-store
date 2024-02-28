@@ -97,6 +97,7 @@ export interface Props {
   };
   footerTexts?: FooterTexts;
   footerLogos?: FooterLogos[];
+  showLanguageVariant?: boolean;
   changeCountryText?: string;
   countryFlag: Country[];
   followBolovoText?: string;
@@ -158,6 +159,7 @@ function Footer({
   }],
   social,
   backToTheTop,
+  showLanguageVariant = true,
   countryFlag,
   extraInfo,
   layout = {
@@ -229,6 +231,7 @@ function Footer({
               <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-[11px]">
                 {changeCountryText}
               </span>
+              {showLanguageVariant && (
               <LanguageSwitcher
                 countryFlag={countryFlag}
                 width={24}
@@ -237,6 +240,7 @@ function Footer({
                 class="w-auto "
                 classFlags="shadow-[0px_-3px_7px_2px_rgba(0, 0, 0, 0.1)] bottom-full"
               />
+              )}
             </div>
             <div class="flex pb-[34px] w-full flex-grow gap-[30px] md:pl-[29px] ms:px-0 px-[15px] md:pr-[25px]">
               {_sectionLinks}
@@ -266,6 +270,7 @@ function Footer({
                 <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-1">
                   {changeCountryText}
                 </span>
+                {showLanguageVariant && (
                 <LanguageSwitcher
                   countryFlag={countryFlag}
                   width={24}
@@ -274,6 +279,7 @@ function Footer({
                   class="w-auto"
                   classFlags="shadow-[0px_-3px_7px_2px_rgba(0,0,0,0.1)] bottom-full"
                 />
+                )}
               </div>
             </div>
             <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px] border-t border-primary">
