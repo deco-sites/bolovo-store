@@ -67,9 +67,7 @@ function GalleryControls(
   const open = useSignal(false);
 
   const removeFilters = () => {
-    const urlNoQuery = url.split("&")[0];
-    window.history.replaceState({}, "", urlNoQuery);
-    window.location.reload();
+    selectedFilters.value = [];
   };
 
   function removeAcentos(str: string) {
@@ -146,17 +144,14 @@ function GalleryControls(
                 </div>
                 {selectedFilters.value.length > 0 && (
                   <div class="pb-4 inline-block w-full">
-                    <a
-                      class="inline-block w-full"
-                      href={breadcrumb?.itemListElement.at(-1)?.item ?? ""}
-                    >
+                    <div class="inline-block w-full">
                       <Button
                         onClick={() => removeFilters()}
                         class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white text-[15px] font-normal"
                       >
                         {removeFiltersText}
                       </Button>
-                    </a>
+                    </div>
                   </div>
                 )}
               </div>
