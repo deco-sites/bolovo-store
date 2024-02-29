@@ -26,7 +26,7 @@ function StoresList(
       <h2 className="text-[#121212] text-[20px] leading-[26px] text-center font-bold">
         {title}
       </h2>
-      <div class="w-full flex flex-col-reverse lg:flex-row items-center">
+      <div class="w-full flex flex-col-reverse lg:flex-row items-center lg:items-start">
         <div class="w-1/2">
           <img src="https://cdn.vnda.com.br/bolovo/2020/12/02/15_12_7_752_contatolucas1.jpg?v=1709056697" />
         </div>
