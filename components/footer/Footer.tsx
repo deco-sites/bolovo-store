@@ -159,7 +159,7 @@ function Footer({
   }],
   social,
   backToTheTop,
-  showLanguageVariant = true,
+  showLanguageVariant,
   countryFlag,
   extraInfo,
   layout = {
@@ -232,14 +232,14 @@ function Footer({
                 {changeCountryText}
               </span>
               {showLanguageVariant && (
-              <LanguageSwitcher
-                countryFlag={countryFlag}
-                width={24}
-                height={24}
-                textClass="text-[14px]"
-                class="w-auto "
-                classFlags="shadow-[0px_-3px_7px_2px_rgba(0, 0, 0, 0.1)] bottom-full"
-              />
+                <LanguageSwitcher
+                  countryFlag={countryFlag}
+                  width={24}
+                  height={24}
+                  textClass="text-[14px]"
+                  class="w-auto "
+                  classFlags="shadow-[0px_-3px_7px_2px_rgba(0, 0, 0, 0.1)] bottom-full"
+                />
               )}
             </div>
             <div class="flex pb-[34px] w-full flex-grow gap-[30px] md:pl-[29px] ms:px-0 px-[15px] md:pr-[25px]">
@@ -271,14 +271,14 @@ function Footer({
                   {changeCountryText}
                 </span>
                 {showLanguageVariant && (
-                <LanguageSwitcher
-                  countryFlag={countryFlag}
-                  width={24}
-                  height={24}
-                  textClass="text-[14px] mt-1"
-                  class="w-auto"
-                  classFlags="shadow-[0px_-3px_7px_2px_rgba(0,0,0,0.1)] bottom-full"
-                />
+                  <LanguageSwitcher
+                    countryFlag={countryFlag}
+                    width={24}
+                    height={24}
+                    textClass="text-[14px] mt-1"
+                    class="w-auto"
+                    classFlags="shadow-[0px_-3px_7px_2px_rgba(0,0,0,0.1)] bottom-full"
+                  />
                 )}
               </div>
             </div>
