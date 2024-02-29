@@ -19,17 +19,16 @@ export interface Props {
   /** @format html */
   /** @title Endereço da Loja */
   addressText?: string;
-  alignment?: "left" | "right";
 }
 
-function StoresDisplay({ hero, addressText, alignment = "left" }: Props) {
+function StoresDisplay({ hero, addressText }: Props) {
 
   return (
     <div className="stores-features-section">
       <div className="container mx-auto py-10">
-        <div className={`flex flex-col`}>
+        <div className={`flex flex-col items-center`}>
           {/* Imagem */}
-          <div className="mx-4 lg:mx-0 lg:w-1/2">
+          <div className="mx-4 lg:mx-auto lg:w-[100vh]">
             <Picture preload={hero.preload}>
               <Source
                 media="(max-width: 1023px)"
@@ -54,17 +53,16 @@ function StoresDisplay({ hero, addressText, alignment = "left" }: Props) {
             </Picture>
           </div>
           {/* Título e Subtítulo */}
-          <div className="lg:w-1/2 px-11 lg:px-0 lg:py-16">
+          <div className="lg:w-1/2 px-11 lg:px-0 lg:py-8">
             <div
               className={`
               } md:h-full flex justify-center items-center feature-text-container relative py-11 lg:py-0`}
             >
               <div
-                className={`text-[13px] lg:text-[14px] xl:text-base leading-[20.8px] flex flex-col max-w-[433px] ${
-                } gap-5`}
+                className={`text-[13px] lg:text-[14px] xl:text-base leading-[20.8px] flex flex-col max-w-[433px] gap-5`}
               >
                 <div
-                  className="font-acumin lg:text-base-300"
+                  className="font-acumin"
                   dangerouslySetInnerHTML={{ __html: addressText ?? "" }}
                 />
               </div>

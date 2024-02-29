@@ -23,7 +23,7 @@ function StoresList(
 
   return (
     <div class="w-full py-8 flex flex-col gap-5 px-[15px] mx-auto lg:gap-16 lg:py-10">
-      <h2 className="text-[#121212] text-[18px] text-center font-bold">
+      <h2 className="text-[#121212] text-[26px] leading-[26px] text-center font-bold">
         {title}
       </h2>
       <div class="w-full flex">
