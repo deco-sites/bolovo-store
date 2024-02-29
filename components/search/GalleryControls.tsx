@@ -79,13 +79,10 @@ function GalleryControls(
   const scrollBehavior = (event: WheelEvent) => {
     event.preventDefault();
 
-    // Referenciar o elemento corretamente usando event.currentTarget
     const slider = event.currentTarget as HTMLElement;
 
-    // Determinar a direção e a quantidade de rolagem
     const scrollAmount = event.deltaY > 0 ? 200 : -200;
 
-    // Rolar horizontalmente
     slider.scrollLeft += scrollAmount;
   };
 
