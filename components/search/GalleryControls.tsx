@@ -76,6 +76,19 @@ function GalleryControls(
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
+  const scrollBehavior = (event: WheelEvent) => {
+    event.preventDefault();
+
+    // Referenciar o elemento corretamente usando event.currentTarget
+    const slider = event.currentTarget as HTMLElement;
+
+    // Determinar a direção e a quantidade de rolagem
+    const scrollAmount = event.deltaY > 0 ? 200 : -200;
+
+    // Rolar horizontalmente
+    slider.scrollLeft += scrollAmount;
+  };
+
   return (
     <Drawer
       class="drawer-end"
@@ -183,7 +196,7 @@ function GalleryControls(
                 </span>
                 <span class="ml-5 text-black">{">"}</span>
               </a>
-              <Slider class="py-[17.5px] carousel carousel-start gap-4 lg:gap-7 row-start-2 row-end-5 overflow-x-scroll">
+              <Slider class="py-[17.5px] flex carousel carousel-start gap-4 lg:gap-7 row-start-2 row-end-5 overflow-x-scroll scroll-smooth lg:snap-x lg:snap-mandatory" onWheelCapture={scrollBehavior}>
                 <Slider.Item
                   index={0}
                   class="flex carousel-item sm:first:pl-0 last:pr-6 sm:last:pr-14"
