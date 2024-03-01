@@ -79,39 +79,41 @@ function Newsletter(
           </h3>
         )}
       </div>
-      <form
-        class="md:form-control md:my-0 my-[14px] w-[321px] md:mx-0 mx-auto"
-        onSubmit={handleSubmit}
-      >
-        <div class="flex flex-wrap gap-3 h-[38px] relative items-center">
-          <input
-            name="email"
-            class="flex-auto h-[38px] md:flex-none rounded-[20px] input input-bordered border-primary w-full text-base-content join-item pl-[21px] placeholder:text-[12px] placeholder:uppercase placeholder:font-normal"
-            placeholder={content?.form?.placeholder || "Digite seu email"}
-            required
-          />
-          <button
-            type="submit"
-            class="bg-primary h-[38px] px-[20px] py-[5px] text-white rounded-[19px] disabled:loading text-sm leading-[18px] font-normal uppercase join-item absolute right-0"
-            disabled={loading}
-          >
-            {content?.form?.buttonText || "Inscrever"}
-          </button>
-        </div>
-      </form>
-      {showMessage.value == "error"
-        ? (
-          <div class="text-sm leading-none text-[#d44c47] mt-1">
-            Aconteceu algum erro ao cadastrar o email, tente novamente!
+      <div class="flex flex-col">
+        <form
+          class="md:form-control md:my-0 my-[14px] w-[321px] md:mx-0 mx-auto"
+          onSubmit={handleSubmit}
+        >
+          <div class="flex flex-wrap gap-3 h-[38px] relative items-center">
+            <input
+              name="email"
+              class="flex-auto h-[38px] md:flex-none rounded-[20px] input input-bordered border-primary w-full text-base-content join-item pl-[21px] placeholder:text-[12px] placeholder:uppercase placeholder:font-normal"
+              placeholder={content?.form?.placeholder || "Digite seu email"}
+              required
+            />
+            <button
+              type="submit"
+              class="bg-primary h-[38px] px-[20px] py-[5px] text-white rounded-[19px] disabled:loading text-sm leading-[18px] font-normal uppercase join-item absolute right-0"
+              disabled={loading}
+            >
+              {content?.form?.buttonText || "Inscrever"}
+            </button>
           </div>
-        )
-        : showMessage.value == "success"
-        ? (
-          <div class="text-sm leading-none text-green-600 mt-1">
-            E-mail cadastrado com sucesso !
-          </div>
-        )
-        : ""}
+        </form>
+        {showMessage.value == "error"
+          ? (
+            <div class="text-sm leading-none text-[#d44c47] mt-1 ml-[1px] sm:pb-0 pb-[6px]">
+              Aconteceu algum erro ao cadastrar o email, tente novamente!
+            </div>
+          )
+          : showMessage.value == "success"
+          ? (
+            <div class="text-sm leading-none text-green-600 mt-1 ml-[1px] sm:pb-0 pb-[6px]">
+              E-mail cadastrado com sucesso !
+            </div>
+          )
+          : ""}
+      </div>
       {content?.form?.helpTextDesktop && (
         <div
           class="w-[458px] text-[11px] ml-[29px] font-normal md:flex hidden leading-[16.4px] text-primary"
