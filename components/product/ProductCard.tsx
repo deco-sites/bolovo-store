@@ -11,6 +11,7 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import QuickShop from "$store/islands/QuickShop.tsx";
 import { Color } from "$store/components/search/SearchResult.tsx";
+import Image from "apps/website/components/Image.tsx";
 
 export interface Layout {
   basics?: {
@@ -84,33 +85,25 @@ function ProductCard(
     offers,
     isVariantOf,
   } = product;
+
   const id = `product-card-${productID}`;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, listPriceIntl, price, priceIntl = 0, installments } =
-    useOffer(offers);
+  const { listPrice, listPriceIntl, price, priceIntl = 0 } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
-  const variants = Object.entries(Object.values(possibilities)[0] ?? {});
-
   const { activePriceIntl } = useUI();
-
   const currency = activePriceIntl.value.active
     ? offers?.offers[1]?.priceCurrency || "USD"
-    : offers?.priceCurrency ||
-      "BRL";
+    : offers?.priceCurrency || "BRL";
   const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
   const productListPrice = activePriceIntl.value.active && listPriceIntl ||
     listPrice;
-
-  const l = layout;
-  const align =
-    !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
-      ? "left"
-      : "center";
-
+  const align = !layout?.basics?.contentAlignment ||
+      layout?.basics?.contentAlignment === "Left"
+    ? "left"
+    : "center";
   const sizeAndLinks = possibilities.Tamanho || {};
-
   const colorVariants = [];
 
   if (colorRelated && showColorVariants) {
@@ -163,7 +156,7 @@ function ProductCard(
             <li key={index}>
               <a href={colorVariant.url}>
                 <div
-                  className="w-[12px] h-[12px] flex items-center justify-center border"
+                  class="w-[12px] h-[12px] flex items-center justify-center border"
                   title={`Cor ${colorVariant.name}`}
                 >
                   {isSvg
@@ -206,7 +199,7 @@ function ProductCard(
       aria-label="view product"
       class="btn btn-block"
     >
-      {l?.basics?.ctaText || "Ver produto"}
+      {layout?.basics?.ctaText || "Ver produto"}
     </a>
   );
 
@@ -218,10 +211,10 @@ function ProductCard(
       class={`card card-compact group w-full relative ${
         productPrice === 0 && "opacity-70 pointer-events-none cursor-none"
       } ${align === "center" ? "text-center" : "text-start"} ${
-        l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
+        layout?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
       }
         ${
-        l?.onMouseOver?.card === "Move up" &&
+        layout?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
       }
       `}
@@ -260,12 +253,12 @@ function ProductCard(
         <div
           class={`absolute top-2 z-10
           ${
-            l?.elementsPositions?.favoriteIcon === "Top left"
+            layout?.elementsPositions?.favoriteIcon === "Top left"
               ? "left-2"
               : "right-2"
           }
           ${
-            l?.onMouseOver?.showFavoriteIcon
+            layout?.onMouseOver?.showFavoriteIcon
               ? "lg:hidden lg:group-hover:block"
               : "lg:hidden"
           }
@@ -284,86 +277,63 @@ function ProductCard(
           aria-label="view product"
           class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
         >
-          <Picture preload={preload}>
-            <Source
-              media="(max-width: 1023px)"
-              fetchPriority={preload ? "high" : "auto"}
-              src={safeSrc(front.url)}
-              width={263.6363}
-              height={290}
-            />
-            <Source
-              media="(min-width: 1024px)"
-              fetchPriority={preload ? "high" : "auto"}
-              src={safeSrc(front.url)}
-              width={380}
-              height={380}
-            />
-            <img
-              className={`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
-                l?.onMouseOver?.image == "Zoom image"
-                  ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                  : ""
-              }`}
-              alt={front.alternateName}
-              decoding="async"
-              loading={preload ? "eager" : "lazy"}
-            />
-          </Picture>
-
-          {(!l?.onMouseOver?.image ||
-            l?.onMouseOver?.image == "Change image") && (
+          <Image
+            src={safeSrc(front.url)}
+            sizes="(max-width: 640px) 50vw, 20vw"
+            fetchPriority={"low"}
+            width={380}
+            height={380}
+            alt={front.alternateName}
+            class={`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
+              layout?.onMouseOver?.image === "Zoom image"
+                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                : ""
+            }`}
+            loading={preload ? "eager" : "lazy"}
+            decoding="async"
+          />
+          {(!layout?.onMouseOver?.image ||
+            layout?.onMouseOver?.image == "Change image") && (
             <div class="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity">
-              <Picture preload={preload}>
-                <Source
-                  media="(max-width: 1023px)"
-                  fetchPriority={preload ? "high" : "auto"}
-                  src={safeSrc(back?.url ?? front.url)}
-                  width={219.38326}
-                  height={300}
-                />
-                <Source
-                  media="(min-width: 1024px)"
-                  fetchPriority={preload ? "high" : "auto"}
-                  src={safeSrc(back?.url ?? front.url)}
-                  width={239.13935}
-                  height={300}
-                />
-                <img
-                  className="h-full bg-base-100 col-span-full row-span-full w-full"
-                  alt={back?.alternateName ?? front.alternateName}
-                  decoding="async"
-                  loading={preload ? "eager" : "lazy"}
-                />
-              </Picture>
+              <Image
+                src={safeSrc(back?.url ?? front.url)}
+                fetchPriority={"low"}
+                sizes="(max-width: 640px) 50vw, 20vw"
+                width={239}
+                height={300}
+                alt={front.alternateName}
+                class="bg-base-100 col-span-full row-span-full w-full"
+                loading={preload ? "eager" : "lazy"}
+                decoding="async"
+              />
             </div>
           )}
         </a>
         <figcaption
           class={`
           absolute bottom-1 left-0 w-full flex flex-col gap-3 p-2 ${
-            l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
+            layout?.onMouseOver?.showSkuSelector || layout?.onMouseOver?.showCta
               ? "transition-opacity opacity-0 lg:group-hover:opacity-100"
               : "lg:hidden"
           }`}
         >
           {/* SKU Selector */}
-          {l?.onMouseOver?.showSkuSelector && (
+          {layout?.onMouseOver?.showSkuSelector && (
             <ul class="flex justify-center items-center gap-2 w-full">
               {skuSelector}
             </ul>
           )}
-          {l?.onMouseOver?.showCta && cta}
+          {layout?.onMouseOver?.showCta && cta}
         </figcaption>
       </figure>
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col pt-[15px] lg:pt-5 gap-3 lg:gap-4">
         <div class="flex flex-col h-full lg:flex-row justify-between gap-[7px] lg:gap-0">
-          {l?.hide?.productName
+          {layout?.hide?.productName
             ? ""
             : (
               <div class="flex flex-col gap-0 lg:max-w-[69.3%] lg:pl-[1px]">
-                {l?.hide?.productName ? "" : (
+                {layout?.hide?.productName ? "" : (
                   <h2
                     class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"
                     dangerouslySetInnerHTML={{ __html: name ?? "" }}
@@ -371,20 +341,22 @@ function ProductCard(
                 )}
               </div>
             )}
-          {l?.hide?.allPrices
+          {layout?.hide?.allPrices
             ? ""
             : (
               <div class="flex flex-col gap-[7px] lg:gap-1">
                 <div
                   class={`flex flex-col gap-0 ${
-                    l?.basics?.oldPriceSize === "Normal"
+                    layout?.basics?.oldPriceSize === "Normal"
                       ? "lg:flex-row lg:gap-2"
                       : ""
                   } ${align === "center" ? "justify-center" : "justify-start"}`}
                 >
                   <div
                     class={`line-through text-base-300 text-xs ${
-                      l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                      layout?.basics?.oldPriceSize === "Normal"
+                        ? "lg:text-xl"
+                        : ""
                     }`}
                   >
                     {formatPrice(productListPrice, currency)}
@@ -406,13 +378,13 @@ function ProductCard(
         </div>
 
         {/* SKU Selector */}
-        {l?.elementsPositions?.skuSelector === "Bottom" && (
+        {layout?.elementsPositions?.skuSelector === "Bottom" && (
           <>
-            {l?.hide?.skuSelector ? "" : (
+            {layout?.hide?.skuSelector ? "" : (
               <ul
                 class={`flex items-center gap-2 w-full ${
                   align === "center" ? "justify-center" : "justify-start"
-                } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
+                } ${layout?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
               >
                 {skuSelector}
               </ul>
