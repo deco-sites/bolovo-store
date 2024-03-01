@@ -1,13 +1,37 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import AltSlider from "../ui/AltSlider.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import IframeLoader from "deco-sites/bolovo-store/components/content/IframeLoader.tsx";
+
+export interface Image {
+  srcMobile: ImageWidget;
+  srcDesktop?: ImageWidget;
+  /**
+   * @description Check this option when this banner is the biggest image on the screen for image optimizations
+   */
+  preload?: boolean;
+}
+
+export interface Video {
+  videoLink: string;
+  /**
+   * @description Check this option when this banner is the biggest image on the screen for image optimizations
+   */
+  preload?: boolean;
+}
 
 /**
  * @titleBy alt
  */
 export interface Banner {
-  srcMobile: ImageWidget;
-  srcDesktop?: ImageWidget;
+  /**
+   * @title Video
+   */
+  video?: Video;
+  /**
+   * @title Image
+   */
+  image?: Image;
   /**
    * @description When you click you go to
    */
@@ -48,10 +72,6 @@ export interface Props {
     desktop?: BorderRadius;
   };
   banners: Banner[];
-  /**
-   * @description Check this option when this banner is the biggest image on the screen for image optimizations
-   */
-  preload?: boolean;
 }
 
 const MOBILE_COLUMNS = {
@@ -90,43 +110,12 @@ const RADIUS_DESKTOP = {
   "full": "sm:rounded-full",
 };
 
-const DEFAULT_PROPS: Props = {
-  banners: [
-    {
-      href: "a",
-      srcMobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/82727553-f670-4e7c-b9c2-9452aed1955f",
-      srcDesktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7b3a9d75-57a5-43cf-a3c5-f689a997f24e",
-      text: "Bolovo Store Productions",
-    },
-    {
-      href: "a",
-      srcMobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/c5c6bdf6-5555-488c-8b14-719e4158dea6",
-      srcDesktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/3e2b7824-d75c-4704-8d32-621bfc9b20cf",
-      text: "Bolovo Store Productions",
-    },
-  ],
-  borderRadius: {
-    mobile: "medium",
-    desktop: "medium",
-  },
-  itemsPerLine: {
-    mobile: 2,
-    desktop: 3,
-  },
-  preload: true,
-};
-
 function BannerGrid(props: Props) {
   const {
     itemsPerLine,
     borderRadius,
     banners = [],
-    preload,
-  } = { ...DEFAULT_PROPS, ...props };
+  } = props;
 
   return (
     <section class="w-full px-4 py-12 mx-auto">
@@ -135,7 +124,7 @@ function BannerGrid(props: Props) {
           MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
         } ${DESKTOP_COLUMNS[itemsPerLine?.desktop ?? 3]}`}
       >
-        {banners.map(({ href, srcMobile, srcDesktop, text }, index) => (
+        {banners.map(({ href, video, text, image }, index) => (
           <a
             key={index}
             href={href}
@@ -143,29 +132,37 @@ function BannerGrid(props: Props) {
               RADIUS_MOBILE[borderRadius.mobile ?? "none"]
             } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
           >
-            <Picture preload={preload}>
-              <Source
-                media="(max-width: 1023px)"
-                fetchPriority={preload ? "high" : "auto"}
-                src={srcMobile}
-                width={256}
-                height={256}
+            {video && (
+              <IframeLoader
+                videoLink={video.videoLink ?? ""}
+                preload={video.preload ?? false}
               />
-              <Source
-                media="(min-width: 1024px)"
-                fetchPriority={preload ? "high" : "auto"}
-                src={srcDesktop ? srcDesktop : srcMobile}
-                width={480}
-                height={480}
-              />
-              <img
-                class="w-full"
-                src={srcMobile}
-                alt={text}
-                decoding="async"
-                loading={preload ? "eager" : "lazy"}
-              />
-            </Picture>
+            )}
+            {image && (
+              <Picture preload={image.preload ?? false}>
+                <Source
+                  media="(max-width: 1023px)"
+                  fetchPriority={image.preload ? "high" : "auto"}
+                  src={image.srcMobile ?? ""}
+                  width={256}
+                  height={256}
+                />
+                <Source
+                  media="(min-width: 1024px)"
+                  fetchPriority={image.preload ? "high" : "auto"}
+                  src={image.srcDesktop ? image?.srcDesktop : image?.srcMobile}
+                  width={480}
+                  height={480}
+                />
+                <img
+                  class="w-full"
+                  src={image.srcMobile}
+                  alt={text}
+                  decoding="async"
+                  loading={image.preload ? "eager" : "lazy"}
+                />
+              </Picture>
+            )}
             <AltSlider text={text} />
           </a>
         ))}

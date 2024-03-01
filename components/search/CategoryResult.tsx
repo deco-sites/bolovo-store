@@ -203,22 +203,17 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
   );
 }
 
-export const loader = (props: Props, req: Request, ctx: AppContext) => {
-  const { categories, photoOnPLP, cardSEO, showColorVariants, banners } = {
-    ...props,
-  };
-
+export async function getColorRelatedProducts(products: Product[] | undefined, ctx: AppContext) {
   const colorRelated: { [productName: string]: Product[] } = {};
 
-  if (showColorVariants) {
-    for (const product of props.page?.products || []) {
+    for (const product of products || []) {
       let camisetaVariantProperty;
 
       for (const property of product.additionalProperty || []) {
         if (property.valueReference === "TAGS") {
           try {
             const data = JSON.parse(property.value || "");
-
+  
             if (data.type === "variante_cor") {
               camisetaVariantProperty = data.name;
               break;
@@ -230,14 +225,28 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
       }
 
       if (camisetaVariantProperty) {
-        const productList = ctx.get({
+        const productList = await ctx.get({
           "__resolveType": "vnda/loaders/productList.ts",
           "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
         });
-        if (product.name !== undefined && Array.isArray(productList)) {
-          colorRelated[product.name] = productList;
+        if (productList && Array.isArray(productList)) {
+          colorRelated[product.name || ""] = productList;
         }
       }
+    }
+
+  return colorRelated;
+}
+
+export const loader = async (props: Props, req: Request, ctx: AppContext) => {
+  const { categories, photoOnPLP, cardSEO, showColorVariants, banners } = { ...props };
+  let colorRelated: { [productName: string]: Product[] } = {};
+
+  if (showColorVariants) {
+    try {
+      colorRelated = await getColorRelatedProducts(props.page?.products, ctx);
+    } catch (error) {
+      console.error("Erro ao obter produtos relacionados por cor:", error);
     }
   }
 
