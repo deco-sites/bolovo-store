@@ -11,7 +11,6 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import QuickShop from "$store/islands/QuickShop.tsx";
 import { Color } from "$store/components/search/SearchResult.tsx";
-import Image from "apps/website/components/Image.tsx";
 
 export interface Layout {
   basics?: {
@@ -61,9 +60,6 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 239.13;
-const HEIGHT = 300;
-
 function ProductCard(
   {
     product,
@@ -75,17 +71,17 @@ function ProductCard(
     colorRelated,
     colors,
     showColorVariants,
-  }: Props,
+    isMobile,
+  }: Props & { isMobile?: boolean},
 ) {
   const {
-    url,
+    url, 
     productID,
     name,
     image: images,
     offers,
     isVariantOf,
   } = product;
-
   const id = `product-card-${productID}`;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
@@ -277,35 +273,59 @@ function ProductCard(
           aria-label="view product"
           class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
         >
-          <Image
-            src={safeSrc(front.url)}
-            sizes="(max-width: 640px) 50vw, 20vw"
-            fetchPriority={"low"}
-            width={380}
-            height={380}
-            alt={front.alternateName}
-            class={`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
-              layout?.onMouseOver?.image === "Zoom image"
-                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                : ""
-            }`}
-            loading={preload ? "eager" : "lazy"}
-            decoding="async"
-          />
-          {(!layout?.onMouseOver?.image ||
-            layout?.onMouseOver?.image == "Change image") && (
+          <Picture preload={preload}>
+            <Source
+              media="(max-width: 1023px)"
+              fetchPriority={preload ? "high" : "low"}
+              src={safeSrc(front.url)}
+              width={190}
+              height={190}
+            />
+            <Source
+              media="(min-width: 1024px)"
+              fetchPriority={preload ? "high" : "low"}
+              src={safeSrc(front.url)}
+              width={380}
+              height={380}
+            />
+            <img
+              class={isMobile ? "mix-blend-multiply bg-base-100" :`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
+                layout?.onMouseOver?.image  === "Zoom image"
+                  ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                  : ""
+              }`}
+              src={safeSrc(front.url)}
+              alt={front.alternateName}
+              decoding="async"
+              loading={preload ? "eager" : "lazy"}
+            />
+          </Picture>
+          {!isMobile && (!layout?.onMouseOver?.image ||
+            layout?.onMouseOver?.image === "Change image") &&   (
             <div class="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity">
-              <Image
-                src={safeSrc(back?.url ?? front.url)}
-                fetchPriority={"low"}
-                sizes="(max-width: 640px) 50vw, 20vw"
-                width={239}
-                height={300}
-                alt={front.alternateName}
-                class="bg-base-100 col-span-full row-span-full w-full"
-                loading={preload ? "eager" : "lazy"}
-                decoding="async"
-              />
+              <Picture preload={preload}>
+                <Source
+                  media="(max-width: 1023px)"
+                  fetchPriority={"low"}
+                  src={safeSrc(back?.url ?? front.url)}
+                  width={190}
+                  height={190}
+                />
+                <Source
+                  media="(min-width: 1024px)"
+                  fetchPriority={"low"}
+                  src={safeSrc(back?.url ?? front.url)}
+                  width={239}
+                  height={300}
+                />
+                <img
+                  class="h-full bg-base-100 col-span-full row-span-full w-full"
+                  alt={back?.alternateName ?? front.alternateName}
+                  src={safeSrc(back?.url ?? front.url)}
+                  decoding="async"
+                  loading={"lazy"}
+                />
+              </Picture>
             </div>
           )}
         </a>

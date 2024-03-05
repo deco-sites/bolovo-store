@@ -39,7 +39,6 @@ export const loader = async (
         "__resolveType": "vnda/loaders/productList.ts",
         "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
       });
-      console.log(product.inProductGroupWithID);
       if (product.name !== undefined && Array.isArray(productList)) {
         colorRelated[product.name] = productList;
       }
