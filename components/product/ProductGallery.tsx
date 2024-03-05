@@ -32,7 +32,8 @@ function ProductGallery(
     & Props
     & { colorVariant?: { [productName: string]: Product[] } }
     & { colors?: Color[] }
-    & { showColorVariants?: boolean },
+    & { showColorVariants?: boolean }
+    ,
 ) {
   const platform = usePlatform();
 
@@ -77,6 +78,7 @@ function ProductGallery(
                   preload={cardSEO && index <= 4 ? true : index <= 3}
                   index={offset ? offset + index : undefined}
                   platform={platform}
+                  isMobile={isMobile}
                   colorRelated={colorVariant
                     ? colorVariant[product.name as string] || []
                     : []}
@@ -93,6 +95,7 @@ function ProductGallery(
                 preload={cardSEO && index <= 4 ? true : index <= 3}
                 index={offset ? offset + index : undefined}
                 platform={platform}
+                isMobile={isMobile}
                 colorRelated={colorVariant
                   ? colorVariant[product.name as string] || []
                   : []}

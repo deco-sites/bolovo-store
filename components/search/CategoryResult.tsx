@@ -274,8 +274,6 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
-  console.log("banner", banner);
-
   const categoryURL = foundCategory?.[0]?.url;
 
   if (foundCategory && foundCategory.length > 0) {
