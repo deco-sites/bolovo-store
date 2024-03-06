@@ -13,7 +13,6 @@ import ButtonsPagination, {
 import type { CardSEO } from "$store/components/search/SearchResult.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
-import BannerInCategory from "$store/components/search/BannerInCategory.tsx";
 import type { Props as BannerProps } from "$store/components/search/BannerInCategory.tsx";
 
 /** @titleBy category */
