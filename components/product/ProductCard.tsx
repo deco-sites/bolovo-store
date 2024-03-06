@@ -285,8 +285,8 @@ function ProductCard(
               media="(min-width: 1024px)"
               fetchPriority={preload ? "high" : "low"}
               src={safeSrc(front.url)}
-              width={380}
-              height={380}
+              width={310}
+              height={310}
             />
             <img
               class={isMobile ? "mix-blend-multiply bg-base-100" :`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${

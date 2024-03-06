@@ -189,8 +189,7 @@ function SearchResult(
     colorVariant: { [productName: string]: Product[] };
   },
 ) {
-  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } =
-    props;
+  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
