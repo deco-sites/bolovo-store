@@ -117,7 +117,6 @@ function ResultCategory({
 } & { colorVariant: { [productName: string]: Product[] } }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
-  const offset = pageInfo.currentPage * perPage;
   const { activePriceIntl } = useUI();
 
   return (
@@ -151,6 +150,7 @@ function ResultCategory({
         isMobile={isMobile}
         buttonsPagination={buttonsPagination}
         isCategory={true}
+        hasBanner={banner ? true : false}
         notFound={notFound}
         photoOnPLP={photoOnPLP}
         filterColors={filterColors}

@@ -102,6 +102,7 @@ export function Result({
   removeFiltersText,
   url,
   card,
+  hasBanner,
   buttonsPagination,
   isCategory = false,
   labelOrdenation = "ORDENAR",
@@ -117,7 +118,7 @@ export function Result({
   url: string;
   isCategory?: boolean;
   card?: CardSEO;
-} & { colorVariant: { [productName: string]: Product[] } }) {
+} & { colorVariant: { [productName: string]: Product[] } } & { hasBanner?: boolean}) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
@@ -155,6 +156,7 @@ export function Result({
             page={page}
             isMobile={isMobile}
             cardSEO={card}
+            hasBanner={hasBanner}
             colorVariant={colorVariant}
             colors={filterColors}
             showColorVariants={showColorVariants}
