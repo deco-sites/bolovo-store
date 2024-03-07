@@ -116,7 +116,6 @@ function ResultCategory({
   banner?: BannerProps;
 } & { colorVariant: { [productName: string]: Product[] } }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
-  const perPage = pageInfo.recordPerPage || products.length;
   const { activePriceIntl } = useUI();
 
   return (
