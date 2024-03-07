@@ -28,11 +28,13 @@ function ProductGallery(
     colorVariant,
     colors,
     showColorVariants,
+    hasBanner,
   }:
     & Props
     & { colorVariant?: { [productName: string]: Product[] } }
     & { colors?: Color[] }
     & { showColorVariants?: boolean }
+    & { hasBanner: boolean}
     ,
 ) {
   const platform = usePlatform();
@@ -75,7 +77,7 @@ function ProductGallery(
               <li class={`h-full`}>
                 <ProductCard
                   product={product}
-                  preload={cardSEO && index <= 4 ? true : index <= 3}
+                  preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
                   index={offset ? offset + index : undefined}
                   platform={platform}
                   isMobile={isMobile}
@@ -92,7 +94,7 @@ function ProductGallery(
             <li class={`h-full`}>
               <ProductCard
                 product={product}
-                preload={cardSEO && index <= 4 ? true : index <= 3}
+                preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
                 index={offset ? offset + index : undefined}
                 platform={platform}
                 isMobile={isMobile}
