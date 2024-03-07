@@ -122,7 +122,6 @@ export function Result({
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
-
   const { activePriceIntl } = useUI();
 
   return (
