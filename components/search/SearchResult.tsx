@@ -14,6 +14,7 @@ import ButtonsPagination, {
 } from "./ButtonsPagination.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
+import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -101,6 +102,7 @@ export function Result({
   removeFiltersText,
   url,
   card,
+  hasBanner,
   buttonsPagination,
   isCategory = false,
   labelOrdenation = "ORDENAR",
@@ -116,11 +118,10 @@ export function Result({
   url: string;
   isCategory?: boolean;
   card?: CardSEO;
-} & { colorVariant: { [productName: string]: Product[] } }) {
+} & { colorVariant: { [productName: string]: Product[] } } & { hasBanner?: boolean}) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
-
   const { activePriceIntl } = useUI();
 
   return (
@@ -154,6 +155,7 @@ export function Result({
             page={page}
             isMobile={isMobile}
             cardSEO={card}
+            hasBanner={hasBanner}
             colorVariant={colorVariant}
             colors={filterColors}
             showColorVariants={showColorVariants}
@@ -188,8 +190,7 @@ function SearchResult(
     colorVariant: { [productName: string]: Product[] };
   },
 ) {
-  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } =
-    props;
+  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } = props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
@@ -223,35 +224,13 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
 
   const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 
-  const colorRelated: { [productName: string]: Product[] } = {};
+  let colorRelated: { [productName: string]: Product[] } = {};
 
   if (showColorVariants) {
-    for (const product of props.page?.products || []) {
-      let camisetaVariantProperty;
-
-      for (const property of product.additionalProperty || []) {
-        if (property.valueReference === "TAGS") {
-          try {
-            const data = JSON.parse(property.value || "");
-            if (data.type === "variante_cor") {
-              camisetaVariantProperty = data.name;
-              break;
-            }
-          } catch (error) {
-            console.error("Erro ao fazer parse do valor como JSON:", error);
-          }
-        }
-      }
-
-      if (camisetaVariantProperty) {
-        const productList = await ctx.get({
-          "__resolveType": "vnda/loaders/productList.ts",
-          "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
-        });
-        if (productList && Array.isArray(productList)) {
-          colorRelated[product.name || ""] = productList;
-        }
-      }
+    try {
+      colorRelated = await getColorRelatedProducts(props.page?.products, ctx);
+    } catch (error) {
+      console.error("Erro ao obter produtos relacionados por cor:", error);
     }
   }
 
