@@ -40,28 +40,28 @@ export default function PDPGallerySlider(
               <Picture class="w-full h-full" preload={index === 0}>
                 <Source
                   media="(max-width: 640px)"
-                  fetchPriority={index === 0 ? "high" : "low"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                   src={img.url!}
-                  width={200}
-                  height={200}
+                  width={280}
+                  height={280}
                 />
                 <Source
                   media="(min-width: 641px) and (max-width: 1023px)"
-                  fetchPriority={index === 0 ? "high" : "low"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                   src={img.url!}
                   width={641}
                   height={641}
                 />
                 <Source
                   media="(min-width: 1023px) and (max-width: 1499px)"
-                  fetchPriority={index === 0 ? "high" : "low"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                   src={img.url!}
                   width={436}
                   height={482}
                 />
                 <Source
                   media="(min-width: 1500px)"
-                  fetchPriority={index === 0 ? "high" : "low"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                   src={img.url!}
                   width={681}
                   height={708}
