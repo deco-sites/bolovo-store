@@ -2,6 +2,7 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import ProductCard from "../../components/product/ProductCard.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
 
 export interface ImageAndProducts {
   variant: "1x1" | "2x2" | "2x1";
@@ -101,16 +102,29 @@ export default function PhotoAndProducts(
       >
         <a href={href} class={` w-full cursor-pointer h-full`}>
           <div class="w-full h-full relative">
-            <Image
-              src={src}
-              alt={alt}
-              width={VARIANT_IMAGE_WIDTH[variant]}
-              height={VARIANT_IMAGE_HEIGHT[variant]}
-              loading={preLoad ? "eager" : "lazy"}
-              preload={preLoad}
-              decoding="auto"
-              class="w-full h-full object-cover"
-            />
+            <Picture preload={preLoad}>
+              <Source
+                media="(max-width: 1023px)"
+                fetchPriority={preLoad ? "high" : "low"}
+                src={src}
+                width={220}
+                height={300}
+              />
+              <Source
+                media="(min-width: 1024px)"
+                fetchPriority={preLoad ? "high" : "low"}
+                src={src}
+                width={VARIANT_IMAGE_WIDTH[variant]}
+                height={VARIANT_IMAGE_HEIGHT[variant]}
+              />
+              <img
+                class="w-full h-full object-cover"
+                src={src}
+                alt={alt}
+                decoding="async"
+                loading={preLoad ? "eager" : "lazy"}
+              />
+            </Picture>
             {(title || paragraph) && (
               <div class="absolute left-0 top-0 w-full h-full p-4 flex flex-col justify-end items-start bg-gradient-to-t from-[#00000040] to-transparent gap-3">
                 {title && (
