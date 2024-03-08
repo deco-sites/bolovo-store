@@ -13,7 +13,6 @@ import ButtonsPagination, {
 import type { CardSEO } from "$store/components/search/SearchResult.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
-import BannerInCategory from "$store/components/search/BannerInCategory.tsx";
 import type { Props as BannerProps } from "$store/components/search/BannerInCategory.tsx";
 
 /** @titleBy category */
@@ -117,8 +116,6 @@ function ResultCategory({
   banner?: BannerProps;
 } & { colorVariant: { [productName: string]: Product[] } }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
-  const perPage = pageInfo.recordPerPage || products.length;
-  const offset = pageInfo.currentPage * perPage;
   const { activePriceIntl } = useUI();
 
   return (
@@ -152,6 +149,7 @@ function ResultCategory({
         isMobile={isMobile}
         buttonsPagination={buttonsPagination}
         isCategory={true}
+        hasBanner={banner ? true : false}
         notFound={notFound}
         photoOnPLP={photoOnPLP}
         filterColors={filterColors}
@@ -273,8 +271,6 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   const banner = banners?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
-
-  console.log("banner", banner);
 
   const categoryURL = foundCategory?.[0]?.url;
 

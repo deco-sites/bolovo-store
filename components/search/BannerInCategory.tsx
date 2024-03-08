@@ -1,5 +1,4 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import type { SectionProps } from "deco/types.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
 /**
@@ -30,23 +29,6 @@ export interface Props {
     href?: string;
   };
 }
-
-const DEFAULT_PROPS = {
-  banners: [
-    {
-      image: {
-        mobile:
-          "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/91102b71-4832-486a-b683-5f7b06f649af",
-        desktop:
-          "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ec597b6a-dcf1-48ca-a99d-95b3c6304f96",
-        alt: "a",
-      },
-      title: "Woman",
-      matcher: "/*",
-      subtitle: "As",
-    },
-  ],
-};
 
 function BannerInCategory({ props }: { props: Props | undefined }) {
   if (!props) {
