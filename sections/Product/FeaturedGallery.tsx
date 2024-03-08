@@ -31,6 +31,14 @@ const DESKTOP_DIRECTION = {
   "imagem na esquerda": "lg:flex-row",
 };
 
+export function LoadingFallback() {
+  return (
+    <div style={{ height: "716px" }} class="flex justify-center items-center">
+      <span class="loading loading-spinner" />
+    </div>
+  );
+}
+
 export default function FeaturedGallery(
   { title, featuredPhoto, contentDirection, product }: Props,
 ) {

@@ -30,6 +30,14 @@ const MOBILE_DIRECTION = {
   "imagem abaixo": "row-start-3",
 };
 
+export function LoadingFallback() {
+  return (
+    <div style={{ height: "716px" }} class="flex justify-center items-center">
+      <span class="loading loading-spinner" />
+    </div>
+  );
+}
+
 export default function PhotoGallery(
   { title, featuredPhoto, contentDirection, products }: Props,
 ) {
