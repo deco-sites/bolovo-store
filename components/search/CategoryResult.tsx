@@ -233,7 +233,7 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
 
   const url = new URL(req.url);
 
-  const section = !url.search &&
+  const section = !url.search.includes("type_tags") &&
     photoOnPLP?.find(({ matcher }) =>
       new URLPattern({ pathname: matcher }).test(url)
     );
