@@ -9,6 +9,14 @@ export interface Props {
   products: Product[] | null;
 }
 
+export function LoadingFallback() {
+  return (
+    <div style={{ height: "716px" }} class="flex justify-center items-center">
+      <span class="loading loading-spinner" />
+    </div>
+  );
+}
+
 export const loader = async (
   props: Props,
   req: Request,
@@ -39,7 +47,6 @@ export const loader = async (
         "__resolveType": "vnda/loaders/productList.ts",
         "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
       });
-      console.log(product.inProductGroupWithID);
       if (product.name !== undefined && Array.isArray(productList)) {
         colorRelated[product.name] = productList;
       }

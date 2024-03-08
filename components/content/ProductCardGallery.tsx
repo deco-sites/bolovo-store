@@ -227,6 +227,7 @@ function ProductCardGallery(
               width={500}
               height={500}
             />
+            
             <img
               className={`p-[12%] pt-[7%] lg:p-0 mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
                 l?.onMouseOver?.image == "Zoom image"
