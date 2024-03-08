@@ -208,6 +208,7 @@ function Footer({
                   width={logo.width}
                   height={logo.height}
                   alt={logo.alt}
+                  loading="lazy"
                 />
               ))}
             </div>
