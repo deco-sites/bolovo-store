@@ -82,7 +82,9 @@ export default function ValueItem({
               type === "property2" ? "px-3" : "px-[10px]"
             } flex items-center font-normal uppercase`}
           >
-            {priceIntl
+            {type !== "property2"
+              ? label
+              : priceIntl
               ? label.substring(4).replace("|", "")
               : label.substring(0, 2)}
           </span>

@@ -16,6 +16,7 @@ export type Props = {
    * @default custom
    */
   platform: Platform;
+  publicUrl: string;
   theme?: Section;
 } & CommerceProps;
 

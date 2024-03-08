@@ -11,8 +11,8 @@ const newsletter = async (
   ctx: AppContext,
 ): Promise<number> => {
   const form = new FormData();
-  const baseUrl = ctx.commerce?.platform == "vnda"
-    ? `${ctx.commerce?.publicUrl}webform`
+  const baseUrl = ctx.platform == "vnda"
+    ? `${ctx.publicUrl}webform`
     : "";
   const { email } = props;
   form.append("key", "bolovo-newsletter");

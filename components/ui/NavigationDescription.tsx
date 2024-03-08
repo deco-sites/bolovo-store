@@ -16,6 +16,10 @@ export default function NavigationDescription(
   const { description, descriptionTabs } = descriptionProps;
   const itemVisible = useSignal(-1);
 
+  const toggleDescription = (index: number) => {
+    itemVisible.value = itemVisible.value === index ? -1 : index;
+  };
+
   return (
     <div class="w-full flex flex-col mt-6">
       {description && (
@@ -28,7 +32,7 @@ export default function NavigationDescription(
         {descriptionTabs && descriptionTabs.map((tab, index) => (
           <li
             class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px] cursor-pointer"
-            onClick={() => (itemVisible.value = index)}
+            onClick={() => toggleDescription(index)}
           >
             <span>{tab.title}</span>
             <Icon
