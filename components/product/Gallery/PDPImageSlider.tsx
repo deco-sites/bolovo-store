@@ -67,7 +67,7 @@ export default function PDPGallerySlider(
                   height={708}
                 />
                 <img
-                  class="w-full h-full object-cover "
+                  class="w-full h-full object-cover lg:max-h-[90vh] "
                   loading={index === 0 ? "eager" : "lazy"}
                   width={370}
                   height={400}
