@@ -217,6 +217,7 @@ function Footer({
                 class="md:mx-auto px-4 md:px-0"
                 src={footerTexts?.footerTitle ?? ""}
                 alt={footerTexts?.alt}
+                loading="lazy"
                 width={514}
                 height={38}
               />

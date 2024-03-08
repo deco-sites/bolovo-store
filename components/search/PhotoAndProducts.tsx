@@ -100,7 +100,7 @@ export default function PhotoAndProducts(
         } ${customClassImage} h-full `}
         style={{ gridRowStart: row?.toString() }}
       >
-        <a href={href} class={` w-full cursor-pointer h-full`}>
+        <a href={href} class={`w-full cursor-pointer h-full`}>
           <div class="w-full h-full relative">
             <Picture preload={preLoad}>
               <Source
