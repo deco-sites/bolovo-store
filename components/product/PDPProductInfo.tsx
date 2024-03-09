@@ -117,7 +117,7 @@ function PDPProductInfo(
                 {formatPrice(productListPrice, currency)}
               </span>
             )}
-            <span class=" text-base">
+            <span class=" text-base font-light">
               {formatPrice(productPrice, currency) ?? " US$ 0,00"}
             </span>
           </div>
