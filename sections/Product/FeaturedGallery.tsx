@@ -3,6 +3,7 @@ import Image from "apps/website/components/Image.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import ProductCardGallery from "../../components/content/ProductCardGallery.tsx";
 export interface Props {
+  /** @format html */
   title: string;
   featuredPhoto: {
     src: ImageWidget;
@@ -41,7 +42,9 @@ export default function FeaturedGallery(
   return (
     <div class="flex px-[15px] flex-col gap-6 py-8">
       <h2 class=" text-base text-left uppercase font-bold">
-        {title}
+        <div
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
       </h2>
       <div
         class={`flex gap-2 lg:gap-[15px]  
