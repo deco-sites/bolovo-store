@@ -15,6 +15,7 @@ import { Color } from "$store/components/search/SearchResult.tsx";
 import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
 
 export interface Props {
+  /** @format html */
   title?: string;
   layout?: {
     headerAlignment?: "center" | "left";
