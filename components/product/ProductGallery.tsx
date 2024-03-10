@@ -34,7 +34,7 @@ function ProductGallery(
     & { colorVariant?: { [productName: string]: Product[] } }
     & { colors?: Color[] }
     & { showColorVariants?: boolean }
-    & { hasBanner: boolean}
+    & { hasBanner?: boolean}
     ,
 ) {
   const platform = usePlatform();
