@@ -59,12 +59,6 @@ export default function ButtonsPagination(
 
   return (
     <div class="flex justify-center my-4 items-center flex-col gap-2">
-      <a
-        href={"#"}
-        class="uppercase btn btn-ghost font-normal hover:font-bold hover:bg-transparent  ease-in duration-500"
-      >
-        {labelButtonTop}
-      </a>
       <div class="join bg-red w-full justify-between items-center">
         <a
           aria-label="previous page link"
@@ -135,6 +129,12 @@ export default function ButtonsPagination(
           <Icon id="ChevronRight" size={27} strokeWidth={2} />
         </a>
       </div>
+      <a
+        href={"#"}
+        class="uppercase btn btn-ghost font-normal hover:font-bold hover:bg-transparent  ease-in duration-500"
+      >
+        {labelButtonTop}
+      </a>
     </div>
   );
 }
