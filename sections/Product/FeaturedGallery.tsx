@@ -2,12 +2,15 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import ProductCardGallery from "../../components/content/ProductCardGallery.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
+
 export interface Props {
   title: string;
   featuredPhoto: {
     src: ImageWidget;
     alt: string;
     href: string;
+    preload?: boolean;
   };
   /**
    * @title reversed order?
@@ -30,6 +33,14 @@ const DESKTOP_DIRECTION = {
   "imagem na direita": "lg:flex-row-reverse",
   "imagem na esquerda": "lg:flex-row",
 };
+
+export function LoadingFallback() {
+  return (
+    <div style={{ height: "716px" }} class="flex justify-center items-center">
+      <span class="loading loading-spinner" />
+    </div>
+  );
+}
 
 export default function FeaturedGallery(
   { title, featuredPhoto, contentDirection, product }: Props,
@@ -55,14 +66,29 @@ export default function FeaturedGallery(
           href={featuredPhoto.href}
           class="flex w-full lg:w-[55.15%] cursor-pointer"
         >
-          <Image
-            src={featuredPhoto.src}
-            alt={featuredPhoto.alt}
-            width={400}
-            height={400}
-            loading={"lazy"}
-            class="aspect-square w-full lg:pb-[5px]"
-          />
+          <Picture preload={featuredPhoto.preload}>
+            <Source
+              media="(max-width: 1023px)"
+              fetchPriority={featuredPhoto.preload ? "high" : "low"}
+              src={featuredPhoto.src}
+              width={200}
+              height={200}
+            />
+            <Source
+              media="(min-width: 1024px)"
+              fetchPriority={featuredPhoto.preload ? "high" : "low"}
+              src={featuredPhoto.src}
+              width={400}
+              height={400}
+            />
+            <img
+              class="aspect-square w-full lg:pb-[5px]"
+              src={featuredPhoto.src}
+              alt={featuredPhoto.alt}
+              decoding="async"
+              loading={featuredPhoto.preload ? "eager" : "lazy"}
+            />
+          </Picture>
         </a>
         <div class="flex w-full lg:w-[44.08%] min-h-[400px]">
           <ProductCardGallery
