@@ -72,10 +72,10 @@ function ProductCard(
     colors,
     showColorVariants,
     isMobile,
-  }: Props & { isMobile?: boolean},
+  }: Props & { isMobile?: boolean },
 ) {
   const {
-    url, 
+    url,
     productID,
     name,
     image: images,
@@ -134,19 +134,14 @@ function ProductCard(
       </a>
     </li>
   ));
-
+  console.log(colors);
   const colorSelector =
     colorVariants?.length && colorVariants.length > 1 && showColorVariants
       ? (
         colorVariants.map((colorVariant, index) => {
-          // Encontre a cor correspondente no array de cores retornado pelo loader
-          const selectedColor = colors?.find((color) =>
-            color.label.toLowerCase() === colorVariant.name.toLowerCase()
-          );
-          if (!selectedColor) return null;
-
-          // Verifique se a cor selecionada é um SVG ou uma imagem
-          const isSvg = selectedColor.hex !== undefined;
+          const selectedColor = colors?.find((color) => color.label.toLowerCase() === colorVariant.name.toLowerCase());
+          const isSvg = selectedColor?.hex !== undefined;
+          const isImg = selectedColor?.src !== undefined;
 
           return (
             <li key={index}>
@@ -170,17 +165,18 @@ function ProductCard(
                           y="0"
                           width="12"
                           height="12"
-                          fill={selectedColor.hex}
+                          fill={selectedColor?.hex}
                         />
                       </svg>
                     )
-                    : (
-                      // Se a cor for uma imagem
+                    : isImg
+                    ? (
                       <img
                         src={selectedColor.src}
                         alt={`Cor ${colorVariant.name}`}
                       />
-                    )}
+                    )
+                    : <span class="w-3 h-3 border"></span>}
                 </div>
               </a>
             </li>
@@ -289,11 +285,13 @@ function ProductCard(
               height={310}
             />
             <img
-              class={isMobile ? "mix-blend-multiply bg-base-100" :`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
-                layout?.onMouseOver?.image  === "Zoom image"
-                  ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                  : ""
-              }`}
+              class={isMobile
+                ? "mix-blend-multiply bg-base-100"
+                : `mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
+                  layout?.onMouseOver?.image === "Zoom image"
+                    ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                    : ""
+                }`}
               src={safeSrc(front.url)}
               alt={front.alternateName}
               decoding="async"
@@ -301,33 +299,34 @@ function ProductCard(
             />
           </Picture>
           {!isMobile && (!layout?.onMouseOver?.image ||
-            layout?.onMouseOver?.image === "Change image") &&   (
-            <div class="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity">
-              <Picture preload={preload}>
-                <Source
-                  media="(max-width: 1023px)"
-                  fetchPriority={"low"}
-                  src={safeSrc(back?.url ?? front.url)}
-                  width={190}
-                  height={190}
-                />
-                <Source
-                  media="(min-width: 1024px)"
-                  fetchPriority={"low"}
-                  src={safeSrc(back?.url ?? front.url)}
-                  width={239}
-                  height={300}
-                />
-                <img
-                  class="h-full bg-base-100 col-span-full row-span-full w-full"
-                  alt={back?.alternateName ?? front.alternateName}
-                  src={safeSrc(back?.url ?? front.url)}
-                  decoding="async"
-                  loading={"lazy"}
-                />
-              </Picture>
-            </div>
-          )}
+            layout?.onMouseOver?.image === "Change image") &&
+            (
+              <div class="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity">
+                <Picture preload={preload}>
+                  <Source
+                    media="(max-width: 1023px)"
+                    fetchPriority={"low"}
+                    src={safeSrc(back?.url ?? front.url)}
+                    width={190}
+                    height={190}
+                  />
+                  <Source
+                    media="(min-width: 1024px)"
+                    fetchPriority={"low"}
+                    src={safeSrc(back?.url ?? front.url)}
+                    width={239}
+                    height={300}
+                  />
+                  <img
+                    class="h-full bg-base-100 col-span-full row-span-full w-full"
+                    alt={back?.alternateName ?? front.alternateName}
+                    src={safeSrc(back?.url ?? front.url)}
+                    decoding="async"
+                    loading={"lazy"}
+                  />
+                </Picture>
+              </div>
+            )}
         </a>
         <figcaption
           class={`
