@@ -134,7 +134,6 @@ function ProductCard(
       </a>
     </li>
   ));
-  console.log(colors);
   const colorSelector =
     colorVariants?.length && colorVariants.length > 1 && showColorVariants
       ? (
