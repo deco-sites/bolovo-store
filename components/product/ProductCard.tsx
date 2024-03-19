@@ -353,7 +353,7 @@ function ProductCard(
               <div class="flex flex-col gap-0 lg:max-w-[69.3%] lg:pl-[1px]">
                 {layout?.hide?.productName ? "" : (
                   <h2
-                    class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"
+                    class="font-semibold text-base-content text-[0.813rem] lg:text-[0.938rem] leading-[130%]"
                     dangerouslySetInnerHTML={{ __html: name ?? "" }}
                   />
                 )}
@@ -371,15 +371,15 @@ function ProductCard(
                   } ${align === "center" ? "justify-center" : "justify-start"}`}
                 >
                   <div
-                    class={`line-through text-base-300 text-xs ${
+                    class={`line-through text-base-300 text-base ${
                       layout?.basics?.oldPriceSize === "Normal"
-                        ? "lg:text-xl"
+                        ? "lg:text-basel"
                         : ""
                     }`}
                   >
                     {formatPrice(productListPrice, currency)}
                   </div>
-                  <div class="text-black leading-[130%] text-[14px] lg:text-end font-light">
+                  <div class="text-black leading-[130%] text-[0.875rem] lg:text-end font-light">
                     {formatPrice(productPrice, currency) || "US$ 0,00"}
                   </div>
                 </div>

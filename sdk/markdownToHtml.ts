@@ -4,7 +4,7 @@ export async function createTable(
   guide: string,
   tableClass: string = "w-full",
   headerClass: string = "uppercase",
-  bodyClass: string = "border border-black uppercase text-[11px]",
+  bodyClass: string = "border border-black uppercase text-[0.688rem]",
   rowClass: string = "",
   cellClass: string = "p-1 uppercase",
 ) {
@@ -57,7 +57,7 @@ export async function createParagraph(paragraph: string, alignText: AlignText) {
 
     text = text.replace(/\*(.*?)\*/g, '<span class="custom-italic">$1</span>');
 
-    return `<p style="text-align:${alignText}" class="text-xs mb-2 leading-5 text-justify">${text}</p>`;
+    return `<p style="text-align:${alignText}" class="text-base mb-2 leading-5 text-justify">${text}</p>`;
   };
 
   const html = await marked.parse(paragraph, { renderer: customRenderer });

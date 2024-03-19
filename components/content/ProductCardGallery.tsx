@@ -313,7 +313,7 @@ function ProductCardGallery(
               <div class="flex flex-col gap-0 max-w-[69.3%] lg:pl-[1px]">
                 {l?.hide?.productName ? "" : (
                   <h2
-                    class="font-semibold text-base-content text-[15px] lg:text-[16px] leading-[130%] text-left"
+                    class="font-semibold text-base-content text-[0.938rem] lg:text-base leading-[130%] text-left"
                     dangerouslySetInnerHTML={{ __html: name ?? "" }}
                   />
                 )}
@@ -331,13 +331,13 @@ function ProductCardGallery(
                   } ${align === "center" ? "justify-center" : "justify-start"}`}
                 >
                   <div
-                    class={`line-through text-base-300 text-xs ${
-                      l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                    class={`line-through text-base-300 text-base ${
+                      l?.basics?.oldPriceSize === "Normal" ? "lg:text-basel" : ""
                     }`}
                   >
                     {formatPrice(productListPrice, currency)}
                   </div>
-                  <div class="text-black leading-[130%] text-[14px] lg:text-[15px] lg:text-end font-light">
+                  <div class="text-black leading-[130%] text-[0.875rem] lg:text-[0.938rem] lg:text-end font-light">
                     {formatPrice(productPrice, currency) || " US$ 0,00"}
                   </div>
                 </div>
