@@ -35,7 +35,7 @@ function Sort({ sortOptions, priceIntl, label }:Omit<Props, "page"> & {priceIntl
       ref={sortContainerRef}
     >
       <Button
-        class={`btn-ghost btn-xs text-[13px] px-2 py-[5px] font-light uppercase leading-0 hover:bg-transparent ${
+        class={`btn-ghost btn-xs text-[0.813rem] px-2 py-[5px] font-light uppercase leading-0 hover:bg-transparent ${
           isOpen
             ? "border rounded-b-none border-black rounded-t-lg hover:border hover:border-black"
             : "hover:border hover:border-black rounded-[20px]"
@@ -44,7 +44,7 @@ function Sort({ sortOptions, priceIntl, label }:Omit<Props, "page"> & {priceIntl
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <span class="text-[13px] leading-0 flex items-center">
+        <span class="text-[0.813rem] leading-0 flex items-center">
           <span class="w-[19px] h-[10px] flex flex-col mr-[6px] ">
             <Icon id="FilterArrowLeft" />
             <Icon id="FilterArrowRight" />
