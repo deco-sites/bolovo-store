@@ -5,6 +5,7 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
+import CarouselJS from "$store/islands/CarouselJS.tsx"
 
 /**
  * @titleBy alt
@@ -222,12 +223,12 @@ function BannerCarousel(props: Props) {
         )
         : null}
 
-      <SliderJS
+      <CarouselJS
         rootId={id}
         interval={autoplay?.interval && images && images.length > 1
           ? autoplay.interval * 1e3
           : undefined}
-        infinite
+        direction="horizontal"
       />
     </div>
   );
