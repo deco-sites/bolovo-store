@@ -10,7 +10,6 @@ import * as $AddToCartButton_vtex from "./islands/AddToCartButton/vtex.tsx";
 import * as $AddToCartButton_wake from "./islands/AddToCartButton/wake.tsx";
 import * as $Alert from "./islands/Alert.tsx";
 import * as $ApplyFiltersJS from "./islands/ApplyFiltersJS.tsx";
-import * as $CarouselJS from "./islands/CarouselJS.tsx";
 import * as $GalleryControls from "./islands/GalleryControls.tsx";
 import * as $Header_ButtonLanguage from "./islands/Header/ButtonLanguage.tsx";
 import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
@@ -49,7 +48,6 @@ const manifest = {
     "./islands/AddToCartButton/wake.tsx": $AddToCartButton_wake,
     "./islands/Alert.tsx": $Alert,
     "./islands/ApplyFiltersJS.tsx": $ApplyFiltersJS,
-    "./islands/CarouselJS.tsx": $CarouselJS,
     "./islands/GalleryControls.tsx": $GalleryControls,
     "./islands/Header/ButtonLanguage.tsx": $Header_ButtonLanguage,
     "./islands/Header/Buttons.tsx": $Header_Buttons,
