@@ -31,10 +31,9 @@ export default function RenderMarkdown(
   }, [refMarkdown, description, type, alignText]);
 
   return (
-    <span
-      class={`w-full flex flex-col ${type === "table" ? "gap-4" : ""}`}
+    <div
+      class={`w-full flex flex-col ${type === "table" ? "gap-4" : "gap-2"}`}
       ref={refMarkdown}
-    >
-    </span>
+    />
   );
 }
