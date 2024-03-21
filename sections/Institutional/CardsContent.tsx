@@ -26,7 +26,7 @@ import type { AvailableIcons } from "deco-sites/bolovo-store/components/ui/Icon.
         {cards.map((card) => (
           <div class="card card-bordered rounded-none border-2 border-neutral-100 w-[360px]">
             <div class="card-body p-4">
-              <div class="flex items-center gap-[10px] min-h-12 text-primary">
+              <div class="flex items-center gap-[10px] min-h-12 text-baserimary">
                 <Icon id={card.heading.icon ?? "Instagram"}  width={24} height={24} />
                 <h6 class="font-medium max-w-[87%] break-words">
                   {card.heading.title}

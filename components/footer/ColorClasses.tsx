@@ -27,7 +27,7 @@ export interface Layout {
 export default function colorClasses(layout: Layout) {
   switch (layout?.backgroundColor) {
     case "Primary":
-      return "bg-primary text-primary-content";
+      return "bg-primary text-baserimary-content";
     case "Secondary":
       return "bg-secondary text-secondary-content";
     case "Accent":
@@ -37,6 +37,6 @@ export default function colorClasses(layout: Layout) {
     case "Base 100 inverted":
       return "bg-base-content text-base-100";
     default:
-      return "bg-primary text-primary-content";
+      return "bg-primary text-baserimary-content";
   }
 }

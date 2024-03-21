@@ -95,7 +95,7 @@ function NavItem(item: NavItemProps) {
       <div class="relative flex items-center pr-4">
         <Icon
           id="Bars3"
-          size={22}
+          size={18}
           strokeWidth={2}
           fill="none"
           class="absolute left-0 top-0 transition-opacity opacity-100"

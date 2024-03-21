@@ -99,7 +99,7 @@ function PDPProductInfo(
         <div>
           <div class="flex flex-row gap-2 items-center">
             {(productListPrice ?? 0) > productListPrice && (
-              <span class="line-through text-base-300 text-xs">
+              <span class="line-through text-base-300 text-base">
                 {formatPrice(productListPrice, currency)}
               </span>
             )}

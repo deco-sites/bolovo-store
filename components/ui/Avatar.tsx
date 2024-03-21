@@ -18,7 +18,7 @@ const colors: Record<string, string> = {
   // Color variants - only applied when no color as content is passed
   "active": "",
   "disabled": "bg-neutral-content text-neutral",
-  "default": "bg-base-100 text-primary",
+  "default": "bg-base-100 text-baserimary",
   "activePdp": "text-white",
 };
 
@@ -44,7 +44,7 @@ function Avatar({ content, variant = "default" }: Props) {
           variants[variant]
         }`}
       >
-        <span class="uppercase text-[14px] text-[#121212] leading-[130%]">
+        <span class="uppercase text-[0.875rem] text-[#121212] leading-[130%]">
           {content ? (colors[content] ? "" : content.substring(0, 2)) : ""}
         </span>
       </div>
@@ -62,7 +62,7 @@ export function AvatarPDP(
           variants[variant]
         }`}
       >
-        <span class="uppercase text-[14px] leading-[130%]">
+        <span class="uppercase text-[0.875rem] leading-[130%]">
           {content
             ? (colors[content]
               ? ""

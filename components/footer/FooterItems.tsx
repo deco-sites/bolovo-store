@@ -52,16 +52,16 @@ export default function FooterItems(
                         {item.extraInfo
                           ? (
                             <div class="flex flex-row items-center">
-                              <span class="block leading-[26px] font-normal text-xs uppercase text-primary">
+                              <span class="block leading-[26px] font-normal text-base uppercase text-baserimary">
                                 {item.label}
                               </span>
                               <a
                                 target={item.newTab ? "_blank" : ""}
                                 href={item.href}
-                                class="block leading-[26px] font-normal text-xs text-primary pl-1"
+                                class="block leading-[26px] font-normal text-base text-baserimary pl-1"
                               >
                                 <div
-                                  class="block leading-[26px] font-normal text-xs text-primary"
+                                  class="block leading-[26px] font-normal text-base text-baserimary"
                                   dangerouslySetInnerHTML={{
                                     __html: item.extraInfo,
                                   }}
@@ -72,7 +72,7 @@ export default function FooterItems(
                           : (
                             <a
                               href={item.href}
-                              class="block leading-[26.4px] font-normal text-xs uppercase text-primary"
+                              class="block leading-[26.4px] font-normal text-base uppercase text-baserimary"
                             >
                               {item.label}
                             </a>
@@ -118,7 +118,7 @@ export default function FooterItems(
                         <li>
                           <a
                             href={item.href}
-                            class="block text-xs leading-[25px] font-normal uppercase text-primary"
+                            class="block text-base leading-[25px] font-normal uppercase text-baserimary"
                           >
                             {item.label}
                           </a>

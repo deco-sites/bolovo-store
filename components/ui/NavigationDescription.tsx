@@ -49,7 +49,7 @@ export default function NavigationDescription(
             <li
               class={` ${
                 itemVisible.value == index ? "flex" : "hidden"
-              } text-xs w-full`}
+              } text-base w-full`}
               style={{ fontSize: "11px" }}
             >
               <RenderMarkdown

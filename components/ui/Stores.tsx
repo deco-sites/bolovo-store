@@ -64,7 +64,7 @@ function StoresDisplay({ hero, address, content, alignment = "left" }: Props) {
               } md:h-full flex justify-center items-center feature-text-container relative py-11 lg:py-0`}
             >
               <div
-                class={`text-[13px] lg:text-[14px] xl:text-base leading-[20.8px] flex flex-col max-w-[433px] ${
+                class={`text-[0.813rem] lg:text-[0.875rem] xl:text-base leading-[20.8px] flex flex-col max-w-[433px] ${
                   alignment === "right" ? "lg:ml-auto" : "lg:mr-auto"
                 } gap-5`}
               >

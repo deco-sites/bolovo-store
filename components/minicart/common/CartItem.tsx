@@ -78,7 +78,7 @@ function CartItem(
       />
 
       <div class="flex flex-col gap-2 pl-8">
-        <p class="text-[15px] leading-5 text-[#121212] font-semibold max-w-[244px] text-ellipsis overflow-hidden">
+        <p class="text-[0.938rem] leading-5 text-[#121212] font-semibold max-w-[244px] text-ellipsis overflow-hidden">
           {name}
         </p>
         <div class="flex items-center gap-2 flex-row w-full justify-between">

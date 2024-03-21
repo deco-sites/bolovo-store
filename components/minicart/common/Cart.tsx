@@ -118,7 +118,7 @@ function Cart({
           : (
             <>
               <div class="flex flex-row justify-between w-full md:mt-0 mt-4">
-                <div class="flex flex-col md:flex-row text-[15px] leading-[17px] justify-between w-full px-[18px] py-3">
+                <div class="flex flex-col md:flex-row text-[0.938rem] leading-[17px] justify-between w-full px-[18px] py-3">
                   <span class="font-semibold">
                     {cartTranslations?.cartTitle}
                   </span>
@@ -161,7 +161,7 @@ function Cart({
               <div class="border-t border-[#121212] opacity-30 w-[91%] flex justify-center px-[18px]" />
               <div class="pt-8 pb-2 flex flex-col justify-end items-end gap-2 w-full px-[18px]">
                 <div class="flex justify-between items-center w-full font-semibold">
-                  <span class="text-[15px] leading-5">
+                  <span class="text-[0.938rem] leading-5">
                     {cartTranslations?.cartTotalText}
                   </span>
                   <span class="font-bold text-lg leading-6">
@@ -171,7 +171,7 @@ function Cart({
                 {!priceIntl &&
                   (
                     <div
-                      class={`flex flex-row items-center leading-5 text-[15px] w-full ${
+                      class={`flex flex-row items-center leading-5 text-[0.938rem] w-full ${
                         freeShippingTarget - total > 0
                           ? "justify-end"
                           : "justify-between"

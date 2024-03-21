@@ -164,7 +164,7 @@ function Menu(
               aria-label="Log in"
             >
               <Icon id="User" width={20} height={21} strokeWidth={0.4} />
-              <span class="font-normal text-[15px]">{accountText}</span>
+              <span class="font-normal text-[0.938rem]">{accountText}</span>
             </a>
           </div>
           <div class="w-full">

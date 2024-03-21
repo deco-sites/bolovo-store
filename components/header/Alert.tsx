@@ -53,7 +53,7 @@ function Alert({ visible = false, text = "", layout, href = "/" }: Props) {
           <a href={href} class="flex items-center">
             <span
               style={textStyle}
-              class="text-xs md:text-sm text-secondary-content flex justify-center items-center w-screen h-[36px]"
+              class="text-base md:text-sm text-secondary-content flex justify-center items-center w-screen h-[36px]"
               dangerouslySetInnerHTML={{ __html: text }}
             />
           </a>

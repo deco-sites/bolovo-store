@@ -107,7 +107,7 @@ function ProductShelf(
                     class="btn rounded-none h-[auto] w-full flex items-center justify-center bg-transparent lg:bg-[#F6F6F6] border border-black lg:border-none aspect-[219.38326/300] lg:aspect-[239.13935/300]"
                     href={seeMore?.link}
                   >
-                    <span className="text-[#121212] px-[22px] py-1.5 block text-center text-[13px] capitalize lg:uppercase lg:text-[15px] leading-[130%] font-semibold lg:font-normal lg:border rounded-full lg:border-[#121212]">
+                    <span className="text-[#121212] px-[22px] py-1.5 block text-center text-[0.813rem] capitalize lg:uppercase lg:text-[0.938rem] leading-[130%] font-semibold lg:font-normal lg:border rounded-full lg:border-[#121212]">
                       {seeMore?.text}
                     </span>
                   </a>

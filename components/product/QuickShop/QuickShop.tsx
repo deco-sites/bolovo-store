@@ -112,7 +112,7 @@ export default function QuickShop(
                 />
               )}
           </button>
-          <ul class="w-full flex flex-row gap-2 justify-around lg:w-full lg:flex text-[15px] flex-wrap gap-x-1">
+          <ul class="w-full flex flex-row gap-2 justify-around lg:w-full lg:flex text-[0.938rem] flex-wrap gap-x-1">
             {variants && (
               <SkuSelector
                 variants={variants}
