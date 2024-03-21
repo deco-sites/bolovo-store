@@ -57,7 +57,7 @@ export async function createParagraph(paragraph: string, alignText: AlignText) {
 
     text = text.replace(/\*(.*?)\*/g, '<span class="custom-italic">$1</span>');
 
-    return `<p style="text-align:${alignText}" class="text-base mb-2 leading-5 text-justify">${text}</p>`;
+    return `<p style="text-align:${alignText}" class="text-sm mb-2 leading-5 text-justify">${text}</p>`;
   };
 
   const html = await marked.parse(paragraph, { renderer: customRenderer });
