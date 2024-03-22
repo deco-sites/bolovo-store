@@ -8,11 +8,11 @@ interface Props {
 const loader = ({ colors }: Props): Color[] => colors;
 
 function colorSelector(colors: Color[]) {
-  return colors.map((colorVariant, index) => { // Adicione o retorno aqui
-    const selectedColor = colors.find(color => color.label.toLowerCase() === colorVariant.label.toLowerCase());
-    if (!selectedColor) return null;
+  return colors.map((colorVariant, index) => {
 
-    const isSvg = selectedColor.hex !== undefined;
+    const selectedColor = colors.find((color) => color.label.toLowerCase() === colorVariant.label.toLowerCase());
+    const isImg = selectedColor?.src !== undefined;
+    const isSvg = selectedColor?.hex !== undefined;
 
     return (
       <li key={index}>
@@ -20,19 +20,27 @@ function colorSelector(colors: Color[]) {
           className="w-[22px] h-[22px] flex items-center justify-center border"
           title={`Cor ${colorVariant.label}`}
         >
-          {isSvg ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-            >
-              <rect x="0" y="0" width="22" height="22" fill={selectedColor.hex} />
-            </svg>
-          ) : (
-            <img src={selectedColor.src} alt={`Cor ${colorVariant.label}`} />
-          )}
+          {isSvg
+            ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+              >
+                <rect
+                  x="0"
+                  y="0"
+                  width="22"
+                  height="22"
+                  fill={selectedColor.hex}
+                />
+              </svg>
+            )
+            : isImg
+            ? <img src={selectedColor.src} alt={`Cor ${colorVariant.label}`} />
+            : <span class="w-3 h-3 border"></span>}
         </div>
       </li>
     );

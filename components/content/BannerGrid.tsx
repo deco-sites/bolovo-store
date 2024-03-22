@@ -39,6 +39,7 @@ export interface Banner {
   /**
    * @description Text to appear when hover(also Alt Text)
    */
+  /** @format html */
   text: string;
 }
 

@@ -60,9 +60,6 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 239.13;
-const HEIGHT = 300;
-
 function ProductCard(
   {
     product,
@@ -74,7 +71,8 @@ function ProductCard(
     colorRelated,
     colors,
     showColorVariants,
-  }: Props,
+    isMobile,
+  }: Props & { isMobile?: boolean },
 ) {
   const {
     url,
@@ -88,29 +86,20 @@ function ProductCard(
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, listPriceIntl, price, priceIntl = 0, installments } =
-    useOffer(offers);
+  const { listPrice, listPriceIntl, price, priceIntl = 0 } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
-  const variants = Object.entries(Object.values(possibilities)[0] ?? {});
-
   const { activePriceIntl } = useUI();
-
   const currency = activePriceIntl.value.active
     ? offers?.offers[1]?.priceCurrency || "USD"
-    : offers?.priceCurrency ||
-      "BRL";
+    : offers?.priceCurrency || "BRL";
   const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
   const productListPrice = activePriceIntl.value.active && listPriceIntl ||
     listPrice;
-
-  const l = layout;
-  const align =
-    !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
-      ? "left"
-      : "center";
-
+  const align = !layout?.basics?.contentAlignment ||
+      layout?.basics?.contentAlignment === "Left"
+    ? "left"
+    : "center";
   const sizeAndLinks = possibilities.Tamanho || {};
-
   const colorVariants = [];
 
   if (colorRelated && showColorVariants) {
@@ -145,25 +134,19 @@ function ProductCard(
       </a>
     </li>
   ));
-
   const colorSelector =
     colorVariants?.length && colorVariants.length > 1 && showColorVariants
       ? (
         colorVariants.map((colorVariant, index) => {
-          // Encontre a cor correspondente no array de cores retornado pelo loader
-          const selectedColor = colors?.find((color) =>
-            color.label.toLowerCase() === colorVariant.name.toLowerCase()
-          );
-          if (!selectedColor) return null;
-
-          // Verifique se a cor selecionada é um SVG ou uma imagem
-          const isSvg = selectedColor.hex !== undefined;
+          const selectedColor = colors?.find((color) => color.label.toLowerCase() === colorVariant.name.toLowerCase());
+          const isSvg = selectedColor?.hex !== undefined;
+          const isImg = selectedColor?.src !== undefined;
 
           return (
             <li key={index}>
               <a href={colorVariant.url}>
                 <div
-                  className="w-[12px] h-[12px] flex items-center justify-center border"
+                  class="w-[12px] h-[12px] flex items-center justify-center border"
                   title={`Cor ${colorVariant.name}`}
                 >
                   {isSvg
@@ -181,17 +164,18 @@ function ProductCard(
                           y="0"
                           width="12"
                           height="12"
-                          fill={selectedColor.hex}
+                          fill={selectedColor?.hex}
                         />
                       </svg>
                     )
-                    : (
-                      // Se a cor for uma imagem
+                    : isImg
+                    ? (
                       <img
                         src={selectedColor.src}
                         alt={`Cor ${colorVariant.name}`}
                       />
-                    )}
+                    )
+                    : <span class="w-3 h-3 border"></span>}
                 </div>
               </a>
             </li>
@@ -206,7 +190,7 @@ function ProductCard(
       aria-label="view product"
       class="btn btn-block"
     >
-      {l?.basics?.ctaText || "Ver produto"}
+      {layout?.basics?.ctaText || "Ver produto"}
     </a>
   );
 
@@ -218,10 +202,10 @@ function ProductCard(
       class={`card card-compact group w-full relative ${
         productPrice === 0 && "opacity-70 pointer-events-none cursor-none"
       } ${align === "center" ? "text-center" : "text-start"} ${
-        l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
+        layout?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
       }
         ${
-        l?.onMouseOver?.card === "Move up" &&
+        layout?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
       }
       `}
@@ -260,12 +244,12 @@ function ProductCard(
         <div
           class={`absolute top-2 z-10
           ${
-            l?.elementsPositions?.favoriteIcon === "Top left"
+            layout?.elementsPositions?.favoriteIcon === "Top left"
               ? "left-2"
               : "right-2"
           }
           ${
-            l?.onMouseOver?.showFavoriteIcon
+            layout?.onMouseOver?.showFavoriteIcon
               ? "lg:hidden lg:group-hover:block"
               : "lg:hidden"
           }
@@ -287,83 +271,87 @@ function ProductCard(
           <Picture preload={preload}>
             <Source
               media="(max-width: 1023px)"
-              fetchPriority={preload ? "high" : "auto"}
+              fetchPriority={preload ? "high" : "low"}
               src={safeSrc(front.url)}
-              width={263.6363}
-              height={290}
+              width={190}
+              height={190}
             />
             <Source
               media="(min-width: 1024px)"
-              fetchPriority={preload ? "high" : "auto"}
+              fetchPriority={preload ? "high" : "low"}
               src={safeSrc(front.url)}
-              width={380}
-              height={380}
+              width={310}
+              height={310}
             />
             <img
-              className={`mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
-                l?.onMouseOver?.image == "Zoom image"
-                  ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                  : ""
-              }`}
+              class={isMobile
+                ? "mix-blend-multiply bg-base-100"
+                : `mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
+                  layout?.onMouseOver?.image === "Zoom image"
+                    ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                    : ""
+                }`}
+              src={safeSrc(front.url)}
               alt={front.alternateName}
               decoding="async"
               loading={preload ? "eager" : "lazy"}
             />
           </Picture>
-
-          {(!l?.onMouseOver?.image ||
-            l?.onMouseOver?.image == "Change image") && (
-            <div class="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity">
-              <Picture preload={preload}>
-                <Source
-                  media="(max-width: 1023px)"
-                  fetchPriority={preload ? "high" : "auto"}
-                  src={safeSrc(back?.url ?? front.url)}
-                  width={219.38326}
-                  height={300}
-                />
-                <Source
-                  media="(min-width: 1024px)"
-                  fetchPriority={preload ? "high" : "auto"}
-                  src={safeSrc(back?.url ?? front.url)}
-                  width={239.13935}
-                  height={300}
-                />
-                <img
-                  className="h-full bg-base-100 col-span-full row-span-full w-full"
-                  alt={back?.alternateName ?? front.alternateName}
-                  decoding="async"
-                  loading={preload ? "eager" : "lazy"}
-                />
-              </Picture>
-            </div>
-          )}
+          {!isMobile && (!layout?.onMouseOver?.image ||
+            layout?.onMouseOver?.image === "Change image") &&
+            (
+              <div class="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity">
+                <Picture preload={preload}>
+                  <Source
+                    media="(max-width: 1023px)"
+                    fetchPriority={"low"}
+                    src={safeSrc(back?.url ?? front.url)}
+                    width={190}
+                    height={190}
+                  />
+                  <Source
+                    media="(min-width: 1024px)"
+                    fetchPriority={"low"}
+                    src={safeSrc(back?.url ?? front.url)}
+                    width={239}
+                    height={300}
+                  />
+                  <img
+                    class="h-full bg-base-100 col-span-full row-span-full w-full"
+                    alt={back?.alternateName ?? front.alternateName}
+                    src={safeSrc(back?.url ?? front.url)}
+                    decoding="async"
+                    loading={"lazy"}
+                  />
+                </Picture>
+              </div>
+            )}
         </a>
         <figcaption
           class={`
           absolute bottom-1 left-0 w-full flex flex-col gap-3 p-2 ${
-            l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
+            layout?.onMouseOver?.showSkuSelector || layout?.onMouseOver?.showCta
               ? "transition-opacity opacity-0 lg:group-hover:opacity-100"
               : "lg:hidden"
           }`}
         >
           {/* SKU Selector */}
-          {l?.onMouseOver?.showSkuSelector && (
+          {layout?.onMouseOver?.showSkuSelector && (
             <ul class="flex justify-center items-center gap-2 w-full">
               {skuSelector}
             </ul>
           )}
-          {l?.onMouseOver?.showCta && cta}
+          {layout?.onMouseOver?.showCta && cta}
         </figcaption>
       </figure>
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col pt-[15px] lg:pt-5 gap-3 lg:gap-4">
         <div class="flex flex-col h-full lg:flex-row justify-between gap-[7px] lg:gap-0">
-          {l?.hide?.productName
+          {layout?.hide?.productName
             ? ""
             : (
               <div class="flex flex-col gap-0 lg:max-w-[69.3%] lg:pl-[1px]">
-                {l?.hide?.productName ? "" : (
+                {layout?.hide?.productName ? "" : (
                   <h2
                     class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"
                     dangerouslySetInnerHTML={{ __html: name ?? "" }}
@@ -371,25 +359,27 @@ function ProductCard(
                 )}
               </div>
             )}
-          {l?.hide?.allPrices
+          {layout?.hide?.allPrices
             ? ""
             : (
               <div class="flex flex-col gap-[7px] lg:gap-1">
                 <div
                   class={`flex flex-col gap-0 ${
-                    l?.basics?.oldPriceSize === "Normal"
+                    layout?.basics?.oldPriceSize === "Normal"
                       ? "lg:flex-row lg:gap-2"
                       : ""
                   } ${align === "center" ? "justify-center" : "justify-start"}`}
                 >
                   <div
                     class={`line-through text-base-300 text-xs ${
-                      l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                      layout?.basics?.oldPriceSize === "Normal"
+                        ? "lg:text-xl"
+                        : ""
                     }`}
                   >
                     {formatPrice(productListPrice, currency)}
                   </div>
-                  <div class="text-black leading-[130%] text-[14px] lg:text-end">
+                  <div class="text-black leading-[130%] text-[14px] lg:text-end font-light">
                     {formatPrice(productPrice, currency) || "US$ 0,00"}
                   </div>
                 </div>
@@ -406,13 +396,13 @@ function ProductCard(
         </div>
 
         {/* SKU Selector */}
-        {l?.elementsPositions?.skuSelector === "Bottom" && (
+        {layout?.elementsPositions?.skuSelector === "Bottom" && (
           <>
-            {l?.hide?.skuSelector ? "" : (
+            {layout?.hide?.skuSelector ? "" : (
               <ul
                 class={`flex items-center gap-2 w-full ${
                   align === "center" ? "justify-center" : "justify-start"
-                } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
+                } ${layout?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
               >
                 {skuSelector}
               </ul>

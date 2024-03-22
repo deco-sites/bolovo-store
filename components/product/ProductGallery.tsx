@@ -28,14 +28,16 @@ function ProductGallery(
     colorVariant,
     colors,
     showColorVariants,
+    hasBanner,
   }:
     & Props
     & { colorVariant?: { [productName: string]: Product[] } }
     & { colors?: Color[] }
-    & { showColorVariants?: boolean },
+    & { showColorVariants?: boolean }
+    & { hasBanner?: boolean}
+    ,
 ) {
   const platform = usePlatform();
-
   const row: number = photoOnPLP?.line ?? 0;
   const line = row === 1 ? 0 : isMobile ? (row - 1) * 2 : (row - 1) * 4;
 
@@ -44,6 +46,7 @@ function ProductGallery(
       class={`grid grid-cols-2 gap-2 items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px] col-`}
     >
       {products?.map((product, index) => (
+        
         cardSEO && index === 0
           ? (
             <div class="card card-compact w-full h-full rounded-none bg-[#F6F6F6] overflow-y-auto">
@@ -73,9 +76,10 @@ function ProductGallery(
               <li class={`h-full`}>
                 <ProductCard
                   product={product}
-                  preload={index === 0}
+                  preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
                   index={offset ? offset + index : undefined}
                   platform={platform}
+                  isMobile={isMobile}
                   colorRelated={colorVariant
                     ? colorVariant[product.name as string] || []
                     : []}
@@ -89,9 +93,10 @@ function ProductGallery(
             <li class={`h-full`}>
               <ProductCard
                 product={product}
-                preload={index === 0}
+                preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
                 index={offset ? offset + index : undefined}
                 platform={platform}
+                isMobile={isMobile}
                 colorRelated={colorVariant
                   ? colorVariant[product.name as string] || []
                   : []}

@@ -251,14 +251,17 @@ function Cart({
                   </a>
                 </div>
                 <div class="pb-4">
-                  <a class="inline-block w-full" href="/">
+                  <div class="inline-block w-full">
                     <Button
                       class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white"
                       disabled={loading || isEmtpy}
+                      onClick={() => {
+                        displayCart.value = false;
+                      }}
                     >
                       {cartTranslations?.ctaBackStore}
                     </Button>
-                  </a>
+                  </div>
                 </div>
               </footer>
             </>

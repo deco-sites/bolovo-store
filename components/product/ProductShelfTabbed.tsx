@@ -15,6 +15,7 @@ import { usePartialSection } from "deco/hooks/usePartialSection.ts";
 
 /** @titleBy title */
 interface Tab {
+  /** @format html */
   title: string;
   products: Product[] | null;
 }
