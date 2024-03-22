@@ -13,6 +13,7 @@ import ButtonsPagination, {
 import type { CardSEO } from "$store/components/search/SearchResult.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
+import type { Props as BannerProps } from "$store/components/search/BannerInCategory.tsx";
 
 /** @titleBy category */
 export interface Category {
@@ -37,6 +38,7 @@ export interface Props {
    */
   labelViewAll?: string;
   categories?: Category[];
+  banners?: BannerProps[];
   buttonsPagination?: ButtonsPaginationProps;
   /**
    * @title Highlights
@@ -95,6 +97,7 @@ function ResultCategory({
     labelClose: "Fechar",
   },
   labelViewAll = "Ver Todos",
+  banner,
 }: Omit<Props, "page"> & {
   page: ProductListingPage;
   currentCategory?: string;
@@ -110,10 +113,9 @@ function ResultCategory({
   notFound: PropsNotFound;
   photoOnPLP?: Section[];
   card?: CardSEO;
+  banner?: BannerProps;
 } & { colorVariant: { [productName: string]: Product[] } }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
-  const perPage = pageInfo.recordPerPage || products.length;
-  const offset = pageInfo.currentPage * perPage;
   const { activePriceIntl } = useUI();
 
   return (
@@ -137,6 +139,7 @@ function ResultCategory({
         labelOrdenation={labelOrdenation}
         labelsOfFilters={labelsOfFilters}
         labelViewAll={labelViewAll}
+        banner={banner}
       />
       <Result
         page={page}
@@ -146,6 +149,7 @@ function ResultCategory({
         isMobile={isMobile}
         buttonsPagination={buttonsPagination}
         isCategory={true}
+        hasBanner={banner ? true : false}
         notFound={notFound}
         photoOnPLP={photoOnPLP}
         filterColors={filterColors}
@@ -171,6 +175,7 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
     parentCategory,
     categoryURL,
     photoOnPLP,
+    banner,
   } = props;
 
   if (!page || page?.products.length === 0) {
@@ -191,6 +196,7 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
       parentCategory={parentCategory}
       categoryURL={categoryURL}
       photoOnPLP={photoOnPLP}
+      banner={banner}
     />
   );
 }
@@ -205,6 +211,7 @@ export async function getColorRelatedProducts(products: Product[] | undefined, c
         if (property.valueReference === "TAGS") {
           try {
             const data = JSON.parse(property.value || "");
+
             if (data.type === "variante_cor") {
               camisetaVariantProperty = data.name;
               break;
@@ -230,7 +237,7 @@ export async function getColorRelatedProducts(products: Product[] | undefined, c
 }
 
 export const loader = async (props: Props, req: Request, ctx: AppContext) => {
-  const { categories, photoOnPLP, cardSEO, showColorVariants } = { ...props };
+  const { categories, photoOnPLP, cardSEO, showColorVariants, banners } = { ...props };
   let colorRelated: { [productName: string]: Product[] } = {};
 
   if (showColorVariants) {
@@ -243,9 +250,10 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
 
   const url = new URL(req.url);
 
-  const section = photoOnPLP?.find(({ matcher }) =>
-    new URLPattern({ pathname: matcher }).test(url)
-  );
+  const section = !url.search.includes("type_tags") &&
+    photoOnPLP?.find(({ matcher }) =>
+      new URLPattern({ pathname: matcher }).test(url)
+    );
 
   const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 
@@ -258,6 +266,10 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   );
 
   const card = cardSEO?.find(({ matcher }) =>
+    new URLPattern({ pathname: matcher }).test(req.url)
+  );
+
+  const banner = banners?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
@@ -299,6 +311,7 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
       photoOnPLP,
       card,
       colorVariant: colorRelated || {},
+      banner,
     };
   } else {
     return {
@@ -313,6 +326,7 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
       photoOnPLP,
       card,
       colorVariant: colorRelated || {},
+      banner,
     };
   }
 };

@@ -98,15 +98,9 @@ function NavItem(item: NavItemProps) {
           size={22}
           strokeWidth={2}
           fill="none"
-          class="absolute left-0 top-0 transition-opacity opacity-100 group-hover:opacity-0"
+          class="absolute left-0 top-0 transition-opacity opacity-100"
         />
-        <Icon
-          id="Close"
-          size={22}
-          fill="none"
-          class="absolute left-0 top-0 transition-opacity opacity-0 group-hover:opacity-100"
-        />
-        <span class="ml-7 uppercase">
+        <span class="ml-7 uppercase group-hover:border-b-2 border-black">
           {label}
         </span>
       </div>

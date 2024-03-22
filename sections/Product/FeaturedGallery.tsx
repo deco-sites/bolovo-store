@@ -1,13 +1,19 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import Image from "apps/website/components/Image.tsx";
 import type { Product } from "apps/commerce/types.ts";
-import ProductCardGallery from "../../components/content/ProductCardGallery.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
+import ProductCard from "$store/components/product/ProductCard.tsx";
+import { Color } from "$store/components/search/SearchResult.tsx";
+import type { AppContext } from "$store/apps/site.ts";
+import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
+
 export interface Props {
+  /** @format html */
   title: string;
   featuredPhoto: {
     src: ImageWidget;
     alt: string;
     href: string;
+    preload?: boolean;
   };
   /**
    * @title reversed order?
@@ -18,7 +24,10 @@ export interface Props {
     /** @default "imagem na direita" */
     desktop?: "imagem na direita" | "imagem na esquerda";
   };
-  product: Product[] | null;
+  products: Product[] | null;
+  colors: Color[];
+  /** @description Choose if you would like to showcase the color variants in the product cards  */
+  showColorVariants?: boolean;
 }
 
 const MOBILE_DIRECTION = {
@@ -31,17 +40,58 @@ const DESKTOP_DIRECTION = {
   "imagem na esquerda": "lg:flex-row",
 };
 
+export function LoadingFallback() {
+  return (
+    <div style={{ height: "716px" }} class="flex justify-center items-center">
+      <span class="loading loading-spinner" />
+    </div>
+  );
+}
+
+export const loader = async (
+  props: Props,
+  req: Request,
+  ctx: AppContext,
+) => {
+  const { showColorVariants } = props;
+  let colorRelated: { [productName: string]: Product[] } = {};
+
+  if (showColorVariants && props.products) {
+    try {
+      colorRelated = await getColorRelatedProducts(props.products, ctx);
+    } catch (error) {
+      console.error("Erro ao obter produtos relacionados por cor:", error);
+    }
+  }
+
+  return {
+    ...props,
+    colorVariant: colorRelated || {},
+  };
+};
+
 export default function FeaturedGallery(
-  { title, featuredPhoto, contentDirection, product }: Props,
+  {
+    title,
+    featuredPhoto,
+    contentDirection,
+    products,
+    colors,
+    colorVariant,
+    showColorVariants,
+  }: Props & { colorVariant?: { [productName: string]: Product[] } },
 ) {
-  if (!product || product.length === 0) {
+  if (!products || products.length === 0) {
     return null;
   }
+  const platform = "vnda";
 
   return (
     <div class="flex px-[15px] flex-col gap-6 py-8">
       <h2 class=" text-base text-left uppercase font-bold">
-        {title}
+        <div
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
       </h2>
       <div
         class={`flex gap-2 lg:gap-[15px]  
@@ -55,18 +105,39 @@ export default function FeaturedGallery(
           href={featuredPhoto.href}
           class="flex w-full lg:w-[55.15%] cursor-pointer"
         >
-          <Image
-            src={featuredPhoto.src}
-            alt={featuredPhoto.alt}
-            width={400}
-            height={400}
-            loading={"lazy"}
-            class="aspect-square w-full lg:pb-[5px]"
-          />
+          <Picture preload={featuredPhoto.preload}>
+            <Source
+              media="(max-width: 1023px)"
+              fetchPriority={featuredPhoto.preload ? "high" : "low"}
+              src={featuredPhoto.src}
+              width={200}
+              height={200}
+            />
+            <Source
+              media="(min-width: 1024px)"
+              fetchPriority={featuredPhoto.preload ? "high" : "low"}
+              src={featuredPhoto.src}
+              width={400}
+              height={400}
+            />
+            <img
+              class="aspect-square w-full lg:pb-[5px]"
+              src={featuredPhoto.src}
+              alt={featuredPhoto.alt}
+              decoding="async"
+              loading={featuredPhoto.preload ? "eager" : "lazy"}
+            />
+          </Picture>
         </a>
         <div class="flex w-full lg:w-[44.08%] min-h-[400px]">
-          <ProductCardGallery
-            product={product[0]}
+          <ProductCard
+            product={products[0]}
+            itemListName={title}
+            platform={platform}
+            colorRelated={(colorVariant &&
+              colorVariant[products[0].name as string]) || []}
+            colors={colors}
+            showColorVariants={showColorVariants}
           />
         </div>
       </div>

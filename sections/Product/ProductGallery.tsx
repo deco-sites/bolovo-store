@@ -1,12 +1,20 @@
-import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import Gallery from "$store/components/product/ProductGallery.tsx";
 import type { AppContext } from "$store/apps/site.ts";
 import { Color } from "$store/components/search/SearchResult.tsx";
 
 export interface Props {
+  /** @format html */
   title?: string;
   products: Product[] | null;
+}
+
+export function LoadingFallback() {
+  return (
+    <div style={{ height: "716px" }} class="flex justify-center items-center">
+      <span class="loading loading-spinner" />
+    </div>
+  );
 }
 
 export const loader = async (
@@ -39,7 +47,6 @@ export const loader = async (
         "__resolveType": "vnda/loaders/productList.ts",
         "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
       });
-      console.log(product.inProductGroupWithID);
       if (product.name !== undefined && Array.isArray(productList)) {
         colorRelated[product.name] = productList;
       }
@@ -70,7 +77,9 @@ function ProductGallery({
   return (
     <div class="px-[15px] sm:py-10">
       <h2 class="font-semibold text-base leading-5 pb-[15px] lg:pb-[25px]">
-        {title}
+        <div
+          dangerouslySetInnerHTML={{ __html: title ?? "" }}
+        />
       </h2>
       <div class="flex-grow">
         <Gallery
