@@ -60,6 +60,7 @@ function PageOfProduct(
   if (page === null) {
     return <NotFound props={notFound} searchedLabel={""} />;
   }
+  
 
   return (
     <div class="pt-0 lg:py-11 lg:px-[8%] flex justify-center flex-col lg:flex-row md:gap-12 lg:gap-[6%] py-11">

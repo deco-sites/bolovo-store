@@ -15,6 +15,7 @@ import { Color } from "$store/components/search/SearchResult.tsx";
 import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
 
 export interface Props {
+  /** @format html */
   title?: string;
   layout?: {
     headerAlignment?: "center" | "left";
@@ -131,7 +132,7 @@ function ProductShelf(
             </div>
           </>
         )}
-        <SliderJS rootId={id} />
+        <SliderJS rootId={id} infinite/>
         <SendEventOnLoad
           event={{
             name: "view_item_list",

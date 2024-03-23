@@ -3,12 +3,12 @@ import { Section } from "deco/blocks/section.ts";
 export interface Props {
   title: string;
   asideMenu: Section;
-  content: Section;
+  sections: Section[];
 }
 
 function InstitutionalPage({
   asideMenu: { Component: AsideComponent, props: asideProps },
-  content: { Component: ContentComponent, props: contentProps },
+  sections,
   title,
 }: Props) {
   return (
@@ -21,8 +21,7 @@ function InstitutionalPage({
           <h3 class="hidden uppercase text-primary text-2xl font-medium leading-[36px] mb-5 border-b border-neutral-100 pb-[10px] lg:block">
             {title}
           </h3>
-          {/* @ts-ignore opting for a ignore here so we can use a union type for the content section prop, and display it nicely in the admin panel */}
-          <ContentComponent {...contentProps} />
+          {sections.map(({ Component, props }) => <Component {...props} />)}
         </article>
       </div>
     </>

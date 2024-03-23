@@ -18,7 +18,6 @@ export default function ValueItem({
   class?: string;
   priceIntl?: boolean;
 }) {
-  console.log(type);
   const isSelected = selectedFilters.value.some(
     (value) => label === value.label,
   );

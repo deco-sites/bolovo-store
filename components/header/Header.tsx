@@ -78,6 +78,7 @@ export interface Props {
    */
   /** @title Country Flag */
   countryFlag: Country[];
+  showLanguageVariant?: boolean;
 }
 
 function Header(props: SectionProps<ReturnType<typeof loader>>) {
@@ -94,6 +95,7 @@ function Header(props: SectionProps<ReturnType<typeof loader>>) {
     helpItem,
     countryFlag,
     accountHref,
+    showLanguageVariant,
   } = props;
   const items = menu.items ?? [];
 
@@ -118,6 +120,7 @@ function Header(props: SectionProps<ReturnType<typeof loader>>) {
               img={buttonSearch.img}
               helpItem={helpItem}
               countryFlag={countryFlag}
+              showLanguageVariant={showLanguageVariant}
               accountHref={accountHref}
             />
           </div>

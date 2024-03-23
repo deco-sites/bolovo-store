@@ -55,6 +55,7 @@ export default function FooterItems(
                               <span class="block leading-[26px] font-normal text-xs uppercase text-primary">
                                 {item.label}
                               </span>
+                              
                               <a
                                 target={item.newTab ? "_blank" : ""}
                                 href={item.href}
@@ -73,6 +74,7 @@ export default function FooterItems(
                             <a
                               href={item.href}
                               class="block leading-[26.4px] font-normal text-xs uppercase text-primary"
+                              target={item.newTab ? "_blank" : ""}
                             >
                               {item.label}
                             </a>
@@ -119,6 +121,7 @@ export default function FooterItems(
                           <a
                             href={item.href}
                             class="block text-xs leading-[25px] font-normal uppercase text-primary"
+                            target={item.newTab ? "_blank" : ""}
                           >
                             {item.label}
                           </a>
