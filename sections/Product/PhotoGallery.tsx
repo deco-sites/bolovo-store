@@ -2,6 +2,7 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
 import PhotoAndProducts from "../../components/search/PhotoAndProducts.tsx";
 export interface Props {
+  /** @format html */
   title: string;
   featuredPhoto: {
     /**
@@ -30,6 +31,14 @@ const MOBILE_DIRECTION = {
   "imagem abaixo": "row-start-3",
 };
 
+export function LoadingFallback() {
+  return (
+    <div style={{ height: "716px" }} class="flex justify-center items-center">
+      <span class="loading loading-spinner" />
+    </div>
+  );
+}
+
 export default function PhotoGallery(
   { title, featuredPhoto, contentDirection, products }: Props,
 ) {
@@ -40,7 +49,9 @@ export default function PhotoGallery(
   return (
     <div class="flex px-[15px] flex-col gap-6 py-8">
       <h2 class=" text-base text-left uppercase font-bold">
-        {title}
+        <div
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
       </h2>
       <ul class="grid grid-cols-2 gap-2 gap-y-5 lg:gap-y-[15px] items-center lg:grid-cols-4 lg:gap-[15px]">
         <PhotoAndProducts

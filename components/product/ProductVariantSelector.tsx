@@ -4,8 +4,6 @@ import type { Product } from "apps/commerce/types.ts";
 import { relative } from "$store/sdk/url.ts";
 import { Color } from "$store/components/search/SearchResult.tsx";
 
-
-
 function VariantSelector(
   { product, reloadInSelector, colorRelated, colors, priceIntl = false }: {
     product: Product;
@@ -14,16 +12,14 @@ function VariantSelector(
     colorRelated?: {
       name: string;
       url: string;
-    }[]
+    }[];
     colors: Color[];
   },
 ) {
   const { url, isVariantOf } = product;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const possibilities = useVariantPossibilities(hasVariant, product);
-  
   const sizeAndLinks = possibilities.Tamanho || {};
-  
   const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => {
     if (reloadInSelector) {
       return (
@@ -63,46 +59,53 @@ function VariantSelector(
     );
   });
 
-
   const colorSelector = colorRelated?.length && colorRelated.length > 1
-  ? (
-    colorRelated.map((colorVariant, index) => {
-      // Encontre a cor correspondente no array de cores retornado pelo loader
-      const selectedColor = colors.find(color => color.label.toLowerCase() === colorVariant.name.toLowerCase());
-      if (!selectedColor) return null;
+    ? (
+      colorRelated.map((colorVariant, index) => {
+        const selectedColor = colors.find((color) => color.label.toLowerCase() === colorVariant.name.toLowerCase());
+        const isImg = selectedColor?.src !== undefined;
+        const isSvg = selectedColor?.hex !== undefined;
 
-      // Verifique se a cor selecionada é um SVG ou uma imagem
-      const isSvg = selectedColor.hex !== undefined;
-
-      return (
-        <li key={index}>
-          <a href={colorVariant.url}>
-            <div
-              className="w-[22px] h-[22px] flex items-center justify-center border"
-              title={`Cor ${colorVariant.name}`}
-            >
-              {isSvg ? (
-                // Se a cor for um SVG
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="22"
-                  height="22"
-                  viewBox="0 0 22 22"
-                  fill="none"
-                >
-                  <rect x="0" y="0" width="22" height="22" fill={selectedColor.hex} />
-                </svg>
-              ) : (
-                // Se a cor for uma imagem
-                <img src={selectedColor.src} alt={`Cor ${colorVariant.name}`} />
-              )}
-            </div>
-          </a>
-        </li>
-      );
-    })
-  )
-  : null;
+        return (
+          <li key={index}>
+            <a href={colorVariant.url}>
+              <div
+                class="w-[22px] h-[22px] flex items-center justify-center border"
+                title={`Cor ${colorVariant.name}`}
+              >
+                {isSvg
+                  ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="22"
+                      viewBox="0 0 22 22"
+                      fill="none"
+                    >
+                      <rect
+                        x="0"
+                        y="0"
+                        width="22"
+                        height="22"
+                        fill={selectedColor.hex}
+                      />
+                    </svg>
+                  )
+                  : isImg
+                  ? (
+                    <img
+                      src={selectedColor?.src}
+                      alt={`Cor ${colorVariant.name}`}
+                    />
+                  )
+                  : <span class="w-3 h-3 border"></span>}
+              </div>
+            </a>
+          </li>
+        );
+      })
+    )
+    : null;
 
   return (
     <ul class="flex flex-col gap-6 lg:gap-11">

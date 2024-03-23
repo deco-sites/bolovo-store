@@ -16,25 +16,26 @@ function Header(props: Props) {
               props.alignment === "left" ? "text-left" : "text-center"
             }`}
           >
-            {props.title &&
-              (
-                <h1
-                  class={`uppercase font-semibold leading-8 lg:leading-normal
-                  ${
-                    props.colorReverse
-                      ? "text-primary-content"
-                      : "text-base-content"
-                  }
-                  ${
-                    props.fontSize === "Normal"
-                      ? "text-[14px] lg:text-base"
-                      : "lg:text-xl"
-                  }
-                `}
-                >
-                  {props.title}
-                </h1>
-              )}
+            {props.title && (
+              <h1
+                class={`uppercase font-semibold leading-8 lg:leading-normal
+              ${
+                  props.colorReverse
+                    ? "text-primary-content"
+                    : "text-base-content"
+                }
+              ${
+                  props.fontSize === "Normal"
+                    ? "text-[14px] lg:text-base"
+                    : "lg:text-xl"
+                }
+            `}
+              >
+                <div
+                  dangerouslySetInnerHTML={{ __html: props.title ?? "" }}
+                />
+              </h1>
+            )}
             {props.description &&
               (
                 <h2

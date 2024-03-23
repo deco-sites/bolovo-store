@@ -211,7 +211,7 @@ export async function getColorRelatedProducts(products: Product[] | undefined, c
         if (property.valueReference === "TAGS") {
           try {
             const data = JSON.parse(property.value || "");
-  
+
             if (data.type === "variante_cor") {
               camisetaVariantProperty = data.name;
               break;
@@ -250,9 +250,10 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
 
   const url = new URL(req.url);
 
-  const section = photoOnPLP?.find(({ matcher }) =>
-    new URLPattern({ pathname: matcher }).test(url)
-  );
+  const section = !url.search.includes("type_tags") &&
+    photoOnPLP?.find(({ matcher }) =>
+      new URLPattern({ pathname: matcher }).test(url)
+    );
 
   const isMobile = req.headers.get("user-agent")!.includes("Mobile");
 

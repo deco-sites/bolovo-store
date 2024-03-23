@@ -67,7 +67,6 @@ function PDPProductInfo(
     productID,
     offers,
     name = "",
-    gtin,
     isVariantOf,
     additionalProperty = [],
   } = product;
@@ -76,30 +75,17 @@ function PDPProductInfo(
     price = 0,
     listPrice,
     seller = "1",
-    installments,
     availability,
     priceIntl = 0,
     listPriceIntl,
-    sellerIntl = "1",
-    installmentsIntl,
-    availabilityIntl,
   } = useOffer(offers);
   const productGroupID = isVariantOf?.productGroupID ?? "";
-  const objDescription: Description | null = description
-    ? markdownToObj(description)
-    : null;
-
+  const objDescription: Description | null = description ? markdownToObj(description) : null;
   const { activePriceIntl } = useUI();
-
-  const currency = activePriceIntl.value.active
-    ? offers?.offers[1]?.priceCurrency || "USD"
-    : offers?.priceCurrency ||
-      "BRL";
+  const currency = activePriceIntl.value.active ? offers?.offers[1]?.priceCurrency || "USD" : offers?.priceCurrency || "BRL";
   const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
   const productListPrice = listPriceIntl || listPrice || 0;
-  const discount = productPrice && productListPrice
-    ? productListPrice - productPrice
-    : 0;
+  const discount = productPrice && productListPrice ? productListPrice - productPrice : 0;
 
   return (
     <div class="flex flex-col w-full p-4 lg:p-0">
@@ -117,12 +103,13 @@ function PDPProductInfo(
                 {formatPrice(productListPrice, currency)}
               </span>
             )}
-            <span class=" text-base">
+            <span class=" text-base font-light">
               {formatPrice(productPrice, currency) ?? " US$ 0,00"}
             </span>
           </div>
         </div>
       </div>
+      
       {/* Sku Selector */}
       <div class="mt-4 sm:mt-6">
         <ProductSelector
