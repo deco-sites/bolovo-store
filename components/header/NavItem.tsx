@@ -13,6 +13,7 @@ export interface Links {
   label?: string;
   href?: string;
   children?: Links[];
+  newTab?: boolean
 }
 
 export interface Image {
@@ -39,6 +40,7 @@ function RenderLinks(
                 isChild ? "font-normal" : "font-semibold"
               } leading-9 whitespace-nowrap hover:underline ease-in-out duration-200`}
               href={link.href}
+              target={link.newTab ? "_blank" : ""}
             >
               {link.label}
             </a>

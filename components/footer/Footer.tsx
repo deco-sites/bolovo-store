@@ -178,6 +178,7 @@ function Footer({
       content={newsletter}
     />
   );
+  
   const _sectionLinks = layout?.hide?.sectionLinks ? <></> : (
     <FooterItems
       whatsApp={whatsApp}
