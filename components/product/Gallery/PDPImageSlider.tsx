@@ -42,8 +42,8 @@ export default function PDPGallerySlider(
                   media="(max-width: 640px)"
                   fetchPriority={index === 0 ? "high" : "auto"}
                   src={img.url!}
-                  width={320}
-                  height={320}
+                  width={280}
+                  height={280}
                 />
                 <Source
                   media="(min-width: 641px) and (max-width: 1023px)"
