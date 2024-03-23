@@ -34,7 +34,7 @@ const setup = ({ rootId }: Props) => {
     isDown = false;
     slider.classList.remove("cursor-grab");
     items.forEach((item) => {
-      item.children[0].classList.remove("pointer-events-none");
+      item.children[0].classList.remove("lg:pointer-events-none");
     });
   };
 
@@ -42,7 +42,7 @@ const setup = ({ rootId }: Props) => {
     isDown = true;
     slider.classList.add("cursor-grab");
     items.forEach((item) => {
-      item.children[0].classList.add("pointer-events-none");
+      item.children[0].classList.add("lg:pointer-events-none");
     });
     startX = e.pageX || e.touches[0].pageX - slider.offsetLeft;
     scrollLeft = slider.scrollLeft;
