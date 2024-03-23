@@ -34,11 +34,10 @@ function ProductGallery(
     & { colorVariant?: { [productName: string]: Product[] } }
     & { colors?: Color[] }
     & { showColorVariants?: boolean }
-    & { hasBanner: boolean}
+    & { hasBanner?: boolean}
     ,
 ) {
   const platform = usePlatform();
-  console.log(hasBanner)
   const row: number = photoOnPLP?.line ?? 0;
   const line = row === 1 ? 0 : isMobile ? (row - 1) * 2 : (row - 1) * 4;
 

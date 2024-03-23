@@ -90,7 +90,9 @@ function MenuItem({ item }: { item: NavItemProps }) {
                   <li class="font-semibold text-base py-2">{link.label}</li>
                   {link.children?.map((item) => (
                     <li class="py-2">
-                      <a href={item.href}>{item.label}</a>
+                      <a target={item.newTab ? "_blank" : ""} href={item.href}>
+                        {item.label}
+                      </a>
                     </li>
                   ))}
                 </ul>

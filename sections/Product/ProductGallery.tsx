@@ -1,10 +1,10 @@
-import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import Gallery from "$store/components/product/ProductGallery.tsx";
 import type { AppContext } from "$store/apps/site.ts";
 import { Color } from "$store/components/search/SearchResult.tsx";
 
 export interface Props {
+  /** @format html */
   title?: string;
   products: Product[] | null;
 }
@@ -77,7 +77,9 @@ function ProductGallery({
   return (
     <div class="px-[15px] sm:py-10">
       <h2 class="font-semibold text-base leading-5 pb-[15px] lg:pb-[25px]">
-        {title}
+        <div
+          dangerouslySetInnerHTML={{ __html: title ?? "" }}
+        />
       </h2>
       <div class="flex-grow">
         <Gallery
