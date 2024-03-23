@@ -31,13 +31,13 @@ export default function PDPGallerySlider(
     >
       {/* Image Slider */}
       <div class="relative order-1 sm:order-2 h-full w-full">
-        <Slider class="carousel carousel-center w-full sm:h-full flex-row lg:flex-col lg:snap-y lg:snap-mandatory lg:overflow-y-scroll scroll-smooth">
+        <Slider class="carousel carousel-center w-full sm:h-full flex-row lg:flex-col lg:snap-y lg:snap-mandatory lg:overflow-y-scroll scroll-smooth max-w-[900px]">
           {images.map((img, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-full h-full"
+              class="carousel-item w-full h-auto"
             >
-              <Picture class="w-full h-full" preload={index === 0}>
+              <Picture class="w-full h-auto" preload={index === 0}>
                 <Source
                   media="(max-width: 640px)"
                   fetchPriority={index === 0 ? "high" : "auto"}
@@ -67,7 +67,7 @@ export default function PDPGallerySlider(
                   height={708}
                 />
                 <img
-                  class="w-full h-full object-cover lg:max-h-[90vh] "
+                  class="w-full h-full object-contain lg:max-h-[90vh] "
                   loading={index === 0 ? "eager" : "lazy"}
                   width={370}
                   height={400}
