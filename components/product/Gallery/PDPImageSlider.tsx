@@ -31,7 +31,7 @@ export default function PDPGallerySlider(
     >
       {/* Image Slider */}
       <div class="relative order-1 sm:order-2 h-full w-full">
-        <Slider class="carousel carousel-center w-full sm:h-full flex-row lg:flex-col lg:snap-y lg:snap-mandatory lg:overflow-y-scroll scroll-smooth max-w-[900px] lg:h-[calc(50vw*520/620)]">
+        <Slider class="carousel carousel-center w-full sm:h-full flex-row lg:flex-col lg:snap-y lg:snap-mandatory lg:overflow-y-scroll scroll-smooth max-w-[900px] lg:h-[calc(40vw*530/620)]">
           {images.map((img, index) => (
             <Slider.Item
               index={index}
@@ -67,7 +67,9 @@ export default function PDPGallerySlider(
                   height={708}
                 />
                 <img
-                  class="w-full h-full object-contain lg:max-h-[80vh] "
+                  class={`w-full h-full object-contain lg:max-h-[76vh] ${
+                    index === 0 && "lg:mt-[-2%] lg:mb-[-6%]"
+                  } `}
                   loading={index === 0 ? "eager" : "lazy"}
                   width={370}
                   height={400}
