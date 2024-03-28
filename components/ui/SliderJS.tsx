@@ -182,12 +182,12 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
         if (item.target == currentItems[1]) {
           setTimeout(() => {
             goToItem(items.length - 1, "instant");
-          }, 100);
+          }, 200);
         }
         if (item.target === currentItems[currentItems.length - 2]) {
           setTimeout(() => {
             goToItem(0, "instant");
-          }, 100);
+          }, 200);
         }
       }
     });
