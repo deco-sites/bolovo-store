@@ -133,6 +133,8 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     const isShowingLast = indices[indices.length - 1] === items.length - 1;
     const pageIndex = Math.floor(indices[0] / itemsPerPage);
 
+    console.log({indices,itemsPerPage,isShowingLast, pageIndex})
+
     goToItem(
       isShowingLast
         ? (infiniteBehavior ? items.length + 1 : 0)
@@ -180,12 +182,12 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
         if (item.target == currentItems[1]) {
           setTimeout(() => {
             goToItem(items.length - 1, "instant");
-          }, 800);
+          }, 100);
         }
-        if (item.target == currentItems[currentItems.length - 2]) {
+        if (item.target === currentItems[currentItems.length - 2]) {
           setTimeout(() => {
             goToItem(0, "instant");
-          }, 800);
+          }, 100);
         }
       }
     });
@@ -234,7 +236,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   prev?.addEventListener("click", onClickPrev);
   next?.addEventListener("click", onClickNext);
 
-  const timeout = interval && setInterval(onClickNext, interval);
+  let timeout = interval && setInterval(onClickNext, interval);
 
   // Unregister callbacks
   return () => {
