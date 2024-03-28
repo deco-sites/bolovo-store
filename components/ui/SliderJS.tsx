@@ -1,8 +1,8 @@
 import { useEffect } from "preact/hooks";
 
-export interface Props {
+interface Props {
   rootId: string;
-  scroll?: "smooth" | "auto";
+  scroll?: "smooth" | "auto" | "instant";
   interval?: number;
   infinite?: boolean;
 }
@@ -13,12 +13,13 @@ const ATTRIBUTES = {
   'data-slide="prev"': 'data-slide="prev"',
   'data-slide="next"': 'data-slide="next"',
   "data-dot": "data-dot",
-  "data-progress": "data-progress",
 };
 
 // Percentage of the item that has to be inside the container
 // for it it be considered as inside the container
 const THRESHOLD = 0.6;
+
+const USE_INFINITE_BEHAVIOUR = true;
 
 const intersectionX = (element: DOMRect, container: DOMRect): number => {
   const delta = container.width / 1_000;
@@ -54,16 +55,6 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   const prev = root?.querySelector(`[${ATTRIBUTES['data-slide="prev"']}]`);
   const next = root?.querySelector(`[${ATTRIBUTES['data-slide="next"']}]`);
   const dots = root?.querySelectorAll(`[${ATTRIBUTES["data-dot"]}]`);
-  const progress: HTMLProgressElement | null | undefined = root?.querySelector(
-    `[${ATTRIBUTES["data-progress"]}]`,
-  );
-
-  const clearAutoplayTimeout = () => {
-    if (timeout) {
-      clearInterval(timeout);
-      timeout = setInterval(onClickNext, interval); 
-    }
-  };
 
   if (!root || !slider || !items || items.length === 0) {
     console.warn(
@@ -95,24 +86,28 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     return indices;
   };
 
-  const goToItem = (index: number) => {
-    const item = items.item(index);
+  const elementsInsideContainer = getElementsInsideContainer();
+  const infiniteBehavior = infinite && elementsInsideContainer.length === 1 &&
+    items.length > 1 && USE_INFINITE_BEHAVIOUR;
 
-    if (!isHTMLElement(item)) {
-      console.warn(
-        `Element at index ${index} is not an html element. Skipping carousel`,
-      );
+  const goToItem = (index: number, behavior = scroll) => {
+    const item = slider.querySelector(`li[data-slider-item='${index}']`);
 
-      return;
+    if (item) {
+      if (!isHTMLElement(item as HTMLElement)) {
+        console.warn(
+          `Element at index ${index} is not an html element. Skipping carousel`,
+        );
+
+        return;
+      }
+
+      slider.scrollTo({
+        top: 0,
+        behavior: behavior,
+        left: (item as HTMLElement).offsetLeft - root.offsetLeft,
+      });
     }
-
-    slider.scrollTo({
-      top: 0,
-      behavior: scroll,
-      left: item.offsetLeft - root.offsetLeft,
-    });
-
-    clearAutoplayTimeout();
   };
 
   const onClickPrev = () => {
@@ -124,7 +119,9 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     const pageIndex = Math.floor(indices[indices.length - 1] / itemsPerPage);
 
     goToItem(
-      isShowingFirst ? items.length - 1 : (pageIndex - 1) * itemsPerPage,
+      isShowingFirst
+        ? (infiniteBehavior ? items.length : items.length - 1)
+        : (pageIndex - 1) * itemsPerPage,
     );
   };
 
@@ -136,17 +133,22 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     const isShowingLast = indices[indices.length - 1] === items.length - 1;
     const pageIndex = Math.floor(indices[0] / itemsPerPage);
 
-    goToItem(isShowingLast ? 0 : (pageIndex + 1) * itemsPerPage);
+    console.log({indices,itemsPerPage,isShowingLast, pageIndex})
+
+    goToItem(
+      isShowingLast
+        ? (infiniteBehavior ? items.length + 1 : 0)
+        : (pageIndex + 1) * itemsPerPage,
+    );
   };
 
   const observer = new IntersectionObserver(
-    (elements) =>
+    (elements) => {
       elements.forEach((item) => {
         const index = Number(item.target.getAttribute("data-slider-item")) || 0;
         const dot = dots?.item(index);
-
         if (item.isIntersecting) {
-          dot?.setAttribute("disabled", "");
+          dot?.setAttribute("disabled", "true");
         } else {
           dot?.removeAttribute("disabled");
         }
@@ -166,22 +168,66 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
               next?.removeAttribute("disabled");
             }
           }
-          if (progress) {
-            if (progress.id == "0" && index === items.length - 1) {
-              progress.style.height = `${1 / items.length * 100}%`;
-              progress.style.width = `${1 / items.length * 100}%`;
-              progress.id = "1";
-            } else {
-              progress.style.height = `${(index + 1) / items.length * 100}%`;
-              progress.style.width = `${(index + 1) / items.length * 100}%`;
-            }
-          }
         }
-      }),
-    { threshold: THRESHOLD, root: slider },
+      });
+    },
+    { threshold: THRESHOLD, root: slider, rootMargin: "100px" },
   );
 
+  const fullObserver = new IntersectionObserver((elements) => {
+    elements.forEach((item) => {
+      const currentItems = slider?.querySelectorAll(`li`);
+
+      if (item.isIntersecting && elements.length == 1) {
+        if (item.target == currentItems[1]) {
+          setTimeout(() => {
+            goToItem(items.length - 1, "instant");
+          }, 200);
+        }
+        if (item.target === currentItems[currentItems.length - 2]) {
+          setTimeout(() => {
+            goToItem(0, "instant");
+          }, 200);
+        }
+      }
+    });
+  }, { threshold: 0.70, root: slider, rootMargin: "100px" });
+
+  if (infiniteBehavior) {
+    const firstItemClone = items[0].cloneNode(true);
+    const secondItemClone = items[1]?.cloneNode(true);
+    const penultimateItemClone = items[items.length - 2]?.cloneNode(true);
+    const lastItemClone = items[items.length - 1].cloneNode(true);
+
+    (lastItemClone as HTMLElement).setAttribute(
+      "data-slider-item",
+      items.length.toString(),
+    );
+    (penultimateItemClone as HTMLElement)?.removeAttribute("data-slider-item");
+    (firstItemClone as HTMLElement).setAttribute(
+      "data-slider-item",
+      (items.length + 1).toString(),
+    );
+    (secondItemClone as HTMLElement)?.removeAttribute("data-slider-item");
+
+    slider.insertBefore(lastItemClone, items[0]);
+    penultimateItemClone &&
+      slider.insertBefore(penultimateItemClone, lastItemClone);
+    slider.appendChild(firstItemClone);
+    secondItemClone && slider.appendChild(secondItemClone);
+    goToItem(0, "instant");
+  }
+
+  const currentItems = slider?.querySelectorAll(`li`);
+
   items.forEach((item) => observer.observe(item));
+
+  // todo: today it just works to slider
+  // that show one element at a time
+  if (infiniteBehavior) {
+    fullObserver.observe(currentItems[1]);
+    fullObserver.observe(currentItems[currentItems.length - 2]);
+  }
 
   for (let it = 0; it < (dots?.length ?? 0); it++) {
     dots?.item(it).addEventListener("click", () => goToItem(it));
@@ -200,7 +246,6 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
 
     prev?.removeEventListener("click", onClickPrev);
     next?.removeEventListener("click", onClickNext);
-
     observer.disconnect();
 
     clearInterval(timeout);
