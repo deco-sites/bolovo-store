@@ -49,7 +49,7 @@ export default function NavigationDescription(
             <li
               class={` ${
                 itemVisible.value == index ? "flex" : "hidden"
-              } text-base w-full`}
+              } w-full text-sm leading-5`}
               style={{ fontSize: "11px" }}
             >
               <RenderMarkdown
@@ -59,6 +59,8 @@ export default function NavigationDescription(
             </li>
           ))}
       </ul>
+      {/* Go horse para fazer a classe last existir no elemento usado do Markdown */}
+      <div class="last:mt-4 hidden" />
     </div>
   );
 }

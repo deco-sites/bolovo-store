@@ -32,7 +32,7 @@ export default function RenderMarkdown(
 
   return (
     <div
-      class={`w-full flex flex-col ${type === "table" ? "gap-4" : "gap-2"}`}
+      class={`w-full flex flex-col ${type === "table" ? "gap-4" : "gap-1"}`}
       ref={refMarkdown}
     />
   );
