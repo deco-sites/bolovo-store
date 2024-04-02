@@ -15,6 +15,8 @@ import type {
 } from "$store/components/search/SearchResult.tsx";
 import type { Props as BannerProps } from "$store/components/search/BannerInCategory.tsx";
 import BannerInCategory from "$store/components/search/BannerInCategory.tsx";
+import DragSliderJS from "$store/islands/DragSliderJS.tsx";
+import { useId } from "$store/sdk/useId.ts";
 
 type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -78,6 +80,18 @@ function GalleryControls(
   function removeAcentos(str: string) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
+
+  const scrollBehavior = (event: WheelEvent) => {
+    event.preventDefault();
+
+    const slider = event.currentTarget as HTMLElement;
+
+    const scrollAmount = event.deltaY > 0 ? 200 : -200;
+
+    slider.scrollLeft += scrollAmount;
+  };
+
+  const id = useId();
 
   return (
     <Drawer
@@ -166,7 +180,10 @@ function GalleryControls(
       }
     >
       <div class="flex mb-5 flex-col lg:flex-row justify-between lg:w-full flex-wrap">
-        <div class="flex lg:w-[calc(100%-227px)] pb-0 order-1 items-center relative px-2 mb-0 lg:px-0 max-w-[100vw] justify-start overflow-x-auto overflow-y-visible shadow-[0_5px_12px_0_rgba(220,220,220,0.25)] lg:shadow-none">
+        <div
+          id={id}
+          class="flex lg:w-[calc(100%-227px)] pb-0 order-1 items-center relative px-2 mb-0 lg:px-0 max-w-[100vw] justify-start overflow-x-auto overflow-y-visible shadow-[0_5px_12px_0_rgba(220,220,220,0.25)] lg:shadow-none"
+        >
           <div class="absolute inset-y-0 right-0 w-[10%] lg:w-[6.5%] bg-gradient-to-r from-transparent via-white to-white pointer-events-none">
           </div>
           {parentCategory && (
@@ -183,10 +200,13 @@ function GalleryControls(
                 </span>
                 <span class="ml-5 text-black">{">"}</span>
               </a>
-              <Slider class="py-[17.5px] carousel carousel-start gap-4 lg:gap-7 row-start-2 row-end-5 overflow-x-scroll">
+              <Slider
+                class="py-[17.5px] flex carousel-start gap-4 lg:gap-7 row-start-2 row-end-5 overflow-x-hidden"
+                onWheelCapture={scrollBehavior}
+              >
                 <Slider.Item
                   index={0}
-                  class="flex carousel-item sm:first:pl-0 last:pr-6 sm:last:pr-14"
+                  class="flex carousel-item sm:first:pl-0 last:pr-6 sm:last:pr-14 snap-none "
                 >
                   <a
                     href={categoryURL}
@@ -206,7 +226,7 @@ function GalleryControls(
                 {subCategories?.map(({ label, url }, index) => (
                   <Slider.Item
                     index={index}
-                    class="flex carousel-item sm:first:pl-0 last:pr-6 sm:last:pr-14"
+                    class="flex carousel-item sm:first:pl-0 last:pr-6 sm:last:pr-14 snap-none "
                   >
                     <a
                       href={url}
@@ -231,6 +251,7 @@ function GalleryControls(
                   </Slider.Item>
                 ))}
               </Slider>
+              <DragSliderJS rootId={id} />
             </>
           )}
         </div>
