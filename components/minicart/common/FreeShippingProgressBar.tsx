@@ -21,7 +21,7 @@ function FreeShippingProgressBar(
 
   return (
     <div class="flex flex-col w-full gap-2">
-      <div class="flex justify-center items-center gap-2 text-primary">
+      <div class="flex justify-center items-center gap-2 text-baserimary">
         {remaining > 0
           ? (
             <div class="w-full text-center py-8">

@@ -17,7 +17,7 @@ export default function BuyButton(
       {availability === "https://schema.org/InStock"
         ? (
           <button
-            class="text-primary w-full m-auto uppercase hover:font-semibold"
+            class="text-baserimary w-full m-auto uppercase hover:font-semibold"
             onClick={() => onAddItem(productID, additionalProperty)}
           >
             {priceIntl ? "add to cart" : "Adicionar ao carrinho"}
