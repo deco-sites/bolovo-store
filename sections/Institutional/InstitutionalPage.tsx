@@ -18,7 +18,7 @@ function InstitutionalPage({
           <AsideComponent {...asideProps} />
         </div>
         <article class="lg:pl-[30px] pl-0 max-w-full lg:max-w-[80%] w-full">
-          <h3 class="hidden uppercase text-primary text-2xl font-medium leading-[36px] mb-5 border-b border-neutral-100 pb-[10px] lg:block">
+          <h3 class="hidden uppercase text-baserimary text-2xl font-medium leading-[36px] mb-5 border-b border-neutral-100 pb-[10px] lg:block">
             {title}
           </h3>
           {sections.map(({ Component, props }) => <Component {...props} />)}

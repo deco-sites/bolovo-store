@@ -130,7 +130,7 @@ function CookieConsent(props: Props) {
             <button class="btn btn-sm bg-primary hover:bg-primary text-white rounded-none" data-button-cc-accept>
               {buttons.allowText}
             </button>
-            <button class="btn btn-sm rounded-none border hover:bg-transparent bg-transparent border-primary text-primary" data-button-cc-close>
+            <button class="btn btn-sm rounded-none border hover:bg-transparent bg-transparent border-primary text-baserimary" data-button-cc-close>
               {buttons.cancelText}
             </button>
           </div>

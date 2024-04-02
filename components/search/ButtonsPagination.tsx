@@ -30,7 +30,7 @@ function LinkNumberPage(
       href={href + number}
       class={`${
         currentPage === number ? "font-bold" : "font-normal"
-      } btn btn-ghost join-item text-[15px] px-1 hover:font-bold hover:bg-transparent ease-in duration-500`}
+      } btn btn-ghost join-item text-[0.938rem] px-1 hover:font-bold hover:bg-transparent ease-in duration-500`}
     >
       {number}
     </a>
@@ -65,7 +65,7 @@ export default function ButtonsPagination(
           rel="prev"
           disabled={!pageInfo.previousPage}
           href={pageInfo.previousPage ?? "#"}
-          class={`btn btn-ghost join-item uppercase lg:min-w-[140px] pl-0 text-[15px] flex justify-start`}
+          class={`btn btn-ghost join-item uppercase lg:min-w-[140px] pl-0 text-[0.938rem] flex justify-start`}
           style={{ background: "transparent" }}
         >
           <Icon id="ChevronLeft" size={24} strokeWidth={2} />
@@ -120,7 +120,7 @@ export default function ButtonsPagination(
           rel="next"
           disabled={!pageInfo.nextPage}
           href={pageInfo.nextPage ?? "#"}
-          class={`btn btn-ghost join-item uppercase lg:min-w-[140px] pr-0 text-[15px] flex justify-end`}
+          class={`btn btn-ghost join-item uppercase lg:min-w-[140px] pr-0 text-[0.938rem] flex justify-end`}
           style={{ background: "transparent" }}
         >
           <span class={`hidden lg:flex`}>
