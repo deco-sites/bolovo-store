@@ -87,13 +87,13 @@ function BannerInCategory({ props }: { props: Props | undefined }) {
         {(title || subtitle) && (
           <div class=" flex flex-col  py-5 px-4 lg:py-9 lg:px-6  items-start justify-end sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full gap-3 ">
             {title && (
-              <h1 class=" text-6xl lg:text-[5rem] font-normal text-base-100 font-eb-garamond">
+              <h1 class=" text-basexl lg:text-[5rem] font-normal text-base-100 font-eb-garamond">
                 {title}
               </h1>
             )}
             {subtitle && (
               <span
-                class="text-base-100 text-xs lg:text-base gap-0 p-0"
+                class="text-base-100 text-base lg:text-base gap-0 p-0"
                 dangerouslySetInnerHTML={{
                   __html: subtitle.replace(/<div.*?>/g, "").replace(
                     /<\/div>/g,
