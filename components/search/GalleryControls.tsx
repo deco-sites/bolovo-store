@@ -118,7 +118,7 @@ function GalleryControls(
                 />
               </Button>
             </div>
-            <div class="flex flex-row justify-between pl-[21px] pr-[15px] items-center text-[15px] sm:mt-5 mt-14">
+            <div class="flex flex-row justify-between pl-[21px] pr-[15px] items-center text-[0.938rem] sm:mt-5 mt-14">
               <span class="font-semibold uppercase">{textFilters}</span>
               <span class="sm:hidden flex">
                 <Button
@@ -151,7 +151,7 @@ function GalleryControls(
               <div class="w-full pl-[21px] pr-[15px] mt-14">
                 <div class="pb-2">
                   <Button
-                    class="btn btn-active btn-primary btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black text-[15px] font-normal"
+                    class="btn btn-active btn-primary btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black text-[0.938rem] font-normal"
                     id="apply-filters"
                   >
                     {applyFiltersText}
@@ -166,7 +166,7 @@ function GalleryControls(
                     <div class="inline-block w-full">
                       <Button
                         onClick={() => removeFilters()}
-                        class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white text-[15px] font-normal"
+                        class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white text-[0.938rem] font-normal"
                       >
                         {removeFiltersText}
                       </Button>
@@ -193,7 +193,7 @@ function GalleryControls(
                 class="group leading-none py-[5px] px-3 pr-5 flex w-auto lg:h-auto rounded-[20px] items-center"
               >
                 <span
-                  class={`text-[14px] lg:text-[15px] font-medium uppercase text-[#000]
+                  class={`text-[0.875rem] lg:text-[0.938rem] font-medium uppercase text-[#000]
                   }`}
                 >
                   {parentCategory}
@@ -215,7 +215,7 @@ function GalleryControls(
                     }`}
                   >
                     <span
-                      class={`text-[13px] uppercase text-[#121212] group-hover:text-white ${
+                      class={`text-[0.813rem] uppercase text-[#121212] group-hover:text-white ${
                         currentCategory == parentCategory ? "text-white" : ""
                       }`}
                     >
@@ -238,7 +238,7 @@ function GalleryControls(
                       }`}
                     >
                       <span
-                        class={`text-[13px] uppercase text-[#121212] group-hover:text-white ${
+                        class={`text-[0.813rem] uppercase text-[#121212] group-hover:text-white ${
                           currentCategory ==
                               removeAcentos((label || "").toLowerCase())
                             ? "!text-white"
@@ -267,7 +267,7 @@ function GalleryControls(
           {filters.length > 0 && (
             <div class="relative flex z-20 w-auto">
               <Button
-                class="btn-ghost btn-xs text-[13px] px-2 py-[5px] px- font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
+                class="btn-ghost btn-xs text-[0.813rem] px-2 py-[5px] px- font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
                 onClick={() => {
                   open.value = true;
                 }}

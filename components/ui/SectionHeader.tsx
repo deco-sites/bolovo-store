@@ -21,13 +21,13 @@ function Header(props: Props) {
                 class={`uppercase font-semibold leading-8 lg:leading-normal
               ${
                   props.colorReverse
-                    ? "text-primary-content"
+                    ? "text-baserimary-content"
                     : "text-base-content"
                 }
               ${
                   props.fontSize === "Normal"
-                    ? "text-[14px] lg:text-base"
-                    : "lg:text-xl"
+                    ? "text-[0.875rem] lg:text-base"
+                    : "lg:text-basel"
                 }
             `}
               >
@@ -42,9 +42,9 @@ function Header(props: Props) {
                   class={`
                   leading-6 lg:leading-8
                   ${
-                    props.colorReverse ? "text-primary-content" : "text-neutral"
+                    props.colorReverse ? "text-baserimary-content" : "text-neutral"
                   }
-                  ${props.fontSize === "Normal" ? "lg:text-xl" : "lg:text-2xl"}
+                  ${props.fontSize === "Normal" ? "lg:text-basel" : "lg:text-2xl"}
                 `}
                 >
                   {props.description}

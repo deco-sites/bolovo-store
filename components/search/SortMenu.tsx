@@ -68,7 +68,7 @@ function SortMenu(
           id={`listbox-item-${index}`}
         >
           <div class="flex items-center w-full">
-            <span class="w-full  leading-0 text-[13px] font-light">
+            <span class="w-full  leading-0 text-[0.813rem] font-light">
               {label}
             </span>
           </div>
