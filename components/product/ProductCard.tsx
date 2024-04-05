@@ -216,7 +216,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`card card-compact group w-full relative ${
+      class={`card card-compact group w-full h-full relative ${
         productPrice === 0 && "opacity-70 pointer-events-none cursor-none"
       } ${align === "center" ? "text-center" : "text-start"} ${
         layout?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
