@@ -35,6 +35,10 @@ export interface Layout {
     showCardShadow?: boolean;
     showCta?: boolean;
   };
+  aspect?: {
+    desktop?: string;
+    mobile?: string;
+  };
 }
 
 interface Props {
@@ -186,7 +190,11 @@ function ProductCard(
                   </li>
                 )
                 : index === 5
-                ? <div class="w-[12px] h-[12px] flex items-center justify-center mb-[2px]">+</div>
+                ? (
+                  <div class="w-[12px] h-[12px] flex items-center justify-center mb-[2px]">
+                    +
+                  </div>
+                )
                 : undefined}
             </div>
           );
@@ -239,7 +247,9 @@ function ProductCard(
         }}
       />
       <figure
-        class="relative overflow-hidden aspect-[219.38326/300] lg:aspect-[239.13935/300]"
+        class={`relative overflow-hidden aspect-[${
+          layout?.aspect?.mobile ?? "219.38326/300"
+        }] lg:aspect-[${layout?.aspect?.desktop ?? 239.13935 / 300}]`}
         style={{ backgroundColor: "#F6F6F6" }}
       >
         {productPrice !== 0 &&

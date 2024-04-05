@@ -1,7 +1,6 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import Image from "apps/website/components/Image.tsx";
 import type { Product } from "apps/commerce/types.ts";
-import ProductCard from "../../components/product/ProductCard.tsx";
+import ProductCard, { Layout } from "../../components/product/ProductCard.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 
 export interface ImageAndProducts {
@@ -25,6 +24,7 @@ export interface ImageAndProducts {
   /** @format html */
   paragraph?: string;
   products: Product[] | null;
+  productCardLayout?: Layout;
 }
 
 /**
@@ -40,12 +40,12 @@ export interface Section {
 const VARIANT_IMAGE_WIDTH = {
   "1x1": 280,
   "2x1": 431,
-  "2x2": 400,
+  "2x2": 350,
 };
 const VARIANT_IMAGE_HEIGHT = {
   "1x1": 350,
   "2x1": 292,
-  "2x2": 540,
+  "2x2": 425,
 };
 
 const GRID_SPAN: {
@@ -72,6 +72,7 @@ export default function PhotoAndProducts(
     preLoad = false,
     products,
     customClassImage,
+    productCardLayout
   }: {
     variant?: "1x1" | "2x1" | "2x2";
     src: ImageWidget;
@@ -86,6 +87,7 @@ export default function PhotoAndProducts(
     paragraph?: string;
     row?: number;
     customClassImage?: string;
+    productCardLayout?: Layout;
   },
 ) {
   if (!products || products.length === 0) {
@@ -97,11 +99,11 @@ export default function PhotoAndProducts(
       <li
         class={`${
           GRID_SPAN[variant + " " + layoutDesktop]
-        } ${customClassImage} h-full `}
+        } ${customClassImage} h-full`}
         style={{ gridRowStart: row?.toString() }}
       >
-        <a href={href} class={`w-full cursor-pointer h-full`}>
-          <div class="w-full h-full relative">
+        <a href={href} class={`w-full h-full cursor-pointer`}>
+          <div class="w-full relative">
             <Picture preload={preLoad}>
               <Source
                 media="(max-width: 1023px)"
@@ -129,7 +131,7 @@ export default function PhotoAndProducts(
               <div class="absolute left-0 top-0 w-full h-full p-4 flex flex-col justify-end items-start bg-gradient-to-t from-[#00000040] to-transparent gap-3">
                 {title && (
                   <span
-                    class=" text-5xl font-medium font-eb-garamond"
+                    class="text-5xl font-medium font-eb-garamond"
                     dangerouslySetInnerHTML={{ __html: title }}
                   >
                   </span>
@@ -147,8 +149,9 @@ export default function PhotoAndProducts(
         </a>
       </li>
       {products.map((product) => (
-        <li class="h-full ">
+        <li class="h-full">
           <ProductCard
+            layout={productCardLayout}
             product={product}
           />
         </li>
