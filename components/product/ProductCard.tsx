@@ -35,10 +35,9 @@ export interface Layout {
     showCardShadow?: boolean;
     showCta?: boolean;
   };
-  aspect?: {
-    desktop?: string;
-    mobile?: string;
-  };
+   /** @description turn off image aspect */
+    /** @default false */
+  aspect?: boolean;
 }
 
 interface Props {
@@ -246,10 +245,13 @@ function ProductCard(
           },
         }}
       />
+
       <figure
-        class={`relative overflow-hidden aspect-[${
-          layout?.aspect?.mobile ?? "219.38326/300"
-        }] lg:aspect-[${layout?.aspect?.desktop ?? 239.13935 / 300}]`}
+        class={`relative overflow-hidden ${
+          layout?.aspect
+            ? "h-full"
+            : "aspect-[219.38326/300] lg:aspect-[239.13935 / 300]"
+        } `}
         style={{ backgroundColor: "#F6F6F6" }}
       >
         {productPrice !== 0 &&
