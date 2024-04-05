@@ -131,7 +131,7 @@ export default function PhotoAndProducts(
               <div class="absolute left-0 top-0 w-full h-full p-4 flex flex-col justify-end items-start bg-gradient-to-t from-[#00000040] to-transparent gap-3">
                 {title && (
                   <span
-                  class=" text-[0.938rem]xl font-medium font-eb-garamond"
+                    class=" text-[0.938rem]xl font-medium font-eb-garamond"
                     dangerouslySetInnerHTML={{ __html: title }}
                   >
                   </span>
