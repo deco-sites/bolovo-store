@@ -1,10 +1,12 @@
-import GalleryControls from "$store/islands/GalleryControls.tsx";
+import { Result } from "$store/components/search/ProductsResult.tsx";
 import type { Product, ProductListingPage } from "apps/commerce/types.ts";
+import NotFound from "./NotFound.tsx";
+import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
-import { FilterName } from "$store/components/search/SearchResult.tsx";
+import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
 import { Color } from "$store/components/search/SearchResult.tsx";
-import  { ButtonsPaginationProps } from "./ButtonsPagination.tsx";
-import { useUI } from "../../sdk/useUI.ts";
+import { ButtonsPaginationProps } from "./ButtonsPagination.tsx";
+import type { CardSEO } from "$store/components/search/SearchResult.tsx";
 import type { AppContext } from "$store/apps/site.ts";
 
 /** @titleBy category */
@@ -25,55 +27,31 @@ export interface Category {
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
-  /**
-   * @default Ver Tudos
-   */
-  labelViewAll?: string;
   categories?: Category[];
   buttonsPagination?: ButtonsPaginationProps;
   /**
-   * @default ORDENAR
+   * @title Highlights
    */
-  labelOrdenation?: string;
-  labelsOfFilters?: {
-    /**
-     * @default Filtrar
-     */
-    labelFilter?: string;
-    /**
-     * @default Fechar
-     */
-    labelClose?: string;
-  };
+  photoOnPLP?: Section[];
+  notFound: PropsNotFound;
   filterColors?: Color[];
-  filtersNames?: FilterName[];
   /** @description Choose if you would like to showcase the color variants in the product cards  */
   showColorVariants?: boolean;
-  textFilters?: string;
-  appliedFiltersText?: string;
-  applyFiltersText?: string;
-  removeFiltersText?: string;
+  cardSEO?: CardSEO[];
 }
 
 function ResultCategory({
   page,
-  currentCategory,
-  parentCategory,
-  subCategories,
-  categoryURL,
+  section,
+  isMobile,
   filterColors,
-  filtersNames,
-  textFilters,
-  appliedFiltersText,
-  applyFiltersText,
-  removeFiltersText,
+  colorVariant,
+  showColorVariants,
   url,
-  labelOrdenation = "ORDENAR",
-  labelsOfFilters = {
-    labelFilter: "Filtrar",
-    labelClose: "Fechar",
-  },
-  labelViewAll = "Ver Todos",
+  buttonsPagination,
+  notFound,
+  card,
+  photoOnPLP,
 }: Omit<Props, "page"> & {
   page: ProductListingPage;
   currentCategory?: string;
@@ -83,104 +61,110 @@ function ResultCategory({
   }[];
   parentCategory?: string;
   categoryURL?: string;
+  isMobile: boolean;
+  section?: Section;
   url: string;
-}) {
-  const { filters, breadcrumb, sortOptions } = page;
-  const { activePriceIntl } = useUI();
+  notFound: PropsNotFound;
+  photoOnPLP?: Section[];
+  card?: CardSEO;
+} & { colorVariant: { [productName: string]: Product[] } }) {
 
   return (
     <div>
-      <GalleryControls
-        subCategories={subCategories}
-        parentCategory={parentCategory}
-        currentCategory={currentCategory}
-        categoryURL={categoryURL}
-        sortOptions={sortOptions}
-        filtersNames={filtersNames}
+      <Result
+        page={page}
+        searchTerm={""}
+        textSearch={""}
+        section={section}
+        isMobile={isMobile}
+        buttonsPagination={buttonsPagination}
+        notFound={notFound}
+        photoOnPLP={photoOnPLP}
         filterColors={filterColors}
-        textFilters={textFilters}
-        appliedFiltersText={appliedFiltersText}
-        applyFiltersText={applyFiltersText}
-        removeFiltersText={removeFiltersText}
-        filters={filters}
         url={url}
-        breadcrumb={breadcrumb}
-        priceIntl={activePriceIntl.value.active}
-        labelOrdenation={labelOrdenation}
-        labelsOfFilters={labelsOfFilters}
-        labelViewAll={labelViewAll}
+        card={card}
+        colorVariant={colorVariant}
+        showColorVariants={showColorVariants}
       />
     </div>
   );
 }
 
-function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
+function ProductsCategory(props: SectionProps<ReturnType<typeof loader>>) {
   const {
     page,
+    notFound,
+    section,
+    isMobile,
     buttonsPagination,
     url,
     currentCategory,
     subCategories,
     parentCategory,
     categoryURL,
+    photoOnPLP,
   } = props;
+
+  if (!page || page?.products.length === 0) {
+    return <NotFound props={notFound} searchedLabel={""} />;
+  }
 
   return (
     <ResultCategory
       {...props}
       page={page}
+      section={section}
+      isMobile={isMobile}
       buttonsPagination={buttonsPagination}
+      notFound={notFound}
       url={url}
       currentCategory={currentCategory}
       subCategories={subCategories}
       parentCategory={parentCategory}
       categoryURL={categoryURL}
+      photoOnPLP={photoOnPLP}
+
     />
   );
 }
 
-export async function getColorRelatedProducts(
-  products: Product[] | undefined,
-  ctx: AppContext,
-) {
+export async function getColorRelatedProducts(products: Product[] | undefined, ctx: AppContext) {
   const colorRelated: { [productName: string]: Product[] } = {};
 
-  for (const product of products || []) {
-    let camisetaVariantProperty;
+    for (const product of products || []) {
+      let camisetaVariantProperty;
 
-    for (const property of product.additionalProperty || []) {
-      if (property.valueReference === "TAGS") {
-        try {
-          const data = JSON.parse(property.value || "");
+      for (const property of product.additionalProperty || []) {
+        if (property.valueReference === "TAGS") {
+          try {
+            const data = JSON.parse(property.value || "");
 
-          if (data.type === "variante_cor") {
-            camisetaVariantProperty = data.name;
-            break;
+            if (data.type === "variante_cor") {
+              camisetaVariantProperty = data.name;
+              break;
+            }
+          } catch (error) {
+            console.error("Erro ao fazer parse do valor como JSON:", error);
           }
-        } catch (error) {
-          console.error("Erro ao fazer parse do valor como JSON:", error);
+        }
+      }
+
+      if (camisetaVariantProperty) {
+        const productList = await ctx.get({
+          "__resolveType": "vnda/loaders/productList.ts",
+          "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
+        });
+        if (productList && Array.isArray(productList)) {
+          colorRelated[product.name || ""] = productList;
         }
       }
     }
-
-    if (camisetaVariantProperty) {
-      const productList = await ctx.get({
-        "__resolveType": "vnda/loaders/productList.ts",
-        "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
-      });
-      if (productList && Array.isArray(productList)) {
-        colorRelated[product.name || ""] = productList;
-      }
-    }
-  }
 
   return colorRelated;
 }
 
 export const loader = async (props: Props, req: Request, ctx: AppContext) => {
-  const { categories, showColorVariants } = {
-    ...props,
-  };
+  const { categories, photoOnPLP, cardSEO, showColorVariants } = { ...props };
   let colorRelated: { [productName: string]: Product[] } = {};
 
   if (showColorVariants) {
@@ -193,12 +177,23 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
 
   const url = new URL(req.url);
 
+  const section = !url.search.includes("type_tags") &&
+    photoOnPLP?.find(({ matcher }) =>
+      new URLPattern({ pathname: matcher }).test(url)
+    );
+
+  const isMobile = req.headers.get("user-agent")!.includes("Mobile");
+
   const urlSegments = url.pathname.split("/").filter(Boolean);
   const firstSegment = urlSegments.length > 0 ? urlSegments[0] : null;
   const secondSegment = urlSegments.length > 1 ? urlSegments[1] : null;
 
   const foundCategory = categories?.filter(({ category }) =>
     category === firstSegment
+  );
+
+  const card = cardSEO?.find(({ matcher }) =>
+    new URLPattern({ pathname: matcher }).test(req.url)
   );
 
   const categoryURL = foundCategory?.[0]?.url;
@@ -233,7 +228,11 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
       subCategories: subCategories.length > 0 ? subCategories : [],
       parentCategory,
       categoryURL,
+      section,
+      isMobile,
       url: req.url,
+      photoOnPLP,
+      card,
       colorVariant: colorRelated || {},
     };
   } else {
@@ -243,10 +242,14 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
       currentCategory: urlSegments[0] || "",
       subCategories: [],
       categoryURL,
+      section,
+      isMobile,
       url: req.url,
+      photoOnPLP,
+      card,
       colorVariant: colorRelated || {},
     };
   }
 };
 
-export default CategoryResult;
+export default ProductsCategory;
