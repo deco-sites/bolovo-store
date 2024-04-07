@@ -12,9 +12,7 @@ import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
 import type {
   Color,
   FilterName,
-} from "$store/components/search/SearchResult.tsx";
-import type { Props as BannerProps } from "$store/components/search/BannerInCategory.tsx";
-import BannerInCategory from "$store/components/search/BannerInCategory.tsx";
+} from "./SearchResultMenu.tsx";
 import DragSliderJS from "$store/islands/DragSliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 
@@ -66,10 +64,7 @@ function GalleryControls(
     labelsOfFilters,
     priceIntl = false,
     labelViewAll,
-    banner,
-  }: Omit<Props, "page"> & {
-    banner: BannerProps;
-  },
+  }: Omit<Props, "page">
 ) {
   const open = useSignal(false);
 

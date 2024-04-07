@@ -5,7 +5,7 @@ import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
-import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
+import { getColorRelatedProducts } from "./CategoryMenu.tsx";
 
 export interface Props {
   /** @title Integration */

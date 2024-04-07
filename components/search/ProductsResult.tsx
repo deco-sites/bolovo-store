@@ -13,7 +13,7 @@ import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
 import type { AppContext } from "$store/apps/site.ts";
-import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
+import { getColorRelatedProducts } from "./CategoryMenu.tsx";
 
 export interface Props {
   /** @title Integration */

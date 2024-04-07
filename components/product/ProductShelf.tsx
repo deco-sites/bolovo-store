@@ -11,8 +11,8 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import type { AppContext } from "$store/apps/site.ts";
-import { Color } from "$store/components/search/SearchResult.tsx";
-import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
+import { Color } from "../search/SearchResultMenu.tsx";
+import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
 
 export interface Props {
   /** @format html */
