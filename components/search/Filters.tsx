@@ -1,4 +1,4 @@
-import { Color, FilterName } from "$store/components/search/SearchResult.tsx";
+import { Color, FilterName } from "./SearchResultMenu.tsx";
 import type {
   Filter,
   FilterToggle,

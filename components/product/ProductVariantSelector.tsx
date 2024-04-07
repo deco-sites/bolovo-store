@@ -2,7 +2,7 @@ import { AvatarPDP } from "$store/components/ui/Avatar.tsx";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { relative } from "$store/sdk/url.ts";
-import { Color } from "$store/components/search/SearchResult.tsx";
+import { Color } from "../search/SearchResultMenu.tsx";
 
 function VariantSelector(
   { product, reloadInSelector, colorRelated, colors, priceIntl = false }: {

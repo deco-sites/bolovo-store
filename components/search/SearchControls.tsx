@@ -11,7 +11,7 @@ import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
 import type {
   Color,
   FilterName,
-} from "$store/components/search/SearchResult.tsx";
+} from "./SearchResultMenu.tsx";
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">

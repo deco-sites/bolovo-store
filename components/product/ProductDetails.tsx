@@ -3,7 +3,7 @@ import PDPGallerySlider from "./Gallery/PDPImageSlider.tsx";
 import PDPProductInfo from "./PDPProductInfo.tsx";
 import NotFound from "../search/NotFound.tsx";
 import type { PropsNotFound } from "../search/NotFound.tsx";
-import { Color, FilterName } from "$store/components/search/SearchResult.tsx";
+import { Color, FilterName } from "../search/SearchResultMenu.tsx";
 import { AppContext } from "apps/vnda/mod.ts";
 
 export interface Props {

@@ -10,7 +10,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import QuickShop from "$store/islands/QuickShop.tsx";
-import { Color } from "$store/components/search/SearchResult.tsx";
+import { Color } from "../search/SearchResultMenu.tsx";
 
 export interface Layout {
   basics?: {

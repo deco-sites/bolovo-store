@@ -4,9 +4,9 @@ import NotFound from "./NotFound.tsx";
 import type { PropsNotFound } from "./NotFound.tsx";
 import type { SectionProps } from "deco/types.ts";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
-import { Color } from "$store/components/search/SearchResult.tsx";
+import { Color } from "./SearchResultMenu.tsx";
 import { ButtonsPaginationProps } from "./ButtonsPagination.tsx";
-import type { CardSEO } from "$store/components/search/SearchResult.tsx";
+import type { CardSEO } from "./SearchResultMenu.tsx";
 import type { AppContext } from "$store/apps/site.ts";
 
 /** @titleBy category */
