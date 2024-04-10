@@ -72,6 +72,7 @@ function ProductGallery(
                 paragraph={photoOnPLP.imageAndProducts.paragraph}
                 customClassImage={`mx-[-15px] lg:mx-0 h-full py-4 lg:py-0`}
                 row={row}
+                productCardLayout={photoOnPLP.imageAndProducts.productCardLayout}
               />
               <li class={`h-full`}>
                 <ProductCard
