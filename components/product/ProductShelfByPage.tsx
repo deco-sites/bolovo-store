@@ -13,8 +13,9 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import type { AppContext } from "$store/apps/site.ts";
 import { Color } from "../search/SearchResultMenu.tsx";
 import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
+import type { SectionProps } from "deco/types.ts";
 
-export interface Props {
+export interface Shelf {
   /** @format html */
   title?: string;
   layout?: {
@@ -31,38 +32,48 @@ export interface Props {
   showColorVariants?: boolean;
 }
 
+export interface ShelfProps {
+  /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
+  matcher: string;
+  shelf: Shelf;
+}
+
+export interface Props {
+  shelfs: ShelfProps[];
+}
+
 export const loader = async (
   props: Props,
   req: Request,
   ctx: AppContext,
 ) => {
-  const { showColorVariants, shelfs } = props;
-  let colorRelated: { [productName: string]: Product[] } = {};
-
-  if (showColorVariants && props.products) {
-    try {
-      colorRelated = await getColorRelatedProducts(props.products, ctx);
-    } catch (error) {
-      console.error("Erro ao obter produtos relacionados por cor:", error);
-    }
-  }
+  const { shelfs } = props;
 
   const shelf = shelfs?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
+  let colorRelated: { [productName: string]: Product[] } = {};
+
+  if (shelf?.shelf.showColorVariants && shelf?.shelf.products) {
+    try {
+      colorRelated = await getColorRelatedProducts(shelf?.shelf.products, ctx);
+    } catch (error) {
+      console.error("Erro ao obter produtos relacionados por cor:", error);
+    }
+  }
 
   return {
-    ...props,
+    shelf,
     colorVariant: colorRelated || {},
   };
 };
 
-function ProductShelfByPage(
+const Shelf = (
   { products, title, layout, seeMore, colors, colorVariant, showColorVariants }:
-    & Props
+    & Shelf
     & { colorVariant?: { [productName: string]: Product[] } },
-) {
+) => {
   const id = useId();
   const platform = "vnda";
 
@@ -95,7 +106,8 @@ function ProductShelfByPage(
                 itemListName={title}
                 platform={platform}
                 index={index}
-                colorRelated={(colorVariant && colorVariant[product.name as string]) || []}
+                colorRelated={(colorVariant &&
+                  colorVariant[product.name as string]) || []}
                 colors={colors}
                 showColorVariants={showColorVariants}
               />
@@ -137,7 +149,7 @@ function ProductShelfByPage(
             </div>
           </>
         )}
-        <SliderJS rootId={id} infinite/>
+        <SliderJS rootId={id} infinite />
         <SendEventOnLoad
           event={{
             name: "view_item_list",
@@ -155,6 +167,16 @@ function ProductShelfByPage(
       </div>
     </div>
   );
+};
+
+function ProductShelfByPage(props: SectionProps<ReturnType<typeof loader>>) {
+  const { shelf } = props;
+
+  if(!shelf){
+    return null;
+  }
+
+  return <Shelf {...shelf.shelf} />
 }
 
 export default ProductShelfByPage;
