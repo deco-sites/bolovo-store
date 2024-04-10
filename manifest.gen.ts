@@ -42,15 +42,14 @@ import * as $$$$$$30 from "./sections/Product/ProductDetails.tsx";
 import * as $$$$$$31 from "./sections/Product/ProductGallery.tsx";
 import * as $$$$$$32 from "./sections/Product/ProductInfo.tsx";
 import * as $$$$$$33 from "./sections/Product/ProductRelatedShelf.tsx";
-import * as $$$$$$36 from "./sections/Product/ProductsCategory.tsx";
 import * as $$$$$$34 from "./sections/Product/ProductShelf.tsx";
 import * as $$$$$$35 from "./sections/Product/ProductShelfTabbed.tsx";
-import * as $$$$$$37 from "./sections/Product/ProductsResult.tsx";
-import * as $$$$$$38 from "./sections/Product/SearchResultMenu.tsx";
-import * as $$$$$$39 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$40 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$41 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$42 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$36 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$37 from "./sections/Product/SearchResultMenu.tsx";
+import * as $$$$$$38 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$39 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$40 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$41 from "./sections/Theme/Theme.tsx";
 
 const manifest = {
   "loaders": {
@@ -99,15 +98,14 @@ const manifest = {
     "deco-sites/bolovo-store/sections/Product/ProductInfo.tsx": $$$$$$32,
     "deco-sites/bolovo-store/sections/Product/ProductRelatedShelf.tsx":
       $$$$$$33,
-    "deco-sites/bolovo-store/sections/Product/ProductsCategory.tsx": $$$$$$36,
     "deco-sites/bolovo-store/sections/Product/ProductShelf.tsx": $$$$$$34,
     "deco-sites/bolovo-store/sections/Product/ProductShelfTabbed.tsx": $$$$$$35,
-    "deco-sites/bolovo-store/sections/Product/ProductsResult.tsx": $$$$$$37,
-    "deco-sites/bolovo-store/sections/Product/SearchResult.tsx": $$$$$$38,
-    "deco-sites/bolovo-store/sections/Product/Wishlist.tsx": $$$$$$39,
-    "deco-sites/bolovo-store/sections/Social/InstagramPosts.tsx": $$$$$$40,
-    "deco-sites/bolovo-store/sections/Social/WhatsApp.tsx": $$$$$$41,
-    "deco-sites/bolovo-store/sections/Theme/Theme.tsx": $$$$$$42,
+    "deco-sites/bolovo-store/sections/Product/SearchResult.tsx": $$$$$$36,
+    "deco-sites/bolovo-store/sections/Product/SearchResultMenu.tsx": $$$$$$37,
+    "deco-sites/bolovo-store/sections/Product/Wishlist.tsx": $$$$$$38,
+    "deco-sites/bolovo-store/sections/Social/InstagramPosts.tsx": $$$$$$39,
+    "deco-sites/bolovo-store/sections/Social/WhatsApp.tsx": $$$$$$40,
+    "deco-sites/bolovo-store/sections/Theme/Theme.tsx": $$$$$$41,
   },
   "apps": {
     "deco-sites/bolovo-store/apps/decohub.ts": $$$$$$$$$$$0,

@@ -41,76 +41,78 @@ export interface Props {
 const Banner = (props: Banner) => {
   const { title, subtitle, image } = props;
   return (
-    <a
-      href={image.href}
-      class="w-full h-full order-2 lg:order-3"
-    >
-      <div class="grid grid-cols-1 grid-rows-1">
-        <Picture
-          preload={image.preload}
-          class="col-start-1 col-span-1 row-start-1 row-span-1"
-        >
-          <Source
-            media="(max-width: 641px)"
-            fetchPriority={image.preload ? "high" : "auto"}
-            src={image.mobile}
-            width={320}
-            height={406}
-          />
-          <Source
-            media="(min-width: 641px) and (max-width: 1023px)"
-            fetchPriority={image.preload ? "high" : "auto"}
-            src={image.mobile}
-            width={500}
-            height={634}
-          />
-          <Source
-            media="(min-width: 1024px) and (max-width: 1499px)"
-            fetchPriority={image.preload ? "high" : "auto"}
-            src={image.desktop}
-            width={1000}
-            height={336}
-          />
-          <Source
-            media="(min-width: 1500px)"
-            fetchPriority={image.preload ? "high" : "auto"}
-            src={image.desktop}
-            width={1500}
-            height={504}
-          />
-          <img
-            class="w-full"
-            loading={image.preload ? "eager" : "lazy"}
-            decoding="auto"
-            src={image.desktop}
-            alt={image.alt ?? title}
-            width={430}
-            height={548}
-          />
-        </Picture>
-        {(title || subtitle) && (
-          <div class=" flex flex-col  py-5 px-4 lg:py-9 lg:px-6  items-start justify-end sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full gap-3 ">
-            {title && (
-              <h1 class=" text-basexl lg:text-[5rem] font-normal text-base-100 font-eb-garamond">
-                {title}
-              </h1>
-            )}
-            {subtitle && (
-              <span
-                class="text-base-100 text-base lg:text-base gap-0 p-0"
-                dangerouslySetInnerHTML={{
-                  __html: subtitle.replace(/<div.*?>/g, "").replace(
-                    /<\/div>/g,
-                    "",
-                  ),
-                }}
-              >
-              </span>
-            )}
-          </div>
-        )}
-      </div>
-    </a>
+    <div class="mb-5 w-full h-full">
+      <a
+        href={image.href}
+        class="w-full h-full order-2 lg:order-3 "
+      >
+        <div class="grid grid-cols-1 grid-rows-1">
+          <Picture
+            preload={image.preload}
+            class="col-start-1 col-span-1 row-start-1 row-span-1"
+          >
+            <Source
+              media="(max-width: 641px)"
+              fetchPriority={image.preload ? "high" : "auto"}
+              src={image.mobile}
+              width={320}
+              height={406}
+            />
+            <Source
+              media="(min-width: 641px) and (max-width: 1023px)"
+              fetchPriority={image.preload ? "high" : "auto"}
+              src={image.mobile}
+              width={500}
+              height={634}
+            />
+            <Source
+              media="(min-width: 1024px) and (max-width: 1499px)"
+              fetchPriority={image.preload ? "high" : "auto"}
+              src={image.desktop}
+              width={1000}
+              height={336}
+            />
+            <Source
+              media="(min-width: 1500px)"
+              fetchPriority={image.preload ? "high" : "auto"}
+              src={image.desktop}
+              width={1500}
+              height={504}
+            />
+            <img
+              class="w-full"
+              loading={image.preload ? "eager" : "lazy"}
+              decoding="auto"
+              src={image.desktop}
+              alt={image.alt ?? title}
+              width={430}
+              height={548}
+            />
+          </Picture>
+          {(title || subtitle) && (
+            <div class=" flex flex-col  py-5 px-4 lg:py-9 lg:px-6  items-start justify-end sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full gap-3 ">
+              {title && (
+                <h1 class=" text-basexl lg:text-[5rem] font-normal text-base-100 font-eb-garamond">
+                  {title}
+                </h1>
+              )}
+              {subtitle && (
+                <span
+                  class="text-base-100 text-base lg:text-base gap-0 p-0"
+                  dangerouslySetInnerHTML={{
+                    __html: subtitle.replace(/<div.*?>/g, "").replace(
+                      /<\/div>/g,
+                      "",
+                    ),
+                  }}
+                >
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+      </a>
+    </div>
   );
 };
 

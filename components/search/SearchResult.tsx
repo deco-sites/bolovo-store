@@ -13,7 +13,7 @@ import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
 import type { AppContext } from "$store/apps/site.ts";
-import { getColorRelatedProducts } from "./CategoryMenu.tsx";
+import { getColorRelatedProducts } from "$store/components/search/CategoryMenu.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -25,7 +25,11 @@ export interface Props {
    * @title Highlights
    */
   photoOnPLP?: Section[];
-  filterColors?: Color[]; 
+  /**
+   * @default ORDENAR
+   */
+  
+  filterColors?: Color[];
   /** @description Choose if you would like to showcase the color variants in the product cards  */
   showColorVariants?: boolean;
   cardSEO?: CardSEO[];
@@ -76,19 +80,17 @@ export function Result({
   card,
   hasBanner,
   buttonsPagination,
-}:
-  & Omit<Props, "page">
-  & {
-    page: ProductListingPage;
-    searchTerm: string;
-    section?: Section;
-    isMobile: boolean;
-    url: string;
-    card?: CardSEO;
-  }
-  & { colorVariant: { [productName: string]: Product[] } }
-  & { hasBanner?: boolean }) {
-  const { products, pageInfo } = page;
+
+}: Omit<Props, "page"> & {
+  page: ProductListingPage;
+  searchTerm: string;
+  section?: Section;
+  isMobile: boolean;
+  url: string;
+  isCategory?: boolean;
+  card?: CardSEO;
+} & { colorVariant: { [productName: string]: Product[] } } & { hasBanner?: boolean}) {
+  const { products, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
@@ -147,7 +149,6 @@ function SearchResult(
   return (
     <Result
       {...props}
-      notFound={notFound}
       page={page}
       section={section}
       isMobile={isMobile}
@@ -159,7 +160,7 @@ function SearchResult(
 export default SearchResult;
 
 export const loader = async (props: Props, req: Request, ctx: AppContext) => {
-  const { photoOnPLP, cardSEO, showColorVariants, notFound } = props;
+  const { photoOnPLP, cardSEO, showColorVariants } = props;
 
   const section = photoOnPLP?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
@@ -187,7 +188,6 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
     ...props,
     searchTerm: term ?? "",
     section,
-    notFound,
     isMobile,
     url: req.url,
     card,
