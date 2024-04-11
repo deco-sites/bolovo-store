@@ -1,7 +1,7 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import ProductCard, { Layout } from "$store/components/product/ProductCard.tsx";
+import ProductCard from "$store/components/product/ProductCard.tsx";
 import { Color } from "$store/components/search/SearchResult.tsx";
 import type { AppContext } from "$store/apps/site.ts";
 import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
@@ -28,7 +28,6 @@ export interface Props {
   colors: Color[];
   /** @description Choose if you would like to showcase the color variants in the product cards  */
   showColorVariants?: boolean;
-  productCardLayout?: Layout;
 }
 
 const MOBILE_DIRECTION = {
@@ -80,7 +79,6 @@ export default function FeaturedGallery(
     colors,
     colorVariant,
     showColorVariants,
-    productCardLayout
   }: Props & { colorVariant?: { [productName: string]: Product[] } },
 ) {
   if (!products || products.length === 0) {
@@ -119,8 +117,8 @@ export default function FeaturedGallery(
               media="(min-width: 1024px)"
               fetchPriority={featuredPhoto.preload ? "high" : "low"}
               src={featuredPhoto.src}
-              width={350}
-              height={425}
+              width={400}
+              height={400}
             />
             <img
               class="aspect-square w-full lg:pb-[5px]"
@@ -131,12 +129,11 @@ export default function FeaturedGallery(
             />
           </Picture>
         </a>
-        <div class="flex w-full lg:w-[44.08%]">
+        <div class="flex w-full lg:w-[44.08%] min-h-[400px]">
           <ProductCard
             product={products[0]}
             itemListName={title}
             platform={platform}
-            layout={productCardLayout}
             colorRelated={(colorVariant &&
               colorVariant[products[0].name as string]) || []}
             colors={colors}
