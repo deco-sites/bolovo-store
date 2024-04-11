@@ -1,10 +1,10 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import ProductCard from "$store/components/product/ProductCard.tsx";
-import { Color } from "$store/components/search/SearchResult.tsx";
+import ProductCard, { Layout } from "$store/components/product/ProductCard.tsx";
+import { Color } from "../../components/search/SearchResultMenu.tsx";
 import type { AppContext } from "$store/apps/site.ts";
-import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
+import { getColorRelatedProducts } from "../../components/search/CategoryMenu.tsx";
 
 export interface Props {
   /** @format html */

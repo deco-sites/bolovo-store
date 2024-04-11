@@ -1,7 +1,7 @@
 import type { Product } from "apps/commerce/types.ts";
 import Gallery from "$store/components/product/ProductGallery.tsx";
 import type { AppContext } from "$store/apps/site.ts";
-import { Color } from "$store/components/search/SearchResult.tsx";
+import { Color } from "../../components/search/SearchResultMenu.tsx";
 
 export interface Props {
   /** @format html */

@@ -1,8 +1,8 @@
 import type { AppContext } from "$store/apps/site.ts";
 import type { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import ProductShelf from "$store/components/product/ProductShelf.tsx";
-import { Color } from "$store/components/search/SearchResult.tsx";
-import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
+import { Color } from "../search/SearchResultMenu.tsx";
+import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
 
 export interface Props {
   title?: string;
