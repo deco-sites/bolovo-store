@@ -72,7 +72,7 @@ export default function PhotoAndProducts(
     preLoad = false,
     products,
     customClassImage,
-    productCardLayout
+    productCardLayout,
   }: {
     variant?: "1x1" | "2x1" | "2x2";
     src: ImageWidget;
@@ -102,7 +102,7 @@ export default function PhotoAndProducts(
         } ${customClassImage} h-full`}
         style={{ gridRowStart: row?.toString() }}
       >
-        <a href={href} class={`w-full cursor-pointer`}>
+        <a href={href} class={`w-full h-full cursor-pointer`}>
           <div class="w-full relative">
             <Picture preload={preLoad}>
               <Source
@@ -151,6 +151,7 @@ export default function PhotoAndProducts(
       {products.map((product) => (
         <li class="h-full">
           <ProductCard
+            layout={productCardLayout}
             product={product}
           />
         </li>
