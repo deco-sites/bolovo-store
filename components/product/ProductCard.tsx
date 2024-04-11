@@ -35,9 +35,6 @@ export interface Layout {
     showCardShadow?: boolean;
     showCta?: boolean;
   };
-   /** @description turn off image aspect */
-    /** @default false */
-  aspect?: boolean;
 }
 
 interface Props {
@@ -189,11 +186,7 @@ function ProductCard(
                   </li>
                 )
                 : index === 5
-                ? (
-                  <div class="w-[12px] h-[12px] flex items-center justify-center mb-[2px]">
-                    +
-                  </div>
-                )
+                ? <div class="w-[12px] h-[12px] flex items-center justify-center mb-[2px]">+</div>
                 : undefined}
             </div>
           );
@@ -216,7 +209,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`card card-compact group w-full h-full relative ${
+      class={`card card-compact group w-full relative ${
         productPrice === 0 && "opacity-70 pointer-events-none cursor-none"
       } ${align === "center" ? "text-center" : "text-start"} ${
         layout?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
@@ -245,13 +238,8 @@ function ProductCard(
           },
         }}
       />
-
       <figure
-        class={`relative overflow-hidden ${
-          layout?.aspect
-            ? "h-full"
-            : "aspect-[219.38326/300] lg:aspect-[239.13935 / 300]"
-        } `}
+        class="relative overflow-hidden aspect-[219.38326/300] lg:aspect-[239.13935/300]"
         style={{ backgroundColor: "#F6F6F6" }}
       >
         {productPrice !== 0 &&
