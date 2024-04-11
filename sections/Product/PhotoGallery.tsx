@@ -1,6 +1,8 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
+import type { Layout } from "../../components/product/ProductCard.tsx";
 import PhotoAndProducts from "../../components/search/PhotoAndProducts.tsx";
+
 export interface Props {
   /** @format html */
   title: string;
@@ -24,6 +26,7 @@ export interface Props {
     desktop?: "imagem na direita" | "imagem na esquerda";
   };
   products: Product[] | null;
+  productCardLayout?: Layout;
 }
 
 const MOBILE_DIRECTION = {
@@ -40,7 +43,7 @@ export function LoadingFallback() {
 }
 
 export default function PhotoGallery(
-  { title, featuredPhoto, contentDirection, products }: Props,
+  { title, featuredPhoto, contentDirection, products, productCardLayout}: Props,
 ) {
   if (!products || products.length === 0) {
     return null;
@@ -48,12 +51,14 @@ export default function PhotoGallery(
 
   return (
     <div class="flex px-[15px] flex-col gap-6 py-8">
-      <h2 class=" text-base text-left uppercase font-bold">
-        <div
-          dangerouslySetInnerHTML={{ __html: title }}
-        />
-      </h2>
-      <ul class="grid grid-cols-2 gap-2 gap-y-5 lg:gap-y-[15px] items-center lg:grid-cols-4 lg:gap-[15px]">
+      {title && (
+        <h2 class=" text-base text-left uppercase font-bold">
+          <div
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
+        </h2>
+      )}
+      <ul class="grid grid-cols-2 gap-2 items-center lg:grid-cols-4 lg:gap-[15px]">
         <PhotoAndProducts
           src={featuredPhoto.src}
           alt={featuredPhoto.alt}
@@ -64,6 +69,7 @@ export default function PhotoGallery(
           customClassImage={`${
             MOBILE_DIRECTION[contentDirection.mobile ?? "imagem acima"]
           } lg:row-start-1`}
+          productCardLayout={productCardLayout}
         />
       </ul>
     </div>
