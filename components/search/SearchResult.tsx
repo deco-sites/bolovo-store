@@ -12,9 +12,8 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
-import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
-import { getColorRelatedProducts } from "$store/components/search/CategoryResult.tsx";
+import { getColorRelatedProducts } from "$store/components/search/CategoryMenu.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -29,25 +28,10 @@ export interface Props {
   /**
    * @default ORDENAR
    */
-  labelOrdenation?: string;
-  labelsOfFilters?: {
-    /**
-     * @default Filtrar
-     */
-    labelFilter?: string;
-    /**
-     * @default Fechar
-     */
-    labelClose?: string;
-  };
+  
   filterColors?: Color[];
-  filtersNames?: FilterName[];
   /** @description Choose if you would like to showcase the color variants in the product cards  */
   showColorVariants?: boolean;
-  textFilters?: string;
-  appliedFiltersText?: string;
-  applyFiltersText?: string;
-  removeFiltersText?: string;
   cardSEO?: CardSEO[];
 }
 
@@ -88,28 +72,15 @@ export interface Color {
 
 export function Result({
   page,
-  textSearch,
-  searchTerm,
   section,
   isMobile,
   filterColors,
-  filtersNames,
   colorVariant,
   showColorVariants,
-  textFilters,
-  appliedFiltersText,
-  applyFiltersText,
-  removeFiltersText,
-  url,
   card,
   hasBanner,
   buttonsPagination,
-  isCategory = false,
-  labelOrdenation = "ORDENAR",
-  labelsOfFilters = {
-    labelFilter: "Filtrar",
-    labelClose: "Fechar",
-  },
+
 }: Omit<Props, "page"> & {
   page: ProductListingPage;
   searchTerm: string;
@@ -119,33 +90,12 @@ export function Result({
   isCategory?: boolean;
   card?: CardSEO;
 } & { colorVariant: { [productName: string]: Product[] } } & { hasBanner?: boolean}) {
-  const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
+  const { products, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
-  const { activePriceIntl } = useUI();
 
   return (
     <>
-      {!isCategory &&
-        (
-          <SearchControls
-            searchTerm={searchTerm}
-            textSearch={textSearch}
-            sortOptions={sortOptions}
-            filtersNames={filtersNames}
-            filterColors={filterColors}
-            textFilters={textFilters}
-            appliedFiltersText={appliedFiltersText}
-            applyFiltersText={applyFiltersText}
-            removeFiltersText={removeFiltersText}
-            filters={filters}
-            url={url}
-            breadcrumb={breadcrumb}
-            priceIntl={activePriceIntl.value.active}
-            labelOrdenation={labelOrdenation}
-            labelsOfFilters={labelsOfFilters}
-          />
-        )}
       <div class="lg:px-8 px-[15px]">
         <div class="flex-grow">
           <ProductGallery

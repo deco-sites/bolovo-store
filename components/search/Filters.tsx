@@ -1,4 +1,4 @@
-import { Color, FilterName } from "$store/components/search/SearchResult.tsx";
+import { Color, FilterName } from "./SearchResultMenu.tsx";
 import type {
   Filter,
   FilterToggle,
@@ -63,6 +63,7 @@ function FilterValues(
       {matchingColors.map((item) => {
         const { hex, src } = item;
         if (label == "cor") {
+          console.log(item)
           return (
             <ValueItem
               type={label}

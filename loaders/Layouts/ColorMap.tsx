@@ -1,4 +1,4 @@
-import { Color } from "$store/components/search/SearchResult.tsx";
+import { Color } from "../../components/search/SearchResultMenu.tsx";
 
 interface Props {
   /** @title Color props */
