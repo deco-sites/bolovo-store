@@ -8,7 +8,7 @@ interface Store {
   storeState?: string;
   /** @format html */
   /** @title Endereço da Loja */
-  address?: string[];
+  address?: string;
 }
 
 export interface Props {
@@ -59,14 +59,14 @@ function StoresList(
                 <h4 className="text-[#121212] text-[14px] font-semibold mb-[25px] uppercase">
                   {store.storeState}
                 </h4>
-                <ul class="flex flex-col gap-8 pr-8">
-                  {store.address?.map((address) => (
+                <div class="flex flex-col gap-8 pr-8">
+                  {store.address && (
                     <div
                       className="font-acumin lg:text-base-300 text-[12px]"
-                      dangerouslySetInnerHTML={{ __html: address ?? "" }}
+                      dangerouslySetInnerHTML={{ __html: store.address ?? "" }}
                     />
-                  ))}
-                </ul>
+                  )}
+                </div>
               </Slider.Item>
             ))}
           </Slider>
