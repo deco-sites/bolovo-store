@@ -1,4 +1,4 @@
-export { default, loader } from "$store/components/search/CategoryResult.tsx";
+export { default, loader } from "../../components/search/CategoryMenu.tsx";
 
 export function LoadingFallback() {
     return (

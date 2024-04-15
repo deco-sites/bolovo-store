@@ -127,7 +127,7 @@ function Navbar(
             href={accountHref}
             aria-label="Log in"
           >
-            <Icon id="User" width={20} height={24} strokeWidth={0.4} />
+            <Icon id="User" width={18} height={18} strokeWidth={0.4} />
           </a>
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}

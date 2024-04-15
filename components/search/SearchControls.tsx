@@ -11,7 +11,7 @@ import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
 import type {
   Color,
   FilterName,
-} from "$store/components/search/SearchResult.tsx";
+} from "./SearchResultMenu.tsx";
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -85,7 +85,7 @@ function SearchControls(
                 />
               </Button>
             </div>
-            <div class="flex flex-row justify-between pl-[21px] pr-[15px] items-center text-[15px] sm:mt-5 mt-14">
+            <div class="flex flex-row justify-between pl-[21px] pr-[15px] items-center text-[0.938rem] sm:mt-5 mt-14">
               <span class="font-semibold uppercase">{textFilters}</span>
               <span class="sm:hidden flex">
                 <Button
@@ -118,7 +118,7 @@ function SearchControls(
               <div class="w-full pl-[21px] pr-[15px] mt-14">
                 <div class="pb-2">
                   <Button
-                    class="btn btn-active btn-primary btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black text-[15px] font-normal"
+                    class="btn btn-active btn-primary btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black text-[0.938rem] font-normal"
                     id="apply-filters"
                   >
                     {applyFiltersText}
@@ -133,7 +133,7 @@ function SearchControls(
                     <div class="inline-block w-full">
                       <Button
                         onClick={() => removeFilters()}
-                        class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white text-[15px] font-normal"
+                        class="btn btn-active btn-sm w-full rounded-[15px] bg-white border border-black hover:bg-white text-[0.938rem] font-normal"
                       >
                         {removeFiltersText}
                       </Button>
@@ -147,7 +147,7 @@ function SearchControls(
       }
     >
       <div class="md:hidden flex flex-col">
-        <div class="flex flex-row items-center px-[15px] justify-start  leading-4 text-[13px] font-normal h-[60px] shadow-[0_5px_12px_0_rgba(220,220,220,0.25)]">
+        <div class="flex flex-row items-center px-[15px] justify-start  leading-4 text-[0.813rem] font-normal h-[60px] shadow-[0_5px_12px_0_rgba(220,220,220,0.25)]">
           {searchTerm && (
             <div>
               {textSearch}{" "}
@@ -167,7 +167,7 @@ function SearchControls(
           )}
           {filters.length > 0 && (
             <Button
-              class="btn-ghost btn-xs text-[13px] px-2 py-[5px] font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
+              class="btn-ghost btn-xs text-[0.813rem] px-2 py-[5px] font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
               onClick={() => {
                 open.value = true;
               }}
@@ -179,7 +179,7 @@ function SearchControls(
         </div>
       </div>
       <div class="hidden md:flex px-[15px] justify-between flex-row h-[60px] mb-[22px] mt-[10px]">
-        <div class="flex flex-row items-center justify-center p-0 pl-[202px] leading-4 text-[13px] mx-auto font-normal">
+        <div class="flex flex-row items-center justify-center p-0 pl-[202px] leading-4 text-[0.813rem] mx-auto font-normal">
           {searchTerm && (
             <div>
               {textSearch}{" "}
@@ -199,7 +199,7 @@ function SearchControls(
           )}
           {filters.length > 0 && (
             <Button
-              class="btn-ghost btn-xs text-[13px] px-2 py-[5px] px- font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
+              class="btn-ghost btn-xs text-[0.813rem] px-2 py-[5px] px- font-light uppercase leading-0 hover:bg-transparent hover:border hover:border-black rounded-[20px]"
               onClick={() => {
                 open.value = true;
               }}

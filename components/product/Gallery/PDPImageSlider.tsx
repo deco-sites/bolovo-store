@@ -30,14 +30,14 @@ export default function PDPGallerySlider(
       class="flex flex-col lg:flex-row h-full w-full relative lg:sizeImage"
     >
       {/* Image Slider */}
-      <div class="relative order-1 sm:order-2 h-full w-full">
-        <Slider class="carousel carousel-center w-full sm:h-full flex-row lg:flex-col lg:snap-y lg:snap-mandatory lg:overflow-y-scroll scroll-smooth">
+      <div class="relative order-1 sm:order-2 h-full w-full lg:flex lg:justify-end 2xl:justify-center">
+        <Slider class="carousel carousel-center w-full sm:h-full flex-row lg:flex-col lg:snap-y lg:snap-mandatory lg:overflow-y-scroll scroll-smooth lg:max-w-[75vh] xl:max-w-[80vh] lg:max-h-[75vh] xl:max-h-[80vh] 2xl:max-w-[85vh] 2xl:max-h-[85vh]">
           {images.map((img, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-full h-full"
+              class="carousel-item w-full h-auto"
             >
-              <Picture class="w-full h-full" preload={index === 0}>
+              <Picture class="w-full h-auto" preload={index === 0}>
                 <Source
                   media="(max-width: 640px)"
                   fetchPriority={index === 0 ? "high" : "auto"}
@@ -56,7 +56,7 @@ export default function PDPGallerySlider(
                   media="(min-width: 1023px) and (max-width: 1499px)"
                   fetchPriority={index === 0 ? "high" : "auto"}
                   src={img.url!}
-                  width={436}
+                  width={482}
                   height={482}
                 />
                 <Source
@@ -64,10 +64,13 @@ export default function PDPGallerySlider(
                   fetchPriority={index === 0 ? "high" : "auto"}
                   src={img.url!}
                   width={681}
-                  height={708}
+                  height={681}
                 />
                 <img
-                  class="w-full h-full object-cover "
+                  class={`w-full h-auto object-contain aspect-square ${
+                    index === 0 &&
+                    "lg:mt-[-2%] lg:max-w-[70vh] xl:max-w-[75vh] lg:max-h-[70vh] xl:max-h-[75vh] 2xl:max-w-[80vh] 2xl:max-h-[80vh] m-auto"
+                  } `}
                   loading={index === 0 ? "eager" : "lazy"}
                   width={370}
                   height={400}

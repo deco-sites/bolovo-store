@@ -10,7 +10,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import QuickShop from "$store/islands/QuickShop.tsx";
-import { Color } from "$store/components/search/SearchResult.tsx";
+import { Color } from "../search/SearchResultMenu.tsx";
 
 export interface Layout {
   basics?: {
@@ -35,6 +35,9 @@ export interface Layout {
     showCardShadow?: boolean;
     showCta?: boolean;
   };
+  /** @description turn off image aspect */
+  /** @default false */
+  aspect?: boolean;
 }
 
 interface Props {
@@ -138,47 +141,61 @@ function ProductCard(
     colorVariants?.length && colorVariants.length > 1 && showColorVariants
       ? (
         colorVariants.map((colorVariant, index) => {
-          const selectedColor = colors?.find((color) => color.label.toLowerCase() === colorVariant.name.toLowerCase());
+          const selectedColor = colors?.find((color) =>
+            color.label.toLowerCase() === colorVariant.name.toLowerCase()
+          );
           const isSvg = selectedColor?.hex !== undefined;
           const isImg = selectedColor?.src !== undefined;
 
           return (
-            <li key={index}>
-              <a href={colorVariant.url}>
-                <div
-                  class="w-[12px] h-[12px] flex items-center justify-center border"
-                  title={`Cor ${colorVariant.name}`}
-                >
-                  {isSvg
-                    ? (
-                      // Se a cor for um SVG
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="12"
-                        height="12"
-                        viewBox="0 0 12 12"
-                        fill="none"
+            <div class="items-center">
+              {index < 4
+                ? (
+                  <li key={index}>
+                    <a href={colorVariant.url}>
+                      <div
+                        class="w-[12px] h-[12px] flex items-center justify-center border"
+                        title={`Cor ${colorVariant.name}`}
                       >
-                        <rect
-                          x="0"
-                          y="0"
-                          width="12"
-                          height="12"
-                          fill={selectedColor?.hex}
-                        />
-                      </svg>
-                    )
-                    : isImg
-                    ? (
-                      <img
-                        src={selectedColor.src}
-                        alt={`Cor ${colorVariant.name}`}
-                      />
-                    )
-                    : <span class="w-3 h-3 border"></span>}
-                </div>
-              </a>
-            </li>
+                        {isSvg
+                          ? (
+                            // Se a cor for um SVG
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="12"
+                              height="12"
+                              viewBox="0 0 12 12"
+                              fill="none"
+                            >
+                              <rect
+                                x="0"
+                                y="0"
+                                width="12"
+                                height="12"
+                                fill={selectedColor?.hex}
+                              />
+                            </svg>
+                          )
+                          : isImg
+                          ? (
+                            <img
+                              src={selectedColor.src}
+                              alt={`Cor ${colorVariant.name}`}
+                            />
+                          )
+                          : undefined}
+                      </div>
+                    </a>
+                  </li>
+                )
+                : index === 5
+                ? (
+                  <div class="w-[12px] h-[12px] flex items-center justify-center mb-[2px]">
+                    +
+                  </div>
+                )
+                : undefined}
+            </div>
           );
         })
       )
@@ -199,7 +216,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`card card-compact group w-full relative ${
+      class={`card card-compact group w-full h-full relative ${
         productPrice === 0 && "opacity-70 pointer-events-none cursor-none"
       } ${align === "center" ? "text-center" : "text-start"} ${
         layout?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
@@ -229,7 +246,11 @@ function ProductCard(
         }}
       />
       <figure
-        class="relative overflow-hidden aspect-[219.38326/300] lg:aspect-[239.13935/300]"
+          class={`relative overflow-hidden ${
+            layout?.aspect
+              ? "h-full"
+              : "aspect-[219.38326/300] lg:aspect-[239.13935 / 300]"
+          } `}
         style={{ backgroundColor: "#F6F6F6" }}
       >
         {productPrice !== 0 &&
@@ -353,7 +374,7 @@ function ProductCard(
               <div class="flex flex-col gap-0 lg:max-w-[69.3%] lg:pl-[1px]">
                 {layout?.hide?.productName ? "" : (
                   <h2
-                    class="font-semibold text-base-content text-[13px] lg:text-[15px] leading-[130%]"
+                    class="font-semibold text-base-content text-[0.813rem] lg:text-[0.938rem] leading-[130%]"
                     dangerouslySetInnerHTML={{ __html: name ?? "" }}
                   />
                 )}
@@ -371,15 +392,15 @@ function ProductCard(
                   } ${align === "center" ? "justify-center" : "justify-start"}`}
                 >
                   <div
-                    class={`line-through text-base-300 text-xs ${
+                    class={`line-through text-base-300 text-base ${
                       layout?.basics?.oldPriceSize === "Normal"
-                        ? "lg:text-xl"
+                        ? "lg:text-basel"
                         : ""
                     }`}
                   >
                     {formatPrice(productListPrice, currency)}
                   </div>
-                  <div class="text-black leading-[130%] text-[14px] lg:text-end font-light">
+                  <div class="text-black leading-[130%] text-[0.875rem] lg:text-end font-light">
                     {formatPrice(productPrice, currency) || "US$ 0,00"}
                   </div>
                 </div>
