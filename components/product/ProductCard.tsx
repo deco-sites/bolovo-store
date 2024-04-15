@@ -5,12 +5,15 @@ import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
-import type { Product } from "apps/commerce/types.ts";
+import type { ImageObject, Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import QuickShop from "$store/islands/QuickShop.tsx";
 import { Color } from "../search/SearchResultMenu.tsx";
+import Slider from "$store/components/ui/Slider.tsx";
+import SliderJS from "$store/islands/SliderJS.tsx";
+import { useId } from "$store/sdk/useId.ts";
 
 export interface Layout {
   basics?: {
@@ -38,6 +41,9 @@ export interface Layout {
   /** @description turn off image aspect */
   /** @default false */
   aspect?: boolean;
+  /** @description turn off dots */
+  /** @default true */
+  dots?: boolean
 }
 
 interface Props {
@@ -63,6 +69,36 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
+interface DotsProps {
+  images: ImageObject[];
+  interval?: number;
+}
+
+function Dots({ images, interval = 0 }: DotsProps) {
+  return (
+    <>
+      <ul class="carousel justify-center col-span-full gap-2 z-10 row-start-7">
+        {images?.map((_, index) => (
+          <li class="carousel-item">
+            <Slider.Dot index={index}>
+              <div
+                class={`py-5 ${
+                  ((index === 0) || (index % 4 === 0)) ? "" : "lg:hidden"
+                }`}
+              >
+                <div
+                  class="w-4 h-0.5 group-disabled:opacity-100 opacity-20 rounded-full bg-primary"
+                  style={{ animationDuration: `${interval}s` }}
+                />
+              </div>
+            </Slider.Dot>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
 function ProductCard(
   {
     product,
@@ -86,25 +122,21 @@ function ProductCard(
     isVariantOf,
   } = product;
   const id = `product-card-${productID}`;
+  const idSliders = useId();
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
   const { listPrice, listPriceIntl, price, priceIntl = 0 } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const { activePriceIntl } = useUI();
-  const currency = activePriceIntl.value.active
-    ? offers?.offers[1]?.priceCurrency || "USD"
-    : offers?.priceCurrency || "BRL";
+  const currency = activePriceIntl.value.active ? offers?.offers[1]?.priceCurrency || "USD" : offers?.priceCurrency || "BRL";
   const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
-  const productListPrice = activePriceIntl.value.active && listPriceIntl ||
-    listPrice;
-  const align = !layout?.basics?.contentAlignment ||
-      layout?.basics?.contentAlignment === "Left"
-    ? "left"
-    : "center";
+  const productListPrice = activePriceIntl.value.active && listPriceIntl || listPrice;
+  const align = !layout?.basics?.contentAlignment || layout?.basics?.contentAlignment === "Left" ? "left" : "center";
   const sizeAndLinks = possibilities.Tamanho || {};
   const colorVariants = [];
-
+  const productCardImages = images?.filter((_, index) => index < 2);
+  
   if (colorRelated && showColorVariants) {
     for (const relatedProduct of colorRelated) {
       for (const property of relatedProduct.additionalProperty || []) {
@@ -246,11 +278,11 @@ function ProductCard(
         }}
       />
       <figure
-          class={`relative overflow-hidden ${
-            layout?.aspect
-              ? "h-full"
-              : "aspect-[219.38326/300] lg:aspect-[239.13935 / 300]"
-          } `}
+        class={`relative overflow-hidden ${
+          layout?.aspect
+            ? "h-full"
+            : "aspect-[219.38326/300] lg:aspect-[239.13935 / 300]"
+        } `}
         style={{ backgroundColor: "#F6F6F6" }}
       >
         {productPrice !== 0 &&
@@ -284,10 +316,57 @@ function ProductCard(
           )}
         </div>
         {/* Product Images */}
+        <div
+          id={idSliders}
+          class="sm:hidden grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
+        >
+          <Slider class="h-full carousel carousel-center gap-6 w-full col-span-full row-span-full overflow-x-scroll">
+            {productCardImages?.map((image, index) => (
+              <Slider.Item index={index} class="carousel-item w-full ">
+                <a
+                  href={url && relative(url)}
+                  aria-label="view product"
+                  class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
+                >
+                  <Picture preload={preload}>
+                    <Source
+                      media="(max-width: 1023px)"
+                      fetchPriority={preload ? "high" : "low"}
+                      src={safeSrc(image.url)}
+                      width={190}
+                      height={190}
+                    />
+                    <Source
+                      media="(min-width: 1024px)"
+                      fetchPriority={preload ? "high" : "low"}
+                      src={safeSrc(image.url)}
+                      width={310}
+                      height={310}
+                    />
+                    <img
+                      class="mix-blend-multiply bg-base-100 w-full"
+                      src={safeSrc(image.url)}
+                      alt={front.alternateName}
+                      decoding="async"
+                      loading={preload ? "eager" : "lazy"}
+                    />
+                  </Picture>
+                </a>
+              </Slider.Item>
+            ))}
+          </Slider>
+{/* 
+          {productCardImages && productCardImages.length > 1 && layout?.dots ? <Dots images={productCardImages} /> : null}
+
+          <SliderJS
+            rootId={idSliders}
+          /> */}
+        </div>
+
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
+          class="h-full hidden sm:grid items-center grid-cols-1 grid-rows-1 w-full relative"
         >
           <Picture preload={preload}>
             <Source
