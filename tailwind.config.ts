@@ -16,6 +16,9 @@ export default {
       screens: {
         "xs": "420px",
       },
+      scrollbarWidth: {
+        thin: 'thin',
+      },
       boxShadow: {
         "menu": "inset 0px 17px 23px -30px #0000005e",
       },
