@@ -167,7 +167,7 @@ function Dots({ images, autoplay }: Props) {
   );
 }
 
-function Buttons() {
+export function Buttons() {
   return (
     <>
       <div class="pl-6 md:pl-0 flex items-center justify-center z-10 col-start-1 row-start-2">
