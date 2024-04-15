@@ -178,6 +178,7 @@ function Footer({
       content={newsletter}
     />
   );
+  
   const _sectionLinks = layout?.hide?.sectionLinks ? <></> : (
     <FooterItems
       whatsApp={whatsApp}
@@ -221,16 +222,16 @@ function Footer({
                 width={514}
                 height={38}
               />
-              <p class="pb-9 text-[11px] font-normal text-primary pt-5">
+              <p class="pb-9 text-[0.688rem] font-normal text-baserimary pt-5">
                 {footerTexts?.subTitle}
               </p>
               <div
-                class="md:mx-auto px-4 md:px-0 md:max-w-[512px] w-full font-normal text-xs leading-[22px] tracking-[2%]"
+                class="md:mx-auto px-4 md:px-0 md:max-w-[512px] w-full font-normal text-base leading-[22px] tracking-[2%]"
                 dangerouslySetInnerHTML={{ __html: footerTexts?.text ?? "" }}
               />
             </div>
             <div class="md:hidden flex flex-row items-center justify-center mb-[34px]">
-              <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-[11px]">
+              <span class="font-medium leading-[22px] text-sm uppercase text-baserimary mr-[11px]">
                 {changeCountryText}
               </span>
               {showLanguageVariant && (
@@ -238,7 +239,7 @@ function Footer({
                   countryFlag={countryFlag}
                   width={24}
                   height={24}
-                  textClass="text-[14px]"
+                  textClass="text-[0.875rem]"
                   class="w-auto "
                   classFlags="shadow-[0px_-3px_7px_2px_rgba(0, 0, 0, 0.1)] bottom-full"
                 />
@@ -263,13 +264,13 @@ function Footer({
                 </a>
               )}
               <div class="flex flex-row items-center">
-                <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-[9px] md:flex hidden">
+                <span class="font-medium leading-[22px] text-sm uppercase text-baserimary mr-[9px] md:flex hidden">
                   {followBolovoText}
                 </span>
                 {_social}
               </div>
               <div class="md:flex hidden flex-row items-center">
-                <span class="font-medium leading-[22px] text-sm uppercase text-primary mr-1">
+                <span class="font-medium leading-[22px] text-sm uppercase text-baserimary mr-1">
                   {changeCountryText}
                 </span>
                 {showLanguageVariant && (
@@ -277,7 +278,7 @@ function Footer({
                     countryFlag={countryFlag}
                     width={24}
                     height={24}
-                    textClass="text-[14px] mt-1"
+                    textClass="text-[0.875rem] mt-1"
                     class="w-auto"
                     classFlags="shadow-[0px_-3px_7px_2px_rgba(0,0,0,0.1)] bottom-full"
                   />
@@ -286,7 +287,7 @@ function Footer({
             </div>
             <div class="flex flex-col-reverse md:flex-row md:justify-center gap-[15px] border-t border-primary">
               <div
-                class="text-center font-normal text-xs pt-[15px]"
+                class="text-center font-normal text-base pt-[15px]"
                 dangerouslySetInnerHTML={{ __html: extraInfo ?? "" }}
               />
             </div>

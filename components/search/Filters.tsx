@@ -1,4 +1,4 @@
-import { Color, FilterName } from "$store/components/search/SearchResult.tsx";
+import { Color, FilterName } from "./SearchResultMenu.tsx";
 import type {
   Filter,
   FilterToggle,
@@ -63,6 +63,7 @@ function FilterValues(
       {matchingColors.map((item) => {
         const { hex, src } = item;
         if (label == "cor") {
+          console.log(item)
           return (
             <ValueItem
               type={label}
@@ -124,7 +125,7 @@ function Filters(
               ? (
                 <li class="border-y border-opacity-30 border-[#121212] ml-[21px] mr-[15px]">
                   <div class="flex flex-col gap-[7px] mb-4 mt-4">
-                    <span class="font-semibold text-[15px] leading-[34.5px] uppercase">
+                    <span class="font-semibold text-[0.938rem] leading-[34.5px] uppercase">
                       {filter.newLabel ? filter.newLabel : filter.label}
                     </span>
                     <FilterValues {...filter} filterColors={filterColors} />
@@ -135,7 +136,7 @@ function Filters(
               ? (
                 <li class="border-b border-opacity-30 border-[#121212] ml-[21px] mr-[15px]">
                   <div class="flex flex-col gap-[7px] mb-4 ">
-                    <span class="font-semibold text-[15px] leading-[34.5px] uppercase">
+                    <span class="font-semibold text-[0.938rem] leading-[34.5px] uppercase">
                       {filter.newLabel ? filter.newLabel : filter.label}
                     </span>
                     <FilterValues {...filter} filterColors={filterColors} />
@@ -150,7 +151,7 @@ function Filters(
                       id="toggle"
                       class="min-h-[34.5px] min-w-full"
                     />
-                    <div class="collapse-title relative min-w-full flex font-semibold uppercase text-[15px] leading-[34.5px] flex-grow w-full min-h-[34.5px] items-center pl-[21px] py-0">
+                    <div class="collapse-title relative min-w-full flex font-semibold uppercase text-[0.938rem] leading-[34.5px] flex-grow w-full min-h-[34.5px] items-center pl-[21px] py-0">
                       {filter.newLabel ? filter.newLabel : filter.label}
                       <Icon
                         id="ChevronDown"

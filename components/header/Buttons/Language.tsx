@@ -86,7 +86,7 @@ export default function LanguageSwitcher(
                 />
                 <span
                   className={`${
-                    textClass ?? "text-[15px]"
+                    textClass ?? "text-[0.938rem]"
                   } uppercase font-normal`}
                 >
                   {iten.countryLabel}

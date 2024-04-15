@@ -82,7 +82,7 @@ export default function VideoAndText(
           />
           <div
             dangerouslySetInnerHTML={{ __html: textContent }}
-            class="font-acumin font-normal text-[12px] leading-[160%] lg:text-[13px] lg:leading-5 xl:text-sm xl:leading-6 2xl:text-base 2xl:leading-7"
+            class="font-acumin font-normal text-[0.75rem] leading-[160%] lg:text-[0.813rem] lg:leading-5 xl:text-sm xl:leading-6 2xl:text-base 2xl:leading-7"
           >
           </div>
           <div class="flex flex-row gap-2">

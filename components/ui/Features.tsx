@@ -38,7 +38,7 @@ function FeatureHighlights(
                 strokeWidth={2}
               />
               <div class="flex flex-col gap-2">
-                <span class="font-medium text-xl">{title}</span>
+                <span class="font-medium text-basel">{title}</span>
                 <span class="text-sm">{description}</span>
               </div>
             </div>

@@ -19,7 +19,7 @@ import { CSS, KATEX_CSS, render } from "https://deno.land/x/gfm@0.3.0/mod.ts";
 import type { Description } from "../../sdk/markdownToObj.ts";
 import NavigationDescription from "$store/islands/NavigationDescription.tsx";
 import { useUI } from "../../sdk/useUI.ts";
-import { Color } from "$store/components/search/SearchResult.tsx";
+import { Color } from "../search/SearchResultMenu.tsx";
 
 function PDPProductInfo(
   { page, reloadInSelector, buyButton, colorRelated, colors }: {
@@ -99,7 +99,7 @@ function PDPProductInfo(
         <div>
           <div class="flex flex-row gap-2 items-center">
             {(productListPrice ?? 0) > productListPrice && (
-              <span class="line-through text-base-300 text-xs">
+              <span class="line-through text-base-300 text-base">
                 {formatPrice(productListPrice, currency)}
               </span>
             )}

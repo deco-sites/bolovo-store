@@ -90,7 +90,9 @@ function MenuItem({ item }: { item: NavItemProps }) {
                   <li class="font-semibold text-base py-2">{link.label}</li>
                   {link.children?.map((item) => (
                     <li class="py-2">
-                      <a href={item.href}>{item.label}</a>
+                      <a target={item.newTab ? "_blank" : ""} href={item.href}>
+                        {item.label}
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -164,7 +166,7 @@ function Menu(
               aria-label="Log in"
             >
               <Icon id="User" width={20} height={21} strokeWidth={0.4} />
-              <span class="font-normal text-[15px]">{accountText}</span>
+              <span class="font-normal text-[0.938rem]">{accountText}</span>
             </a>
           </div>
           <div class="w-full">

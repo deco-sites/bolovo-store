@@ -40,14 +40,14 @@ function AsideMenu(
   );
 
   return (
-    <aside class="w-full text-primary font-medium flex lg:justify-end">
+    <aside class="w-full text-baserimary font-medium flex lg:justify-end">
       <ul class="lg:flex flex-col gap-[10px] w-full hidden">
         {sectionMenu.map((sectionItem, index) => (
           <>
             <li
               class={`${
                 index !== 0 && "border-t"
-              } text-primary pt-2 font-medium`}
+              } text-baserimary pt-2 font-medium`}
             >
               {sectionItem?.sectionTitle}
             </li>
@@ -85,7 +85,7 @@ function AsideMenu(
               <ul class="flex flex-col p-2 bg-neutral-100">
                 {sectionMenu.map((sectionItem) =>  (
                   <>
-                    <li class="text-primary font-semibold">
+                    <li class="text-baserimary font-semibold">
                       {sectionItem?.sectionTitle}
                     </li>
                     {sectionItem?.menuItems.map(

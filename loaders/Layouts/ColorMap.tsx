@@ -1,4 +1,4 @@
-import { Color } from "$store/components/search/SearchResult.tsx";
+import { Color } from "../../components/search/SearchResultMenu.tsx";
 
 interface Props {
   /** @title Color props */
@@ -52,7 +52,7 @@ export const Preview = (props: Props) => {
 
   return (
     <div class="flex flex-col gap-[7px] mb-4 mt-4">
-      <span class="font-semibold text-[15px] leading-[34.5px] uppercase">
+      <span class="font-semibold text-[0.938rem] leading-[34.5px] uppercase">
         CORES
       </span>
       <div class="group">
