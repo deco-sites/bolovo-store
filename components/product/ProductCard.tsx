@@ -43,7 +43,7 @@ export interface Layout {
   aspect?: boolean;
   /** @description turn off dots */
   /** @default true */
-  dots?: boolean
+  dots?: boolean;
 }
 
 interface Props {
@@ -129,14 +129,20 @@ function ProductCard(
   const { listPrice, listPriceIntl, price, priceIntl = 0 } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const { activePriceIntl } = useUI();
-  const currency = activePriceIntl.value.active ? offers?.offers[1]?.priceCurrency || "USD" : offers?.priceCurrency || "BRL";
+  const currency = activePriceIntl.value.active
+    ? offers?.offers[1]?.priceCurrency || "USD"
+    : offers?.priceCurrency || "BRL";
   const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
-  const productListPrice = activePriceIntl.value.active && listPriceIntl || listPrice;
-  const align = !layout?.basics?.contentAlignment || layout?.basics?.contentAlignment === "Left" ? "left" : "center";
+  const productListPrice = activePriceIntl.value.active && listPriceIntl ||
+    listPrice;
+  const align = !layout?.basics?.contentAlignment ||
+      layout?.basics?.contentAlignment === "Left"
+    ? "left"
+    : "center";
   const sizeAndLinks = possibilities.Tamanho || {};
   const colorVariants = [];
   const productCardImages = images?.filter((_, index) => index < 2);
-  
+
   if (colorRelated && showColorVariants) {
     for (const relatedProduct of colorRelated) {
       for (const property of relatedProduct.additionalProperty || []) {
@@ -320,9 +326,10 @@ function ProductCard(
           id={idSliders}
           class="sm:hidden grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
         >
-          <Slider class="h-full carousel carousel-center gap-6 w-full col-span-full row-span-full overflow-x-scroll">
+          
+          <Slider style={{scrollbarWidth: 'thin'}} class="h-full w-full carousel carousel-center gap-6 col-span-full row-span-full scrollbar-thumb-gray-400 scrollbar-track-gray-100">
             {productCardImages?.map((image, index) => (
-              <Slider.Item index={index} class="carousel-item w-full ">
+              <Slider.Item index={index} class="carousel-item w-full">
                 <a
                   href={url && relative(url)}
                   aria-label="view product"
@@ -336,13 +343,6 @@ function ProductCard(
                       width={190}
                       height={190}
                     />
-                    <Source
-                      media="(min-width: 1024px)"
-                      fetchPriority={preload ? "high" : "low"}
-                      src={safeSrc(image.url)}
-                      width={310}
-                      height={310}
-                    />
                     <img
                       class="mix-blend-multiply bg-base-100 w-full"
                       src={safeSrc(image.url)}
@@ -355,12 +355,15 @@ function ProductCard(
               </Slider.Item>
             ))}
           </Slider>
-{/* 
+
+          {
+            /*
           {productCardImages && productCardImages.length > 1 && layout?.dots ? <Dots images={productCardImages} /> : null}
 
           <SliderJS
             rootId={idSliders}
-          /> */}
+          /> */
+          }
         </div>
 
         <a
