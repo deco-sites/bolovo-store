@@ -1,12 +1,6 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
-export interface Socials {
-  label?: string;
-  text?: string;
-  href?: string;
-}
-
 export interface Props {
   hero: {
     media?: ImageWidget;
