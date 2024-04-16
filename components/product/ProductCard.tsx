@@ -41,7 +41,7 @@ export interface Layout {
   /** @description turn off image aspect */
   /** @default false */
   aspect?: boolean;
-  /** @description turn off dots */
+  /** @description turn on dots */
   /** @default true */
   dots?: boolean;
 }
@@ -164,7 +164,6 @@ function ProductCard(
       }
     }
   }
-
   const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => (
     <li>
       <a href={link}>
@@ -248,7 +247,6 @@ function ProductCard(
       {layout?.basics?.ctaText || "Ver produto"}
     </a>
   );
-
   const safeSrc = (url?: string) => url ?? "";
 
   return (
@@ -326,8 +324,7 @@ function ProductCard(
           id={idSliders}
           class="sm:hidden grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
         >
-          
-          <Slider style={{scrollbarWidth: 'thin'}} class="h-full w-full carousel carousel-center gap-6 col-span-full row-span-full scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+          <Slider class="h-full w-full carousel carousel-center gap-6 col-span-full row-span-full">
             {productCardImages?.map((image, index) => (
               <Slider.Item index={index} class="carousel-item w-full">
                 <a
@@ -355,15 +352,11 @@ function ProductCard(
               </Slider.Item>
             ))}
           </Slider>
-
-          {
-            /*
-          {productCardImages && productCardImages.length > 1 && layout?.dots ? <Dots images={productCardImages} /> : null}
-
+          {layout?.dots &&
+            <Dots images={productCardImages ?? []} />}
           <SliderJS
             rootId={idSliders}
-          /> */
-          }
+          />
         </div>
 
         <a
