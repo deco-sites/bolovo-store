@@ -1,12 +1,14 @@
 import type { Product } from "apps/commerce/types.ts";
 import Gallery from "$store/components/product/ProductGallery.tsx";
 import type { AppContext } from "$store/apps/site.ts";
+import type { Layout } from "$store/components/product/ProductCard.tsx"
 import { Color } from "../../components/search/SearchResultMenu.tsx";
 
 export interface Props {
   /** @format html */
   title?: string;
   products: Product[] | null;
+  cardLayout?: Layout
 }
 
 export function LoadingFallback() {
@@ -65,6 +67,7 @@ function ProductGallery({
   colorVariant,
   filterColors,
   showColorVariants = true,
+  cardLayout
 }:
   & Props
   & { colorVariant: { [productName: string]: Product[] } }
@@ -86,6 +89,7 @@ function ProductGallery({
           products={products}
           colorVariant={colorVariant || []}
           colors={filterColors}
+          cardLayout={cardLayout}
           showColorVariants={showColorVariants}
         />
       </div>
