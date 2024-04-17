@@ -77,7 +77,7 @@ interface DotsProps {
 function Dots({ images, interval = 0 }: DotsProps) {
   return (
     <>
-      <ul class="carousel justify-center col-span-full gap-2 z-10 row-start-7">
+      <ul class="carousel justify-center col-span-full gap-2 z-10 row-start-7 bg-transparent">
         {images?.map((_, index) => (
           <li class="carousel-item">
             <Slider.Dot index={index}>
@@ -341,7 +341,7 @@ function ProductCard(
                       height={190}
                     />
                     <img
-                      class="mix-blend-multiply bg-base-100 w-full"
+                      class="mix-blend-multiply bg-base-100 h-full w-full"
                       src={safeSrc(image.url)}
                       alt={front.alternateName}
                       decoding="async"
@@ -353,7 +353,11 @@ function ProductCard(
             ))}
           </Slider>
           {layout?.dots &&
-            <Dots images={productCardImages ?? []} />}
+          (
+            <div class="absolute bottom-0 z-10 right-[42%] bg-transparent">
+              <Dots images={productCardImages ?? []} />
+            </div>
+          )}
           <SliderJS
             rootId={idSliders}
           />
