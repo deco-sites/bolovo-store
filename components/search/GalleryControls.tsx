@@ -9,12 +9,10 @@ import type { ProductListingPage } from "apps/commerce/types.ts";
 import SelectedFilters from "$store/islands/SelectedFilters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
-import type {
-  Color,
-  FilterName,
-} from "./SearchResultMenu.tsx";
+import type { Color, FilterName } from "./SearchResultMenu.tsx";
 import DragSliderJS from "$store/islands/DragSliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
+import { invoke } from "$store/runtime.ts";
 
 type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -43,12 +41,17 @@ type Props =
     labelViewAll: string;
   };
 
+export const handleOnClickFilter = async ( url : string) => {
+  const teste = await invoke.vnda.loaders.productListingPage({
+    count: 24,
+    pageHref: url,
+  });
+  console.log(teste);
+};
+
 function GalleryControls(
   {
     filters,
-    breadcrumb,
-    displayFilter,
-    url,
     sortOptions,
     subCategories,
     currentCategory,
@@ -64,7 +67,7 @@ function GalleryControls(
     labelsOfFilters,
     priceIntl = false,
     labelViewAll,
-  }: Omit<Props, "page">
+  }: Omit<Props, "page">,
 ) {
   const open = useSignal(false);
 

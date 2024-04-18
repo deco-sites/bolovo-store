@@ -1,6 +1,7 @@
 import { FilterToggleValueWithHex } from "$store/components/search/Filters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import { handleOnClickFilter } from "$store/components/search/GalleryControls.tsx";
 
 export default function ValueItem({
   url,
@@ -21,6 +22,7 @@ export default function ValueItem({
   const isSelected = selectedFilters.value.some(
     (value) => label === value.label,
   );
+
   if (type === "cor") {
     return (
       <button
@@ -34,6 +36,7 @@ export default function ValueItem({
               label,
             });
           selectedFilters.value = filters;
+          handleOnClickFilter(url);
         }}
         class={_class}
       >
