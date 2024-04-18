@@ -334,8 +334,8 @@ function ProductCard(
                     media="(min-width: 1024px)"
                     fetchPriority={"low"}
                     src={safeSrc(back?.url ?? front.url)}
-                    width={239}
-                    height={300}
+                    width={310}
+                    height={310}
                   />
                   <img
                     class="h-full bg-base-100 col-span-full row-span-full w-full"
