@@ -1,6 +1,8 @@
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+import Image from "apps/website/components/Image.tsx";
 import { useId } from "$store/sdk/useId.ts";
 
 /** @titleBy storeState */
@@ -13,11 +15,12 @@ interface Store {
 
 export interface Props {
   title?: string;
+  img?: ImageWidget;
   stores?: Store[];
 }
 
 function StoresList(
-  { title, stores }: Props,
+  { title, img, stores }: Props,
 ) {
   const id = useId();
 
@@ -28,7 +31,13 @@ function StoresList(
       </h2>
       <div class="w-full flex flex-col-reverse lg:flex-row items-center lg:items-start">
         <div class="w-1/2">
-          <img src="https://cdn.vnda.com.br/bolovo/2020/12/02/15_12_7_752_contatolucas1.jpg?v=1709056697" />
+          <Image
+              loading="lazy"
+              src={img ?? "https://cdn.vnda.com.br/bolovo/2020/12/02/15_12_7_752_contatolucas1.jpg?v=1709056697"}
+              alt={title}
+              width={346}
+              height={398}
+          />
         </div>
         <div
           id={id}
