@@ -7,7 +7,7 @@ import Drawer from "$store/components/ui/Drawer.tsx";
 import { useSignal } from "@preact/signals";
 import type { Filter, ProductListingPage } from "apps/commerce/types.ts";
 import SelectedFilters from "$store/islands/SelectedFilters.tsx";
-import { selected, selectedFilters } from "$store/components/search/SelectedFilters.tsx";
+import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
 import type { Color, FilterName } from "./SearchResultMenu.tsx";
 import DragSliderJS from "$store/islands/DragSliderJS.tsx";
@@ -66,6 +66,11 @@ function GalleryControls(
   const { getFilters, newFilters, loading } = useFilters();
   const removeFilters = () => {
     selectedFilters.value = [];
+    if (selectedFilters.value.length === 0) {
+      const urlObj = new URL(url);
+      getFilters(urlObj.origin + urlObj.pathname);
+      return;
+    }
     getFilters(url);
   };
   function removeAcentos(str: string) {
@@ -81,7 +86,6 @@ function GalleryControls(
     slider.scrollLeft += scrollAmount;
   };
   const id = useId();
-  
 
   return (
     <Drawer
