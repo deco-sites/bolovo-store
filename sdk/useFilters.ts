@@ -7,7 +7,6 @@ const newFilters = signal<ProductListingPage["filters"] | null>([]);
 const loading = signal(false);
 
 const handleOnClickFilter = async (url: string) => {
-  // console.log(url);
   try {
     const resp = await invoke.vnda.loaders.productListingPage({
       count: 24,
