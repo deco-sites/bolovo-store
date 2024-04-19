@@ -16,6 +16,7 @@ type SelectedFilter = { url: string; label: string; type: string };
 
 export const selectedFilters = signal<SelectedFilter[]>([]);
 
+
 function SelectedFilters(
   { filters, class: _class = "", priceIntl, url }: Props,
 ) {
@@ -37,7 +38,7 @@ function SelectedFilters(
     },
     [],
   );
-  console.log(selected);
+
   const { getFilters } = useFilters();
   if (selectedFilters.peek().length === 1) {
     selectedFilters.peek().map((i) =>
@@ -68,7 +69,6 @@ function SelectedFilters(
                 `type_tags%5B${item.type.toLowerCase()}%5D%5B%5D=${item.label.toLowerCase()}`;
               if (selectedFilters.value.length === 0) {
                 const urlObj = new URL(url);
-                console.log(urlObj.origin + urlObj.pathname)
                 getFilters(urlObj.origin + urlObj.pathname);
                 return;
               }

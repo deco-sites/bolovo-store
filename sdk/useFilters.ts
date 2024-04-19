@@ -7,11 +7,14 @@ const newFilters = signal<ProductListingPage["filters"] | null>([]);
 const loading = signal(false);
 
 const handleOnClickFilter = async (url: string) => {
-  console.log(url);
+  // console.log(url);
   try {
     const resp = await invoke.vnda.loaders.productListingPage({
       count: 24,
       pageHref: url,
+      filterByTags: true,
+      filterOperator: { type_tags: "or" },
+      tags: [],
     });
     if (resp) {
       newFilters.value = resp.filters;

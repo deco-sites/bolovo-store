@@ -75,6 +75,9 @@ export default function ValueItem({
               label,
             });
           selectedFilters.value = filters;
+          // if (selectedFilters.value.length === 0) {
+
+          // }
           getFilters(url);
         }}
         class={_class}
