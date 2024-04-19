@@ -4,14 +4,12 @@ import Filters from "$store/components/search/Filters.tsx";
 import Sort from "$store/components/search/Sort.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
 import { useSignal } from "@preact/signals";
-import type { ProductListingPage } from "apps/commerce/types.ts";
+import type { Filter, ProductListingPage } from "apps/commerce/types.ts";
 import SelectedFilters from "$store/islands/SelectedFilters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
-import type {
-  Color,
-  FilterName,
-} from "./SearchResultMenu.tsx";
+import type { Color, FilterName } from "./SearchResultMenu.tsx";
+import { useFilters } from "deco-sites/bolovo-store/sdk/useFilters.ts";
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -54,10 +52,22 @@ function SearchControls(
     priceIntl?: boolean;
   },
 ) {
+  const { getFilters, newFilters, loading } = useFilters();
   const open = useSignal(false);
-
   const removeFilters = () => {
     selectedFilters.value = [];
+    if (selectedFilters.value.length === 0) {
+      const urlObj = new URL(url);
+      const existingParams = new URLSearchParams(urlObj.search);
+      const qValue = existingParams.get("q");
+      if (qValue) {
+        getFilters(`${urlObj.origin}${urlObj.pathname}?q=${qValue}`);
+        return;
+      }
+      getFilters(urlObj.origin + urlObj.pathname);
+      return;
+    }
+    getFilters(url);
   };
 
   return (
@@ -105,12 +115,16 @@ function SearchControls(
               </span>
             </div>
             <div>
-              <SelectedFilters filters={filters} priceIntl={priceIntl} url={url} />
+              <SelectedFilters
+                filters={loading.value ? newFilters.value as Filter[] : filters}
+                priceIntl={priceIntl}
+                url={url}
+              />
             </div>
 
             <div class="flex-grow overflow-auto">
               <Filters
-                filters={filters}
+                filters={loading.value ? newFilters.value as Filter[] : filters}
                 filterColors={filterColors ?? []}
                 filterNames={filtersNames ?? []}
                 priceIntl={priceIntl}

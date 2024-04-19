@@ -13,6 +13,7 @@ import type { Color, FilterName } from "./SearchResultMenu.tsx";
 import DragSliderJS from "$store/islands/DragSliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useFilters } from "deco-sites/bolovo-store/sdk/useFilters.ts";
+import { useCallback } from "preact/compat";
 
 type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">

@@ -69,6 +69,12 @@ function SelectedFilters(
                 `type_tags%5B${item.type.toLowerCase()}%5D%5B%5D=${item.label.toLowerCase()}`;
               if (selectedFilters.value.length === 0) {
                 const urlObj = new URL(url);
+                const existingParams = new URLSearchParams(urlObj.search);
+                const qValue = existingParams.get("q");
+                if(qValue){
+                  getFilters(`${urlObj.origin}${urlObj.pathname}?q=${qValue}`)
+                  return;
+                }
                 getFilters(urlObj.origin + urlObj.pathname);
                 return;
               }
