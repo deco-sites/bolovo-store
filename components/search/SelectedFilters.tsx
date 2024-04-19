@@ -3,18 +3,22 @@ import type { Filter } from "apps/commerce/types.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import { signal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
+import { useFilters } from "deco-sites/bolovo-store/sdk/useFilters.ts";
 
 export interface Props {
   filters: Filter[];
   class?: string;
   priceIntl: boolean;
+  url: string;
 }
 
 type SelectedFilter = { url: string; label: string; type: string };
 
 export const selectedFilters = signal<SelectedFilter[]>([]);
 
-function SelectedFilters({ filters, class: _class = "", priceIntl }: Props) {
+function SelectedFilters(
+  { filters, class: _class = "", priceIntl, url }: Props,
+) {
   const selected = filters.reduce<SelectedFilter[]>((acc, filter) => {
     if (!isToggle(filter)) return acc;
 
@@ -27,13 +31,19 @@ function SelectedFilters({ filters, class: _class = "", priceIntl }: Props) {
       })),
     ];
   }, []);
-
   useEffect(
     () => {
       selectedFilters.value = selected;
     },
     [],
   );
+  console.log(selected);
+  const { getFilters } = useFilters();
+  if (selectedFilters.peek().length === 1) {
+    selectedFilters.peek().map((i) =>
+      i.url = i.url.concat(window.location.search)
+    );
+  }
 
   return (
     <ul class="flex flex-wrap gap-[7px] items-center pl-[21px] pr-[15px] pt-[10px] pb-6 sm:pb-[25px]">
@@ -54,6 +64,16 @@ function SelectedFilters({ filters, class: _class = "", priceIntl }: Props) {
               selectedFilters.value = selectedFilters.peek().filter((
                 filter,
               ) => filter.label !== item.label);
+              const regex =
+                `type_tags%5B${item.type.toLowerCase()}%5D%5B%5D=${item.label.toLowerCase()}`;
+              if (selectedFilters.value.length === 0) {
+                const urlObj = new URL(url);
+                console.log(urlObj.origin + urlObj.pathname)
+                getFilters(urlObj.origin + urlObj.pathname);
+                return;
+              }
+              const newUrl = item.url.replace(regex, "");
+              getFilters(newUrl);
             }}
           >
             <Icon

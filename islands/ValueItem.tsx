@@ -1,7 +1,7 @@
 import { FilterToggleValueWithHex } from "$store/components/search/Filters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import { handleOnClickFilter } from "$store/components/search/GalleryControls.tsx";
+import { useFilters } from "deco-sites/bolovo-store/sdk/useFilters.ts";
 
 export default function ValueItem({
   url,
@@ -22,6 +22,7 @@ export default function ValueItem({
   const isSelected = selectedFilters.value.some(
     (value) => label === value.label,
   );
+  const { getFilters } = useFilters();
 
   if (type === "cor") {
     return (
@@ -36,7 +37,7 @@ export default function ValueItem({
               label,
             });
           selectedFilters.value = filters;
-          handleOnClickFilter(url);
+          getFilters(url);
         }}
         class={_class}
       >
@@ -74,6 +75,7 @@ export default function ValueItem({
               label,
             });
           selectedFilters.value = filters;
+          getFilters(url);
         }}
         class={_class}
       >

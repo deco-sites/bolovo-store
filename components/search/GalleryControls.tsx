@@ -5,14 +5,14 @@ import Filters from "$store/components/search/Filters.tsx";
 import Sort from "$store/components/search/Sort.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
 import { useSignal } from "@preact/signals";
-import type { ProductListingPage } from "apps/commerce/types.ts";
+import type { Filter, ProductListingPage } from "apps/commerce/types.ts";
 import SelectedFilters from "$store/islands/SelectedFilters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
 import type { Color, FilterName } from "./SearchResultMenu.tsx";
 import DragSliderJS from "$store/islands/DragSliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
-import { invoke } from "$store/runtime.ts";
+import { useFilters } from "deco-sites/bolovo-store/sdk/useFilters.ts";
 
 type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -41,17 +41,10 @@ type Props =
     labelViewAll: string;
   };
 
-export const handleOnClickFilter = async ( url : string) => {
-  const teste = await invoke.vnda.loaders.productListingPage({
-    count: 24,
-    pageHref: url,
-  });
-  console.log(teste);
-};
-
 function GalleryControls(
   {
     filters,
+    url,
     sortOptions,
     subCategories,
     currentCategory,
@@ -70,15 +63,14 @@ function GalleryControls(
   }: Omit<Props, "page">,
 ) {
   const open = useSignal(false);
-
+  const { getFilters, newFilters, loading } = useFilters();
   const removeFilters = () => {
     selectedFilters.value = [];
+    getFilters(url);
   };
-
   function removeAcentos(str: string) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
-
   const scrollBehavior = (event: WheelEvent) => {
     event.preventDefault();
 
@@ -88,7 +80,6 @@ function GalleryControls(
 
     slider.scrollLeft += scrollAmount;
   };
-
   const id = useId();
 
   return (
@@ -136,12 +127,16 @@ function GalleryControls(
               </span>
             </div>
             <div>
-              <SelectedFilters filters={filters} priceIntl={priceIntl} />
+              <SelectedFilters
+                filters={loading.value ? newFilters.value as Filter[] : filters}
+                priceIntl={priceIntl}
+                url={url}
+              />
             </div>
 
             <div class="flex-grow overflow-auto">
               <Filters
-                filters={filters}
+                filters={loading.value ? newFilters.value as Filter[] : filters}
                 filterColors={filterColors ?? []}
                 filterNames={filtersNames ?? []}
                 priceIntl={priceIntl}

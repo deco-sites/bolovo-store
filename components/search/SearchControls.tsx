@@ -105,7 +105,7 @@ function SearchControls(
               </span>
             </div>
             <div>
-              <SelectedFilters filters={filters} priceIntl={priceIntl} />
+              <SelectedFilters filters={filters} priceIntl={priceIntl} url={url} />
             </div>
 
             <div class="flex-grow overflow-auto">

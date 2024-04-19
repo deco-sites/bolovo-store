@@ -6,7 +6,7 @@ export interface Props {
   buttonId: string;
 }
 
-function buildParams() {
+export function buildParams() {
   const url = new URL(window.location.href);
   const existingParams = new URLSearchParams(url.search);
   const keysToRemove = [];
