@@ -8,6 +8,7 @@ import * as $$$0 from "./loaders/Layouts/ColorMap.tsx";
 import * as $$$1 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$2 from "./loaders/List/Sections.tsx";
 import * as $$$3 from "./loaders/newsletter.ts";
+import * as $$$4 from "./loaders/proxy.ts";
 import * as $$$$$$0 from "./sections/Category/BannerCategoryGrid.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$2 from "./sections/Category/CategoryMenu.tsx";
@@ -60,6 +61,7 @@ const manifest = {
     "deco-sites/bolovo-store/loaders/Layouts/ProductCard.tsx": $$$1,
     "deco-sites/bolovo-store/loaders/List/Sections.tsx": $$$2,
     "deco-sites/bolovo-store/loaders/newsletter.ts": $$$3,
+    "deco-sites/bolovo-store/loaders/proxy.ts": $$$4,
   },
   "sections": {
     "deco-sites/bolovo-store/sections/Category/BannerCategoryGrid.tsx": $$$$$$0,
