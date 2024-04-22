@@ -5,7 +5,7 @@ function GlobalTags() {
     <Head>
       {/* Enable View Transitions API */}
       <meta name="view-transition" content="same-origin" />
-
+      
       {/* Tailwind v3 CSS file */}
       <link href={asset("/styles.css")} rel="stylesheet" />
 
@@ -72,6 +72,7 @@ function GlobalTags() {
         `,
         }}
       />
+      <script src="http://localhost:8000/live/invoke/deco-sites/site/loaders/decoAbTestScript.ts" />
     </Head>
   );
 }
