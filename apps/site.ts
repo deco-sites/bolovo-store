@@ -10,6 +10,18 @@ import { rgb24 } from "std/fmt/colors.ts";
 import manifest, { Manifest } from "../manifest.gen.ts";
 
 export type Props = {
+   /**
+   * @title Host
+   * @description The host to redirect to.
+   */
+   decoHostToRedirect: string;
+   /**
+    * @title Traffic
+    * @description The percentage of traffic to redirect. E.g: 0.5 means 50% of the traffic will be redirected.
+    * @minimum 0
+    * @maximum 1
+    */
+   trafficToDeco: number;
   /**
    * @title Active Commerce Platform
    * @description Choose the active ecommerce platform
