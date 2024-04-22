@@ -72,7 +72,6 @@ function GlobalTags() {
         `,
         }}
       />
-      <script src="http://localhost:8000/live/invoke/deco-sites/site/loaders/decoAbTestScript.ts" />
     </Head>
   );
 }
