@@ -5,7 +5,7 @@ function GlobalTags() {
     <Head>
       {/* Enable View Transitions API */}
       <meta name="view-transition" content="same-origin" />
-
+      
       {/* Tailwind v3 CSS file */}
       <link href={asset("/styles.css")} rel="stylesheet" />
 
