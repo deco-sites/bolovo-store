@@ -30,6 +30,7 @@ export interface Shelf {
   colors: Color[];
   /** @description Choose if you would like to showcase the color variants in the product cards  */
   showColorVariants?: boolean;
+  cardsLayout?: cardLayout;
 }
 
 export interface ShelfProps {
@@ -70,15 +71,22 @@ export const loader = async (
 };
 
 const Shelf = (
-  { products, title, layout, seeMore, colors, colorVariant, showColorVariants }:
+  {
+    products,
+    title,
+    layout,
+    seeMore,
+    colors,
+    colorVariant,
+    showColorVariants,
+    cardsLayout,
+  }:
     & Shelf
     & { colorVariant?: { [productName: string]: Product[] } },
 ) => {
   const id = useId();
   const platform = "vnda";
-
   const shouldShowArrows = ((products?.length || 0) + (seeMore ? 1 : 0)) > 4;
-
   if (!products || products.length === 0) {
     return null;
   }
@@ -105,6 +113,7 @@ const Shelf = (
                 product={product}
                 itemListName={title}
                 platform={platform}
+                layout={cardsLayout}
                 index={index}
                 colorRelated={(colorVariant &&
                   colorVariant[product.name as string]) || []}
@@ -172,11 +181,11 @@ const Shelf = (
 function ProductShelfByPage(props: SectionProps<ReturnType<typeof loader>>) {
   const { shelf } = props;
 
-  if(!shelf){
+  if (!shelf) {
     return null;
   }
 
-  return <Shelf {...shelf.shelf} />
+  return <Shelf {...shelf.shelf} />;
 }
 
 export default ProductShelfByPage;

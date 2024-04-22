@@ -212,7 +212,7 @@ function ProductCard(
   );
 
   const safeSrc = (url?: string) => url ?? "";
-
+  
   return (
     <div
       id={id}
@@ -249,7 +249,7 @@ function ProductCard(
           class={`relative overflow-hidden ${
             layout?.aspect
               ? "h-full"
-              : "aspect-[219.38326/300] lg:aspect-[239.13935 / 300]"
+              : "aspect-[240.38326/300]"
           } `}
         style={{ backgroundColor: "#F6F6F6" }}
       >
