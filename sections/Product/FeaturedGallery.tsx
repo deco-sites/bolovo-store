@@ -119,8 +119,8 @@ export default function FeaturedGallery(
               media="(min-width: 1024px)"
               fetchPriority={featuredPhoto.preload ? "high" : "low"}
               src={featuredPhoto.src}
-              width={350}
-              height={425}
+              width={420}
+              height={430}
             />
             <img
               class="aspect-square w-full lg:pb-[5px]"

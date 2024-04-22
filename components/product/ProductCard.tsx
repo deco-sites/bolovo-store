@@ -306,7 +306,7 @@ function ProductCard(
             />
             <img
               class={isMobile
-                ? "mix-blend-multiply bg-base-100"
+                ? "mix-blend-multiply bg-base-100 w-full"
                 : `mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
                   layout?.onMouseOver?.image === "Zoom image"
                     ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
