@@ -1,4 +1,4 @@
-import ProductCard from "$store/components/product/ProductCard.tsx";
+import ProductCard, { Layout } from "$store/components/product/ProductCard.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product } from "apps/commerce/types.ts";
 import PhotoAndProducts, {
@@ -15,6 +15,7 @@ export interface Props {
   page?: ProductListingPage | null;
   isMobile?: boolean;
   cardSEO?: CardSEO;
+  cardsLayout?: Layout;
 }
 
 function ProductGallery(
@@ -29,6 +30,7 @@ function ProductGallery(
     colors,
     showColorVariants,
     hasBanner,
+    cardsLayout
   }:
     & Props
     & { colorVariant?: { [productName: string]: Product[] } }
@@ -79,6 +81,7 @@ function ProductGallery(
                   product={product}
                   preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
                   index={offset ? offset + index : undefined}
+                  layout={cardsLayout}
                   platform={platform}
                   isMobile={isMobile}
                   colorRelated={colorVariant
@@ -95,6 +98,7 @@ function ProductGallery(
               <ProductCard
                 product={product}
                 preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
+                layout={cardsLayout}
                 index={offset ? offset + index : undefined}
                 platform={platform}
                 isMobile={isMobile}

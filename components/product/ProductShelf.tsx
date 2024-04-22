@@ -29,6 +29,7 @@ export interface Props {
   colors: Color[];
   /** @description Choose if you would like to showcase the color variants in the product cards  */
   showColorVariants?: boolean;
+  cardsLayout?: cardLayout;
 }
 
 export const loader = async (
@@ -54,7 +55,16 @@ export const loader = async (
 };
 
 function ProductShelf(
-  { products, title, layout, seeMore, colors, colorVariant, showColorVariants }:
+  {
+    products,
+    title,
+    layout,
+    seeMore,
+    colors,
+    colorVariant,
+    showColorVariants,
+    cardsLayout,
+  }:
     & Props
     & { colorVariant?: { [productName: string]: Product[] } },
 ) {
@@ -89,8 +99,10 @@ function ProductShelf(
                 product={product}
                 itemListName={title}
                 platform={platform}
+                layout={cardsLayout}
                 index={index}
-                colorRelated={(colorVariant && colorVariant[product.name as string]) || []}
+                colorRelated={(colorVariant &&
+                  colorVariant[product.name as string]) || []}
                 colors={colors}
                 showColorVariants={showColorVariants}
               />
@@ -132,7 +144,7 @@ function ProductShelf(
             </div>
           </>
         )}
-        <SliderJS rootId={id} infinite/>
+        <SliderJS rootId={id} infinite />
         <SendEventOnLoad
           event={{
             name: "view_item_list",
