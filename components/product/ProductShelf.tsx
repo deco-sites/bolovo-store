@@ -93,7 +93,7 @@ function ProductShelf(
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[38.605vw] lg:w-[calc((100%-46px)/4)] sm:first:pl-0 sm:last:pr-0"
+              class="carousel-item w-[38.605vw] lg:w-[calc((100%-73px)/4)] sm:first:pl-4 sm:last:pr-4"
             >
               <ProductCard
                 product={product}
@@ -112,14 +112,14 @@ function ProductShelf(
             ? (
               <Slider.Item
                 index={products.length}
-                class="carousel-item w-[38.605vw] lg:w-[calc((100%-46px)/4)] sm:first:pl-0 sm:last:pr-0"
+                class="carousel-item w-[38.605vw] lg:w-[calc((100%-73px)/4)] sm:first:pl-4 sm:last:pr-4"
               >
-                <div className="card card-compact group w-full">
+                <div class="card card-compact group w-full">
                   <a
                     class="btn rounded-none h-[auto] w-full flex items-center justify-center bg-transparent lg:bg-[#F6F6F6] border border-black lg:border-none aspect-[219.38326/300] lg:aspect-[239.13935/300]"
                     href={seeMore?.link}
                   >
-                    <span className="text-[#121212] px-[22px] py-1.5 block text-center text-[0.813rem] capitalize lg:uppercase lg:text-[0.938rem] leading-[130%] font-semibold lg:font-normal lg:border rounded-full lg:border-[#121212]">
+                    <span class="text-[#121212] px-[22px] py-1.5 block text-center text-[0.813rem] capitalize lg:uppercase lg:text-[0.938rem] leading-[130%] font-semibold lg:font-normal lg:border rounded-full lg:border-[#121212]">
                       {seeMore?.text}
                     </span>
                   </a>
@@ -134,12 +134,12 @@ function ProductShelf(
           <>
             <div class="hidden relative lg:block z-10 col-start-1 row-start-3">
               <Slider.PrevButton class="btn btn-circle btn-ghost !bg-[transparent] absolute right-1/2">
-                <Icon size={24} id="ArrowPointingLeft" strokeWidth={3} />
+                <Icon size={32} id="ArrowPointingLeft" strokeWidth={3} />
               </Slider.PrevButton>
             </div>
             <div class="hidden relative lg:block z-10 col-start-3 row-start-3">
               <Slider.NextButton class="btn btn-circle btn-ghost !bg-[transparent] absolute left-1/2">
-                <Icon size={24} id="ArrowPointingRight" strokeWidth={3} />
+                <Icon size={32} id="ArrowPointingRight" strokeWidth={3} />
               </Slider.NextButton>
             </div>
           </>
