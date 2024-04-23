@@ -1,4 +1,4 @@
-import { Color, FilterName } from "./SearchResultMenu.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import type {
   Filter,
   FilterToggle,
