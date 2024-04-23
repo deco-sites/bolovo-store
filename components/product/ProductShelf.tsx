@@ -11,7 +11,7 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import type { AppContext } from "$store/apps/site.ts";
-import { Color } from "../search/SearchResultMenu.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
 
 export interface Props {
@@ -29,7 +29,6 @@ export interface Props {
   colors: Color[];
   /** @description Choose if you would like to showcase the color variants in the product cards  */
   showColorVariants?: boolean;
-  cardsLayout?: cardLayout;
 }
 
 export const loader = async (
@@ -55,16 +54,7 @@ export const loader = async (
 };
 
 function ProductShelf(
-  {
-    products,
-    title,
-    layout,
-    seeMore,
-    colors,
-    colorVariant,
-    showColorVariants,
-    cardsLayout,
-  }:
+  { products, title, layout, seeMore, colors, colorVariant, showColorVariants }:
     & Props
     & { colorVariant?: { [productName: string]: Product[] } },
 ) {
@@ -99,7 +89,6 @@ function ProductShelf(
                 product={product}
                 itemListName={title}
                 platform={platform}
-                layout={cardsLayout}
                 index={index}
                 colorRelated={(colorVariant &&
                   colorVariant[product.name as string]) || []}

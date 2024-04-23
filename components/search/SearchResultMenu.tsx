@@ -2,10 +2,10 @@ import SearchControls from "$store/islands/SearchControls.tsx";
 import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import type { SectionProps } from "deco/types.ts";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
-import type { ImageWidget } from "apps/admin/widgets.ts";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
 import { getColorRelatedProducts } from "./CategoryMenu.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -51,21 +51,7 @@ export interface FilterName {
   label: string;
 }
 
-export interface Color {
-  /**
-   * @title Color name
-   */
-  label: string;
-  /**
-   * @title Color
-   * @format color
-   */
-  hex?: string;
-  /**
-   * @title Image
-   */
-  src?: ImageWidget;
-}
+
 
 export function Result({
   page,

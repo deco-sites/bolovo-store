@@ -1,7 +1,7 @@
 import type { Product } from "apps/commerce/types.ts";
 import Gallery from "$store/components/product/ProductGallery.tsx";
 import type { AppContext } from "$store/apps/site.ts";
-import { Color } from "../../components/search/SearchResultMenu.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { Layout } from "deco-sites/bolovo-store/components/product/ProductCard.tsx";
 
 export interface Props {

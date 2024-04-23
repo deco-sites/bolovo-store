@@ -6,7 +6,7 @@ import PhotoAndProducts, {
 } from "$store/components/search/PhotoAndProducts.tsx";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import type { CardSEO } from "../search/SearchResultMenu.tsx";
-import { Color } from "../search/SearchResultMenu.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 
 export interface Props {
   products: Product[] | null;

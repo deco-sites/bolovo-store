@@ -19,7 +19,7 @@ import { CSS, KATEX_CSS, render } from "https://deno.land/x/gfm@0.3.0/mod.ts";
 import type { Description } from "../../sdk/markdownToObj.ts";
 import NavigationDescription from "$store/islands/NavigationDescription.tsx";
 import { useUI } from "../../sdk/useUI.ts";
-import { Color } from "../search/SearchResultMenu.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 
 function PDPProductInfo(
   { page, reloadInSelector, buyButton, colorRelated, colors }: {
