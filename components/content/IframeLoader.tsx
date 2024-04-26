@@ -34,8 +34,8 @@ const IframeLoader = ({ videoLink, preload }: IframeLoaderProps) => {
 
   return (
     <iframe
-      width={"400"}
-      height={"225"}
+      width={400}
+      height={225}
       title="YouTube video player"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
