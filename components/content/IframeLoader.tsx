@@ -2,7 +2,7 @@ import { useEffect, useRef } from "preact/hooks";
 
 interface IframeLoaderProps {
   videoLink: string;
-  preload?: boolean
+  preload?: boolean;
 }
 
 const IframeLoader = ({ videoLink, preload }: IframeLoaderProps) => {
