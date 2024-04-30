@@ -6,7 +6,7 @@ import PhotoAndProducts, {
 } from "$store/components/search/PhotoAndProducts.tsx";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import type { CardSEO } from "../search/SearchResultMenu.tsx";
-import { Color } from "../search/SearchResultMenu.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 
 export interface Props {
   products: Product[] | null;
@@ -15,7 +15,7 @@ export interface Props {
   page?: ProductListingPage | null;
   isMobile?: boolean;
   cardSEO?: CardSEO;
-  cardLayout?: Layout;
+  cardsLayout?: Layout;
 }
 
 function ProductGallery(
@@ -30,7 +30,7 @@ function ProductGallery(
     colors,
     showColorVariants,
     hasBanner,
-    cardLayout
+    cardsLayout
   }:
     & Props
     & { colorVariant?: { [productName: string]: Product[] } }
@@ -79,7 +79,7 @@ function ProductGallery(
               <li class={`h-full`}>
                 <ProductCard
                   product={product}
-                  layout={cardLayout}
+                  layout={cardsLayout}
                   preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
                   index={offset ? offset + index : undefined}
                   platform={platform}
@@ -100,7 +100,7 @@ function ProductGallery(
                 preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
                 index={offset ? offset + index : undefined}
                 platform={platform}
-                layout={cardLayout}
+                layout={cardsLayout}
                 isMobile={isMobile}
                 colorRelated={colorVariant
                   ? colorVariant[product.name as string] || []
