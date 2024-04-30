@@ -16,8 +16,12 @@ export default {
       screens: {
         "xs": "420px",
       },
+      aspectRatio: {
+        "240/300": "240 / 300",
+        "270/300": "270 / 300",
+      },
       scrollbarWidth: {
-        thin: 'thin',
+        thin: "thin",
       },
       boxShadow: {
         "menu": "inset 0px 17px 23px -30px #0000005e",

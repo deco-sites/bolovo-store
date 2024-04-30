@@ -10,7 +10,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import QuickShop from "$store/islands/QuickShop.tsx";
-import { Color } from "../search/SearchResultMenu.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
@@ -283,11 +283,11 @@ function ProductCard(
       />
       <figure
         class={`relative overflow-hidden ${
-          layout?.aspect
-            ? "h-full"
-            : "aspect-[219.38326/300] lg:aspect-[239.13935 / 300]"
+          layout?.aspect ? "h-full" : "aspect-270/300 sm:aspect-240/300"
         } `}
-        style={{ backgroundColor: "#F6F6F6" }}
+        style={{
+          backgroundColor: "#F6F6F6",
+        }}
       >
         {productPrice !== 0 &&
           (
@@ -322,7 +322,7 @@ function ProductCard(
         {/* Product Images */}
         <div
           id={idSliders}
-          class="sm:hidden grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
+          class="sm:hidden h-full grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
         >
           <Slider class="h-full w-full carousel carousel-center gap-6 col-span-full row-span-full">
             {productCardImages?.map((image, index) => (
@@ -332,13 +332,13 @@ function ProductCard(
                   aria-label="view product"
                   class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
                 >
-                  <Picture preload={preload}>
+                  <Picture class="h-full" preload={preload}>
                     <Source
                       media="(max-width: 1023px)"
                       fetchPriority={preload ? "high" : "low"}
                       src={safeSrc(image.url)}
-                      width={190}
-                      height={190}
+                      width={178}
+                      height={193}
                     />
                     <img
                       class="mix-blend-multiply bg-base-100 h-full w-full"
@@ -353,11 +353,11 @@ function ProductCard(
             ))}
           </Slider>
           {layout?.dots &&
-          (
-            <div class="absolute bottom-0 z-10 right-[42%] bg-transparent">
-              <Dots images={productCardImages ?? []} />
-            </div>
-          )}
+            (
+              <div class="absolute bottom-0 z-10 right-[42%] bg-transparent">
+                <Dots images={productCardImages ?? []} />
+              </div>
+            )}
           <SliderJS
             rootId={idSliders}
           />

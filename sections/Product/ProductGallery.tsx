@@ -1,14 +1,14 @@
 import type { Product } from "apps/commerce/types.ts";
 import Gallery from "$store/components/product/ProductGallery.tsx";
 import type { AppContext } from "$store/apps/site.ts";
-import type { Layout } from "$store/components/product/ProductCard.tsx"
-import { Color } from "../../components/search/SearchResultMenu.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import { Layout } from "deco-sites/bolovo-store/components/product/ProductCard.tsx";
 
 export interface Props {
   /** @format html */
   title?: string;
   products: Product[] | null;
-  cardLayout?: Layout
+  cardsLayout?: Layout;
 }
 
 export function LoadingFallback() {
