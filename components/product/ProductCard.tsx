@@ -11,9 +11,6 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import QuickShop from "$store/islands/QuickShop.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-import Slider from "$store/components/ui/Slider.tsx";
-import SliderJS from "$store/islands/SliderJS.tsx";
-import { useId } from "$store/sdk/useId.ts";
 
 export interface Layout {
   basics?: {
