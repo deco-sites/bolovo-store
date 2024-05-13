@@ -5,6 +5,8 @@ function GlobalTags() {
     <Head>
       {/* Enable View Transitions API */}
       <meta name="view-transition" content="same-origin" />
+
+      <meta name="facebook-domain-verification" content="a405pla9tx5j4ipfws3nhrmzkbl5vd" />
       
       {/* Tailwind v3 CSS file */}
       <link href={asset("/styles.css")} rel="stylesheet" />
