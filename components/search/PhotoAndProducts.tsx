@@ -102,7 +102,7 @@ export default function PhotoAndProducts(
         } ${customClassImage} h-full`}
         style={{ gridRowStart: row?.toString() }}
       >
-        <a href={href} class={`w-full h-full cursor-pointer`}>
+        <a href={href} class="w-full h-full cursor-pointer">
           <div class="w-full relative">
             <Picture preload={preLoad}>
               <Source
@@ -120,7 +120,7 @@ export default function PhotoAndProducts(
                 height={VARIANT_IMAGE_HEIGHT[variant]}
               />
               <img
-                class="w-full h-full object-cover"
+                class="w-full max-h-[930px] 3xl:max-h-full"
                 src={src}
                 alt={alt}
                 decoding="async"
