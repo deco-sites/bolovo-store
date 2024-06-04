@@ -15,6 +15,7 @@ export default {
       },
       screens: {
         "xs": "420px",
+        "3xl": "1600px"
       },
       boxShadow: {
         "menu": "inset 0px 17px 23px -30px #0000005e",

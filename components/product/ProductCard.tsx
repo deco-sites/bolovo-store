@@ -248,8 +248,8 @@ function ProductCard(
       <figure
           class={`relative overflow-hidden ${
             layout?.aspect
-              ? "h-full"
-              : "aspect-[240.38326/300]"
+              ? "aspect-[270/300]"
+              : "aspect-[240/280]"
           } `}
         style={{ backgroundColor: "#F6F6F6" }}
       >
