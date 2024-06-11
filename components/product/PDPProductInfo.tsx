@@ -32,13 +32,13 @@ function PDPProductInfo(
 ) {
   const platform = usePlatform();
   const colorVariants  = [];
-
+ 
   if (colorRelated) {
     for (const relatedProduct of colorRelated) {
       const additionalProperties = relatedProduct.additionalProperty;
       if (additionalProperties && additionalProperties.length > 0) {
         for (const property of additionalProperties) {
-          const { value } = property;
+          const { value } = property;         
           if (value && property.name !== "Tamanho") {
               const parsedValue = JSON.parse(value);
               if (parsedValue && parsedValue.type === "cor") {
