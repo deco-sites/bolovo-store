@@ -40,12 +40,12 @@ export interface Section {
 const VARIANT_IMAGE_WIDTH = {
   "1x1": 280,
   "2x1": 431,
-  "2x2": 350,
+  "2x2": 433,
 };
 const VARIANT_IMAGE_HEIGHT = {
   "1x1": 350,
   "2x1": 292,
-  "2x2": 425,
+  "2x2": 613,
 };
 
 const GRID_SPAN: {
