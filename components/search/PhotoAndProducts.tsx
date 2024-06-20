@@ -40,12 +40,12 @@ export interface Section {
 const VARIANT_IMAGE_WIDTH = {
   "1x1": 280,
   "2x1": 431,
-  "2x2": 433,
+  "2x2": 728,
 };
 const VARIANT_IMAGE_HEIGHT = {
   "1x1": 350,
   "2x1": 292,
-  "2x2": 613,
+  "2x2": 930,
 };
 
 const GRID_SPAN: {
@@ -120,7 +120,7 @@ export default function PhotoAndProducts(
                 height={VARIANT_IMAGE_HEIGHT[variant]}
               />
               <img
-                class="w-full max-h-[930px] 3xl:max-h-full"
+                class="w-full max-h-[900px] 3xl:max-h-full"
                 src={src}
                 alt={alt}
                 decoding="async"

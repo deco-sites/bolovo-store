@@ -212,7 +212,7 @@ function ProductCard(
   );
 
   const safeSrc = (url?: string) => url ?? "";
-  
+
   return (
     <div
       id={id}
@@ -246,11 +246,9 @@ function ProductCard(
         }}
       />
       <figure
-          class={`relative overflow-hidden ${
-            layout?.aspect
-              ? "aspect-[270/300]"
-              : "aspect-[240/280]"
-          } `}
+        class={`relative overflow-hidden ${
+          layout?.aspect ? "aspect-[270/300]" : "aspect-[240/280]"
+        } `}
         style={{ backgroundColor: "#F6F6F6" }}
       >
         {productPrice !== 0 &&
@@ -301,8 +299,8 @@ function ProductCard(
               media="(min-width: 1024px)"
               fetchPriority={preload ? "high" : "low"}
               src={safeSrc(front.url)}
-              width={310}
-              height={310}
+              width={317}
+              height={317}
             />
             <img
               class={isMobile
@@ -334,8 +332,8 @@ function ProductCard(
                     media="(min-width: 1024px)"
                     fetchPriority={"low"}
                     src={safeSrc(back?.url ?? front.url)}
-                    width={layout?.aspect ? 310 : 239}
-                    height={layout?.aspect ? 310 : 300}
+                    width={290}
+                    height={317}
                   />
                   <img
                     class="h-full bg-base-100 col-span-full row-span-full w-full"
