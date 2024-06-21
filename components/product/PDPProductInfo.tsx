@@ -1,12 +1,10 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
-import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import AddToCartButtonLinx from "$store/islands/AddToCartButton/linx.tsx";
 import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
 import AddToCartButtonVNDA from "$store/islands/AddToCartButton/vnda.tsx";
 import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
 import AddToCartButtonWake from "$store/islands/AddToCartButton/wake.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
-import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
@@ -15,7 +13,6 @@ import { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import markdownToObj from "../../sdk/markdownToObj.ts";
 import ProductSelector from "./ProductVariantSelector.tsx";
-import { CSS, KATEX_CSS, render } from "https://deno.land/x/gfm@0.3.0/mod.ts";
 import type { Description } from "../../sdk/markdownToObj.ts";
 import NavigationDescription from "$store/islands/NavigationDescription.tsx";
 import { useUI } from "../../sdk/useUI.ts";
@@ -25,30 +22,33 @@ function PDPProductInfo(
   { page, reloadInSelector, buyButton, colorRelated, colors }: {
     page: ProductDetailsPage;
     reloadInSelector: boolean;
-    buyButton:string;
+    buyButton: string;
     colorRelated?: Product[];
     colors: Color[];
   },
 ) {
   const platform = usePlatform();
-  const colorVariants  = [];
- 
+  const colorVariants = [];
   if (colorRelated) {
     for (const relatedProduct of colorRelated) {
       const additionalProperties = relatedProduct.additionalProperty;
       if (additionalProperties && additionalProperties.length > 0) {
         for (const property of additionalProperties) {
-          const { value } = property;         
+          const { value } = property;
           if (value && property.name !== "Tamanho") {
+            try {
               const parsedValue = JSON.parse(value);
               if (parsedValue && parsedValue.type === "cor") {
-                const colorVariant = { 
-                    name: parsedValue.name as string, 
-                    url: relatedProduct.url as string 
+                const colorVariant = {
+                  name: parsedValue.name as string,
+                  url: relatedProduct.url as string,
                 };
                 colorVariants.push(colorVariant);
                 break;
               }
+            } catch (e) {
+              console.log(e);
+            }
           }
         }
       }
@@ -80,12 +80,18 @@ function PDPProductInfo(
     listPriceIntl,
   } = useOffer(offers);
   const productGroupID = isVariantOf?.productGroupID ?? "";
-  const objDescription: Description | null = description ? markdownToObj(description) : null;
+  const objDescription: Description | null = description
+    ? markdownToObj(description)
+    : null;
   const { activePriceIntl } = useUI();
-  const currency = activePriceIntl.value.active ? offers?.offers[1]?.priceCurrency || "USD" : offers?.priceCurrency || "BRL";
+  const currency = activePriceIntl.value.active
+    ? offers?.offers[1]?.priceCurrency || "USD"
+    : offers?.priceCurrency || "BRL";
   const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
   const productListPrice = listPriceIntl || listPrice || 0;
-  const discount = productPrice && productListPrice ? productListPrice - productPrice : 0;
+  const discount = productPrice && productListPrice
+    ? productListPrice - productPrice
+    : 0;
 
   return (
     <div class="flex flex-col w-full p-4 lg:p-0">
@@ -109,7 +115,7 @@ function PDPProductInfo(
           </div>
         </div>
       </div>
-      
+
       {/* Sku Selector */}
       <div class="mt-4 sm:mt-6">
         <ProductSelector
