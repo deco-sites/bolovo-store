@@ -66,6 +66,7 @@ function ProductGallery({
   title,
   colorVariant,
   filterColors,
+  cardsLayout,
   showColorVariants = true,
   cardLayout
 }:
@@ -87,6 +88,7 @@ function ProductGallery({
       <div class="flex-grow">
         <Gallery
           products={products}
+          cardsLayout={cardsLayout}
           colorVariant={colorVariant || []}
           colors={filterColors}
           cardLayout={cardLayout}

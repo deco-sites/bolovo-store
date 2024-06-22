@@ -121,11 +121,11 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
           media="(min-width: 1024px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={desktop}
-          width={1024}
-          height={505}
+          width={1440}
+          height={600}
         />
         <img
-          class="w-full h-full"
+          class="w-full h-full object-cover"
           loading={lcp ? "eager" : "lazy"}
           src={desktop}
           alt={alt}
@@ -204,7 +204,7 @@ function BannerCarousel(props: Props) {
       id={id}
       class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] pb-6 lg:pb-10"
     >
-      <Slider class="h-[calc((625/430)*100vw)] sm:h-[calc((851/1726)*100vw)] sm:max-h-[85.36vh] carousel carousel-center w-full col-span-full row-span-full gap-6">
+      <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
         {images?.map((image, index) => (
           <Slider.Item index={index} class="carousel-item w-full">
             <BannerItem image={image} lcp={index === 0 && preload} />

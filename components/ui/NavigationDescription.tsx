@@ -15,10 +15,12 @@ export default function NavigationDescription(
 ) {
   const { description, descriptionTabs } = descriptionProps;
   const itemVisible = useSignal(-1);
-
   const toggleDescription = (index: number) => {
     itemVisible.value = itemVisible.value === index ? -1 : index;
   };
+  if (descriptionTabs) {
+    descriptionTabs.filter((desc) => desc !== undefined);
+  }
 
   return (
     <div class="w-full flex flex-col mt-6">
@@ -29,21 +31,22 @@ export default function NavigationDescription(
         />
       )}
       <ul class="w-full flex flex-row lg:justify-start lg:gap-6 justify-between pb-3 pt-6">
-        {descriptionTabs && descriptionTabs.slice(0, 3).map((tab, index) => (
-          <li
-            class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px] cursor-pointer"
-            onClick={() => toggleDescription(index)}
-          >
-            <span>{tab.title}</span>
-            <Icon
-              id="ArrowDown"
-              size={11}
-              class={` ${itemVisible.value == index ? "flex" : "hidden"}`}
-            />
-          </li>
-        ))}
+        {descriptionTabs &&
+          descriptionTabs.slice(0, 3).map((tab, index) => (
+            <li
+              class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px] cursor-pointer"
+              onClick={() => toggleDescription(index)}
+            >
+              <span>{tab?.title}</span>
+              <Icon
+                id="ArrowDown"
+                size={11}
+                class={` ${itemVisible.value == index ? "flex" : "hidden"}`}
+              />
+            </li>
+          ))}
       </ul>
-      <ul class="w-full flex flex-row ">
+      <ul class="w-full flex flex-row">
         {descriptionTabs &&
           descriptionTabs.slice(0, 3).map((description, index) => (
             <li
@@ -53,8 +56,8 @@ export default function NavigationDescription(
               style={{ fontSize: "11px" }}
             >
               <RenderMarkdown
-                description={description.content}
-                type={description.type}
+                description={description?.content}
+                type={description?.type}
               />
             </li>
           ))}

@@ -82,6 +82,7 @@ function ProductGallery(
                   layout={cardsLayout}
                   preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
                   index={offset ? offset + index : undefined}
+                  layout={cardsLayout}
                   platform={platform}
                   isMobile={isMobile}
                   colorRelated={colorVariant
@@ -98,6 +99,7 @@ function ProductGallery(
               <ProductCard
                 product={product}
                 preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
+                layout={cardsLayout}
                 index={offset ? offset + index : undefined}
                 platform={platform}
                 layout={cardsLayout}

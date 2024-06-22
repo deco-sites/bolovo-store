@@ -40,12 +40,12 @@ export interface Section {
 const VARIANT_IMAGE_WIDTH = {
   "1x1": 280,
   "2x1": 431,
-  "2x2": 350,
+  "2x2": 728,
 };
 const VARIANT_IMAGE_HEIGHT = {
   "1x1": 350,
   "2x1": 292,
-  "2x2": 425,
+  "2x2": 930,
 };
 
 const GRID_SPAN: {
@@ -102,7 +102,7 @@ export default function PhotoAndProducts(
         } ${customClassImage} h-full`}
         style={{ gridRowStart: row?.toString() }}
       >
-        <a href={href} class={`w-full h-full cursor-pointer`}>
+        <a href={href} class="w-full h-full cursor-pointer">
           <div class="w-full relative">
             <Picture preload={preLoad}>
               <Source
@@ -120,7 +120,7 @@ export default function PhotoAndProducts(
                 height={VARIANT_IMAGE_HEIGHT[variant]}
               />
               <img
-                class="w-full h-full object-cover"
+                class="w-full max-h-[900px] 3xl:max-h-full"
                 src={src}
                 alt={alt}
                 decoding="async"

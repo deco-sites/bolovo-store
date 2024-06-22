@@ -1,4 +1,20 @@
-import { Color } from "../../components/search/SearchResultMenu.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+
+export interface Color {
+  /**
+   * @title Color name
+   */
+  label: string;
+  /**
+   * @title Color
+   * @format color
+   */
+  hex?: string;
+  /**
+   * @title Image
+   */
+  src?: ImageWidget;
+}
 
 interface Props {
   /** @title Color props */
@@ -9,8 +25,9 @@ const loader = ({ colors }: Props): Color[] => colors;
 
 function colorSelector(colors: Color[]) {
   return colors.map((colorVariant, index) => {
-
-    const selectedColor = colors.find((color) => color.label.toLowerCase() === colorVariant.label.toLowerCase());
+    const selectedColor = colors.find((color) =>
+      color.label.toLowerCase() === colorVariant.label.toLowerCase()
+    );
     const isImg = selectedColor?.src !== undefined;
     const isSvg = selectedColor?.hex !== undefined;
 

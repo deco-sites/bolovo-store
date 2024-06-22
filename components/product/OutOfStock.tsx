@@ -16,13 +16,14 @@ function Notify({ productID, priceIntl = false }: Props) {
 
     try {
       loading.value = true;
-
-      const name = (e.currentTarget.elements.namedItem("name") as RadioNodeList)
-        ?.value;
       const email =
         (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
 
-      await invoke.vtex.actions.notifyme({ skuId: productID, name, email });
+      await invoke.vnda.actions.notifyme({
+        sku: productID,
+        key: "bolovo-avise-me",
+        email,
+      });
     } finally {
       loading.value = false;
     }

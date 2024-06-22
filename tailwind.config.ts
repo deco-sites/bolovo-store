@@ -15,6 +15,7 @@ export default {
       },
       screens: {
         "xs": "420px",
+        "3xl": "1600px"
       },
       aspectRatio: {
         "240/300": "240 / 300",
