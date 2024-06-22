@@ -11,6 +11,9 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import QuickShop from "$store/islands/QuickShop.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import Slider from "deco-sites/bolovo-store/components/ui/Slider.tsx";
+import SliderJS from "deco-sites/bolovo-store/islands/SliderJS.tsx";
+import { useId } from "deco-sites/bolovo-store/sdk/useId.ts";
 
 export interface Layout {
   basics?: {
@@ -280,17 +283,9 @@ function ProductCard(
       />
       <figure
         class={`relative overflow-hidden ${
-<<<<<<< HEAD
-          layout?.aspect ? "h-full" : "aspect-270/300 sm:aspect-240/300"
-        } `}
-        style={{
-          backgroundColor: "#F6F6F6",
-        }}
-=======
           layout?.aspect ? "aspect-[270/300]" : "aspect-[240/280]"
         } `}
         style={{ backgroundColor: "#F6F6F6" }}
->>>>>>> main
       >
         {productPrice !== 0 &&
           (
@@ -340,8 +335,8 @@ function ProductCard(
                       media="(max-width: 1023px)"
                       fetchPriority={preload ? "high" : "low"}
                       src={safeSrc(image.url)}
-                      width={178}
-                      height={193}
+                      width={177}
+                      height={206}
                     />
                     <img
                       class="mix-blend-multiply bg-base-100 h-full w-full"

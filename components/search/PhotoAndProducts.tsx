@@ -109,8 +109,8 @@ export default function PhotoAndProducts(
                 media="(max-width: 1023px)"
                 fetchPriority={preLoad ? "high" : "low"}
                 src={src}
-                width={220}
-                height={300}
+                width={384}
+                height={524}
               />
               <Source
                 media="(min-width: 1024px)"
