@@ -4,7 +4,7 @@ import { formatPrice } from "$store/sdk/format.ts";
 import { useUI } from "$store/sdk/useUI.ts";
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
-import Coupon, { Props as CouponProps } from "./Coupon.tsx";
+import type { Props as CouponProps } from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
 import { useCart } from "apps/vnda/hooks/useCart.ts";
 import type { HTMLWidget } from "apps/admin/widgets.ts";
@@ -44,7 +44,6 @@ interface Props {
 function Cart({
   items,
   total,
-  subtotal,
   locale,
   coupon,
   loading,
@@ -55,7 +54,6 @@ function Cart({
   checkoutHref,
   itemToAnalyticsItem,
   onUpdateQuantity,
-  onAddCoupon,
   cartTranslations,
   priceIntl,
 }: Props) {
@@ -66,9 +64,11 @@ function Cart({
   if (cart) {
     cart.value?.relatedItems?.map((item) => totalCart += item.total);
   }
-  const valueInstallments = totalCart / 6;
+  const qtyInstalments = cart.value?.orderForm?.installments?.length;
+  const valueInstallments = totalCart / qtyInstalments;
   const numberFormated = valueInstallments.toFixed(2);
   const installments = numberFormated.replace(".", ",");
+
   return (
     <div>
       {isEmtpy
@@ -195,12 +195,15 @@ function Cart({
                         )}
                       {!priceIntl &&
                         (
-                          <span class="font-normal ">
+                          <span class="font-normal">
                             <InnerHTML
                               html={cartTranslations?.installmentsText?.replace(
                                 "$valor",
                                 `<span>${installments}</span>`,
-                              )}
+                              ).replace(
+                                "$instalments",
+                                `<span>${qtyInstalments}</span>`,
+                              ) ?? ""}
                             />
                           </span>
                         )}
