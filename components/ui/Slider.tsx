@@ -9,7 +9,7 @@ function Dot({ index, children, customClass = "" }: {
     <button
       data-dot={index}
       aria-label={`go to slider item ${index}`}
-      class={`focus:outline-none group  ${customClass}`}
+      class={`focus:outline-none group ${customClass}`}
     >
       {children}
     </button>

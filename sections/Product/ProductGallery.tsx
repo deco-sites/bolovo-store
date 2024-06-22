@@ -68,6 +68,7 @@ function ProductGallery({
   filterColors,
   cardsLayout,
   showColorVariants = true,
+  cardLayout
 }:
   & Props
   & { colorVariant: { [productName: string]: Product[] } }
@@ -90,6 +91,7 @@ function ProductGallery({
           cardsLayout={cardsLayout}
           colorVariant={colorVariant || []}
           colors={filterColors}
+          cardLayout={cardLayout}
           showColorVariants={showColorVariants}
         />
       </div>

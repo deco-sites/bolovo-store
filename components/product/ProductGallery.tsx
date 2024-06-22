@@ -79,6 +79,7 @@ function ProductGallery(
               <li class={`h-full`}>
                 <ProductCard
                   product={product}
+                  layout={cardsLayout}
                   preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
                   index={offset ? offset + index : undefined}
                   layout={cardsLayout}
@@ -101,6 +102,7 @@ function ProductGallery(
                 layout={cardsLayout}
                 index={offset ? offset + index : undefined}
                 platform={platform}
+                layout={cardsLayout}
                 isMobile={isMobile}
                 colorRelated={colorVariant
                   ? colorVariant[product.name as string] || []
