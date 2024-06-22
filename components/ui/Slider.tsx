@@ -18,7 +18,7 @@ function Dot({ index, children, customClass = "" }: {
 
 function Progress() {
   return (
-    <div class="`order-2 lg:order-1 w-[90%] ml-[5%] lg:ml-0 lg:mr-[10%] lg:w-[1px] absolute lg:relative top-[95%] lg:top-0 flex-row lg:flex-col z-10 bg-[#D0D0D0] h-[2px] lg:h-[90%] border-none border-opacity-0">
+    <div class="`order-2 lg:order-1 w-[90%] ml-[5%] lg:ml-0 lg:w-[1px] absolute lg:relative top-[95%] lg:top-0 flex-row lg:flex-col z-10 bg-[#D0D0D0] h-[2px] lg:h-[90%] border-none border-opacity-0">
       <div
         data-progress
         class="bg-black ease-linear duration-300 min-h-full lg:max-w-full lg:min-h-0"

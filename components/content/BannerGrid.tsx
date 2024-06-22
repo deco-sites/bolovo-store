@@ -40,7 +40,7 @@ export interface Banner {
    * @description Text to appear when hover(also Alt Text)
    */
   /** @format html */
-  text: string;
+  text?: string;
 }
 
 export type BorderRadius =
@@ -134,10 +134,12 @@ function BannerGrid(props: Props) {
             } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
           >
             {video && (
-              <IframeLoader
-                videoLink={video.videoLink ?? ""}
-                preload={video.preload ?? false}
-              />
+              <div class="aspect-video">
+                <IframeLoader
+                  videoLink={video.videoLink ?? ""}
+                  preload={video.preload ?? false}
+                />
+              </div>
             )}
             {image && (
               <Picture preload={image.preload ?? false}>
@@ -164,7 +166,7 @@ function BannerGrid(props: Props) {
                 />
               </Picture>
             )}
-            <AltSlider text={text} />
+            {text && <AltSlider text={text} />}
           </a>
         ))}
       </div>

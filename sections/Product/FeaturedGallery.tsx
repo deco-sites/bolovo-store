@@ -2,7 +2,7 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import ProductCard, { Layout } from "$store/components/product/ProductCard.tsx";
-import { Color } from "../../components/search/SearchResultMenu.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import type { AppContext } from "$store/apps/site.ts";
 import { getColorRelatedProducts } from "../../components/search/CategoryMenu.tsx";
 
@@ -119,8 +119,8 @@ export default function FeaturedGallery(
               media="(min-width: 1024px)"
               fetchPriority={featuredPhoto.preload ? "high" : "low"}
               src={featuredPhoto.src}
-              width={350}
-              height={425}
+              width={420}
+              height={430}
             />
             <img
               class="aspect-square w-full lg:pb-[5px]"

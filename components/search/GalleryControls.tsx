@@ -9,10 +9,8 @@ import type { ProductListingPage } from "apps/commerce/types.ts";
 import SelectedFilters from "$store/islands/SelectedFilters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
-import type {
-  Color,
-  FilterName,
-} from "./SearchResultMenu.tsx";
+import type { FilterName } from "./SearchResultMenu.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import DragSliderJS from "$store/islands/DragSliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 

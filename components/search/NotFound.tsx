@@ -4,7 +4,6 @@ import SearchedWord from "$store/components/ui/SearchedWord.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import type { Product } from "apps/commerce/types.ts";
 
 interface Step {
   label: string;

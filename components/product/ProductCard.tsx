@@ -280,11 +280,17 @@ function ProductCard(
       />
       <figure
         class={`relative overflow-hidden ${
+<<<<<<< HEAD
           layout?.aspect ? "h-full" : "aspect-270/300 sm:aspect-240/300"
         } `}
         style={{
           backgroundColor: "#F6F6F6",
         }}
+=======
+          layout?.aspect ? "aspect-[270/300]" : "aspect-[240/280]"
+        } `}
+        style={{ backgroundColor: "#F6F6F6" }}
+>>>>>>> main
       >
         {productPrice !== 0 &&
           (
@@ -377,12 +383,12 @@ function ProductCard(
               media="(min-width: 1024px)"
               fetchPriority={preload ? "high" : "low"}
               src={safeSrc(front.url)}
-              width={310}
-              height={310}
+              width={317}
+              height={317}
             />
             <img
               class={isMobile
-                ? "mix-blend-multiply bg-base-100"
+                ? "mix-blend-multiply bg-base-100 w-full"
                 : `mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
                   layout?.onMouseOver?.image === "Zoom image"
                     ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
@@ -410,8 +416,8 @@ function ProductCard(
                     media="(min-width: 1024px)"
                     fetchPriority={"low"}
                     src={safeSrc(back?.url ?? front.url)}
-                    width={239}
-                    height={300}
+                    width={290}
+                    height={317}
                   />
                   <img
                     class="h-full bg-base-100 col-span-full row-span-full w-full"
