@@ -96,13 +96,11 @@ function ProductGallery(
             <li class={`h-full`}>
               <ProductCard
                 product={product}
-                preload={line > 0
-                  ? (hasBanner
-                    ? false
-                    : cardSEO && index <= 3
-                    ? true
-                    : index <= 4)
-                  : false}
+                preload={hasBanner
+                  ? false
+                  : cardSEO && index <= 3
+                  ? true
+                  : index <= 4}
                 layout={cardsLayout}
                 index={offset ? offset + index : undefined}
                 platform={platform}
