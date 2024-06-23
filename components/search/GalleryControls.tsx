@@ -62,7 +62,7 @@ function GalleryControls(
     labelsOfFilters,
     priceIntl = false,
     labelViewAll,
-  }: Omit<Props, "page">
+  }: Omit<Props, "page">,
 ) {
   const open = useSignal(false);
 

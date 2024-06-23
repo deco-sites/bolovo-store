@@ -8,7 +8,7 @@ import { useId } from "$store/sdk/useId.ts";
 /** @titleBy storeState */
 interface Store {
   storeState?: string;
-  /** @format html */
+  /** @format rich-text */
   /** @title Endereço da Loja */
   address?: string;
 }
@@ -32,11 +32,12 @@ function StoresList(
       <div class="w-full flex flex-col-reverse lg:flex-row items-center lg:items-start">
         <div class="w-1/2">
           <Image
-              loading="lazy"
-              src={img ?? "https://cdn.vnda.com.br/bolovo/2020/12/02/15_12_7_752_contatolucas1.jpg?v=1709056697"}
-              alt={title}
-              width={346}
-              height={398}
+            loading="lazy"
+            src={img ??
+              "https://cdn.vnda.com.br/bolovo/2020/12/02/15_12_7_752_contatolucas1.jpg?v=1709056697"}
+            alt={title}
+            width={346}
+            height={398}
           />
         </div>
         <div

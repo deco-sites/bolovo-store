@@ -3,7 +3,7 @@ import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import type { SectionProps } from "deco/types.ts";
 import { FilterName } from "./SearchResultMenu.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-import  { ButtonsPaginationProps } from "./ButtonsPagination.tsx";
+import { ButtonsPaginationProps } from "./ButtonsPagination.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
 

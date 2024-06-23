@@ -6,6 +6,8 @@ export const relative = (link?: string | undefined) => {
 
 export const skuid = (link?: string | undefined) => {
   const linkUrl = link ? new URL(link) : undefined;
-  const linkPath = linkUrl ? `${linkUrl.search.replace("?skuId=", "")}` : undefined;
+  const linkPath = linkUrl
+    ? `${linkUrl.search.replace("?skuId=", "")}`
+    : undefined;
   return linkPath;
 };

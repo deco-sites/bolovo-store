@@ -36,7 +36,7 @@ export interface CardSEO {
   /** @title WARNING: Be careful not to configure the SEO Text on the same page where you are configuring the SEO Card */
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
   matcher: string;
-  /** @format html */
+  /** @format rich-text */
   text: string;
 }
 
@@ -50,8 +50,6 @@ export interface FilterName {
    */
   label: string;
 }
-
-
 
 export function Result({
   page,
@@ -112,7 +110,6 @@ function SearchResult(
     colorVariant: { [productName: string]: Product[] };
   },
 ) {
-
   return (
     <Result
       {...props}

@@ -55,14 +55,13 @@ function AsideMenu(
               (item, index) => (
                 <li key={index}>
                   <a
-                  class={`${
-                    currentUrl === item.href ? "bg-primary text-white " : ""
-                  } ${
-                    desktopButtonAlign === "center"
-                      ? "justify-center"
-                      : "justify-start"
-                  } flex items-center font-normal px-[10px] py-1 uppercase`}
-                    
+                    class={`${
+                      currentUrl === item.href ? "bg-primary text-white " : ""
+                    } ${
+                      desktopButtonAlign === "center"
+                        ? "justify-center"
+                        : "justify-start"
+                    } flex items-center font-normal px-[10px] py-1 uppercase`}
                     href={item.href}
                   >
                     {item.label}
@@ -76,40 +75,41 @@ function AsideMenu(
       <div class="lg:hidden block w-full pb-5">
         <div class="collapse  collapse-arrow w-full rounded-none">
           <input type="checkbox" class="min-h-[0] min-w-full" />
-            <div class="collapse-title text-white items-center col-start-0 min-h-[0] h-9 bg-black p-3 flex gap-2 w-full min-w-full font-medium after:!right-3">
-              <span class="w-full text-sm leading-[22px] uppercase">
-                {currentRoute?.label ?? "Menu"}
-              </span>
-            </div>
-            <div class="collapse-content rounded-none px-0">
-              <ul class="flex flex-col p-2 bg-neutral-100">
-                {sectionMenu.map((sectionItem) =>  (
-                  <>
-                    <li class="text-baserimary font-semibold">
-                      {sectionItem?.sectionTitle}
-                    </li>
-                    {sectionItem?.menuItems.map(
-                      (item, index) => (
-                        <li key={index}>
-                          <a
-                           class={`${
-                             currentUrl === item.href ? "bg-primary text-white " : ""
-                           } ${
-                             desktopButtonAlign === "center"
-                               ? "justify-center"
-                               : "justify-start"
-                           } flex items-center font-normal text-sm leading-[28px] px-[10px] uppercase`}
-                             
-                             href={item.href}
-                           >
-                             {item.label}
-                           </a>
-                         </li>
-                         ),
-                       )}
-                     </>
-                ))}
-              </ul>
+          <div class="collapse-title text-white items-center col-start-0 min-h-[0] h-9 bg-black p-3 flex gap-2 w-full min-w-full font-medium after:!right-3">
+            <span class="w-full text-sm leading-[22px] uppercase">
+              {currentRoute?.label ?? "Menu"}
+            </span>
+          </div>
+          <div class="collapse-content rounded-none px-0">
+            <ul class="flex flex-col p-2 bg-neutral-100">
+              {sectionMenu.map((sectionItem) => (
+                <>
+                  <li class="text-baserimary font-semibold">
+                    {sectionItem?.sectionTitle}
+                  </li>
+                  {sectionItem?.menuItems.map(
+                    (item, index) => (
+                      <li key={index}>
+                        <a
+                          class={`${
+                            currentUrl === item.href
+                              ? "bg-primary text-white "
+                              : ""
+                          } ${
+                            desktopButtonAlign === "center"
+                              ? "justify-center"
+                              : "justify-start"
+                          } flex items-center font-normal text-sm leading-[28px] px-[10px] uppercase`}
+                          href={item.href}
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                    ),
+                  )}
+                </>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

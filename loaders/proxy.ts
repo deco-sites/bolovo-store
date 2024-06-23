@@ -24,12 +24,12 @@ export interface Props {
 function loader(
   { pagesToProxy = [] }: Props,
   _req: Request,
-  ctx: AppContext
+  ctx: AppContext,
 ): Route[] {
   const url = new URL(
     ctx.publicUrl?.startsWith("http")
       ? ctx.publicUrl
-      : `https://${ctx.publicUrl}`
+      : `https://${ctx.publicUrl}`,
   );
 
   const paths = [...pagesToProxy, ...ASSETS_PATHS, ...PAGE_PATHS].map(
@@ -42,7 +42,7 @@ function loader(
           host: url.hostname,
         },
       },
-    })
+    }),
   );
 
   return [...paths];

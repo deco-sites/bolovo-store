@@ -30,14 +30,13 @@ function ProductGallery(
     colors,
     showColorVariants,
     hasBanner,
-    cardsLayout
+    cardsLayout,
   }:
     & Props
     & { colorVariant?: { [productName: string]: Product[] } }
     & { colors?: Color[] }
     & { showColorVariants?: boolean }
-    & { hasBanner?: boolean}
-    ,
+    & { hasBanner?: boolean },
 ) {
   const platform = usePlatform();
   const row: number = photoOnPLP?.line ?? 0;
@@ -48,7 +47,6 @@ function ProductGallery(
       class={`grid grid-cols-2 gap-2 items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px] col-`}
     >
       {products?.map((product, index) => (
-        
         cardSEO && index === 0
           ? (
             <div class="card card-compact w-full h-full rounded-none bg-[#F6F6F6] overflow-y-auto">
@@ -74,13 +72,18 @@ function ProductGallery(
                 paragraph={photoOnPLP.imageAndProducts.paragraph}
                 customClassImage={`mx-[-15px] lg:mx-0 h-full py-4 lg:py-0`}
                 row={row}
-                productCardLayout={photoOnPLP.imageAndProducts.productCardLayout}
+                productCardLayout={photoOnPLP.imageAndProducts
+                  .productCardLayout}
               />
               <li class={`h-full`}>
                 <ProductCard
                   product={product}
                   layout={cardsLayout}
-                  preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
+                  preload={hasBanner
+                    ? false
+                    : cardSEO && index <= 4
+                    ? true
+                    : index <= 3}
                   index={offset ? offset + index : undefined}
                   layout={cardsLayout}
                   platform={platform}
@@ -98,7 +101,11 @@ function ProductGallery(
             <li class={`h-full`}>
               <ProductCard
                 product={product}
-                preload={hasBanner ? false : cardSEO && index <= 4 ? true : index <= 3}
+                preload={hasBanner
+                  ? false
+                  : cardSEO && index <= 4
+                  ? true
+                  : index <= 3}
                 layout={cardsLayout}
                 index={offset ? offset + index : undefined}
                 platform={platform}

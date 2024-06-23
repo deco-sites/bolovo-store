@@ -11,7 +11,6 @@ interface Props {
 export default function BuyButton(
   { availability, productID, additionalProperty, priceIntl, onAddItem }: Props,
 ) {
-
   return (
     <li class="w-full hidden lg:flex">
       {availability === "https://schema.org/InStock"

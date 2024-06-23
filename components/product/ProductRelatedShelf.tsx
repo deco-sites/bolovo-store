@@ -28,18 +28,17 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
 
   const tag = `relacionados-${category?.toLowerCase()}`;
 
-
   let data: Product[] = [];
 
   if (!tag) {
-    const allTagData = await ctx.get<Product[]>({  
+    const allTagData = await ctx.get<Product[]>({
       "__resolveType": "vnda/loaders/productList.ts",
       "tags": "todos",
     });
 
     data = allTagData ?? [];
   } else {
-    data = await ctx.get<Product[]>({  
+    data = await ctx.get<Product[]>({
       "__resolveType": "vnda/loaders/productList.ts",
       "tags": tag,
     });
@@ -47,7 +46,6 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
 
   const { showColorVariants } = props;
   let colorRelated: { [productName: string]: Product[] } = {};
-
 
   if (showColorVariants) {
     try {
@@ -60,25 +58,22 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   return {
     ...props,
     relatedProductsList: data ?? [],
-    colorVariant: colorRelated || {}
+    colorVariant: colorRelated || {},
   };
 };
-
-
 
 function ProductRelatedShelf({
   relatedProductsList,
   title,
   layout,
   seeMore,
-  colors, 
-  colorVariant, 
-  showColorVariants
+  colors,
+  colorVariant,
+  showColorVariants,
 }:
   & Props
   & { relatedProductsList: Product[] }
-  & { colorVariant: { [productName: string]: Product[] } }
-) {
+  & { colorVariant: { [productName: string]: Product[] } }) {
   return (
     <ProductShelf
       products={relatedProductsList}

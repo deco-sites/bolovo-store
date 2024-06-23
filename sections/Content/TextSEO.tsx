@@ -3,7 +3,7 @@ import type { SectionProps } from "deco/types.ts";
 export interface Text {
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
   matcher: string;
-  /** @format html */
+  /** @format rich-text */
   text: string;
   content: {
     top: string;
@@ -25,9 +25,7 @@ export default function TextSEO(
   }
 
   return (
-    <div
-      class="text-center px-[15px] md:px-0 w-full"
-    >
+    <div class="text-center px-[15px] md:px-0 w-full">
       <h1
         style={{
           paddingTop: text.content.top + "px",

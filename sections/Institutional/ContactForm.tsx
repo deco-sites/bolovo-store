@@ -2,7 +2,7 @@ import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
 
 export interface Props {
-  /** @format html */
+  /** @format rich-text */
   content?: string;
   serviceInfo?: {
     title: string;
@@ -38,7 +38,13 @@ function ContactForm({
   return (
     <div class="pb-12 lg:pb-20">
       <div class="flex flex-col">
-        {content && <div dangerouslySetInnerHTML={{__html: content.replace(/<p>|<\/p>/g, "\n")}} />}
+        {content && (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: content.replace(/<p>|<\/p>/g, "\n"),
+            }}
+          />
+        )}
         <div class="lg:flex lg:gap-[10px]">
           <div class="lg:w-full">
             {/* Contact info */}

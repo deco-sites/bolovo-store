@@ -37,7 +37,16 @@ export default function SkuSelector(
             {variant.inStock
               ? (
                 <button
-                  onClick={() => onAddItem(variant.id, additionalProperty.map((item) => {if(item.name === "Tamanho"){item.value = variant.size} return item}))}
+                  onClick={() =>
+                    onAddItem(
+                      variant.id,
+                      additionalProperty.map((item) => {
+                        if (item.name === "Tamanho") {
+                          item.value = variant.size;
+                        }
+                        return item;
+                      }),
+                    )}
                   class="hover:font-semibold"
                 >
                   {priceIntl

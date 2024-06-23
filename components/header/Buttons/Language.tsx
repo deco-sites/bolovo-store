@@ -34,34 +34,31 @@ export default function LanguageSwitcher(
     location.reload();
   }
   useEffect(() => {
-    async function Validate() {
-      const cookieName = "language";
+    const cookieName = "language";
 
-      // Divide a string de cookies em pares chave/valor
-      const cookiesArray = document.cookie.split(";");
+    // Divide a string de cookies em pares chave/valor
+    const cookiesArray = document.cookie.split(";");
 
-      // Procura o cookie desejado na lista de cookies
-      for (let i = 0; i < cookiesArray.length; i++) {
-        const cookie = cookiesArray[i].trim();
+    // Procura o cookie desejado na lista de cookies
+    for (let i = 0; i < cookiesArray.length; i++) {
+      const cookie = cookiesArray[i].trim();
 
-        // Verifica se o cookie começa com o nome desejado
-        if (cookie.startsWith(cookieName + "=")) {
-          // Retorna o valor do cookie
-          cookieValue.value = decodeURIComponent(
-            cookie.substring(cookieName.length + 1),
-          );
-          activePriceIntl.value.value = cookieValue.value;
-          activePriceIntl.value.active = cookieValue.value === "en"
-            ? true
-            : false;
-          return; // Interrompe a execução após encontrar o cookie
-        }
+      // Verifica se o cookie começa com o nome desejado
+      if (cookie.startsWith(cookieName + "=")) {
+        // Retorna o valor do cookie
+        cookieValue.value = decodeURIComponent(
+          cookie.substring(cookieName.length + 1),
+        );
+        activePriceIntl.value.value = cookieValue.value;
+        activePriceIntl.value.active = cookieValue.value === "en"
+          ? true
+          : false;
+        return; // Interrompe a execução após encontrar o cookie
       }
-
-      // Se o cookie não for encontrado, use um valor padrão
-      cookieValue.value = countryFlag[0].languageAbbreviation;
     }
-    Validate();
+
+    // Se o cookie não for encontrado, use um valor padrão
+    cookieValue.value = countryFlag[0].languageAbbreviation;
   }, [cookieValue.value]);
 
   return (

@@ -1,6 +1,7 @@
 import { AppProps } from "$fresh/server.ts";
 import GlobalTags from "$store/components/GlobalTags.tsx";
 import Theme from "$store/sections/Theme/Theme.tsx";
+import { useScript } from "deco/hooks/useScript.ts";
 
 const sw = () =>
   addEventListener("load", () =>
@@ -22,7 +23,7 @@ function App(props: AppProps) {
       {/* Include service worker */}
       <script
         type="module"
-        dangerouslySetInnerHTML={{ __html: `(${sw})();` }}
+        dangerouslySetInnerHTML={{ __html: useScript(sw) }}
       />
     </>
   );

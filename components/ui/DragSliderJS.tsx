@@ -14,7 +14,9 @@ const ATTRIBUTES = {
 
 const setup = ({ rootId }: Props) => {
   const root = document.getElementById(rootId);
-  const slider = root?.querySelector(`[${ATTRIBUTES["data-slider"]}]`);
+  const slider = root?.querySelector<HTMLUListElement>(
+    `[${ATTRIBUTES["data-slider"]}]`,
+  );
   const items = root?.querySelectorAll(`[${ATTRIBUTES["data-slider-item"]}]`);
 
   if (!root || !slider || !items || items.length === 0) {
@@ -27,8 +29,8 @@ const setup = ({ rootId }: Props) => {
   }
 
   let isDown = false;
-  let startX: any;
-  let scrollLeft: any;
+  let startX: number;
+  let scrollLeft: number;
 
   const end = () => {
     isDown = false;

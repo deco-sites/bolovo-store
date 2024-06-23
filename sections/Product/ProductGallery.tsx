@@ -5,7 +5,7 @@ import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { Layout } from "deco-sites/bolovo-store/components/product/ProductCard.tsx";
 
 export interface Props {
-  /** @format html */
+  /** @format rich-text */
   title?: string;
   products: Product[] | null;
   cardsLayout?: Layout;
@@ -68,7 +68,7 @@ function ProductGallery({
   filterColors,
   cardsLayout,
   showColorVariants = true,
-  cardLayout
+  cardLayout,
 }:
   & Props
   & { colorVariant: { [productName: string]: Product[] } }

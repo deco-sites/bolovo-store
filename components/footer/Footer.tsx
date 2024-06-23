@@ -13,7 +13,7 @@ import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
 export type Item = {
   label: string;
   href: string;
-  /** @format html */
+  /** @format rich-text */
   extraInfo?: HTMLWidget;
   newTab?: boolean;
 };
@@ -34,7 +34,7 @@ export interface FooterTexts {
   footerTitle: ImageWidget;
   alt: string;
   subTitle: string;
-  /** @format html */
+  /** @format rich-text */
   text: string;
 }
 
@@ -57,9 +57,9 @@ export interface SocialItem {
 export interface NewsletterForm {
   placeholder?: string;
   buttonText?: string;
-  /** @format html */
+  /** @format rich-text */
   helpTextDesktop?: string;
-  /** @format html */
+  /** @format rich-text */
   helpTextMobile?: string;
 }
 
@@ -101,7 +101,7 @@ export interface Props {
   changeCountryText?: string;
   countryFlag: Country[];
   followBolovoText?: string;
-  /** @format html */
+  /** @format rich-text */
   extraInfo?: string;
   layout?: Layout;
   whatsApp?: WhatsApp;
@@ -178,7 +178,7 @@ function Footer({
       content={newsletter}
     />
   );
-  
+
   const _sectionLinks = layout?.hide?.sectionLinks ? <></> : (
     <FooterItems
       whatsApp={whatsApp}

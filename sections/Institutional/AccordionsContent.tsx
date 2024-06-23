@@ -2,11 +2,11 @@ import { AccordionItem } from "../../components/ui/AccordionItem.tsx";
 
 export interface Props {
   sections: {
-    /** @format html */
+    /** @format rich-text */
     sectionText?: string;
     accordions: {
       label: string;
-      /** @format html */
+      /** @format rich-text */
       content: string;
     }[];
   }[];
@@ -18,7 +18,11 @@ function AccordionsContent({ sections }: Props) {
       {sections?.map((section) => (
         <>
           {section?.sectionText && (
-            <div dangerouslySetInnerHTML={{__html: section?.sectionText.replace(/<p>|<\/p>/g, "\n")}} />
+            <div
+              dangerouslySetInnerHTML={{
+                __html: section?.sectionText.replace(/<p>|<\/p>/g, "\n"),
+              }}
+            />
           )}
           {section?.accordions?.map(
             (item, index) => (

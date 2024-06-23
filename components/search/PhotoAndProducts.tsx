@@ -19,9 +19,9 @@ export interface ImageAndProducts {
   /** @default "imagem na direita" */
   layoutDesktop?: "imagem na direita" | "imagem na esquerda";
 
-  /** @format html */
+  /** @format rich-text */
   title?: string;
-  /** @format html */
+  /** @format rich-text */
   paragraph?: string;
   products: Product[] | null;
   productCardLayout?: Layout;
@@ -81,9 +81,9 @@ export default function PhotoAndProducts(
     layoutDesktop?: "imagem na direita" | "imagem na esquerda";
     preLoad?: boolean;
     products: Product[] | null;
-    /** @format html */
+    /** @format rich-text */
     title?: string;
-    /** @format html */
+    /** @format rich-text */
     paragraph?: string;
     row?: number;
     customClassImage?: string;
@@ -107,14 +107,14 @@ export default function PhotoAndProducts(
             <Picture preload={preLoad}>
               <Source
                 media="(max-width: 1023px)"
-                fetchPriority={preLoad ? "high" : "low"}
+                fetchPriority={preLoad ? "high" : "auto"}
                 src={src}
                 width={384}
                 height={524}
               />
               <Source
                 media="(min-width: 1024px)"
-                fetchPriority={preLoad ? "high" : "low"}
+                fetchPriority={preLoad ? "high" : "auto"}
                 src={src}
                 width={VARIANT_IMAGE_WIDTH[variant]}
                 height={VARIANT_IMAGE_HEIGHT[variant]}
@@ -123,7 +123,6 @@ export default function PhotoAndProducts(
                 class="w-full max-h-[900px] 3xl:max-h-full"
                 src={src}
                 alt={alt}
-                decoding="async"
                 loading={preLoad ? "eager" : "lazy"}
               />
             </Picture>

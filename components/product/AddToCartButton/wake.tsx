@@ -1,9 +1,7 @@
 import { useCart } from "apps/wake/hooks/useCart.ts";
 import Button, { Props as BtnProps } from "./common.tsx";
 
-// deno-lint-ignore no-empty-interface
-export interface Props extends Omit<BtnProps, "onAddItem" | "platform"> {
-}
+export type Props = Omit<BtnProps, "onAddItem" | "platform">;
 
 function AddToCartButton(props: Props) {
   const { addItem } = useCart();

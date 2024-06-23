@@ -7,7 +7,7 @@ import type { AppContext } from "$store/apps/site.ts";
 import { getColorRelatedProducts } from "../../components/search/CategoryMenu.tsx";
 
 export interface Props {
-  /** @format html */
+  /** @format rich-text */
   title: string;
   featuredPhoto: {
     src: ImageWidget;
@@ -80,7 +80,7 @@ export default function FeaturedGallery(
     colors,
     colorVariant,
     showColorVariants,
-    productCardLayout
+    productCardLayout,
   }: Props & { colorVariant?: { [productName: string]: Product[] } },
 ) {
   if (!products || products.length === 0) {

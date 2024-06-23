@@ -84,7 +84,7 @@ function Cart(
           list: item.variant_price,
           listIntl: item.variant_intl_price,
         },
-        size: item.extra.Tamanho
+        size: item.extra.Tamanho,
       }))}
       cartTranslations={cartTranslations}
       total={priceIntl ? priceTotalIntl.value : total}

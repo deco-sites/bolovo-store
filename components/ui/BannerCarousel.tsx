@@ -232,4 +232,4 @@ function BannerCarousel(props: Props) {
   );
 }
 
-export default BannerCarousel; 
+export default BannerCarousel;

@@ -62,7 +62,9 @@ function VariantSelector(
   const colorSelector = colorRelated?.length && colorRelated.length > 1
     ? (
       colorRelated.map((colorVariant, index) => {
-        const selectedColor = colors.find((color) => color.label.toLowerCase() === colorVariant.name.toLowerCase());
+        const selectedColor = colors.find((color) =>
+          color.label.toLowerCase() === colorVariant.name.toLowerCase()
+        );
         const isImg = selectedColor?.src !== undefined;
         const isSvg = selectedColor?.hex !== undefined;
 
