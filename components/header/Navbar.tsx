@@ -30,7 +30,7 @@ function Navbar(
     label,
     img,
     accountHref,
-    device
+    device,
   }: {
     items: NavItemProps[];
     contentItem: ContentBlogItem;
