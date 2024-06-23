@@ -384,8 +384,9 @@ export function Preview(props: Props) {
       <Section {...props} />
       <div class="grid grid-flow-row md:grid-flow-col">
         <div class="flex flex-col gap-4 p-4 bg-base-100 text-base-content">
-          <div class="text-basel">The quick brown fox jumps over the lazy dog</div>
-          {" "}
+          <div class="text-basel">
+            The quick brown fox jumps over the lazy dog
+          </div>{" "}
           <button class="btn">Default button</button>{" "}
           <div class="flex flex-col gap-1">
             <div class="flex flex-wrap gap-1">
@@ -421,8 +422,9 @@ export function Preview(props: Props) {
           {" "}
         </div>{" "}
         <div class="flex flex-col gap-4 p-4 bg-base-content text-base-100">
-          <div class="text-basel">The quick brown fox jumps over the lazy dog</div>
-          {" "}
+          <div class="text-basel">
+            The quick brown fox jumps over the lazy dog
+          </div>{" "}
           <button class="btn">Default button</button>{" "}
           <div class="flex flex-col gap-1">
             <div class="flex flex-wrap gap-1">
@@ -457,8 +459,9 @@ export function Preview(props: Props) {
           {" "}
         </div>{" "}
         <div class="flex flex-col gap-4 p-4 bg-primary text-baserimary-content">
-          <div class="text-basel">The quick brown fox jumps over the lazy dog</div>
-          {" "}
+          <div class="text-basel">
+            The quick brown fox jumps over the lazy dog
+          </div>{" "}
           <button class="btn">Default button</button>{" "}
           <div class="flex flex-col gap-1">
             <div class="flex flex-wrap gap-1">
@@ -490,8 +493,9 @@ export function Preview(props: Props) {
           {" "}
         </div>{" "}
         <div class="flex flex-col gap-4 p-4 bg-secondary text-secondary-content">
-          <div class="text-basel">The quick brown fox jumps over the lazy dog</div>
-          {" "}
+          <div class="text-basel">
+            The quick brown fox jumps over the lazy dog
+          </div>{" "}
           <button class="btn">Default button</button>{" "}
           <div class="flex flex-col gap-1">
             <div class="flex flex-wrap gap-1">
@@ -522,8 +526,9 @@ export function Preview(props: Props) {
           {" "}
         </div>{" "}
         <div class="flex flex-col gap-4 p-4 bg-accent text-accent-content">
-          <div class="text-basel">The quick brown fox jumps over the lazy dog</div>
-          {" "}
+          <div class="text-basel">
+            The quick brown fox jumps over the lazy dog
+          </div>{" "}
           <button class="btn">Default button</button>{" "}
           <div class="flex flex-col gap-1">
             <div class="flex flex-wrap gap-1">

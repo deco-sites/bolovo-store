@@ -6,17 +6,16 @@ export interface Props {
     media?: ImageWidget;
     altImg?: string;
     /**
-    * @description Check this option when this banner is the biggest image on the screen for image optimizations
-    */
+     * @description Check this option when this banner is the biggest image on the screen for image optimizations
+     */
     preload?: boolean;
   };
-  /** @format html */
+  /** @format rich-text */
   /** @title Endereço da Loja */
   addressText?: string;
 }
 
 function StoresDisplay({ hero, addressText }: Props) {
-
   return (
     <div className="stores-features-section">
       <div className="container mx-auto py-10">
@@ -27,14 +26,14 @@ function StoresDisplay({ hero, addressText }: Props) {
               <Source
                 media="(max-width: 1023px)"
                 fetchPriority={hero.preload ? "high" : "auto"}
-                src={hero.media ? hero.media : ''}
+                src={hero.media ? hero.media : ""}
                 width={400}
                 height={295}
               />
               <Source
                 media="(min-width: 1024px)"
                 fetchPriority={hero.preload ? "high" : "auto"}
-                src={hero.media ? hero.media : ''}
+                src={hero.media ? hero.media : ""}
                 width={785}
                 height={577}
               />

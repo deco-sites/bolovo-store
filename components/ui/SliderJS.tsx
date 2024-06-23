@@ -13,7 +13,7 @@ const ATTRIBUTES = {
   'data-slide="prev"': 'data-slide="prev"',
   'data-slide="next"': 'data-slide="next"',
   "data-dot": "data-dot",
-  "data-progress": "data-progress"
+  "data-progress": "data-progress",
 };
 
 // Percentage of the item that has to be inside the container
@@ -248,7 +248,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   prev?.addEventListener("click", onClickPrev);
   next?.addEventListener("click", onClickNext);
 
-  let timeout = interval && setInterval(onClickNext, interval);
+  const timeout = interval && setInterval(onClickNext, interval);
 
   // Unregister callbacks
   return () => {

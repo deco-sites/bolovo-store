@@ -107,8 +107,8 @@ export function variantAvailability(
         }
       }
     });
-  }else{
-    return null
+  } else {
+    return null;
   }
-  return arrayVariants
+  return arrayVariants;
 }

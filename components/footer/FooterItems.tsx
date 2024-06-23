@@ -9,7 +9,7 @@ export interface WhatsApp {
 export type Item = {
   label: string;
   href?: string;
-  /** @format html */
+  /** @format rich-text */
   extraInfo?: string;
   newTab?: boolean;
 };
@@ -55,7 +55,7 @@ export default function FooterItems(
                               <span class="block leading-[26px] font-normal text-base uppercase text-baserimary">
                                 {item.label}
                               </span>
-                              
+
                               <a
                                 target={item.newTab ? "_blank" : ""}
                                 href={item.href}

@@ -9,12 +9,6 @@ export interface Description {
   descriptionTabs?: SectionDescription[];
 }
 
-const TITLE = {
-  "## DESCRIÇÃO TÉCNICA": "COMPOSIÇÃO",
-  "## GUIA DE TAMANHOS": "MEDIDAS",
-  "## INSTRUÇÕES DE LAVAGEM": "LAVAGEM",
-};
-
 function parseSections(input: string): Description {
   const sections = input.split("- - -");
   const result: Description = {
@@ -80,25 +74,29 @@ function processTable(tableMarkdown: string): string {
   }
 
   function processSingleTable(startIndex: number): void {
-
-    if (!lines[startIndex] || !lines[startIndex + 1] || !lines[startIndex + 2]) {
+    if (
+      !lines[startIndex] || !lines[startIndex + 1] || !lines[startIndex + 2]
+    ) {
       return;
     }
-    
+
     const headers = lines[startIndex].split("|");
 
     // Conta o número de barras verticais (|) na primeira linha
-    const numBarsInFirstLine = headers.length - 1; 
+    const numBarsInFirstLine = headers.length - 1;
 
     // Divide a segunda linha (separadores) em seus itens
     const separators = lines[startIndex + 1].split("|");
 
     // Conta o número de barras verticais (|) na segunda linha
-    const numBarsInSecondLine = separators.length - 1; 
+    const numBarsInSecondLine = separators.length - 1;
 
     // Se houver mais barras verticais na segunda linha do que na primeira, remove o excesso
     if (numBarsInSecondLine > numBarsInFirstLine) {
-      const correctedSeparatorLine = lines[startIndex + 1].replace(':-----:|', '');
+      const correctedSeparatorLine = lines[startIndex + 1].replace(
+        ":-----:|",
+        "",
+      );
       lines[startIndex + 1] = correctedSeparatorLine;
     }
   }
@@ -115,7 +113,6 @@ function processTable(tableMarkdown: string): string {
   // Retorna a tabela markdown atualizada
   return lines.join("\n");
 }
-
 
 export default function markdownToObj(markdownText: string): Description {
   const descriptionObject = parseSections(markdownText);

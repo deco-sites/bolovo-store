@@ -40,7 +40,13 @@ function CartButton({ loading, currency, total, items }: Props) {
         loading={loading}
         onClick={onClick}
       >
-        <Icon id="ShoppingCart" width="20" height="20" strokeWidth={2} class="lg:w-[18px] lg:h-[18px]" />
+        <Icon
+          id="ShoppingCart"
+          width="20"
+          height="20"
+          strokeWidth={2}
+          class="lg:w-[18px] lg:h-[18px]"
+        />
       </Button>
     </div>
   );

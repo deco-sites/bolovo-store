@@ -15,7 +15,7 @@ import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
 
 export interface Props {
-  /** @format html */
+  /** @format rich-text */
   title?: string;
   layout?: {
     headerAlignment?: "center" | "left";

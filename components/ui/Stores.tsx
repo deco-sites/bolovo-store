@@ -13,7 +13,7 @@ export interface Props {
     altImg: string;
     preload?: boolean;
   };
-  /** @format html */
+  /** @format rich-text */
   /** @title Endereço da Loja */
   address?: string;
   content: {

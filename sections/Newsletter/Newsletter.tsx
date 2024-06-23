@@ -3,12 +3,12 @@ import Header from "$store/components/ui/SectionHeader.tsx";
 export interface Form {
   placeholder?: string;
   buttonText?: string;
-  /** @format html */
+  /** @format rich-text */
   helpText?: string;
 }
 
 export interface Props {
-  /** @format html */
+  /** @format rich-text */
   title?: string;
   /** @format textarea */
   description?: string;

@@ -58,7 +58,9 @@ const Aside = (
   </div>
 );
 
-function Drawers({ menu, searchbar, miniCart, children, platform, priceIntl=false }: Props) {
+function Drawers(
+  { menu, searchbar, miniCart, children, platform, priceIntl = false }: Props,
+) {
   const { displayCart, displayMenu } = useUI();
 
   return (
@@ -87,7 +89,11 @@ function Drawers({ menu, searchbar, miniCart, children, platform, priceIntl=fals
             title={miniCart?.cartTranslations?.modalCloseText ?? "Fechar"}
             onClose={() => displayCart.value = false}
           >
-            <Cart platform={platform} miniCart={miniCart} priceIntl={priceIntl} />
+            <Cart
+              platform={platform}
+              miniCart={miniCart}
+              priceIntl={priceIntl}
+            />
           </Aside>
         }
       >

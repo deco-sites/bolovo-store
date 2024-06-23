@@ -6,7 +6,12 @@ import Button from "deco-sites/bolovo-store/components/ui/Button.tsx";
 
 export type Props = Pick<ProductListingPage, "sortOptions">;
 
-function Sort({ sortOptions, priceIntl, label }:Omit<Props, "page"> & {priceIntl:boolean, label:string}) {
+function Sort(
+  { sortOptions, priceIntl, label }: Omit<Props, "page"> & {
+    priceIntl: boolean;
+    label: string;
+  },
+) {
   const sortContainerRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 

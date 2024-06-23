@@ -20,7 +20,7 @@ export interface barColor {
 
 export interface Props {
   visible?: boolean;
-  /** @format html */
+  /** @format rich-text */
   text?: string;
   layout?: barColor;
   // interval?: number;

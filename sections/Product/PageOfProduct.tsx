@@ -8,8 +8,7 @@ export interface Props {
   /**
    * @default Comprar
    */
-  buyButton?: string
-
+  buyButton?: string;
 }
 
 export default function PageOfProduct(
@@ -22,10 +21,14 @@ export default function PageOfProduct(
   return (
     <div class=" pt-0 lg:py-11 lg:px-[8%] flex justify-center flex-col lg:flex-row md:gap-12 lg:gap-[6%] py-11 ">
       <div class="w-full lg:w-3/5">
-        <PDPGallerySlider page={page}  />
+        <PDPGallerySlider page={page} />
       </div>
       <div class="w-full lg:w-2/5 lg:max-w-[400px]">
-        <PDPProductInfo page={page} reloadInSelector={reloadInSelector} buyButton={buyButton} />
+        <PDPProductInfo
+          page={page}
+          reloadInSelector={reloadInSelector}
+          buyButton={buyButton}
+        />
       </div>
     </div>
   );

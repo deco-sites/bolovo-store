@@ -1,4 +1,5 @@
 import { useId } from "$store/sdk/useId.ts";
+import { useScript } from "deco/hooks/useScript.ts";
 
 const script = (id: string) => {
   const callback = () => {
@@ -27,7 +28,7 @@ const script = (id: string) => {
 
 export interface Props {
   title?: string;
-  /** @format html */
+  /** @format rich-text */
   text?: string;
   policy?: {
     text?: string;
@@ -127,10 +128,16 @@ function CookieConsent(props: Props) {
                 : ""
             }`}
           >
-            <button class="btn btn-sm bg-primary hover:bg-primary text-white rounded-none" data-button-cc-accept>
+            <button
+              class="btn btn-sm bg-primary hover:bg-primary text-white rounded-none"
+              data-button-cc-accept
+            >
               {buttons.allowText}
             </button>
-            <button class="btn btn-sm rounded-none border hover:bg-transparent bg-transparent border-primary text-baserimary" data-button-cc-close>
+            <button
+              class="btn btn-sm rounded-none border hover:bg-transparent bg-transparent border-primary text-baserimary"
+              data-button-cc-close
+            >
               {buttons.cancelText}
             </button>
           </div>
@@ -138,7 +145,7 @@ function CookieConsent(props: Props) {
       </div>
       <script
         type="module"
-        dangerouslySetInnerHTML={{ __html: `(${script})("${id}");` }}
+        dangerouslySetInnerHTML={{ __html: useScript(script, id) }}
       />
     </>
   );

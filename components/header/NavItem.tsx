@@ -13,7 +13,7 @@ export interface Links {
   label?: string;
   href?: string;
   children?: Links[];
-  newTab?: boolean
+  newTab?: boolean;
 }
 
 export interface Image {

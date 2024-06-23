@@ -42,9 +42,15 @@ function Header(props: Props) {
                   class={`
                   leading-6 lg:leading-8
                   ${
-                    props.colorReverse ? "text-baserimary-content" : "text-neutral"
+                    props.colorReverse
+                      ? "text-baserimary-content"
+                      : "text-neutral"
                   }
-                  ${props.fontSize === "Normal" ? "lg:text-basel" : "lg:text-2xl"}
+                  ${
+                    props.fontSize === "Normal"
+                      ? "lg:text-basel"
+                      : "lg:text-2xl"
+                  }
                 `}
                 >
                   {props.description}

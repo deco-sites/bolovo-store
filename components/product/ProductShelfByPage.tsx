@@ -16,7 +16,7 @@ import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
 import type { SectionProps } from "deco/types.ts";
 
 export interface Shelf {
-  /** @format html */
+  /** @format rich-text */
   title?: string;
   layout?: {
     headerAlignment?: "center" | "left";

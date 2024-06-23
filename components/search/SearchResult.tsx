@@ -23,7 +23,7 @@ export interface Props {
   /**
    * @title Highlights
    */
-  photoOnPLP?: Section[];  
+  photoOnPLP?: Section[];
   filterColors?: Color[];
   /** @description Choose if you would like to showcase the color variants in the product cards  */
   showColorVariants?: boolean;
@@ -34,7 +34,7 @@ export interface CardSEO {
   /** @title WARNING: Be careful not to configure the SEO Text on the same page where you are configuring the SEO Card */
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
   matcher: string;
-  /** @format html */
+  /** @format rich-text */
   text: string;
 }
 
@@ -59,16 +59,19 @@ export function Result({
   card,
   hasBanner,
   buttonsPagination,
-
-}: Omit<Props, "page"> & {
-  page: ProductListingPage;
-  searchTerm: string;
-  section?: Section;
-  isMobile: boolean;
-  url: string;
-  isCategory?: boolean;
-  card?: CardSEO;
-} & { colorVariant: { [productName: string]: Product[] } } & { hasBanner?: boolean}) {
+}:
+  & Omit<Props, "page">
+  & {
+    page: ProductListingPage;
+    searchTerm: string;
+    section?: Section;
+    isMobile: boolean;
+    url: string;
+    isCategory?: boolean;
+    card?: CardSEO;
+  }
+  & { colorVariant: { [productName: string]: Product[] } }
+  & { hasBanner?: boolean }) {
   const { products, pageInfo, sortOptions } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
@@ -119,7 +122,8 @@ function SearchResult(
     colorVariant: { [productName: string]: Product[] };
   },
 ) {
-  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } = props;
+  const { page, notFound, searchTerm, section, isMobile, buttonsPagination } =
+    props;
 
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
