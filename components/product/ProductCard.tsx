@@ -14,6 +14,7 @@ import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import Slider from "deco-sites/bolovo-store/components/ui/Slider.tsx";
 import SliderJS from "deco-sites/bolovo-store/islands/SliderJS.tsx";
 import { useId } from "deco-sites/bolovo-store/sdk/useId.ts";
+import Image from "apps/website/components/Image.tsx";
 
 export interface Layout {
   basics?: {
@@ -330,22 +331,16 @@ function ProductCard(
                   aria-label="view product"
                   class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
                 >
-                  <Picture class="h-full" preload={index === 0 && preload}>
-                    <Source
-                      media="(max-width: 1023px)"
-                      fetchPriority={index === 0 && preload ? "high" : "auto"}
-                      src={safeSrc(image.url)}
-                      width={177}
-                      height={206}
-                    />
-                    <img
-                      class="mix-blend-multiply bg-base-100 h-full w-full"
-                      src={safeSrc(image.url)}
-                      alt={front.alternateName}
-                      decoding="async"
-                      loading={index === 0 && preload ? "eager" : "lazy"}
-                    />
-                  </Picture>
+                  <Image
+                    preload={index === 0 && preload}
+                    fetchPriority={index === 0 && preload ? "high" : "auto"}
+                    src={safeSrc(image.url)}
+                    width={177}
+                    height={206}
+                    class="mix-blend-multiply bg-base-100 h-full w-full"
+                    alt={front.alternateName}
+                    loading={index === 0 && preload ? "eager" : "lazy"}
+                  />
                 </a>
               </Slider.Item>
             ))}
