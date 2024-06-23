@@ -13,10 +13,12 @@ export interface Props {
 
 export function LoadingFallback({ title }: Props) {
   return (
-    <div class="px-[15px] sm:py-10">
-      <h2 class="font-semibold text-base leading-5 pb-[15px] lg:pb-[25px]">
-        <div dangerouslySetInnerHTML={{ __html: title ?? "" }} />
-      </h2>
+    <div class="px-[15px] sm:py-6">
+      {title && (
+        <h2 class="font-semibold text-base leading-5 pb-[15px] lg:pb-[25px]">
+          <div dangerouslySetInnerHTML={{ __html: title }} />
+        </h2>
+      )}
 
       <div class="grid grid-cols-2 gap-2 items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px]">
         {Array(10).fill(0).map(() => (
