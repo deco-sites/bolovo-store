@@ -330,10 +330,10 @@ function ProductCard(
                   aria-label="view product"
                   class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
                 >
-                  <Picture class="h-full" preload={preload}>
+                  <Picture class="h-full" preload={index === 0 && preload}>
                     <Source
                       media="(max-width: 1023px)"
-                      fetchPriority={preload ? "high" : "low"}
+                      fetchPriority={index === 0 && preload ? "high" : "auto"}
                       src={safeSrc(image.url)}
                       width={177}
                       height={206}
@@ -343,7 +343,7 @@ function ProductCard(
                       src={safeSrc(image.url)}
                       alt={front.alternateName}
                       decoding="async"
-                      loading={preload ? "eager" : "lazy"}
+                      loading={index === 0 && preload ? "eager" : "lazy"}
                     />
                   </Picture>
                 </a>
@@ -402,14 +402,14 @@ function ProductCard(
                 <Picture preload={preload}>
                   <Source
                     media="(max-width: 1023px)"
-                    fetchPriority={"low"}
+                    fetchPriority={"auto"}
                     src={safeSrc(back?.url ?? front.url)}
                     width={190}
                     height={190}
                   />
                   <Source
                     media="(min-width: 1024px)"
-                    fetchPriority={"low"}
+                    fetchPriority={"auto"}
                     src={safeSrc(back?.url ?? front.url)}
                     width={290}
                     height={317}
