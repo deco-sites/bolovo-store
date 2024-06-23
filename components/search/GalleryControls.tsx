@@ -15,9 +15,8 @@ import DragSliderJS from "$store/islands/DragSliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 
 type Props =
-  & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
+  & Pick<ProductListingPage, "filters" | "sortOptions">
   & {
-    displayFilter?: boolean;
     currentCategory?: string;
     parentCategory?: string;
     subCategories?: {
@@ -25,7 +24,6 @@ type Props =
       url: string;
     }[];
     categoryURL?: string;
-    url: string;
     labelOrdenation: string;
     labelsOfFilters: {
       labelFilter: string;
@@ -44,9 +42,6 @@ type Props =
 function GalleryControls(
   {
     filters,
-    breadcrumb,
-    displayFilter,
-    url,
     sortOptions,
     subCategories,
     currentCategory,
