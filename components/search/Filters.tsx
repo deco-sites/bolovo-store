@@ -63,7 +63,6 @@ function FilterValues(
       {matchingColors.map((item) => {
         const { hex, src } = item;
         if (label == "cor") {
-          console.log(item);
           return (
             <ValueItem
               type={label}

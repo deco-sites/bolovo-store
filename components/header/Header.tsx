@@ -97,7 +97,7 @@ function Header(props: SectionProps<ReturnType<typeof loader>>) {
     countryFlag,
     accountHref,
     showLanguageVariant,
-    device
+    device,
   } = props;
   const items = menu.items ?? [];
 
