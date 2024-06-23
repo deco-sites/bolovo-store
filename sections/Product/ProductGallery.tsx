@@ -25,7 +25,7 @@ export function LoadingFallback({ title }: Props) {
           <div class="flex flex-col gap-4">
             <div class="skeleton aspect-[240/280]" />
 
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center gap-2">
               <div class="skeleton w-[150px] h-4" />
               <div class="skeleton w-14 h-4" />
             </div>
