@@ -17,6 +17,7 @@ function Sort(
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
+      event.preventDefault();
       if (
         sortContainerRef.current &&
         event.target instanceof Node &&
@@ -26,9 +27,7 @@ function Sort(
       }
     }
 
-    document.addEventListener("mousedown", handleClickOutside, {
-      passive: true,
-    });
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
