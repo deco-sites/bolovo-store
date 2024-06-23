@@ -41,11 +41,9 @@ const setup = ({ rootId }: Props) => {
   };
 
   const start = (e) => {
+    console.log(e)
     isDown = true;
     slider.classList.add("cursor-grab");
-    items.forEach((item) => {
-      item.children[0].classList.add("lg:pointer-events-none");
-    });
     startX = e.pageX || e.touches[0].pageX - slider.offsetLeft;
     scrollLeft = slider.scrollLeft;
   };
@@ -53,6 +51,9 @@ const setup = ({ rootId }: Props) => {
   const move = (e) => {
     if (!isDown) return;
 
+    items.forEach((item) => {
+      item.children[0].classList.add("lg:pointer-events-none");
+    });
     const x = e.pageX || e.touches[0].pageX - slider.offsetLeft;
     const dist = x - startX;
     slider.scrollLeft = scrollLeft - dist;
