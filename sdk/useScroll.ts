@@ -6,9 +6,9 @@ const scroll = signal<number>(0); // y
 if (IS_BROWSER) {
   document.addEventListener(
     "scroll",
-    () => scroll.value = globalThis.window.scrollY,
-    {
-      passive: true,
+    (e) => {
+      e.preventDefault();
+      scroll.value = globalThis.window.scrollY;
     },
   );
 }

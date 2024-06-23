@@ -65,7 +65,7 @@ function ProductGallery(
                 src={photoOnPLP.imageAndProducts.src}
                 alt={photoOnPLP.imageAndProducts.alt}
                 href={photoOnPLP.imageAndProducts.href}
-                preLoad={photoOnPLP.imageAndProducts.preLoad}
+                preLoad={line === 0}
                 layoutDesktop={photoOnPLP.imageAndProducts.layoutDesktop}
                 products={photoOnPLP.imageAndProducts.products}
                 title={photoOnPLP.imageAndProducts.title}
@@ -79,13 +79,8 @@ function ProductGallery(
                 <ProductCard
                   product={product}
                   layout={cardsLayout}
-                  preload={hasBanner
-                    ? false
-                    : cardSEO && index <= 4
-                    ? true
-                    : index <= 3}
+                  preload={false}
                   index={offset ? offset + index : undefined}
-                  layout={cardsLayout}
                   platform={platform}
                   isMobile={isMobile}
                   colorRelated={colorVariant
@@ -101,15 +96,16 @@ function ProductGallery(
             <li class={`h-full`}>
               <ProductCard
                 product={product}
-                preload={hasBanner
-                  ? false
-                  : cardSEO && index <= 4
-                  ? true
-                  : index <= 3}
+                preload={line > 0
+                  ? (hasBanner
+                    ? false
+                    : cardSEO && index === 0
+                    ? true
+                    : index === 0)
+                  : false}
                 layout={cardsLayout}
                 index={offset ? offset + index : undefined}
                 platform={platform}
-                layout={cardsLayout}
                 isMobile={isMobile}
                 colorRelated={colorVariant
                   ? colorVariant[product.name as string] || []

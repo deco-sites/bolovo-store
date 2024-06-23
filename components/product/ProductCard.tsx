@@ -369,14 +369,14 @@ function ProductCard(
           <Picture preload={preload}>
             <Source
               media="(max-width: 1023px)"
-              fetchPriority={preload ? "high" : "low"}
+              fetchPriority={preload ? "high" : "auto"}
               src={safeSrc(front.url)}
               width={190}
               height={190}
             />
             <Source
               media="(min-width: 1024px)"
-              fetchPriority={preload ? "high" : "low"}
+              fetchPriority={preload ? "high" : "auto"}
               src={safeSrc(front.url)}
               width={317}
               height={317}

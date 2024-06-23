@@ -48,7 +48,6 @@ export interface Props {
   filterColors?: Color[];
   filtersNames?: FilterName[];
   /** @description Choose if you would like to showcase the color variants in the product cards  */
-  showColorVariants?: boolean;
   textFilters?: string;
   appliedFiltersText?: string;
   applyFiltersText?: string;
@@ -125,6 +124,8 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
     categoryURL,
   } = props;
 
+  if (!page) return null
+
   return (
     <ResultCategory
       {...props}
@@ -177,19 +178,8 @@ export async function getColorRelatedProducts(
   return colorRelated;
 }
 
-export const loader = async (props: Props, req: Request, ctx: AppContext) => {
-  const { categories, showColorVariants } = {
-    ...props,
-  };
-  let colorRelated: { [productName: string]: Product[] } = {};
-
-  if (showColorVariants) {
-    try {
-      colorRelated = await getColorRelatedProducts(props.page?.products, ctx);
-    } catch (error) {
-      console.error("Erro ao obter produtos relacionados por cor:", error);
-    }
-  }
+export const loader = (props: Props, req: Request, ctx: AppContext) => {
+  const { categories } = props
 
   const url = new URL(req.url);
 
@@ -234,7 +224,6 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
       parentCategory,
       categoryURL,
       url: req.url,
-      colorVariant: colorRelated || {},
     };
   } else {
     return {
@@ -244,7 +233,6 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
       subCategories: [],
       categoryURL,
       url: req.url,
-      colorVariant: colorRelated || {},
     };
   }
 };
