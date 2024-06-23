@@ -37,18 +37,18 @@ export interface Section {
   imageAndProducts: ImageAndProducts;
 }
 
-const VARIANT_IMAGE_WIDTH = {
+export const VARIANT_IMAGE_WIDTH = {
   "1x1": 280,
   "2x1": 431,
   "2x2": 728,
 };
-const VARIANT_IMAGE_HEIGHT = {
+export const VARIANT_IMAGE_HEIGHT = {
   "1x1": 350,
   "2x1": 292,
   "2x2": 930,
 };
 
-const GRID_SPAN: {
+export const GRID_SPAN: {
   [key: string]: string;
 } = {
   "1x1 imagem na esquerda": "col-span-2 lg:col-span-1",
