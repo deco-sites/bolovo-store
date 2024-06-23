@@ -124,7 +124,7 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
     categoryURL,
   } = props;
 
-  if (!page) return null
+  if (!page) return null;
 
   return (
     <ResultCategory
@@ -179,7 +179,7 @@ export async function getColorRelatedProducts(
 }
 
 export const loader = (props: Props, req: Request, ctx: AppContext) => {
-  const { categories } = props
+  const { categories } = props;
 
   const url = new URL(req.url);
 

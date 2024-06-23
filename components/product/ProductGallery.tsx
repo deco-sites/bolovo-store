@@ -99,9 +99,9 @@ function ProductGallery(
                 preload={line > 0
                   ? (hasBanner
                     ? false
-                    : cardSEO && index === 0
+                    : cardSEO && index <= 3
                     ? true
-                    : index === 0)
+                    : index <= 4)
                   : false}
                 layout={cardsLayout}
                 index={offset ? offset + index : undefined}
