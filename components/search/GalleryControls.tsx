@@ -44,7 +44,7 @@ function GalleryControls(
     filters,
     sortOptions,
     subCategories,
-    currentCategory,
+    currentCategory = "",
     parentCategory,
     categoryURL,
     filterColors,
@@ -66,7 +66,7 @@ function GalleryControls(
   };
 
   function removeAcentos(str: string) {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   }
 
   const scrollBehavior = (event: WheelEvent) => {
@@ -199,12 +199,18 @@ function GalleryControls(
                   <a
                     href={categoryURL}
                     class={`group btn-ghost leading-none btn-xs py-[5px] px-3 flex w-auto lg:h-auto rounded-[20px] bg-transparent hover:bg-black hover:border hover:border-black ${
-                      currentCategory == parentCategory ? "!bg-black" : ""
+                      removeAcentos(currentCategory) ===
+                          removeAcentos(parentCategory)
+                        ? "!bg-black"
+                        : ""
                     }`}
                   >
                     <span
                       class={`text-[0.813rem] uppercase text-[#121212] group-hover:text-white ${
-                        currentCategory == parentCategory ? "text-white" : ""
+                        removeAcentos(currentCategory) ===
+                            removeAcentos(parentCategory)
+                          ? "text-white"
+                          : ""
                       }`}
                     >
                       {labelViewAll}
@@ -219,16 +225,16 @@ function GalleryControls(
                     <a
                       href={url}
                       class={`group btn-ghost leading-none btn-xs py-[5px] px-3 flex w-auto lg:h-auto rounded-[20px] bg-transparent hover:bg-black hover:border hover:border-black ${
-                        currentCategory ==
-                            removeAcentos((label || "").toLowerCase())
+                        removeAcentos(currentCategory) ===
+                            removeAcentos(label || "")
                           ? "!bg-black"
                           : ""
                       }`}
                     >
                       <span
                         class={`text-[0.813rem] uppercase text-[#121212] group-hover:text-white ${
-                          currentCategory ==
-                              removeAcentos((label || "").toLowerCase())
+                          removeAcentos(currentCategory) ===
+                              removeAcentos(label || "")
                             ? "!text-white"
                             : ""
                         }`}
