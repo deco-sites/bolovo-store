@@ -11,10 +11,25 @@ export interface Props {
   cardsLayout?: Layout;
 }
 
-export function LoadingFallback() {
+export function LoadingFallback({ title }: Props) {
   return (
-    <div style={{ height: "716px" }} class="flex justify-center items-center">
-      <span class="loading loading-spinner" />
+    <div class="px-[15px] sm:py-10">
+      <h2 class="font-semibold text-base leading-5 pb-[15px] lg:pb-[25px]">
+        <div dangerouslySetInnerHTML={{ __html: title ?? "" }} />
+      </h2>
+
+      <div class="grid grid-cols-2 gap-2 items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px]">
+        {Array(10).fill(0).map(() => (
+          <div class="flex flex-col gap-4">
+            <div class="skeleton aspect-[240/280]" />
+
+            <div class="flex justify-between items-center">
+              <div class="skeleton w-[150px] h-4" />
+              <div class="skeleton w-14 h-4" />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
