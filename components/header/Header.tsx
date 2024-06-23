@@ -17,6 +17,7 @@ import {
 } from "std/http/cookie.ts";
 import type { SectionProps } from "deco/types.ts";
 import { useUI } from "../../sdk/useUI.ts";
+import { AppContext } from "apps/vnda/mod.ts";
 
 export interface Country {
   countryLabel: string;
@@ -96,6 +97,7 @@ function Header(props: SectionProps<ReturnType<typeof loader>>) {
     countryFlag,
     accountHref,
     showLanguageVariant,
+    device
   } = props;
   const items = menu.items ?? [];
 
@@ -114,14 +116,15 @@ function Header(props: SectionProps<ReturnType<typeof loader>>) {
             <Navbar
               items={items}
               contentItem={menu.contentItem}
-              searchbar={searchbar && { ...searchbar, platform }}
+              searchbar={searchbar && { ...searchbar }}
               logo={logo}
               label={buttonSearch.label}
               img={buttonSearch.img}
               helpItem={helpItem}
               countryFlag={countryFlag}
-              showLanguageVariant={showLanguageVariant}
+              showLanguageVariant={showLanguageVariant ?? false}
               accountHref={accountHref}
+              device={device}
             />
           </div>
         </Drawers>
@@ -132,7 +135,7 @@ function Header(props: SectionProps<ReturnType<typeof loader>>) {
 
 export default Header;
 
-export const loader = (props: Props, req: Request) => {
+export const loader = (props: Props, req: Request, ctx: AppContext) => {
   const { activePriceIntl } = useUI();
   const cookies = getCookies(req.headers);
 
@@ -158,5 +161,5 @@ export const loader = (props: Props, req: Request) => {
     deleteCookie(headers, "language");
   }
 
-  return { ...props };
+  return { ...props, device: ctx.device };
 };
