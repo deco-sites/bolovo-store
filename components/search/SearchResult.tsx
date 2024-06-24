@@ -13,6 +13,7 @@ import ButtonsPagination, {
 import type { AppContext } from "$store/apps/site.ts";
 import { getColorRelatedProducts } from "$store/components/search/CategoryMenu.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import LazyImagesJS from "deco-sites/bolovo-store/components/ui/LazyLoadImages.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -78,6 +79,7 @@ export function Result({
 
   return (
     <>
+      <LazyImagesJS />
       <div class="lg:px-8 px-[15px]">
         <div class="flex-grow">
           <ProductGallery

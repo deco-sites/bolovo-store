@@ -73,6 +73,7 @@ function ResultCategory({
     labelClose: "Fechar",
   },
   labelViewAll = "Ver Todos",
+  isDesktop,
 }: Omit<Props, "page"> & {
   page: ProductListingPage;
   currentCategory?: string;
@@ -83,6 +84,7 @@ function ResultCategory({
   parentCategory?: string;
   categoryURL?: string;
   url: string;
+  isDesktop: boolean;
 }) {
   const { filters, breadcrumb, sortOptions } = page;
   const { activePriceIntl } = useUI();
@@ -108,6 +110,7 @@ function ResultCategory({
         labelOrdenation={labelOrdenation}
         labelsOfFilters={labelsOfFilters}
         labelViewAll={labelViewAll}
+        isDesktop={isDesktop}
       />
     </div>
   );
@@ -182,6 +185,7 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
   const { categories } = props;
 
   const url = new URL(req.url);
+  const isDesktop = ctx.device === "desktop";
 
   const urlSegments = url.pathname.split("/").filter(Boolean);
   const firstSegment = urlSegments.length > 0 ? urlSegments[0] : null;
@@ -224,6 +228,7 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
       parentCategory,
       categoryURL,
       url: req.url,
+      isDesktop,
     };
   } else {
     return {
@@ -233,6 +238,7 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
       subCategories: [],
       categoryURL,
       url: req.url,
+      isDesktop,
     };
   }
 };
