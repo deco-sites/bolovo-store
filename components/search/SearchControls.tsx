@@ -58,6 +58,10 @@ function SearchControls(
     selectedFilters.value = [];
   };
 
+  if (true) {
+    return null;
+  }
+
   return (
     <Drawer
       class="drawer-end"
