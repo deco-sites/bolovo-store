@@ -8,7 +8,6 @@ import CartButtonVDNA from "$store/islands/Header/Cart/vnda.tsx";
 import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import CartButtonWake from "$store/islands/Header/Cart/wake.tsx";
 import DrawerSearch from "$store/islands/Header/DrawerSearch.tsx";
-import Searchbar from "$store/islands/Header/Searchbar.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Device } from "deco/utils/userAgent.ts";
 import type { ContentBlogItem } from "./ContentItem.tsx";
@@ -17,6 +16,9 @@ import type { Country } from "./Header.tsx";
 import type { NavItemProps } from "./NavItem.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
+import { lazy, Suspense } from "preact/compat";
+
+const Searchbar = lazy(() => import("$store/islands/Header/Searchbar.tsx"));
 
 function Navbar(
   {

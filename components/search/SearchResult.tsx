@@ -72,7 +72,7 @@ export function Result({
   }
   & { colorVariant: { [productName: string]: Product[] } }
   & { hasBanner?: boolean }) {
-  const { products, pageInfo, sortOptions } = page;
+  const { products, pageInfo } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
@@ -118,7 +118,7 @@ export function Result({
 }
 
 function SearchResult(
-  props: SectionProps<ReturnType<typeof loader>> & {
+  props: Awaited<SectionProps<ReturnType<typeof loader>>> & {
     colorVariant: { [productName: string]: Product[] };
   },
 ) {

@@ -11,7 +11,6 @@ import type { MiniCartProps } from "$store/components/minicart/vnda/Cart.tsx";
 import { lazy, Suspense } from "preact/compat";
 
 const Menu = lazy(() => import("$store/components/header/Menu.tsx"));
-const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
 
 export interface Props {
   menu: MenuProps;
@@ -59,7 +58,7 @@ const Aside = (
 );
 
 function Drawers(
-  { menu, searchbar, miniCart, children, platform, priceIntl = false }: Props,
+  { menu, miniCart, children, platform, priceIntl = false }: Props,
 ) {
   const { displayCart, displayMenu } = useUI();
 
