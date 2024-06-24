@@ -2,15 +2,21 @@ import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Filters from "$store/components/search/Filters.tsx";
 import Sort from "$store/components/search/Sort.tsx";
-import Drawer from "$store/components/ui/Drawer.tsx";
+// import Drawer from "$store/components/ui/Drawer.tsx";
 import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
-import SelectedFilters from "$store/islands/SelectedFilters.tsx";
+// import SelectedFilters from "$store/islands/SelectedFilters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
-import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
+// import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
 import type { FilterName } from "./SearchResultMenu.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import { lazy } from "preact/compat";
 
+const Drawer = lazy(() => import("$store/components/ui/Drawer.tsx"));
+const SelectedFilters = lazy(() =>
+  import("$store/islands/SelectedFilters.tsx")
+);
+const ApplyFiltersJS = lazy(() => import("$store/islands/ApplyFiltersJS.tsx"));
 export type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
   & {
@@ -57,10 +63,6 @@ function SearchControls(
   const removeFilters = () => {
     selectedFilters.value = [];
   };
-
-  if (true) {
-    return null;
-  }
 
   return (
     <Drawer
