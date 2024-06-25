@@ -12,16 +12,16 @@ export default function RenderMarkdown(
   { description, type = "paragraph", alignText = "left" }: RenderMarkdownProps,
 ) {
   const refMarkdown = useRef<HTMLInputElement>(null);
-
   useEffect(() => {
     const fetchData = async () => {
       if (refMarkdown.current && description && alignText) {
-        if (type == "paragraph") {
+        if (type === "paragraph") {
           refMarkdown.current.innerHTML = await createParagraph(
             description,
             alignText,
           );
-        } else if (type == "table") {
+
+        } else if (type === "table") {
           refMarkdown.current.innerHTML = await createTable(description);
         }
       }
@@ -29,7 +29,6 @@ export default function RenderMarkdown(
 
     fetchData();
   }, [refMarkdown, description, type, alignText]);
-
   return (
     <div
       class={`w-full flex flex-col ${type === "table" ? "gap-4" : "gap-1"}`}
