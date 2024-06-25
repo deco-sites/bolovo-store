@@ -1,5 +1,12 @@
 import { marked } from "https://deno.land/x/marked/mod.ts";
 
+interface Text {
+  type: string;
+  raw: string;
+  text: string;
+  tokens: [{ text: string; raw: string; type: string }];
+}
+
 export async function createTable(
   guide: string,
   tableClass: string = "w-full",
@@ -47,18 +54,17 @@ export type AlignText = "center" | "justify" | "left";
 
 export async function createParagraph(paragraph: string, alignText: AlignText) {
   const customRenderer = new marked.Renderer();
-
-  customRenderer.paragraph = function (text: string) {
-    text = text.replace(
+  customRenderer.paragraph = function (text: Text) {
+    text.text = text.text.replace(
       /\*\*(.*?)\*\*/g,
       '<span class="custom-bold">$1</span>',
     );
 
-    text = text.replace(/\*(.*?)\*/g, '<span class="custom-italic">$1</span>');
+    text.text = text.text.replace(/\*(.*?)\*/g, '<span class="custom-italic">$1</span>');
 
     return `<p style="text-align:${
       alignText || "justify"
-    }" class="text-sm leading-5 last:mt-4">${text}</p>`;
+    }" class="text-sm leading-5 last:mt-4">${text.text}</p>`;
   };
 
   const html = await marked.parse(paragraph, { renderer: customRenderer });
