@@ -9,7 +9,6 @@ export async function createTable(
   cellClass: string = "p-1 uppercase",
 ) {
   const customRenderer = new marked.Renderer();
-
   customRenderer.table = function (header: string, body: string) {
     // Adiciona classes à tabela, cabeçalho e corpo
     const tableWithClass =
