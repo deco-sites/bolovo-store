@@ -8,7 +8,6 @@ import type { MiniCartProps } from "$store/components/minicart/vnda/Cart.tsx";
 import { Props as AlertProps } from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight } from "./constants.ts";
-import type { ContentBlogItem } from "./ContentItem.tsx";
 import {
   Cookie,
   deleteCookie,
@@ -106,7 +105,6 @@ function Header(props: SectionProps<ReturnType<typeof loader>>) {
       <header style={{ height: headerHeight }}>
         <Drawers
           menu={menu}
-          searchbar={searchbar}
           miniCart={miniCart}
           platform={platform}
           priceIntl={activePriceIntl.value.active}

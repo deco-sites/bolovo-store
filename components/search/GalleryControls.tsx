@@ -37,6 +37,7 @@ type Props =
     removeFiltersText?: string;
     priceIntl?: boolean;
     labelViewAll: string;
+    isDesktop: boolean;
   };
 
 function GalleryControls(
@@ -57,6 +58,7 @@ function GalleryControls(
     labelsOfFilters,
     priceIntl = false,
     labelViewAll,
+    isDesktop,
   }: Omit<Props, "page">,
 ) {
   const open = useSignal(false);
@@ -245,7 +247,7 @@ function GalleryControls(
                   </Slider.Item>
                 ))}
               </Slider>
-              <DragSliderJS rootId={id} />
+              {isDesktop && <DragSliderJS rootId={id} />}
             </>
           )}
         </div>

@@ -1,5 +1,5 @@
 import type { Props as MenuProps } from "$store/components/header/Menu.tsx";
-import Cart from "$store/components/minicart/Cart.tsx";
+// import Cart from "$store/components/minicart/Cart.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
@@ -11,7 +11,7 @@ import type { MiniCartProps } from "$store/components/minicart/vnda/Cart.tsx";
 import { lazy, Suspense } from "preact/compat";
 
 const Menu = lazy(() => import("$store/components/header/Menu.tsx"));
-const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
+const Cart = lazy(() => import("$store/components/minicart/Cart.tsx"));
 
 export interface Props {
   menu: MenuProps;
@@ -59,7 +59,7 @@ const Aside = (
 );
 
 function Drawers(
-  { menu, searchbar, miniCart, children, platform, priceIntl = false }: Props,
+  { menu, miniCart, children, platform, priceIntl = false }: Props,
 ) {
   const { displayCart, displayMenu } = useUI();
 
@@ -89,11 +89,21 @@ function Drawers(
             title={miniCart?.cartTranslations?.modalCloseText ?? "Fechar"}
             onClose={() => displayCart.value = false}
           >
-            <Cart
-              platform={platform}
-              miniCart={miniCart}
-              priceIntl={priceIntl}
-            />
+            <Suspense
+              fallback={
+                <div class="w-screen flex items-center justify-center">
+                  <span class="loading loading-ring" />
+                </div>
+              }
+            >
+              {displayCart.value && (
+                <Cart
+                  platform={platform}
+                  miniCart={miniCart}
+                  priceIntl={priceIntl}
+                />
+              )}
+            </Suspense>
           </Aside>
         }
       >

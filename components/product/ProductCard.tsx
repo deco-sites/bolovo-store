@@ -347,13 +347,16 @@ function ProductCard(
           </Slider>
           {layout?.dots &&
             (
-              <div class="absolute bottom-0 z-10 right-[42%] bg-transparent">
-                <Dots images={productCardImages ?? []} />
-              </div>
+              <>
+                <div class="absolute bottom-0 z-10 right-[42%] bg-transparent">
+                  <Dots images={productCardImages ?? []} />
+                </div>
+
+                <SliderJS
+                  rootId={idSliders}
+                />
+              </>
             )}
-          <SliderJS
-            rootId={idSliders}
-          />
         </div>
 
         <a
@@ -361,35 +364,37 @@ function ProductCard(
           aria-label="view product"
           class="h-full hidden sm:grid items-center grid-cols-1 grid-rows-1 w-full relative"
         >
-          <Picture preload={preload}>
-            <Source
-              media="(max-width: 1023px)"
-              fetchPriority={preload ? "high" : "auto"}
-              src={safeSrc(front.url)}
-              width={190}
-              height={190}
-            />
-            <Source
-              media="(min-width: 1024px)"
-              fetchPriority={preload ? "high" : "auto"}
-              src={safeSrc(front.url)}
-              width={317}
-              height={317}
-            />
-            <img
-              class={isMobile
-                ? "mix-blend-multiply bg-base-100 w-full"
-                : `mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
-                  layout?.onMouseOver?.image === "Zoom image"
-                    ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                    : ""
-                }`}
-              src={safeSrc(front.url)}
-              alt={front.alternateName}
-              decoding="async"
-              loading={preload ? "eager" : "lazy"}
-            />
-          </Picture>
+          {!isMobile && (
+            <Picture preload={preload}>
+              <Source
+                media="(max-width: 1023px)"
+                fetchPriority={preload ? "high" : "auto"}
+                src={safeSrc(front.url)}
+                width={190}
+                height={190}
+              />
+              <Source
+                media="(min-width: 1024px)"
+                fetchPriority={preload ? "high" : "auto"}
+                src={safeSrc(front.url)}
+                width={317}
+                height={317}
+              />
+              <img
+                class={isMobile
+                  ? "mix-blend-multiply bg-base-100 w-full"
+                  : `mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
+                    layout?.onMouseOver?.image === "Zoom image"
+                      ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                      : ""
+                  }`}
+                src={safeSrc(front.url)}
+                alt={front.alternateName}
+                decoding="async"
+                loading={preload ? "eager" : "lazy"}
+              />
+            </Picture>
+          )}
           {!isMobile && (!layout?.onMouseOver?.image ||
             layout?.onMouseOver?.image === "Change image") &&
             (
