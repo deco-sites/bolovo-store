@@ -13,6 +13,7 @@ import ButtonsPagination, {
 import type { AppContext } from "$store/apps/site.ts";
 import { getColorRelatedProducts } from "$store/components/search/CategoryMenu.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import LazyImagesJS from "deco-sites/bolovo-store/components/ui/LazyLoadImages.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -72,12 +73,13 @@ export function Result({
   }
   & { colorVariant: { [productName: string]: Product[] } }
   & { hasBanner?: boolean }) {
-  const { products, pageInfo, sortOptions } = page;
+  const { products, pageInfo } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
   return (
     <>
+      <LazyImagesJS />
       <div class="lg:px-8 px-[15px]">
         <div class="flex-grow">
           <ProductGallery
@@ -118,7 +120,7 @@ export function Result({
 }
 
 function SearchResult(
-  props: SectionProps<ReturnType<typeof loader>> & {
+  props: Awaited<SectionProps<ReturnType<typeof loader>>> & {
     colorVariant: { [productName: string]: Product[] };
   },
 ) {
