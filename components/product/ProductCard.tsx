@@ -127,7 +127,8 @@ function ProductCard(
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, listPriceIntl, price, priceIntl = 0 } = useOffer(offers);
+  const { listPrice, listPriceIntl, price, priceIntl = 0, availability } =
+    useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const { activePriceIntl } = useUI();
   const currency = activePriceIntl.value.active
@@ -254,7 +255,9 @@ function ProductCard(
     <div
       id={id}
       class={`card card-compact group w-full h-full relative ${
-        productPrice === 0 && "opacity-70 pointer-events-none cursor-none"
+        productPrice === 0 || availability === "https://schema.org/OutOfStock"
+          ? "opacity-70 pointer-events-none cursor-none"
+          : ""
       } ${align === "center" ? "text-center" : "text-start"} ${
         layout?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
       }

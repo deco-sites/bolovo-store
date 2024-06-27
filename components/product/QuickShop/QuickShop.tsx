@@ -78,7 +78,7 @@ export default function QuickShop(
 
   return (
     <div
-      className={`flex flex-row-reverse p-2 absolute bottom-0 right-0 z-10 ease-in-out duration-500 transition-width w-full min-h-[40px] ${
+      className={`flex flex-row-reverse p-2 absolute bottom-0 right-0 z-20 ease-in-out duration-500 transition-width w-full ${
         step.value !== "waiting"
           ? " bg-base-100 translate-y-0"
           : " bg-transparent lg:bg-white translate-y-[100%]"
@@ -89,7 +89,7 @@ export default function QuickShop(
         <>
           <button
             onClick={() => defineAction(productID)}
-            class={`${
+            class={`block no-animation transition-none ${
               step.value === "waiting"
                 ? "translate-y-[-145%] h-min"
                 : "translate-y-0"
@@ -108,11 +108,11 @@ export default function QuickShop(
                 <Icon
                   id="Close"
                   size={21}
-                  class="ml-2 lg:hidden mt-[-2px] text-[#b8b8b8]"
+                  class="lg:hidden block text-[#b8b8b8]"
                 />
               )}
           </button>
-          <ul class="w-full flex flex-row gap-2 justify-around lg:w-full lg:flex text-[0.938rem] flex-wrap gap-x-1">
+          <ul class="w-full flex items-center flex-row gap-2 justify-around lg:w-full lg:flex text-[0.938rem] flex-wrap gap-x-1">
             {variants && (
               <SkuSelector
                 variants={variants}
