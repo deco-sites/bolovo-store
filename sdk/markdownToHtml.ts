@@ -48,12 +48,17 @@ export function createTable(
     renderer: customRenderer,
     async: false,
   });
-  const html2 = marked.parse(table2, {
-    renderer: customRenderer,
-    async: false,
-  });
 
-  return ((html1 as string) + (html2 as string));
+  if (table2) {
+    const html2 = marked.parse(table2, {
+      renderer: customRenderer,
+      async: false,
+    });
+
+    return ((html1 as string) + (html2 as string));
+  }
+
+  return (html1 as string);
 }
 
 export type AlignText = "center" | "justify" | "left";

@@ -269,12 +269,13 @@ function PDPProductInfo(
       </div>
       {/* Description card */}
       <div class="mt-4 sm:mt-6">
-        {objDescription && objDescription.description &&
-          (
+        {objDescription
+          ? (
             <div>
               <NavigationDescription descriptionProps={objDescription} />
             </div>
-          )}
+          )
+          : null}
       </div>
       {/* Analytics Event */}
       <SendEventOnLoad
