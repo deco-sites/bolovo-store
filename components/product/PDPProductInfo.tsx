@@ -35,7 +35,7 @@ function PDPProductInfo(
       if (additionalProperties && additionalProperties.length > 0) {
         for (const property of additionalProperties) {
           const { value } = property;
-          if (value && property.name !== "Tamanho") {
+          if (value && property.name !== "Tamanho" && property.name !== "Cor") {
             try {
               const parsedValue = JSON.parse(value);
               if (parsedValue && parsedValue.type === "cor") {

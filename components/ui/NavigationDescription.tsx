@@ -4,7 +4,7 @@ import type {
   SectionDescription,
 } from "../../sdk/markdownToObj.ts";
 import Icon from "./Icon.tsx";
-import RenderMarkdown from "../../islands/RenderMarkdown.tsx";
+import RenderMarkdown from "./RenderMarkdown.tsx";
 export interface Props {
   descriptionProps: Description;
   tabIndex?: number;
@@ -31,8 +31,7 @@ export default function NavigationDescription(
         />
       )}
       <ul class="w-full flex flex-row lg:justify-start lg:gap-6 justify-between pb-3 pt-6">
-        {descriptionTabs &&
-          descriptionTabs.slice(0, 3).map((tab, index) => (
+        {descriptionTabs?.slice(0, 3).map((tab, index) => (
             <li
               class="text-sm text-center flex flex-col justify-between items-center w-min h-[50px] cursor-pointer"
               onClick={() => toggleDescription(index)}
@@ -47,20 +46,19 @@ export default function NavigationDescription(
           ))}
       </ul>
       <ul class="w-full flex flex-row">
-        {descriptionTabs &&
-          descriptionTabs.slice(0, 3).map((description, index) => (
-            <li
-              class={` ${
-                itemVisible.value == index ? "flex" : "hidden"
-              } w-full text-sm leading-5`}
-              style={{ fontSize: "11px" }}
-            >
-              <RenderMarkdown
-                description={description?.content}
-                type={description?.type}
-              />
-            </li>
-          ))}
+        {descriptionTabs?.slice(0, 3).map((description, index) => (
+          <li
+            class={` ${
+              itemVisible.value == index ? "flex" : "hidden"
+            } w-full text-sm leading-5`}
+            style={{ fontSize: "11px" }}
+          >
+            <RenderMarkdown
+              description={description?.content}
+              type={description?.type}
+            />
+          </li>
+        ))}
       </ul>
       {/* Go horse para fazer a classe last existir no elemento usado do Markdown */}
       <div class="last:mt-4 hidden" />

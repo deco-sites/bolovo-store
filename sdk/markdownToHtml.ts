@@ -1,73 +1,84 @@
-import { marked } from "https://deno.land/x/marked/mod.ts";
+import { marked, Tokens } from "marked/mod.ts";
 
-interface Text {
-  type: string;
-  raw: string;
-  text: string;
-  tokens: [{ text: string; raw: string; type: string }];
-}
-
-export async function createTable(
+export function createTable(
   guide: string,
   tableClass: string = "w-full",
   headerClass: string = "uppercase",
   bodyClass: string = "border border-black uppercase text-[0.688rem]",
   rowClass: string = "",
   cellClass: string = "p-1 uppercase",
-) {
+): string {
   const customRenderer = new marked.Renderer();
-  customRenderer.table = function (header: string, body: string) {
+
+  const tableCell = (
+    cells: Tokens.TableCell[],
+  ) => {
+    return cells.map((cell) => {
+      const tag = cell.header ? "th" : "td";
+      const cellClassString = cell.header ? headerClass : bodyClass;
+      const cellClassAttribute = cellClassString
+        ? ` class="${cellClassString + " " + cellClass}"`
+        : "";
+      return `<${tag} ${cellClassAttribute}${
+        cell.align ? ` style="text-align:${cell.align}"` : ""
+      }>${cell.text}</${tag}>`;
+    }).join("");
+  };
+
+  const tableRow = (content: string) => {
+    const rowClassAttribute = rowClass ? ` class="${rowClass}" ` : "";
+    return `<tr ${rowClassAttribute} >${content}</tr>`;
+  };
+
+  customRenderer.table = function ({ header, rows }: Tokens.Table) {
     // Adiciona classes à tabela, cabeçalho e corpo
     const tableWithClass =
-      `<table class="${tableClass} w-full">\n<thead class="${headerClass}">${header}</thead>\n<tbody class="${bodyClass}">${body}</tbody>\n</table>`;
+      `<table class="${tableClass} w-full"><thead class="${headerClass}">${
+        tableRow(tableCell(header))
+      }</thead><tbody class="${bodyClass}">${
+        rows.map((row) => tableRow(tableCell(row))).join("")
+      }</tbody></table>`;
 
     return tableWithClass;
   };
 
-  // Adiciona classes às células do cabeçalho e do corpo
-  customRenderer.tablecell = function (
-    content: string,
-    flags: { header: boolean; align: string },
-  ) {
-    const tag = flags.header ? "th" : "td";
-    const cellClassString = flags.header ? headerClass : bodyClass;
-    const cellClassAttribute = cellClassString
-      ? ` class="${cellClassString + " " + cellClass}"`
-      : "";
-    return `<${tag} ${cellClassAttribute}${
-      flags.align ? ` style="text-align:${flags.align}"` : ""
-    }>${content}</${tag}>`;
-  };
+  const [table1, table2] = guide.split("\n\n");
 
-  // Adiciona classe à linha, se fornecida
-  customRenderer.tablerow = function (content: string) {
-    const rowClassAttribute = rowClass ? ` class="${rowClass} ` : "  '";
-    return `<tr ${rowClassAttribute} >${content}</tr>`;
-  };
+  const html1 = marked.parse(table1, {
+    renderer: customRenderer,
+    async: false,
+  });
+  const html2 = marked.parse(table2, {
+    renderer: customRenderer,
+    async: false,
+  });
 
-  const html = await marked.parse(guide, { renderer: customRenderer });
-
-  return html;
+  return ((html1 as string) + (html2 as string));
 }
 
 export type AlignText = "center" | "justify" | "left";
 
-export async function createParagraph(paragraph: string, alignText: AlignText) {
+export function createParagraph(
+  paragraph: string,
+  alignText: AlignText,
+): string {
   const customRenderer = new marked.Renderer();
-  customRenderer.paragraph = function (text: Text) {
-    text.text = text.text.replace(
-      /\*\*(.*?)\*\*/g,
-      '<span class="custom-bold">$1</span>',
-    );
-
-    text.text = text.text.replace(/\*(.*?)\*/g, '<span class="custom-italic">$1</span>');
-
+  customRenderer.paragraph = function ({ text }: Tokens.Paragraph) {
     return `<p style="text-align:${
       alignText || "justify"
-    }" class="text-sm leading-5 last:mt-4">${text.text}</p>`;
+    }" class="text-sm leading-5 last:mt-4">${
+      text.replace(/\*(.*?)\*/g, '<span class="custom-italic">$1</span>')
+        .replace(
+          /\*\*(.*?)\*\*/g,
+          '<span class="custom-bold">$1</span>',
+        )
+    }</p>`;
   };
 
-  const html = await marked.parse(paragraph, { renderer: customRenderer });
+  const html = marked.parse(paragraph, {
+    renderer: customRenderer,
+    async: false,
+  });
 
-  return html;
+  return html as string;
 }
