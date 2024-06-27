@@ -22,8 +22,6 @@ export default function NavigationDescription(
     descriptionTabs.filter((desc) => desc !== undefined);
   }
 
-  console.log(descriptionProps);
-
   return (
     <div class="w-full flex flex-col mt-6">
       {description && (

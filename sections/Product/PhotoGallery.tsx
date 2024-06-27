@@ -98,7 +98,6 @@ export function LoadingFallback(
         {Array(4).fill(0).map(() => (
           <li class="flex flex-col gap-4 h-full">
             <div class="skeleton aspect-[240/280]" />
-
             <div class="flex justify-between items-center gap-2">
               <div class="skeleton w-[150px] h-4" />
               <div class="skeleton w-14 h-4" />
@@ -111,8 +110,13 @@ export function LoadingFallback(
 }
 
 export default function PhotoGallery(
-  { title, featuredPhoto, contentDirection, products, productCardLayout }:
-    Props,
+  {
+    title,
+    featuredPhoto,
+    contentDirection,
+    products,
+    productCardLayout,
+  }: Props,
 ) {
   if (!products || products.length === 0) {
     return null;

@@ -9,6 +9,7 @@ export interface Props {
   title?: string;
   products: Product[] | null;
   cardsLayout?: Layout;
+  colors?: Color[];
 }
 
 export function LoadingFallback({ title }: Props) {
@@ -82,19 +83,17 @@ function ProductGallery({
   products,
   title,
   colorVariant,
-  filterColors,
   cardsLayout,
   showColorVariants = true,
-  cardLayout,
+  colors
 }:
   & Props
   & { colorVariant: { [productName: string]: Product[] } }
-  & { filterColors?: Color[] }
   & { showColorVariants?: boolean }) {
   if (!products || products.length === 0) {
     return null;
   }
-
+  
   return (
     <div class="px-[15px] sm:py-10">
       <h2 class="font-semibold text-base leading-5 pb-[15px] lg:pb-[25px]">
@@ -107,8 +106,7 @@ function ProductGallery({
           products={products}
           cardsLayout={cardsLayout}
           colorVariant={colorVariant || []}
-          colors={filterColors}
-          cardLayout={cardLayout}
+          colors={colors}
           showColorVariants={showColorVariants}
         />
       </div>

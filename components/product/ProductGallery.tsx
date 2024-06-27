@@ -44,7 +44,7 @@ function ProductGallery(
 
   return (
     <ul
-      class={`grid grid-cols-2 gap-2 items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px] col-`}
+      class="grid grid-cols-2 gap-2 items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px]"
     >
       {products?.map((product, index) => (
         cardSEO && index === 0
@@ -75,7 +75,7 @@ function ProductGallery(
                 productCardLayout={photoOnPLP.imageAndProducts
                   .productCardLayout}
               />
-              <li class={`h-full`}>
+              <li class="h-full">
                 <ProductCard
                   product={product}
                   layout={cardsLayout}
@@ -93,7 +93,7 @@ function ProductGallery(
             </>
           )
           : (
-            <li class={`h-full`}>
+            <li class="h-full">
               <ProductCard
                 product={product}
                 preload={hasBanner

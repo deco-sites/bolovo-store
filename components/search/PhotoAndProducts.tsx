@@ -2,7 +2,6 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
 import ProductCard, { Layout } from "../../components/product/ProductCard.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-
 export interface ImageAndProducts {
   variant: "1x1" | "2x2" | "2x1";
   /**
@@ -90,6 +89,7 @@ export default function PhotoAndProducts(
     productCardLayout?: Layout;
   },
 ) {
+
   if (!products || products.length === 0) {
     return null;
   }
