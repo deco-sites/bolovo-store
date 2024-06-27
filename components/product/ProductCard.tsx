@@ -256,7 +256,7 @@ function ProductCard(
       id={id}
       class={`card card-compact group w-full h-full relative ${
         productPrice === 0 || availability === "https://schema.org/OutOfStock"
-          ? "opacity-70 pointer-events-none cursor-none"
+          ? "opacity-70"
           : ""
       } ${align === "center" ? "text-center" : "text-start"} ${
         layout?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""
