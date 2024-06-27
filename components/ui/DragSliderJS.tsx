@@ -41,7 +41,6 @@ const setup = ({ rootId }: Props) => {
   };
 
   const start = (e) => {
-    console.log(e)
     isDown = true;
     slider.classList.add("cursor-grab");
     startX = e.pageX || e.touches[0].pageX - slider.offsetLeft;
