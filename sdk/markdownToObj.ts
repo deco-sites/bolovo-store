@@ -19,31 +19,33 @@ function parseSections(input: string): Description {
     const [title, ...contentArray] = section.trim().split("\n");
     const content = contentArray.join("\n").trim();
 
-    if (title === "## DESCRIÇÃO") {
+    if (title.trim() === "## DESCRIÇÃO") {
       result.description = { title: title.trim(), content };
+      
     } else if (
-      title === "## DESCRIÇÃO TÉCNICA" || title === "## GUIA DE TAMANHOS" ||
-      title === "## INSTRUÇÕES DE LAVAGEM"
+      title.trim() === "## DESCRIÇÃO TÉCNICA" || title.trim() === "## GUIA DE TAMANHOS" ||
+      title.trim() === "## INSTRUÇÕES DE LAVAGEM"
     ) {
+      
       const existingTab = result.descriptionTabs?.find((tab) =>
         tab.title === title.trim()
       );
 
       if (!existingTab) {
-        if (title === "## DESCRIÇÃO TÉCNICA") {
+        if (title.trim() === "## DESCRIÇÃO TÉCNICA") {
           result.descriptionTabs?.push({
             title: "COMPOSIÇÃO",
             content,
             type: "paragraph",
           });
-        } else if (title === "## GUIA DE TAMANHOS") {
+        } else if (title.trim() === "## GUIA DE TAMANHOS") {
           const formattedContent = processTable(content);
           result.descriptionTabs?.push({
             title: "MEDIDAS",
             content: formattedContent,
             type: "table",
           });
-        } else if (title === "## INSTRUÇÕES DE LAVAGEM") {
+        } else if (title.trim() === "## INSTRUÇÕES DE LAVAGEM") {
           result.descriptionTabs?.push({
             title: "LAVAGEM",
             content,
