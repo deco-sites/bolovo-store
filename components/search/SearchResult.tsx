@@ -14,6 +14,7 @@ import type { AppContext } from "$store/apps/site.ts";
 import { getColorRelatedProducts } from "$store/components/search/CategoryMenu.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import LazyImagesJS from "deco-sites/bolovo-store/components/ui/LazyLoadImages.tsx";
+import { usePartialSection } from "deco/hooks/usePartialSection.ts";
 
 export interface Props {
   /** @title Integration */
@@ -58,6 +59,7 @@ export function Result({
   colorVariant,
   showColorVariants,
   card,
+  url,
   hasBanner,
   buttonsPagination,
 }:
@@ -77,6 +79,13 @@ export function Result({
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
+  const nextPage = pageInfo.nextPage ? new URL(pageInfo.nextPage, url) : null;
+  const partialUrl = nextPage ? new URL(nextPage.href) : null;
+  if (pageInfo.nextPage && nextPage) {
+    partialUrl?.searchParams.set("partial", "true");
+  }
+  console.log({ partialUrl, pageInfo });
+
   return (
     <>
       <LazyImagesJS />
@@ -95,7 +104,21 @@ export function Result({
             showColorVariants={showColorVariants}
           />
         </div>
-        <ButtonsPagination page={page} props={buttonsPagination} />
+        {/* <ButtonsPagination page={page} props={buttonsPagination} /> */}
+        {partialUrl
+          ? (
+            <button
+              id={`show-more-button-${pageInfo.currentPage}`}
+              class="uppercase btn btn-ghost font-normal hover:font-bold hover:bg-transparent ease-in duration-500 mt-4 block m-auto"
+              {...usePartialSection({
+                href: partialUrl.href,
+                mode: "append",
+              })}
+            >
+              Ver Mais
+            </button>
+          )
+          : null}
       </div>
       <SendEventOnLoad
         event={{
