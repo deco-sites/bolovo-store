@@ -5,7 +5,7 @@ export interface ButtonsPaginationProps {
   /**
    * @default "Limitar numeros"
    */
-  layoutPagination?: "Limitar numeros" | "Não limitar numeros";
+  layoutPagination?: "Limitar numeros" | "Não limitar numeros" | "Ver mais";
   labelPrevious?: string;
   labelNext?: string;
   labelButtonTop?: string;

@@ -14,6 +14,9 @@ import type { AppContext } from "$store/apps/site.ts";
 import { getColorRelatedProducts } from "$store/components/search/CategoryMenu.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import LazyImagesJS from "deco-sites/bolovo-store/components/ui/LazyLoadImages.tsx";
+import { usePartialSection } from "deco/hooks/usePartialSection.ts";
+import Spinner from "deco-sites/bolovo-store/components/ui/Spinner.tsx";
+import ShowMore from "deco-sites/bolovo-store/islands/ShowMore.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -58,6 +61,7 @@ export function Result({
   colorVariant,
   showColorVariants,
   card,
+  url,
   hasBanner,
   buttonsPagination,
 }:
@@ -77,6 +81,13 @@ export function Result({
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
+  const nextPage = pageInfo.nextPage ? new URL(pageInfo.nextPage, url) : null;
+  const partialUrl = nextPage ? new URL(nextPage.href) : null;
+  if (pageInfo.nextPage && nextPage) {
+    partialUrl?.searchParams.set("partial", "true");
+  }
+  console.log({ partialUrl, pageInfo });
+
   return (
     <>
       <LazyImagesJS />
@@ -95,7 +106,28 @@ export function Result({
             showColorVariants={showColorVariants}
           />
         </div>
-        <ButtonsPagination page={page} props={buttonsPagination} />
+        {buttonsPagination?.layoutPagination === "Ver mais"
+          ? (
+            <ShowMore
+              pageInfo={pageInfo}
+            >
+              {partialUrl
+                ? (
+                  <button
+                    id={`show-more-button-${pageInfo.currentPage}`}
+                    class="hidden"
+                    {...usePartialSection({
+                      href: partialUrl.href,
+                      mode: "append",
+                    })}
+                  >
+                    Ver Mais
+                  </button>
+                )
+                : null}
+            </ShowMore>
+          )
+          : <ButtonsPagination page={page} props={buttonsPagination} />}
       </div>
       <SendEventOnLoad
         event={{
