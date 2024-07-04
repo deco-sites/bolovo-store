@@ -148,7 +148,7 @@ export default function PhotoAndProducts(
         </a>
       </li>
       {products.map((product) => (
-        <li class="h-full">
+        <li>
           <ProductCard
             layout={productCardLayout}
             product={product}

@@ -286,9 +286,7 @@ function ProductCard(
         }}
       />
       <figure
-        class={`relative overflow-hidden ${
-          layout?.aspect ? "aspect-[270/300]" : "aspect-[240/280]"
-        } `}
+        class="relative overflow-hidden"
         style={{ backgroundColor: "#F6F6F6" }}
       >
         {productPrice !== 0 &&
@@ -422,7 +420,7 @@ function ProductCard(
                     alt={back?.alternateName ?? front.alternateName}
                     src={safeSrc(back?.url ?? front.url)}
                     decoding="async"
-                    loading={"lazy"}
+                    loading="lazy"
                   />
                 </Picture>
               </div>
