@@ -91,7 +91,7 @@ export function Result({
   return (
     <>
       <LazyImagesJS />
-      <div class="lg:px-8 px-[15px]">
+      <div class="lg:px-8 px-[15px] mb-[15px]">
         <div class="flex-grow">
           <ProductGallery
             products={products}
