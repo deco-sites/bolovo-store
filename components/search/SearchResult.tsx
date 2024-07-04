@@ -15,6 +15,8 @@ import { getColorRelatedProducts } from "$store/components/search/CategoryMenu.t
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import LazyImagesJS from "deco-sites/bolovo-store/components/ui/LazyLoadImages.tsx";
 import { usePartialSection } from "deco/hooks/usePartialSection.ts";
+import Spinner from "deco-sites/bolovo-store/components/ui/Spinner.tsx";
+import ShowMore from "deco-sites/bolovo-store/islands/ShowMore.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -104,21 +106,28 @@ export function Result({
             showColorVariants={showColorVariants}
           />
         </div>
-        {/* <ButtonsPagination page={page} props={buttonsPagination} /> */}
-        {partialUrl
+        {buttonsPagination?.layoutPagination === "Ver mais"
           ? (
-            <button
-              id={`show-more-button-${pageInfo.currentPage}`}
-              class="uppercase btn btn-ghost font-normal hover:font-bold hover:bg-transparent ease-in duration-500 mt-4 block m-auto"
-              {...usePartialSection({
-                href: partialUrl.href,
-                mode: "append",
-              })}
+            <ShowMore
+              pageInfo={pageInfo}
             >
-              Ver Mais
-            </button>
+              {partialUrl
+                ? (
+                  <button
+                    id={`show-more-button-${pageInfo.currentPage}`}
+                    class="hidden"
+                    {...usePartialSection({
+                      href: partialUrl.href,
+                      mode: "append",
+                    })}
+                  >
+                    Ver Mais
+                  </button>
+                )
+                : null}
+            </ShowMore>
           )
-          : null}
+          : <ButtonsPagination page={page} props={buttonsPagination} />}
       </div>
       <SendEventOnLoad
         event={{

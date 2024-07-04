@@ -30,6 +30,7 @@ import * as $QuickShop from "./islands/QuickShop.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
 import * as $SelectedFilters from "./islands/SelectedFilters.tsx";
 import * as $ShippingSimulation from "./islands/ShippingSimulation.tsx";
+import * as $ShowMore from "./islands/ShowMore.tsx";
 import * as $SliderJS from "./islands/SliderJS.tsx";
 import * as $ValueItem from "./islands/ValueItem.tsx";
 import * as $WishlistButton from "./islands/WishlistButton.tsx";
@@ -68,6 +69,7 @@ const manifest = {
     "./islands/SearchControls.tsx": $SearchControls,
     "./islands/SelectedFilters.tsx": $SelectedFilters,
     "./islands/ShippingSimulation.tsx": $ShippingSimulation,
+    "./islands/ShowMore.tsx": $ShowMore,
     "./islands/SliderJS.tsx": $SliderJS,
     "./islands/ValueItem.tsx": $ValueItem,
     "./islands/WishlistButton.tsx": $WishlistButton,
