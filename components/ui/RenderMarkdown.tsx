@@ -16,7 +16,7 @@ export default function RenderMarkdown(
         class={`w-full flex flex-col gap-1`}
         dangerouslySetInnerHTML={{
           __html: createParagraph(
-            description,
+            description ?? "",
             alignText,
           ),
         }}
