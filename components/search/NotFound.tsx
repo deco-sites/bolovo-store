@@ -8,7 +8,7 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
 interface Step {
   label: string;
   /**
-   * @format html
+   * @format rich-text
    */
   textStep: string;
 }

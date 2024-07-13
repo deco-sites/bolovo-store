@@ -7,7 +7,6 @@ import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import type { Props as CouponProps } from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
 import { useCart } from "apps/vnda/hooks/useCart.ts";
-import type { HTMLWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import InnerHTML from "$store/components/ui/InnerHTML.tsx";
 
@@ -27,7 +26,8 @@ interface Props {
   onUpdateQuantity: ItemProps["onUpdateQuantity"];
   itemToAnalyticsItem: ItemProps["itemToAnalyticsItem"];
   cartTranslations?: {
-    freeShippingText?: HTMLWidget;
+    /** @format rich-text */
+    freeShippingText?: string;
     ctaCheckout?: string;
     ctaBackStore?: string;
     modalCloseText?: string;

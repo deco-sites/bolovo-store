@@ -1,5 +1,4 @@
 import { formatPrice } from "$store/sdk/format.ts";
-import type { HTMLWidget } from "apps/admin/widgets.ts";
 import InnerHTML from "$store/components/ui/InnerHTML.tsx";
 
 interface Props {
@@ -7,7 +6,8 @@ interface Props {
   target: number;
   locale: string;
   currency: string;
-  freeShippingText?: HTMLWidget;
+  /** @format rich-text */
+  freeShippingText?: string;
   freeShippingValueColor?: string;
 }
 

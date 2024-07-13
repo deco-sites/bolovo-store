@@ -1,12 +1,12 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import InnerHTML from "$store/components/ui/InnerHTML.tsx";
-import type { HTMLWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 
 export interface Props {
   logo?: {
     image: ImageWidget;
-    description?: HTMLWidget;
+    /** @format rich-text */
+    description?: string;
   };
 }
 
@@ -24,9 +24,11 @@ export default function Logo({ logo }: Props) {
               height={75}
             />
           </div>
-          <div class="max-w-[350px] lg:mx-0 mx-auto mt-4 lg:mt-0 lg:text-left text-center w-full font-normal leading-[26px] text-base">
-            <InnerHTML html={logo?.description} />
-          </div>
+          {logo.description && (
+            <div class="max-w-[350px] lg:mx-0 mx-auto mt-4 lg:mt-0 lg:text-left text-center w-full font-normal leading-[26px] text-base">
+              <InnerHTML html={logo.description} />
+            </div>
+          )}
         </div>
       )}
     </>

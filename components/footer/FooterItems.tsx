@@ -9,7 +9,6 @@ export interface WhatsApp {
 export type Item = {
   label: string;
   href?: string;
-  /** @format rich-text */
   extraInfo?: string;
   newTab?: boolean;
 };
@@ -118,13 +117,36 @@ export default function FooterItems(
                     >
                       {section.items?.map((item) => (
                         <li>
-                          <a
-                            href={item.href}
-                            class="block text-base leading-[25px] font-normal uppercase text-primary"
-                            target={item.newTab ? "_blank" : ""}
-                          >
-                            {item.label}
-                          </a>
+                          {item.extraInfo
+                            ? (
+                              <div class="flex flex-row items-center">
+                                <span class="block leading-[26px] font-normal text-base uppercase text-baserimary">
+                                  {item.label}
+                                </span>
+
+                                <a
+                                  target={item.newTab ? "_blank" : ""}
+                                  href={item.href}
+                                  class="block leading-[26px] font-normal text-base text-baserimary pl-1"
+                                >
+                                  <div
+                                    class="block leading-[26px] font-normal text-base text-baserimary"
+                                    dangerouslySetInnerHTML={{
+                                      __html: item.extraInfo,
+                                    }}
+                                  />
+                                </a>
+                              </div>
+                            )
+                            : (
+                              <a
+                                href={item.href}
+                                class="block text-base leading-[25px] font-normal uppercase text-primary"
+                                target={item.newTab ? "_blank" : ""}
+                              >
+                                {item.label}
+                              </a>
+                            )}
                         </li>
                       ))}
                     </ul>

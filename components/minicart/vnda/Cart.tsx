@@ -1,5 +1,4 @@
 import { itemToAnalyticsItem, useCart } from "apps/vnda/hooks/useCart.ts";
-import type { HTMLWidget } from "apps/admin/widgets.ts";
 import BaseCart from "../common/Cart.tsx";
 import { useEffect } from "preact/hooks";
 import { useSignal } from "@preact/signals";
@@ -12,8 +11,11 @@ export interface MiniCartProps {
   freeShippingValueColor?: string;
   freeShippingTarget?: number;
   cartTranslations?: {
-    /** @default Faltam R$ $valor para o frete grátis */
-    freeShippingText?: HTMLWidget;
+    /**
+     * @default Faltam R$ $valor para o frete grátis
+     * @format rich-text
+     */
+    freeShippingText?: string;
     /** @default CHECKOUT */
     ctaCheckout?: string;
     /** @default CONTINUAR COMPRANDO*/

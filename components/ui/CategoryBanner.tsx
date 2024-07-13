@@ -7,7 +7,7 @@ export interface Banner {
   title?: string;
   /**
    * @description text to be rendered on top of the image
-   * @format html
+   * @format rich-text
    */
   subtitle?: string;
   image: {

@@ -6,7 +6,6 @@ import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import LanguageSwitcher from "$store/islands/Header/ButtonLanguage.tsx";
 import { Country } from "$store/components/header/Header.tsx";
-import type { HTMLWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
 
@@ -14,7 +13,7 @@ export type Item = {
   label: string;
   href: string;
   /** @format rich-text */
-  extraInfo?: HTMLWidget;
+  extraInfo?: string;
   newTab?: boolean;
 };
 

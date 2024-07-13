@@ -28,7 +28,7 @@ export interface Props {
   };
   /**
    * @title Text content
-   * @format html
+   * @format rich-text
    */
   textContent: string;
 
