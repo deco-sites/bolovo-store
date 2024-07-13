@@ -2,7 +2,6 @@ import type { Props as SearchbarProps } from "$store/components/search/Searchbar
 import { useUI } from "$store/sdk/useUI.ts";
 import type { ComponentChildren } from "preact";
 import { lazy, Suspense } from "preact/compat";
-import { useSignal } from "@preact/signals";
 
 const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
 
@@ -22,8 +21,7 @@ const Aside = (
   },
 ) => (
   <div class="bg-[rgba(0,0,0,.5)] grid grid-rows-[auto_1fr] h-screen w-full absolute top-full left-0">
-    <div class="w-screen h-[1px] z-[1] bg-[rgba(0,0,0,.1)] shadow-[0_4px_20px_1px_rgb(0,0,0,.6)]">
-    </div>
+    <div class="w-screen h-[1px] z-[1] bg-[rgba(0,0,0,.1)] shadow-[0_4px_20px_1px_rgb(0,0,0,.6)]" />
     <Suspense
       fallback={
         <div class="w-screen flex items-center justify-center">
@@ -40,9 +38,8 @@ const Aside = (
   </div>
 );
 
-function DrawerSearch({ searchbar, loading = "lazy" }: Props) {
+function DrawerSearch({ searchbar }: Props) {
   const { displaySearchDrawer } = useUI();
-  const lazy = useSignal(loading === "lazy" && !displaySearchDrawer.value);
 
   return (
     <div style={{ display: displaySearchDrawer.value ? "flex" : "none" }}>

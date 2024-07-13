@@ -67,31 +67,13 @@ function Searchbar({
   const searchInputRefMobile = useRef<HTMLInputElement>(null);
   const { displaySearchDrawer, displaySearchPopup } = useUI();
 
-  useEffect(() => {
-    if (displaySearchPopup.value === true) {
-      searchInputRef.current?.focus();
-    }
-  }, [displaySearchPopup.value]);
-
   const hasValue = useSignal(false);
-  const handleChange = (e: TargetedEvent) => {
-    if (searchInputRef.current?.value) {
-      hasValue.value = true;
-    } else {
-      e.preventDefault();
-      hasValue.value = false;
-      return false;
-    }
+  const handleChange = () => {
+    hasValue.value = !!searchInputRef.current?.value;
   };
 
-  const handleChangeMob = (e: TargetedEvent) => {
-    if (searchInputRefMobile.current?.value) {
-      hasValue.value = true;
-    } else {
-      e.preventDefault();
-      hasValue.value = false;
-      return false;
-    }
+  const handleChangeMob = () => {
+    hasValue.value = !!searchInputRefMobile.current?.value;
   };
 
   return (
@@ -109,6 +91,7 @@ function Searchbar({
             class=" px-2 join-item outline-0 flex-grow border-none h-auto font-normal"
             name={name}
             placeholder={placeholder}
+            onClick={(e) => e.currentTarget.focus()}
             role="combobox"
             aria-controls="search-suggestion"
             autocomplete="off"
@@ -157,6 +140,7 @@ function Searchbar({
             class="join-item outline-0 flex-grow border-none h-auto font-normal"
             name={name}
             placeholder={placeholder}
+            onClick={(e) => e.currentTarget.focus()}
             role="combobox"
             aria-controls="search-suggestion"
             autocomplete="off"
