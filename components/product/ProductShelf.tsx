@@ -13,6 +13,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import type { AppContext } from "$store/apps/site.ts";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
+import { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Props {
   /** @format rich-text */
@@ -29,11 +30,20 @@ export interface Props {
   colors: Color[];
   /** @description Choose if you would like to showcase the color variants in the product cards  */
   showColorVariants?: boolean;
+  cardSEO?: {
+    text?: string;
+    img?: {
+      src?: ImageWidget;
+      alt: string;
+      width?: number;
+      height?: number;
+    };
+  };
 }
 
 export const loader = async (
   props: Props,
-  req: Request,
+  _req: Request,
   ctx: AppContext,
 ) => {
   const { showColorVariants } = props;
@@ -54,7 +64,16 @@ export const loader = async (
 };
 
 function ProductShelf(
-  { products, title, layout, seeMore, colors, colorVariant, showColorVariants }:
+  {
+    products,
+    title,
+    layout,
+    seeMore,
+    colors,
+    colorVariant,
+    showColorVariants,
+    cardSEO,
+  }:
     & Props
     & { colorVariant?: { [productName: string]: Product[] } },
 ) {
@@ -80,9 +99,36 @@ function ProductShelf(
         class="w-full grid grid-cols-[30px_1fr_30px] lg:px-[17px]"
       >
         <Slider class="w-full carousel carousel-start gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
+          {cardSEO?.text
+            ? (
+              <Slider.Item
+                index={0}
+                class="carousel-item w-[38.605vw] lg:w-[calc((100%-73px)/4)] sm:first:pl-4 sm:last:pr-4"
+              >
+                <div class="card card-compact w-full h-full rounded-none bg-[#F6F6F6] overflow-y-auto flex items-start justify-end">
+                  {cardSEO.img && cardSEO.img.src
+                    ? (
+                      <img
+                        class="md:ml-7 ml-6 lg:mb-8 mb-4"
+                        loading="lazy"
+                        src={cardSEO.img.src}
+                        alt={cardSEO.img.alt}
+                        width={cardSEO.img.width ?? 0}
+                        height={cardSEO.img.height ?? 0}
+                      />
+                    )
+                    : null}
+                  <div
+                    dangerouslySetInnerHTML={{ __html: cardSEO?.text }}
+                    class="text-sm leading-[16px] md:max-w-[293px] sm:h-auto h-full md:w-full font-normal text-left md:pl-7 pl-6 pr-6 md:pr-3 lg:pb-8 pb-4"
+                  />
+                </div>
+              </Slider.Item>
+            )
+            : null}
           {products?.map((product, index) => (
             <Slider.Item
-              index={index}
+              index={cardSEO?.text ? index + 1 : index}
               class="carousel-item w-[38.605vw] lg:w-[calc((100%-73px)/4)] sm:first:pl-4 sm:last:pr-4"
             >
               <ProductCard
