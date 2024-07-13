@@ -35,8 +35,10 @@ function SelectedFilters({ filters, class: _class = "", priceIntl }: Props) {
     [],
   );
 
+  if (!selectedFilters.value.length) return null;
+
   return (
-    <ul class="flex flex-wrap gap-[7px] items-center pl-[21px] pr-[15px] pt-[10px] pb-6 sm:pb-[25px]">
+    <ul class="flex flex-wrap gap-[7px] items-center pl-[21px] pr-[15px] pb-6 sm:pb-[25px]">
       {selectedFilters.value.map((item) => (
         <li class="border border-black h-6 rounded-[20px] flex flex-row items-center">
           <div class="pl-3 h-6 mr-[5px] items-center uppercase">

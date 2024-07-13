@@ -2,7 +2,7 @@ import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Filters from "$store/components/search/Filters.tsx";
 import Sort from "$store/components/search/Sort.tsx";
-// import Drawer from "$store/components/ui/Drawer.tsx";
+import Drawer from "$store/components/ui/Drawer.tsx";
 import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 // import SelectedFilters from "$store/islands/SelectedFilters.tsx";
@@ -10,9 +10,9 @@ import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 // import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
 import type { FilterName } from "./SearchResultMenu.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-import { lazy } from "preact/compat";
+import { lazy, Suspense } from "preact/compat";
 
-const Drawer = lazy(() => import("$store/components/ui/Drawer.tsx"));
+// const Drawer = lazy(() => import("$store/components/ui/Drawer.tsx"));
 const SelectedFilters = lazy(() =>
   import("$store/islands/SelectedFilters.tsx")
 );
@@ -25,9 +25,9 @@ export type Props =
     searchTerm?: string;
     url: string;
     labelOrdenation: string;
-    labelsOfFilters: {
-      labelFilter: string;
-      labelClose: string;
+    labelsOfFilters?: {
+      labelFilter?: string;
+      labelClose?: string;
     };
     filterColors?: Color[];
     filtersNames?: FilterName[];
@@ -75,7 +75,7 @@ function SearchControls(
           <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full">
             <div class="hidden sm:flex flex-row w-full justify-end items-center">
               <span class="font-medium text-sm leading-[18px]">
-                {labelsOfFilters.labelClose}
+                {labelsOfFilters?.labelClose ?? "Fechar"}
               </span>
               <Button
                 class="btn btn-ghost hover:bg-transparent disabled:bg-transparent block p-[15px]"
@@ -109,7 +109,9 @@ function SearchControls(
               </span>
             </div>
             <div>
-              <SelectedFilters filters={filters} priceIntl={priceIntl} />
+              <Suspense fallback={null}>
+                <SelectedFilters filters={filters} priceIntl={priceIntl} />
+              </Suspense>
             </div>
 
             <div class="flex-grow overflow-auto">
@@ -127,10 +129,12 @@ function SearchControls(
                   >
                     {applyFiltersText}
                   </Button>
-                  <ApplyFiltersJS
-                    rootId="apply-filters"
-                    buttonId="apply-filters"
-                  />
+                  <Suspense fallback={null}>
+                    <ApplyFiltersJS
+                      rootId="apply-filters"
+                      buttonId="apply-filters"
+                    />
+                  </Suspense>
                 </div>
                 {selectedFilters.value.length > 0 && (
                   <div class="pb-4 inline-block w-full">
@@ -177,7 +181,7 @@ function SearchControls(
               }}
             >
               <Icon id="FilterList" width={19} height={10} />
-              {labelsOfFilters.labelFilter}
+              {labelsOfFilters?.labelFilter ?? "Filtrar"}
             </Button>
           )}
         </div>
@@ -209,7 +213,7 @@ function SearchControls(
               }}
             >
               <Icon id="FilterList" width={19} height={10} />
-              {labelsOfFilters.labelFilter}
+              {labelsOfFilters?.labelFilter ?? "Filtrar"}
             </Button>
           )}
         </div>

@@ -108,7 +108,7 @@ function TabbedProductShelf({
             </Slider.NextButton>
           </div>
         </>
-        <SliderJS rootId={id} />
+        <SliderJS rootId={id} direct />
         <SendEventOnLoad
           event={{
             name: "view_item_list",

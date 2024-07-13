@@ -223,6 +223,7 @@ function BannerCarousel(props: Props) {
 
       <SliderJS
         rootId={id}
+        direct
         interval={autoplay?.interval && images && images.length > 1
           ? autoplay.interval * 1e3
           : undefined}

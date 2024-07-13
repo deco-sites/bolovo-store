@@ -354,9 +354,9 @@ function ProductCard(
                 <div class="absolute bottom-0 z-10 right-[42%] bg-transparent">
                   <Dots images={productCardImages ?? []} />
                 </div>
-
                 <SliderJS
                   rootId={idSliders}
+                  direct
                 />
               </>
             )}

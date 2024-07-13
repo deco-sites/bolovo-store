@@ -86,7 +86,6 @@ export function Result({
   if (pageInfo.nextPage && nextPage) {
     partialUrl?.searchParams.set("partial", "true");
   }
-  console.log({ partialUrl, pageInfo });
 
   return (
     <>

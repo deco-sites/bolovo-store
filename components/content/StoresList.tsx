@@ -59,7 +59,7 @@ function StoresList(
             </div>
           </>
           {/* <Slider.Progress /> */}
-          <SliderJS rootId={id} />
+          <SliderJS rootId={id} direct />
           <Slider class="mx-4 w-full carousel carousel-start gap-6 lg:gap-[15px] col-span-full row-start-2 row-end-5">
             {stores?.map((store, index) => (
               <Slider.Item

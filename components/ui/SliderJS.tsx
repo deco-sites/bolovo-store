@@ -5,6 +5,7 @@ interface Props {
   scroll?: "smooth" | "auto" | "instant";
   interval?: number;
   infinite?: boolean;
+  direct?: boolean;
 }
 
 const ATTRIBUTES = {
@@ -19,8 +20,6 @@ const ATTRIBUTES = {
 // Percentage of the item that has to be inside the container
 // for it it be considered as inside the container
 const THRESHOLD = 0.6;
-
-const USE_INFINITE_BEHAVIOUR = true;
 
 const intersectionX = (element: DOMRect, container: DOMRect): number => {
   const delta = container.width / 1_000;
@@ -49,10 +48,14 @@ const isHTMLElement = (x: Element): x is HTMLElement =>
   // deno-lint-ignore no-explicit-any
   typeof (x as any).offsetLeft === "number";
 
-const setup = ({ rootId, scroll, interval, infinite }: Props) => {
+const setup = (
+  { rootId, scroll, interval, infinite, direct = false }: Props,
+) => {
   const root = document.getElementById(rootId);
   const slider = root?.querySelector(`[${ATTRIBUTES["data-slider"]}]`);
-  const items = root?.querySelectorAll(`[${ATTRIBUTES["data-slider-item"]}]`);
+  const items = root?.querySelectorAll(
+    `${direct ? "& > ul > " : ""}[${ATTRIBUTES["data-slider-item"]}]`,
+  );
   const prev = root?.querySelector(`[${ATTRIBUTES['data-slide="prev"']}]`);
   const next = root?.querySelector(`[${ATTRIBUTES['data-slide="next"']}]`);
   const dots = root?.querySelectorAll(`[${ATTRIBUTES["data-dot"]}]`);
@@ -92,7 +95,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
 
   const elementsInsideContainer = getElementsInsideContainer();
   const infiniteBehavior = infinite && elementsInsideContainer.length === 1 &&
-    items.length > 1 && USE_INFINITE_BEHAVIOUR;
+    items.length > 1;
 
   const goToItem = (index: number, behavior = scroll) => {
     const item = slider.querySelector(`li[data-slider-item='${index}']`);
@@ -269,12 +272,14 @@ function Slider({
   scroll = "smooth",
   interval,
   infinite = false,
+  direct = false,
 }: Props) {
-  useEffect(() => setup({ rootId, scroll, interval, infinite }), [
+  useEffect(() => setup({ rootId, scroll, interval, infinite, direct }), [
     rootId,
     scroll,
     interval,
     infinite,
+    direct,
   ]);
 
   return <div data-slider-controller-js />;

@@ -158,7 +158,7 @@ const Shelf = (
             </div>
           </>
         )}
-        <SliderJS rootId={id} infinite />
+        <SliderJS rootId={id} infinite direct />
         <SendEventOnLoad
           event={{
             name: "view_item_list",

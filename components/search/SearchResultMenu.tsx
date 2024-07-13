@@ -63,10 +63,7 @@ export function Result({
   removeFiltersText,
   url,
   labelOrdenation = "ORDENAR",
-  labelsOfFilters = {
-    labelFilter: "Filtrar",
-    labelClose: "Fechar",
-  },
+  labelsOfFilters,
 }:
   & Omit<Props, "page">
   & {

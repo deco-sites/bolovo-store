@@ -92,7 +92,7 @@ function GalleryControls(
       aside={
         <>
           <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full ">
-            <div class="flex justify-end items-center">
+            <div class="hidden sm:flex justify-end items-center">
               <span class="font-medium text-sm leading-[18px]">
                 {labelsOfFilters.labelClose}
               </span>
@@ -108,7 +108,7 @@ function GalleryControls(
                 />
               </Button>
             </div>
-            <div class="flex flex-row justify-between pl-[21px] pr-[15px] items-center text-[0.938rem] sm:mt-5 mt-14">
+            <div class="flex flex-row justify-between pl-[21px] pr-[15px] mb-2.5 items-center text-[0.938rem] sm:mt-5 mt-14">
               <span class="font-semibold uppercase">{textFilters}</span>
               <span class="sm:hidden flex">
                 <Button
@@ -127,9 +127,7 @@ function GalleryControls(
                 {selectedFilters.value.length} {appliedFiltersText}
               </span>
             </div>
-            <div>
-              <SelectedFilters filters={filters} priceIntl={priceIntl} />
-            </div>
+            <SelectedFilters filters={filters} priceIntl={priceIntl} />
 
             <div class="flex-grow overflow-auto">
               <Filters

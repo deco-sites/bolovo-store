@@ -59,8 +59,6 @@ function Alert({ visible = false, text = "", layout, href = "/" }: Props) {
           </a>
         </div>
       </Slider>
-
-      {/* <SliderJS rootId={id} interval={interval && interval * 1e3} /> */}
     </div>
   );
 }

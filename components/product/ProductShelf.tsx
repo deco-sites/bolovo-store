@@ -133,7 +133,7 @@ function ProductShelf(
             </div>
           </>
         )}
-        <SliderJS rootId={id} infinite />
+        <SliderJS direct infinite rootId={id} />
         <SendEventOnLoad
           event={{
             name: "view_item_list",
