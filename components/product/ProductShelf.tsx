@@ -98,7 +98,7 @@ function ProductShelf(
         id={id}
         class="w-full grid grid-cols-[30px_1fr_30px] lg:px-[17px]"
       >
-        <Slider class="w-full carousel carousel-start gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
+        <Slider class="w-full carousel carousel-start gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5 h-fit">
           {cardSEO?.text
             ? (
               <Slider.Item
