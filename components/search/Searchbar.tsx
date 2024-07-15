@@ -81,9 +81,8 @@ function Searchbar({
       <div class="w-full hidden lg:flex gap-8">
         <form
           id={id}
-          action={hasValue.value ? action : ""}
+          action={action}
           class="join h-[30px] justify-cente items-center rounded-none"
-          onSubmit={handleChange}
         >
           <input
             ref={searchInputRef}
@@ -91,6 +90,7 @@ function Searchbar({
             class=" px-2 join-item outline-0 flex-grow border-none h-auto font-normal"
             name={name}
             placeholder={placeholder}
+            onChange={handleChange}
             onClick={(e) => e.currentTarget.focus()}
             role="combobox"
             aria-controls="search-suggestion"
@@ -132,7 +132,6 @@ function Searchbar({
           id={id}
           action={action}
           class="join h-[30px] justify-cente items-center rounded-none border-b border-black"
-          onSubmit={handleChangeMob}
         >
           <input
             ref={searchInputRefMobile}
@@ -140,6 +139,7 @@ function Searchbar({
             class="join-item outline-0 flex-grow border-none h-auto font-normal"
             name={name}
             placeholder={placeholder}
+            onChange={handleChangeMob}
             onClick={(e) => e.currentTarget.focus()}
             role="combobox"
             aria-controls="search-suggestion"
