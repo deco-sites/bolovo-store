@@ -134,6 +134,7 @@ function Menu(
         <Image
           src={logo?.image ?? ""}
           alt={logo?.alt}
+          loading="lazy"
           width={134}
           height={40}
         />
