@@ -68,7 +68,7 @@ server/
 
 import_map.local.json
 deno.lock
-
+.env
 
 # db files
 .config.json
