@@ -11,7 +11,6 @@ import type { SocialItem } from "../footer/Social.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import type { ContentBlogItem } from "./ContentItem.tsx";
-import ContentBlog from "./ContentItem.tsx";
 
 const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
 
