@@ -134,9 +134,9 @@ function Menu(
         <Image
           src={logo?.image ?? ""}
           alt={logo?.alt}
-          loading="lazy"
-          width={134}
-          height={40}
+          class="w-[134px]"
+          width={310}
+          height={68}
         />
         <Button
           class="btn btn-ghost hover:bg-transparent disabled:bg-transparent p-0"
