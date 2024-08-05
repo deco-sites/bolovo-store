@@ -5,6 +5,12 @@ import NotFound from "../search/NotFound.tsx";
 import type { PropsNotFound } from "../search/NotFound.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { AppContext } from "apps/vnda/mod.ts";
+import {
+  Cookie,
+  deleteCookie,
+  getCookies,
+  setCookie,
+} from "std/http/cookie.ts";
 
 export interface Props {
   /** @title Integration */
@@ -30,6 +36,24 @@ export const loader = async (
   ) =>
     property["@type"] === "PropertyValue" && property.name === "variante_cor"
   );
+
+  const cookies = getCookies(req.headers);
+  if (cookies.language === "en") {
+    const headers = new Headers();
+    const cookie: Cookie = {
+      name: "language",
+      value: "en",
+      path: "/",
+      maxAge: 3600,
+      secure: true,
+      httpOnly: true,
+      sameSite: "Lax",
+    };
+    setCookie(headers, cookie);
+  } else {
+    const headers = new Headers();
+    deleteCookie(headers, "language");
+  }
 
   const typeTagValue = typeTagProperty?.value;
 
