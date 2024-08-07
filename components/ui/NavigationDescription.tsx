@@ -5,12 +5,14 @@ import RenderMarkdown from "./RenderMarkdown.tsx";
 export interface Props {
   descriptionProps: Description;
   tabIndex?: number;
+  activeDescriptionIntl: boolean;
 }
 
 export default function NavigationDescription(
-  { descriptionProps }: Props,
+  { descriptionProps, activeDescriptionIntl }: Props,
 ) {
   const { description, descriptionTabs } = descriptionProps;
+
   const itemVisible = useSignal(-1);
   const toggleDescription = (index: number) => {
     itemVisible.value = itemVisible.value === index ? -1 : index;
@@ -19,12 +21,14 @@ export default function NavigationDescription(
     descriptionTabs.filter((desc) => desc !== undefined);
   }
 
-  descriptionTabs?.map((desc) => {
-    const index = desc.content.indexOf("[idioma]");
-    if (index !== -1) {
-      desc.content = desc.content.substring(0, index).trimEnd();
-    }
-  });
+  if (!activeDescriptionIntl) {
+    descriptionTabs?.map((desc) => {
+      const index = desc.content.indexOf("[idioma]");
+      if (index !== -1) {
+        desc.content = desc.content.substring(0, index).trimEnd();
+      }
+    });
+  }
 
   return (
     <div class="w-full flex flex-col mt-6">

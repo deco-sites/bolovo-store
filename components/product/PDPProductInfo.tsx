@@ -19,12 +19,20 @@ import { useUI } from "../../sdk/useUI.ts";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 
 function PDPProductInfo(
-  { page, reloadInSelector, buyButton, colorRelated, colors }: {
+  {
+    page,
+    reloadInSelector,
+    buyButton,
+    colorRelated,
+    colors,
+    activeDescriptionIntl,
+  }: {
     page: ProductDetailsPage;
     reloadInSelector: boolean;
     buyButton: string;
     colorRelated?: Product[];
     colors: Color[];
+    activeDescriptionIntl: boolean;
   },
 ) {
   const platform = usePlatform();
@@ -272,7 +280,7 @@ function PDPProductInfo(
         {objDescription
           ? (
             <div>
-              <NavigationDescription descriptionProps={objDescription} />
+              <NavigationDescription descriptionProps={objDescription} activeDescriptionIntl={activeDescriptionIntl} />
             </div>
           )
           : null}
