@@ -5,6 +5,13 @@ import NotFound from "../search/NotFound.tsx";
 import type { PropsNotFound } from "../search/NotFound.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { AppContext } from "apps/vnda/mod.ts";
+import {
+  Cookie,
+  deleteCookie,
+  getCookies,
+  setCookie,
+} from "std/http/cookie.ts";
+import { useUI } from "deco-sites/bolovo-store/sdk/useUI.ts";
 
 export interface Props {
   /** @title Integration */
@@ -30,6 +37,31 @@ export const loader = async (
   ) =>
     property["@type"] === "PropertyValue" && property.name === "variante_cor"
   );
+
+  const { activeDescriptionIntl } = useUI();
+  const cookies = getCookies(req.headers);
+
+  if (cookies.language === "en") {
+    activeDescriptionIntl.value.active = true;
+    activeDescriptionIntl.value.value = cookies.language;
+
+    const headers = new Headers();
+    const cookie: Cookie = {
+      name: "language",
+      value: "en",
+      path: "/",
+      maxAge: 3600,
+      secure: true,
+      httpOnly: true,
+      sameSite: "Lax",
+    };
+    setCookie(headers, cookie);
+  } else {
+    activeDescriptionIntl.value.active = false;
+    activeDescriptionIntl.value.value = cookies.language;
+    const headers = new Headers();
+    deleteCookie(headers, "language");
+  }
 
   const typeTagValue = typeTagProperty?.value;
 
@@ -68,6 +100,8 @@ function PageOfProduct(
     return <NotFound props={notFound} searchedLabel={""} />;
   }
 
+  const { activeDescriptionIntl } = useUI();
+
   return (
     <div class="pt-0 lg:py-11 lg:px-[8%] flex justify-center flex-col lg:flex-row md:gap-12 lg:gap-[6%] py-11">
       <div class="w-full lg:w-3/5">
@@ -80,6 +114,7 @@ function PageOfProduct(
           colorRelated={colorRelated}
           colors={colors}
           buyButton={buyButton}
+          activeDescriptionIntl={activeDescriptionIntl.value.active}
         />
       </div>
     </div>
