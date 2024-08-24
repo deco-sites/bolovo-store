@@ -1,22 +1,26 @@
-import { SendEventOnLoad } from "$store/components/Analytics.tsx";
+import {
+  HandleProductOnCartEvent,
+  SendEventOnClick,
+  SendEventOnLoad,
+} from "$store/components/Analytics.tsx";
 import AddToCartButtonLinx from "$store/islands/AddToCartButton/linx.tsx";
 import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
 import AddToCartButtonVNDA from "$store/islands/AddToCartButton/vnda.tsx";
 import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
 import AddToCartButtonWake from "$store/islands/AddToCartButton/wake.tsx";
+import NavigationDescription from "$store/islands/NavigationDescription.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product, ProductDetailsPage } from "apps/commerce/types.ts";
-import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import markdownToObj from "../../sdk/markdownToObj.ts";
-import ProductSelector from "./ProductVariantSelector.tsx";
+import { ADD_TO_CART_ID } from "deco-sites/bolovo-store/components/product/AddToCartButton/common.tsx";
 import type { Description } from "../../sdk/markdownToObj.ts";
-import NavigationDescription from "$store/islands/NavigationDescription.tsx";
+import markdownToObj from "../../sdk/markdownToObj.ts";
 import { useUI } from "../../sdk/useUI.ts";
-import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import ProductSelector from "./ProductVariantSelector.tsx";
 
 function PDPProductInfo(
   {
@@ -280,29 +284,61 @@ function PDPProductInfo(
         {objDescription
           ? (
             <div>
-              <NavigationDescription descriptionProps={objDescription} activeDescriptionIntl={activeDescriptionIntl} />
+              <NavigationDescription
+                descriptionProps={objDescription}
+                activeDescriptionIntl={activeDescriptionIntl}
+              />
             </div>
           )
           : null}
       </div>
       {/* Analytics Event */}
       <SendEventOnLoad
+        key={product.productID}
         event={{
-          name: "view_item",
-          params: {
-            items: [
-              mapProductToAnalyticsItem({
-                product,
-                breadcrumbList,
-                price,
-                listPrice,
-              }),
-            ],
-          },
+          name: "acessou-produto",
+          params: parseProductToEvent(product, productPrice),
         }}
+      />
+      <SendEventOnClick
+        id={ADD_TO_CART_ID}
+        event={{
+          name: "adicionou-produto-ao-carrinho",
+          params: parseProductToEvent(
+            product,
+            productPrice,
+            1,
+          ),
+        } as HandleProductOnCartEvent}
       />
     </div>
   );
 }
+
+export const parseProductToEvent = (
+  product: Product,
+  price: number,
+  quantity?: number,
+) => (
+  {
+    nome_departamento: product.additionalProperty?.find((prop) =>
+      prop.name?.toLowerCase() === "categoria"
+    )?.value!,
+    nome_produto: product.name!,
+    preco_produto: price,
+    id_produto: product.isVariantOf?.productGroupID!,
+    cor: product.additionalProperty?.find((prop) =>
+      prop.name?.toLowerCase() === "cor"
+    )
+      ?.value!,
+    tamanhos: product.additionalProperty?.find((prop) =>
+      prop.name?.toLowerCase() === "tamanho"
+    )
+      ?.value!,
+    url_produto: product.url!,
+    sku_produto: product.sku,
+    ...(quantity ? { quantidade: quantity } : null),
+  }
+);
 
 export default PDPProductInfo;

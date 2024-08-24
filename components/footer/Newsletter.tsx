@@ -1,5 +1,6 @@
-import { useSignal } from "@preact/signals";
 import { invoke } from "$store/runtime.ts";
+import { useSignal } from "@preact/signals";
+import { sendEvent } from "deco-sites/bolovo-store/sdk/analytics.tsx";
 import type { JSX } from "preact";
 
 export interface Form {
@@ -41,6 +42,11 @@ function Newsletter(
           email: email,
         },
       });
+
+      sendEvent({
+        name: "cadastrou-newsletter",
+      });
+
       if (status >= 400) {
         showMessage.value = "error";
       } else {

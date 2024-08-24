@@ -1,22 +1,19 @@
+import type { AppContext } from "$store/apps/site.ts";
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
-import { useOffer } from "$store/sdk/useOffer.ts";
-import type { Product, ProductListingPage } from "apps/commerce/types.ts";
-import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import ProductGallery from "../product/ProductGallery.tsx";
-import NotFound from "./NotFound.tsx";
-import type { PropsNotFound } from "./NotFound.tsx";
-import type { SectionProps } from "deco/types.ts";
+import { getColorRelatedProducts } from "$store/components/search/CategoryMenu.tsx";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import type { Product, ProductListingPage } from "apps/commerce/types.ts";
+import LazyImagesJS from "deco-sites/bolovo-store/components/ui/LazyLoadImages.tsx";
+import ShowMore from "deco-sites/bolovo-store/islands/ShowMore.tsx";
+import { usePartialSection } from "deco/hooks/usePartialSection.ts";
+import type { SectionProps } from "deco/types.ts";
+import ProductGallery from "../product/ProductGallery.tsx";
 import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
-import type { AppContext } from "$store/apps/site.ts";
-import { getColorRelatedProducts } from "$store/components/search/CategoryMenu.tsx";
-import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-import LazyImagesJS from "deco-sites/bolovo-store/components/ui/LazyLoadImages.tsx";
-import { usePartialSection } from "deco/hooks/usePartialSection.ts";
-import Spinner from "deco-sites/bolovo-store/components/ui/Spinner.tsx";
-import ShowMore from "deco-sites/bolovo-store/islands/ShowMore.tsx";
+import type { PropsNotFound } from "./NotFound.tsx";
+import NotFound from "./NotFound.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -87,6 +84,8 @@ export function Result({
     partialUrl?.searchParams.set("partial", "true");
   }
 
+  const [department, category] = page.breadcrumb.itemListElement;
+
   return (
     <>
       <LazyImagesJS />
@@ -128,24 +127,24 @@ export function Result({
           )
           : <ButtonsPagination page={page} props={buttonsPagination} />}
       </div>
-      <SendEventOnLoad
-        event={{
-          name: "view_item_list",
-          params: {
-            // TODO: get category name from search or cms setting
-            item_list_name: "",
-            item_list_id: "",
-            items: page.products?.map((product, index) =>
-              mapProductToAnalyticsItem({
-                ...(useOffer(product.offers)),
-                index: offset + index,
-                product,
-                breadcrumbList: page.breadcrumb,
-              })
-            ),
-          },
-        }}
-      />
+      {department && category && (
+        <SendEventOnLoad
+          event={department && category
+            ? {
+              name: "acessou-categoria",
+              params: {
+                nome_departamento: department.name!,
+                nome_categoria: category.name!,
+              },
+            }
+            : {
+              name: "acessou-departamento",
+              params: {
+                nome_departamento: department.name!,
+              },
+            }}
+        />
+      )}
     </>
   );
 }

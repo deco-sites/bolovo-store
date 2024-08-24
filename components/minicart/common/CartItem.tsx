@@ -3,8 +3,11 @@ import Icon from "$store/components/ui/Icon.tsx";
 import QuantitySelector from "$store/components/ui/QuantitySelector.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
-import { AnalyticsItem } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
+import {
+  HandleProductOnCartEvent,
+  ProductParam,
+} from "deco-sites/bolovo-store/components/Analytics.tsx";
 import { useCallback, useState } from "preact/hooks";
 
 export interface Item {
@@ -31,7 +34,7 @@ export interface Props {
   priceIntl?: boolean;
 
   onUpdateQuantity: (quantity: number, index: number) => Promise<void>;
-  itemToAnalyticsItem: (index: number) => AnalyticsItem | null | undefined;
+  itemToAnalyticsItem: (index: number) => ProductParam | null | undefined;
 }
 
 function CartItem(
@@ -104,12 +107,14 @@ function CartItem(
               await onUpdateQuantity(quantity, index);
 
               if (analyticsItem) {
-                analyticsItem.quantity = diff;
+                analyticsItem.quantidade = diff;
 
                 sendEvent({
-                  name: diff < 0 ? "remove_from_cart" : "add_to_cart",
-                  params: { items: [analyticsItem] },
-                });
+                  name: diff < 0
+                    ? "removeu-produto-do-carrinho"
+                    : "adicionou-produto-ao-carrinho",
+                  params: analyticsItem,
+                } as HandleProductOnCartEvent);
               }
             })}
           />
@@ -124,9 +129,9 @@ function CartItem(
                 await onUpdateQuantity(0, index);
 
                 analyticsItem && sendEvent({
-                  name: "remove_from_cart",
-                  params: { items: [analyticsItem] },
-                });
+                  name: "removeu-produto-do-carrinho",
+                  params: analyticsItem,
+                } as HandleProductOnCartEvent);
               })}
             >
               <Icon id="Trash" height={20} width={17} class="border-none" />

@@ -16,12 +16,6 @@ export interface Props {
 }
 
 const useAddToCart = ({
-  price,
-  name,
-  discount,
-  productGroupID,
-  productID,
-  url,
   onAddItem,
 }: Props) => {
   const [loading, setLoading] = useState(false);
@@ -36,21 +30,6 @@ const useAddToCart = ({
 
       await onAddItem();
 
-      sendEvent({
-        name: "add_to_cart",
-        params: {
-          items: [{
-            quantity: 1,
-            price,
-            item_url: url,
-            item_name: name,
-            discount: discount,
-            item_id: productID,
-            item_variant: name,
-          }],
-        },
-      });
-
       displayCart.value = true;
     } finally {
       setLoading(false);
@@ -60,17 +39,22 @@ const useAddToCart = ({
   return { onClick, loading };
 };
 
+export const ADD_TO_CART_ID = "pdp-add-to-cart";
+
 export default function AddToCartButton(props: Props) {
   const btnProps = useAddToCart(props);
 
   return (
-    <Button
-      {...btnProps}
-      data-deco="add-to-cart"
-      class="w-full uppercase h-[30px] rounded-full bg-white border-black border-2 text-sm text-black no-animation btn btn-active btn-sm  hover:bg-white
-    "
-    >
-      {props.buyButton}
-    </Button>
+    <>
+      <Button
+        id={ADD_TO_CART_ID}
+        {...btnProps}
+        data-deco="add-to-cart"
+        class="w-full uppercase h-[30px] rounded-full bg-white border-black border-2 text-sm text-black no-animation btn btn-active btn-sm  hover:bg-white
+      "
+      >
+        {props.buyButton}
+      </Button>
+    </>
   );
 }

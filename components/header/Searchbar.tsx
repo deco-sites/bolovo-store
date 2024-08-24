@@ -1,4 +1,3 @@
-import { headerHeight } from "$store/components/header/constants.ts";
 import Searchbar, {
   Props as SearchbarProps,
 } from "$store/components/search/Searchbar.tsx";

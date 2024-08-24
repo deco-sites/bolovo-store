@@ -1,4 +1,4 @@
-import type { AnalyticsEvent } from "apps/commerce/types.ts";
+import { ExtendedEvents } from "deco-sites/bolovo-store/components/Analytics.tsx";
 
-export const sendEvent = <E extends AnalyticsEvent>(event: E) =>
+export const sendEvent = <E extends ExtendedEvents>(event: E) =>
   window.DECO.events.dispatch(event);

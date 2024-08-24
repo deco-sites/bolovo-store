@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { itemToAnalyticsItem, useCart } from "apps/vnda/hooks/useCart.ts";
 import BaseCart from "../common/Cart.tsx";
 import { useEffect } from "preact/hooks";
@@ -101,11 +102,21 @@ function Cart(
       checkoutHref={`/checkout/${token} `}
       onAddCoupon={(code) => update({ coupon_code: code })}
       onUpdateQuantity={(quantity: number, index: number) =>
-        updateItem({ quantity, itemId: items[index].id })}
-      itemToAnalyticsItem={(index) => {
+        updateItem({ quantity, itemId: items[index].id! })}
+      itemToAnalyticsItem={(index: number) => {
         const item = items[index];
 
-        return item && itemToAnalyticsItem(item, index);
+        return item && {
+          nome_departamento: (item.extra as any).categoria,
+          nome_produto: item.product_name,
+          preco_produto: item.price,
+          id_produto: item.product_id,
+          cor: (item.extra as any).cor,
+          tamanhos: (item.extra as any).Tamanho,
+          url_produto: item.product_url,
+          quantidade: 0,
+          sku_produto: item.variant_sku,
+        };
       }}
       priceIntl={priceIntl}
     />

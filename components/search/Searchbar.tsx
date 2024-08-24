@@ -76,12 +76,23 @@ function Searchbar({
     hasValue.value = !!searchInputRefMobile.current?.value;
   };
 
+  const handleEvent = () => {
+    sendEvent({
+      name: "buscou-produto",
+      params: {
+        termo: searchInputRef.current?.value ||
+          searchInputRefMobile.current?.value! ,
+      },
+    });
+  };
+
   return (
     <div class="w-full">
       <div class="w-full hidden lg:flex gap-8">
         <form
           id={id}
           action={action}
+          onSubmit={handleEvent}
           class="join h-[30px] justify-cente items-center rounded-none"
         >
           <input
@@ -131,6 +142,7 @@ function Searchbar({
         <form
           id={id}
           action={action}
+          onSubmit={handleEvent}
           class="join h-[30px] justify-cente items-center rounded-none border-b border-black"
         >
           <input
