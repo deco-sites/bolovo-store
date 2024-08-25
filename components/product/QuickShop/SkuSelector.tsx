@@ -51,7 +51,7 @@ export default function  SkuSelector(
                 >
                   {priceIntl
                     ? variant.size?.substring(4).replace("|", "")
-                    : variant.size?.substring(2, 0)}
+                    : variant.size?.substring(3, 0).replace("|", "")}
                 </button>
               )
               : (
@@ -59,7 +59,7 @@ export default function  SkuSelector(
                   <span class="cursor-not-allowed false flex h-6 w-6 text-center items-center justify-center">
                     {priceIntl
                       ? variant.size?.substring(4).replace("|", "")
-                      : variant.size?.substring(2, 0)}
+                      : variant.size?.substring(3, 0).replace("|", "")}
                   </span>
                   <span class="false absolute border-b border-[#E0E0E0] rotate-[-45deg] w-[24px]">
                   </span>
