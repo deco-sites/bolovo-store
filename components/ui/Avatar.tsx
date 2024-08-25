@@ -68,7 +68,7 @@ export function AvatarPDP(
               ? ""
               : priceIntl
               ? content.substring(4).replace("|", "")
-              : content.substring(0, 2))
+              : content.substring(0, 3).replace("|", ""))
             : ""}
         </span>
       </div>
