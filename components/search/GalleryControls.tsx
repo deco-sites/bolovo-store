@@ -189,7 +189,7 @@ function GalleryControls(
                 <span class="ml-5 text-black">{">"}</span>
               </a>
               <Slider
-                class="py-[17.5px] flex carousel-start gap-4 lg:gap-7 row-start-2 row-end-5 overflow-x-scroll"
+                class="py-[17.5px] flex carousel-start gap-4 lg:gap-7 row-start-2 row-end-5 overflow-auto"
                 onWheelCapture={scrollBehavior}
               >
                 <Slider.Item
