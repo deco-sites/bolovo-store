@@ -22,7 +22,12 @@ export default function NavigationDescription(
   }
 
   if (!activeDescriptionIntl) {
-    descriptionTabs?.map((desc) => {
+    descriptionTabs?.forEach((desc) => {
+      if (!desc) {
+        console.warn("item description is undefined");
+        return;
+      }
+
       const index = desc.content.indexOf("[idioma]");
       if (index !== -1) {
         desc.content = desc.content.substring(0, index).trimEnd();
