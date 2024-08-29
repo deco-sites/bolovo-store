@@ -68,6 +68,7 @@ function Cart({
   const valueInstallments = totalCart / qtyInstalments;
   const numberFormated = valueInstallments.toFixed(2);
   const installments = numberFormated.replace(".", ",");
+  const checkoutUrlIntl = checkoutHref.concat("");
 
   return (
     <div>
@@ -229,7 +230,9 @@ function Cart({
                 <div class="pb-2">
                   <a
                     class="inline-block w-full"
-                    href={checkoutHref}
+                    href={priceIntl
+                      ? `${checkoutHref}?language=en`
+                      : checkoutHref}
                   >
                     <Button
                       class="btn btn-active btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black"

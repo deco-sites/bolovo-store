@@ -99,7 +99,7 @@ function Cart(
       freeShippingValueColor={freeShippingValueColor ?? "#121212"}
       freeShippingTarget={freeShippingTarget ?? 0}
       coupon={coupon}
-      checkoutHref={`/checkout/${token} `}
+      checkoutHref={`/checkout/${token}`}
       onAddCoupon={(code) => update({ coupon_code: code })}
       onUpdateQuantity={(quantity: number, index: number) =>
         updateItem({ quantity, itemId: items[index].id! })}
