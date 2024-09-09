@@ -9,6 +9,7 @@ import Icon from "$store/components/ui/Icon.tsx";
 import ValueItem from "$store/islands/ValueItem.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import { compareSizes } from "deco-sites/bolovo-store/sdk/useVariantPossiblities.ts";
+import { FilterName } from "deco-sites/bolovo-store/components/search/SearchResult.tsx";
 
 interface Props {
   filters: ProductListingPage["filters"];
@@ -57,6 +58,20 @@ function FilterValues(
       }
     },
   );
+
+  const referenceOrder = filterColors?.reduce((acc, item, index) => {
+    acc[item.label.toLowerCase()] = index;
+    return acc;
+  }, {} as Record<string, number>);
+  if (referenceOrder) {
+    matchingColors.sort((a, b) => {
+      const orderA = referenceOrder[a.value.toLowerCase()];
+      const orderB = referenceOrder[b.value.toLowerCase()];
+
+      return (orderA ?? matchingColors.length) -
+        (orderB ?? matchingColors.length);
+    });
+  }
 
   return (
     <ul class={`${flexDirection}`}>
