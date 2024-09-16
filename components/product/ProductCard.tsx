@@ -15,6 +15,7 @@ import Slider from "deco-sites/bolovo-store/components/ui/Slider.tsx";
 import SliderJS from "deco-sites/bolovo-store/islands/SliderJS.tsx";
 import { useId } from "deco-sites/bolovo-store/sdk/useId.ts";
 import Image from "apps/website/components/Image.tsx";
+import ColorSelector from "deco-sites/bolovo-store/components/product/ColorSelector.tsx";
 
 export interface Layout {
   basics?: {
@@ -155,6 +156,7 @@ function ProductCard(
               const colorVariant = {
                 name: parsedValue.name as string,
                 url: relatedProduct.url as string,
+                image: relatedProduct.image ? relatedProduct.image[1].url as string : '',
               };
               colorVariants.push(colorVariant);
               break;
@@ -176,69 +178,6 @@ function ProductCard(
       </a>
     </li>
   ));
-  const colorSelector =
-    colorVariants?.length && colorVariants.length > 1 && showColorVariants
-      ? (
-        colorVariants.map((colorVariant, index) => {
-          const selectedColor = colors?.find((color) =>
-            color.label.toLowerCase() === colorVariant.name.toLowerCase()
-          );
-          const isSvg = selectedColor?.hex !== undefined;
-          const isImg = selectedColor?.src !== undefined;
-
-          return (
-            <div class="items-center">
-              {index < 4
-                ? (
-                  <li key={index}>
-                    <a href={colorVariant.url}>
-                      <div
-                        class="w-[12px] h-[12px] flex items-center justify-center border"
-                        title={`Cor ${colorVariant.name}`}
-                      >
-                        {isSvg
-                          ? (
-                            // Se a cor for um SVG
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="12"
-                              height="12"
-                              viewBox="0 0 12 12"
-                              fill="none"
-                            >
-                              <rect
-                                x="0"
-                                y="0"
-                                width="12"
-                                height="12"
-                                fill={selectedColor?.hex}
-                              />
-                            </svg>
-                          )
-                          : isImg
-                          ? (
-                            <img
-                              src={selectedColor.src}
-                              alt={`Cor ${colorVariant.name}`}
-                            />
-                          )
-                          : undefined}
-                      </div>
-                    </a>
-                  </li>
-                )
-                : index === 5
-                ? (
-                  <div class="w-[12px] h-[12px] flex items-center justify-center mb-[2px]">
-                    +
-                  </div>
-                )
-                : undefined}
-            </div>
-          );
-        })
-      )
-      : null;
 
   const cta = (
     <a
@@ -487,9 +426,11 @@ function ProductCard(
                 <div>
                   {/* Seletor de Cores */}
                   <div class="group">
-                    <ul class="flex items-center gap-[11px] lg:gap-1 justify-start lg:justify-end">
-                      {colorSelector}
-                    </ul>
+                  <ColorSelector
+                    colorVariants={colorVariants}
+                    colors={colors}
+                    showColorVariants={showColorVariants ?? false}
+                  />
                   </div>
                 </div>
               </div>
