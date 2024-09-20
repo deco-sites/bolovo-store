@@ -64,6 +64,8 @@ function Cart({
   if (cart) {
     cart.value?.relatedItems?.map((item) => totalCart += item.total);
   }
+  console.log(items)
+  console.log("TOTAL CART:", totalCart)
   const qtyInstalments = cart.value?.orderForm?.installments?.length;
   const valueInstallments = totalCart / qtyInstalments;
   const numberFormated = valueInstallments.toFixed(2);

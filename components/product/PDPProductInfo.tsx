@@ -86,11 +86,13 @@ function PDPProductInfo(
   const {
     price = 0,
     listPrice,
+    salePrice,
     seller = "1",
     availability,
     priceIntl = 0,
     listPriceIntl,
   } = useOffer(offers);
+  console.log("offersss", offers)
   const productGroupID = isVariantOf?.productGroupID ?? "";
   const objDescription: Description | null = description
     ? markdownToObj(description)
@@ -99,7 +101,7 @@ function PDPProductInfo(
   const currency = activePriceIntl.value.active
     ? offers?.offers[1]?.priceCurrency || "USD"
     : offers?.priceCurrency || "BRL";
-  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
+  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : salePrice;
   const productListPrice = listPriceIntl || listPrice || 0;
   const discount = productPrice && productListPrice
     ? productListPrice - productPrice

@@ -49,10 +49,11 @@ function CartItem(
   }: Props,
 ) {
   const { image, name, price: { sale, list, listIntl }, quantity, size } = item;
+  console.log(item)
   const isGift = sale < 0.01;
   const [loading, setLoading] = useState(false);
 
-  const priceProduct = priceIntl ? listIntl : list;
+  const priceProduct = priceIntl ? listIntl : sale; 
 
   const withLoading = useCallback(
     <A,>(cb: (args: A) => Promise<void>) => async (e: A) => {

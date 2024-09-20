@@ -53,6 +53,7 @@ function Cart(
   const { cart, loading, updateItem, update } = useCart();
 
   const items = cart.value?.orderForm?.items ?? [];
+  console.log("items: ", items)
   const total = cart.value?.orderForm?.total ?? 0;
   const subtotal = cart.value?.orderForm?.subtotal ?? 0;
   const discounts = cart.value?.orderForm?.subtotal_discount ?? 0;
@@ -83,7 +84,7 @@ function Cart(
         quantity: item.quantity,
         name: item.variant_name,
         price: {
-          sale: item.variant_price,
+          sale: item.price,
           list: item.variant_price,
           listIntl: item.variant_intl_price,
         },
