@@ -83,7 +83,7 @@ function Cart(
         quantity: item.quantity,
         name: item.variant_name,
         price: {
-          sale: item.variant_price,
+          sale: item.price,
           list: item.variant_price,
           listIntl: item.variant_intl_price,
         },

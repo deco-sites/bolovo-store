@@ -127,14 +127,14 @@ function ProductCard(
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, listPriceIntl, price, priceIntl = 0, availability } =
+  const { listPrice, salePrice, listPriceIntl, price, priceIntl = 0, availability } =
     useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const { activePriceIntl } = useUI();
   const currency = activePriceIntl.value.active
     ? offers?.offers[1]?.priceCurrency || "USD"
     : offers?.priceCurrency || "BRL";
-  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
+  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : salePrice;
   const productListPrice = activePriceIntl.value.active && listPriceIntl ||
     listPrice;
   const align = !layout?.basics?.contentAlignment ||

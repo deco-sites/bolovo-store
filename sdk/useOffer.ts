@@ -59,6 +59,9 @@ export const useOffer = (aggregateOffer?: AggregateOffer) => {
   const listPriceIntl = offerIntl?.priceSpecification.find((spec) =>
     spec.priceType === "https://schema.org/ListPrice"
   );
+  const salePrice = offer?.priceSpecification.find((spec) =>
+    spec.priceType === "https://schema.org/SalePrice"
+  );
   const installment = offer?.priceSpecification.reduce(bestInstallment, null);
   const installmenIntl = offerIntl?.priceSpecification.reduce(
     bestInstallment,
@@ -74,6 +77,7 @@ export const useOffer = (aggregateOffer?: AggregateOffer) => {
   return {
     price,
     listPrice: listPrice?.price,
+    salePrice: salePrice?.price,
     availability,
     seller,
     installments: installment && price

@@ -86,6 +86,7 @@ function PDPProductInfo(
   const {
     price = 0,
     listPrice,
+    salePrice,
     seller = "1",
     availability,
     priceIntl = 0,
@@ -99,7 +100,7 @@ function PDPProductInfo(
   const currency = activePriceIntl.value.active
     ? offers?.offers[1]?.priceCurrency || "USD"
     : offers?.priceCurrency || "BRL";
-  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
+  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : salePrice;
   const productListPrice = listPriceIntl || listPrice || 0;
   const discount = productPrice && productListPrice
     ? productListPrice - productPrice
