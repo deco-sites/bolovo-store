@@ -92,7 +92,6 @@ function PDPProductInfo(
     priceIntl = 0,
     listPriceIntl,
   } = useOffer(offers);
-  console.log("offersss", offers)
   const productGroupID = isVariantOf?.productGroupID ?? "";
   const objDescription: Description | null = description
     ? markdownToObj(description)

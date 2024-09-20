@@ -49,7 +49,6 @@ function CartItem(
   }: Props,
 ) {
   const { image, name, price: { sale, list, listIntl }, quantity, size } = item;
-  console.log(item)
   const isGift = sale < 0.01;
   const [loading, setLoading] = useState(false);
 
