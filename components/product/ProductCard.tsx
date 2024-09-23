@@ -5,17 +5,19 @@ import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
-import type { ImageObject, Product } from "apps/commerce/types.ts";
+ import type { ImageObject, Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import { Picture, Source } from "apps/website/components/Picture.tsx";
-import { useUI } from "../../sdk/useUI.ts";
+// import { Picture, Source } from "apps/website/components/Picture.tsx";
 import QuickShop from "$store/islands/QuickShop.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-import Slider from "deco-sites/bolovo-store/components/ui/Slider.tsx";
-import SliderJS from "deco-sites/bolovo-store/islands/SliderJS.tsx";
+// import Slider from "deco-sites/bolovo-store/components/ui/Slider.tsx";
+// import SliderJS from "deco-sites/bolovo-store/islands/SliderJS.tsx";
 import { useId } from "deco-sites/bolovo-store/sdk/useId.ts";
-import Image from "apps/website/components/Image.tsx";
-import ColorSelector from "deco-sites/bolovo-store/components/product/ColorSelector.tsx";
+// import Image from "apps/website/components/Image.tsx";
+import ColorSelector from "$store/islands/ColorSelector.tsx";
+import { useUI } from "$store/sdk/useUI.ts";
+import { useEffect } from "preact/hooks";
+import ProductMedia from "$store/islands/ProductCardMedia.tsx";
 
 export interface Layout {
   basics?: {
@@ -71,35 +73,35 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-interface DotsProps {
-  images: ImageObject[];
-  interval?: number;
-}
+// interface DotsProps {
+//   images: ImageObject[];
+//   interval?: number;
+// }
 
-function Dots({ images, interval = 0 }: DotsProps) {
-  return (
-    <>
-      <ul class="carousel justify-center col-span-full gap-2 z-10 row-start-7 bg-transparent">
-        {images?.map((_, index) => (
-          <li class="carousel-item">
-            <Slider.Dot index={index}>
-              <div
-                class={`py-5 ${
-                  ((index === 0) || (index % 4 === 0)) ? "" : "lg:hidden"
-                }`}
-              >
-                <div
-                  class="w-4 h-0.5 group-disabled:opacity-100 opacity-20 rounded-full bg-primary"
-                  style={{ animationDuration: `${interval}s` }}
-                />
-              </div>
-            </Slider.Dot>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
+// function Dots({ images, interval = 0 }: DotsProps) {
+//   return (
+//     <>
+//       <ul class="carousel justify-center col-span-full gap-2 z-10 row-start-7 bg-transparent">
+//         {images?.map((_, index) => (
+//           <li class="carousel-item">
+//             <Slider.Dot index={index}>
+//               <div
+//                 class={`py-5 ${
+//                   ((index === 0) || (index % 4 === 0)) ? "" : "lg:hidden"
+//                 }`}
+//               >
+//                 <div
+//                   class="w-4 h-0.5 group-disabled:opacity-100 opacity-20 rounded-full bg-primary"
+//                   style={{ animationDuration: `${interval}s` }}
+//                 />
+//               </div>
+//             </Slider.Dot>
+//           </li>
+//         ))}
+//       </ul>
+//     </>
+//   );
+// }
 
 function ProductCard(
   {
@@ -145,6 +147,8 @@ function ProductCard(
   const sizeAndLinks = possibilities.Tamanho || {};
   const colorVariants = [];
   const productCardImages = images?.filter((_, index) => index < 2);
+  console.log("productCardImages", productCardImages)
+  const { selectedColorVariant } = useUI(); // Acessar o sinal
 
   if (colorRelated && showColorVariants) {
     for (const relatedProduct of colorRelated) {
@@ -156,7 +160,12 @@ function ProductCard(
               const colorVariant = {
                 name: parsedValue.name as string,
                 url: relatedProduct.url as string,
-                image: relatedProduct.image ? relatedProduct.image[1].url as string : '',
+                frontImage: relatedProduct.image
+                  ? relatedProduct.image[0].url as string
+                  : "",
+                backImage: relatedProduct.image
+                ? relatedProduct.image[1].url as string
+                : "", 
               };
               colorVariants.push(colorVariant);
               break;
@@ -168,6 +177,7 @@ function ProductCard(
       }
     }
   }
+
   const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => (
     <li>
       <a href={link}>
@@ -188,7 +198,17 @@ function ProductCard(
       {layout?.basics?.ctaText || "Ver produto"}
     </a>
   );
-  const safeSrc = (url?: string) => url ?? "";
+  // const safeSrc = (url?: string) => url ?? "";
+
+  // let imageUrl = selectedColorVariant.value
+  //   ? selectedColorVariant.value.image // Usa o URL da variante selecionada
+  //   : safeSrc(front.url); // URL padrão do produto
+
+  useEffect(() => {
+    if (selectedColorVariant.value) {
+      console.log("A cor do produto mudou!", selectedColorVariant.value);
+    }
+  }, [selectedColorVariant.value]);
 
   return (
     <div
@@ -261,112 +281,16 @@ function ProductCard(
           )}
         </div>
         {/* Product Images */}
-        <div
-          id={idSliders}
-          class="sm:hidden h-full grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
-        >
-          <Slider class="h-full w-full carousel carousel-center gap-6 col-span-full row-span-full">
-            {productCardImages?.map((image, index) => (
-              <Slider.Item index={index} class="carousel-item w-full">
-                <a
-                  href={url && relative(url)}
-                  aria-label="view product"
-                  class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
-                >
-                  <Image
-                    preload={index === 0 && preload}
-                    fetchPriority={index === 0 && preload ? "high" : "auto"}
-                    src={safeSrc(image.url)}
-                    width={177}
-                    height={206}
-                    class="mix-blend-multiply bg-base-100 h-full w-full"
-                    alt={front.alternateName}
-                    loading={index === 0 && preload ? "eager" : "lazy"}
-                  />
-                </a>
-              </Slider.Item>
-            ))}
-          </Slider>
-          {layout?.dots &&
-            (
-              <>
-                <div class="absolute bottom-0 z-10 right-[42%] bg-transparent">
-                  <Dots images={productCardImages ?? []} />
-                </div>
-                <SliderJS
-                  rootId={idSliders}
-                  direct
-                />
-              </>
-            )}
-        </div>
-
-        <a
-          href={url && relative(url)}
-          aria-label="view product"
-          class="h-full hidden sm:grid items-center grid-cols-1 grid-rows-1 w-full relative"
-        >
-          {!isMobile && (
-            <Picture preload={preload}>
-              <Source
-                media="(max-width: 1023px)"
-                fetchPriority={preload ? "high" : "auto"}
-                src={safeSrc(front.url)}
-                width={190}
-                height={190}
-              />
-              <Source
-                media="(min-width: 1024px)"
-                fetchPriority={preload ? "high" : "auto"}
-                src={safeSrc(front.url)}
-                width={317}
-                height={317}
-              />
-              <img
-                class={isMobile
-                  ? "mix-blend-multiply bg-base-100 w-full"
-                  : `mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
-                    layout?.onMouseOver?.image === "Zoom image"
-                      ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                      : ""
-                  }`}
-                src={safeSrc(front.url)}
-                alt={front.alternateName}
-                decoding="async"
-                loading={preload ? "eager" : "lazy"}
-              />
-            </Picture>
-          )}
-          {!isMobile && (!layout?.onMouseOver?.image ||
-            layout?.onMouseOver?.image === "Change image") &&
-            (
-              <div class="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity">
-                <Picture preload={preload}>
-                  <Source
-                    media="(max-width: 1023px)"
-                    fetchPriority={"auto"}
-                    src={safeSrc(back?.url ?? front.url)}
-                    width={190}
-                    height={190}
-                  />
-                  <Source
-                    media="(min-width: 1024px)"
-                    fetchPriority={"auto"}
-                    src={safeSrc(back?.url ?? front.url)}
-                    width={290}
-                    height={317}
-                  />
-                  <img
-                    class="h-full bg-base-100 col-span-full row-span-full w-full"
-                    alt={back?.alternateName ?? front.alternateName}
-                    src={safeSrc(back?.url ?? front.url)}
-                    decoding="async"
-                    loading={"lazy"}
-                  />
-                </Picture>
-              </div>
-            )}
-        </a>
+        <ProductMedia
+          idSliders={idSliders}
+          productCardImages={productCardImages || []}
+          url={url || ''}
+          layout={layout}
+          front={front}
+          back={back}
+          isMobile={isMobile}
+          preload={preload}
+        />
         <figcaption
           class={`
           absolute bottom-1 left-0 w-full flex flex-col gap-3 p-2 ${
@@ -426,11 +350,11 @@ function ProductCard(
                 <div>
                   {/* Seletor de Cores */}
                   <div class="group">
-                  <ColorSelector
-                    colorVariants={colorVariants}
-                    colors={colors}
-                    showColorVariants={showColorVariants ?? false}
-                  />
+                    <ColorSelector
+                      colorVariants={colorVariants}
+                      colors={colors}
+                      showColorVariants={showColorVariants ?? false}
+                    />
                   </div>
                 </div>
               </div>
