@@ -480,7 +480,7 @@ function ProductCard(
                   >
                     {formatPrice(productListPrice, currency)}
                   </div>
-                  <div class="text-black leading-[130%] text-[0.875rem] lg:text-end font-light">
+                  <div class={`${(productListPrice ?? 0) > productPrice ? 'text-red-500' : 'text-black'} leading-[130%] text-base lg:text-end font-light`}>
                     {formatPrice(productPrice, currency) || "US$ 0,00"}
                   </div>
                 </div>

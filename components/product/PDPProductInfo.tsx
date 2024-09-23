@@ -100,7 +100,9 @@ function PDPProductInfo(
   const currency = activePriceIntl.value.active
     ? offers?.offers[1]?.priceCurrency || "USD"
     : offers?.priceCurrency || "BRL";
-  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : salePrice;
+  const productPrice = activePriceIntl.value.active
+    ? priceIntl || 0
+    : salePrice;
   const productListPrice = listPriceIntl || listPrice || 0;
   const discount = productPrice && productListPrice
     ? productListPrice - productPrice
@@ -117,14 +119,22 @@ function PDPProductInfo(
         {/* Prices */}
         <div>
           <div class="flex flex-row gap-2 items-center">
-            {(productListPrice ?? 0) > productListPrice && (
-              <span class="line-through text-base-300 text-base">
-                {formatPrice(productListPrice, currency)}
-              </span>
-            )}
-            <span class=" text-base font-light">
-              {formatPrice(productPrice, currency) ?? " US$ 0,00"}
-            </span>
+            {(productListPrice ?? 0) > productPrice
+              ? (
+                <>
+                  <span class="line-through text-base-300 text-base">
+                    {formatPrice(productListPrice, currency)}
+                  </span>
+                  <span class="text-base font-light text-red-500">
+                    {formatPrice(productPrice, currency) ?? " US$ 0,00"}
+                  </span>
+                </>
+              )
+              : (
+                <span class="text-base font-light">
+                  {formatPrice(productPrice, currency) ?? " US$ 0,00"}
+                </span>
+              )}
           </div>
         </div>
       </div>
