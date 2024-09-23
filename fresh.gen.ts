@@ -10,6 +10,7 @@ import * as $AddToCartButton_vtex from "./islands/AddToCartButton/vtex.tsx";
 import * as $AddToCartButton_wake from "./islands/AddToCartButton/wake.tsx";
 import * as $Alert from "./islands/Alert.tsx";
 import * as $ApplyFiltersJS from "./islands/ApplyFiltersJS.tsx";
+import * as $ColorSelector from "./islands/ColorSelector.tsx";
 import * as $DragSliderJS from "./islands/DragSliderJS.tsx";
 import * as $GalleryControls from "./islands/GalleryControls.tsx";
 import * as $Header_ButtonLanguage from "./islands/Header/ButtonLanguage.tsx";
@@ -25,6 +26,7 @@ import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $NavigationDescription from "./islands/NavigationDescription.tsx";
 import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
+import * as $ProductCardMedia from "./islands/ProductCardMedia.tsx";
 import * as $ProductImageZoom from "./islands/ProductImageZoom.tsx";
 import * as $QuickShop from "./islands/QuickShop.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
@@ -49,6 +51,7 @@ const manifest = {
     "./islands/AddToCartButton/wake.tsx": $AddToCartButton_wake,
     "./islands/Alert.tsx": $Alert,
     "./islands/ApplyFiltersJS.tsx": $ApplyFiltersJS,
+    "./islands/ColorSelector.tsx": $ColorSelector,
     "./islands/DragSliderJS.tsx": $DragSliderJS,
     "./islands/GalleryControls.tsx": $GalleryControls,
     "./islands/Header/ButtonLanguage.tsx": $Header_ButtonLanguage,
@@ -64,6 +67,7 @@ const manifest = {
     "./islands/NavigationDescription.tsx": $NavigationDescription,
     "./islands/Newsletter.tsx": $Newsletter,
     "./islands/OutOfStock.tsx": $OutOfStock,
+    "./islands/ProductCardMedia.tsx": $ProductCardMedia,
     "./islands/ProductImageZoom.tsx": $ProductImageZoom,
     "./islands/QuickShop.tsx": $QuickShop,
     "./islands/SearchControls.tsx": $SearchControls,
