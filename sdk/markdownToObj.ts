@@ -21,12 +21,11 @@ function parseSections(input: string): Description {
 
     if (title.trim() === "## DESCRIÇÃO") {
       result.description = { title: title.trim(), content };
-      
     } else if (
-      title.trim() === "## DESCRIÇÃO TÉCNICA" || title.trim() === "## GUIA DE TAMANHOS" ||
+      title.trim() === "## DESCRIÇÃO TÉCNICA" ||
+      title.trim() === "## GUIA DE TAMANHOS" ||
       title.trim() === "## INSTRUÇÕES DE LAVAGEM"
     ) {
-      
       const existingTab = result.descriptionTabs?.find((tab) =>
         tab.title === title.trim()
       );

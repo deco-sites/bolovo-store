@@ -85,7 +85,7 @@ function ProductGallery({
   colorVariant,
   cardsLayout,
   showColorVariants = true,
-  colors
+  colors,
 }:
   & Props
   & { colorVariant: { [productName: string]: Product[] } }
@@ -93,7 +93,7 @@ function ProductGallery({
   if (!products || products.length === 0) {
     return null;
   }
-  
+
   return (
     <div class="px-[15px] sm:py-10">
       <h2 class="font-semibold text-base leading-5 pb-[15px] lg:pb-[25px]">

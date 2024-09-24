@@ -81,7 +81,7 @@ function Searchbar({
       name: "buscou-produto",
       params: {
         termo: searchInputRef.current?.value ||
-          searchInputRefMobile.current?.value! ,
+          searchInputRefMobile.current?.value!,
       },
     });
   };

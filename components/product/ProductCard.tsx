@@ -127,14 +127,22 @@ function ProductCard(
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, salePrice, listPriceIntl, price, priceIntl = 0, availability } =
-    useOffer(offers);
+  const {
+    listPrice,
+    salePrice,
+    listPriceIntl,
+    price,
+    priceIntl = 0,
+    availability,
+  } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const { activePriceIntl } = useUI();
   const currency = activePriceIntl.value.active
     ? offers?.offers[1]?.priceCurrency || "USD"
     : offers?.priceCurrency || "BRL";
-  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : salePrice;
+  const productPrice = activePriceIntl.value.active
+    ? priceIntl || 0
+    : salePrice;
   const productListPrice = activePriceIntl.value.active && listPriceIntl ||
     listPrice;
   const align = !layout?.basics?.contentAlignment ||
@@ -480,7 +488,13 @@ function ProductCard(
                   >
                     {formatPrice(productListPrice, currency)}
                   </div>
-                  <div class={`${(productListPrice ?? 0) > productPrice ? 'text-red-500' : 'text-black'} leading-[130%] text-base lg:text-end font-light`}>
+                  <div
+                    class={`${
+                      (productListPrice ?? 0) > productPrice
+                        ? "text-red-500"
+                        : "text-black"
+                    } leading-[130%] text-base lg:text-end font-light`}
+                  >
                     {formatPrice(productPrice, currency) || "US$ 0,00"}
                   </div>
                 </div>
