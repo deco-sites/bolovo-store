@@ -71,7 +71,6 @@ function PDPProductInfo(
     throw new Error("Missing Product Details Page Info");
   }
   const {
-    breadcrumbList,
     product,
   } = page;
   const {

@@ -26,6 +26,7 @@ interface Props {
   variant?: "active" | "disabled" | "default" | "activePdp";
   content: string;
   priceIntl?: boolean;
+  inStock?: boolean;
 }
 
 const variants = {
@@ -53,16 +54,20 @@ function Avatar({ content, variant = "default" }: Props) {
 }
 
 export function AvatarPDP(
-  { content, variant = "default", priceIntl }: Props,
+  { content, variant = "default", priceIntl, inStock }: Props,
 ) {
   return (
     <div class="avatar placeholder">
       <div
         class={`rounded-full w-8 h-5 ${colors[content] ?? colors[variant]} ${
           variants[variant]
-        }`}
+        } ${variant === "activePdp" && !inStock ? "opacity-40" : ""}`}
       >
-        <span class="uppercase text-[0.875rem] leading-[130%]">
+        <span
+          class={`uppercase text-[0.875rem] leading-[130%] ${
+            !inStock ? "opacity-20" : "opacity-100"
+          }`}
+        >
           {content
             ? (colors[content]
               ? ""
