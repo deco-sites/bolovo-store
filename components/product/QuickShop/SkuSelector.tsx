@@ -31,9 +31,7 @@ export default function SkuSelector(
     <>
       {variants.length !== 1
         ? variants.map((variant) => (
-          <li
-            class="ease-in-out duration-500 delay-300"
-          >
+          <li class="ease-in-out duration-500 delay-300">
             {variant.inStock
               ? (
                 <button

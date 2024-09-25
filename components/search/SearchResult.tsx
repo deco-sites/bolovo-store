@@ -187,7 +187,7 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
 
   const term = new URLSearchParams(new URL(req.url).search).get("q");
 
-  const isMobile = req.headers.get("user-agent")!.includes("Mobile");
+  const isMobile = ctx.device !== "desktop";
 
   let colorRelated: { [productName: string]: Product[] } = {};
 
