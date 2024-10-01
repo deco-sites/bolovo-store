@@ -13,7 +13,7 @@ export interface MainColors {
    * @title Base
    * @default #FFFFFF
    */
-  "base-100": string;
+  "white": string;
   /**
    * @format color
    * @title Primary
@@ -280,10 +280,10 @@ const toVariables = (t: Theme): [string, string][] => {
     "--nf": t["neutral-focus"] ?? darken(t["neutral"]),
     "--nc": t["neutral-content"] ?? contrasted(t["neutral"]),
 
-    "--b1": t["base-100"],
-    "--b2": t["base-200"] ?? darken(t["base-100"], 0.1),
-    "--b3": t["base-300"] ?? darken(t["base-100"], 0.5),
-    "--bc": t["base-content"] ?? contrasted(t["base-100"]),
+    "--b1": t["white"],
+    "--b2": t["base-200"] ?? darken(t["white"], 0.1),
+    "--b3": t["base-300"] ?? darken(t["white"], 0.5),
+    "--bc": t["base-content"] ?? contrasted(t["white"]),
 
     "--su": t["success"],
     "--suc": t["success-content"] ?? contrasted(t["success"]),
@@ -322,7 +322,7 @@ const defaultTheme = {
   "tertiary": "hsla(8, 69%, 65%, 1)",
   "tertiary-content": "hsla(0, 0%, 100%, 1)",
   "neutral": "hsla(0, 0%, 47%, 1)",
-  "base-100": "hsla(0, 0%, 100%, 1)",
+  "white": "hsla(0, 0%, 100%, 1)",
   "success": "hsl(150 62% 95%)",
   "warning": "hsl(43 100% 95%)",
   "error": "hsl(9 100% 95%)",
@@ -383,7 +383,7 @@ export function Preview(props: Props) {
     <>
       <Section {...props} />
       <div class="grid grid-flow-row md:grid-flow-col">
-        <div class="flex flex-col gap-4 p-4 bg-base-100 text-base-content">
+        <div class="flex flex-col gap-4 p-4 bg-white text-base-content">
           <div class="text-basel">
             The quick brown fox jumps over the lazy dog
           </div>{" "}
@@ -421,7 +421,7 @@ export function Preview(props: Props) {
           </div>
           {" "}
         </div>{" "}
-        <div class="flex flex-col gap-4 p-4 bg-base-content text-base-100">
+        <div class="flex flex-col gap-4 p-4 bg-base-content text-white">
           <div class="text-basel">
             The quick brown fox jumps over the lazy dog
           </div>{" "}

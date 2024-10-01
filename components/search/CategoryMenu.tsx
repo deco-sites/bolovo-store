@@ -1,12 +1,11 @@
 import GalleryControls from "$store/islands/GalleryControls.tsx";
 import type { Product, ProductListingPage } from "apps/commerce/types.ts";
-import type { SectionProps } from "deco/types.ts";
 import { FilterName } from "./SearchResultMenu.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { ButtonsPaginationProps } from "./ButtonsPagination.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
-
+import { SectionProps } from "deco/mod.ts";
 /** @titleBy category */
 export interface Category {
   /** @description RegExp to enable this category on the current URL. Use /camisetas to display this on camisetas category  */
@@ -21,7 +20,6 @@ export interface Category {
     url: string;
   }[];
 }
-
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
@@ -53,7 +51,6 @@ export interface Props {
   applyFiltersText?: string;
   removeFiltersText?: string;
 }
-
 function ResultCategory({
   page,
   currentCategory,
@@ -66,7 +63,6 @@ function ResultCategory({
   appliedFiltersText,
   applyFiltersText,
   removeFiltersText,
-  url,
   labelOrdenation = "ORDENAR",
   labelsOfFilters = {
     labelFilter: "Filtrar",
@@ -86,9 +82,8 @@ function ResultCategory({
   url: string;
   isDesktop: boolean;
 }) {
-  const { filters, breadcrumb, sortOptions } = page;
+  const { filters, sortOptions } = page;
   const { activePriceIntl } = useUI();
-
   return (
     <div>
       <GalleryControls
@@ -104,8 +99,6 @@ function ResultCategory({
         applyFiltersText={applyFiltersText}
         removeFiltersText={removeFiltersText}
         filters={filters}
-        url={url}
-        breadcrumb={breadcrumb}
         priceIntl={activePriceIntl.value.active}
         labelOrdenation={labelOrdenation}
         labelsOfFilters={labelsOfFilters}
@@ -115,7 +108,6 @@ function ResultCategory({
     </div>
   );
 }
-
 function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
   const {
     page,
@@ -126,9 +118,9 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
     parentCategory,
     categoryURL,
   } = props;
-
-  if (!page) return null;
-
+  if (!page) {
+    return null;
+  }
   return (
     <ResultCategory
       {...props}
@@ -142,21 +134,19 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
     />
   );
 }
-
 export async function getColorRelatedProducts(
   products: Product[] | undefined,
   ctx: AppContext,
 ) {
-  const colorRelated: { [productName: string]: Product[] } = {};
-
+  const colorRelated: {
+    [productName: string]: Product[];
+  } = {};
   for (const product of products || []) {
     let camisetaVariantProperty;
-
     for (const property of product.additionalProperty || []) {
       if (property.valueReference === "TAGS") {
         try {
           const data = JSON.parse(property.value || "");
-
           if (data.type === "variante_cor") {
             camisetaVariantProperty = data.name;
             break;
@@ -166,7 +156,6 @@ export async function getColorRelatedProducts(
         }
       }
     }
-
     if (camisetaVariantProperty) {
       const productList = await ctx.get({
         "__resolveType": "vnda/loaders/productList.ts",
@@ -177,35 +166,29 @@ export async function getColorRelatedProducts(
       }
     }
   }
-
   return colorRelated;
 }
-
 export const loader = (props: Props, req: Request, ctx: AppContext) => {
   const { categories } = props;
-
   const url = new URL(req.url);
   const isDesktop = ctx.device === "desktop";
-
   const urlSegments = url.pathname.split("/").filter(Boolean);
   const firstSegment = urlSegments.length > 0 ? urlSegments[0] : null;
   const secondSegment = urlSegments.length > 1 ? urlSegments[1] : null;
-
   const foundCategory = categories?.filter(({ category }) =>
     category === firstSegment
   );
-
   const categoryURL = foundCategory?.[0]?.url;
-
   if (foundCategory && foundCategory.length > 0) {
     let currentCategory: string | undefined;
-    let subCategories: { label: string; url: string }[] = [];
-
+    let subCategories: {
+      label: string;
+      url: string;
+    }[] = [];
     if (secondSegment) {
-      const foundSubCategory = foundCategory[0]?.items?.find(
-        (subCategory) => subCategory.url === url.pathname,
+      const foundSubCategory = foundCategory[0]?.items?.find((subCategory) =>
+        subCategory.url === url.pathname
       );
-
       currentCategory = foundSubCategory?.label;
     } else {
       currentCategory = foundCategory[0]?.category;
@@ -213,14 +196,12 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
     const parentCategory = foundCategory[0]?.category
       ? foundCategory[0]?.category
       : undefined;
-
     if (foundCategory[0]?.items) {
       subCategories = foundCategory[0].items.map((subCategory) => ({
         label: subCategory.label,
         url: subCategory.url,
       }));
     }
-
     return {
       ...props,
       currentCategory,
@@ -242,5 +223,4 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
     };
   }
 };
-
 export default CategoryResult;

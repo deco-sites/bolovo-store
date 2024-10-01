@@ -1,9 +1,7 @@
-import { Section } from "deco/blocks/section.ts";
-
+import { type Section } from "deco/mod.ts";
 interface Props {
   children: Section;
 }
-
 function Container({ children }: Props) {
   return (
     <div class="w-full">
@@ -11,5 +9,4 @@ function Container({ children }: Props) {
     </div>
   );
 }
-
 export default Container;

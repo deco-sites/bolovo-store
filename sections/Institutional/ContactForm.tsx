@@ -161,7 +161,7 @@ function ContactForm({
               />
             </div>
             <div>
-              <Button class="btn btn-sm btn-primary hover:text-base-100 w-24 h-[34px]">
+              <Button class="btn btn-sm btn-primary hover:text-white w-24 h-[34px]">
                 Enviar
               </Button>
             </div>

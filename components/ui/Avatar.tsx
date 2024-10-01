@@ -18,7 +18,7 @@ const colors: Record<string, string> = {
   // Color variants - only applied when no color as content is passed
   "active": "",
   "disabled": "bg-neutral-content text-neutral",
-  "default": "bg-base-100 text-baserimary",
+  "default": "bg-white text-baserimary",
   "activePdp": "text-white",
 };
 

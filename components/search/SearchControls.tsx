@@ -1,16 +1,16 @@
-import Button from "$store/components/ui/Button.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
 import Filters from "$store/components/search/Filters.tsx";
 import Sort from "$store/components/search/Sort.tsx";
+import Button from "$store/components/ui/Button.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
 import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 // import SelectedFilters from "$store/islands/SelectedFilters.tsx";
 import { selectedFilters } from "$store/components/search/SelectedFilters.tsx";
 // import ApplyFiltersJS from "$store/islands/ApplyFiltersJS.tsx";
-import type { FilterName } from "./SearchResultMenu.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { lazy, Suspense } from "preact/compat";
+import type { FilterName } from "./SearchResultMenu.tsx";
 
 // const Drawer = lazy(() => import("$store/components/ui/Drawer.tsx"));
 const SelectedFilters = lazy(() =>
@@ -43,8 +43,6 @@ function SearchControls(
     sortOptions,
     textSearch,
     searchTerm,
-    url,
-    breadcrumb,
     filterColors,
     filtersNames,
     textFilters,
@@ -72,7 +70,7 @@ function SearchControls(
       onClose={() => open.value = false}
       aside={
         <>
-          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full">
+          <div class="bg-white flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full">
             <div class="hidden sm:flex flex-row w-full justify-end items-center">
               <span class="font-medium text-sm leading-[18px]">
                 {labelsOfFilters?.labelClose ?? "Fechar"}

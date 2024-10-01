@@ -1,4 +1,3 @@
-import { Section } from "deco/blocks/section.ts";
 import { grid, VNode } from "../../constants.tsx";
 import { clx } from "../../sdk/clx.ts";
 
@@ -60,7 +59,7 @@ interface Props {
   };
 }
 
-function Section({ layout, children }: Props) {
+function Component({ layout, children }: Props) {
   return (
     <div
       class={clx(
@@ -82,4 +81,4 @@ function Section({ layout, children }: Props) {
   );
 }
 
-export default Section;
+export default Component;

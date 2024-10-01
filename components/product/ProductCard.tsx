@@ -303,7 +303,7 @@ function ProductCard(
           (
             <QuickShop
               product={product}
-              customClass={`w-full lg:group-hover:translate-y-0 lg:group-hover:bg-base-100`}
+              customClass={`w-full lg:group-hover:translate-y-0 lg:group-hover:bg-white`}
               priceIntl={activePriceIntl.value.active}
             />
           )}
@@ -332,7 +332,7 @@ function ProductCard(
         {/* Product Images */}
         <div
           id={idSliders}
-          class="sm:hidden h-full grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
+          class="lg:hidden h-full grid grid-cols-[48px_1fr_48px] lg:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
         >
           <Slider class="h-full w-full carousel carousel-center gap-6 col-span-full row-span-full">
             {productCardImages?.map((image, index) => (
@@ -348,7 +348,7 @@ function ProductCard(
                     src={safeSrc(image.url)}
                     width={177}
                     height={206}
-                    class="mix-blend-multiply bg-base-100 h-full w-full"
+                    class="mix-blend-multiply bg-white h-full w-full"
                     alt={front.alternateName}
                     loading={index === 0 && preload ? "eager" : "lazy"}
                   />
@@ -373,7 +373,7 @@ function ProductCard(
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="h-full hidden sm:grid items-center grid-cols-1 grid-rows-1 w-full relative"
+          class="h-full hidden lg:grid items-center grid-cols-1 grid-rows-1 w-full relative"
         >
           {!isMobile && (
             <Picture preload={preload}>
@@ -393,8 +393,8 @@ function ProductCard(
               />
               <img
                 class={isMobile
-                  ? "mix-blend-multiply bg-base-100 w-full"
-                  : `mix-blend-multiply group-hover:mix-blend-normal bg-base-100 col-span-full row-span-full w-full ${
+                  ? "mix-blend-multiply bg-white w-full"
+                  : `mix-blend-multiply group-hover:mix-blend-normal bg-white col-span-full row-span-full w-full ${
                     layout?.onMouseOver?.image === "Zoom image"
                       ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                       : ""
@@ -426,7 +426,7 @@ function ProductCard(
                     height={317}
                   />
                   <img
-                    class="h-full bg-base-100 col-span-full row-span-full w-full"
+                    class="h-full bg-white col-span-full row-span-full w-full"
                     alt={back?.alternateName ?? front.alternateName}
                     src={safeSrc(back?.url ?? front.url)}
                     decoding="async"
@@ -490,7 +490,7 @@ function ProductCard(
                   </div>
                   <div
                     class={`${
-                      (productListPrice ?? 0) > productPrice
+                      productPrice && (productListPrice ?? 0) > productPrice
                         ? "text-red-500"
                         : "text-black"
                     } leading-[130%] text-base lg:text-end font-light`}

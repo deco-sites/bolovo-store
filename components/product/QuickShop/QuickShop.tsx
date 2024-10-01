@@ -80,7 +80,7 @@ export default function QuickShop(
     <div
       className={`flex flex-row-reverse p-2 absolute bottom-0 right-0 z-20 ease-in-out duration-500 transition-width w-full ${
         step.value !== "waiting"
-          ? " bg-base-100 translate-y-0"
+          ? " bg-white translate-y-0"
           : " bg-transparent lg:bg-white translate-y-[100%]"
       } ${customClass}`}
     >

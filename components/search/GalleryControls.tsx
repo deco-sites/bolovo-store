@@ -14,7 +14,7 @@ import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import DragSliderJS from "$store/islands/DragSliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 
-type Props =
+export type Props =
   & Pick<ProductListingPage, "filters" | "sortOptions">
   & {
     currentCategory?: string;
@@ -26,8 +26,8 @@ type Props =
     categoryURL?: string;
     labelOrdenation: string;
     labelsOfFilters: {
-      labelFilter: string;
-      labelClose: string;
+      labelFilter?: string;
+      labelClose?: string;
     };
     filterColors?: Color[];
     filtersNames?: FilterName[];
@@ -91,7 +91,7 @@ function GalleryControls(
       onClose={() => open.value = false}
       aside={
         <>
-          <div class="bg-base-100 flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full ">
+          <div class="bg-white flex flex-col h-full overflow-y-hidden max-w-[90%] sm:max-w-[408px] w-full ">
             <div class="hidden sm:flex justify-end items-center">
               <span class="font-medium text-sm leading-[18px]">
                 {labelsOfFilters.labelClose}

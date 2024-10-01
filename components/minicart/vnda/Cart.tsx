@@ -1,8 +1,8 @@
 // deno-lint-ignore-file no-explicit-any
-import { itemToAnalyticsItem, useCart } from "apps/vnda/hooks/useCart.ts";
-import BaseCart from "../common/Cart.tsx";
-import { useEffect } from "preact/hooks";
 import { useSignal } from "@preact/signals";
+import { useCart } from "apps/vnda/hooks/useCart.ts";
+import { useEffect } from "preact/hooks";
+import BaseCart from "../common/Cart.tsx";
 export interface MiniCartProps {
   /**
    * @format color
@@ -79,7 +79,10 @@ function Cart(
   return (
     <BaseCart
       items={items.map((item) => ({
-        image: { src: normalizeUrl(item.image_url), alt: item.product_name },
+        image: {
+          src: normalizeUrl(item.image_url ?? ""),
+          alt: item.product_name,
+        },
         quantity: item.quantity,
         name: item.variant_name,
         price: {
@@ -87,7 +90,7 @@ function Cart(
           list: item.variant_price,
           listIntl: item.variant_intl_price,
         },
-        size: item.extra.Tamanho,
+        size: (item.extra as any).Tamanho,
       }))}
       cartTranslations={cartTranslations}
       total={priceIntl ? priceTotalIntl.value : total}
@@ -106,11 +109,13 @@ function Cart(
       itemToAnalyticsItem={(index: number) => {
         const item = items[index];
 
-        return item && {
+        if (!item) return;
+
+        return {
           nome_departamento: (item.extra as any).categoria,
           nome_produto: item.product_name,
           preco_produto: item.price,
-          id_produto: item.product_id,
+          id_produto: String(item.product_id),
           cor: (item.extra as any).cor,
           tamanhos: (item.extra as any).Tamanho,
           url_produto: item.product_url,

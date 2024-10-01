@@ -12,14 +12,12 @@ import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import { usePartialSection } from "deco/hooks/usePartialSection.ts";
-
 /** @titleBy title */
 interface Tab {
   /** @format rich-text */
   title: string;
   products: Product[] | null;
 }
-
 export interface Props {
   tabs: Tab[];
   title?: string;
@@ -32,27 +30,18 @@ export interface Props {
   tabIndex?: number;
   id?: string;
 }
-
-function TabbedProductShelf({
-  tabs,
-  title,
-  description,
-  layout,
-  cardLayout,
-  tabIndex,
-  id: sectionId,
-}: Props) {
+function TabbedProductShelf(
+  { tabs, title, description, layout, cardLayout, tabIndex }: Props,
+) {
   const id = useId();
   const platform = usePlatform();
   const ti = typeof tabIndex === "number"
     ? Math.min(Math.max(tabIndex, 0), tabs.length)
     : 0;
   const { products } = tabs[ti];
-
   if (!products || products.length === 0) {
     return null;
   }
-
   return (
     <div class="w-full container  py-8 flex flex-col gap-8 lg:gap-12 lg:py-10">
       <Header
@@ -98,12 +87,12 @@ function TabbedProductShelf({
 
         <>
           <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-            <Slider.PrevButton class="btn btn-circle btn-outline absolute right-1/2 bg-base-100">
+            <Slider.PrevButton class="btn btn-circle btn-outline absolute right-1/2 bg-white">
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.PrevButton>
           </div>
           <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-            <Slider.NextButton class="btn btn-circle btn-outline absolute left-1/2 bg-base-100">
+            <Slider.NextButton class="btn btn-circle btn-outline absolute left-1/2 bg-white">
               <Icon size={24} id="ChevronRight" strokeWidth={3} />
             </Slider.NextButton>
           </div>
@@ -127,5 +116,4 @@ function TabbedProductShelf({
     </div>
   );
 }
-
 export default TabbedProductShelf;

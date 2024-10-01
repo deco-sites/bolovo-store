@@ -12,7 +12,6 @@ import type { PropsNotFound } from "../search/NotFound.tsx";
 import NotFound from "../search/NotFound.tsx";
 import PDPGallerySlider from "./Gallery/PDPImageSlider.tsx";
 import PDPProductInfo from "./PDPProductInfo.tsx";
-import { SendEventOnLoad } from "deco-sites/bolovo-store/components/Analytics.tsx";
 
 export interface Props {
   /** @title Integration */

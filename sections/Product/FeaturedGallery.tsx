@@ -51,7 +51,7 @@ export function LoadingFallback() {
 
 export const loader = async (
   props: Props,
-  req: Request,
+  _req: Request,
   ctx: AppContext,
 ) => {
   const { showColorVariants } = props;

@@ -1,8 +1,8 @@
-import { useSignal } from "@preact/signals";
 import { invoke } from "$store/runtime.ts";
+import { useSignal } from "@preact/signals";
 import type { Product } from "apps/commerce/types.ts";
-import type { JSX } from "preact";
 import { EMAIL_REGEX } from "deco-sites/bolovo-store/sdk/regex.ts";
+import type { JSX } from "preact";
 
 export interface Props {
   productID: Product["productID"];
@@ -33,7 +33,7 @@ function Notify({ productID, priceIntl = false }: Props) {
         email,
       });
       notifySuccess.value = true;
-    } catch (error) {
+    } catch {
       notifyInvalid.value = true;
     } finally {
       loading.value = false;

@@ -1,6 +1,5 @@
-import { useScriptAsDataURI } from "deco/hooks/useScript.ts";
 import { useId } from "../../sdk/useId.ts";
-
+import { useScriptAsDataURI } from "deco/hooks/useScript.ts";
 export interface Props {
   /**
    * @title Text
@@ -20,17 +19,14 @@ export interface Props {
     seconds?: string;
   };
 }
-
 const reparseDate = (dateStr?: string): number => {
   const date = dateStr ? new Date(dateStr) : new Date();
-  return new Date(date.toLocaleString("en", { timeZone: "America/Sao_Paulo" }))
+  return new Date(
+    date.toLocaleString("en", { timeZone: "America/Sao_Paulo" }),
+  )
     .getTime();
 };
-
-const snippet = (
-  expiresAt: string,
-  rootId: string,
-) => {
+const snippet = (expiresAt: string, rootId: string) => {
   const reparseDate = (dateStr?: string): number => {
     const date = dateStr ? new Date(dateStr) : new Date();
     return new Date(
@@ -38,7 +34,6 @@ const snippet = (
     )
       .getTime();
   };
-
   const expirationDate = reparseDate(expiresAt);
   const getDelta = () => {
     const delta = expirationDate - new Date().getTime();
@@ -129,8 +124,16 @@ function CampaignTimer({
           : null}
         <div class="grid grid-flow-col md:gap-20 sm:gap-10 gap-5 text-center auto-cols-max items-center font-ouroboros">
           <TimeComponent id={id} label={labels?.hours} time="hours" />
-          <TimeComponent id={id} label={labels?.minutes} time="minutes" />
-          <TimeComponent id={id} label={labels?.seconds} time="seconds" />
+          <TimeComponent
+            id={id}
+            label={labels?.minutes}
+            time="minutes"
+          />
+          <TimeComponent
+            id={id}
+            label={labels?.seconds}
+            time="seconds"
+          />
         </div>
       </div>
       <script
@@ -140,5 +143,4 @@ function CampaignTimer({
     </>
   );
 }
-
 export default CampaignTimer;

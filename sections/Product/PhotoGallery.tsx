@@ -119,7 +119,7 @@ export default function PhotoGallery(
   }: Props,
 ) {
   if (!products || products.length === 0) {
-    return null;
+    return <></>;
   }
 
   return (

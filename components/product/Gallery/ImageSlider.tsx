@@ -75,7 +75,7 @@ export default function GallerySlider(props: Props) {
           <Icon size={24} id="ChevronRight" strokeWidth={3} />
         </Slider.NextButton>
 
-        <div class="absolute top-2 right-2 bg-base-100 rounded-full">
+        <div class="absolute top-2 right-2 bg-white rounded-full">
           <ProductImageZoom
             images={images}
             width={700}

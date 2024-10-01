@@ -99,7 +99,7 @@ export default function LanguageSwitcher(
           />
         </summary>
         <ul
-          class={`p-2 shadow menu w-auto dropdown-content z-[1] bg-base-100 rounded-box ${classFlags}`}
+          class={`p-2 shadow menu w-auto dropdown-content z-[1] bg-white rounded-box ${classFlags}`}
         >
           {countryFlag.map((iten) => {
             return (

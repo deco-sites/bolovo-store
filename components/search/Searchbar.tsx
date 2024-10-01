@@ -9,21 +9,15 @@
  * no JavaScript is shipped to the browser!
  */
 
-import ProductCard from "$store/components/product/ProductCard.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
-import Slider from "$store/components/ui/Slider.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useId } from "$store/sdk/useId.ts";
-import { useSuggestions } from "$store/sdk/useSuggestions.ts";
 import { useUI } from "$store/sdk/useUI.ts";
-import { Suggestion } from "apps/commerce/types.ts";
-import { Resolved } from "deco/engine/core/resolver.ts";
-import { TargetedEvent, useEffect, useRef } from "preact/compat";
-import type { Platform } from "$store/apps/site.ts";
+import { useSignal } from "@preact/signals";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
-import { useSignal } from "@preact/signals";
+import { useRef } from "preact/compat";
 
 // Editable props
 export interface Props {
@@ -36,7 +30,7 @@ export interface Props {
   /**
    * @title Icon of Search
    */
-  iconSearch: {
+  iconSearch?: {
     src: ImageWidget;
     alt: string;
   };
@@ -114,13 +108,15 @@ function Searchbar({
                 class=" join-item btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
                 aria-label="search icon button"
               >
-                <Image
-                  src={iconSearch.src}
-                  alt={iconSearch.alt}
-                  width={19}
-                  height={19}
-                  loading={"eager"}
-                />
+                {iconSearch && (
+                  <Image
+                    src={iconSearch.src}
+                    alt={iconSearch.alt}
+                    width={19}
+                    height={19}
+                    loading={"eager"}
+                  />
+                )}
               </Button>
             )
             : (
@@ -165,13 +161,15 @@ function Searchbar({
                 class=" btn-sm btn-ghost z-10 flex justify-center items-center pr-0 md:pr-3"
                 aria-label="search icon button"
               >
-                <Image
-                  src={iconSearch.src}
-                  alt={iconSearch.alt}
-                  width={19}
-                  height={19}
-                  loading={"eager"}
-                />
+                {iconSearch && (
+                  <Image
+                    src={iconSearch.src}
+                    alt={iconSearch.alt}
+                    width={19}
+                    height={19}
+                    loading={"eager"}
+                  />
+                )}
               </Button>
             )
             : (

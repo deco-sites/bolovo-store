@@ -1,3 +1,4 @@
+import type { AppContext } from "$store/apps/site.ts";
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import ProductCard, {
   Layout as cardLayout,
@@ -6,15 +7,13 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Header from "$store/components/ui/SectionHeader.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import type { AppContext } from "$store/apps/site.ts";
-import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
-import type { SectionProps } from "deco/types.ts";
-
+import { SectionProps } from "deco/mod.ts";
 export interface Shelf {
   /** @format rich-text */
   title?: string;
@@ -32,30 +31,22 @@ export interface Shelf {
   showColorVariants?: boolean;
   cardsLayout?: cardLayout;
 }
-
 export interface ShelfProps {
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
   matcher: string;
   shelf: Shelf;
 }
-
 export interface Props {
   shelfs: ShelfProps[];
 }
-
-export const loader = async (
-  props: Props,
-  req: Request,
-  ctx: AppContext,
-) => {
+export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   const { shelfs } = props;
-
   const shelf = shelfs?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
-
-  let colorRelated: { [productName: string]: Product[] } = {};
-
+  let colorRelated: {
+    [productName: string]: Product[];
+  } = {};
   if (shelf?.shelf.showColorVariants && shelf?.shelf.products) {
     try {
       colorRelated = await getColorRelatedProducts(shelf?.shelf.products, ctx);
@@ -63,13 +54,11 @@ export const loader = async (
       console.error("Erro ao obter produtos relacionados por cor:", error);
     }
   }
-
   return {
     shelf,
     colorVariant: colorRelated || {},
   };
 };
-
 const Shelf = (
   {
     products,
@@ -80,9 +69,11 @@ const Shelf = (
     colorVariant,
     showColorVariants,
     cardsLayout,
-  }:
-    & Shelf
-    & { colorVariant?: { [productName: string]: Product[] } },
+  }: Shelf & {
+    colorVariant?: {
+      [productName: string]: Product[];
+    };
+  },
 ) => {
   const id = useId();
   const platform = "vnda";
@@ -90,7 +81,6 @@ const Shelf = (
   if (!products || products.length === 0) {
     return null;
   }
-
   return (
     <div class="w-full py-8 flex flex-col gap-5 px-[15px] mx-auto lg:gap-6 lg:py-10">
       <Header
@@ -99,10 +89,7 @@ const Shelf = (
         alignment={layout?.headerAlignment || "left"}
       />
 
-      <div
-        id={id}
-        class="w-full grid grid-cols-[30px_1fr_30px] lg:px-[17px]"
-      >
+      <div id={id} class="w-full grid grid-cols-[30px_1fr_30px] lg:px-[17px]">
         <Slider class="w-full carousel carousel-start gap-2 lg:gap-[15px] col-span-full row-start-2 row-end-5">
           {products?.map((product, index) => (
             <Slider.Item
@@ -177,15 +164,11 @@ const Shelf = (
     </div>
   );
 };
-
-function ProductShelfByPage(props: SectionProps<ReturnType<typeof loader>>) {
+function ProductShelfByPage(props: SectionProps<typeof loader>) {
   const { shelf } = props;
-
   if (!shelf) {
     return null;
   }
-
   return <Shelf {...shelf.shelf} />;
 }
-
 export default ProductShelfByPage;

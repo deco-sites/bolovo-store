@@ -14,10 +14,9 @@ import {
   getCookies,
   setCookie,
 } from "std/http/cookie.ts";
-import type { SectionProps } from "deco/types.ts";
 import { useUI } from "../../sdk/useUI.ts";
 import { AppContext } from "apps/vnda/mod.ts";
-
+import { SectionProps } from "deco/mod.ts";
 export interface Country {
   countryLabel: string;
   languageAbbreviation: string;
@@ -26,10 +25,8 @@ export interface Country {
     alt: string;
   };
 }
-
 export interface Props {
   promotionBar?: AlertProps;
-
   /**
    * @title Button Search
    */
@@ -46,32 +43,31 @@ export interface Props {
       alt: string;
     };
   };
-
   /** @title Search Bar */
   searchbar?: Omit<SearchbarProps, "platform">;
-
   /**
    * @title Menu
    * @description Navigation items used both on mobile and desktop menus and menu props
    */
   menu: MenuProps;
-
   /** @title Logo */
-  logo?: { src: ImageWidget; alt: string };
-
+  logo?: {
+    src: ImageWidget;
+    alt: string;
+  };
   /** @title MiniCart */
   miniCart?: MiniCartProps;
-
   /**
    * @title Menu Item Help
    */
-  helpItem: { text: string; href: string };
-
+  helpItem: {
+    text: string;
+    href: string;
+  };
   /**
    * @title Href icon my account
    */
   accountHref: string;
-
   /**
    * @title Flag Icon
    * @Description Internationalization Menu Flag Icon
@@ -80,11 +76,9 @@ export interface Props {
   countryFlag: Country[];
   showLanguageVariant?: boolean;
 }
-
-function Header(props: SectionProps<ReturnType<typeof loader>>) {
+function Header(props: SectionProps<typeof loader>) {
   const platform = usePlatform();
   const { activePriceIntl } = useUI();
-
   const {
     menu,
     searchbar,
@@ -99,7 +93,6 @@ function Header(props: SectionProps<ReturnType<typeof loader>>) {
     device,
   } = props;
   const items = menu.items ?? [];
-
   return (
     <>
       <header style={{ height: headerHeight }}>
@@ -109,7 +102,7 @@ function Header(props: SectionProps<ReturnType<typeof loader>>) {
           platform={platform}
           priceIntl={activePriceIntl.value.active}
         >
-          <div class="bg-base-100 fixed w-full z-50">
+          <div class="bg-white fixed w-full z-50">
             <Alert {...promotionBar} />
             <Navbar
               items={items}
@@ -130,17 +123,13 @@ function Header(props: SectionProps<ReturnType<typeof loader>>) {
     </>
   );
 }
-
 export default Header;
-
 export const loader = (props: Props, req: Request, ctx: AppContext) => {
   const { activePriceIntl } = useUI();
   const cookies = getCookies(req.headers);
-
   if (cookies.language === "en") {
     activePriceIntl.value.active = true;
     activePriceIntl.value.value = cookies.language;
-
     const headers = new Headers();
     const cookie: Cookie = {
       name: "language",
@@ -158,6 +147,5 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
     const headers = new Headers();
     deleteCookie(headers, "language");
   }
-
   return { ...props, device: ctx.device };
 };

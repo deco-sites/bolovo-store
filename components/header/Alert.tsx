@@ -1,7 +1,5 @@
 import Slider from "$store/components/ui/Slider.tsx";
-import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
-import { Color } from "https://deno.land/x/color@v0.3.0/mod.ts";
 import { useScroll } from "$store/sdk/useScroll.ts";
 
 export interface barColor {

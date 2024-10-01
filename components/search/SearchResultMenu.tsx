@@ -1,12 +1,9 @@
-import SearchControls from "$store/islands/SearchControls.tsx";
-import type { Product, ProductListingPage } from "apps/commerce/types.ts";
-import type { SectionProps } from "deco/types.ts";
-import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
-import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
-import { getColorRelatedProducts } from "./CategoryMenu.tsx";
+import SearchControls from "$store/islands/SearchControls.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-
+import type { Product, ProductListingPage } from "apps/commerce/types.ts";
+import { getColorRelatedProducts } from "./CategoryMenu.tsx";
+import { SectionProps } from "deco/mod.ts";
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
@@ -31,7 +28,6 @@ export interface Props {
   applyFiltersText?: string;
   removeFiltersText?: string;
 }
-
 export interface CardSEO {
   /** @title WARNING: Be careful not to configure the SEO Text on the same page where you are configuring the SEO Card */
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
@@ -39,7 +35,6 @@ export interface CardSEO {
   /** @format rich-text */
   text: string;
 }
-
 export interface FilterName {
   /**
    * @title Filter name
@@ -50,8 +45,7 @@ export interface FilterName {
    */
   label: string;
 }
-
-export function Result({
+function SearchResult({
   page,
   textSearch,
   searchTerm,
@@ -64,63 +58,40 @@ export function Result({
   url,
   labelOrdenation = "ORDENAR",
   labelsOfFilters,
-}:
-  & Omit<Props, "page">
-  & {
-    page: ProductListingPage;
-    searchTerm: string;
-    section?: Section;
-    isMobile: boolean;
-    url: string;
-    card?: CardSEO;
+}: SectionProps<typeof loader> & {
+  colorVariant: {
+    [productName: string]: Product[];
+  };
+}) {
+  if (!page) {
+    return <></>;
   }
-  & { colorVariant: { [productName: string]: Product[] } }
-  & { hasBanner?: boolean }) {
-  const { filters, breadcrumb, sortOptions } = page;
-  const { activePriceIntl } = useUI();
-
   return (
-    <>
-      <SearchControls
-        searchTerm={searchTerm}
-        textSearch={textSearch}
-        sortOptions={sortOptions}
-        filtersNames={filtersNames}
-        filterColors={filterColors}
-        textFilters={textFilters}
-        appliedFiltersText={appliedFiltersText}
-        applyFiltersText={applyFiltersText}
-        removeFiltersText={removeFiltersText}
-        filters={filters}
-        url={url}
-        breadcrumb={breadcrumb}
-        priceIntl={activePriceIntl.value.active}
-        labelOrdenation={labelOrdenation}
-        labelsOfFilters={labelsOfFilters}
-      />
-    </>
-  );
-}
-
-function SearchResult(
-  props: SectionProps<ReturnType<typeof loader>> & {
-    colorVariant: { [productName: string]: Product[] };
-  },
-) {
-  return (
-    <Result
-      {...props}
+    <SearchControls
+      searchTerm={searchTerm}
+      textSearch={textSearch}
+      sortOptions={page.sortOptions}
+      filtersNames={filtersNames}
+      filterColors={filterColors}
+      textFilters={textFilters}
+      appliedFiltersText={appliedFiltersText}
+      applyFiltersText={applyFiltersText}
+      removeFiltersText={removeFiltersText}
+      filters={page.filters}
+      url={url}
+      breadcrumb={page.breadcrumb}
+      labelOrdenation={labelOrdenation}
+      labelsOfFilters={labelsOfFilters}
     />
   );
 }
-
 export default SearchResult;
-
 export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   const { showColorVariants } = props;
   const term = new URLSearchParams(new URL(req.url).search).get("q");
-  let colorRelated: { [productName: string]: Product[] } = {};
-
+  let colorRelated: {
+    [productName: string]: Product[];
+  } = {};
   if (showColorVariants) {
     try {
       colorRelated = await getColorRelatedProducts(props.page?.products, ctx);
@@ -128,7 +99,6 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
       console.error("Erro ao obter produtos relacionados por cor:", error);
     }
   }
-
   return {
     ...props,
     searchTerm: term ?? "",

@@ -101,7 +101,7 @@ function PDPProductInfo(
     : offers?.priceCurrency || "BRL";
   const productPrice = activePriceIntl.value.active
     ? priceIntl || 0
-    : salePrice;
+    : (salePrice ?? 0);
   const productListPrice = listPriceIntl || listPrice || 0;
   const discount = productPrice && productListPrice
     ? productListPrice - productPrice

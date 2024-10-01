@@ -7,14 +7,13 @@ import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import LazyImagesJS from "deco-sites/bolovo-store/components/ui/LazyLoadImages.tsx";
 import ShowMore from "deco-sites/bolovo-store/islands/ShowMore.tsx";
 import { usePartialSection } from "deco/hooks/usePartialSection.ts";
-import type { SectionProps } from "deco/types.ts";
+import { SectionProps } from "deco/mod.ts";
 import ProductGallery from "../product/ProductGallery.tsx";
 import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
 import type { PropsNotFound } from "./NotFound.tsx";
 import NotFound from "./NotFound.tsx";
-
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
@@ -30,7 +29,6 @@ export interface Props {
   showColorVariants?: boolean;
   cardSEO?: CardSEO[];
 }
-
 export interface CardSEO {
   /** @title WARNING: Be careful not to configure the SEO Text on the same page where you are configuring the SEO Card */
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
@@ -38,7 +36,6 @@ export interface CardSEO {
   /** @format rich-text */
   text: string;
 }
-
 export interface FilterName {
   /**
    * @title Filter name
@@ -49,21 +46,19 @@ export interface FilterName {
    */
   label: string;
 }
-
-export function Result({
-  page,
-  section,
-  isMobile,
-  filterColors,
-  colorVariant,
-  showColorVariants,
-  card,
-  url,
-  hasBanner,
-  buttonsPagination,
-}:
-  & Omit<Props, "page">
-  & {
+export function Result(
+  {
+    page,
+    section,
+    isMobile,
+    filterColors,
+    colorVariant,
+    showColorVariants,
+    card,
+    url,
+    hasBanner,
+    buttonsPagination,
+  }: Omit<Props, "page"> & {
     page: ProductListingPage;
     searchTerm: string;
     section?: Section;
@@ -71,21 +66,23 @@ export function Result({
     url: string;
     isCategory?: boolean;
     card?: CardSEO;
-  }
-  & { colorVariant: { [productName: string]: Product[] } }
-  & { hasBanner?: boolean }) {
+  } & {
+    colorVariant: {
+      [productName: string]: Product[];
+    };
+  } & {
+    hasBanner?: boolean;
+  },
+) {
   const { products, pageInfo } = page;
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
-
   const nextPage = pageInfo.nextPage ? new URL(pageInfo.nextPage, url) : null;
   const partialUrl = nextPage ? new URL(nextPage.href) : null;
   if (pageInfo.nextPage && nextPage) {
     partialUrl?.searchParams.set("partial", "true");
   }
-
   const [department, category] = page.breadcrumb.itemListElement;
-
   return (
     <>
       <LazyImagesJS />
@@ -106,9 +103,7 @@ export function Result({
         </div>
         {buttonsPagination?.layoutPagination === "Ver mais"
           ? (
-            <ShowMore
-              pageInfo={pageInfo}
-            >
+            <ShowMore pageInfo={pageInfo}>
               {partialUrl
                 ? (
                   <button
@@ -125,7 +120,12 @@ export function Result({
                 : null}
             </ShowMore>
           )
-          : <ButtonsPagination page={page} props={buttonsPagination} />}
+          : (
+            <ButtonsPagination
+              page={page}
+              props={buttonsPagination}
+            />
+          )}
       </div>
       {department && category && (
         <SendEventOnLoad
@@ -148,19 +148,18 @@ export function Result({
     </>
   );
 }
-
 function SearchResult(
   props: Awaited<SectionProps<ReturnType<typeof loader>>> & {
-    colorVariant: { [productName: string]: Product[] };
+    colorVariant: {
+      [productName: string]: Product[];
+    };
   },
 ) {
   const { page, notFound, searchTerm, section, isMobile, buttonsPagination } =
     props;
-
   if (!page || page?.products.length === 0) {
     return <NotFound props={notFound} searchedLabel={searchTerm} />;
   }
-
   return (
     <Result
       {...props}
@@ -171,34 +170,33 @@ function SearchResult(
     />
   );
 }
-
 export default SearchResult;
-
 export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   const { photoOnPLP, cardSEO, showColorVariants } = props;
-
   const section = photoOnPLP?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
-
   const card = cardSEO?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
-
   const term = new URLSearchParams(new URL(req.url).search).get("q");
-
   const isMobile = ctx.device !== "desktop";
-
-  let colorRelated: { [productName: string]: Product[] } = {};
-
+  let colorRelated: {
+    [productName: string]: Product[];
+  } = {};
   if (showColorVariants) {
     try {
-      colorRelated = await getColorRelatedProducts(props.page?.products, ctx);
+      colorRelated = await getColorRelatedProducts(
+        props.page?.products,
+        ctx,
+      );
     } catch (error) {
-      console.error("Erro ao obter produtos relacionados por cor:", error);
+      console.error(
+        "Erro ao obter produtos relacionados por cor:",
+        error,
+      );
     }
   }
-
   return {
     ...props,
     searchTerm: term ?? "",

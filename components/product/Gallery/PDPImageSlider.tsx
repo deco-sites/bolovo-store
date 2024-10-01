@@ -1,11 +1,8 @@
-import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
-import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
-import { Picture, Source } from "apps/website/components/Picture.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
-import Image from "apps/website/components/Image.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
 
 /**
  * @title Product Image Slider

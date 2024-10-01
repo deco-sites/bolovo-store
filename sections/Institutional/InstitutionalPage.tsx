@@ -1,16 +1,16 @@
-import { Section } from "deco/blocks/section.ts";
-
+import { type Section } from "deco/mod.ts";
 export interface Props {
   title: string;
   asideMenu: Section;
   sections: Section[];
 }
-
-function InstitutionalPage({
-  asideMenu: { Component: AsideComponent, props: asideProps },
-  sections,
-  title,
-}: Props) {
+function InstitutionalPage(
+  {
+    asideMenu: { Component: AsideComponent, props: asideProps },
+    sections,
+    title,
+  }: Props,
+) {
   return (
     <>
       <div class="flex flex-col lg:flex-row px-4 w-full mt-[15px]">
@@ -27,5 +27,4 @@ function InstitutionalPage({
     </>
   );
 }
-
 export default InstitutionalPage;
