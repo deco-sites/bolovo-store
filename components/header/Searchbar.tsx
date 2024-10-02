@@ -2,7 +2,7 @@ import Searchbar, {
   Props as SearchbarProps,
 } from "$store/components/search/Searchbar.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
-import FieldOfSearch from "deco-sites/bolovo-store/components/search/FieldOfSearch.tsx";
+import FieldOfSearch from "site/components/search/FieldOfSearch.tsx";
 
 export interface Props {
   searchbar?: SearchbarProps;

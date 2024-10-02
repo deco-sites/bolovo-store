@@ -2,7 +2,7 @@ import type { AppContext } from "$store/apps/site.ts";
 import Gallery from "$store/components/product/ProductGallery.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import type { Product } from "apps/commerce/types.ts";
-import { Layout } from "deco-sites/bolovo-store/components/product/ProductCard.tsx";
+import { Layout } from "site/components/product/ProductCard.tsx";
 
 export interface Props {
   /** @format rich-text */

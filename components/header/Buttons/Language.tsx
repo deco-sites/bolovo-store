@@ -1,4 +1,4 @@
-import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
+import Icon from "site/components/ui/Icon.tsx";
 import Image from "apps/website/components/Image.tsx";
 import { useSignal } from "@preact/signals";
 import type { Country } from "$store/components/header/Header.tsx";

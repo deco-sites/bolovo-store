@@ -1,4 +1,4 @@
-import { SendEventOnLoad } from "deco-sites/bolovo-store/components/Analytics.tsx";
+import { SendEventOnLoad } from "site/components/Analytics.tsx";
 
 export default function Home() {
   return (

@@ -4,8 +4,8 @@ import { getColorRelatedProducts } from "$store/components/search/CategoryMenu.t
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import type { Product, ProductListingPage } from "apps/commerce/types.ts";
-import LazyImagesJS from "deco-sites/bolovo-store/components/ui/LazyLoadImages.tsx";
-import ShowMore from "deco-sites/bolovo-store/islands/ShowMore.tsx";
+import LazyImagesJS from "site/components/ui/LazyLoadImages.tsx";
+import ShowMore from "site/islands/ShowMore.tsx";
 import { usePartialSection } from "deco/hooks/usePartialSection.ts";
 import { SectionProps } from "deco/mod.ts";
 import ProductGallery from "../product/ProductGallery.tsx";

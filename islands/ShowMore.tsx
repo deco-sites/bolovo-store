@@ -2,7 +2,7 @@ import { PageInfo } from "apps/commerce/types.ts";
 import type { ComponentChildren } from "preact";
 import { useEffect, useMemo } from "preact/hooks";
 import { signal } from "@preact/signals";
-import Spinner from "deco-sites/bolovo-store/components/ui/Spinner.tsx";
+import Spinner from "site/components/ui/Spinner.tsx";
 
 const currentPage = signal(1);
 const loading = signal(false);

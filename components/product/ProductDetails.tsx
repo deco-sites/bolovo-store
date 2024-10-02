@@ -1,7 +1,7 @@
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import { AppContext } from "apps/vnda/mod.ts";
-import { useUI } from "deco-sites/bolovo-store/sdk/useUI.ts";
+import { useUI } from "site/sdk/useUI.ts";
 import {
   Cookie,
   deleteCookie,

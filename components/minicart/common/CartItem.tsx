@@ -7,7 +7,7 @@ import Image from "apps/website/components/Image.tsx";
 import {
   HandleProductOnCartEvent,
   ProductParam,
-} from "deco-sites/bolovo-store/components/Analytics.tsx";
+} from "site/components/Analytics.tsx";
 import { useCallback, useState } from "preact/hooks";
 
 export interface Item {

@@ -1,6 +1,6 @@
 import { invoke } from "$store/runtime.ts";
 import { useSignal } from "@preact/signals";
-import { sendEvent } from "deco-sites/bolovo-store/sdk/analytics.tsx";
+import { sendEvent } from "site/sdk/analytics.tsx";
 import type { JSX } from "preact";
 
 export interface Form {
@@ -37,7 +37,7 @@ function Newsletter(
       const email =
         (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
       const status = await invoke({
-        key: "deco-sites/bolovo-store/loaders/newsletter.ts",
+        key: "site/loaders/newsletter.ts",
         props: {
           email: email,
         },
