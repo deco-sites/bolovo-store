@@ -6,14 +6,14 @@ import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import LazyImagesJS from "site/components/ui/LazyLoadImages.tsx";
 import ShowMore from "site/islands/ShowMore.tsx";
-import { usePartialSection } from "deco/hooks/usePartialSection.ts";
-import { SectionProps } from "deco/mod.ts";
 import ProductGallery from "../product/ProductGallery.tsx";
 import ButtonsPagination, {
   ButtonsPaginationProps,
 } from "./ButtonsPagination.tsx";
 import type { PropsNotFound } from "./NotFound.tsx";
 import NotFound from "./NotFound.tsx";
+import { usePartialSection } from "@deco/deco/hooks";
+import { type SectionProps } from "@deco/deco";
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
@@ -120,12 +120,7 @@ export function Result(
                 : null}
             </ShowMore>
           )
-          : (
-            <ButtonsPagination
-              page={page}
-              props={buttonsPagination}
-            />
-          )}
+          : <ButtonsPagination page={page} props={buttonsPagination} />}
       </div>
       {department && category && (
         <SendEventOnLoad
@@ -186,15 +181,9 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   } = {};
   if (showColorVariants) {
     try {
-      colorRelated = await getColorRelatedProducts(
-        props.page?.products,
-        ctx,
-      );
+      colorRelated = await getColorRelatedProducts(props.page?.products, ctx);
     } catch (error) {
-      console.error(
-        "Erro ao obter produtos relacionados por cor:",
-        error,
-      );
+      console.error("Erro ao obter produtos relacionados por cor:", error);
     }
   }
   return {

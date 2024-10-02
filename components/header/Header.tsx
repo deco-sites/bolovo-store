@@ -16,7 +16,7 @@ import {
 } from "std/http/cookie.ts";
 import { useUI } from "../../sdk/useUI.ts";
 import { AppContext } from "apps/vnda/mod.ts";
-import { SectionProps } from "deco/mod.ts";
+import { type SectionProps } from "@deco/deco";
 export interface Country {
   countryLabel: string;
   languageAbbreviation: string;

@@ -13,7 +13,7 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
-import { SectionProps } from "deco/mod.ts";
+import { type SectionProps } from "@deco/deco";
 export interface Shelf {
   /** @format rich-text */
   title?: string;

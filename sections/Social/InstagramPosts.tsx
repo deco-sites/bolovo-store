@@ -1,6 +1,6 @@
 import Image from "apps/website/components/Image.tsx";
 import Icon from "../../components/ui/Icon.tsx";
-import { SectionProps } from "deco/mod.ts";
+import { type SectionProps } from "@deco/deco";
 export interface Data {
   id: string;
   permalink: string;

@@ -1,6 +1,6 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import { SectionProps } from "deco/mod.ts";
+import { type SectionProps } from "@deco/deco";
 export interface Banner {
   /** @description text to be rendered on top of the image */
   title?: string;

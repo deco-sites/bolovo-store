@@ -3,7 +3,7 @@ import SearchControls from "$store/islands/SearchControls.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import { getColorRelatedProducts } from "./CategoryMenu.tsx";
-import { SectionProps } from "deco/mod.ts";
+import { type SectionProps } from "@deco/deco";
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
