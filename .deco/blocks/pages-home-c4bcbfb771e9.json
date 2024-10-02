@@ -10,13 +10,17 @@
           "__resolveType": "website/matchers/date.ts"
         },
         "value": [
-          { "__resolveType": "Theme - Bolovo " },
+          {
+            "__resolveType": "Theme - Bolovo "
+          },
           {
             "img": {
               "alt": "searche icon ",
               "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d4e86b94-158b-4bb2-a5be-106be393649c"
             },
-            "cart": { "freeShippingObjectiveQuantity": 600 },
+            "cart": {
+              "freeShippingObjectiveQuantity": 600
+            },
             "logo": {
               "alt": "Fashion logo by deco",
               "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/03f6696c-2f2c-4c2b-b39c-6a30528c18a0"
@@ -52,7 +56,11 @@
                           "label": "SHORTS",
                           "children": []
                         },
-                        { "href": "/calcas", "label": "CALÇAS", "children": [] }
+                        {
+                          "href": "/calcas",
+                          "label": "CALÇAS",
+                          "children": []
+                        }
                       ]
                     },
                     {
@@ -62,7 +70,11 @@
                           "label": "ACESSÓRIOS ",
                           "children": []
                         },
-                        { "href": "/bones", "label": "BONÉS", "children": [] },
+                        {
+                          "href": "/bones",
+                          "label": "BONÉS",
+                          "children": []
+                        },
                         {
                           "href": "/chapeus-buckets",
                           "label": "CHAPÉUS E BUCKETS",
@@ -78,7 +90,11 @@
                           "label": "TRALHAS ",
                           "children": []
                         },
-                        { "href": "/meia", "label": "MEIAS", "children": [] }
+                        {
+                          "href": "/meia",
+                          "label": "MEIAS",
+                          "children": []
+                        }
                       ]
                     },
                     {
@@ -212,8 +228,13 @@
               "label": "BUSCAR"
             },
             "label": "Buscar",
-            "alerts": ["Frete Grátis"],
-            "blogItem": { "href": "/", "text": "conteúdo" },
+            "alerts": [
+              "Frete Grátis"
+            ],
+            "blogItem": {
+              "href": "/",
+              "text": "conteúdo"
+            },
             "helpItem": {
               "href": "https://bolovo.zendesk.com/hc/pt-br",
               "text": "ajuda"
@@ -265,23 +286,47 @@
                         "label": "CAMISETAS",
                         "children": []
                       },
-                      { "href": "/bones", "label": "BONÉS", "children": [] },
-                      { "href": "/gorros", "label": "GORROS", "children": [] },
+                      {
+                        "href": "/bones",
+                        "label": "BONÉS",
+                        "children": []
+                      },
+                      {
+                        "href": "/gorros",
+                        "label": "GORROS",
+                        "children": []
+                      },
                       {
                         "href": "/camisas",
                         "label": "CAMISAS",
                         "children": []
                       },
-                      { "href": "/casacos", "label": "CASACOS", "children": [] }
+                      {
+                        "href": "/casacos",
+                        "label": "CASACOS",
+                        "children": []
+                      }
                     ]
                   },
                   {
                     "href": "#",
                     "label": "SHOP$",
                     "children": [
-                      { "href": "/shorts", "label": "SHORTS", "children": [] },
-                      { "href": "/calças", "label": "CALÇAS", "children": [] },
-                      { "href": "/meias", "label": "MEIAS", "children": [] },
+                      {
+                        "href": "/shorts",
+                        "label": "SHORTS",
+                        "children": []
+                      },
+                      {
+                        "href": "/calças",
+                        "label": "CALÇAS",
+                        "children": []
+                      },
+                      {
+                        "href": "/meias",
+                        "label": "MEIAS",
+                        "children": []
+                      },
                       {
                         "href": "/acessorios",
                         "label": "ACESSÓRIOS",
@@ -324,7 +369,10 @@
               "name": "q",
               "action": "/busca",
               "loader": {
-                "data": { "products": [], "searches": [] },
+                "data": {
+                  "products": [],
+                  "searches": []
+                },
                 "__resolveType": "resolved"
               },
               "IconSearch": {
@@ -338,7 +386,9 @@
               "placeholder": "BUSCAR"
             },
             "accountHref": "/conta",
-            "contentBlog": { "linksContent": [] },
+            "contentBlog": {
+              "linksContent": []
+            },
             "countryFlag": [
               {
                 "countryImg": {
@@ -368,14 +418,20 @@
             },
             "promotionBar": {
               "text": "<p style=\"text-align: center\"><strong><span style=\"font-size: 8pt\">Frete grátis a partir de R$699,00 para todo o Brasil </span></strong></p>",
-              "Layout": { "primary": "#FFFFFF", "base-100": "#121212" },
+              "Layout": {
+                "primary": "#FFFFFF",
+                "base-100": "#121212"
+              },
               "layout": {
                 "text": "#FFFFFF",
                 "primary": "#FFFFFF",
                 "background": "#121212"
               },
               "visible": true,
-              "barLayout": { "primary": "#FFFFFF", "base-100": "#121212" }
+              "barLayout": {
+                "primary": "#FFFFFF",
+                "base-100": "#121212"
+              }
             },
             "__resolveType": "site/sections/Header/Header.tsx",
             "promotionText": "<p><span style=\"font-weight: 500;\" data-mce-style=\"font-weight: 500;\">Frete grátis a partir de R$299,00 para todo o Brasil&nbsp; </span><span class=\"entry-title\" style=\"font-size: 12pt;\" data-mce-style=\"font-size: 12pt;\">|&nbsp; Envios via Correios&nbsp; </span><span class=\"symbol-main__title--symbl\">→</span></p>",
@@ -385,18 +441,26 @@
             "images": [
               {
                 "alt": "/",
-                "action": { "href": "/tudo", "label": "/tudo" },
+                "action": {
+                  "href": "/tudo",
+                  "label": "/tudo"
+                },
                 "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/ea9718b2-8a45-4d84-8c9b-df115bd2ad1f/TA-ACABANDO_MOB-(2).jpg",
                 "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/40431cdc-4c68-4f18-a401-97884211b490/TA-ACABANDO_MOB-(1).jpg"
               }
             ],
             "preload": false,
-            "autoplay": { "activate": false, "interval": 5 },
+            "autoplay": {
+              "activate": false,
+              "interval": 5
+            },
             "__resolveType": "site/sections/Images/Carousel.tsx"
           },
           {
             "title": "<p>MAIS VENDIDOS</p>",
-            "colors": { "__resolveType": "Color Map Configuration" },
+            "colors": {
+              "__resolveType": "Color Map Configuration"
+            },
             "products": {
               "ids": [
                 2530,
@@ -420,8 +484,14 @@
             "cardsLayout": {
               "dots": true,
               "aspect": false,
-              "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-              "onMouseOver": { "card": "None", "image": "Change image" },
+              "basics": {
+                "oldPriceSize": "Small",
+                "contentAlignment": "Left"
+              },
+              "onMouseOver": {
+                "card": "None",
+                "image": "Change image"
+              },
               "elementsPositions": {
                 "skuSelector": "Top",
                 "favoriteIcon": "Top right"
@@ -446,8 +516,14 @@
                 }
               }
             ],
-            "borderRadius": { "mobile": "small", "desktop": "small" },
-            "itemsPerLine": { "mobile": 1, "desktop": 2 },
+            "borderRadius": {
+              "mobile": "small",
+              "desktop": "small"
+            },
+            "itemsPerLine": {
+              "mobile": 1,
+              "desktop": 2
+            },
             "__resolveType": "site/sections/Content/BannerGrid.tsx"
           },
           {
@@ -467,8 +543,14 @@
                 }
               }
             ],
-            "borderRadius": { "mobile": "small", "desktop": "small" },
-            "itemsPerLine": { "mobile": 1, "desktop": 2 },
+            "borderRadius": {
+              "mobile": "small",
+              "desktop": "small"
+            },
+            "itemsPerLine": {
+              "mobile": 1,
+              "desktop": 2
+            },
             "__resolveType": "site/sections/Content/BannerGrid.tsx"
           },
           {
@@ -488,13 +570,26 @@
                 }
               }
             ],
-            "borderRadius": { "mobile": "small", "desktop": "small" },
-            "itemsPerLine": { "mobile": 1, "desktop": 2 },
+            "borderRadius": {
+              "mobile": "small",
+              "desktop": "small"
+            },
+            "itemsPerLine": {
+              "mobile": 1,
+              "desktop": 2
+            },
             "__resolveType": "site/sections/Content/BannerGrid.tsx"
           },
-          { "__resolveType": "Footer - 01" },
-          { "__resolveType": "website/sections/Seo/Seo.tsx" },
-          { "banners": [], "__resolveType": "Cookie Consent - 01" }
+          {
+            "__resolveType": "Footer - 01"
+          },
+          {
+            "__resolveType": "website/sections/Seo/Seo.tsx"
+          },
+          {
+            "banners": [],
+            "__resolveType": "Cookie Consent - 01"
+          }
         ]
       },
       {
@@ -504,23 +599,35 @@
           "__resolveType": "website/matchers/date.ts"
         },
         "value": [
-          { "__resolveType": "Theme - Bolovo " },
+          {
+            "__resolveType": "Theme - Bolovo "
+          },
           {
             "images": [
               {
                 "alt": "/",
-                "action": { "href": "/", "label": "/" },
+                "action": {
+                  "href": "/",
+                  "label": "/"
+                },
                 "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/a40b8fe0-b989-40fe-9101-35a1143edba4/TA-CHEGANDO_MOBILE.jpg",
                 "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/499a417a-dbdd-47c6-ae10-a028d37da7aa/TA-CHEGANDO_DESK.jpg"
               }
             ],
             "preload": false,
-            "autoplay": { "activate": false, "interval": 5 },
+            "autoplay": {
+              "activate": false,
+              "interval": 5
+            },
             "__resolveType": "site/sections/Images/Carousel.tsx"
           },
           {
             "text": "<p></p>",
-            "labels": { "hours": "hora", "minutes": "mins", "seconds": "segs" },
+            "labels": {
+              "hours": "hora",
+              "minutes": "mins",
+              "seconds": "segs"
+            },
             "expiresAt": "2024-09-25T02:59:00.000Z",
             "__resolveType": "site/sections/Miscellaneous/CampaignTimer.tsx"
           },
@@ -583,13 +690,27 @@
             "contacts": [],
             "payments": {
               "items": [
-                { "label": "Diners" },
-                { "label": "Amex" },
-                { "label": "Elo" },
-                { "label": "Hiper" },
-                { "label": "Mastercard" },
-                { "label": "Visa" },
-                { "label": "Boleto" }
+                {
+                  "label": "Diners"
+                },
+                {
+                  "label": "Amex"
+                },
+                {
+                  "label": "Elo"
+                },
+                {
+                  "label": "Hiper"
+                },
+                {
+                  "label": "Mastercard"
+                },
+                {
+                  "label": "Visa"
+                },
+                {
+                  "label": "Boleto"
+                }
               ],
               "title": "PAGAMENTO"
             },
@@ -622,7 +743,10 @@
                     "href": "/whatsapp",
                     "label": "Fale conosco pelo WhatsApp"
                   },
-                  { "href": "/trocaedevolucao", "label": "Troca e devolução" }
+                  {
+                    "href": "/trocaedevolucao",
+                    "label": "Troca e devolução"
+                  }
                 ]
               },
               {
@@ -725,28 +849,53 @@
               "subTitle": "SINCE 2006",
               "footerTitle": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/87f95e4f-307b-40c9-b36c-250127af7a1d"
             },
-            "backToTheTop": { "text": "Voltar ao topo" },
+            "backToTheTop": {
+              "text": "Voltar ao topo"
+            },
             "__resolveType": "site/sections/Footer/Footer.tsx",
             "regionOptions": {
               "currency": [
-                { "href": "/", "label": "Brasil BRL" },
-                { "href": "/", "label": "United Stated USD" }
+                {
+                  "href": "/",
+                  "label": "Brasil BRL"
+                },
+                {
+                  "href": "/",
+                  "label": "United Stated USD"
+                }
               ],
               "language": [
-                { "href": "/", "label": "PT" },
-                { "href": "/", "label": "EN" }
+                {
+                  "href": "/",
+                  "label": "PT"
+                },
+                {
+                  "href": "/",
+                  "label": "EN"
+                }
               ]
             }
           },
-          { "__resolveType": "website/sections/Seo/Seo.tsx" },
-          { "banners": [], "__resolveType": "Cookie Consent - 01" }
+          {
+            "__resolveType": "website/sections/Seo/Seo.tsx"
+          },
+          {
+            "banners": [],
+            "__resolveType": "Cookie Consent - 01"
+          }
         ]
       },
       {
-        "rule": { "__resolveType": "website/matchers/always.ts" },
+        "rule": {
+          "__resolveType": "website/matchers/always.ts"
+        },
         "value": [
-          { "__resolveType": "Theme - Bolovo " },
-          { "__resolveType": "Header - 01" },
+          {
+            "__resolveType": "Theme - Bolovo "
+          },
+          {
+            "__resolveType": "Header - 01"
+          },
           {
             "images": [
               {
@@ -760,13 +909,23 @@
               }
             ],
             "preload": false,
-            "autoplay": { "activate": false, "interval": 5 },
+            "autoplay": {
+              "activate": false,
+              "interval": 5
+            },
             "__resolveType": "site/sections/Images/Carousel.tsx"
           },
           {
             "title": "<p><br data-mce-bogus=\"1\"></p>",
-            "colors": { "__resolveType": "Color Map Configuration" },
-            "layout": { "columns": { "mobile": 2, "desktop": 4 } },
+            "colors": {
+              "__resolveType": "Color Map Configuration"
+            },
+            "layout": {
+              "columns": {
+                "mobile": 2,
+                "desktop": 4
+              }
+            },
             "products": {
               "ids": [
                 2799,
@@ -787,28 +946,65 @@
               "count": 12,
               "__resolveType": "vnda/loaders/productList.ts"
             },
-            "cardLayout": { "dots": true },
+            "cardLayout": {
+              "dots": true
+            },
             "cardsLayout": {
               "dots": true,
               "aspect": true,
-              "onMouseOver": { "showCardShadow": false }
+              "onMouseOver": {
+                "showCardShadow": false
+              }
             },
             "__resolveType": "site/sections/Product/ProductGallery.tsx"
           },
           {
             "title": "<p></p>",
             "colors": [
-              { "hex": "#28c356", "label": "verde" },
-              { "hex": "#bc1818", "label": "vermelho" },
-              { "hex": "#080b78", "label": "azul" },
-              { "hex": "#f8deab", "label": "bege" },
-              { "hex": "#fbb231", "label": "amarelo" },
-              { "hex": "#121212", "label": "preto" },
-              { "hex": "#693416", "label": "marrom" },
-              { "hex": "#ec7ebe", "label": "rosa" },
-              { "hex": "#f0efef", "label": "branco" },
-              { "hex": "#e3e3ce", "label": "offwhite" },
-              { "hex": "#6a01e9", "label": "roxo" },
+              {
+                "hex": "#28c356",
+                "label": "verde"
+              },
+              {
+                "hex": "#bc1818",
+                "label": "vermelho"
+              },
+              {
+                "hex": "#080b78",
+                "label": "azul"
+              },
+              {
+                "hex": "#f8deab",
+                "label": "bege"
+              },
+              {
+                "hex": "#fbb231",
+                "label": "amarelo"
+              },
+              {
+                "hex": "#121212",
+                "label": "preto"
+              },
+              {
+                "hex": "#693416",
+                "label": "marrom"
+              },
+              {
+                "hex": "#ec7ebe",
+                "label": "rosa"
+              },
+              {
+                "hex": "#f0efef",
+                "label": "branco"
+              },
+              {
+                "hex": "#e3e3ce",
+                "label": "offwhite"
+              },
+              {
+                "hex": "#6a01e9",
+                "label": "roxo"
+              },
               {
                 "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/fe3bee0f-5ef7-4160-91ab-c26a7851f108",
                 "label": "estampado"
@@ -817,18 +1013,28 @@
                 "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/45eb5e6f-eba9-48e1-b246-2165739b946d",
                 "label": "colorido"
               },
-              { "hex": "#767474", "label": "cinza" },
-              { "hex": "#dd831d", "label": "laranja" }
+              {
+                "hex": "#767474",
+                "label": "cinza"
+              },
+              {
+                "hex": "#dd831d",
+                "label": "laranja"
+              }
             ],
             "product": {
-              "ids": [1912],
+              "ids": [
+                1912
+              ],
               "sort": "newest",
               "tags": [],
               "count": 1,
               "__resolveType": "vnda/loaders/productList.ts"
             },
             "products": {
-              "ids": [2818],
+              "ids": [
+                2818
+              ],
               "sort": "newest",
               "tags": [],
               "count": 1,
@@ -836,16 +1042,23 @@
               "__resolveType": "vnda/loaders/productList.ts"
             },
             "idProduct": {
-              "ids": [2310],
+              "ids": [
+                2310
+              ],
               "sort": "newest",
               "tags": [],
               "brand": {},
               "count": 1,
-              "offers": { "offers": [] },
+              "offers": {
+                "offers": []
+              },
               "review": [],
               "isRelatedTo": [],
               "isSimilarTo": [],
-              "isVariantOf": { "hasVariant": [], "additionalProperty": [] },
+              "isVariantOf": {
+                "hasVariant": [],
+                "additionalProperty": []
+              },
               "__resolveType": "vnda/loaders/productList.ts",
               "aggregateRating": {},
               "additionalProperty": [],
@@ -861,12 +1074,21 @@
               "mobile": "imagem acima",
               "desktop": "imagem na esquerda"
             },
-            "directionInverse": { "mobile": "col", "desktop": "row" },
+            "directionInverse": {
+              "mobile": "col",
+              "desktop": "row"
+            },
             "productCardLayout": {
               "dots": true,
               "aspect": true,
-              "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-              "onMouseOver": { "card": "None", "image": "Change image" },
+              "basics": {
+                "oldPriceSize": "Small",
+                "contentAlignment": "Left"
+              },
+              "onMouseOver": {
+                "card": "None",
+                "image": "Change image"
+              },
               "elementsPositions": {
                 "skuSelector": "Top",
                 "favoriteIcon": "Top right"
@@ -876,17 +1098,29 @@
           },
           {
             "title": "<p>X-TREME</p>",
-            "colors": { "__resolveType": "Color Map Configuration" },
-            "layout": { "headerfontSize": "Normal", "headerAlignment": "left" },
-            "seeMore": { "link": "/x-treme", "text": "VEJA TODOS" },
+            "colors": {
+              "__resolveType": "Color Map Configuration"
+            },
+            "layout": {
+              "headerfontSize": "Normal",
+              "headerAlignment": "left"
+            },
+            "seeMore": {
+              "link": "/x-treme",
+              "text": "VEJA TODOS"
+            },
             "products": {
               "ids": [],
               "sort": "newest",
-              "tags": ["x-treme"],
+              "tags": [
+                "x-treme"
+              ],
               "count": 5,
               "__resolveType": "vnda/loaders/productList.ts"
             },
-            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "cardLayout": {
+              "__resolveType": "Product Card Layout - 01"
+            },
             "description": "Wow, my VNDA shop is FAST!!",
             "__resolveType": "site/sections/Product/ProductShelf.tsx",
             "showColorVariants": true
@@ -895,35 +1129,63 @@
             "images": [
               {
                 "alt": "/",
-                "action": { "href": "/club-days", "label": "/club-days" },
+                "action": {
+                  "href": "/club-days",
+                  "label": "/club-days"
+                },
                 "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/82c8a485-add0-4073-ba06-9452c1fbbb80/01_.png",
                 "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/5690f220-5aaa-4afd-8a08-2e752d614430/FULL-BANNER_01.jpg"
               }
             ],
             "preload": false,
-            "autoplay": { "activate": false, "interval": 5 },
+            "autoplay": {
+              "activate": false,
+              "interval": 5
+            },
             "__resolveType": "site/sections/Images/Carousel.tsx"
           },
           {
             "title": "<p><br data-mce-bogus=\"1\"></p>",
-            "colors": { "__resolveType": "Color Map Configuration" },
-            "layout": { "columns": { "mobile": 2, "desktop": 4 } },
+            "colors": {
+              "__resolveType": "Color Map Configuration"
+            },
+            "layout": {
+              "columns": {
+                "mobile": 2,
+                "desktop": 4
+              }
+            },
             "products": {
-              "ids": [2867, 2866, 2888, 2883, 2865, 2868, 2886, 2887],
+              "ids": [
+                2867,
+                2866,
+                2888,
+                2883,
+                2865,
+                2868,
+                2886,
+                2887
+              ],
               "sort": "newest",
               "tags": [],
               "count": 16,
               "__resolveType": "vnda/loaders/productList.ts"
             },
-            "cardLayout": { "dots": true },
+            "cardLayout": {
+              "dots": true
+            },
             "cardsLayout": {
               "dots": true,
               "aspect": true,
-              "onMouseOver": { "showCardShadow": false }
+              "onMouseOver": {
+                "showCardShadow": false
+              }
             },
             "__resolveType": "site/sections/Product/ProductGallery.tsx"
           },
-          { "__resolveType": "PhotoGallery 01" },
+          {
+            "__resolveType": "PhotoGallery 01"
+          },
           {
             "image": {
               "alt": "BOLOVO PRODUCTION GO OUT",
@@ -942,12 +1204,24 @@
             ],
             "textContent": "<p style=\"text-align: center\">UMA PRODUÇÃO BOLOVO® PRODUCTIONS</p><p style=\"text-align: center\">Na companhia do seu atrapalhado e desdentado vizinho, Magrão, Chefinho embarcará numa viagem pela Califórnia De Verdade a bordo de uma moto envenenada e com destino a Petaluma, cidade (ou casa) de Lagunitas. Em busca do tão desejado papel no filme, a dupla irá passar por roubadas e aventuras que ensinarão para ambos o valor de uma boa amizade e conectarão Chefinho com a sua essência e instinto de cachorro perdidas.</p><p style=\"text-align: center\"><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://bolovo.cdn.vnda.com.br/m/conteudo\"><strong><u>VEJA OUTRAS PRODUÇÕES DA BOLOVO</u></strong></a></p>",
             "__resolveType": "site/sections/Content/VideoAndText.tsx",
-            "directionInverse": { "mobile": "col-reverse", "desktop": "row" }
+            "directionInverse": {
+              "mobile": "col-reverse",
+              "desktop": "row"
+            }
           },
-          { "__resolveType": "STORES - 01" },
-          { "__resolveType": "Footer - 01" },
-          { "banners": [], "__resolveType": "Cookie Consent - 01" },
-          { "__resolveType": "website/sections/Seo/Seo.tsx" }
+          {
+            "__resolveType": "STORES - 01"
+          },
+          {
+            "__resolveType": "Footer - 01"
+          },
+          {
+            "banners": [],
+            "__resolveType": "Cookie Consent - 01"
+          },
+          {
+            "__resolveType": "website/sections/Seo/Seo.tsx"
+          }
         ]
       }
     ],
