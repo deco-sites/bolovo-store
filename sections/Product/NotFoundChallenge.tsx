@@ -1,5 +1,5 @@
 import type { ProductDetailsPage } from "apps/commerce/types.ts";
-import { type Section } from "deco/mod.ts";
+import { type Section } from "deco/blocks/mod.ts";
 export interface Props {
   /** @title Integration */
   page: ProductDetailsPage | null;

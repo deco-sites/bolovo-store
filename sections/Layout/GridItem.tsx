@@ -1,6 +1,6 @@
 import { clx } from "../../sdk/clx.ts";
 import { grid } from "../../constants.tsx";
-import { type Section } from "deco/mod.ts";
+import { type Section } from "deco/blocks/mod.ts";
 interface Props {
   children: Section;
   layout?: {

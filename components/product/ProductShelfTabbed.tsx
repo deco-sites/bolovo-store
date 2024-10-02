@@ -11,7 +11,7 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import { usePartialSection } from "deco/hooks/usePartialSection.ts";
+import { usePartialSection } from "@deco/deco/hooks";
 /** @titleBy title */
 interface Tab {
   /** @format rich-text */

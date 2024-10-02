@@ -1,5 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
-import { useScript } from "deco/hooks/useScript.ts";
+import { useScript } from "@deco/deco/hooks";
 function lazyLoadImages() {
   const setup = () => {
     const images = document.querySelectorAll("img");

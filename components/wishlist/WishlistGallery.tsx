@@ -1,6 +1,6 @@
 import { Product } from "apps/commerce/types.ts";
 import SearchResult, { loader, Props } from "../search/SearchResultMenu.tsx";
-import { SectionProps } from "deco/mod.ts";
+import { type SectionProps } from "@deco/deco";
 function WishlistGallery(props: Props) {
   const isEmpty = !props.page || props.page.products.length === 0;
   if (isEmpty) {
