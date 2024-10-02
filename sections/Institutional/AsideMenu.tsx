@@ -1,4 +1,4 @@
-import { SectionProps } from "deco/mod.ts";
+import { type SectionProps } from "@deco/deco";
 export interface Props {
   sectionMenu: {
     /** @title */

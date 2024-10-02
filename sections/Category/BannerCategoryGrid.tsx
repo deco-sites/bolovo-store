@@ -1,7 +1,7 @@
-import { SectionProps } from "deco/mod.ts";
 import BannerGrid, {
   Props as BannerGridProps,
 } from "../../components/content/BannerGrid.tsx";
+import { type SectionProps } from "@deco/deco";
 /**
  * @titleBy matcher
  */

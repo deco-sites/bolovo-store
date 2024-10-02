@@ -1,5 +1,5 @@
 import type { VNode } from "../../constants.tsx";
-import { type Section } from "deco/blocks/section.ts";
+import { type Section } from "@deco/deco/blocks";
 interface Props {
   sections: Section[] | null;
 }

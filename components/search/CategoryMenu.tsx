@@ -5,7 +5,7 @@ import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { ButtonsPaginationProps } from "./ButtonsPagination.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
-import { SectionProps } from "deco/mod.ts";
+import { type SectionProps } from "@deco/deco";
 /** @titleBy category */
 export interface Category {
   /** @description RegExp to enable this category on the current URL. Use /camisetas to display this on camisetas category  */

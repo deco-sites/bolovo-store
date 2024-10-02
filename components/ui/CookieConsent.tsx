@@ -1,5 +1,5 @@
 import { useId } from "$store/sdk/useId.ts";
-import { useScript } from "deco/hooks/useScript.ts";
+import { useScript } from "@deco/deco/hooks";
 const script = (id: string) => {
   const callback = () => {
     const KEY = "store-cookie-consent";
