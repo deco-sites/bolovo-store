@@ -94,43 +94,40 @@ function Header(props: SectionProps<typeof loader>) {
   } = props;
   const items = menu.items ?? [];
   return (
-    <>
-      <header style={{ height: headerHeight }}>
-        <Drawers
-          menu={menu}
-          miniCart={miniCart}
-          platform={platform}
-          priceIntl={activePriceIntl.value.active}
-        >
-          <div class="bg-white fixed w-full z-50">
-            <Alert {...promotionBar} />
-            <Navbar
-              items={items}
-              contentItem={menu.contentItem}
-              searchbar={searchbar && { ...searchbar }}
-              logo={logo}
-              label={buttonSearch.label}
-              img={buttonSearch.img}
-              helpItem={helpItem}
-              countryFlag={countryFlag}
-              showLanguageVariant={showLanguageVariant ?? false}
-              accountHref={accountHref}
-              device={device}
-            />
-          </div>
-        </Drawers>
-      </header>
-    </>
+    <header style={{ height: headerHeight }}>
+      <Drawers
+        menu={menu}
+        miniCart={miniCart}
+        platform={platform}
+        priceIntl={activePriceIntl.value.active}
+      >
+        <div class="bg-white fixed w-full z-50">
+          <Alert {...promotionBar} />
+          <Navbar
+            items={items}
+            contentItem={menu.contentItem}
+            searchbar={searchbar && { ...searchbar }}
+            logo={logo}
+            label={buttonSearch.label}
+            img={buttonSearch.img}
+            helpItem={helpItem}
+            countryFlag={countryFlag}
+            showLanguageVariant={showLanguageVariant ?? false}
+            accountHref={accountHref}
+            device={device}
+          />
+        </div>
+      </Drawers>
+    </header>
   );
 }
-export default Header;
+
 export const loader = (props: Props, req: Request, ctx: AppContext) => {
   const { activePriceIntl } = useUI();
   const cookies = getCookies(req.headers);
   if (cookies.language === "en") {
     activePriceIntl.value.active = true;
     activePriceIntl.value.value = cookies.language;
-    const headers = new Headers();
     const cookie: Cookie = {
       name: "language",
       value: "en",
@@ -140,12 +137,13 @@ export const loader = (props: Props, req: Request, ctx: AppContext) => {
       httpOnly: true,
       sameSite: "Lax",
     };
-    setCookie(headers, cookie);
+    setCookie(ctx.response.headers, cookie);
   } else {
     activePriceIntl.value.active = false;
     activePriceIntl.value.value = cookies.language;
-    const headers = new Headers();
-    deleteCookie(headers, "language");
+    deleteCookie(ctx.response.headers, "language");
   }
   return { ...props, device: ctx.device };
 };
+
+export default Header;

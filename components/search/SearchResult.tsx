@@ -3,6 +3,8 @@ import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import { getColorRelatedProducts } from "$store/components/search/CategoryMenu.tsx";
 import type { Section } from "$store/components/search/PhotoAndProducts.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import { type SectionProps } from "@deco/deco";
+import { usePartialSection } from "@deco/deco/hooks";
 import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 import LazyImagesJS from "site/components/ui/LazyLoadImages.tsx";
 import ShowMore from "site/islands/ShowMore.tsx";
@@ -12,8 +14,6 @@ import ButtonsPagination, {
 } from "./ButtonsPagination.tsx";
 import type { PropsNotFound } from "./NotFound.tsx";
 import NotFound from "./NotFound.tsx";
-import { usePartialSection } from "@deco/deco/hooks";
-import { type SectionProps } from "@deco/deco";
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
