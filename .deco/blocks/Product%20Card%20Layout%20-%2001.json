@@ -1,1 +1,9 @@
-{"layout":{"hide":{},"basics":{"oldPriceSize":"Small","contentAlignment":"Left"},"onMouseOver":{"card":"None","image":"Change image"},"elementsPositions":{"skuSelector":"Top","favoriteIcon":"Top right"}},"__resolveType":"site/loaders/Layouts/ProductCard.tsx"}
+{
+  "layout": {
+    "hide": {},
+    "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+    "onMouseOver": { "card": "None", "image": "Change image" },
+    "elementsPositions": { "skuSelector": "Top", "favoriteIcon": "Top right" }
+  },
+  "__resolveType": "site/loaders/Layouts/ProductCard.tsx"
+}

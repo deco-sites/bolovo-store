@@ -1,1 +1,60 @@
-{"seo":{"type":"website","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d5171f24-e8e5-42c6-af00-27e52106e4c9","title":"BOLOVO®","favicon":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/22b7a405-b772-464b-97db-5ff8629f1cee","jsonLDs":[],"noIndexing":false,"themeColor":"#ffffff","description":"Bolovo Productions é uma marca em constante evolução. Somos um laboratório de inovações em busca de boas memórias pra contar quando a gente for velho e senil. Fazemos roupas, vídeos, festas e viagens desde 2006  GoOutMakeSomeMemories  A Good Times Co. since 2006","titleTemplate":"%s","descriptionTemplate":"%s | Deco.cx"},"theme":{"__resolveType":"Theme - Bolovo "},"flavor":{"framework":"fresh"},"global":[{"__resolveType":"Theme - Bolovo "},{"__resolveType":"analytics/sections/Analytics/DecoAnalytics.tsx"},{"__resolveType":"Default Analytics"}],"routes":[{"pagesToProxy":["/m/*","/commom/*","/javascripts","/javascripts/*","/stylesheets","/stylesheets/*","/images","/images/*","/fonts/*","/produto/preco/*","/p/*"],"__resolveType":"vnda/loaders/proxy.ts"},{"__resolveType":"website/loaders/pages.ts"},{"__resolveType":"website/loaders/redirects.ts"}],"caching":{"enabled":true,"directives":[{"name":"stale-while-revalidate","value":1}]},"commerce":{"platform":"other"},"platform":"vnda","abTesting":{"name":"rollup","enabled":false,"matcher":{"traffic":0,"__resolveType":"website/matchers/random.ts"},"replaces":[],"urlToRunAgainst":"https://bolovo.cdn.vnda.com.br/","includeScriptsToHead":{"includes":[]}},"publicUrl":"https://www.bolovo.com.br/","__resolveType":"site/apps/site.ts","trafficToDeco":0,"decoHostToRedirect":"https://new.bolovo.com.br","firstByteThresholdMS":false}
+{
+  "seo": {
+    "type": "website",
+    "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d5171f24-e8e5-42c6-af00-27e52106e4c9",
+    "title": "BOLOVO®",
+    "favicon": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/22b7a405-b772-464b-97db-5ff8629f1cee",
+    "jsonLDs": [],
+    "noIndexing": false,
+    "themeColor": "#ffffff",
+    "description": "Bolovo Productions é uma marca em constante evolução. Somos um laboratório de inovações em busca de boas memórias pra contar quando a gente for velho e senil. Fazemos roupas, vídeos, festas e viagens desde 2006  GoOutMakeSomeMemories  A Good Times Co. since 2006",
+    "titleTemplate": "%s",
+    "descriptionTemplate": "%s | Deco.cx"
+  },
+  "theme": { "__resolveType": "Theme - Bolovo " },
+  "flavor": { "framework": "fresh" },
+  "global": [
+    { "__resolveType": "Theme - Bolovo " },
+    { "__resolveType": "analytics/sections/Analytics/DecoAnalytics.tsx" },
+    { "__resolveType": "Default Analytics" }
+  ],
+  "routes": [
+    {
+      "pagesToProxy": [
+        "/m/*",
+        "/commom/*",
+        "/javascripts",
+        "/javascripts/*",
+        "/stylesheets",
+        "/stylesheets/*",
+        "/images",
+        "/images/*",
+        "/fonts/*",
+        "/produto/preco/*",
+        "/p/*"
+      ],
+      "__resolveType": "vnda/loaders/proxy.ts"
+    },
+    { "__resolveType": "website/loaders/pages.ts" },
+    { "__resolveType": "website/loaders/redirects.ts" }
+  ],
+  "caching": {
+    "enabled": true,
+    "directives": [{ "name": "stale-while-revalidate", "value": 1 }]
+  },
+  "commerce": { "platform": "other" },
+  "platform": "vnda",
+  "abTesting": {
+    "name": "rollup",
+    "enabled": false,
+    "matcher": { "traffic": 0, "__resolveType": "website/matchers/random.ts" },
+    "replaces": [],
+    "urlToRunAgainst": "https://bolovo.cdn.vnda.com.br/",
+    "includeScriptsToHead": { "includes": [] }
+  },
+  "publicUrl": "https://www.bolovo.com.br/",
+  "__resolveType": "site/apps/site.ts",
+  "trafficToDeco": 0,
+  "decoHostToRedirect": "https://new.bolovo.com.br",
+  "firstByteThresholdMS": false
+}

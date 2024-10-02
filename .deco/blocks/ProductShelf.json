@@ -1,1 +1,16 @@
-{"title":"Camisas","colors":{"__resolveType":"Color Map Configuration"},"seeMore":{"link":"/camisas","text":"VEJA TODOS"},"products":{"ids":[2653,2584,2508,2475,2092,1543],"sort":"newest","tags":[],"count":5,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx","showColorVariants":true}
+{
+  "title": "Camisas",
+  "colors": { "__resolveType": "Color Map Configuration" },
+  "seeMore": { "link": "/camisas", "text": "VEJA TODOS" },
+  "products": {
+    "ids": [2653, 2584, 2508, 2475, 2092, 1543],
+    "sort": "newest",
+    "tags": [],
+    "count": 5,
+    "__resolveType": "vnda/loaders/productList.ts"
+  },
+  "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+  "description": "Wow, my VNDA shop is FAST!!",
+  "__resolveType": "site/sections/Product/ProductShelf.tsx",
+  "showColorVariants": true
+}

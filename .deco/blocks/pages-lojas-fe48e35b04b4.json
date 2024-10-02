@@ -1,1 +1,182 @@
-{"name":"Lojas","path":"/institutional/lojas","sections":{"variants":[{"rule":{"name":"language","value":"en","__resolveType":"website/matchers/cookie.ts"},"value":[{"__resolveType":"Theme - Bolovo "},{"__resolveType":"Header - en"},{"__resolveType":"Carousel - 01"},{"__resolveType":"Product Gallery - en"},{"title":" to stay stretched","products":{"ids":[2192,2390,2353,2004],"sort":"newest","tags":[],"count":4,"__resolveType":"vnda/loaders/productList.ts"},"__resolveType":"site/sections/Product/PhotoGallery.tsx","featuredPhoto":{"alt":"pra ficar na estica","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f7edbd84-3e0e-4d0f-ae2e-7121944c7c50","href":"#"},"contentDirection":{"mobile":"imagem acima","desktop":"imagem na esquerda"}},{"title":" Coats","colors":{"__resolveType":"Color Map Configuration"},"layout":{"headerfontSize":"Normal","headerAlignment":"left"},"products":{"ids":[],"sort":"newest","tags":[],"term":"casacos","count":7,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"__resolveType":"Banner Grid Home - en"},{"title":" T-shirts and shirts","colors":{"__resolveType":"Color Map Configuration"},"products":{"ids":[],"sort":"newest","tags":["home-2-en"],"count":6,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"__resolveType":"Photo Gallery - en"},{"title":"shorts","colors":{"__resolveType":"Color Map Configuration"},"products":{"ids":[],"sort":"newest","tags":[],"term":"shorts","count":6,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"banners":[{"href":"/","text":"Bolovo Productions","srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0807a88b-2da2-4edc-949c-e4d53a486e55","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a3b64d10-eda6-4820-8c3a-db1dae889e49"},{"href":"/","text":"Bolovo Productions","srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0807a88b-2da2-4edc-949c-e4d53a486e55","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a3b64d10-eda6-4820-8c3a-db1dae889e49"},{"href":"/","text":"Bolovo Productions","srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f0d3608c-3cf5-4d5c-8c7d-14dcdee4efec","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/3815c170-ae7f-4932-a4be-a3e9fffba1d9"}],"borderRadius":{"mobile":"small","desktop":"small"},"itemsPerLine":{"mobile":2,"desktop":3},"__resolveType":"site/sections/Content/BannerGrid.tsx"},{"title":" Coats","colors":{"__resolveType":"Color Map Configuration"},"products":{"ids":[],"sort":"newest","tags":[],"term":"casacos","count":7,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"__resolveType":"Feature Gallery - en"},{"title":" Do not worry your head!","colors":{"__resolveType":"Color Map Configuration"},"products":{"ids":[],"sort":"newest","tags":[],"term":"boné","count":6,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"__resolveType":"Video and Text - en"},{"title":"Acessórios","colors":{"__resolveType":"Color Map Configuration"},"products":{"ids":[],"sort":"newest","tags":[],"term":"acessórios","count":5,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"__resolveType":"stores -en"},{"__resolveType":"Footer - en "},{"__resolveType":"website/sections/Seo/Seo.tsx"}]},{"rule":{"__resolveType":"website/matchers/always.ts"},"value":[{"__resolveType":"Theme - Bolovo "},{"__resolveType":"Header - 01"},{"hero":{"media":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f0ff92ca-be57-4d51-a622-eb6e06bc33ea","altImg":"Bolovo Pinheiros","preload":true},"addressText":"<div class=\"infos\" style=\"line-height: 2.5em; padding-left: 2.9%; padding-right: 2.9%; padding-top: 20px; position: relative; text-align: center; font-size: 12px;\" data-mce-style=\"line-height: 2.5em; padding-left: 2.9%; padding-right: 2.9%; padding-top: 20px; position: relative; text-align: center; font-size: 12px;\"><h2 style=\"font-size: 11px; font-family: Rubik,sans-serif; margin-bottom: 10px; padding: 4px 0; font-weight: bold;\" data-mce-style=\"font-size: 11px; font-family: Rubik,sans-serif; margin-bottom: 10px; padding: 4px 0; font-weight: bold;\">LOJA BOLOVO PINHEIROS</h2><p style=\"font-family: Futura,sans-serif; transform: scaleY(1.2); font-size: 11px; line-height: 2em; margin-bottom: 15px;\" data-mce-style=\"font-family: Futura,sans-serif; transform: scaleY(1.2); font-size: 11px; line-height: 2em; margin-bottom: 15px;\"><a style=\"text-decoration: underline;\" href=\"https://goo.gl/maps/Qvx4ohLvzyn1yFs88\" data-mce-style=\"text-decoration: underline;\" data-mce-href=\"https://goo.gl/maps/Qvx4ohLvzyn1yFs88\">RUA DR. VIRGÍLIO DE CARVALHO PINTO, 69</a><br>SEG-SÁB DAS 10H ÀS 20H | DOM DAS 12H ÀS 18H</p><p><a style=\"text-decoration: underline; font-family: Acumin,sans-serif;\" href=\"https://www.instagram.com/bolovopinheiros/\" data-mce-style=\"text-decoration: underline; font-family: Acumin,sans-serif;\" data-mce-href=\"https://www.instagram.com/bolovopinheiros/\"><strong>INSTAGRAM</strong></a>: <br>@bolovopinheiros<br><a style=\"text-decoration: underline;\" href=\"https://wa.me/5511917250298\" data-mce-style=\"text-decoration: underline;\" data-mce-href=\"https://wa.me/5511917250298\"><strong>WHATS LOJA</strong></a>: <br>(11) 91725-0298<br><strong>TELEFONE</strong>: <br>(11) 3086-1020</p></div>","__resolveType":"site/sections/Institutional/FeaturedStore.tsx"},{"__resolveType":"Footer - 01"}]}],"__resolveType":"website/flags/multivariate.ts"},"__resolveType":"website/pages/Page.tsx"}
+{
+  "name": "Lojas",
+  "path": "/institutional/lojas",
+  "sections": {
+    "variants": [
+      {
+        "rule": {
+          "name": "language",
+          "value": "en",
+          "__resolveType": "website/matchers/cookie.ts"
+        },
+        "value": [
+          { "__resolveType": "Theme - Bolovo " },
+          { "__resolveType": "Header - en" },
+          { "__resolveType": "Carousel - 01" },
+          { "__resolveType": "Product Gallery - en" },
+          {
+            "title": " to stay stretched",
+            "products": {
+              "ids": [2192, 2390, 2353, 2004],
+              "sort": "newest",
+              "tags": [],
+              "count": 4,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "__resolveType": "site/sections/Product/PhotoGallery.tsx",
+            "featuredPhoto": {
+              "alt": "pra ficar na estica",
+              "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f7edbd84-3e0e-4d0f-ae2e-7121944c7c50",
+              "href": "#"
+            },
+            "contentDirection": {
+              "mobile": "imagem acima",
+              "desktop": "imagem na esquerda"
+            }
+          },
+          {
+            "title": " Coats",
+            "colors": { "__resolveType": "Color Map Configuration" },
+            "layout": { "headerfontSize": "Normal", "headerAlignment": "left" },
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": [],
+              "term": "casacos",
+              "count": 7,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          { "__resolveType": "Banner Grid Home - en" },
+          {
+            "title": " T-shirts and shirts",
+            "colors": { "__resolveType": "Color Map Configuration" },
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": ["home-2-en"],
+              "count": 6,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          { "__resolveType": "Photo Gallery - en" },
+          {
+            "title": "shorts",
+            "colors": { "__resolveType": "Color Map Configuration" },
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": [],
+              "term": "shorts",
+              "count": 6,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          {
+            "banners": [
+              {
+                "href": "/",
+                "text": "Bolovo Productions",
+                "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0807a88b-2da2-4edc-949c-e4d53a486e55",
+                "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a3b64d10-eda6-4820-8c3a-db1dae889e49"
+              },
+              {
+                "href": "/",
+                "text": "Bolovo Productions",
+                "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0807a88b-2da2-4edc-949c-e4d53a486e55",
+                "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a3b64d10-eda6-4820-8c3a-db1dae889e49"
+              },
+              {
+                "href": "/",
+                "text": "Bolovo Productions",
+                "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f0d3608c-3cf5-4d5c-8c7d-14dcdee4efec",
+                "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/3815c170-ae7f-4932-a4be-a3e9fffba1d9"
+              }
+            ],
+            "borderRadius": { "mobile": "small", "desktop": "small" },
+            "itemsPerLine": { "mobile": 2, "desktop": 3 },
+            "__resolveType": "site/sections/Content/BannerGrid.tsx"
+          },
+          {
+            "title": " Coats",
+            "colors": { "__resolveType": "Color Map Configuration" },
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": [],
+              "term": "casacos",
+              "count": 7,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          { "__resolveType": "Feature Gallery - en" },
+          {
+            "title": " Do not worry your head!",
+            "colors": { "__resolveType": "Color Map Configuration" },
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": [],
+              "term": "boné",
+              "count": 6,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          { "__resolveType": "Video and Text - en" },
+          {
+            "title": "Acessórios",
+            "colors": { "__resolveType": "Color Map Configuration" },
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": [],
+              "term": "acessórios",
+              "count": 5,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          { "__resolveType": "stores -en" },
+          { "__resolveType": "Footer - en " },
+          { "__resolveType": "website/sections/Seo/Seo.tsx" }
+        ]
+      },
+      {
+        "rule": { "__resolveType": "website/matchers/always.ts" },
+        "value": [
+          { "__resolveType": "Theme - Bolovo " },
+          { "__resolveType": "Header - 01" },
+          {
+            "hero": {
+              "media": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f0ff92ca-be57-4d51-a622-eb6e06bc33ea",
+              "altImg": "Bolovo Pinheiros",
+              "preload": true
+            },
+            "addressText": "<div class=\"infos\" style=\"line-height: 2.5em; padding-left: 2.9%; padding-right: 2.9%; padding-top: 20px; position: relative; text-align: center; font-size: 12px;\" data-mce-style=\"line-height: 2.5em; padding-left: 2.9%; padding-right: 2.9%; padding-top: 20px; position: relative; text-align: center; font-size: 12px;\"><h2 style=\"font-size: 11px; font-family: Rubik,sans-serif; margin-bottom: 10px; padding: 4px 0; font-weight: bold;\" data-mce-style=\"font-size: 11px; font-family: Rubik,sans-serif; margin-bottom: 10px; padding: 4px 0; font-weight: bold;\">LOJA BOLOVO PINHEIROS</h2><p style=\"font-family: Futura,sans-serif; transform: scaleY(1.2); font-size: 11px; line-height: 2em; margin-bottom: 15px;\" data-mce-style=\"font-family: Futura,sans-serif; transform: scaleY(1.2); font-size: 11px; line-height: 2em; margin-bottom: 15px;\"><a style=\"text-decoration: underline;\" href=\"https://goo.gl/maps/Qvx4ohLvzyn1yFs88\" data-mce-style=\"text-decoration: underline;\" data-mce-href=\"https://goo.gl/maps/Qvx4ohLvzyn1yFs88\">RUA DR. VIRGÍLIO DE CARVALHO PINTO, 69</a><br>SEG-SÁB DAS 10H ÀS 20H | DOM DAS 12H ÀS 18H</p><p><a style=\"text-decoration: underline; font-family: Acumin,sans-serif;\" href=\"https://www.instagram.com/bolovopinheiros/\" data-mce-style=\"text-decoration: underline; font-family: Acumin,sans-serif;\" data-mce-href=\"https://www.instagram.com/bolovopinheiros/\"><strong>INSTAGRAM</strong></a>: <br>@bolovopinheiros<br><a style=\"text-decoration: underline;\" href=\"https://wa.me/5511917250298\" data-mce-style=\"text-decoration: underline;\" data-mce-href=\"https://wa.me/5511917250298\"><strong>WHATS LOJA</strong></a>: <br>(11) 91725-0298<br><strong>TELEFONE</strong>: <br>(11) 3086-1020</p></div>",
+            "__resolveType": "site/sections/Institutional/FeaturedStore.tsx"
+          },
+          { "__resolveType": "Footer - 01" }
+        ]
+      }
+    ],
+    "__resolveType": "website/flags/multivariate.ts"
+  },
+  "__resolveType": "website/pages/Page.tsx"
+}

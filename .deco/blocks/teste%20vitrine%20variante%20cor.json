@@ -1,1 +1,13 @@
-{"title":"Teste Variantes","products":{"ids":[],"sort":"newest","tags":[],"count":8,"typeTags":[{"key":"variante_cor","value":"camiseta_chefinho"}],"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"__resolveType":"site/sections/Product/ProductShelf.tsx"}
+{
+  "title": "Teste Variantes",
+  "products": {
+    "ids": [],
+    "sort": "newest",
+    "tags": [],
+    "count": 8,
+    "typeTags": [{ "key": "variante_cor", "value": "camiseta_chefinho" }],
+    "__resolveType": "vnda/loaders/productList.ts"
+  },
+  "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+  "__resolveType": "site/sections/Product/ProductShelf.tsx"
+}

@@ -1,1 +1,11 @@
-{"title":" PESCA","products":{"ids":[],"sort":"newest","tags":["drop6"],"count":8,"__resolveType":"vnda/loaders/productList.ts"},"__resolveType":"site/sections/Product/ProductGallery.tsx"}
+{
+  "title": " PESCA",
+  "products": {
+    "ids": [],
+    "sort": "newest",
+    "tags": ["drop6"],
+    "count": 8,
+    "__resolveType": "vnda/loaders/productList.ts"
+  },
+  "__resolveType": "site/sections/Product/ProductGallery.tsx"
+}

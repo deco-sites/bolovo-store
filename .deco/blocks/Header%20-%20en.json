@@ -1,1 +1,288 @@
-{"img":{"alt":"search icon","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d4e86b94-158b-4bb2-a5be-106be393649c"},"cart":{"freeShippingObjectiveQuantity":600},"logo":{"alt":"Fashion logo by deco","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b5d0c09e-9216-46c9-9a5e-205f4eb44566"},"menu":{"logo":{"alt":"Store logo","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f6562eb4-80bb-4019-a83a-6a52d4cca02c"},"items":[{"label":"SHOPS","links":[{"children":[{"href":"/camisetas","label":"T-SHIRTS","children":[]},{"href":"/camisas","label":"BUTTON SHIRTS","children":[]},{"href":"/casacos","label":"COATS & JACKETS","children":[]},{"href":"/shorts","label":"SHORTS","children":[]},{"href":"/calcas","label":"PANTS","children":[]},{"href":"/meia","label":"SOCKS","children":[]},{"href":"/bones","label":"CAPS & HATS","children":[]},{"href":"/gorros","label":"BEANIES","children":[]},{"href":"/acessorios","label":"ACCESSORIES","children":[]},{"href":"/tralhas","label":"JUNK","children":[]}]}],"images":[{"link":"/x-treme","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/bc424d57-5fb4-4958-aa12-0de3f9275d06"},{"link":"/x-treme","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/cdd8a51a-4eb2-4a8a-b3a7-dae4048d9ddf"}]}],"social":[{"link":"/","label":"Instagram"},{"link":"/","label":"Spotify"},{"link":"/","label":"Youtube"},{"link":"/","label":"WhatsApp"}],"loginText":"LOGIN","searchBar":{"name":"q","action":"/s","iconSearch":{"alt":"Search bar icon","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/9359c405-e921-45db-ae64-362fbdd088b2"},"placeholder":"SEARCH PRODUCT"},"accountHref":"/login","accountText":"LOGIN","contentItem":{"label":"Content","linksContent":[{"link":"https://www.bolovo.com.br/m/content?category=movies","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/67d33f8f-0e8b-491e-8f97-19ec8d281e2c","title":"Movies","subtitle":"See more","alternateName":"movies"},{"link":"https://www.bolovo.com.br/m/content?category=go-out","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/2fd282d3-3489-406b-841c-495b6188d834","title":"Go Out","subtitle":"See more","alternateName":"Go Out"},{"link":"https://www.bolovo.com.br/m/content?category=cool-talk","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/657501ed-7ab1-43f8-a1b6-5b489cd99bbd","title":"Cool Talk","subtitle":"See more","alternateName":"Cool Talk"},{"link":"https://www.bolovo.com.br/m/content?category=pulta-takes","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b46acf4c-79b5-4350-90fd-fbdaff0ba3c0","title":"Pulta Takes","subtitle":"See more","alternateName":"Pulta Takes"},{"link":"https://www.bolovo.com.br/m/content?category=pulta-takes","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/9fc14021-e74b-42ca-81cb-6c449fee820a","title":"Magrão's Workshop","subtitle":"See more","alternateName":"Magrão's Workshop"},{"link":"https://www.bolovo.com.br/p/book","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/c1bdec04-f3a4-41be-830f-d0027fcfa873","title":"10 Years Book","subtitle":"See more","alternateName":"10 Years Book"}]},"countryFlag":[{"countryImg":{"alt":"Brazil","img":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d1e0266f-aa1d-4aa7-b74a-4258d2281db6"},"countryLabel":"BRAZIL","languageAbbreviation":"pt"},{"countryImg":{"alt":"World language","img":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/900b0e1b-85aa-495f-997f-7a27f89f7358"},"countryLabel":"WORLDWIDE","languageAbbreviation":"en"}]},"input":{"img":{"alt":"search icon","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/05c87a07-1748-462a-9746-d30a1d7b6df4"},"label":"SEARCH"},"label":"Search","alerts":["Free Shipping"],"blogItem":{"href":"/","text":"content"},"helpItem":{"href":"/","text":"help"},"miniCart":{"cartTitle":"SHOPPING CART","cartIsEmpty":"Your bag is empty","ctaCheckout":"CHECKOUT","ctaBackStore":"CONTINUE SHOPPING","cartTotalText":"Total","modalCloseText":"Close","gotFreeShipping":"Free Shipping","cartTranslations":{"cartTitle":"SHOPPING CART","cartIsEmpty":"Your bag is empty","ctaCheckout":"CHECKOUT","ctaBackStore":"CONTINUE SHOPPING","cartTotalText":"Total","modalCloseText":"Close","gotFreeShipping":"Free Shipping","freeShippingText":"<p>$value more for free shipping</p>","installmentsText":"$value in 6x","buttonCartIsEmpty":"Choose Products"},"freeShippingText":"<p>$value more for free shipping</p>","installmentsText":"$value in 6x","buttonCartIsEmpty":"Choose Products","freeShippingTarget":400,"freeShippingValueColor":"#ff0000"},"navItems":[{"name":"SHOPS","@type":"SiteNavigationElement","image":[],"label":"SHOPS","links":[{"href":"#","label":"SHOPS","children":[{"href":"/fatz&bolovo","label":"FATZ & BOLOVO","children":[]},{"href":"/t-shirts","label":"T-SHIRTS","children":[]},{"href":"/caps","label":"CAPS","children":[]},{"href":"/beanies","label":"BEANIES","children":[]},{"href":"/shirts","label":"SHIRTS","children":[]},{"href":"/coats","label":"COATS","children":[]}]},{"href":"#","label":"SHOPS","children":[{"href":"/shorts","label":"SHORTS","children":[]},{"href":"/pants","label":"PANTS","children":[]},{"href":"/socks","label":"SOCKS","children":[]},{"href":"/accessories","label":"ACCESSORIES","children":[]},{"href":"/junk","label":"JUNK","children":[]},{"href":"/see-all","label":"SEE ALL","children":[]}]}],"images":[{"image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/6ff44cf0-8ba1-4488-8224-e9439ed26a9d","label":"BLV Expeditions Colorblock Fanny Pack","alternateName":"BLV Expeditions Colorblock Fanny Pack"},{"image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/734c2442-4b76-4aff-a479-965eb4df89d3","label":"Doggy Style Pajamas","alternateName":"Doggy Style Pajamas"},{"image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/bb1b2832-0976-411a-ad22-ceaed0e039ce","label":"Fatz® & Bolovo® Socks","alternateName":"Fatz® & Bolovo® Socks"}],"children":[]}],"searchbar":{"name":"q","action":"/busca","loader":{"data":{"products":[],"searches":[]},"__resolveType":"resolved"},"IconSearch":{"alt":"search icon","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/63ebe712-3a13-4af6-a56c-0144deb16720"},"iconSearch":{"alt":"icon Search","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/53437560-e1df-464f-9340-fcb1892bb824"},"placeholder":"SEARCH"},"accountHref":"/login","contentBlog":{"linksContent":[]},"countryFlag":[{"countryImg":{"alt":"Brazil","img":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f957a14c-a4c3-446e-98de-e154e739ac18"},"countryLabel":"Brazil","countryAbbreviation":"PT","languageAbbreviation":"PT"},{"countryImg":{"alt":"Worldwide","img":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/593ad233-0178-4772-a0e1-9a0dd0a32a1c"},"countryLabel":"Worldwide","countryAbbreviation":"WD","languageAbbreviation":"EN"}],"buttonSearch":{"img":{"alt":"icon Search","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f6016ab0-748c-4988-b7f6-ab4c3728e09a"},"label":"Search"},"promotionBar":{"text":"<p style=\"font-weight: 500;\" data-mce-style=\"font-weight: 500;\">Free shipping on orders over $299.00 to all of Brazil</p>","Layout":{"primary":"#FFFFFF","base-100":"#121212"},"layout":{"text":"#FFFFFF","primary":"#FFFFFF","background":"#121212"},"visible":true,"barLayout":{"primary":"#FFFFFF","base-100":"#121212"}},"__resolveType":"site/sections/Header/Header.tsx","promotionText":"<p><span style=\"font-weight: 500;\" data-mce-style=\"font-weight: 500;\">Free shipping on orders over $299.00 to all of Brazil&nbsp; </span><span class=\"entry-title\" style=\"font-size: 12pt;\" data-mce-style=\"font-size: 12pt;\">|&nbsp; Shipments via Correios&nbsp; </span><span class=\"symbol-main__title--symbl\">→</span></p>","showLanguageVariant":false}
+{
+  "img": {
+    "alt": "search icon",
+    "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d4e86b94-158b-4bb2-a5be-106be393649c"
+  },
+  "cart": { "freeShippingObjectiveQuantity": 600 },
+  "logo": {
+    "alt": "Fashion logo by deco",
+    "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b5d0c09e-9216-46c9-9a5e-205f4eb44566"
+  },
+  "menu": {
+    "logo": {
+      "alt": "Store logo",
+      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f6562eb4-80bb-4019-a83a-6a52d4cca02c"
+    },
+    "items": [
+      {
+        "label": "SHOPS",
+        "links": [
+          {
+            "children": [
+              { "href": "/camisetas", "label": "T-SHIRTS", "children": [] },
+              { "href": "/camisas", "label": "BUTTON SHIRTS", "children": [] },
+              {
+                "href": "/casacos",
+                "label": "COATS & JACKETS",
+                "children": []
+              },
+              { "href": "/shorts", "label": "SHORTS", "children": [] },
+              { "href": "/calcas", "label": "PANTS", "children": [] },
+              { "href": "/meia", "label": "SOCKS", "children": [] },
+              { "href": "/bones", "label": "CAPS & HATS", "children": [] },
+              { "href": "/gorros", "label": "BEANIES", "children": [] },
+              { "href": "/acessorios", "label": "ACCESSORIES", "children": [] },
+              { "href": "/tralhas", "label": "JUNK", "children": [] }
+            ]
+          }
+        ],
+        "images": [
+          {
+            "link": "/x-treme",
+            "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/bc424d57-5fb4-4958-aa12-0de3f9275d06"
+          },
+          {
+            "link": "/x-treme",
+            "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/cdd8a51a-4eb2-4a8a-b3a7-dae4048d9ddf"
+          }
+        ]
+      }
+    ],
+    "social": [
+      { "link": "/", "label": "Instagram" },
+      { "link": "/", "label": "Spotify" },
+      { "link": "/", "label": "Youtube" },
+      { "link": "/", "label": "WhatsApp" }
+    ],
+    "loginText": "LOGIN",
+    "searchBar": {
+      "name": "q",
+      "action": "/s",
+      "iconSearch": {
+        "alt": "Search bar icon",
+        "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/9359c405-e921-45db-ae64-362fbdd088b2"
+      },
+      "placeholder": "SEARCH PRODUCT"
+    },
+    "accountHref": "/login",
+    "accountText": "LOGIN",
+    "contentItem": {
+      "label": "Content",
+      "linksContent": [
+        {
+          "link": "https://www.bolovo.com.br/m/content?category=movies",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/67d33f8f-0e8b-491e-8f97-19ec8d281e2c",
+          "title": "Movies",
+          "subtitle": "See more",
+          "alternateName": "movies"
+        },
+        {
+          "link": "https://www.bolovo.com.br/m/content?category=go-out",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/2fd282d3-3489-406b-841c-495b6188d834",
+          "title": "Go Out",
+          "subtitle": "See more",
+          "alternateName": "Go Out"
+        },
+        {
+          "link": "https://www.bolovo.com.br/m/content?category=cool-talk",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/657501ed-7ab1-43f8-a1b6-5b489cd99bbd",
+          "title": "Cool Talk",
+          "subtitle": "See more",
+          "alternateName": "Cool Talk"
+        },
+        {
+          "link": "https://www.bolovo.com.br/m/content?category=pulta-takes",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b46acf4c-79b5-4350-90fd-fbdaff0ba3c0",
+          "title": "Pulta Takes",
+          "subtitle": "See more",
+          "alternateName": "Pulta Takes"
+        },
+        {
+          "link": "https://www.bolovo.com.br/m/content?category=pulta-takes",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/9fc14021-e74b-42ca-81cb-6c449fee820a",
+          "title": "Magrão's Workshop",
+          "subtitle": "See more",
+          "alternateName": "Magrão's Workshop"
+        },
+        {
+          "link": "https://www.bolovo.com.br/p/book",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/c1bdec04-f3a4-41be-830f-d0027fcfa873",
+          "title": "10 Years Book",
+          "subtitle": "See more",
+          "alternateName": "10 Years Book"
+        }
+      ]
+    },
+    "countryFlag": [
+      {
+        "countryImg": {
+          "alt": "Brazil",
+          "img": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d1e0266f-aa1d-4aa7-b74a-4258d2281db6"
+        },
+        "countryLabel": "BRAZIL",
+        "languageAbbreviation": "pt"
+      },
+      {
+        "countryImg": {
+          "alt": "World language",
+          "img": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/900b0e1b-85aa-495f-997f-7a27f89f7358"
+        },
+        "countryLabel": "WORLDWIDE",
+        "languageAbbreviation": "en"
+      }
+    ]
+  },
+  "input": {
+    "img": {
+      "alt": "search icon",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/05c87a07-1748-462a-9746-d30a1d7b6df4"
+    },
+    "label": "SEARCH"
+  },
+  "label": "Search",
+  "alerts": ["Free Shipping"],
+  "blogItem": { "href": "/", "text": "content" },
+  "helpItem": { "href": "/", "text": "help" },
+  "miniCart": {
+    "cartTitle": "SHOPPING CART",
+    "cartIsEmpty": "Your bag is empty",
+    "ctaCheckout": "CHECKOUT",
+    "ctaBackStore": "CONTINUE SHOPPING",
+    "cartTotalText": "Total",
+    "modalCloseText": "Close",
+    "gotFreeShipping": "Free Shipping",
+    "cartTranslations": {
+      "cartTitle": "SHOPPING CART",
+      "cartIsEmpty": "Your bag is empty",
+      "ctaCheckout": "CHECKOUT",
+      "ctaBackStore": "CONTINUE SHOPPING",
+      "cartTotalText": "Total",
+      "modalCloseText": "Close",
+      "gotFreeShipping": "Free Shipping",
+      "freeShippingText": "<p>$value more for free shipping</p>",
+      "installmentsText": "$value in 6x",
+      "buttonCartIsEmpty": "Choose Products"
+    },
+    "freeShippingText": "<p>$value more for free shipping</p>",
+    "installmentsText": "$value in 6x",
+    "buttonCartIsEmpty": "Choose Products",
+    "freeShippingTarget": 400,
+    "freeShippingValueColor": "#ff0000"
+  },
+  "navItems": [
+    {
+      "name": "SHOPS",
+      "@type": "SiteNavigationElement",
+      "image": [],
+      "label": "SHOPS",
+      "links": [
+        {
+          "href": "#",
+          "label": "SHOPS",
+          "children": [
+            {
+              "href": "/fatz&bolovo",
+              "label": "FATZ & BOLOVO",
+              "children": []
+            },
+            { "href": "/t-shirts", "label": "T-SHIRTS", "children": [] },
+            { "href": "/caps", "label": "CAPS", "children": [] },
+            { "href": "/beanies", "label": "BEANIES", "children": [] },
+            { "href": "/shirts", "label": "SHIRTS", "children": [] },
+            { "href": "/coats", "label": "COATS", "children": [] }
+          ]
+        },
+        {
+          "href": "#",
+          "label": "SHOPS",
+          "children": [
+            { "href": "/shorts", "label": "SHORTS", "children": [] },
+            { "href": "/pants", "label": "PANTS", "children": [] },
+            { "href": "/socks", "label": "SOCKS", "children": [] },
+            { "href": "/accessories", "label": "ACCESSORIES", "children": [] },
+            { "href": "/junk", "label": "JUNK", "children": [] },
+            { "href": "/see-all", "label": "SEE ALL", "children": [] }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/6ff44cf0-8ba1-4488-8224-e9439ed26a9d",
+          "label": "BLV Expeditions Colorblock Fanny Pack",
+          "alternateName": "BLV Expeditions Colorblock Fanny Pack"
+        },
+        {
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/734c2442-4b76-4aff-a479-965eb4df89d3",
+          "label": "Doggy Style Pajamas",
+          "alternateName": "Doggy Style Pajamas"
+        },
+        {
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/bb1b2832-0976-411a-ad22-ceaed0e039ce",
+          "label": "Fatz® & Bolovo® Socks",
+          "alternateName": "Fatz® & Bolovo® Socks"
+        }
+      ],
+      "children": []
+    }
+  ],
+  "searchbar": {
+    "name": "q",
+    "action": "/busca",
+    "loader": {
+      "data": { "products": [], "searches": [] },
+      "__resolveType": "resolved"
+    },
+    "IconSearch": {
+      "alt": "search icon",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/63ebe712-3a13-4af6-a56c-0144deb16720"
+    },
+    "iconSearch": {
+      "alt": "icon Search",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/53437560-e1df-464f-9340-fcb1892bb824"
+    },
+    "placeholder": "SEARCH"
+  },
+  "accountHref": "/login",
+  "contentBlog": { "linksContent": [] },
+  "countryFlag": [
+    {
+      "countryImg": {
+        "alt": "Brazil",
+        "img": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f957a14c-a4c3-446e-98de-e154e739ac18"
+      },
+      "countryLabel": "Brazil",
+      "countryAbbreviation": "PT",
+      "languageAbbreviation": "PT"
+    },
+    {
+      "countryImg": {
+        "alt": "Worldwide",
+        "img": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/593ad233-0178-4772-a0e1-9a0dd0a32a1c"
+      },
+      "countryLabel": "Worldwide",
+      "countryAbbreviation": "WD",
+      "languageAbbreviation": "EN"
+    }
+  ],
+  "buttonSearch": {
+    "img": {
+      "alt": "icon Search",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f6016ab0-748c-4988-b7f6-ab4c3728e09a"
+    },
+    "label": "Search"
+  },
+  "promotionBar": {
+    "text": "<p style=\"font-weight: 500;\" data-mce-style=\"font-weight: 500;\">Free shipping on orders over $299.00 to all of Brazil</p>",
+    "Layout": { "primary": "#FFFFFF", "base-100": "#121212" },
+    "layout": {
+      "text": "#FFFFFF",
+      "primary": "#FFFFFF",
+      "background": "#121212"
+    },
+    "visible": true,
+    "barLayout": { "primary": "#FFFFFF", "base-100": "#121212" }
+  },
+  "__resolveType": "site/sections/Header/Header.tsx",
+  "promotionText": "<p><span style=\"font-weight: 500;\" data-mce-style=\"font-weight: 500;\">Free shipping on orders over $299.00 to all of Brazil&nbsp; </span><span class=\"entry-title\" style=\"font-size: 12pt;\" data-mce-style=\"font-size: 12pt;\">|&nbsp; Shipments via Correios&nbsp; </span><span class=\"symbol-main__title--symbl\">→</span></p>",
+  "showLanguageVariant": false
+}

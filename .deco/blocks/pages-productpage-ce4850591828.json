@@ -1,1 +1,106 @@
-{"name":"Product Page","path":"/produto/:slug","sections":{"variants":[{"rule":{"name":"language","value":"en","__resolveType":"website/matchers/cookie.ts"},"value":[{"jsonLD":{"__resolveType":"PDP - Loader - en"},"__resolveType":"commerce/sections/Seo/SeoPDPV2.tsx"},{"__resolveType":"Header - 01"},{"page":{"__resolveType":"PDP - Loader - en"},"colors":{"__resolveType":"Color Map Configuration"},"notFound":{"steps":{"items":[{"label":"frre","textStep":"<p>rtertre</p>"}],"positionSteps":"horizontal"},"theme":"dark","title":"rteert","shelfs":[{"shelf":{"colors":[],"layout":{"headerfontSize":"Normal","headerAlignment":"center"},"products":[]}}]},"buyButton":"Comprar","__resolveType":"site/sections/Product/ProductDetails.tsx","reloadInSelector":false},{"title":"Compre também","colors":{"__resolveType":"Color Map Configuration"},"layout":{"headerfontSize":"Normal","headerAlignment":"left"},"__resolveType":"site/sections/Product/ProductRelatedShelf.tsx","relatedProducts":{"__resolveType":"PDP - Loader"},"showColorVariants":true},{"__resolveType":"Footer - 01"}]},{"rule":{"__resolveType":"website/matchers/always.ts"},"value":[{"jsonLD":{"__resolveType":"PDP - Loader"},"__resolveType":"commerce/sections/Seo/SeoPDPV2.tsx"},{"__resolveType":"Header - 01"},{"page":{"__resolveType":"PDP - Loader"},"colors":{"__resolveType":"Color Map Configuration"},"notFound":{"steps":{"items":[{"label":"frre","textStep":"<p>rtertre</p>"}],"positionSteps":"horizontal"},"theme":"dark","title":"rteert","shelfs":[{"shelf":{"colors":[],"layout":{"headerfontSize":"Normal","headerAlignment":"center"},"products":[]}}]},"buyButton":"Comprar","__resolveType":"site/sections/Product/ProductDetails.tsx","reloadInSelector":false},{"title":"Compre também","colors":{"__resolveType":"Color Map Configuration"},"layout":{"headerfontSize":"Normal","headerAlignment":"left"},"__resolveType":"site/sections/Product/ProductRelatedShelf.tsx","relatedProducts":{"__resolveType":"PDP - Loader"},"showColorVariants":true},{"__resolveType":"Footer - 01"}]}],"__resolveType":"website/flags/multivariate.ts"},"__resolveType":"website/pages/Page.tsx"}
+{
+  "name": "Product Page",
+  "path": "/produto/:slug",
+  "sections": {
+    "variants": [
+      {
+        "rule": {
+          "name": "language",
+          "value": "en",
+          "__resolveType": "website/matchers/cookie.ts"
+        },
+        "value": [
+          {
+            "jsonLD": { "__resolveType": "PDP - Loader - en" },
+            "__resolveType": "commerce/sections/Seo/SeoPDPV2.tsx"
+          },
+          { "__resolveType": "Header - 01" },
+          {
+            "page": { "__resolveType": "PDP - Loader - en" },
+            "colors": { "__resolveType": "Color Map Configuration" },
+            "notFound": {
+              "steps": {
+                "items": [{ "label": "frre", "textStep": "<p>rtertre</p>" }],
+                "positionSteps": "horizontal"
+              },
+              "theme": "dark",
+              "title": "rteert",
+              "shelfs": [
+                {
+                  "shelf": {
+                    "colors": [],
+                    "layout": {
+                      "headerfontSize": "Normal",
+                      "headerAlignment": "center"
+                    },
+                    "products": []
+                  }
+                }
+              ]
+            },
+            "buyButton": "Comprar",
+            "__resolveType": "site/sections/Product/ProductDetails.tsx",
+            "reloadInSelector": false
+          },
+          {
+            "title": "Compre também",
+            "colors": { "__resolveType": "Color Map Configuration" },
+            "layout": { "headerfontSize": "Normal", "headerAlignment": "left" },
+            "__resolveType": "site/sections/Product/ProductRelatedShelf.tsx",
+            "relatedProducts": { "__resolveType": "PDP - Loader" },
+            "showColorVariants": true
+          },
+          { "__resolveType": "Footer - 01" }
+        ]
+      },
+      {
+        "rule": { "__resolveType": "website/matchers/always.ts" },
+        "value": [
+          {
+            "jsonLD": { "__resolveType": "PDP - Loader" },
+            "__resolveType": "commerce/sections/Seo/SeoPDPV2.tsx"
+          },
+          { "__resolveType": "Header - 01" },
+          {
+            "page": { "__resolveType": "PDP - Loader" },
+            "colors": { "__resolveType": "Color Map Configuration" },
+            "notFound": {
+              "steps": {
+                "items": [{ "label": "frre", "textStep": "<p>rtertre</p>" }],
+                "positionSteps": "horizontal"
+              },
+              "theme": "dark",
+              "title": "rteert",
+              "shelfs": [
+                {
+                  "shelf": {
+                    "colors": [],
+                    "layout": {
+                      "headerfontSize": "Normal",
+                      "headerAlignment": "center"
+                    },
+                    "products": []
+                  }
+                }
+              ]
+            },
+            "buyButton": "Comprar",
+            "__resolveType": "site/sections/Product/ProductDetails.tsx",
+            "reloadInSelector": false
+          },
+          {
+            "title": "Compre também",
+            "colors": { "__resolveType": "Color Map Configuration" },
+            "layout": { "headerfontSize": "Normal", "headerAlignment": "left" },
+            "__resolveType": "site/sections/Product/ProductRelatedShelf.tsx",
+            "relatedProducts": { "__resolveType": "PDP - Loader" },
+            "showColorVariants": true
+          },
+          { "__resolveType": "Footer - 01" }
+        ]
+      }
+    ],
+    "__resolveType": "website/flags/multivariate.ts"
+  },
+  "__resolveType": "website/pages/Page.tsx"
+}

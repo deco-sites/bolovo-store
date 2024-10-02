@@ -1,1 +1,16 @@
-{"title":"Teste Performance","colors":{"__resolveType":"Color Map Configuration"},"layout":{"headerfontSize":"Normal","headerAlignment":"center"},"seeMore":{"link":"/","text":"Ver Mais"},"products":{"ids":[2532,2518,2531,2533,2520],"sort":"newest","tags":[],"count":6,"typeTags":[],"__resolveType":"vnda/loaders/productList.ts"},"__resolveType":"site/sections/Product/ProductShelf.tsx","showColorVariants":true}
+{
+  "title": "Teste Performance",
+  "colors": { "__resolveType": "Color Map Configuration" },
+  "layout": { "headerfontSize": "Normal", "headerAlignment": "center" },
+  "seeMore": { "link": "/", "text": "Ver Mais" },
+  "products": {
+    "ids": [2532, 2518, 2531, 2533, 2520],
+    "sort": "newest",
+    "tags": [],
+    "count": 6,
+    "typeTags": [],
+    "__resolveType": "vnda/loaders/productList.ts"
+  },
+  "__resolveType": "site/sections/Product/ProductShelf.tsx",
+  "showColorVariants": true
+}

@@ -1,1 +1,31 @@
-{"sectionMenu":[{"menuItems":[{"href":"/institutional/historia","label":"sobre"},{"href":"/institutional/lojas","label":"Lojas"},{"href":"/institutional/blvcash","label":"BLV CASH"}],"sectionTitle":"SOBRE A BOLOVO"},{"menuItems":[{"href":"https://bolovo.zendesk.com/hc/pt-br","label":"Central de ajuda"},{"href":"https://bolovo.troque.app.br/","label":"Trocas e devoluções"},{"href":"https://bolovo.zendesk.com/hc/pt-br/requests/new","label":"Fale conosco"}],"sectionTitle":"AJUDA"}],"__resolveType":"site/sections/Institutional/AsideMenu.tsx","desktopButtonAlign":"left"}
+{
+  "sectionMenu": [
+    {
+      "menuItems": [
+        { "href": "/institutional/historia", "label": "sobre" },
+        { "href": "/institutional/lojas", "label": "Lojas" },
+        { "href": "/institutional/blvcash", "label": "BLV CASH" }
+      ],
+      "sectionTitle": "SOBRE A BOLOVO"
+    },
+    {
+      "menuItems": [
+        {
+          "href": "https://bolovo.zendesk.com/hc/pt-br",
+          "label": "Central de ajuda"
+        },
+        {
+          "href": "https://bolovo.troque.app.br/",
+          "label": "Trocas e devoluções"
+        },
+        {
+          "href": "https://bolovo.zendesk.com/hc/pt-br/requests/new",
+          "label": "Fale conosco"
+        }
+      ],
+      "sectionTitle": "AJUDA"
+    }
+  ],
+  "__resolveType": "site/sections/Institutional/AsideMenu.tsx",
+  "desktopButtonAlign": "left"
+}

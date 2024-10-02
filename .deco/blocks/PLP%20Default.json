@@ -1,1 +1,12 @@
-{"tags":[],"count":64,"filterByTags":true,"__resolveType":"vnda/loaders/productListingPage.ts","filterOperator":{"property1":"and","property2":"and","property3":"and","type_tags":"or"}}
+{
+  "tags": [],
+  "count": 64,
+  "filterByTags": true,
+  "__resolveType": "vnda/loaders/productListingPage.ts",
+  "filterOperator": {
+    "property1": "and",
+    "property2": "and",
+    "property3": "and",
+    "type_tags": "or"
+  }
+}

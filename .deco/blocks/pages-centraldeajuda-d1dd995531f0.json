@@ -1,1 +1,213 @@
-{"name":"Central de ajuda","path":"/institutional/centraldeajuda","sections":{"variants":[{"rule":{"name":"language","value":"en","__resolveType":"website/matchers/cookie.ts"},"value":[{"__resolveType":"Theme - Bolovo "},{"__resolveType":"Header - en"},{"__resolveType":"Carousel - 01"},{"__resolveType":"Product Gallery - en"},{"title":" to stay stretched","products":{"ids":[2192,2390,2353,2004],"sort":"newest","tags":[],"count":4,"__resolveType":"vnda/loaders/productList.ts"},"__resolveType":"site/sections/Product/PhotoGallery.tsx","featuredPhoto":{"alt":"pra ficar na estica","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f7edbd84-3e0e-4d0f-ae2e-7121944c7c50","href":"#"},"contentDirection":{"mobile":"imagem acima","desktop":"imagem na esquerda"}},{"title":" Coats","layout":{"headerfontSize":"Normal","headerAlignment":"left"},"products":{"ids":[],"sort":"newest","tags":[],"term":"casacos","count":7,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"__resolveType":"Banner Grid Home - en"},{"title":" T-shirts and shirts","products":{"ids":[],"sort":"newest","tags":["home-2-en"],"count":6,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"__resolveType":"Photo Gallery - en"},{"title":"shorts","products":{"ids":[],"sort":"newest","tags":[],"term":"shorts","count":6,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"banners":[{"href":"/","text":"Bolovo Productions","srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0807a88b-2da2-4edc-949c-e4d53a486e55","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a3b64d10-eda6-4820-8c3a-db1dae889e49"},{"href":"/","text":"Bolovo Productions","srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0807a88b-2da2-4edc-949c-e4d53a486e55","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a3b64d10-eda6-4820-8c3a-db1dae889e49"},{"href":"/","text":"Bolovo Productions","srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f0d3608c-3cf5-4d5c-8c7d-14dcdee4efec","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/3815c170-ae7f-4932-a4be-a3e9fffba1d9"}],"borderRadius":{"mobile":"small","desktop":"small"},"itemsPerLine":{"mobile":2,"desktop":3},"__resolveType":"site/sections/Content/BannerGrid.tsx"},{"title":" Coats","products":{"ids":[],"sort":"newest","tags":[],"term":"casacos","count":7,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"__resolveType":"Feature Gallery - en"},{"title":" Do not worry your head!","products":{"ids":[],"sort":"newest","tags":[],"term":"boné","count":6,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"__resolveType":"Video and Text - en"},{"title":"Acessórios","products":{"ids":[],"sort":"newest","tags":[],"term":"acessórios","count":5,"__resolveType":"vnda/loaders/productList.ts"},"cardLayout":{"__resolveType":"Product Card Layout - 01"},"description":"Wow, my VNDA shop is FAST!!","__resolveType":"site/sections/Product/ProductShelf.tsx"},{"__resolveType":"stores -en"},{"__resolveType":"Footer - en "},{"__resolveType":"website/sections/Seo/Seo.tsx"}]},{"rule":{"__resolveType":"website/matchers/always.ts"},"value":[{"__resolveType":"Theme - Bolovo "},{"__resolveType":"Header - 01"},{"title":"BLV PROD","content":{"sections":[{"accordions":[{"label":"Lorem ipsum","content":"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."}],"sectionText":"Lorem ipsum"},{"accordions":[{"label":"Lorem ipsum","content":"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."}],"sectionText":"Lorem ipsum2"},{"accordions":[{"label":"Lorem ipsum","content":"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."}],"sectionText":"Lorem ipsum3"},{"accordions":[{"label":"Lorem ipsum","content":"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."}],"sectionText":"Lorem ipsum4"}],"__resolveType":"site/sections/Institutional/AccordionsContent.tsx"},"asideMenu":{"__resolveType":"AsideMenu 01"},"__resolveType":"site/sections/Institutional/InstitutionalPage.tsx"},{"__resolveType":"Footer - 01"}]}],"__resolveType":"website/flags/multivariate.ts"},"__resolveType":"website/pages/Page.tsx"}
+{
+  "name": "Central de ajuda",
+  "path": "/institutional/centraldeajuda",
+  "sections": {
+    "variants": [
+      {
+        "rule": {
+          "name": "language",
+          "value": "en",
+          "__resolveType": "website/matchers/cookie.ts"
+        },
+        "value": [
+          { "__resolveType": "Theme - Bolovo " },
+          { "__resolveType": "Header - en" },
+          { "__resolveType": "Carousel - 01" },
+          { "__resolveType": "Product Gallery - en" },
+          {
+            "title": " to stay stretched",
+            "products": {
+              "ids": [2192, 2390, 2353, 2004],
+              "sort": "newest",
+              "tags": [],
+              "count": 4,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "__resolveType": "site/sections/Product/PhotoGallery.tsx",
+            "featuredPhoto": {
+              "alt": "pra ficar na estica",
+              "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f7edbd84-3e0e-4d0f-ae2e-7121944c7c50",
+              "href": "#"
+            },
+            "contentDirection": {
+              "mobile": "imagem acima",
+              "desktop": "imagem na esquerda"
+            }
+          },
+          {
+            "title": " Coats",
+            "layout": { "headerfontSize": "Normal", "headerAlignment": "left" },
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": [],
+              "term": "casacos",
+              "count": 7,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          { "__resolveType": "Banner Grid Home - en" },
+          {
+            "title": " T-shirts and shirts",
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": ["home-2-en"],
+              "count": 6,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          { "__resolveType": "Photo Gallery - en" },
+          {
+            "title": "shorts",
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": [],
+              "term": "shorts",
+              "count": 6,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          {
+            "banners": [
+              {
+                "href": "/",
+                "text": "Bolovo Productions",
+                "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0807a88b-2da2-4edc-949c-e4d53a486e55",
+                "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a3b64d10-eda6-4820-8c3a-db1dae889e49"
+              },
+              {
+                "href": "/",
+                "text": "Bolovo Productions",
+                "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0807a88b-2da2-4edc-949c-e4d53a486e55",
+                "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a3b64d10-eda6-4820-8c3a-db1dae889e49"
+              },
+              {
+                "href": "/",
+                "text": "Bolovo Productions",
+                "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f0d3608c-3cf5-4d5c-8c7d-14dcdee4efec",
+                "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/3815c170-ae7f-4932-a4be-a3e9fffba1d9"
+              }
+            ],
+            "borderRadius": { "mobile": "small", "desktop": "small" },
+            "itemsPerLine": { "mobile": 2, "desktop": 3 },
+            "__resolveType": "site/sections/Content/BannerGrid.tsx"
+          },
+          {
+            "title": " Coats",
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": [],
+              "term": "casacos",
+              "count": 7,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          { "__resolveType": "Feature Gallery - en" },
+          {
+            "title": " Do not worry your head!",
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": [],
+              "term": "boné",
+              "count": 6,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          { "__resolveType": "Video and Text - en" },
+          {
+            "title": "Acessórios",
+            "products": {
+              "ids": [],
+              "sort": "newest",
+              "tags": [],
+              "term": "acessórios",
+              "count": 5,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": { "__resolveType": "Product Card Layout - 01" },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "__resolveType": "site/sections/Product/ProductShelf.tsx"
+          },
+          { "__resolveType": "stores -en" },
+          { "__resolveType": "Footer - en " },
+          { "__resolveType": "website/sections/Seo/Seo.tsx" }
+        ]
+      },
+      {
+        "rule": { "__resolveType": "website/matchers/always.ts" },
+        "value": [
+          { "__resolveType": "Theme - Bolovo " },
+          { "__resolveType": "Header - 01" },
+          {
+            "title": "BLV PROD",
+            "content": {
+              "sections": [
+                {
+                  "accordions": [
+                    {
+                      "label": "Lorem ipsum",
+                      "content": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
+                    }
+                  ],
+                  "sectionText": "Lorem ipsum"
+                },
+                {
+                  "accordions": [
+                    {
+                      "label": "Lorem ipsum",
+                      "content": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
+                    }
+                  ],
+                  "sectionText": "Lorem ipsum2"
+                },
+                {
+                  "accordions": [
+                    {
+                      "label": "Lorem ipsum",
+                      "content": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
+                    }
+                  ],
+                  "sectionText": "Lorem ipsum3"
+                },
+                {
+                  "accordions": [
+                    {
+                      "label": "Lorem ipsum",
+                      "content": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.  The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham."
+                    }
+                  ],
+                  "sectionText": "Lorem ipsum4"
+                }
+              ],
+              "__resolveType": "site/sections/Institutional/AccordionsContent.tsx"
+            },
+            "asideMenu": { "__resolveType": "AsideMenu 01" },
+            "__resolveType": "site/sections/Institutional/InstitutionalPage.tsx"
+          },
+          { "__resolveType": "Footer - 01" }
+        ]
+      }
+    ],
+    "__resolveType": "website/flags/multivariate.ts"
+  },
+  "__resolveType": "website/pages/Page.tsx"
+}

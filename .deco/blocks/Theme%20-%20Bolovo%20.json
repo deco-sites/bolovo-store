@@ -1,1 +1,41 @@
-{"font":{"fonts":[{"family":"Rubik","variations":[{"weight":"300","italic":false},{"weight":"400","italic":false},{"weight":"500","italic":false},{"weight":"600","italic":false},{"weight":"700","italic":false}]},{"family":"Averia Serif Libre","variations":[{"italic":true,"weight":"700"}]},{"family":"EB Garamond","variations":[{"weight":"400","italic":false},{"weight":"500","italic":false}]}],"__resolveType":"website/loaders/fonts/googleFonts.ts"},"mainColors":{"primary":"#121212","base-100":"#ffffff","tertiary":"#00ff7f","secondary":"#8c3d3d"},"buttonStyle":{"--border-btn":"1px","--rounded-btn":"0.2rem","--btn-text-case":"normal-case","--btn-focus-scale":"0.9"},"__resolveType":"site/sections/Theme/Theme.tsx"}
+{
+  "font": {
+    "fonts": [
+      {
+        "family": "Rubik",
+        "variations": [
+          { "weight": "300", "italic": false },
+          { "weight": "400", "italic": false },
+          { "weight": "500", "italic": false },
+          { "weight": "600", "italic": false },
+          { "weight": "700", "italic": false }
+        ]
+      },
+      {
+        "family": "Averia Serif Libre",
+        "variations": [{ "italic": true, "weight": "700" }]
+      },
+      {
+        "family": "EB Garamond",
+        "variations": [
+          { "weight": "400", "italic": false },
+          { "weight": "500", "italic": false }
+        ]
+      }
+    ],
+    "__resolveType": "website/loaders/fonts/googleFonts.ts"
+  },
+  "mainColors": {
+    "primary": "#121212",
+    "base-100": "#ffffff",
+    "tertiary": "#00ff7f",
+    "secondary": "#8c3d3d"
+  },
+  "buttonStyle": {
+    "--border-btn": "1px",
+    "--rounded-btn": "0.2rem",
+    "--btn-text-case": "normal-case",
+    "--btn-focus-scale": "0.9"
+  },
+  "__resolveType": "site/sections/Theme/Theme.tsx"
+}

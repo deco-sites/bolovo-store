@@ -1,1 +1,6 @@
-{"trackingIds":["GTM-PDHHDB"],"__resolveType":"website/sections/Analytics/Analytics.tsx","googleAnalyticsIds":[],"dangerouslyRunOnMainThread":true}
+{
+  "trackingIds": ["GTM-PDHHDB"],
+  "__resolveType": "website/sections/Analytics/Analytics.tsx",
+  "googleAnalyticsIds": [],
+  "dangerouslyRunOnMainThread": true
+}

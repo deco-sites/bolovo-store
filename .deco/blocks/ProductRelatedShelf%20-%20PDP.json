@@ -1,1 +1,7 @@
-{"title":"Compre também","colors":{"__resolveType":"Color Map Configuration"},"layout":{"headerfontSize":"Normal","headerAlignment":"center"},"__resolveType":"site/sections/Product/ProductRelatedShelf.tsx","relatedProducts":{"__resolveType":"PDP - Loader"}}
+{
+  "title": "Compre também",
+  "colors": { "__resolveType": "Color Map Configuration" },
+  "layout": { "headerfontSize": "Normal", "headerAlignment": "center" },
+  "__resolveType": "site/sections/Product/ProductRelatedShelf.tsx",
+  "relatedProducts": { "__resolveType": "PDP - Loader" }
+}

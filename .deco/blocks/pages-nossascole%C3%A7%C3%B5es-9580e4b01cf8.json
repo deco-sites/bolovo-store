@@ -1,1 +1,58 @@
-{"name":"Nossas Coleções","path":"/nossas-colecoes","sections":[{"__resolveType":"Header - 01"},{"banners":[{"href":"/x-treme","image":{"srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b6c6a0ae-dcc9-45a1-97e8-064194460ae6","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/7a44f421-a264-4165-bc58-543a4a86b195"}},{"href":"/expedition-team ","image":{"srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/acb69ade-956f-4587-b8b6-bfc73e4324db","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0e56613f-dd34-467f-820f-9caf280e1f95"}},{"href":"/homevideo","text":"<p></p>","image":{"srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/845954e8-6276-44a3-b1ab-8a127c61cf1d","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/00d4ad88-fbd6-4289-8df1-06cc07ed7d79"}},{"href":"/verao24","image":{"srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/579b5b7b-7295-453d-b15b-7f45728a00b0","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/08015827-04d4-4465-8a74-8de49a395c48"}},{"href":"/dragao","image":{"srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/de4b8ea5-c5e1-4ceb-b5c9-b4ba875bfd37","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/7349646f-8d3a-4931-bd88-27000a57318e"}},{"href":"/born-to-travel","image":{"srcMobile":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/367e3224-ec40-4ab2-b835-989b38e1d7dc","srcDesktop":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/48ed27f6-51ea-46e9-81d8-50f6e24cfcc1"}}],"borderRadius":{"mobile":"small","desktop":"small"},"itemsPerLine":{"mobile":1,"desktop":2},"__resolveType":"site/sections/Content/BannerGrid.tsx"}],"__resolveType":"website/pages/Page.tsx"}
+{
+  "name": "Nossas Coleções",
+  "path": "/nossas-colecoes",
+  "sections": [
+    { "__resolveType": "Header - 01" },
+    {
+      "banners": [
+        {
+          "href": "/x-treme",
+          "image": {
+            "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b6c6a0ae-dcc9-45a1-97e8-064194460ae6",
+            "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/7a44f421-a264-4165-bc58-543a4a86b195"
+          }
+        },
+        {
+          "href": "/expedition-team ",
+          "image": {
+            "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/acb69ade-956f-4587-b8b6-bfc73e4324db",
+            "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0e56613f-dd34-467f-820f-9caf280e1f95"
+          }
+        },
+        {
+          "href": "/homevideo",
+          "text": "<p></p>",
+          "image": {
+            "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/845954e8-6276-44a3-b1ab-8a127c61cf1d",
+            "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/00d4ad88-fbd6-4289-8df1-06cc07ed7d79"
+          }
+        },
+        {
+          "href": "/verao24",
+          "image": {
+            "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/579b5b7b-7295-453d-b15b-7f45728a00b0",
+            "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/08015827-04d4-4465-8a74-8de49a395c48"
+          }
+        },
+        {
+          "href": "/dragao",
+          "image": {
+            "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/de4b8ea5-c5e1-4ceb-b5c9-b4ba875bfd37",
+            "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/7349646f-8d3a-4931-bd88-27000a57318e"
+          }
+        },
+        {
+          "href": "/born-to-travel",
+          "image": {
+            "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/367e3224-ec40-4ab2-b835-989b38e1d7dc",
+            "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/48ed27f6-51ea-46e9-81d8-50f6e24cfcc1"
+          }
+        }
+      ],
+      "borderRadius": { "mobile": "small", "desktop": "small" },
+      "itemsPerLine": { "mobile": 1, "desktop": 2 },
+      "__resolveType": "site/sections/Content/BannerGrid.tsx"
+    }
+  ],
+  "__resolveType": "website/pages/Page.tsx"
+}

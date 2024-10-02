@@ -1,1 +1,11 @@
-{"page":{"__resolveType":"PDP - Loader"},"pdpImage":{"page":{"__resolveType":"PDP - Loader"},"layout":{"width":370,"height":400},"layoutImage":{"width":370,"height":400}},"buyButton":"Comprar ","__resolveType":"site/sections/Product/PageOfProduct.tsx","reloadInSelector":false}
+{
+  "page": { "__resolveType": "PDP - Loader" },
+  "pdpImage": {
+    "page": { "__resolveType": "PDP - Loader" },
+    "layout": { "width": 370, "height": 400 },
+    "layoutImage": { "width": 370, "height": 400 }
+  },
+  "buyButton": "Comprar ",
+  "__resolveType": "site/sections/Product/PageOfProduct.tsx",
+  "reloadInSelector": false
+}

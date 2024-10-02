@@ -1,1 +1,546 @@
-{"img":{"alt":"searche icon ","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d4e86b94-158b-4bb2-a5be-106be393649c"},"cart":{"freeShippingObjectiveQuantity":600},"logo":{"alt":"Fashion logo by deco","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/03f6696c-2f2c-4c2b-b39c-6a30528c18a0"},"menu":{"logo":{"alt":"Store logo","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/03f6696c-2f2c-4c2b-b39c-6a30528c18a0"},"items":[{"label":"SHOPS","links":[{"href":"/nossas-colecoes","label":"COLEÇÕES","children":[{"href":"/club-days","label":"Club Days","children":[]},{"href":"/x-treme","label":"X-Treme","children":[]},{"href":"/expedition-team ","label":"Expedition Team","children":[]},{"href":"/homevideo","label":"Home Video","children":[]},{"href":"/todos","label":"Ver Todos ","children":[]}]},{"href":"/camisetas","label":"CAMISETAS","children":[{"href":"/camisetas/manga-curta","label":"Manga Curta","children":[]},{"href":"/camisetas/manga-longa","label":"Manga Longa","children":[]},{"href":"/camisetas/listras","label":"Listras","children":[]},{"href":"/camisetas/listas-brisa","label":"Listras Brisa Jacquard","children":[]},{"href":"/camisetas/classicas","label":"Clássicas","children":[]},{"href":"/camisetas/basicas","label":"Básicas","children":[]},{"href":"/camisetas/uv","label":"UV","children":[]},{"href":"/camisetas","label":"Ver Todos","children":[]}]},{"href":"/camisas","label":"CAMISAS","children":[{"href":"/camisas/c-manga-longa","label":"Manga Longa","children":[]},{"href":"/camisas/c-manga-curta","label":"Manga Curta","children":[]},{"href":"/camisas","label":"Ver Todos","children":[]}]},{"href":"/casacos","label":"CASACOS","children":[{"href":"/casacos/windbreaker ","label":"Windbreakers","newTab":false,"children":[]},{"href":"/casacos/parka","label":"Parkas","children":[]},{"href":"/casacos/jaqueta","label":"Jaquetas","children":[]},{"href":"/casacos/fleece","label":"Fleeces","children":[]},{"href":"/casacos/crewneck","label":"Crewnecks","children":[]},{"href":"/casacos/moletom","label":"Moletons","children":[]},{"href":"/casacos","label":"Ver Todos","children":[]}]},{"href":"/shorts","label":"SHORTS","children":[{"href":"/shorts/s-s","label":"Short Shorts","children":[]},{"href":"/shorts/fds","label":"FDS Shorts","children":[]},{"href":"/shorts/dads","label":"Dads Shorts","children":[]},{"href":"/shorts/velvet","label":"Velvet Shorts","children":[]},{"href":"/shorts/s-de-expedicao","label":"Shorts de Expedição ","children":[]},{"href":"/shorts","label":"Ver Todos","children":[]}]},{"href":"/calcas","label":"CALÇAS","children":[{"href":"/calcas/good_times","label":"Good Times","children":[]},{"href":"/calcas/que-vira-shorts","label":"Calça Que Vira Shorts","newTab":false,"children":[]},{"href":"/calcas/c-velvet","label":"Velvet","children":[]},{"href":"/calcas/c-jeans","label":"Dins","children":[]},{"href":"/calcas","label":"Ver Todos","children":[]}]},{"href":"/bones","label":"BONÉS","children":[{"href":"/bones/b-5-panel","label":"Bonés 5 Panel","children":[]},{"href":"/bones/b-tactel","label":"Bonés Tactel","children":[]},{"href":"/bones/b-sarja","label":"Bonés Sarja","children":[]},{"href":"/bones/b-classicos","label":"Bonés Clássicos","children":[]},{"href":"/bones/chapeus-buckets","label":"Chapéus e Buckets","children":[]},{"href":"/bones","label":"Ver Todos","children":[]}]},{"href":"/gorros","label":"GORROS","children":[{"href":"/gorros","label":"Ver Todos","children":[]}]},{"href":"/acessorios","label":"ACESSÓRIOS","children":[{"href":"/acessorios/pochetes","label":"Pochetes","children":[]},{"href":"/acessorios/shoulder","label":"Shoulders","children":[]},{"href":"/acessorios/bolsa","label":"Bolsas","children":[]},{"href":"/acessorios/mala","label":"Malas","children":[]},{"href":"/acessorios/tabaqueira","label":"Tabaqueiras","children":[]},{"href":"/acessorios/carteiras","label":"Carteiras","newTab":false,"children":[]},{"href":"/acessorios","label":"Ver Todos","children":[]}]},{"href":"/tralhas","label":"TRALHAS","children":[{"href":"/tralhas/adesivo","label":"Adesivos","children":[]},{"href":"/tralhas/copo-e-caneca","label":"Canecas","children":[]},{"href":"/tralhas/chaveiro","label":"Chaveiros","children":[]},{"href":"/tralhas/cinzeiro","label":"Cinzeiros","children":[]},{"href":"/tralhas/garrafa","label":"Garrafas","children":[]},{"href":"/tralhas/strap-de-camera","label":"Straps De Camera","children":[]},{"href":"/tralhas/seda","label":"Sedas","children":[]},{"href":"/tralhas/pijamao","label":"Pijamão","children":[]},{"href":"/tralhas","label":"Ver Todos","children":[]}]},{"href":"/meia","label":"MEIAS","children":[{"href":"/meia","label":"Ver Todos","children":[]}]}],"images":[]}],"social":[{"link":"https://www.instagram.com/bolovo/","label":"Instagram","newTab":true},{"link":"https://www.youtube.com/@BOLOVO","label":"Youtube","newTab":true},{"link":"https://api.whatsapp.com/send?phone=5511917250298&text=Ol%C3%A1,%20gostaria%20de%20comprar%20um%20produto!","label":"WhatsApp","newTab":true}],"loginText":"LOGIN","searchBar":{"name":"q","action":"/s","iconSearch":{"alt":"Search bar icon","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/9359c405-e921-45db-ae64-362fbdd088b2"},"placeholder":"BUSCAR PRODUTO"},"accountHref":"/conta","accountText":"LOGIN","contentItem":{"label":"Conteúdo","linksContent":[{"link":"/m/conteudo?categoria=filmes","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/5473c193-cf6c-4c9d-a0f2-0eca20b26d72","title":"Filmes","subtitle":"Ver mais","alternateName":"filmes"},{"link":"/m/conteudo?categoria=go-out","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/2fd282d3-3489-406b-841c-495b6188d834","title":"Go Out","subtitle":"Ver mais","alternateName":"Go Out"},{"link":"/m/conteudo?categoria=papo-fera","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/657501ed-7ab1-43f8-a1b6-5b489cd99bbd","title":"Papo Fera","subtitle":"Ver mais","alternateName":"Papo Fera"},{"link":"/m/conteudo?categoria=pulta-takes","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b46acf4c-79b5-4350-90fd-fbdaff0ba3c0","title":"Pulta Takes","subtitle":"Ver mais","alternateName":"Pulta Takes"},{"link":"/m/conteudo?categoria=pulta-takes","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/9fc14021-e74b-42ca-81cb-6c449fee820a","title":"Oficina do Magrão","subtitle":"Ver mais","alternateName":"Oficina do Magrão"},{"link":"/p/livro","image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/c1bdec04-f3a4-41be-830f-d0027fcfa873","title":"Livro 10 anos","subtitle":"Ver mais","alternateName":"Livro 10 anos"}]},"countryFlag":[{"countryImg":{"alt":"Brasil","img":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d1e0266f-aa1d-4aa7-b74a-4258d2281db6"},"countryLabel":"BRASIL","languageAbbreviation":"pt"},{"countryImg":{"alt":"World language","img":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/900b0e1b-85aa-495f-997f-7a27f89f7358"},"countryLabel":"WORLDWIDE","languageAbbreviation":"en"}]},"input":{"img":{"alt":"icon search","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/05c87a07-1748-462a-9746-d30a1d7b6df4"},"label":"BUSCAR"},"label":"Buscar","alerts":["Frete Grátis"],"blogItem":{"href":"/","text":"conteúdo"},"helpItem":{"href":"https://bolovo.zendesk.com/hc/pt-br","text":"ajuda"},"miniCart":{"cartTitle":"CARRINHO DE COMPRAS","cartIsEmpty":"Sua sacola está vazia","ctaCheckout":"CHECKOUT","ctaBackStore":"CONTINUAR COMPRANDO","cartTotalText":"Total","modalCloseText":"Fechar","gotFreeShipping":"Frete Grátis","cartTranslations":{"cartTitle":"CARRINHO DE COMPRAS","cartIsEmpty":"Sua sacola está vazia","ctaCheckout":"CHECKOUT","ctaBackStore":"CONTINUAR COMPRANDO","cartTotalText":"Total","modalCloseText":"Fechar","gotFreeShipping":"Frete Grátis","freeShippingText":"<p>Faltam R$ $valor para o frete grátis</p>","installmentsText":"R$ $valor em $instalmentsx","buttonCartIsEmpty":"Escolher Produtos"},"freeShippingText":"<p>Faltam $valor para o frete grátis</p>","installmentsText":"R$ $valor em 6x","buttonCartIsEmpty":"Escolher Produtos","freeShippingTarget":299,"freeShippingValueColor":"#ff0000"},"navItems":[{"name":"SHOPS","@type":"SiteNavigationElement","image":[],"label":"SHOPS","links":[{"href":"#","label":"SHOP$","children":[{"href":"/fatz&bolovo","label":"FATZ & BOLOVO","children":[]},{"href":"/camisetas","label":"CAMISETAS","children":[]},{"href":"/bones","label":"BONÉS","children":[]},{"href":"/gorros","label":"GORROS","children":[]},{"href":"/camisas","label":"CAMISAS","children":[]},{"href":"/casacos","label":"CASACOS","children":[]}]},{"href":"#","label":"SHOP$","children":[{"href":"/shorts","label":"SHORTS","children":[]},{"href":"/calças","label":"CALÇAS","children":[]},{"href":"/meias","label":"MEIAS","children":[]},{"href":"/acessorios","label":"ACESSÓRIOS","children":[]},{"href":"/tralhas","label":"TRALHAS","children":[]},{"href":"/vertudo","label":"VER TUDO","children":[]}]}],"images":[{"image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/6ff44cf0-8ba1-4488-8224-e9439ed26a9d","label":"Pochete BLV Expeditions Colorblock","alternateName":"Pochete BLV Expeditions Colorblock"},{"image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/734c2442-4b76-4aff-a479-965eb4df89d3","label":"Pijamão Doggy Style","alternateName":"Pijamão Doggy Style"},{"image":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/bb1b2832-0976-411a-ad22-ceaed0e039ce","label":"Meia Fatz® & Bolovo®","alternateName":"Meia Fatz® & Bolovo®"}],"children":[]}],"searchbar":{"name":"q","action":"/busca","loader":{"data":{"products":[],"searches":[]},"__resolveType":"resolved"},"IconSearch":{"alt":"searche icon ","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/63ebe712-3a13-4af6-a56c-0144deb16720"},"iconSearch":{"alt":"icon Search","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/53437560-e1df-464f-9340-fcb1892bb824"},"placeholder":"BUSCAR"},"accountHref":"/conta","contentBlog":{"linksContent":[]},"countryFlag":[{"countryImg":{"alt":"Brasil","img":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f957a14c-a4c3-446e-98de-e154e739ac18"},"countryLabel":"Brasil","countryAbbreviation":"PT","languageAbbreviation":"PT"},{"countryImg":{"alt":"Wordwide","img":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/593ad233-0178-4772-a0e1-9a0dd0a32a1c"},"countryLabel":"Worldwide","countryAbbreviation":"WD","languageAbbreviation":"EN"}],"buttonSearch":{"img":{"alt":"icon Search","src":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f6016ab0-748c-4988-b7f6-ab4c3728e09a"},"label":"Buscar"},"promotionBar":{"text":"<p style=\"text-align: center\"><strong><span style=\"font-size: 8pt\">Frete grátis a partir de R$299,00 para todo o Brasil </span></strong></p>","Layout":{"primary":"#FFFFFF","base-100":"#121212"},"layout":{"text":"#FFFFFF","primary":"#FFFFFF","background":"#121212"},"visible":true,"barLayout":{"primary":"#FFFFFF","base-100":"#121212"}},"__resolveType":"site/sections/Header/Header.tsx","promotionText":"<p><span style=\"font-weight: 500;\" data-mce-style=\"font-weight: 500;\">Frete grátis a partir de R$299,00 para todo o Brasil&nbsp; </span><span class=\"entry-title\" style=\"font-size: 12pt;\" data-mce-style=\"font-size: 12pt;\">|&nbsp; Envios via Correios&nbsp; </span><span class=\"symbol-main__title--symbl\">→</span></p>","showLanguageVariant":false}
+{
+  "img": {
+    "alt": "searche icon ",
+    "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d4e86b94-158b-4bb2-a5be-106be393649c"
+  },
+  "cart": { "freeShippingObjectiveQuantity": 600 },
+  "logo": {
+    "alt": "Fashion logo by deco",
+    "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/03f6696c-2f2c-4c2b-b39c-6a30528c18a0"
+  },
+  "menu": {
+    "logo": {
+      "alt": "Store logo",
+      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/03f6696c-2f2c-4c2b-b39c-6a30528c18a0"
+    },
+    "items": [
+      {
+        "label": "SHOPS",
+        "links": [
+          {
+            "href": "/nossas-colecoes",
+            "label": "COLEÇÕES",
+            "children": [
+              { "href": "/club-days", "label": "Club Days", "children": [] },
+              { "href": "/x-treme", "label": "X-Treme", "children": [] },
+              {
+                "href": "/expedition-team ",
+                "label": "Expedition Team",
+                "children": []
+              },
+              { "href": "/homevideo", "label": "Home Video", "children": [] },
+              { "href": "/todos", "label": "Ver Todos ", "children": [] }
+            ]
+          },
+          {
+            "href": "/camisetas",
+            "label": "CAMISETAS",
+            "children": [
+              {
+                "href": "/camisetas/manga-curta",
+                "label": "Manga Curta",
+                "children": []
+              },
+              {
+                "href": "/camisetas/manga-longa",
+                "label": "Manga Longa",
+                "children": []
+              },
+              {
+                "href": "/camisetas/listras",
+                "label": "Listras",
+                "children": []
+              },
+              {
+                "href": "/camisetas/listas-brisa",
+                "label": "Listras Brisa Jacquard",
+                "children": []
+              },
+              {
+                "href": "/camisetas/classicas",
+                "label": "Clássicas",
+                "children": []
+              },
+              {
+                "href": "/camisetas/basicas",
+                "label": "Básicas",
+                "children": []
+              },
+              { "href": "/camisetas/uv", "label": "UV", "children": [] },
+              { "href": "/camisetas", "label": "Ver Todos", "children": [] }
+            ]
+          },
+          {
+            "href": "/camisas",
+            "label": "CAMISAS",
+            "children": [
+              {
+                "href": "/camisas/c-manga-longa",
+                "label": "Manga Longa",
+                "children": []
+              },
+              {
+                "href": "/camisas/c-manga-curta",
+                "label": "Manga Curta",
+                "children": []
+              },
+              { "href": "/camisas", "label": "Ver Todos", "children": [] }
+            ]
+          },
+          {
+            "href": "/casacos",
+            "label": "CASACOS",
+            "children": [
+              {
+                "href": "/casacos/windbreaker ",
+                "label": "Windbreakers",
+                "newTab": false,
+                "children": []
+              },
+              { "href": "/casacos/parka", "label": "Parkas", "children": [] },
+              {
+                "href": "/casacos/jaqueta",
+                "label": "Jaquetas",
+                "children": []
+              },
+              { "href": "/casacos/fleece", "label": "Fleeces", "children": [] },
+              {
+                "href": "/casacos/crewneck",
+                "label": "Crewnecks",
+                "children": []
+              },
+              {
+                "href": "/casacos/moletom",
+                "label": "Moletons",
+                "children": []
+              },
+              { "href": "/casacos", "label": "Ver Todos", "children": [] }
+            ]
+          },
+          {
+            "href": "/shorts",
+            "label": "SHORTS",
+            "children": [
+              {
+                "href": "/shorts/s-s",
+                "label": "Short Shorts",
+                "children": []
+              },
+              { "href": "/shorts/fds", "label": "FDS Shorts", "children": [] },
+              {
+                "href": "/shorts/dads",
+                "label": "Dads Shorts",
+                "children": []
+              },
+              {
+                "href": "/shorts/velvet",
+                "label": "Velvet Shorts",
+                "children": []
+              },
+              {
+                "href": "/shorts/s-de-expedicao",
+                "label": "Shorts de Expedição ",
+                "children": []
+              },
+              { "href": "/shorts", "label": "Ver Todos", "children": [] }
+            ]
+          },
+          {
+            "href": "/calcas",
+            "label": "CALÇAS",
+            "children": [
+              {
+                "href": "/calcas/good_times",
+                "label": "Good Times",
+                "children": []
+              },
+              {
+                "href": "/calcas/que-vira-shorts",
+                "label": "Calça Que Vira Shorts",
+                "newTab": false,
+                "children": []
+              },
+              { "href": "/calcas/c-velvet", "label": "Velvet", "children": [] },
+              { "href": "/calcas/c-jeans", "label": "Dins", "children": [] },
+              { "href": "/calcas", "label": "Ver Todos", "children": [] }
+            ]
+          },
+          {
+            "href": "/bones",
+            "label": "BONÉS",
+            "children": [
+              {
+                "href": "/bones/b-5-panel",
+                "label": "Bonés 5 Panel",
+                "children": []
+              },
+              {
+                "href": "/bones/b-tactel",
+                "label": "Bonés Tactel",
+                "children": []
+              },
+              {
+                "href": "/bones/b-sarja",
+                "label": "Bonés Sarja",
+                "children": []
+              },
+              {
+                "href": "/bones/b-classicos",
+                "label": "Bonés Clássicos",
+                "children": []
+              },
+              {
+                "href": "/bones/chapeus-buckets",
+                "label": "Chapéus e Buckets",
+                "children": []
+              },
+              { "href": "/bones", "label": "Ver Todos", "children": [] }
+            ]
+          },
+          {
+            "href": "/gorros",
+            "label": "GORROS",
+            "children": [
+              { "href": "/gorros", "label": "Ver Todos", "children": [] }
+            ]
+          },
+          {
+            "href": "/acessorios",
+            "label": "ACESSÓRIOS",
+            "children": [
+              {
+                "href": "/acessorios/pochetes",
+                "label": "Pochetes",
+                "children": []
+              },
+              {
+                "href": "/acessorios/shoulder",
+                "label": "Shoulders",
+                "children": []
+              },
+              {
+                "href": "/acessorios/bolsa",
+                "label": "Bolsas",
+                "children": []
+              },
+              { "href": "/acessorios/mala", "label": "Malas", "children": [] },
+              {
+                "href": "/acessorios/tabaqueira",
+                "label": "Tabaqueiras",
+                "children": []
+              },
+              {
+                "href": "/acessorios/carteiras",
+                "label": "Carteiras",
+                "newTab": false,
+                "children": []
+              },
+              { "href": "/acessorios", "label": "Ver Todos", "children": [] }
+            ]
+          },
+          {
+            "href": "/tralhas",
+            "label": "TRALHAS",
+            "children": [
+              {
+                "href": "/tralhas/adesivo",
+                "label": "Adesivos",
+                "children": []
+              },
+              {
+                "href": "/tralhas/copo-e-caneca",
+                "label": "Canecas",
+                "children": []
+              },
+              {
+                "href": "/tralhas/chaveiro",
+                "label": "Chaveiros",
+                "children": []
+              },
+              {
+                "href": "/tralhas/cinzeiro",
+                "label": "Cinzeiros",
+                "children": []
+              },
+              {
+                "href": "/tralhas/garrafa",
+                "label": "Garrafas",
+                "children": []
+              },
+              {
+                "href": "/tralhas/strap-de-camera",
+                "label": "Straps De Camera",
+                "children": []
+              },
+              { "href": "/tralhas/seda", "label": "Sedas", "children": [] },
+              {
+                "href": "/tralhas/pijamao",
+                "label": "Pijamão",
+                "children": []
+              },
+              { "href": "/tralhas", "label": "Ver Todos", "children": [] }
+            ]
+          },
+          {
+            "href": "/meia",
+            "label": "MEIAS",
+            "children": [
+              { "href": "/meia", "label": "Ver Todos", "children": [] }
+            ]
+          }
+        ],
+        "images": []
+      }
+    ],
+    "social": [
+      {
+        "link": "https://www.instagram.com/bolovo/",
+        "label": "Instagram",
+        "newTab": true
+      },
+      {
+        "link": "https://www.youtube.com/@BOLOVO",
+        "label": "Youtube",
+        "newTab": true
+      },
+      {
+        "link": "https://api.whatsapp.com/send?phone=5511917250298&text=Ol%C3%A1,%20gostaria%20de%20comprar%20um%20produto!",
+        "label": "WhatsApp",
+        "newTab": true
+      }
+    ],
+    "loginText": "LOGIN",
+    "searchBar": {
+      "name": "q",
+      "action": "/s",
+      "iconSearch": {
+        "alt": "Search bar icon",
+        "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/9359c405-e921-45db-ae64-362fbdd088b2"
+      },
+      "placeholder": "BUSCAR PRODUTO"
+    },
+    "accountHref": "/conta",
+    "accountText": "LOGIN",
+    "contentItem": {
+      "label": "Conteúdo",
+      "linksContent": [
+        {
+          "link": "/m/conteudo?categoria=filmes",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/5473c193-cf6c-4c9d-a0f2-0eca20b26d72",
+          "title": "Filmes",
+          "subtitle": "Ver mais",
+          "alternateName": "filmes"
+        },
+        {
+          "link": "/m/conteudo?categoria=go-out",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/2fd282d3-3489-406b-841c-495b6188d834",
+          "title": "Go Out",
+          "subtitle": "Ver mais",
+          "alternateName": "Go Out"
+        },
+        {
+          "link": "/m/conteudo?categoria=papo-fera",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/657501ed-7ab1-43f8-a1b6-5b489cd99bbd",
+          "title": "Papo Fera",
+          "subtitle": "Ver mais",
+          "alternateName": "Papo Fera"
+        },
+        {
+          "link": "/m/conteudo?categoria=pulta-takes",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b46acf4c-79b5-4350-90fd-fbdaff0ba3c0",
+          "title": "Pulta Takes",
+          "subtitle": "Ver mais",
+          "alternateName": "Pulta Takes"
+        },
+        {
+          "link": "/m/conteudo?categoria=pulta-takes",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/9fc14021-e74b-42ca-81cb-6c449fee820a",
+          "title": "Oficina do Magrão",
+          "subtitle": "Ver mais",
+          "alternateName": "Oficina do Magrão"
+        },
+        {
+          "link": "/p/livro",
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/c1bdec04-f3a4-41be-830f-d0027fcfa873",
+          "title": "Livro 10 anos",
+          "subtitle": "Ver mais",
+          "alternateName": "Livro 10 anos"
+        }
+      ]
+    },
+    "countryFlag": [
+      {
+        "countryImg": {
+          "alt": "Brasil",
+          "img": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d1e0266f-aa1d-4aa7-b74a-4258d2281db6"
+        },
+        "countryLabel": "BRASIL",
+        "languageAbbreviation": "pt"
+      },
+      {
+        "countryImg": {
+          "alt": "World language",
+          "img": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/900b0e1b-85aa-495f-997f-7a27f89f7358"
+        },
+        "countryLabel": "WORLDWIDE",
+        "languageAbbreviation": "en"
+      }
+    ]
+  },
+  "input": {
+    "img": {
+      "alt": "icon search",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/05c87a07-1748-462a-9746-d30a1d7b6df4"
+    },
+    "label": "BUSCAR"
+  },
+  "label": "Buscar",
+  "alerts": ["Frete Grátis"],
+  "blogItem": { "href": "/", "text": "conteúdo" },
+  "helpItem": {
+    "href": "https://bolovo.zendesk.com/hc/pt-br",
+    "text": "ajuda"
+  },
+  "miniCart": {
+    "cartTitle": "CARRINHO DE COMPRAS",
+    "cartIsEmpty": "Sua sacola está vazia",
+    "ctaCheckout": "CHECKOUT",
+    "ctaBackStore": "CONTINUAR COMPRANDO",
+    "cartTotalText": "Total",
+    "modalCloseText": "Fechar",
+    "gotFreeShipping": "Frete Grátis",
+    "cartTranslations": {
+      "cartTitle": "CARRINHO DE COMPRAS",
+      "cartIsEmpty": "Sua sacola está vazia",
+      "ctaCheckout": "CHECKOUT",
+      "ctaBackStore": "CONTINUAR COMPRANDO",
+      "cartTotalText": "Total",
+      "modalCloseText": "Fechar",
+      "gotFreeShipping": "Frete Grátis",
+      "freeShippingText": "<p>Faltam R$ $valor para o frete grátis</p>",
+      "installmentsText": "R$ $valor em $instalmentsx",
+      "buttonCartIsEmpty": "Escolher Produtos"
+    },
+    "freeShippingText": "<p>Faltam $valor para o frete grátis</p>",
+    "installmentsText": "R$ $valor em 6x",
+    "buttonCartIsEmpty": "Escolher Produtos",
+    "freeShippingTarget": 299,
+    "freeShippingValueColor": "#ff0000"
+  },
+  "navItems": [
+    {
+      "name": "SHOPS",
+      "@type": "SiteNavigationElement",
+      "image": [],
+      "label": "SHOPS",
+      "links": [
+        {
+          "href": "#",
+          "label": "SHOP$",
+          "children": [
+            {
+              "href": "/fatz&bolovo",
+              "label": "FATZ & BOLOVO",
+              "children": []
+            },
+            { "href": "/camisetas", "label": "CAMISETAS", "children": [] },
+            { "href": "/bones", "label": "BONÉS", "children": [] },
+            { "href": "/gorros", "label": "GORROS", "children": [] },
+            { "href": "/camisas", "label": "CAMISAS", "children": [] },
+            { "href": "/casacos", "label": "CASACOS", "children": [] }
+          ]
+        },
+        {
+          "href": "#",
+          "label": "SHOP$",
+          "children": [
+            { "href": "/shorts", "label": "SHORTS", "children": [] },
+            { "href": "/calças", "label": "CALÇAS", "children": [] },
+            { "href": "/meias", "label": "MEIAS", "children": [] },
+            { "href": "/acessorios", "label": "ACESSÓRIOS", "children": [] },
+            { "href": "/tralhas", "label": "TRALHAS", "children": [] },
+            { "href": "/vertudo", "label": "VER TUDO", "children": [] }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/6ff44cf0-8ba1-4488-8224-e9439ed26a9d",
+          "label": "Pochete BLV Expeditions Colorblock",
+          "alternateName": "Pochete BLV Expeditions Colorblock"
+        },
+        {
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/734c2442-4b76-4aff-a479-965eb4df89d3",
+          "label": "Pijamão Doggy Style",
+          "alternateName": "Pijamão Doggy Style"
+        },
+        {
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/bb1b2832-0976-411a-ad22-ceaed0e039ce",
+          "label": "Meia Fatz® & Bolovo®",
+          "alternateName": "Meia Fatz® & Bolovo®"
+        }
+      ],
+      "children": []
+    }
+  ],
+  "searchbar": {
+    "name": "q",
+    "action": "/busca",
+    "loader": {
+      "data": { "products": [], "searches": [] },
+      "__resolveType": "resolved"
+    },
+    "IconSearch": {
+      "alt": "searche icon ",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/63ebe712-3a13-4af6-a56c-0144deb16720"
+    },
+    "iconSearch": {
+      "alt": "icon Search",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/53437560-e1df-464f-9340-fcb1892bb824"
+    },
+    "placeholder": "BUSCAR"
+  },
+  "accountHref": "/conta",
+  "contentBlog": { "linksContent": [] },
+  "countryFlag": [
+    {
+      "countryImg": {
+        "alt": "Brasil",
+        "img": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f957a14c-a4c3-446e-98de-e154e739ac18"
+      },
+      "countryLabel": "Brasil",
+      "countryAbbreviation": "PT",
+      "languageAbbreviation": "PT"
+    },
+    {
+      "countryImg": {
+        "alt": "Wordwide",
+        "img": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/593ad233-0178-4772-a0e1-9a0dd0a32a1c"
+      },
+      "countryLabel": "Worldwide",
+      "countryAbbreviation": "WD",
+      "languageAbbreviation": "EN"
+    }
+  ],
+  "buttonSearch": {
+    "img": {
+      "alt": "icon Search",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f6016ab0-748c-4988-b7f6-ab4c3728e09a"
+    },
+    "label": "Buscar"
+  },
+  "promotionBar": {
+    "text": "<p style=\"text-align: center\"><strong><span style=\"font-size: 8pt\">Frete grátis a partir de R$299,00 para todo o Brasil </span></strong></p>",
+    "Layout": { "primary": "#FFFFFF", "base-100": "#121212" },
+    "layout": {
+      "text": "#FFFFFF",
+      "primary": "#FFFFFF",
+      "background": "#121212"
+    },
+    "visible": true,
+    "barLayout": { "primary": "#FFFFFF", "base-100": "#121212" }
+  },
+  "__resolveType": "site/sections/Header/Header.tsx",
+  "promotionText": "<p><span style=\"font-weight: 500;\" data-mce-style=\"font-weight: 500;\">Frete grátis a partir de R$299,00 para todo o Brasil&nbsp; </span><span class=\"entry-title\" style=\"font-size: 12pt;\" data-mce-style=\"font-size: 12pt;\">|&nbsp; Envios via Correios&nbsp; </span><span class=\"symbol-main__title--symbl\">→</span></p>",
+  "showLanguageVariant": false
+}

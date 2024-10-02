@@ -1,1 +1,6 @@
-{"redirects":[{"to":"https://www.google.com","from":"/exemplo","type":"temporary"}],"__resolveType":"deco-sites/std/loaders/x/redirects.ts"}
+{
+  "redirects": [
+    { "to": "https://www.google.com", "from": "/exemplo", "type": "temporary" }
+  ],
+  "__resolveType": "deco-sites/std/loaders/x/redirects.ts"
+}

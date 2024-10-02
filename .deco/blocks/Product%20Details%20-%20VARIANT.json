@@ -1,1 +1,22 @@
-{"page":{"__resolveType":"PDP - Loader"},"colors":{"__resolveType":"Color Map Configuration"},"notFound":{"steps":{"items":[{"label":"frre","textStep":"<p>rtertre</p>"}],"positionSteps":"horizontal"},"theme":"dark","title":"rteert","shelfs":[{"shelf":{"layout":{"headerfontSize":"Normal","headerAlignment":"center"},"products":[]}}]},"__resolveType":"site/sections/Product/ProductDetails.tsx","reloadInSelector":false}
+{
+  "page": { "__resolveType": "PDP - Loader" },
+  "colors": { "__resolveType": "Color Map Configuration" },
+  "notFound": {
+    "steps": {
+      "items": [{ "label": "frre", "textStep": "<p>rtertre</p>" }],
+      "positionSteps": "horizontal"
+    },
+    "theme": "dark",
+    "title": "rteert",
+    "shelfs": [
+      {
+        "shelf": {
+          "layout": { "headerfontSize": "Normal", "headerAlignment": "center" },
+          "products": []
+        }
+      }
+    ]
+  },
+  "__resolveType": "site/sections/Product/ProductDetails.tsx",
+  "reloadInSelector": false
+}

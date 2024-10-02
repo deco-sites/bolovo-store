@@ -1,1 +1,33 @@
-{"hero":{"media":"https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/20234d81-45c2-4a07-b5d0-1c852ac3c066","altImg":"/"},"address":"<p>RUA DR. VIRGÍLIO DE CARVALHO PINTO, 69<br>SEG-SÁB DAS 10:00H ÀS 20:00H<br>DOM DAS 12:00H ÀS 18:00H</p>","content":{"address":"RUA DR. VIRGÍLIO DE CARVALHO PINTO, 69 SEG-SÁB DAS 10:00H ÀS 20:00H DOM DAS 12:00H ÀS 18:00H","socials":[{"href":"https://www.instagram.com/bolovopinheiros/","name":"INSTAGRAM","text":"@bolovopinheiros","label":"INSTAGRAM"},{"href":"efeafae","name":"WHATS LOJA","text":"(11) 91725-0298","label":"WHATS LOJA"},{"href":"casdasdsa","name":" TELEFONE","text":"(11) 3086-1020","label":"TELEFONE"}],"storeName":"FLAGSHIP STORE PINHEIROS"},"alignment":"left","__resolveType":"site/sections/Content/Stores.tsx"}
+{
+  "hero": {
+    "media": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/20234d81-45c2-4a07-b5d0-1c852ac3c066",
+    "altImg": "/"
+  },
+  "address": "<p>RUA DR. VIRGÍLIO DE CARVALHO PINTO, 69<br>SEG-SÁB DAS 10:00H ÀS 20:00H<br>DOM DAS 12:00H ÀS 18:00H</p>",
+  "content": {
+    "address": "RUA DR. VIRGÍLIO DE CARVALHO PINTO, 69 SEG-SÁB DAS 10:00H ÀS 20:00H DOM DAS 12:00H ÀS 18:00H",
+    "socials": [
+      {
+        "href": "https://www.instagram.com/bolovopinheiros/",
+        "name": "INSTAGRAM",
+        "text": "@bolovopinheiros",
+        "label": "INSTAGRAM"
+      },
+      {
+        "href": "efeafae",
+        "name": "WHATS LOJA",
+        "text": "(11) 91725-0298",
+        "label": "WHATS LOJA"
+      },
+      {
+        "href": "casdasdsa",
+        "name": " TELEFONE",
+        "text": "(11) 3086-1020",
+        "label": "TELEFONE"
+      }
+    ],
+    "storeName": "FLAGSHIP STORE PINHEIROS"
+  },
+  "alignment": "left",
+  "__resolveType": "site/sections/Content/Stores.tsx"
+}
