@@ -11,9 +11,9 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import QuickShop from "$store/islands/QuickShop.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-import Slider from "deco-sites/bolovo-store/components/ui/Slider.tsx";
-import SliderJS from "deco-sites/bolovo-store/islands/SliderJS.tsx";
-import { useId } from "deco-sites/bolovo-store/sdk/useId.ts";
+import Slider from "site/components/ui/Slider.tsx";
+import SliderJS from "site/islands/SliderJS.tsx";
+import { useId } from "site/sdk/useId.ts";
 import Image from "apps/website/components/Image.tsx";
 
 export interface Layout {

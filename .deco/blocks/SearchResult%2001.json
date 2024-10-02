@@ -1,0 +1,390 @@
+{
+  "page": {
+    "tags": [],
+    "count": 56,
+    "filterByTags": true,
+    "__resolveType": "vnda/loaders/productListingPage.ts",
+    "filterOperator": { "type_tags": "or" }
+  },
+  "shelf": {
+    "title": "já que estamos aqui, dá uma olhada nisso",
+    "layout": { "headerfontSize": "Normal", "headerAlignment": "center" },
+    "products": {
+      "ids": [],
+      "sort": "newest",
+      "tags": [],
+      "term": "camisa",
+      "count": 8,
+      "__resolveType": "vnda/loaders/productList.ts"
+    },
+    "cardLayout": {
+      "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+      "onMouseOver": { "card": "None", "image": "Change image" },
+      "elementsPositions": { "skuSelector": "Top", "favoriteIcon": "Top right" }
+    }
+  },
+  "layout": { "columns": { "mobile": 2, "desktop": 4 }, "variant": "aside" },
+  "cardSEO": [],
+  "notFound": {
+    "Steps": {
+      "step": [
+        {
+          "label": "Dá uma olhadinha se você digitou tudo certo.",
+          "textStep": "<p>Dá uma olhadinha se você digitou tudo certo.</p>"
+        },
+        {
+          "label": "Talvez você encontre o que procura rapidinho pelo menu ",
+          "textStep": "<p>Talvez você encontre o que procura rapidinho pelo <span style=\"text-decoration: underline;\" data-mce-style=\"text-decoration: underline;\"><strong>menu</strong></span></p>"
+        },
+        {
+          "label": "pra gente o certo é shorts e não bermuda, ok!?",
+          "textStep": "<p>pra gente o certo é shorts e não bermuda, ok!?</p>"
+        }
+      ],
+      "steps": [],
+      "positionSteps": "horizontal"
+    },
+    "image": {
+      "alt": "cachorro",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a86203b0-1caa-4575-a186-81ca28d16763",
+      "active": true
+    },
+    "steps": {
+      "items": [
+        {
+          "label": "Dá uma olhadinha se você digitou tudo certo.",
+          "textStep": "<p>Dá uma olhadinha se você digitou tudo certo.</p>"
+        },
+        {
+          "label": "Talvez você encontre o que procura rapidinho pelo menu ",
+          "textStep": "<p>Talvez você encontre o que procura rapidinho pelo <span style=\"text-decoration: underline;\" data-mce-style=\"text-decoration: underline;\"><strong>menu</strong></span></p>"
+        },
+        {
+          "label": "pra gente o certo é shorts e não bermuda, ok!?",
+          "textStep": "<p>pra gente o certo é shorts e não bermuda, ok!?</p>"
+        }
+      ],
+      "positionSteps": "horizontal"
+    },
+    "theme": "dark",
+    "title": "Vasculhamos tudo, mas não encontramos nenhum resultado pra sua busca.",
+    "imagem": {
+      "alt": "cachorro",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b2244a81-f3e7-470d-b073-3d19a93c3701",
+      "active": true
+    },
+    "shelfs": [
+      {
+        "shelf": {
+          "title": "já que estamos aqui, dá uma olhada nisso",
+          "colors": [],
+          "layout": { "headerfontSize": "Normal", "headerAlignment": "left" },
+          "products": { "__resolveType": "ProductListHome" },
+          "cardLayout": {
+            "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+            "onMouseOver": { "card": "None", "image": "Change image" },
+            "elementsPositions": {
+              "skuSelector": "Top",
+              "favoriteIcon": "Top right"
+            }
+          }
+        },
+        "nameShelf": "Primary Shelf"
+      },
+      {
+        "shelf": {
+          "colors": [],
+          "layout": { "headerfontSize": "Normal", "headerAlignment": "center" },
+          "products": { "__resolveType": "ProductListHome" },
+          "cardLayout": {
+            "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+            "onMouseOver": { "card": "None", "image": "Change image" },
+            "elementsPositions": {
+              "skuSelector": "Top",
+              "favoriteIcon": "Top right"
+            }
+          }
+        },
+        "nameShelf": "Second Shellf"
+      }
+    ],
+    "colorText": "#000000",
+    "shelfList": {
+      "shelfs": [
+        {
+          "shelf": {
+            "title": "já que estamos aqui, dá uma olhada nisso",
+            "layout": { "headerfontSize": "Normal", "headerAlignment": "left" },
+            "products": { "__resolveType": "ProductListHome" },
+            "cardLayout": {
+              "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+              "onMouseOver": { "card": "None", "image": "Change image" },
+              "elementsPositions": {
+                "skuSelector": "Top",
+                "favoriteIcon": "Top right"
+              }
+            }
+          },
+          "title": "já que estamos aqui, dá uma olhada nisso",
+          "layout": { "headerfontSize": "Normal", "headerAlignment": "center" },
+          "products": { "__resolveType": "ProductListHome" },
+          "cardLayout": {
+            "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+            "onMouseOver": { "card": "None", "image": "Change image" },
+            "elementsPositions": {
+              "skuSelector": "Top",
+              "favoriteIcon": "Top right"
+            }
+          }
+        },
+        {
+          "shelf": {
+            "layout": {
+              "headerfontSize": "Normal",
+              "headerAlignment": "center"
+            },
+            "products": { "__resolveType": "ProductListHome" },
+            "cardLayout": {
+              "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+              "onMouseOver": { "card": "None", "image": "Change image" },
+              "elementsPositions": {
+                "skuSelector": "Top",
+                "favoriteIcon": "Top right"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "primaryShelf": {
+      "title": "já que estamos aqui, dá uma olhada nisso",
+      "layout": { "headerfontSize": "Normal", "headerAlignment": "left" },
+      "products": {
+        "ids": [],
+        "sort": "newest",
+        "tags": [],
+        "term": "camisa",
+        "count": 8,
+        "__resolveType": "vnda/loaders/productList.ts"
+      },
+      "cardLayout": {
+        "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+        "onMouseOver": { "card": "None", "image": "Change image" },
+        "elementsPositions": {
+          "skuSelector": "Top",
+          "favoriteIcon": "Top right"
+        }
+      }
+    },
+    "stepsBySteps": [
+      {
+        "textStep": "<p>Dá uma olhadinha se você digitou tudo certo.</p>",
+        "richeText": "<p>Dá uma olhadinha se você digitou tudo certo.</p>"
+      },
+      {
+        "textStep": "<p>Talvez você encontre o que procura rapidinho pelo <span style=\"text-decoration: underline;\" data-mce-style=\"text-decoration: underline;\"><strong>menu</strong></span></p>",
+        "richeText": "<p>Talvez você encontre o que procura rapidinho pelo<span style=\"text-decoration: underline;\" data-mce-style=\"text-decoration: underline;\"><strong> menu</strong></span></p>"
+      },
+      {
+        "textStep": "<p>pra gente o certo é shorts e não bermuda, ok!?</p>",
+        "richeText": "<p>pra gente o certo é shorts e não bermuda, ok!?</p>"
+      }
+    ],
+    "positionSteps": "horizontal",
+    "backgroundImage": {
+      "alt": "not found",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0374c349-5005-42d4-a24d-b61bcfc1b5ff",
+      "active": false,
+      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b43d9403-7c83-4873-9f80-e0230fd47a90",
+      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/7d222d85-6983-4f7d-a570-084c24fbc1f4"
+    },
+    "backgroundSearch": "#FFFFFF"
+  },
+  "cardLayout": {
+    "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+    "onMouseOver": {
+      "card": "None",
+      "image": "Change image",
+      "showCardShadow": true,
+      "showFavoriteIcon": true
+    },
+    "elementsPositions": { "skuSelector": "Top", "favoriteIcon": "Top right" }
+  },
+  "photoOnPLP": [
+    {
+      "line": 2,
+      "page": 2,
+      "photo": {
+        "alt": "homem sorrindo",
+        "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/fbd0502b-98fb-45c8-88a8-abfdcf7a8758",
+        "href": " ",
+        "title": "<p><span style=\"color: rgb(236, 240, 241);\" data-mce-style=\"color: rgb(236, 240, 241);\">Bolovo &amp; Fatz</span></p>",
+        "variant": "1x1",
+        "paragraph": "<p><span style=\"color: rgb(236, 240, 241);\" class=\"font-rubik\" data-mce-style=\"color: rgb(236, 240, 241);\">Na Bolovo, cada camiseta é mais do que uma</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-rubik\" data-mce-style=\"color: rgb(236, 240, 241);\">simples peça de roupa - é uma expressão de&nbsp;</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">personalidade. Com designs únicos e criativos,</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">estas camisetas são feitas para aqueles que&nbsp;</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">buscam originalidade e conforto.</span></p>",
+        "activeText": true
+      },
+      "matcher": "/camisas",
+      "products": {
+        "ids": [2390, 2653],
+        "sort": "newest",
+        "tags": [],
+        "count": 2,
+        "__resolveType": "vnda/loaders/productList.ts"
+      },
+      "contentDirection": {
+        "mobile": "imagem acima",
+        "desktop": "imagem na direita"
+      },
+      "imageAndProducts": {
+        "alt": "home sorrindo",
+        "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/e970d88c-8354-42b7-b679-8f9028f93d14",
+        "href": "#",
+        "title": "<p><span style=\"color: rgb(236, 240, 241);\" data-mce-style=\"color: rgb(236, 240, 241);\">Bolovo &amp; Fatz</span></p>",
+        "preLoad": false,
+        "variant": "1x1",
+        "products": {
+          "ids": [2445, 2546, 2653],
+          "sort": "newest",
+          "tags": [],
+          "count": 3,
+          "__resolveType": "vnda/loaders/productList.ts"
+        },
+        "paragraph": "<p><span style=\"color: rgb(236, 240, 241);\" class=\"font-rubik\" data-mce-style=\"color: rgb(236, 240, 241);\">Na Bolovo, cada camiseta é mais do que uma</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-rubik\" data-mce-style=\"color: rgb(236, 240, 241);\">simples peça de roupa - é uma expressão de </span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">personalidade. Com designs únicos e criativos,</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">estas camisetas são feitas para aqueles que </span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">buscam originalidade e conforto.</span></p>",
+        "activeText": true,
+        "layoutDesktop": "imagem na direita",
+        "contentDirection": {
+          "mobile": "imagem acima",
+          "desktop": "imagem na direita"
+        },
+        "productCardLayout": {
+          "aspect": false,
+          "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+          "onMouseOver": { "card": "None", "image": "Change image" },
+          "elementsPositions": {
+            "skuSelector": "Top",
+            "favoriteIcon": "Top right"
+          }
+        }
+      }
+    },
+    {
+      "line": 2,
+      "page": 2,
+      "photo": {
+        "alt": "homem sorrindo",
+        "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/fbd0502b-98fb-45c8-88a8-abfdcf7a8758",
+        "href": " ",
+        "title": "<p><span style=\"color: rgb(236, 240, 241);\" data-mce-style=\"color: rgb(236, 240, 241);\">Bolovo &amp; Fatz</span></p>",
+        "variant": "1x1",
+        "paragraph": "<p><span style=\"color: rgb(236, 240, 241);\" class=\"font-rubik\" data-mce-style=\"color: rgb(236, 240, 241);\">Na Bolovo, cada camiseta é mais do que uma</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-rubik\" data-mce-style=\"color: rgb(236, 240, 241);\">simples peça de roupa - é uma expressão de&nbsp;</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">personalidade. Com designs únicos e criativos,</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">estas camisetas são feitas para aqueles que&nbsp;</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">buscam originalidade e conforto.</span></p>",
+        "activeText": true
+      },
+      "matcher": "/casacos",
+      "products": {
+        "ids": [2390, 2653],
+        "sort": "newest",
+        "tags": [],
+        "count": 2,
+        "__resolveType": "vnda/loaders/productList.ts"
+      },
+      "contentDirection": {
+        "mobile": "imagem acima",
+        "desktop": "imagem na direita"
+      },
+      "imageAndProducts": {
+        "alt": "home sorrindo",
+        "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/997bb8dd-888c-490e-998e-9efbf1056755",
+        "href": "#",
+        "title": "<p><span style=\"color: rgb(236, 240, 241);\" data-mce-style=\"color: rgb(236, 240, 241);\">Bolovo &amp; Fatz</span></p>",
+        "preLoad": false,
+        "variant": "2x1",
+        "products": {
+          "ids": [2546, 2334],
+          "sort": "newest",
+          "tags": [],
+          "count": 3,
+          "__resolveType": "vnda/loaders/productList.ts"
+        },
+        "paragraph": "<p><span style=\"color: rgb(236, 240, 241);\" class=\"font-rubik\" data-mce-style=\"color: rgb(236, 240, 241);\">Na Bolovo, cada camiseta é mais do que uma</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-rubik\" data-mce-style=\"color: rgb(236, 240, 241);\">simples peça de roupa - é uma expressão de </span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">personalidade. Com designs únicos e criativos,</span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">estas camisetas são feitas para aqueles que </span><br><span style=\"color: rgb(236, 240, 241);\" class=\"font-averia\" data-mce-style=\"color: rgb(236, 240, 241);\">buscam originalidade e conforto.</span></p>",
+        "activeText": true,
+        "layoutDesktop": "imagem na direita",
+        "contentDirection": {
+          "mobile": "imagem acima",
+          "desktop": "imagem na direita"
+        },
+        "productCardLayout": {
+          "aspect": false,
+          "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+          "onMouseOver": { "card": "None", "image": "Change image" },
+          "elementsPositions": {
+            "skuSelector": "Top",
+            "favoriteIcon": "Top right"
+          }
+        }
+      }
+    },
+    {
+      "line": 2,
+      "page": 1,
+      "photo": {
+        "alt": "shorts",
+        "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/05471055-1e7d-4904-8f95-476f93a5e3cb",
+        "href": "#",
+        "variant": "2x2"
+      },
+      "matcher": "/shorts",
+      "products": {
+        "ids": [2561, 2576, 2583, 2699],
+        "sort": "newest",
+        "tags": [],
+        "count": 4,
+        "__resolveType": "vnda/loaders/productList.ts"
+      },
+      "contentDirection": {
+        "mobile": "imagem acima",
+        "desktop": "imagem na esquerda"
+      },
+      "imageAndProducts": {
+        "alt": "shorts",
+        "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/c3bb4ff8-633e-4eaf-a486-07dbfae053f3",
+        "href": "#",
+        "preLoad": false,
+        "variant": "2x2",
+        "products": {
+          "ids": [1959, 2150, 2149, 2700],
+          "sort": "newest",
+          "tags": [],
+          "count": 4,
+          "__resolveType": "vnda/loaders/productList.ts"
+        },
+        "layoutDesktop": "imagem na direita",
+        "contentDirection": {
+          "mobile": "imagem acima",
+          "desktop": "imagem na direita"
+        },
+        "productCardLayout": {
+          "aspect": false,
+          "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+          "onMouseOver": { "card": "None", "image": "Change image" },
+          "elementsPositions": {
+            "skuSelector": "Top",
+            "favoriteIcon": "Top right"
+          }
+        }
+      }
+    }
+  ],
+  "textSearch": "VOCÊ BUSCOU POR",
+  "textFilters": "FILTROS",
+  "filterColors": { "__resolveType": "Color Map Configuration" },
+  "filtersNames": [
+    { "label": "CORES", "filter": "cor" },
+    { "label": "TAMANHOS", "filter": "property2" },
+    { "label": "CATEGORIAS", "filter": "categoria" }
+  ],
+  "__resolveType": "site/sections/Product/SearchResult.tsx",
+  "applyFiltersText": "APLICAR FILTROS",
+  "buttonsPagination": { "layoutPagination": "Limitar numeros" },
+  "removeFiltersText": "REMOVER TODOS OS FILTROS ",
+  "appliedFiltersText": "APLICADOS"
+}

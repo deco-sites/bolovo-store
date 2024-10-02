@@ -1,0 +1,12 @@
+{
+  "data": {
+    "slug": {
+      "param": "slug",
+      "__resolveType": "website/functions/requestToParam.ts"
+    },
+    "priceIntl": true,
+    "__resolveType": "vnda/loaders/productDetailsPage.ts"
+  },
+  "extensions": [],
+  "__resolveType": "commerce/loaders/product/extensions/detailsPage.ts"
+}

@@ -1,0 +1,30 @@
+{
+  "font": {
+    "fonts": [
+      {
+        "family": "Poppins",
+        "variations": [
+          { "weight": "400" },
+          { "weight": "600" },
+          { "weight": "700" }
+        ]
+      }
+    ],
+    "__resolveType": "website/loaders/fonts/googleFonts.ts"
+  },
+  "fonts": [{ "fontFamily": "Poppins" }],
+  "mainColors": {
+    "primary": "#384c53",
+    "base-100": "#FFFFFF",
+    "tertiary": "#5f9a99",
+    "secondary": "#a2accc"
+  },
+  "buttonStyle": {
+    "--border-btn": "1px",
+    "--rounded-btn": "0.2rem",
+    "--btn-text-case": "normal-case",
+    "--btn-focus-scale": "0.95"
+  },
+  "__resolveType": "site/sections/Theme/Theme.tsx",
+  "complementaryColors": { "primary": { "primary-content": "#ffffff" } }
+}

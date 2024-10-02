@@ -68,9 +68,15 @@ server/
 
 import_map.local.json
 deno.lock
-.env
 
 # db files
 .config.json
 # Fresh build directory
 _fresh/
+
+# Deco files
+_docker_deps.ts
+.metadata/*
+.deco/metadata/*
+
+.env

@@ -1,0 +1,44 @@
+{
+  "children": {
+    "children": {
+      "page": { "__resolveType": "PDP - Loader" },
+      "children": {
+        "layout": {
+          "gap": { "mobile": "2", "desktop": "4" },
+          "flow": { "mobile": "row", "desktop": "col" },
+          "placeItems": { "mobile": "baseline", "desktop": "center" }
+        },
+        "children": {
+          "sections": [
+            {
+              "children": {
+                "page": { "__resolveType": "PDP - Loader" },
+                "layout": { "width": 300, "height": 370 },
+                "__resolveType": "site/sections/Product/ImageGallerySlider.tsx"
+              },
+              "__resolveType": "site/sections/Layout/GridItem.tsx"
+            },
+            {
+              "layout": {
+                "rowSpan": { "mobile": "full" },
+                "rowStart": { "mobile": "1" }
+              },
+              "children": {
+                "page": { "__resolveType": "PDP - Loader" },
+                "layout": { "name": "product" },
+                "__resolveType": "site/sections/Product/ProductInfo.tsx"
+              },
+              "__resolveType": "site/sections/Layout/GridItem.tsx"
+            }
+          ],
+          "__resolveType": "site/loaders/List/Sections.tsx"
+        },
+        "__resolveType": "site/sections/Layout/Grid.tsx"
+      },
+      "fallback": { "__resolveType": "site/sections/Product/NotFound.tsx" },
+      "__resolveType": "site/sections/Product/NotFoundChallenge.tsx"
+    },
+    "__resolveType": "site/sections/Layout/Container.tsx"
+  },
+  "__resolveType": "site/sections/Gallery.tsx"
+}

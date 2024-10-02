@@ -16,7 +16,7 @@ import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product, ProductDetailsPage } from "apps/commerce/types.ts";
-import { ADD_TO_CART_ID } from "deco-sites/bolovo-store/components/product/AddToCartButton/common.tsx";
+import { ADD_TO_CART_ID } from "site/components/product/AddToCartButton/common.tsx";
 import type { Description } from "../../sdk/markdownToObj.ts";
 import markdownToObj from "../../sdk/markdownToObj.ts";
 import { useUI } from "../../sdk/useUI.ts";

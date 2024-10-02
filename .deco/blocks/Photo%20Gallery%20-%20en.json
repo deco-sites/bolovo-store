@@ -1,0 +1,20 @@
+{
+  "title": "STEREO",
+  "products": {
+    "ids": [],
+    "sort": "oldest",
+    "tags": ["alto-verao-24"],
+    "count": 4,
+    "__resolveType": "vnda/loaders/productList.ts"
+  },
+  "__resolveType": "site/sections/Product/PhotoGallery.tsx",
+  "featuredPhoto": {
+    "alt": "Bolovo",
+    "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/c103a1a3-3a35-42b5-b86e-bbbbc6ebf831",
+    "href": "/"
+  },
+  "contentDirection": {
+    "mobile": "imagem acima",
+    "desktop": "imagem na direita"
+  }
+}

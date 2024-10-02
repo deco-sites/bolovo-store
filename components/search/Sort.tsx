@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import SortMenu from "./SortMenu.tsx";
 import { ProductListingPage } from "apps/commerce/types.ts";
 import Icon from "$store/components/ui/Icon.tsx";
-import Button from "deco-sites/bolovo-store/components/ui/Button.tsx";
+import Button from "site/components/ui/Button.tsx";
 
 export type Props = Pick<ProductListingPage, "sortOptions">;
 

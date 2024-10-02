@@ -1,5 +1,5 @@
-import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
-import type { AvailableIcons } from "deco-sites/bolovo-store/components/ui/Icon.tsx";
+import Icon from "site/components/ui/Icon.tsx";
+import type { AvailableIcons } from "site/components/ui/Icon.tsx";
 
 export interface Props {
   cards: {

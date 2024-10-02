@@ -1,4 +1,4 @@
-import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
+import Icon from "site/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
 
 export interface Props {

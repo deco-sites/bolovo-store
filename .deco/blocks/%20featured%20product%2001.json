@@ -1,0 +1,76 @@
+{
+  "title": "<p></p>",
+  "colors": [
+    { "hex": "#28c356", "label": "verde" },
+    { "hex": "#bc1818", "label": "vermelho" },
+    { "hex": "#080b78", "label": "azul" },
+    { "hex": "#f8deab", "label": "bege" },
+    { "hex": "#fbb231", "label": "amarelo" },
+    { "hex": "#121212", "label": "preto" },
+    { "hex": "#693416", "label": "marrom" },
+    { "hex": "#ec7ebe", "label": "rosa" },
+    { "hex": "#f0efef", "label": "branco" },
+    { "hex": "#e3e3ce", "label": "offwhite" },
+    { "hex": "#6a01e9", "label": "roxo" },
+    {
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/fe3bee0f-5ef7-4160-91ab-c26a7851f108",
+      "label": "estampado"
+    },
+    {
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/45eb5e6f-eba9-48e1-b246-2165739b946d",
+      "label": "colorido"
+    },
+    { "hex": "#767474", "label": "cinza" },
+    { "hex": "#dd831d", "label": "laranja" }
+  ],
+  "product": {
+    "ids": [1912],
+    "sort": "newest",
+    "tags": [],
+    "count": 1,
+    "__resolveType": "vnda/loaders/productList.ts"
+  },
+  "products": {
+    "ids": [2782],
+    "sort": "newest",
+    "tags": [],
+    "count": 1,
+    "typeTags": [],
+    "__resolveType": "vnda/loaders/productList.ts"
+  },
+  "idProduct": {
+    "ids": [2310],
+    "sort": "newest",
+    "tags": [],
+    "brand": {},
+    "count": 1,
+    "offers": { "offers": [] },
+    "review": [],
+    "isRelatedTo": [],
+    "isSimilarTo": [],
+    "isVariantOf": { "hasVariant": [], "additionalProperty": [] },
+    "__resolveType": "vnda/loaders/productList.ts",
+    "aggregateRating": {},
+    "additionalProperty": [],
+    "isAccessoryOrSparePartFor": []
+  },
+  "__resolveType": "site/sections/Product/FeaturedGallery.tsx",
+  "featuredPhoto": {
+    "alt": "pra ficar na estica",
+    "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a443b8a3-a0b2-4054-8056-8904dfd1b5de",
+    "href": "#"
+  },
+  "contentDirection": {
+    "mobile": "imagem acima",
+    "desktop": "imagem na esquerda"
+  },
+  "directionInverse": { "mobile": "col", "desktop": "row" },
+  "productCardLayout": {
+    "dots": true,
+    "aspect": true,
+    "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+    "onMouseOver": { "card": "None", "image": "Change image" },
+    "elementsPositions": { "skuSelector": "Top", "favoriteIcon": "Top right" }
+  },
+  "showColorVariants": false
+}

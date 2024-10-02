@@ -8,7 +8,7 @@ import type {
   FilterToggleValue,
   ProductListingPage,
 } from "apps/commerce/types.ts";
-import { FilterName } from "deco-sites/bolovo-store/components/search/SearchResult.tsx";
+import { FilterName } from "site/components/search/SearchResult.tsx";
 
 interface Props {
   filters: ProductListingPage["filters"];
