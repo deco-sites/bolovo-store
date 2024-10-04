@@ -4,11 +4,16 @@
     "count": 56,
     "filterByTags": true,
     "__resolveType": "vnda/loaders/productListingPage.ts",
-    "filterOperator": { "type_tags": "or" }
+    "filterOperator": {
+      "type_tags": "or"
+    }
   },
   "shelf": {
     "title": "já que estamos aqui, dá uma olhada nisso",
-    "layout": { "headerfontSize": "Normal", "headerAlignment": "center" },
+    "layout": {
+      "headerfontSize": "Normal",
+      "headerAlignment": "center"
+    },
     "products": {
       "ids": [],
       "sort": "newest",
@@ -18,12 +23,27 @@
       "__resolveType": "vnda/loaders/productList.ts"
     },
     "cardLayout": {
-      "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-      "onMouseOver": { "card": "None", "image": "Change image" },
-      "elementsPositions": { "skuSelector": "Top", "favoriteIcon": "Top right" }
+      "basics": {
+        "oldPriceSize": "Small",
+        "contentAlignment": "Left"
+      },
+      "onMouseOver": {
+        "card": "None",
+        "image": "Change image"
+      },
+      "elementsPositions": {
+        "skuSelector": "Top",
+        "favoriteIcon": "Top right"
+      }
     }
   },
-  "layout": { "columns": { "mobile": 2, "desktop": 4 }, "variant": "aside" },
+  "layout": {
+    "columns": {
+      "mobile": 2,
+      "desktop": 4
+    },
+    "variant": "aside"
+  },
   "cardSEO": [],
   "notFound": {
     "Steps": {
@@ -76,29 +96,23 @@
     "shelfs": [
       {
         "shelf": {
-          "title": "já que estamos aqui, dá uma olhada nisso",
           "colors": [],
-          "layout": { "headerfontSize": "Normal", "headerAlignment": "left" },
-          "products": { "__resolveType": "ProductListHome" },
+          "layout": {
+            "headerfontSize": "Normal",
+            "headerAlignment": "center"
+          },
+          "products": {
+            "__resolveType": "ProductListHome"
+          },
           "cardLayout": {
-            "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-            "onMouseOver": { "card": "None", "image": "Change image" },
-            "elementsPositions": {
-              "skuSelector": "Top",
-              "favoriteIcon": "Top right"
-            }
-          }
-        },
-        "nameShelf": "Primary Shelf"
-      },
-      {
-        "shelf": {
-          "colors": [],
-          "layout": { "headerfontSize": "Normal", "headerAlignment": "center" },
-          "products": { "__resolveType": "ProductListHome" },
-          "cardLayout": {
-            "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-            "onMouseOver": { "card": "None", "image": "Change image" },
+            "basics": {
+              "oldPriceSize": "Small",
+              "contentAlignment": "Left"
+            },
+            "onMouseOver": {
+              "card": "None",
+              "image": "Change image"
+            },
             "elementsPositions": {
               "skuSelector": "Top",
               "favoriteIcon": "Top right"
@@ -114,11 +128,22 @@
         {
           "shelf": {
             "title": "já que estamos aqui, dá uma olhada nisso",
-            "layout": { "headerfontSize": "Normal", "headerAlignment": "left" },
-            "products": { "__resolveType": "ProductListHome" },
+            "layout": {
+              "headerfontSize": "Normal",
+              "headerAlignment": "left"
+            },
+            "products": {
+              "__resolveType": "ProductListHome"
+            },
             "cardLayout": {
-              "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-              "onMouseOver": { "card": "None", "image": "Change image" },
+              "basics": {
+                "oldPriceSize": "Small",
+                "contentAlignment": "Left"
+              },
+              "onMouseOver": {
+                "card": "None",
+                "image": "Change image"
+              },
               "elementsPositions": {
                 "skuSelector": "Top",
                 "favoriteIcon": "Top right"
@@ -126,11 +151,22 @@
             }
           },
           "title": "já que estamos aqui, dá uma olhada nisso",
-          "layout": { "headerfontSize": "Normal", "headerAlignment": "center" },
-          "products": { "__resolveType": "ProductListHome" },
+          "layout": {
+            "headerfontSize": "Normal",
+            "headerAlignment": "center"
+          },
+          "products": {
+            "__resolveType": "ProductListHome"
+          },
           "cardLayout": {
-            "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-            "onMouseOver": { "card": "None", "image": "Change image" },
+            "basics": {
+              "oldPriceSize": "Small",
+              "contentAlignment": "Left"
+            },
+            "onMouseOver": {
+              "card": "None",
+              "image": "Change image"
+            },
             "elementsPositions": {
               "skuSelector": "Top",
               "favoriteIcon": "Top right"
@@ -143,10 +179,18 @@
               "headerfontSize": "Normal",
               "headerAlignment": "center"
             },
-            "products": { "__resolveType": "ProductListHome" },
+            "products": {
+              "__resolveType": "ProductListHome"
+            },
             "cardLayout": {
-              "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-              "onMouseOver": { "card": "None", "image": "Change image" },
+              "basics": {
+                "oldPriceSize": "Small",
+                "contentAlignment": "Left"
+              },
+              "onMouseOver": {
+                "card": "None",
+                "image": "Change image"
+              },
               "elementsPositions": {
                 "skuSelector": "Top",
                 "favoriteIcon": "Top right"
@@ -158,7 +202,10 @@
     },
     "primaryShelf": {
       "title": "já que estamos aqui, dá uma olhada nisso",
-      "layout": { "headerfontSize": "Normal", "headerAlignment": "left" },
+      "layout": {
+        "headerfontSize": "Normal",
+        "headerAlignment": "left"
+      },
       "products": {
         "ids": [],
         "sort": "newest",
@@ -168,8 +215,14 @@
         "__resolveType": "vnda/loaders/productList.ts"
       },
       "cardLayout": {
-        "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-        "onMouseOver": { "card": "None", "image": "Change image" },
+        "basics": {
+          "oldPriceSize": "Small",
+          "contentAlignment": "Left"
+        },
+        "onMouseOver": {
+          "card": "None",
+          "image": "Change image"
+        },
         "elementsPositions": {
           "skuSelector": "Top",
           "favoriteIcon": "Top right"
@@ -201,14 +254,20 @@
     "backgroundSearch": "#FFFFFF"
   },
   "cardLayout": {
-    "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+    "basics": {
+      "oldPriceSize": "Small",
+      "contentAlignment": "Left"
+    },
     "onMouseOver": {
       "card": "None",
       "image": "Change image",
       "showCardShadow": true,
       "showFavoriteIcon": true
     },
-    "elementsPositions": { "skuSelector": "Top", "favoriteIcon": "Top right" }
+    "elementsPositions": {
+      "skuSelector": "Top",
+      "favoriteIcon": "Top right"
+    }
   },
   "photoOnPLP": [
     {
@@ -225,7 +284,10 @@
       },
       "matcher": "/camisas",
       "products": {
-        "ids": [2390, 2653],
+        "ids": [
+          2390,
+          2653
+        ],
         "sort": "newest",
         "tags": [],
         "count": 2,
@@ -243,7 +305,11 @@
         "preLoad": false,
         "variant": "1x1",
         "products": {
-          "ids": [2445, 2546, 2653],
+          "ids": [
+            2445,
+            2546,
+            2653
+          ],
           "sort": "newest",
           "tags": [],
           "count": 3,
@@ -258,12 +324,19 @@
         },
         "productCardLayout": {
           "aspect": false,
-          "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-          "onMouseOver": { "card": "None", "image": "Change image" },
+          "basics": {
+            "oldPriceSize": "Small",
+            "contentAlignment": "Left"
+          },
+          "onMouseOver": {
+            "card": "None",
+            "image": "Change image"
+          },
           "elementsPositions": {
             "skuSelector": "Top",
             "favoriteIcon": "Top right"
-          }
+          },
+          "dots": true
         }
       }
     },
@@ -281,7 +354,10 @@
       },
       "matcher": "/casacos",
       "products": {
-        "ids": [2390, 2653],
+        "ids": [
+          2390,
+          2653
+        ],
         "sort": "newest",
         "tags": [],
         "count": 2,
@@ -299,7 +375,10 @@
         "preLoad": false,
         "variant": "2x1",
         "products": {
-          "ids": [2546, 2334],
+          "ids": [
+            2546,
+            2334
+          ],
           "sort": "newest",
           "tags": [],
           "count": 3,
@@ -314,12 +393,19 @@
         },
         "productCardLayout": {
           "aspect": false,
-          "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-          "onMouseOver": { "card": "None", "image": "Change image" },
+          "basics": {
+            "oldPriceSize": "Small",
+            "contentAlignment": "Left"
+          },
+          "onMouseOver": {
+            "card": "None",
+            "image": "Change image"
+          },
           "elementsPositions": {
             "skuSelector": "Top",
             "favoriteIcon": "Top right"
-          }
+          },
+          "dots": true
         }
       }
     },
@@ -334,7 +420,12 @@
       },
       "matcher": "/shorts",
       "products": {
-        "ids": [2561, 2576, 2583, 2699],
+        "ids": [
+          2561,
+          2576,
+          2583,
+          2699
+        ],
         "sort": "newest",
         "tags": [],
         "count": 4,
@@ -351,7 +442,12 @@
         "preLoad": false,
         "variant": "2x2",
         "products": {
-          "ids": [1959, 2150, 2149, 2700],
+          "ids": [
+            1959,
+            2150,
+            2149,
+            2700
+          ],
           "sort": "newest",
           "tags": [],
           "count": 4,
@@ -364,27 +460,47 @@
         },
         "productCardLayout": {
           "aspect": false,
-          "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
-          "onMouseOver": { "card": "None", "image": "Change image" },
+          "basics": {
+            "oldPriceSize": "Small",
+            "contentAlignment": "Left"
+          },
+          "onMouseOver": {
+            "card": "None",
+            "image": "Change image"
+          },
           "elementsPositions": {
             "skuSelector": "Top",
             "favoriteIcon": "Top right"
-          }
+          },
+          "dots": true
         }
       }
     }
   ],
   "textSearch": "VOCÊ BUSCOU POR",
   "textFilters": "FILTROS",
-  "filterColors": { "__resolveType": "Color Map Configuration" },
+  "filterColors": {
+    "__resolveType": "Color Map Configuration"
+  },
   "filtersNames": [
-    { "label": "CORES", "filter": "cor" },
-    { "label": "TAMANHOS", "filter": "property2" },
-    { "label": "CATEGORIAS", "filter": "categoria" }
+    {
+      "label": "CORES",
+      "filter": "cor"
+    },
+    {
+      "label": "TAMANHOS",
+      "filter": "property2"
+    },
+    {
+      "label": "CATEGORIAS",
+      "filter": "categoria"
+    }
   ],
   "__resolveType": "site/sections/Product/SearchResult.tsx",
   "applyFiltersText": "APLICAR FILTROS",
-  "buttonsPagination": { "layoutPagination": "Limitar numeros" },
+  "buttonsPagination": {
+    "layoutPagination": "Limitar numeros"
+  },
   "removeFiltersText": "REMOVER TODOS OS FILTROS ",
   "appliedFiltersText": "APLICADOS"
 }
