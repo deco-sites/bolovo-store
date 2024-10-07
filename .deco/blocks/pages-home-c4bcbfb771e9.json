@@ -46,24 +46,7 @@
               "__resolveType": "Color Map Configuration"
             },
             "products": {
-              "ids": [
-                2799,
-                2798,
-                2815,
-                2764,
-                2779,
-                2774,
-                2807,
-                2780,
-                2766,
-                2824,
-                2753,
-                2772
-              ],
-              "sort": "newest",
-              "tags": [],
-              "count": 12,
-              "__resolveType": "vnda/loaders/productList.ts"
+              "__resolveType": "ProductListHome"
             },
             "cardLayout": {
               "dots": true
