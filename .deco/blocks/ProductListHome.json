@@ -4,5 +4,6 @@
   "tags": [],
   "term": "Camisa",
   "count": 12,
-  "__resolveType": "vnda/loaders/productList.ts"
+  "__resolveType": "vnda/loaders/productList.ts",
+  "typeTags": []
 }
