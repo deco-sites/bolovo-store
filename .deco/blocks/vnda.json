@@ -2,11 +2,7 @@
   "account": "bolovo",
   "sandbox": false,
   "platform": "vnda",
-  "authToken": {
-    "name": "VNDA_TOKEN",
-    "encrypted": "4502f422667e40679a6a4329f58aa50da7305fc2f5ff5d9fcb2617366f910784",
-    "__resolveType": "website/loaders/secret.ts"
-  },
   "publicUrl": "www.bolovo.com.br",
-  "__resolveType": "decohub/apps/vnda.ts"
+  "__resolveType": "decohub/apps/vnda.ts",
+  "authToken": "B6xaoL8kQJuxUdA5W7EVkywG"
 }
