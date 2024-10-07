@@ -48,22 +48,26 @@
             "products": {
               "__resolveType": "vnda/loaders/productList.ts",
               "ids": [
-                2798,
-                2799,
-                2815,
-                2764,
-                2779,
-                2774,
-                2807,
-                2780,
-                2766,
-                2824,
-                2753,
-                2772
+                2836,
+                2720,
+                2526,
+                2838,
+                2175,
+                2153,
+                2402,
+                2179,
+                2397,
+                2240,
+                2082,
+                2480,
+                2028,
+                2007,
+                2031,
+                2022
               ],
               "sort": "newest",
               "tags": [],
-              "count": 12
+              "count": 16
             },
             "cardLayout": {
               "dots": true
@@ -211,6 +215,49 @@
               "elementsPositions": {
                 "skuSelector": "Top",
                 "favoriteIcon": "Top right"
+              }
+            }
+          },
+          {
+            "__resolveType": "site/sections/Product/ProductGallery.tsx",
+            "title": "<p><br data-mce-bogus=\"1\"></p>",
+            "colors": {
+              "__resolveType": "Color Map Configuration"
+            },
+            "products": {
+              "ids": [
+                2798,
+                2799,
+                2815,
+                2807,
+                2764,
+                2779,
+                2774,
+                2780,
+                2766,
+                2824,
+                2753,
+                2772
+              ],
+              "sort": "newest",
+              "tags": [],
+              "count": 12,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "layout": {
+              "columns": {
+                "mobile": 2,
+                "desktop": 4
+              }
+            },
+            "cardLayout": {
+              "dots": true
+            },
+            "cardsLayout": {
+              "dots": true,
+              "aspect": true,
+              "onMouseOver": {
+                "showCardShadow": false
               }
             }
           },
