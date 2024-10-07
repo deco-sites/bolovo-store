@@ -46,7 +46,24 @@
               "__resolveType": "Color Map Configuration"
             },
             "products": {
-              "__resolveType": "ProductListHome"
+              "__resolveType": "vnda/loaders/productList.ts",
+              "ids": [
+                2798,
+                2799,
+                2815,
+                2764,
+                2779,
+                2774,
+                2807,
+                2780,
+                2766,
+                2824,
+                2753,
+                2772
+              ],
+              "sort": "newest",
+              "tags": [],
+              "count": 12
             },
             "cardLayout": {
               "dots": true
@@ -66,24 +83,7 @@
               "__resolveType": "Color Map Configuration"
             },
             "products": {
-              "ids": [
-                2798,
-                2799,
-                2815,
-                2764,
-                2779,
-                2774,
-                2807,
-                2780,
-                2766,
-                2824,
-                2753,
-                2772
-              ],
-              "sort": "newest",
-              "tags": [],
-              "count": 12,
-              "__resolveType": "vnda/loaders/productList.ts"
+              "__resolveType": "ProductListHome"
             },
             "layout": {
               "columns": {
