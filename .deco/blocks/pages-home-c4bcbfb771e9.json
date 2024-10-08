@@ -148,7 +148,7 @@
             "products": {
               "__resolveType": "vnda/loaders/productList.ts",
               "ids": [
-                2818
+                2868
               ],
               "sort": "newest",
               "tags": [],
@@ -190,7 +190,7 @@
             },
             "featuredPhoto": {
               "alt": "pra ficar na estica",
-              "src": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/98221d07-5bbd-4274-b49d-0a542e9c5c97/20240607_BOLOBO_ECOMM_1447-(1).jpg",
+              "src": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/e0059c46-7f1c-4817-b426-890c035f71f2/20240807_BOLOVO_ECOMM_6772-(1).jpg",
               "href": "#"
             },
             "contentDirection": {
