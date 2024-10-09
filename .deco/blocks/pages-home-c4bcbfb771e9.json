@@ -435,22 +435,14 @@
             "products": {
               "__resolveType": "vnda/loaders/productList.ts",
               "ids": [
-                2836,
-                2720,
-                2526,
-                2838,
-                2175,
-                2153,
-                2402,
-                2179,
-                2397,
-                2240,
-                2082,
-                2480,
-                2028,
-                2007,
-                2031,
-                2022
+                2900,
+                2907,
+                2915,
+                2917,
+                2899,
+                2903,
+                2914,
+                2913
               ],
               "sort": "newest",
               "tags": [],
@@ -613,22 +605,26 @@
             },
             "products": {
               "ids": [
-                2798,
-                2799,
-                2815,
-                2807,
-                2764,
-                2779,
-                2774,
-                2780,
-                2766,
-                2824,
-                2753,
-                2772
+                2836,
+                2720,
+                2526,
+                2838,
+                2175,
+                2153,
+                2402,
+                2179,
+                2397,
+                2240,
+                2082,
+                2480,
+                2028,
+                2007,
+                2031,
+                2022
               ],
               "sort": "newest",
               "tags": [],
-              "count": 12,
+              "count": 16,
               "__resolveType": "vnda/loaders/productList.ts"
             },
             "layout": {
@@ -650,7 +646,7 @@
           },
           {
             "__resolveType": "site/sections/Product/ProductShelf.tsx",
-            "title": "<p>X-TREME</p>",
+            "title": "<p>Inverno 2024</p>",
             "colors": {
               "__resolveType": "Color Map Configuration"
             },
@@ -669,7 +665,7 @@
               "headerAlignment": "left"
             },
             "seeMore": {
-              "link": "/x-treme",
+              "link": "/inverno-24",
               "text": "VEJA TODOS"
             },
             "cardLayout": {
