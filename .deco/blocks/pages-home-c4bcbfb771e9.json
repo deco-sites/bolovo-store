@@ -422,12 +422,6 @@
           },
           {
             "__resolveType": "site/sections/Product/ProductGallery.tsx",
-            "layout": {
-              "columns": {
-                "mobile": 2,
-                "desktop": 4
-              }
-            },
             "title": "<p><br data-mce-bogus=\"1\"></p>",
             "colors": {
               "__resolveType": "Color Map Configuration"
@@ -447,6 +441,12 @@
               "sort": "newest",
               "tags": [],
               "count": 16
+            },
+            "layout": {
+              "columns": {
+                "mobile": 2,
+                "desktop": 4
+              }
             },
             "cardLayout": {
               "dots": true
@@ -504,12 +504,12 @@
                 "label": "offwhite"
               },
               {
-                "hex": "#6a01e9",
-                "label": "roxo"
-              },
-              {
                 "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/fe3bee0f-5ef7-4160-91ab-c26a7851f108",
                 "label": "estampado"
+              },
+              {
+                "hex": "#6a01e9",
+                "label": "roxo"
               },
               {
                 "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/45eb5e6f-eba9-48e1-b246-2165739b946d",
@@ -527,7 +527,7 @@
             "products": {
               "__resolveType": "vnda/loaders/productList.ts",
               "ids": [
-                2868
+                2901
               ],
               "sort": "newest",
               "tags": [],
@@ -569,7 +569,7 @@
             },
             "featuredPhoto": {
               "alt": "pra ficar na estica",
-              "src": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/e0059c46-7f1c-4817-b426-890c035f71f2/20240807_BOLOVO_ECOMM_6772-(1).jpg",
+              "src": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/5786b461-eed9-4081-bdf9-cf90ded670c1/04_--(1).jpg",
               "href": "#"
             },
             "contentDirection": {
@@ -645,35 +645,6 @@
             }
           },
           {
-            "__resolveType": "site/sections/Product/ProductShelf.tsx",
-            "title": "<p>Inverno 2024</p>",
-            "colors": {
-              "__resolveType": "Color Map Configuration"
-            },
-            "products": {
-              "ids": [],
-              "sort": "newest",
-              "tags": [
-                "x-treme"
-              ],
-              "count": 5,
-              "__resolveType": "vnda/loaders/productList.ts"
-            },
-            "showColorVariants": true,
-            "layout": {
-              "headerfontSize": "Normal",
-              "headerAlignment": "left"
-            },
-            "seeMore": {
-              "link": "/inverno-24",
-              "text": "VEJA TODOS"
-            },
-            "cardLayout": {
-              "__resolveType": "Product Card Layout - 01"
-            },
-            "description": "Wow, my VNDA shop is FAST!!"
-          },
-          {
             "__resolveType": "site/sections/Images/Carousel.tsx",
             "images": [
               {
@@ -698,27 +669,19 @@
             "colors": {
               "__resolveType": "Color Map Configuration"
             },
+            "products": {
+              "ids": [],
+              "tags": [
+                "club-days"
+              ],
+              "__resolveType": "vnda/loaders/productList.ts",
+              "count": 8
+            },
             "layout": {
               "columns": {
                 "mobile": 2,
                 "desktop": 4
               }
-            },
-            "products": {
-              "ids": [
-                2867,
-                2866,
-                2888,
-                2883,
-                2865,
-                2870,
-                2886,
-                2887
-              ],
-              "sort": "newest",
-              "tags": [],
-              "count": 16,
-              "__resolveType": "vnda/loaders/productList.ts"
             },
             "cardLayout": {
               "dots": true
@@ -730,9 +693,6 @@
                 "showCardShadow": false
               }
             }
-          },
-          {
-            "__resolveType": "PhotoGallery 01"
           },
           {
             "__resolveType": "site/sections/Content/VideoAndText.tsx",
