@@ -645,16 +645,43 @@
             }
           },
           {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "title": "<p>Club Days</p>",
+              "colors": {
+                "__resolveType": "Color Map Configuration"
+              },
+              "seeMore": {
+                "link": "/club-days",
+                "text": "VEJA TODOS"
+              },
+              "products": {
+                "ids": [],
+                "tags": [
+                  "club-days"
+                ],
+                "count": 8,
+                "__resolveType": "vnda/loaders/productList.ts"
+              },
+              "cardLayout": {
+                "__resolveType": "Product Card Layout - 01"
+              },
+              "description": "Wow, my VNDA shop is FAST!!",
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "showColorVariants": true
+            }
+          },
+          {
             "__resolveType": "site/sections/Images/Carousel.tsx",
             "images": [
               {
                 "alt": "/",
                 "action": {
-                  "href": "/club-days",
-                  "label": "/club-days"
+                  "href": "/expedition-team ",
+                  "label": "/expedition-team "
                 },
-                "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/82c8a485-add0-4073-ba06-9452c1fbbb80/01_.png",
-                "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/5690f220-5aaa-4afd-8a08-2e752d614430/FULL-BANNER_01.jpg"
+                "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/f7fa2d8f-f85b-4149-912d-b56e053938a8/BANNER-FULL-(1).png",
+                "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/d93310a3-4579-42ae-bfd3-336b653ac48d/BANNER-FULL-(1).jpg"
               }
             ],
             "preload": false,
@@ -672,7 +699,7 @@
             "products": {
               "ids": [],
               "tags": [
-                "club-days"
+                "expedition-team "
               ],
               "__resolveType": "vnda/loaders/productList.ts",
               "count": 8
