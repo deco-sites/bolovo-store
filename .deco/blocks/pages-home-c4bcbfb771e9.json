@@ -691,33 +691,25 @@
             }
           },
           {
-            "__resolveType": "site/sections/Product/ProductGallery.tsx",
-            "title": "<p><br data-mce-bogus=\"1\"></p>",
-            "colors": {
-              "__resolveType": "Color Map Configuration"
-            },
-            "products": {
-              "ids": [],
-              "tags": [
-                "expedition-team "
-              ],
-              "__resolveType": "vnda/loaders/productList.ts",
-              "count": 8
-            },
-            "layout": {
-              "columns": {
-                "mobile": 2,
-                "desktop": 4
-              }
-            },
-            "cardLayout": {
-              "dots": true
-            },
-            "cardsLayout": {
-              "dots": true,
-              "aspect": true,
-              "onMouseOver": {
-                "showCardShadow": false
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductGallery.tsx",
+              "products": {
+                "ids": [],
+                "tags": [
+                  "expedition-team"
+                ],
+                "count": 12,
+                "__resolveType": "vnda/loaders/productList.ts",
+                "typeTags": []
+              },
+              "colors": {
+                "__resolveType": "Color Map Configuration"
+              },
+              "cardsLayout": {
+                "onMouseOver": {
+                  "showCardShadow": false
+                }
               }
             }
           },
