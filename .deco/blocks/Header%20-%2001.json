@@ -3,7 +3,9 @@
     "alt": "searche icon ",
     "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/d4e86b94-158b-4bb2-a5be-106be393649c"
   },
-  "cart": { "freeShippingObjectiveQuantity": 600 },
+  "cart": {
+    "freeShippingObjectiveQuantity": 600
+  },
   "logo": {
     "alt": "Fashion logo by deco",
     "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/03f6696c-2f2c-4c2b-b39c-6a30528c18a0"
@@ -21,15 +23,31 @@
             "href": "/nossas-colecoes",
             "label": "COLEÇÕES",
             "children": [
-              { "href": "/club-days", "label": "Club Days", "children": [] },
-              { "href": "/x-treme", "label": "X-Treme", "children": [] },
+              {
+                "href": "/club-days",
+                "label": "Club Days",
+                "children": []
+              },
+              {
+                "href": "/x-treme",
+                "label": "X-Treme",
+                "children": []
+              },
               {
                 "href": "/expedition-team ",
                 "label": "Expedition Team",
                 "children": []
               },
-              { "href": "/homevideo", "label": "Home Video", "children": [] },
-              { "href": "/todos", "label": "Ver Todos ", "children": [] }
+              {
+                "href": "/homevideo",
+                "label": "Home Video",
+                "children": []
+              },
+              {
+                "href": "/todos",
+                "label": "Ver Todos ",
+                "children": []
+              }
             ]
           },
           {
@@ -66,8 +84,16 @@
                 "label": "Básicas",
                 "children": []
               },
-              { "href": "/camisetas/uv", "label": "UV", "children": [] },
-              { "href": "/camisetas", "label": "Ver Todos", "children": [] }
+              {
+                "href": "/camisetas/uv",
+                "label": "UV",
+                "children": []
+              },
+              {
+                "href": "/camisetas",
+                "label": "Ver Todos",
+                "children": []
+              }
             ]
           },
           {
@@ -84,7 +110,11 @@
                 "label": "Manga Curta",
                 "children": []
               },
-              { "href": "/camisas", "label": "Ver Todos", "children": [] }
+              {
+                "href": "/camisas",
+                "label": "Ver Todos",
+                "children": []
+              }
             ]
           },
           {
@@ -97,13 +127,21 @@
                 "newTab": false,
                 "children": []
               },
-              { "href": "/casacos/parka", "label": "Parkas", "children": [] },
+              {
+                "href": "/casacos/parka",
+                "label": "Parkas",
+                "children": []
+              },
               {
                 "href": "/casacos/jaqueta",
                 "label": "Jaquetas",
                 "children": []
               },
-              { "href": "/casacos/fleece", "label": "Fleeces", "children": [] },
+              {
+                "href": "/casacos/fleece",
+                "label": "Fleeces",
+                "children": []
+              },
               {
                 "href": "/casacos/crewneck",
                 "label": "Crewnecks",
@@ -114,7 +152,11 @@
                 "label": "Moletons",
                 "children": []
               },
-              { "href": "/casacos", "label": "Ver Todos", "children": [] }
+              {
+                "href": "/casacos",
+                "label": "Ver Todos",
+                "children": []
+              }
             ]
           },
           {
@@ -126,7 +168,11 @@
                 "label": "Short Shorts",
                 "children": []
               },
-              { "href": "/shorts/fds", "label": "FDS Shorts", "children": [] },
+              {
+                "href": "/shorts/fds",
+                "label": "FDS Shorts",
+                "children": []
+              },
               {
                 "href": "/shorts/dads",
                 "label": "Dads Shorts",
@@ -142,7 +188,11 @@
                 "label": "Shorts de Expedição ",
                 "children": []
               },
-              { "href": "/shorts", "label": "Ver Todos", "children": [] }
+              {
+                "href": "/shorts",
+                "label": "Ver Todos",
+                "children": []
+              }
             ]
           },
           {
@@ -160,9 +210,21 @@
                 "newTab": false,
                 "children": []
               },
-              { "href": "/calcas/c-velvet", "label": "Velvet", "children": [] },
-              { "href": "/calcas/c-jeans", "label": "Dins", "children": [] },
-              { "href": "/calcas", "label": "Ver Todos", "children": [] }
+              {
+                "href": "/calcas/c-velvet",
+                "label": "Velvet",
+                "children": []
+              },
+              {
+                "href": "/calcas/c-jeans",
+                "label": "Dins",
+                "children": []
+              },
+              {
+                "href": "/calcas",
+                "label": "Ver Todos",
+                "children": []
+              }
             ]
           },
           {
@@ -194,14 +256,22 @@
                 "label": "Chapéus e Buckets",
                 "children": []
               },
-              { "href": "/bones", "label": "Ver Todos", "children": [] }
+              {
+                "href": "/bones",
+                "label": "Ver Todos",
+                "children": []
+              }
             ]
           },
           {
             "href": "/gorros",
             "label": "GORROS",
             "children": [
-              { "href": "/gorros", "label": "Ver Todos", "children": [] }
+              {
+                "href": "/gorros",
+                "label": "Ver Todos",
+                "children": []
+              }
             ]
           },
           {
@@ -223,7 +293,11 @@
                 "label": "Bolsas",
                 "children": []
               },
-              { "href": "/acessorios/mala", "label": "Malas", "children": [] },
+              {
+                "href": "/acessorios/mala",
+                "label": "Malas",
+                "children": []
+              },
               {
                 "href": "/acessorios/tabaqueira",
                 "label": "Tabaqueiras",
@@ -235,7 +309,11 @@
                 "newTab": false,
                 "children": []
               },
-              { "href": "/acessorios", "label": "Ver Todos", "children": [] }
+              {
+                "href": "/acessorios",
+                "label": "Ver Todos",
+                "children": []
+              }
             ]
           },
           {
@@ -272,20 +350,32 @@
                 "label": "Straps De Camera",
                 "children": []
               },
-              { "href": "/tralhas/seda", "label": "Sedas", "children": [] },
+              {
+                "href": "/tralhas/seda",
+                "label": "Sedas",
+                "children": []
+              },
               {
                 "href": "/tralhas/pijamao",
                 "label": "Pijamão",
                 "children": []
               },
-              { "href": "/tralhas", "label": "Ver Todos", "children": [] }
+              {
+                "href": "/tralhas",
+                "label": "Ver Todos",
+                "children": []
+              }
             ]
           },
           {
             "href": "/meia",
             "label": "MEIAS",
             "children": [
-              { "href": "/meia", "label": "Ver Todos", "children": [] }
+              {
+                "href": "/meia",
+                "label": "Ver Todos",
+                "children": []
+              }
             ]
           }
         ],
@@ -395,8 +485,13 @@
     "label": "BUSCAR"
   },
   "label": "Buscar",
-  "alerts": ["Frete Grátis"],
-  "blogItem": { "href": "/", "text": "conteúdo" },
+  "alerts": [
+    "Frete Grátis"
+  ],
+  "blogItem": {
+    "href": "/",
+    "text": "conteúdo"
+  },
   "helpItem": {
     "href": "https://bolovo.zendesk.com/hc/pt-br",
     "text": "ajuda"
@@ -443,23 +538,67 @@
               "label": "FATZ & BOLOVO",
               "children": []
             },
-            { "href": "/camisetas", "label": "CAMISETAS", "children": [] },
-            { "href": "/bones", "label": "BONÉS", "children": [] },
-            { "href": "/gorros", "label": "GORROS", "children": [] },
-            { "href": "/camisas", "label": "CAMISAS", "children": [] },
-            { "href": "/casacos", "label": "CASACOS", "children": [] }
+            {
+              "href": "/camisetas",
+              "label": "CAMISETAS",
+              "children": []
+            },
+            {
+              "href": "/bones",
+              "label": "BONÉS",
+              "children": []
+            },
+            {
+              "href": "/gorros",
+              "label": "GORROS",
+              "children": []
+            },
+            {
+              "href": "/camisas",
+              "label": "CAMISAS",
+              "children": []
+            },
+            {
+              "href": "/casacos",
+              "label": "CASACOS",
+              "children": []
+            }
           ]
         },
         {
           "href": "#",
           "label": "SHOP$",
           "children": [
-            { "href": "/shorts", "label": "SHORTS", "children": [] },
-            { "href": "/calças", "label": "CALÇAS", "children": [] },
-            { "href": "/meias", "label": "MEIAS", "children": [] },
-            { "href": "/acessorios", "label": "ACESSÓRIOS", "children": [] },
-            { "href": "/tralhas", "label": "TRALHAS", "children": [] },
-            { "href": "/vertudo", "label": "VER TUDO", "children": [] }
+            {
+              "href": "/shorts",
+              "label": "SHORTS",
+              "children": []
+            },
+            {
+              "href": "/calças",
+              "label": "CALÇAS",
+              "children": []
+            },
+            {
+              "href": "/meias",
+              "label": "MEIAS",
+              "children": []
+            },
+            {
+              "href": "/acessorios",
+              "label": "ACESSÓRIOS",
+              "children": []
+            },
+            {
+              "href": "/tralhas",
+              "label": "TRALHAS",
+              "children": []
+            },
+            {
+              "href": "/vertudo",
+              "label": "VER TUDO",
+              "children": []
+            }
           ]
         }
       ],
@@ -487,7 +626,10 @@
     "name": "q",
     "action": "/busca",
     "loader": {
-      "data": { "products": [], "searches": [] },
+      "data": {
+        "products": [],
+        "searches": []
+      },
       "__resolveType": "resolved"
     },
     "IconSearch": {
@@ -501,7 +643,9 @@
     "placeholder": "BUSCAR"
   },
   "accountHref": "/conta",
-  "contentBlog": { "linksContent": [] },
+  "contentBlog": {
+    "linksContent": []
+  },
   "countryFlag": [
     {
       "countryImg": {
@@ -531,14 +675,20 @@
   },
   "promotionBar": {
     "text": "<p style=\"text-align: center\"><strong><span style=\"font-size: 8pt\">Frete grátis a partir de R$299,00 para todo o Brasil </span></strong></p>",
-    "Layout": { "primary": "#FFFFFF", "base-100": "#121212" },
+    "Layout": {
+      "primary": "#FFFFFF",
+      "base-100": "#121212"
+    },
     "layout": {
       "text": "#FFFFFF",
       "primary": "#FFFFFF",
       "background": "#121212"
     },
     "visible": true,
-    "barLayout": { "primary": "#FFFFFF", "base-100": "#121212" }
+    "barLayout": {
+      "primary": "#FFFFFF",
+      "base-100": "#121212"
+    }
   },
   "__resolveType": "site/sections/Header/Header.tsx",
   "promotionText": "<p><span style=\"font-weight: 500;\" data-mce-style=\"font-weight: 500;\">Frete grátis a partir de R$299,00 para todo o Brasil&nbsp; </span><span class=\"entry-title\" style=\"font-size: 12pt;\" data-mce-style=\"font-size: 12pt;\">|&nbsp; Envios via Correios&nbsp; </span><span class=\"symbol-main__title--symbl\">→</span></p>",
