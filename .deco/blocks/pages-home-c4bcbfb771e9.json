@@ -48,14 +48,18 @@
             "products": {
               "__resolveType": "vnda/loaders/productList.ts",
               "ids": [
-                2907,
                 2900,
+                2907,
                 2915,
                 2917,
                 2899,
                 2903,
                 2920,
-                2913
+                2913,
+                2898,
+                2919,
+                2916,
+                2918
               ],
               "sort": "newest",
               "tags": [],
