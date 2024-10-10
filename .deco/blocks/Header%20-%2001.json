@@ -24,6 +24,11 @@
             "label": "COLEÇÕES",
             "children": [
               {
+                "href": "/tropical-research ",
+                "label": "Tropical Research 24",
+                "children": []
+              },
+              {
                 "href": "/club-days",
                 "label": "Club Days",
                 "children": []
@@ -36,11 +41,6 @@
               {
                 "href": "/expedition-team ",
                 "label": "Expedition Team",
-                "children": []
-              },
-              {
-                "href": "/homevideo",
-                "label": "Home Video",
                 "children": []
               },
               {
