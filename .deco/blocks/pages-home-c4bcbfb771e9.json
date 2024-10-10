@@ -391,8 +391,7 @@
       },
       {
         "rule": {
-          "__resolveType": "website/matchers/date.ts",
-          "start": "2024-10-10T10:57:00.000Z"
+          "__resolveType": "website/matchers/always.ts"
         },
         "value": [
           {
