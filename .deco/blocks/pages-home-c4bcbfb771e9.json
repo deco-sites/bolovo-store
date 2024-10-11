@@ -331,26 +331,9 @@
             }
           },
           {
-            "__resolveType": "site/sections/Content/VideoAndText.tsx",
-            "image": {
-              "alt": "BOLOVO PRODUCTION GO OUT",
-              "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/35415ad8-3546-498f-9e7f-ea8c4a287751"
-            },
-            "videoLink": "https://www.youtube.com/embed/VNzvllbN8Bw",
-            "listImages": [
-              {
-                "alt": "BLV SYSTEM",
-                "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/6b2946c1-cf15-4d6e-8d1a-8dc4e2f7757b"
-              },
-              {
-                "alt": "BLV HOME VIDEO",
-                "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0a0c33a5-d50f-4915-b37a-cb866d078052"
-              }
-            ],
-            "textContent": "<p style=\"text-align: center\">UMA PRODUÇÃO BOLOVO® PRODUCTIONS</p><p style=\"text-align: center\">Na companhia do seu atrapalhado e desdentado vizinho, Magrão, Chefinho embarcará numa viagem pela Califórnia De Verdade a bordo de uma moto envenenada e com destino a Petaluma, cidade (ou casa) de Lagunitas. Em busca do tão desejado papel no filme, a dupla irá passar por roubadas e aventuras que ensinarão para ambos o valor de uma boa amizade e conectarão Chefinho com a sua essência e instinto de cachorro perdidas.</p><p style=\"text-align: center\"><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://bolovo.cdn.vnda.com.br/m/conteudo\"><strong><u>VEJA OUTRAS PRODUÇÕES DA BOLOVO</u></strong></a></p>",
-            "directionInverse": {
-              "mobile": "col-reverse",
-              "desktop": "row"
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Video and Text - 01"
             }
           },
           {
