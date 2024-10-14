@@ -48,18 +48,22 @@
             "products": {
               "__resolveType": "vnda/loaders/productList.ts",
               "ids": [
-                2900,
-                2907,
-                2915,
-                2917,
-                2899,
-                2903,
-                2920,
-                2913,
-                2898,
-                2919,
+                2906,
+                2905,
+                2902,
+                2904,
+                2921,
                 2916,
-                2918
+                2920,
+                2914,
+                2919,
+                2901,
+                2900,
+                2899,
+                2917,
+                2918,
+                2912,
+                2913
               ],
               "sort": "newest",
               "tags": [],
@@ -144,7 +148,7 @@
             "products": {
               "__resolveType": "vnda/loaders/productList.ts",
               "ids": [
-                2901
+                2915
               ],
               "sort": "newest",
               "tags": [],
@@ -186,7 +190,7 @@
             },
             "featuredPhoto": {
               "alt": "pra ficar na estica",
-              "src": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/5786b461-eed9-4081-bdf9-cf90ded670c1/04_--(1).jpg",
+              "src": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/b4956149-cfd6-4dae-8b78-5bfa651475b7/03_CORPO-TODO-(4).jpg",
               "href": "#"
             },
             "contentDirection": {
