@@ -23,8 +23,8 @@
                   "href": "/tropical-research",
                   "label": "/tropical-research"
                 },
-                "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/effe0de3-ca32-421b-8f10-cecb8cbe40ca/737x900.png",
-                "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/285a94a0-39d3-4c9b-834a-fd2df9e785e4/full-banner.png"
+                "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/c66a0fb2-602c-40d3-bc92-9a2e35887f67/400x508.png",
+                "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/0738ef48-d6e8-4d50-9db4-8a176e661d32/full-banner-(1).png"
               }
             ],
             "preload": false,
@@ -290,48 +290,6 @@
               "description": "Wow, my VNDA shop is FAST!!",
               "__resolveType": "site/sections/Product/ProductShelf.tsx",
               "showColorVariants": true
-            }
-          },
-          {
-            "__resolveType": "site/sections/Images/Carousel.tsx",
-            "images": [
-              {
-                "alt": "/",
-                "action": {
-                  "href": "/expedition-team ",
-                  "label": "/expedition-team "
-                },
-                "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/f7fa2d8f-f85b-4149-912d-b56e053938a8/BANNER-FULL-(1).png",
-                "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/d93310a3-4579-42ae-bfd3-336b653ac48d/BANNER-FULL-(1).jpg"
-              }
-            ],
-            "preload": false,
-            "autoplay": {
-              "activate": false,
-              "interval": 5
-            }
-          },
-          {
-            "__resolveType": "website/sections/Rendering/Lazy.tsx",
-            "section": {
-              "__resolveType": "site/sections/Product/ProductGallery.tsx",
-              "products": {
-                "ids": [],
-                "tags": [
-                  "expedition-team"
-                ],
-                "count": 12,
-                "__resolveType": "vnda/loaders/productList.ts",
-                "typeTags": []
-              },
-              "colors": {
-                "__resolveType": "Color Map Configuration"
-              },
-              "cardsLayout": {
-                "onMouseOver": {
-                  "showCardShadow": false
-                }
-              }
             }
           },
           {
