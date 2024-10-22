@@ -1816,7 +1816,7 @@
               "labelNext": "próximo",
               "labelPrevious": "anterior",
               "labelButtonTop": "voltar ao topo",
-              "layoutPagination": "Ver mais"
+              "layoutPagination": "Não limitar numeros"
             },
             "showColorVariants": true
           },
