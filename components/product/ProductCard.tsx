@@ -5,7 +5,8 @@ import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
- import type { ImageObject, Product } from "apps/commerce/types.ts";
+import { signal } from "@preact/signals";
+import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 // import { Picture, Source } from "apps/website/components/Picture.tsx";
 import QuickShop from "$store/islands/QuickShop.tsx";
@@ -15,9 +16,8 @@ import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { useId } from "deco-sites/bolovo-store/sdk/useId.ts";
 // import Image from "apps/website/components/Image.tsx";
 import ColorSelector from "$store/islands/ColorSelector.tsx";
-import { useUI } from "$store/sdk/useUI.ts";
-import { useEffect } from "preact/hooks";
 import ProductMedia from "$store/islands/ProductCardMedia.tsx";
+import { useUI } from "$store/sdk/useUI.ts";
 
 export interface Layout {
   basics?: {
@@ -147,8 +147,6 @@ function ProductCard(
   const sizeAndLinks = possibilities.Tamanho || {};
   const colorVariants = [];
   const productCardImages = images?.filter((_, index) => index < 2);
-  console.log("productCardImages", productCardImages)
-  const { selectedColorVariant } = useUI(); // Acessar o sinal
 
   if (colorRelated && showColorVariants) {
     for (const relatedProduct of colorRelated) {
@@ -164,8 +162,8 @@ function ProductCard(
                   ? relatedProduct.image[0].url as string
                   : "",
                 backImage: relatedProduct.image
-                ? relatedProduct.image[1].url as string
-                : "", 
+                  ? relatedProduct.image[1].url as string
+                  : "",
               };
               colorVariants.push(colorVariant);
               break;
@@ -198,17 +196,10 @@ function ProductCard(
       {layout?.basics?.ctaText || "Ver produto"}
     </a>
   );
-  // const safeSrc = (url?: string) => url ?? "";
 
-  // let imageUrl = selectedColorVariant.value
-  //   ? selectedColorVariant.value.image // Usa o URL da variante selecionada
-  //   : safeSrc(front.url); // URL padrão do produto
-
-  useEffect(() => {
-    if (selectedColorVariant.value) {
-      console.log("A cor do produto mudou!", selectedColorVariant.value);
-    }
-  }, [selectedColorVariant.value]);
+  const selectedColorVariant = signal<
+    { name: string; url: string; front: string; back: string } | null
+  >(null);
 
   return (
     <div
@@ -284,12 +275,13 @@ function ProductCard(
         <ProductMedia
           idSliders={idSliders}
           productCardImages={productCardImages || []}
-          url={url || ''}
+          url={url || ""}
           layout={layout}
           front={front}
           back={back}
           isMobile={isMobile}
           preload={preload}
+          selectedColorVariant={selectedColorVariant}
         />
         <figcaption
           class={`
@@ -354,6 +346,7 @@ function ProductCard(
                       colorVariants={colorVariants}
                       colors={colors}
                       showColorVariants={showColorVariants ?? false}
+                      selectedColorVariant={selectedColorVariant}
                     />
                   </div>
                 </div>

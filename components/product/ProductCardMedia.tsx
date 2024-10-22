@@ -1,10 +1,10 @@
-import Slider from "deco-sites/bolovo-store/components/ui/Slider.tsx";
-import SliderJS from "deco-sites/bolovo-store/islands/SliderJS.tsx";
-import { Picture, Source } from "apps/website/components/Picture.tsx";
+import { Layout as LayoutProps } from "$store/components/product/ProductCard.tsx";
+import { Signal } from "@preact/signals";
 import type { ImageObject } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
-import { useUI } from "$store/sdk/useUI.ts";
-import {Layout as LayoutProps } from "$store/components/product/ProductCard.tsx"
+import { Picture, Source } from "apps/website/components/Picture.tsx";
+import Slider from "deco-sites/bolovo-store/components/ui/Slider.tsx";
+import SliderJS from "deco-sites/bolovo-store/islands/SliderJS.tsx";
 
 export interface Props {
   idSliders: string;
@@ -15,6 +15,14 @@ export interface Props {
   back: ImageObject;
   isMobile?: boolean;
   preload?: boolean;
+  selectedColorVariant: Signal<
+    {
+      name: string;
+      url: string;
+      front: string;
+      back: string;
+    } | null
+  >;
 }
 
 interface DotsProps {
@@ -57,16 +65,17 @@ function ProductCardMedia(
     back,
     isMobile,
     preload,
+    selectedColorVariant,
   }: Props,
 ) {
-
-  const { selectedColorVariant } = useUI(); // Acessar o sinal
-
   const safeSrc = (url?: string) => url ?? "";
 
-  let imageUrl = selectedColorVariant.value
-    ? selectedColorVariant.value.image // Usa o URL da variante selecionada
+  const frontImageUrl = selectedColorVariant.value
+    ? safeSrc(selectedColorVariant.value.front) // Usa o URL da variante selecionada
     : safeSrc(front.url); // URL padrão do produto
+  const backImageUrl = selectedColorVariant.value
+    ? safeSrc(selectedColorVariant.value.back) // Usa o URL da variante selecionada
+    : safeSrc(back.url || front.url); // URL padrão do produto
 
   const relative = (url: string) => {
     const link = new URL(url);
@@ -125,18 +134,14 @@ function ProductCardMedia(
             <Source
               media="(max-width: 1023px)"
               fetchPriority={preload ? "high" : "auto"}
-              src={selectedColorVariant.value
-                ? selectedColorVariant.value.image
-                : ""}
+              src={frontImageUrl}
               width={190}
               height={190}
             />
             <Source
               media="(min-width: 1024px)"
               fetchPriority={preload ? "high" : "auto"}
-              src={selectedColorVariant.value
-                ? selectedColorVariant.value.image
-                : ""}
+              src={frontImageUrl}
               width={317}
               height={317}
             />
@@ -148,9 +153,7 @@ function ProductCardMedia(
                     ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                     : ""
                 }`}
-              src={selectedColorVariant.value
-                ? selectedColorVariant.value.image
-                : ""}
+              src={frontImageUrl}
               alt={front.alternateName}
               decoding="async"
               loading={preload ? "eager" : "lazy"}
@@ -165,21 +168,21 @@ function ProductCardMedia(
                 <Source
                   media="(max-width: 1023px)"
                   fetchPriority={"auto"}
-                  src={safeSrc(back?.url ?? front.url)}
+                  src={safeSrc(backImageUrl ?? frontImageUrl)}
                   width={190}
                   height={190}
                 />
                 <Source
                   media="(min-width: 1024px)"
                   fetchPriority={"auto"}
-                  src={safeSrc(back?.url ?? front.url)}
+                  src={safeSrc(backImageUrl ?? frontImageUrl)}
                   width={290}
                   height={317}
                 />
                 <img
                   class="h-full bg-base-100 col-span-full row-span-full w-full"
                   alt={back?.alternateName ?? front.alternateName}
-                  src={safeSrc(back?.url ?? front.url)}
+                  src={safeSrc(backImageUrl ?? frontImageUrl)}
                   decoding="async"
                   loading={"lazy"}
                 />
@@ -187,7 +190,6 @@ function ProductCardMedia(
             </div>
           )}
       </a>
-      
     </>
   );
 }
