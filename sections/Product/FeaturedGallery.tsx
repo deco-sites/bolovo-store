@@ -1,9 +1,9 @@
+import ProductCard, { Layout } from "$store/components/product/ProductCard.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import { useDevice } from "@deco/deco/hooks";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import ProductCard, { Layout } from "$store/components/product/ProductCard.tsx";
-import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-import type { AppContext } from "$store/apps/site.ts";
 import { getColorRelatedProducts } from "../../components/search/CategoryMenu.tsx";
 
 export interface Props {
@@ -59,7 +59,10 @@ export const loader = async (
     try {
       colorRelated = await getColorRelatedProducts(props.products);
     } catch (error) {
-      console.error("Featured - Erro ao obter produtos relacionados por cor:", error);
+      console.error(
+        "Featured - Erro ao obter produtos relacionados por cor:",
+        error,
+      );
     }
   }
 
@@ -81,6 +84,8 @@ export default function FeaturedGallery(
     productCardLayout,
   }: Props & { colorVariant?: { [productName: string]: Product[] } },
 ) {
+  const device = useDevice();
+
   if (!products || products.length === 0) {
     return null;
   }
@@ -131,6 +136,7 @@ export default function FeaturedGallery(
         </a>
         <div class="flex w-full lg:w-[44.08%]">
           <ProductCard
+            isMobile={device !== "desktop"}
             product={products[0]}
             itemListName={title}
             platform={platform}

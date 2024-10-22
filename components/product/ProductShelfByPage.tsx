@@ -1,4 +1,3 @@
-import type { AppContext } from "$store/apps/site.ts";
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import ProductCard, {
   Layout as cardLayout,
@@ -10,10 +9,11 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
+import { type SectionProps } from "@deco/deco";
+import { useDevice } from "@deco/deco/hooks";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
-import { type SectionProps } from "@deco/deco";
 export interface Shelf {
   /** @format rich-text */
   title?: string;
@@ -51,7 +51,10 @@ export const loader = async (props: Props, req: Request) => {
     try {
       colorRelated = await getColorRelatedProducts(shelf?.shelf.products);
     } catch (error) {
-      console.error("ByPage - Erro ao obter produtos relacionados por cor:", error);
+      console.error(
+        "ByPage - Erro ao obter produtos relacionados por cor:",
+        error,
+      );
     }
   }
   return {
@@ -76,6 +79,7 @@ const Shelf = (
   },
 ) => {
   const id = useId();
+  const device = useDevice();
   const platform = "vnda";
   const shouldShowArrows = ((products?.length || 0) + (seeMore ? 1 : 0)) > 4;
   if (!products || products.length === 0) {
@@ -99,6 +103,7 @@ const Shelf = (
               <ProductCard
                 product={product}
                 itemListName={title}
+                isMobile={device !== "desktop"}
                 platform={platform}
                 layout={cardsLayout}
                 index={index}

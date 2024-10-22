@@ -1,6 +1,5 @@
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { Signal } from "@preact/signals";
-import { useDevice } from "@deco/deco/hooks";
 import { useEffect, useRef } from "preact/hooks";
 
 interface ColorVariant {
@@ -14,6 +13,7 @@ export interface ColorSelectorProps {
   colorVariants?: ColorVariant[];
   colors?: Color[];
   showColorVariants: boolean;
+  isMobile: boolean;
   selectedColorVariant: Signal<
     {
       name: string;
@@ -28,9 +28,9 @@ function ColorSelector({
   colorVariants = [],
   colors = [],
   showColorVariants,
+  isMobile,
   selectedColorVariant,
 }: ColorSelectorProps) {
-  const device = useDevice();
   const initialImage = useRef<
     {
       name: string;
@@ -78,11 +78,11 @@ function ColorSelector({
               <li key={index}>
                 <button
                   onClick={() =>
-                    device !== "desktop" && handleColorSelect(colorVariant)}
+                    isMobile && handleColorSelect(colorVariant)}
                   onMouseEnter={() =>
-                    device === "desktop" && handleColorSelect(colorVariant)}
+                    !isMobile && handleColorSelect(colorVariant)}
                   onMouseLeave={() =>
-                    device === "desktop" && handleColorSelect()}
+                    !isMobile && handleColorSelect()}
                 >
                   <div
                     class="w-[12px] h-[12px] flex items-center justify-center border"

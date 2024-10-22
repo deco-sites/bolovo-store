@@ -80,8 +80,8 @@ function ProductCard(
     colorRelated,
     colors,
     showColorVariants,
-    isMobile,
-  }: Props & { isMobile?: boolean },
+    isMobile = false,
+  }: Props & { isMobile: boolean },
 ) {
   const {
     url,
@@ -323,6 +323,7 @@ function ProductCard(
                   {/* Seletor de Cores */}
                   <div class="group">
                     <ColorSelector
+                      isMobile={isMobile}
                       colorVariants={colorVariants}
                       colors={colors}
                       showColorVariants={showColorVariants ?? false}

@@ -12,6 +12,7 @@ import { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
+import { useDevice } from "@deco/deco/hooks";
 
 export interface Props {
   /** @format rich-text */
@@ -74,6 +75,7 @@ function ProductShelf(
     & { colorVariant?: { [productName: string]: Product[] } },
 ) {
   const id = useId();
+  const device = useDevice();
   const platform = "vnda";
 
   const shouldShowArrows = ((products?.length || 0) + (seeMore ? 1 : 0)) > 4;
@@ -132,6 +134,7 @@ function ProductShelf(
                 itemListName={title}
                 platform={platform}
                 index={index}
+                isMobile={device !== "desktop"}
                 colorRelated={(colorVariant &&
                   colorVariant[product.name as string]) || []}
                 colors={colors}
