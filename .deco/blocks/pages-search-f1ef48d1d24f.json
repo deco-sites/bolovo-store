@@ -1,0 +1,67 @@
+{
+  "name": "Search",
+  "path": "/busca",
+  "sections": {
+    "variants": [
+      {
+        "rule": {
+          "name": "language",
+          "value": "en",
+          "__resolveType": "website/matchers/cookie.ts"
+        },
+        "value": [
+          { "__resolveType": "Header - en" },
+          { "__resolveType": "SearchResult - en" },
+          { "__resolveType": "Banner Grid Home - en" },
+          { "__resolveType": "Footer - en " }
+        ]
+      },
+      {
+        "rule": { "__resolveType": "website/matchers/always.ts" },
+        "value": [
+          {
+            "jsonLD": {
+              "slug": {
+                "param": "slug",
+                "__resolveType": "website/functions/requestToParam.ts"
+              },
+              "tags": [],
+              "count": 12,
+              "__resolveType": "vnda/loaders/productListingPage.ts"
+            },
+            "__resolveType": "commerce/sections/Seo/SeoPLP.tsx"
+          },
+          { "__resolveType": "Header - 01" },
+          {
+            "page": {
+              "tags": [],
+              "count": 24,
+              "filterByTags": true,
+              "__resolveType": "vnda/loaders/productListingPage.ts",
+              "filterOperator": { "type_tags": "or" }
+            },
+            "textSearch": "VOCÊ BUSCOU POR",
+            "textFilters": "FILTROS",
+            "filterColors": { "__resolveType": "Color Map Configuration" },
+            "filtersNames": [
+              { "label": "CORES", "filter": "cor" },
+              { "label": "TAMANHOS", "filter": "property2" },
+              { "label": "CATEGORIAS", "filter": "categoria" }
+            ],
+            "__resolveType": "site/sections/Product/SearchResultMenu.tsx",
+            "labelOrdenation": "ORDENAR",
+            "applyFiltersText": "APLICAR FILTROS",
+            "removeFiltersText": "REMOVER TODOS OS FILTROS",
+            "showColorVariants": true,
+            "appliedFiltersText": "APLICADOS"
+          },
+          { "__resolveType": "SearchResult 01" },
+          { "__resolveType": "Banner Grid Home " },
+          { "__resolveType": "Footer - 01" }
+        ]
+      }
+    ],
+    "__resolveType": "website/flags/multivariate.ts"
+  },
+  "__resolveType": "website/pages/Page.tsx"
+}

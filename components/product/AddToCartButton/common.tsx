@@ -1,5 +1,4 @@
 import Button from "$store/components/ui/Button.tsx";
-import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { useState } from "preact/hooks";
 

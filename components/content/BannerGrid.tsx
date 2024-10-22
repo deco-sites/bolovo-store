@@ -1,7 +1,7 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import AltSlider from "../ui/AltSlider.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import IframeLoader from "deco-sites/bolovo-store/components/content/IframeLoader.tsx";
+import IframeLoader from "site/components/content/IframeLoader.tsx";
 
 export interface Image {
   srcMobile: ImageWidget;

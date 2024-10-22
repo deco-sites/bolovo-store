@@ -1,0 +1,20 @@
+{
+  "image": {
+    "alt": "BOLOVO PRODUCTION GO OUT",
+    "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/7e700f6d-5a78-4ed5-95c7-b03fcb68ed1c"
+  },
+  "videoLink": "https://www.youtube.com/embed/MBhwPO2Me58?",
+  "listImages": [
+    {
+      "alt": "BLV SYSTEM",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/6b2946c1-cf15-4d6e-8d1a-8dc4e2f7757b"
+    },
+    {
+      "alt": "BLV HOME VIDEO",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0a0c33a5-d50f-4915-b37a-cb866d078052"
+    }
+  ],
+  "textContent": "<div><p>Bolovo é uma marca de espírito livre comprometida em fugir do tédio para experimentar ideias originais. Nosso background vem da estrada, das risadas, das amizades e de viver o presente. Desde 2006 “Go Out Make Some Memories” é a bandeira que nos mantém em movimento, que nos tira da zona de conforto e que naturalmente nos aproxima das pessoas que se conectam com esse mesmo ideal, seja a audiência, clientes, equipe ou amigos. Trabalhamos em outra frequência e se sintonizar seu aparelho nestas ondas é certo que terá boas histórias para contar.</p></div>",
+  "__resolveType": "site/sections/Content/VideoAndText.tsx",
+  "directionInverse": { "mobile": "col-reverse", "desktop": "row" }
+}

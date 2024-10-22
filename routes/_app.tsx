@@ -1,13 +1,11 @@
 import { AppProps } from "$fresh/server.ts";
 import GlobalTags from "$store/components/GlobalTags.tsx";
 import Theme from "$store/sections/Theme/Theme.tsx";
-import { useScript } from "deco/hooks/useScript.ts";
-
+import { useScript } from "@deco/deco/hooks";
 const sw = () =>
   addEventListener("load", () =>
     navigator && navigator.serviceWorker &&
     navigator.serviceWorker.register("/sw.js"));
-
 function App(props: AppProps) {
   return (
     <>
@@ -28,5 +26,4 @@ function App(props: AppProps) {
     </>
   );
 }
-
 export default App;

@@ -1,14 +1,12 @@
 import Button from "$store/components/ui/Button.tsx";
-import { sendEvent } from "$store/sdk/analytics.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
+import InnerHTML from "$store/components/ui/InnerHTML.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useUI } from "$store/sdk/useUI.ts";
-import { AnalyticsItem } from "apps/commerce/types.ts";
+import { useCart } from "apps/vnda/hooks/useCart.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import type { Props as CouponProps } from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
-import { useCart } from "apps/vnda/hooks/useCart.ts";
-import Icon from "$store/components/ui/Icon.tsx";
-import InnerHTML from "$store/components/ui/InnerHTML.tsx";
 
 interface Props {
   items: Item[];
@@ -45,10 +43,8 @@ function Cart({
   items,
   total,
   locale,
-  coupon,
   loading,
   currency,
-  discounts,
   freeShippingTarget,
   freeShippingValueColor,
   checkoutHref,
@@ -64,11 +60,10 @@ function Cart({
   if (cart) {
     cart.value?.relatedItems?.map((item) => totalCart += item.total);
   }
-  const qtyInstalments = cart.value?.orderForm?.installments?.length;
+  const qtyInstalments = cart.value?.orderForm?.installments?.number ?? 1;
   const valueInstallments = totalCart / qtyInstalments;
   const numberFormated = valueInstallments.toFixed(2);
   const installments = numberFormated.replace(".", ",");
-  const checkoutUrlIntl = checkoutHref.concat("");
 
   return (
     <div>
@@ -238,19 +233,6 @@ function Cart({
                       class="btn btn-active btn-sm w-full rounded-[15px] bg-black text-white hover:bg-black"
                       data-deco="buy-button"
                       disabled={loading || isEmtpy}
-                      onClick={() => {
-                        sendEvent({
-                          name: "begin_checkout",
-                          params: {
-                            coupon,
-                            currency,
-                            value: total - discounts,
-                            items: items
-                              .map((_, index) => itemToAnalyticsItem(index))
-                              .filter((x): x is AnalyticsItem => Boolean(x)),
-                          },
-                        });
-                      }}
                     >
                       {cartTranslations?.ctaCheckout}
                     </Button>

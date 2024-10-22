@@ -40,30 +40,36 @@ const setup = ({ rootId }: Props) => {
     });
   };
 
-  const start = (e) => {
+  const start = (pageX: number) => {
     isDown = true;
     slider.classList.add("cursor-grab");
-    startX = e.pageX || e.touches[0].pageX - slider.offsetLeft;
+    startX = pageX - slider.offsetLeft;
     scrollLeft = slider.scrollLeft;
   };
 
-  const move = (e) => {
+  const move = (pageX: number) => {
     if (!isDown) return;
 
     items.forEach((item) => {
       item.children[0].classList.add("lg:pointer-events-none");
     });
-    const x = e.pageX || e.touches[0].pageX - slider.offsetLeft;
+    const x = pageX - slider.offsetLeft;
     const dist = x - startX;
     slider.scrollLeft = scrollLeft - dist;
   };
 
   (() => {
-    slider.addEventListener("mousedown", start);
-    slider.addEventListener("touchstart", start);
+    slider.addEventListener("mousedown", (e: MouseEvent) => start(e.pageX));
+    slider.addEventListener(
+      "touchstart",
+      (e: TouchEvent) => start(e.touches[0].pageX),
+    );
 
-    slider.addEventListener("mousemove", move);
-    slider.addEventListener("touchmove", move);
+    slider.addEventListener("mousemove", (e: MouseEvent) => move(e.pageX));
+    slider.addEventListener(
+      "touchmove",
+      (e: TouchEvent) => move(e.touches[0].pageX),
+    );
 
     slider.addEventListener("mouseleave", end);
     slider.addEventListener("mouseup", end);

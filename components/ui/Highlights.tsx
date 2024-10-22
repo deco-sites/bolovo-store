@@ -27,7 +27,7 @@ function Highlights({ highlights = [], title }: Props) {
             index={index}
             class="carousel-item first:ml-6 sm:first:ml-0 last:mr-6 sm:last:mr-0 min-w-[190px]"
           >
-            <a href={href} class="card card-compact bg-base-100">
+            <a href={href} class="card card-compact bg-white">
               <figure>
                 <Image
                   class="rounded-[40px]"

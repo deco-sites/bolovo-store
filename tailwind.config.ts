@@ -10,6 +10,7 @@ export default {
       fontFamily: {
         "rubik": ["Rubik"],
         "acumin": ["Acumin"],
+        "ouroboros": ["Ouroboros"],
         "averia": ["Averia Serif Libre"],
         "eb-garamond": ["EB Garamond"],
       },

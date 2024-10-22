@@ -3,6 +3,7 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { relative } from "$store/sdk/url.ts";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import { variantAvailability } from "$store/sdk/useVariantPossiblities.ts";
 
 function VariantSelector(
   { product, reloadInSelector, colorRelated, colors, priceIntl = false }: {
@@ -20,18 +21,25 @@ function VariantSelector(
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const possibilities = useVariantPossibilities(hasVariant, product);
   const sizeAndLinks = possibilities.Tamanho || {};
-  const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => {
+  const variantsInStock = isVariantOf && variantAvailability(isVariantOf);
+  const variants = variantsInStock?.map(({ size, inStock }) => ({
+    size,
+    inStock,
+    link: sizeAndLinks[size ?? ""],
+  }));
+  const skuSelector = variants?.map((variant) => {
     if (reloadInSelector) {
       return (
         <li>
-          <a href={link}>
+          <a href={variant.link}>
             <AvatarPDP
-              variant={link === url
+              inStock={variant.inStock}
+              variant={variant.link === url
                 ? "activePdp"
-                : link
+                : variant.link
                 ? "default"
                 : "disabled"}
-              content={size === "" ? "UN" : size}
+              content={variant.size === "" ? "UN" : (variant.size ?? "")}
               priceIntl={priceIntl}
             />
           </a>
@@ -40,18 +48,20 @@ function VariantSelector(
     }
 
     const relativeUrl = relative(url);
-    const relativeLink = relative(link);
+    const relativeLink = relative(variant.link);
 
+    if (!variant.size || !variant.link) return;
     return (
       <li>
         <button f-partial={relativeLink} f-client-nav>
           <AvatarPDP
+            inStock={variant.inStock}
             variant={relativeLink === relativeUrl
               ? "activePdp"
               : relativeLink
               ? "default"
               : "disabled"}
-            content={size === "" ? "UN" : size}
+            content={variant.size === "" ? "UN" : (variant.size ?? "")}
             priceIntl={priceIntl}
           />
         </button>

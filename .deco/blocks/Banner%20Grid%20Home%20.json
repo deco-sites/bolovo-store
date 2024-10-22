@@ -1,0 +1,35 @@
+{
+  "banners": [
+    {
+      "href": "https://www.bolovo.com.br/expedition-team ",
+      "image": {
+        "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/62109369-00df-4b7b-8239-977287e738eb",
+        "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b6492035-ef76-4c14-a50d-3114567acd61"
+      }
+    },
+    {
+      "href": "https://www.bolovo.com.br/expedition-team ",
+      "image": {
+        "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/384f5bbb-1ff2-4506-ae87-9ee9f1bf2f96",
+        "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/5d4c63f8-88a4-496d-b0f1-8fcca801f4d1"
+      }
+    },
+    {
+      "href": "https://www.bolovo.com.br/expedition-team ",
+      "image": {
+        "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/9a6146aa-82d1-4fb3-9255-f289e7f4ea8b",
+        "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/3ec3663d-49b6-4093-b61d-cf376c70868b"
+      }
+    },
+    {
+      "href": "https://www.bolovo.com.br/expedition-team ",
+      "image": {
+        "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/b0a0435e-e415-4aaf-a8ea-0c387a72f37e",
+        "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/1262a3fe-e90c-4747-b041-d2c705883897"
+      }
+    }
+  ],
+  "borderRadius": { "mobile": "small", "desktop": "small" },
+  "itemsPerLine": { "mobile": 1, "desktop": 4 },
+  "__resolveType": "site/sections/Content/BannerGrid.tsx"
+}

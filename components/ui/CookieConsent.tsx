@@ -1,15 +1,12 @@
 import { useId } from "$store/sdk/useId.ts";
-import { useScript } from "deco/hooks/useScript.ts";
-
+import { useScript } from "@deco/deco/hooks";
 const script = (id: string) => {
   const callback = () => {
     const KEY = "store-cookie-consent";
     const ACCEPTED = "accepted";
     const HIDDEN = "translate-y-[200%]";
-
     const consent = localStorage.getItem(KEY);
     const elem = document.getElementById(id);
-
     if (consent !== ACCEPTED && elem) {
       const accept = elem.querySelector("[data-button-cc-accept]");
       accept && accept.addEventListener("click", () => {
@@ -22,10 +19,8 @@ const script = (id: string) => {
       elem.classList.remove(HIDDEN);
     }
   };
-
   addEventListener("scroll", callback, { once: true });
 };
-
 export interface Props {
   title?: string;
   /** @format rich-text */
@@ -43,7 +38,6 @@ export interface Props {
     content?: "Tiled" | "Piled up";
   };
 }
-
 const DEFAULT_PROPS = {
   title: "Cookies",
   text:
@@ -61,14 +55,12 @@ const DEFAULT_PROPS = {
     content: "Tiled",
   },
 };
-
 function CookieConsent(props: Props) {
   const id = useId();
   const { title, text, policy, buttons, layout } = {
     ...DEFAULT_PROPS,
     ...props,
   };
-
   return (
     <>
       <div
@@ -82,7 +74,7 @@ function CookieConsent(props: Props) {
       >
         <div
           class={`
-          p-4 mx-4 my-2 flex flex-col gap-4 shadow bg-base-100 border border-base-200 
+          p-4 mx-4 my-2 flex flex-col gap-4 shadow bg-white border border-base-200 
           ${
             !layout?.position || layout?.position === "Expanded"
               ? "lg:container lg:mx-auto"
@@ -150,5 +142,4 @@ function CookieConsent(props: Props) {
     </>
   );
 }
-
 export default CookieConsent;

@@ -31,9 +31,7 @@ export default function SkuSelector(
     <>
       {variants.length !== 1
         ? variants.map((variant) => (
-          <li
-            class={`ease-in-out duration-500 delay-300`}
-          >
+          <li class="ease-in-out duration-500 delay-300">
             {variant.inStock
               ? (
                 <button
@@ -55,7 +53,7 @@ export default function SkuSelector(
                 </button>
               )
               : (
-                <button class="text-[#E0E0E0] cursor-not-allowed relative false w-auto flex items-center justify-center group/number ">
+                <button class="text-[#E0E0E0] cursor-not-allowed relative false w-auto flex items-center justify-center group/number">
                   <span class="cursor-not-allowed false flex h-6 w-6 text-center items-center justify-center">
                     {priceIntl
                       ? variant.size?.substring(4).replace("|", "")

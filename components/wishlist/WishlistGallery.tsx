@@ -1,12 +1,8 @@
-import SearchResult, {
-  Props as SearchResultProps,
-} from "../search/SearchResultMenu.tsx";
-
-export type Props = SearchResultProps;
-
+import { Product } from "apps/commerce/types.ts";
+import SearchResult, { loader, Props } from "../search/SearchResultMenu.tsx";
+import { type SectionProps } from "@deco/deco";
 function WishlistGallery(props: Props) {
   const isEmpty = !props.page || props.page.products.length === 0;
-
   if (isEmpty) {
     return (
       <div class="container mx-4 sm:mx-auto">
@@ -22,8 +18,14 @@ function WishlistGallery(props: Props) {
       </div>
     );
   }
-
-  return <SearchResult {...props} />;
+  return (
+    <SearchResult
+      {...props as SectionProps<typeof loader> & {
+        colorVariant: {
+          [productName: string]: Product[];
+        };
+      }}
+    />
+  );
 }
-
 export default WishlistGallery;

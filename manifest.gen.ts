@@ -4,12 +4,11 @@
 
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
-import * as $$$3 from "./loaders/decoAbTestScript.ts";
 import * as $$$0 from "./loaders/Layouts/ColorMap.tsx";
 import * as $$$1 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$2 from "./loaders/List/Sections.tsx";
-import * as $$$4 from "./loaders/newsletter.ts";
-import * as $$$5 from "./loaders/proxy.ts";
+import * as $$$3 from "./loaders/newsletter.ts";
+import * as $$$4 from "./loaders/proxy.ts";
 import * as $$$$$$0 from "./sections/Category/BannerCategoryGrid.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$2 from "./sections/Category/CategoryMenu.tsx";
@@ -34,99 +33,88 @@ import * as $$$$$$20 from "./sections/Layout/Container.tsx";
 import * as $$$$$$21 from "./sections/Layout/Flex.tsx";
 import * as $$$$$$22 from "./sections/Layout/Grid.tsx";
 import * as $$$$$$23 from "./sections/Layout/GridItem.tsx";
-import * as $$$$$$24 from "./sections/Miscellaneous/CookieConsent.tsx";
-import * as $$$$$$25 from "./sections/Newsletter/Newsletter.tsx";
-import * as $$$$$$26 from "./sections/Product/FeaturedGallery.tsx";
-import * as $$$$$$27 from "./sections/Product/ImageGalleryFrontBack.tsx";
-import * as $$$$$$28 from "./sections/Product/ImageGallerySlider.tsx";
-import * as $$$$$$29 from "./sections/Product/NotFound.tsx";
-import * as $$$$$$30 from "./sections/Product/NotFoundChallenge.tsx";
-import * as $$$$$$31 from "./sections/Product/PageOfProduct.tsx";
+import * as $$$$$$24 from "./sections/Miscellaneous/CampaignTimer.tsx";
+import * as $$$$$$25 from "./sections/Miscellaneous/CookieConsent.tsx";
+import * as $$$$$$26 from "./sections/Newsletter/Newsletter.tsx";
+import * as $$$$$$27 from "./sections/Product/FeaturedGallery.tsx";
+import * as $$$$$$28 from "./sections/Product/ImageGalleryFrontBack.tsx";
+import * as $$$$$$29 from "./sections/Product/ImageGallerySlider.tsx";
+import * as $$$$$$30 from "./sections/Product/NotFound.tsx";
+import * as $$$$$$31 from "./sections/Product/NotFoundChallenge.tsx";
 import * as $$$$$$32 from "./sections/Product/PhotoGallery.tsx";
 import * as $$$$$$33 from "./sections/Product/ProductDetails.tsx";
 import * as $$$$$$34 from "./sections/Product/ProductGallery.tsx";
-import * as $$$$$$35 from "./sections/Product/ProductInfo.tsx";
-import * as $$$$$$36 from "./sections/Product/ProductRelatedShelf.tsx";
-import * as $$$$$$37 from "./sections/Product/ProductShelf.tsx";
-import * as $$$$$$38 from "./sections/Product/ProductShelfByPage.tsx";
-import * as $$$$$$39 from "./sections/Product/ProductShelfTabbed.tsx";
-import * as $$$$$$40 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$41 from "./sections/Product/SearchResultMenu.tsx";
-import * as $$$$$$42 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$43 from "./sections/ScriptTestAB.tsx";
-import * as $$$$$$44 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$45 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$46 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$35 from "./sections/Product/ProductRelatedShelf.tsx";
+import * as $$$$$$36 from "./sections/Product/ProductShelf.tsx";
+import * as $$$$$$37 from "./sections/Product/ProductShelfByPage.tsx";
+import * as $$$$$$38 from "./sections/Product/ProductShelfTabbed.tsx";
+import * as $$$$$$39 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$40 from "./sections/Product/SearchResultMenu.tsx";
+import * as $$$$$$41 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$42 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$43 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$44 from "./sections/Theme/Theme.tsx";
 
 const manifest = {
   "loaders": {
-    "deco-sites/bolovo-store/loaders/decoAbTestScript.ts": $$$3,
-    "deco-sites/bolovo-store/loaders/Layouts/ColorMap.tsx": $$$0,
-    "deco-sites/bolovo-store/loaders/Layouts/ProductCard.tsx": $$$1,
-    "deco-sites/bolovo-store/loaders/List/Sections.tsx": $$$2,
-    "deco-sites/bolovo-store/loaders/newsletter.ts": $$$4,
-    "deco-sites/bolovo-store/loaders/proxy.ts": $$$5,
+    "site/loaders/Layouts/ColorMap.tsx": $$$0,
+    "site/loaders/Layouts/ProductCard.tsx": $$$1,
+    "site/loaders/List/Sections.tsx": $$$2,
+    "site/loaders/newsletter.ts": $$$3,
+    "site/loaders/proxy.ts": $$$4,
   },
   "sections": {
-    "deco-sites/bolovo-store/sections/Category/BannerCategoryGrid.tsx": $$$$$$0,
-    "deco-sites/bolovo-store/sections/Category/CategoryBanner.tsx": $$$$$$1,
-    "deco-sites/bolovo-store/sections/Category/CategoryMenu.tsx": $$$$$$2,
-    "deco-sites/bolovo-store/sections/Content/BannerGrid.tsx": $$$$$$3,
-    "deco-sites/bolovo-store/sections/Content/Stores.tsx": $$$$$$4,
-    "deco-sites/bolovo-store/sections/Content/TextSEO.tsx": $$$$$$5,
-    "deco-sites/bolovo-store/sections/Content/VideoAndText.tsx": $$$$$$6,
-    "deco-sites/bolovo-store/sections/DataLayer/Home.tsx": $$$$$$7,
-    "deco-sites/bolovo-store/sections/Footer/Footer.tsx": $$$$$$8,
-    "deco-sites/bolovo-store/sections/Gallery.tsx": $$$$$$9,
-    "deco-sites/bolovo-store/sections/Header/Header.tsx": $$$$$$10,
-    "deco-sites/bolovo-store/sections/Images/Carousel.tsx": $$$$$$11,
-    "deco-sites/bolovo-store/sections/Institutional/AccordionsContent.tsx":
-      $$$$$$12,
-    "deco-sites/bolovo-store/sections/Institutional/AsideMenu.tsx": $$$$$$13,
-    "deco-sites/bolovo-store/sections/Institutional/CardsContent.tsx": $$$$$$14,
-    "deco-sites/bolovo-store/sections/Institutional/ContactForm.tsx": $$$$$$15,
-    "deco-sites/bolovo-store/sections/Institutional/FeaturedStore.tsx":
-      $$$$$$16,
-    "deco-sites/bolovo-store/sections/Institutional/InstitutionalPage.tsx":
-      $$$$$$17,
-    "deco-sites/bolovo-store/sections/Institutional/StoresList.tsx": $$$$$$18,
-    "deco-sites/bolovo-store/sections/Institutional/TextContent.tsx": $$$$$$19,
-    "deco-sites/bolovo-store/sections/Layout/Container.tsx": $$$$$$20,
-    "deco-sites/bolovo-store/sections/Layout/Flex.tsx": $$$$$$21,
-    "deco-sites/bolovo-store/sections/Layout/Grid.tsx": $$$$$$22,
-    "deco-sites/bolovo-store/sections/Layout/GridItem.tsx": $$$$$$23,
-    "deco-sites/bolovo-store/sections/Miscellaneous/CookieConsent.tsx":
-      $$$$$$24,
-    "deco-sites/bolovo-store/sections/Newsletter/Newsletter.tsx": $$$$$$25,
-    "deco-sites/bolovo-store/sections/Product/FeaturedGallery.tsx": $$$$$$26,
-    "deco-sites/bolovo-store/sections/Product/ImageGalleryFrontBack.tsx":
-      $$$$$$27,
-    "deco-sites/bolovo-store/sections/Product/ImageGallerySlider.tsx": $$$$$$28,
-    "deco-sites/bolovo-store/sections/Product/NotFound.tsx": $$$$$$29,
-    "deco-sites/bolovo-store/sections/Product/NotFoundChallenge.tsx": $$$$$$30,
-    "deco-sites/bolovo-store/sections/Product/PageOfProduct.tsx": $$$$$$31,
-    "deco-sites/bolovo-store/sections/Product/PhotoGallery.tsx": $$$$$$32,
-    "deco-sites/bolovo-store/sections/Product/ProductDetails.tsx": $$$$$$33,
-    "deco-sites/bolovo-store/sections/Product/ProductGallery.tsx": $$$$$$34,
-    "deco-sites/bolovo-store/sections/Product/ProductInfo.tsx": $$$$$$35,
-    "deco-sites/bolovo-store/sections/Product/ProductRelatedShelf.tsx":
-      $$$$$$36,
-    "deco-sites/bolovo-store/sections/Product/ProductShelf.tsx": $$$$$$37,
-    "deco-sites/bolovo-store/sections/Product/ProductShelfByPage.tsx": $$$$$$38,
-    "deco-sites/bolovo-store/sections/Product/ProductShelfTabbed.tsx": $$$$$$39,
-    "deco-sites/bolovo-store/sections/Product/SearchResult.tsx": $$$$$$40,
-    "deco-sites/bolovo-store/sections/Product/SearchResultMenu.tsx": $$$$$$41,
-    "deco-sites/bolovo-store/sections/Product/Wishlist.tsx": $$$$$$42,
-    "deco-sites/bolovo-store/sections/ScriptTestAB.tsx": $$$$$$43,
-    "deco-sites/bolovo-store/sections/Social/InstagramPosts.tsx": $$$$$$44,
-    "deco-sites/bolovo-store/sections/Social/WhatsApp.tsx": $$$$$$45,
-    "deco-sites/bolovo-store/sections/Theme/Theme.tsx": $$$$$$46,
+    "site/sections/Category/BannerCategoryGrid.tsx": $$$$$$0,
+    "site/sections/Category/CategoryBanner.tsx": $$$$$$1,
+    "site/sections/Category/CategoryMenu.tsx": $$$$$$2,
+    "site/sections/Content/BannerGrid.tsx": $$$$$$3,
+    "site/sections/Content/Stores.tsx": $$$$$$4,
+    "site/sections/Content/TextSEO.tsx": $$$$$$5,
+    "site/sections/Content/VideoAndText.tsx": $$$$$$6,
+    "site/sections/DataLayer/Home.tsx": $$$$$$7,
+    "site/sections/Footer/Footer.tsx": $$$$$$8,
+    "site/sections/Gallery.tsx": $$$$$$9,
+    "site/sections/Header/Header.tsx": $$$$$$10,
+    "site/sections/Images/Carousel.tsx": $$$$$$11,
+    "site/sections/Institutional/AccordionsContent.tsx": $$$$$$12,
+    "site/sections/Institutional/AsideMenu.tsx": $$$$$$13,
+    "site/sections/Institutional/CardsContent.tsx": $$$$$$14,
+    "site/sections/Institutional/ContactForm.tsx": $$$$$$15,
+    "site/sections/Institutional/FeaturedStore.tsx": $$$$$$16,
+    "site/sections/Institutional/InstitutionalPage.tsx": $$$$$$17,
+    "site/sections/Institutional/StoresList.tsx": $$$$$$18,
+    "site/sections/Institutional/TextContent.tsx": $$$$$$19,
+    "site/sections/Layout/Container.tsx": $$$$$$20,
+    "site/sections/Layout/Flex.tsx": $$$$$$21,
+    "site/sections/Layout/Grid.tsx": $$$$$$22,
+    "site/sections/Layout/GridItem.tsx": $$$$$$23,
+    "site/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$24,
+    "site/sections/Miscellaneous/CookieConsent.tsx": $$$$$$25,
+    "site/sections/Newsletter/Newsletter.tsx": $$$$$$26,
+    "site/sections/Product/FeaturedGallery.tsx": $$$$$$27,
+    "site/sections/Product/ImageGalleryFrontBack.tsx": $$$$$$28,
+    "site/sections/Product/ImageGallerySlider.tsx": $$$$$$29,
+    "site/sections/Product/NotFound.tsx": $$$$$$30,
+    "site/sections/Product/NotFoundChallenge.tsx": $$$$$$31,
+    "site/sections/Product/PhotoGallery.tsx": $$$$$$32,
+    "site/sections/Product/ProductDetails.tsx": $$$$$$33,
+    "site/sections/Product/ProductGallery.tsx": $$$$$$34,
+    "site/sections/Product/ProductRelatedShelf.tsx": $$$$$$35,
+    "site/sections/Product/ProductShelf.tsx": $$$$$$36,
+    "site/sections/Product/ProductShelfByPage.tsx": $$$$$$37,
+    "site/sections/Product/ProductShelfTabbed.tsx": $$$$$$38,
+    "site/sections/Product/SearchResult.tsx": $$$$$$39,
+    "site/sections/Product/SearchResultMenu.tsx": $$$$$$40,
+    "site/sections/Product/Wishlist.tsx": $$$$$$41,
+    "site/sections/Social/InstagramPosts.tsx": $$$$$$42,
+    "site/sections/Social/WhatsApp.tsx": $$$$$$43,
+    "site/sections/Theme/Theme.tsx": $$$$$$44,
   },
   "apps": {
-    "deco-sites/bolovo-store/apps/decohub.ts": $$$$$$$$$$$0,
-    "deco-sites/bolovo-store/apps/site.ts": $$$$$$$$$$$1,
+    "site/apps/decohub.ts": $$$$$$$$$$$0,
+    "site/apps/site.ts": $$$$$$$$$$$1,
   },
-  "name": "deco-sites/bolovo-store",
+  "name": "site",
   "baseUrl": import.meta.url,
 };
 

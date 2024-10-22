@@ -1,0 +1,28 @@
+{
+  "title": "<p><br data-mce-bogus=\"1\"></p>",
+  "products": {
+    "ids": [2891, 2890, 2880, 2879],
+    "sort": "newest",
+    "tags": [],
+    "count": 4,
+    "__resolveType": "vnda/loaders/productList.ts"
+  },
+  "__resolveType": "site/sections/Product/PhotoGallery.tsx",
+  "featuredPhoto": {
+    "alt": "pra ficar na estica",
+    "src": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/9844eb02-d376-4c50-9157-1d398d2ef2fa/01.png",
+    "href": "/inverno-24",
+    "preload": false
+  },
+  "contentDirection": {
+    "mobile": "imagem acima",
+    "desktop": "imagem na esquerda"
+  },
+  "productCardLayout": {
+    "dots": true,
+    "aspect": true,
+    "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+    "onMouseOver": { "card": "None", "image": "Change image" },
+    "elementsPositions": { "skuSelector": "Top", "favoriteIcon": "Top right" }
+  }
+}

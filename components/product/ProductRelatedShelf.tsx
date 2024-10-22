@@ -20,7 +20,7 @@ export interface Props {
   showColorVariants?: boolean;
 }
 
-export const loader = async (props: Props, req: Request, ctx: AppContext) => {
+export const loader = async (props: Props, _req: Request, ctx: AppContext) => {
   const categoryProperty = props.relatedProducts?.product
     .additionalProperty?.find((property) => property.name === "categoria");
 

@@ -1,23 +1,19 @@
 import type { Platform } from "$store/apps/site.ts";
 import { SendEventOnClick } from "$store/components/Analytics.tsx";
 import Avatar from "$store/components/ui/Avatar.tsx";
+import ColorSelector from "$store/islands/ColorSelector.tsx";
+import ProductMedia from "$store/islands/ProductCardMedia.tsx";
+import QuickShop from "$store/islands/QuickShop.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
+import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
+import { useUI } from "$store/sdk/useUI.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import { signal } from "@preact/signals";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-// import { Picture, Source } from "apps/website/components/Picture.tsx";
-import QuickShop from "$store/islands/QuickShop.tsx";
-import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-// import Slider from "deco-sites/bolovo-store/components/ui/Slider.tsx";
-// import SliderJS from "deco-sites/bolovo-store/islands/SliderJS.tsx";
-import { useId } from "deco-sites/bolovo-store/sdk/useId.ts";
-// import Image from "apps/website/components/Image.tsx";
-import ColorSelector from "$store/islands/ColorSelector.tsx";
-import ProductMedia from "$store/islands/ProductCardMedia.tsx";
-import { useUI } from "$store/sdk/useUI.ts";
 
 export interface Layout {
   basics?: {
@@ -130,14 +126,22 @@ function ProductCard(
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, listPriceIntl, price, priceIntl = 0, availability } =
-    useOffer(offers);
+  const {
+    listPrice,
+    salePrice,
+    listPriceIntl,
+    price,
+    priceIntl = 0,
+    availability,
+  } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const { activePriceIntl } = useUI();
   const currency = activePriceIntl.value.active
     ? offers?.offers[1]?.priceCurrency || "USD"
     : offers?.priceCurrency || "BRL";
-  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
+  const productPrice = activePriceIntl.value.active
+    ? priceIntl || 0
+    : salePrice;
   const productListPrice = activePriceIntl.value.active && listPriceIntl ||
     listPrice;
   const align = !layout?.basics?.contentAlignment ||
@@ -245,7 +249,7 @@ function ProductCard(
           (
             <QuickShop
               product={product}
-              customClass={`w-full lg:group-hover:translate-y-0 lg:group-hover:bg-base-100`}
+              customClass={`w-full lg:group-hover:translate-y-0 lg:group-hover:bg-white`}
               priceIntl={activePriceIntl.value.active}
             />
           )}
@@ -335,7 +339,13 @@ function ProductCard(
                   >
                     {formatPrice(productListPrice, currency)}
                   </div>
-                  <div class="text-black leading-[130%] text-[0.875rem] lg:text-end font-light">
+                  <div
+                    class={`${
+                      productPrice && (productListPrice ?? 0) > productPrice
+                        ? "text-red-500"
+                        : "text-black"
+                    } leading-[130%] text-base lg:text-end font-light`}
+                  >
                     {formatPrice(productPrice, currency) || "US$ 0,00"}
                   </div>
                 </div>

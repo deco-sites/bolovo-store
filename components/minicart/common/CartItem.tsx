@@ -7,7 +7,7 @@ import Image from "apps/website/components/Image.tsx";
 import {
   HandleProductOnCartEvent,
   ProductParam,
-} from "deco-sites/bolovo-store/components/Analytics.tsx";
+} from "site/components/Analytics.tsx";
 import { useCallback, useState } from "preact/hooks";
 
 export interface Item {
@@ -52,7 +52,8 @@ function CartItem(
   const isGift = sale < 0.01;
   const [loading, setLoading] = useState(false);
 
-  const priceProduct = priceIntl ? listIntl : list;
+  const listProduct = priceIntl ? listIntl : list;
+  const priceProduct = priceIntl ? listIntl : sale;
 
   const withLoading = useCallback(
     <A,>(cb: (args: A) => Promise<void>) => async (e: A) => {
@@ -84,10 +85,24 @@ function CartItem(
         <p class="text-[0.938rem] leading-5 text-[#121212] font-semibold max-w-[244px] text-ellipsis overflow-hidden">
           {name}
         </p>
-        <div class="flex items-center gap-2 flex-row w-full justify-between">
-          <span class="text-sm font-normal text-[#121212]">
-            {formatPrice(priceProduct, currency, locale)}
-          </span>
+        <div class="flex items-center gap-2 flex-row w-full justify-start">
+          {(listProduct ?? 0) > (priceProduct ?? 0)
+            ? (
+              <>
+                <span class="line-through text-base-300 text-base">
+                  {formatPrice(listProduct, currency)}
+                </span>
+                <span class="text-base font-normal text-red-500">
+                  {formatPrice(priceProduct, currency, locale)}
+                </span>
+              </>
+            )
+            : (
+              <span class="text-base font-normal text-[#121212]">
+                {formatPrice(priceProduct, currency, locale)}
+              </span>
+            )}
+
           {size && (
             <span class="text-sm text-[#121212] font-normal">
               Tam: {priceIntl

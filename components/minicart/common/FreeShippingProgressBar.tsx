@@ -31,7 +31,7 @@ function FreeShippingProgressBar(
                     html={freeShippingText?.replace(
                       "$valor",
                       `<span style=color:${freeShippingValueColor}>${valueFreeShipping}</span>`,
-                    )}
+                    ) ?? ""}
                   />
                 </span>
                 <img

@@ -1,19 +1,17 @@
+import type { AppContext } from "$store/apps/site.ts";
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
-import ProductCard, {
-  Layout as cardLayout,
-} from "$store/components/product/ProductCard.tsx";
+import ProductCard from "$store/components/product/ProductCard.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Header from "$store/components/ui/SectionHeader.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
+import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
+import { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import type { AppContext } from "$store/apps/site.ts";
-import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
-import { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Props {
   /** @format rich-text */

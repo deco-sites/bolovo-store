@@ -1,8 +1,8 @@
-import type { Product } from "apps/commerce/types.ts";
-import Gallery from "$store/components/product/ProductGallery.tsx";
 import type { AppContext } from "$store/apps/site.ts";
+import Gallery from "$store/components/product/ProductGallery.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-import { Layout } from "deco-sites/bolovo-store/components/product/ProductCard.tsx";
+import type { Product } from "apps/commerce/types.ts";
+import { Layout } from "site/components/product/ProductCard.tsx";
 
 export interface Props {
   /** @format rich-text */
@@ -39,7 +39,7 @@ export function LoadingFallback({ title }: Props) {
 
 export const loader = async (
   props: Props,
-  req: Request,
+  _req: Request,
   ctx: AppContext,
 ) => {
   const colorRelated: { [productName: string]: Product[] } = {};

@@ -1,0 +1,306 @@
+{
+  "name": "BLV CASH",
+  "path": "/institutional/blvcash",
+  "sections": {
+    "variants": [
+      {
+        "rule": { "__resolveType": "website/matchers/always.ts" },
+        "value": [
+          { "__resolveType": "Theme - Bolovo " },
+          { "__resolveType": "Header - 01" },
+          {
+            "content": "<div style=\"max-width: 900px; margin: 0 auto; padding: 20px;\" data-mce-style=\"max-width: 900px; margin: 0 auto; padding: 20px;\"><p style=\"text-align: justify;\" data-mce-style=\"text-align: justify;\"><span style=\"font-size: 12pt;\" data-mce-style=\"font-size: 12pt;\">O BLVcash é o nosso programa oficial de recompensas para apoiar quem apoia a Bolovo®. Afinal, amigos ajudam amigos.</span></p><p style=\"text-align: justify;\" data-mce-style=\"text-align: justify;\"><span style=\"font-size: 12pt;\" data-mce-style=\"font-size: 12pt;\">Todo pedido confirmado em nosso site gera CashBack para ser utilizado numa próxima compra. Esse é um empurrãozinho pra você começar a explorar o site e ir atrás das peças que você está de olho há um tempo.</span></p><p style=\"text-align: justify;\" data-mce-style=\"text-align: justify;\"><span style=\"font-size: 12pt;\" data-mce-style=\"font-size: 12pt;\">É o melhor jeito de fazer um bom negócio e comprar com desconto na Bolovo®.&nbsp;</span></p><p style=\"text-align: justify;\" data-mce-style=\"text-align: justify;\"><span style=\"font-size: 12pt;\" data-mce-style=\"font-size: 12pt;\">Nós queremos que você aproveite.</span></p><p style=\"text-align: justify;\" data-mce-style=\"text-align: justify;\"><span style=\"font-size: 12pt;\" data-mce-style=\"font-size: 12pt;\">Consulte as regras e condições do <strong><a href=\"https://bolovo.zendesk.com/hc/pt-br/articles/4405444046875-Regras-e-condi%C3%A7%C3%B5es-do-BLVcash\" data-mce-href=\"https://bolovo.zendesk.com/hc/pt-br/articles/4405444046875-Regras-e-condi%C3%A7%C3%B5es-do-BLVcash\"><span style=\"color: rgb(0, 0, 0);\" data-mce-style=\"color: rgb(0, 0, 0);\">BLVcash</span></a></strong> &nbsp;pra não ficar de fora dessa!</span></p></div>",
+            "__resolveType": "site/sections/Institutional/TextContent.tsx"
+          },
+          {
+            "images": [
+              {
+                "alt": "/",
+                "action": {
+                  "href": "https://bolovo.zendesk.com/hc/pt-br/articles/4405444046875-Regras-e-condi%C3%A7%C3%B5es-do-BLVcash",
+                  "label": "https://bolovo.zendesk.com/hc/pt-br/articles/4405444046875-Regras-e-condi%C3%A7%C3%B5es-do-BLVcash"
+                },
+                "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/838fd12f-0f0a-4a45-9a5d-7d4103489688",
+                "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/fc0c1a86-bcfc-4cd8-9369-344b3d687098"
+              }
+            ],
+            "preload": false,
+            "autoplay": { "activate": false, "interval": 5 },
+            "__resolveType": "site/sections/Images/Carousel.tsx"
+          },
+          {
+            "logo": {
+              "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/cf9aca9c-0d83-4de7-982c-88ba4676edce",
+              "description": "BOLOVO PRODUCTIONS ONLINE STORE COMPRE PELO WHATS AQUI"
+            },
+            "items": {
+              "items": [
+                {
+                  "href": "https://www.bolovo.com.br/entrar",
+                  "label": "LOGIN"
+                },
+                {
+                  "href": "https://bolovo.zendesk.com/hc/pt-br",
+                  "label": "AJUDA"
+                },
+                {
+                  "href": "https://bolovo.zendesk.com/hc/pt-br/requests/new",
+                  "label": "CONTATO"
+                },
+                {
+                  "href": "https://www.bolovo.com.br/p/lojas",
+                  "label": "LOJAS"
+                },
+                {
+                  "href": "https://api.whatsapp.com/send/?phone=5511973787379&text&type=phone_number&app_absent=0",
+                  "label": "COMPRE PELO WHATSAPP"
+                }
+              ]
+            },
+            "layout": {
+              "hide": {
+                "logo": false,
+                "contacts": false,
+                "extraLinks": false,
+                "mobileApps": true,
+                "newsletter": false,
+                "socialLinks": false,
+                "backToTheTop": false,
+                "regionOptions": true
+              },
+              "variation": "Variation 1",
+              "backgroundColor": "Base 100"
+            },
+            "social": {
+              "items": [
+                { "link": "http://deco.cx/", "label": "Instagram" },
+                { "link": "/", "label": "Spotify" },
+                { "link": "/", "label": "Youtube" }
+              ]
+            },
+            "contacts": [],
+            "payments": {
+              "items": [
+                { "label": "Diners" },
+                { "label": "Amex" },
+                { "label": "Elo" },
+                { "label": "Hiper" },
+                { "label": "Mastercard" },
+                { "label": "Visa" },
+                { "label": "Boleto" }
+              ],
+              "title": "PAGAMENTO"
+            },
+            "sections": [
+              {
+                "items": [
+                  {
+                    "href": "/institutional/historia",
+                    "label": "SOBRE",
+                    "newTab": true
+                  },
+                  {
+                    "href": "/institutional/lojas",
+                    "label": "LOJAS",
+                    "newTab": true
+                  },
+                  {
+                    "href": "/institutional/blvcash",
+                    "label": "BLV CASH",
+                    "newTab": true
+                  }
+                ],
+                "label": "SOBRE A BOLOVO",
+                "children": [
+                  { "href": "/quemsomos", "label": "Quem somos" },
+                  {
+                    "href": "/privacidadeeseguranca",
+                    "label": "Privacidade e segurança"
+                  },
+                  { "href": "/termosdeuso", "label": "Termos de uso" },
+                  { "href": "/trabalheconosco", "label": "Trabalhe conosco" }
+                ]
+              },
+              {
+                "items": [
+                  {
+                    "href": "https://bolovo.zendesk.com/hc/pt-br",
+                    "label": "CENTRAL DE AJUDA",
+                    "newTab": true
+                  },
+                  {
+                    "href": "https://bolovo.troque.app.br/",
+                    "label": "TROCAS E DEVOLUÇÕES",
+                    "newTab": true
+                  },
+                  {
+                    "href": "https://bolovo.zendesk.com/hc/pt-br/requests/new",
+                    "label": "FALE CONOSCO"
+                  }
+                ],
+                "label": "AJUDA",
+                "children": [
+                  {
+                    "href": "/centraldeatendimento",
+                    "label": "Central de atendimento"
+                  },
+                  {
+                    "href": "/whatsapp",
+                    "label": "Fale conosco pelo WhatsApp"
+                  },
+                  { "href": "/trocaedevolucao", "label": "Troca e devolução" }
+                ]
+              },
+              {
+                "items": [
+                  {
+                    "href": "https://www.bolovo.com.br/m/conteudo?categoria=filmes",
+                    "label": "FILMES",
+                    "newTab": true
+                  },
+                  {
+                    "href": "https://www.bolovo.com.br/m/conteudo?categoria=go-out",
+                    "label": "GO OUT",
+                    "newTab": true
+                  },
+                  {
+                    "href": "https://www.bolovo.com.br/m/conteudo?categoria=papo-fera",
+                    "label": "PAPO FERA",
+                    "newTab": true
+                  },
+                  {
+                    "href": "https://www.bolovo.com.br/m/conteudo?categoria=pulta-takes",
+                    "label": "PULTA TAKES",
+                    "newTab": true
+                  },
+                  {
+                    "href": "https://www.bolovo.com.br/m/conteudo?categoria=oficina-do-magrao",
+                    "label": "OFICINA DO MAGRÃO",
+                    "newTab": true
+                  }
+                ],
+                "label": "CONTEÚDO",
+                "children": [
+                  { "href": "/loginecadastro", "label": "Login e cadastro" },
+                  { "href": "/meuspedidos", "label": "Meus pedidos" }
+                ]
+              },
+              {
+                "items": [
+                  {
+                    "href": "/",
+                    "label": "INSTAGRAM:",
+                    "extraInfo": "<p><span style=\"color: rgb(0, 0, 0); font-weight: 500;\" data-mce-style=\"color: rgb(0, 0, 0); font-weight: 500;\">@bolovo</span></p>"
+                  },
+                  {
+                    "href": "/",
+                    "label": "EMAIL ",
+                    "extraInfo": "<p style=\"color: rgb(0, 0, 0); font-weight: 500;\" data-mce-style=\"color: rgb(0, 0, 0); font-weight: 500;\">contato@bolovo.com.br</p>"
+                  },
+                  {
+                    "href": "/",
+                    "label": "WHATSAPP:",
+                    "extraInfo": "<p style=\"color: rgb(0, 0, 0); font-weight: 500;\" data-mce-style=\"color: rgb(0, 0, 0); font-weight: 500;\">(11) 97378-7379&nbsp;</p>"
+                  }
+                ],
+                "label": "CONTATO"
+              }
+            ],
+            "whatsApp": {
+              "whatsAppText": "Olá, gostaria de comprar um produto!",
+              "whatsAppNumber": "5511917250298",
+              "whatsAppButtonText": "COMPRE PELO WHATS"
+            },
+            "extraInfo": "<p><strong>© BOLOVO </strong>| VNDA - TECNOLOGIA EM ECOMMERCE | CNPJ: 11625557/0001-34</p>",
+            "extraLinks": [
+              {
+                "href": "http://www.google.com",
+                "link": "http://www.google.com/",
+                "label": "Política de privacidade"
+              },
+              {
+                "href": "http://www.google.com",
+                "link": "http://www.google.com",
+                "label": "Termos de serviço"
+              }
+            ],
+            "mobileApps": {
+              "apple": "http://www.google.com",
+              "android": "http://www.google.com"
+            },
+            "newsletter": {
+              "form": {
+                "helpText": "<p>BLV OH YEAH MAIL é a nossa newsletter. Não tem uma regularidade, mas de vez em quando chega ali na sua caixa de Spam tudo que tá rolando na Bolovo em primeira mão.</p>",
+                "buttonText": "ENVIAR",
+                "placeholder": "E-MAIL",
+                "helpTextMobile": "<p>BLV OH YEAH MAIL é a nossa newsletter. Não tem uma regularidade, mas de vez em quando chega ali na sua caixa de Spam tudo que tá rolando na Bolovo em primeira mão.</p>",
+                "helpTextDesktop": "<p>BLV OH YEAH MAIL é a nossa newsletter. Não tem uma regularidade, mas de vez em quando chega ali na sua caixa de Spam tudo que tá rolando na Bolovo em primeira mão.</p>"
+              },
+              "title": "seja o primeiro a saber das novidades da bolovo",
+              "titleMobile": "newsletter",
+              "titleDesktop": "seja o primeiro a saber das novidades da bolovo"
+            },
+            "countryFlag": [
+              {
+                "countryImg": {
+                  "alt": "world wide image",
+                  "img": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/5a161e9b-1cd4-417a-adad-d8a84edaf441"
+                },
+                "countryLabel": "WORLD WIDE",
+                "languageAbbreviation": "en"
+              },
+              {
+                "countryImg": {
+                  "alt": "brasil image",
+                  "img": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/f10d8ea6-179e-4a08-aeb7-7de2247117a0"
+                },
+                "countryLabel": "BRASIL",
+                "languageAbbreviation": "pt"
+              }
+            ],
+            "footerLogos": [
+              {
+                "alt": "bolovo logo",
+                "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/e3e370e1-27ae-4151-b844-e45b393bb913",
+                "width": 81,
+                "height": 42
+              },
+              {
+                "alt": "bolovo logo",
+                "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a21ba8ef-aec8-4c06-b500-a15ffa74e4cd",
+                "width": 54,
+                "height": 52
+              },
+              {
+                "alt": "bolovo logo",
+                "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/9d69431d-b515-41ec-a0f4-3e6072e20dfa",
+                "width": 86,
+                "height": 41
+              }
+            ],
+            "footerTexts": {
+              "alt": "Footer title",
+              "text": "<p><br data-mce-bogus=\"1\"></p>",
+              "subTitle": "SINCE 2006",
+              "footerTitle": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/87f95e4f-307b-40c9-b36c-250127af7a1d"
+            },
+            "backToTheTop": { "text": "Voltar ao topo" },
+            "__resolveType": "site/sections/Footer/Footer.tsx",
+            "regionOptions": {
+              "currency": [
+                { "href": "/", "label": "Brasil BRL" },
+                { "href": "/", "label": "United Stated USD" }
+              ],
+              "language": [
+                { "href": "/", "label": "PT" },
+                { "href": "/", "label": "EN" }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "__resolveType": "website/flags/multivariate.ts"
+  },
+  "__resolveType": "website/pages/Page.tsx"
+}

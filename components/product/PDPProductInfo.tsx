@@ -16,7 +16,7 @@ import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product, ProductDetailsPage } from "apps/commerce/types.ts";
-import { ADD_TO_CART_ID } from "deco-sites/bolovo-store/components/product/AddToCartButton/common.tsx";
+import { ADD_TO_CART_ID } from "site/components/product/AddToCartButton/common.tsx";
 import type { Description } from "../../sdk/markdownToObj.ts";
 import markdownToObj from "../../sdk/markdownToObj.ts";
 import { useUI } from "../../sdk/useUI.ts";
@@ -71,7 +71,6 @@ function PDPProductInfo(
     throw new Error("Missing Product Details Page Info");
   }
   const {
-    breadcrumbList,
     product,
   } = page;
   const {
@@ -86,6 +85,7 @@ function PDPProductInfo(
   const {
     price = 0,
     listPrice,
+    salePrice,
     seller = "1",
     availability,
     priceIntl = 0,
@@ -99,7 +99,9 @@ function PDPProductInfo(
   const currency = activePriceIntl.value.active
     ? offers?.offers[1]?.priceCurrency || "USD"
     : offers?.priceCurrency || "BRL";
-  const productPrice = activePriceIntl.value.active ? priceIntl || 0 : price;
+  const productPrice = activePriceIntl.value.active
+    ? priceIntl || 0
+    : (salePrice ?? 0);
   const productListPrice = listPriceIntl || listPrice || 0;
   const discount = productPrice && productListPrice
     ? productListPrice - productPrice
@@ -116,14 +118,22 @@ function PDPProductInfo(
         {/* Prices */}
         <div>
           <div class="flex flex-row gap-2 items-center">
-            {(productListPrice ?? 0) > productListPrice && (
-              <span class="line-through text-base-300 text-base">
-                {formatPrice(productListPrice, currency)}
-              </span>
-            )}
-            <span class=" text-base font-light">
-              {formatPrice(productPrice, currency) ?? " US$ 0,00"}
-            </span>
+            {(productListPrice ?? 0) > productPrice
+              ? (
+                <>
+                  <span class="line-through text-base-300 text-base">
+                    {formatPrice(productListPrice, currency)}
+                  </span>
+                  <span class="text-base font-light text-red-500">
+                    {formatPrice(productPrice, currency) ?? " US$ 0,00"}
+                  </span>
+                </>
+              )
+              : (
+                <span class="text-base font-light">
+                  {formatPrice(productPrice, currency) ?? " US$ 0,00"}
+                </span>
+              )}
           </div>
         </div>
       </div>

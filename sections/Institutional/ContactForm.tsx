@@ -1,4 +1,4 @@
-import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
+import Icon from "site/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
 
 export interface Props {
@@ -161,7 +161,7 @@ function ContactForm({
               />
             </div>
             <div>
-              <Button class="btn btn-sm btn-primary hover:text-base-100 w-24 h-[34px]">
+              <Button class="btn btn-sm btn-primary hover:text-white w-24 h-[34px]">
                 Enviar
               </Button>
             </div>

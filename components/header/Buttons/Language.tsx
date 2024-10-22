@@ -1,4 +1,4 @@
-import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
+import Icon from "site/components/ui/Icon.tsx";
 import Image from "apps/website/components/Image.tsx";
 import { useSignal } from "@preact/signals";
 import type { Country } from "$store/components/header/Header.tsx";
@@ -30,7 +30,13 @@ export default function LanguageSwitcher(
   );
 
   function setLanguageCookie(languageCode: string) {
-    document.cookie = "language=" + languageCode.toLowerCase() + "; path=/";
+    const now = new Date();
+    const expireTime = now.getTime() + 86400000; // adding one day
+    now.setTime(expireTime);
+
+    document.cookie = "language=" + languageCode.toLowerCase() + ";expires=" +
+      now.toUTCString() + ";path=/";
+
     location.reload();
   }
   useEffect(() => {
@@ -99,7 +105,7 @@ export default function LanguageSwitcher(
           />
         </summary>
         <ul
-          class={`p-2 shadow menu w-auto dropdown-content z-[1] bg-base-100 rounded-box ${classFlags}`}
+          class={`p-2 shadow menu w-auto dropdown-content z-[1] bg-white rounded-box ${classFlags}`}
         >
           {countryFlag.map((iten) => {
             return (

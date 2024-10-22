@@ -7,7 +7,7 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import LanguageSwitcher from "$store/islands/Header/ButtonLanguage.tsx";
 import { Country } from "$store/components/header/Header.tsx";
 import Image from "apps/website/components/Image.tsx";
-import Icon from "deco-sites/bolovo-store/components/ui/Icon.tsx";
+import Icon from "site/components/ui/Icon.tsx";
 
 export type Item = {
   label: string;

@@ -32,7 +32,7 @@ const Aside = (
     children: ComponentChildren;
   },
 ) => (
-  <div class="bg-base-100 grid grid-rows-[auto_1fr] min-h-full w-auto max-w-[90vw]">
+  <div class="bg-white grid grid-rows-[auto_1fr] min-h-full w-auto max-w-[90vw]">
     <div class="hidden md:flex justify-end items-center px-2">
       <h1 class="px-[18px] py-3">
         <span class="font-semibold text-sm">{title}</span>
@@ -96,7 +96,7 @@ function Drawers(
                 </div>
               }
             >
-              {displayCart.value && (
+              {displayCart.value && miniCart && (
                 <Cart
                   platform={platform}
                   miniCart={miniCart}

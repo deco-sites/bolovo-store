@@ -1,0 +1,33 @@
+{
+  "font": {
+    "fonts": [
+      {
+        "family": "Rubik",
+        "variations": [
+          { "weight": "400" },
+          { "weight": "500" },
+          { "weight": "600" },
+          { "weight": "700" }
+        ]
+      },
+      {
+        "family": "Averia Serif Libre",
+        "variations": [{ "italic": true, "weight": "700" }]
+      }
+    ],
+    "__resolveType": "website/loaders/fonts/googleFonts.ts"
+  },
+  "mainColors": {
+    "primary": "#003232",
+    "base-100": "#FFFFFF",
+    "tertiary": "#00FF7F",
+    "secondary": "#8C3D3D"
+  },
+  "buttonStyle": {
+    "--border-btn": "1px",
+    "--rounded-btn": "0.2rem",
+    "--btn-text-case": "normal-case",
+    "--btn-focus-scale": "0.9"
+  },
+  "__resolveType": "site/sections/Theme/Theme.tsx"
+}

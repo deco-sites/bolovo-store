@@ -4,11 +4,10 @@ import { color as vnda } from "apps/vnda/mod.ts";
 import { color as vtex } from "apps/vtex/mod.ts";
 import { color as wake } from "apps/wake/mod.ts";
 import { color as linx } from "apps/linx/mod.ts";
-import { Section } from "deco/blocks/section.ts";
-import { App, AppContext as AC } from "deco/mod.ts";
 import { rgb24 } from "std/fmt/colors.ts";
 import manifest, { Manifest } from "../manifest.gen.ts";
-
+import { type Section } from "@deco/deco/blocks";
+import { type App, type AppContext as AC } from "@deco/deco";
 export type Props = {
   /**
    * @title Host
@@ -31,11 +30,8 @@ export type Props = {
   publicUrl: string;
   theme?: Section;
 } & CommerceProps;
-
 export type Platform = "vtex" | "vnda" | "shopify" | "wake" | "linx" | "custom";
-
 export let _platform: Platform = "custom";
-
 const color = (platform: string) => {
   switch (platform) {
     case "vtex":
@@ -54,14 +50,11 @@ const color = (platform: string) => {
       return 0x212121;
   }
 };
-
 let firstRun = true;
-
-export default function Site(
-  { theme, ...state }: Props,
-): App<Manifest, Props, [ReturnType<typeof commerce>]> {
+export default function Site({ ...state }: Props): App<Manifest, Props, [
+  ReturnType<typeof commerce>,
+]> {
   _platform = state.platform || state.commerce?.platform || "custom";
-
   // Prevent console.logging twice
   if (firstRun) {
     firstRun = false;
@@ -71,19 +64,16 @@ export default function Site(
       } \n`,
     );
   }
-
   return {
     state,
     manifest,
     dependencies: [
       commerce({
         ...state,
-        global: theme ? [...(state.global ?? []), theme] : state.global,
       }),
     ],
   };
 }
-
 export type Storefront = ReturnType<typeof Site>;
 export type AppContext = AC<Storefront>;
 export { onBeforeResolveProps } from "apps/website/mod.ts";

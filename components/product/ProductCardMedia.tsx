@@ -1,10 +1,10 @@
 import { Layout as LayoutProps } from "$store/components/product/ProductCard.tsx";
+import Slider from "$store/components/ui/Slider.tsx";
+import SliderJS from "$store/islands/SliderJS.tsx";
 import { Signal } from "@preact/signals";
 import type { ImageObject } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import Slider from "deco-sites/bolovo-store/components/ui/Slider.tsx";
-import SliderJS from "deco-sites/bolovo-store/islands/SliderJS.tsx";
 
 export interface Props {
   idSliders: string;

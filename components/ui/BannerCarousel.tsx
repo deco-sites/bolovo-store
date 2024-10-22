@@ -155,7 +155,7 @@ function Dots({ images, autoplay }: Props) {
             <Slider.Dot index={index}>
               <div class="py-5">
                 <div
-                  class="w-16 sm:w-20 h-0.5 rounded group-disabled:animate-progress bg-gradient-to-r from-black from-[length:var(--dot-progress)] to-base-100 to-[length:var(--dot-progress)]"
+                  class="w-16 sm:w-20 h-0.5 rounded group-disabled:animate-progress bg-gradient-to-r from-black from-[length:var(--dot-progress)] to-white to-[length:var(--dot-progress)]"
                   style={{ animationDuration: `${autoplay?.interval}s` }}
                 />
               </div>
@@ -173,7 +173,7 @@ export function Buttons() {
       <div class="pl-6 md:pl-0 flex items-center justify-center z-10 col-start-1 row-start-2">
         <Slider.PrevButton class="btn btn-circle bg-[#FFFFFFCC]">
           <Icon
-            class="text-base-100"
+            class="text-white"
             size={40}
             id="ArrowPointingLeft"
             strokeWidth={3}
@@ -183,7 +183,7 @@ export function Buttons() {
       <div class="pr-6 md:pr-0 flex items-center justify-center z-10 col-start-3 row-start-2">
         <Slider.NextButton class="btn btn-circle bg-[#FFFFFFCC]">
           <Icon
-            class="text-base-100"
+            class="text-white"
             size={40}
             id="ArrowPointingRight"
             strokeWidth={3}
@@ -196,7 +196,6 @@ export function Buttons() {
 
 function BannerCarousel(props: Props) {
   const { images, preload, autoplay } = { ...DEFAULT_PROPS, ...props };
-  const interval = autoplay?.interval || 0;
   const id = useId();
 
   return (

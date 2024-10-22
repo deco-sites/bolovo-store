@@ -1,0 +1,20 @@
+{
+  "image": {
+    "alt": "BOLOVO PRODUCTION GO OUT",
+    "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/a61a396b-87de-431b-9cbd-1aa20993f99f"
+  },
+  "videoLink": "https://www.youtube.com/embed/MBhwPO2Me58?",
+  "listImages": [
+    {
+      "alt": "BLV SYSTEM",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/6b2946c1-cf15-4d6e-8d1a-8dc4e2f7757b"
+    },
+    {
+      "alt": "BLV HOME VIDEO",
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/0a0c33a5-d50f-4915-b37a-cb866d078052"
+    }
+  ],
+  "textContent": "<p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">GO OUT MAKE SOME MEMORIES</p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><br data-mce-bogus=\"1\"></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\">Once I met some guys who were full of them. From time to time, they hop on an old blue van and head to another dimension. No signal. No router. No service. The last time I heard about them, they were dancing on the roof of a house. It was by the roadside, on one side the sea, on the other the river, in front the mountains, behind the forest. I always wonder what it's like there? It doesn't matter... Let the road tell its fortune, my friend! The farther they go, the closer they get to themselves. Kilometers, friends, fuel, a bit of gunpowder, and several adventures. I'm sure they still haven't learned to see the end. If one day you see that van in the rearview mirror, give way. Or call a tow truck...</p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><br data-mce-bogus=\"1\"></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><strong><a href=\"https://www.bolovo.com.br/m/conteudo\" data-mce-href=\"https://www.bolovo.com.br/m/conteudo\" data-mce-selected=\"inline-boundary\"><span style=\"text-decoration: underline;\" data-mce-style=\"text-decoration: underline;\">SEE OTHER PRODUCTIONS BY BOLOVO</span> ➞</a></strong></p>",
+  "__resolveType": "site/sections/Content/VideoAndText.tsx",
+  "directionInverse": { "mobile": "col-reverse", "desktop": "row" }
+}

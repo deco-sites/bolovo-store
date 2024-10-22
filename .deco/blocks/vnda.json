@@ -1,0 +1,8 @@
+{
+  "account": "bolovo",
+  "sandbox": false,
+  "platform": "vnda",
+  "publicUrl": "www.bolovo.com.br",
+  "__resolveType": "decohub/apps/vnda.ts",
+  "authToken": "B6xaoL8kQJuxUdA5W7EVkywG"
+}

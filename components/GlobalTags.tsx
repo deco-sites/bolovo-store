@@ -74,6 +74,15 @@ function GlobalTags() {
             font-style: normal;
             font-display: swap;
         }
+        @font-face {
+            font-family: 'Ouroboros';
+            src: url("${
+            asset("/fonts/Ouroboros-Regular.woff")
+          }") format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
         `,
         }}
       />

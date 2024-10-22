@@ -1,0 +1,342 @@
+{
+  "name": "Home",
+  "path": "/",
+  "sections": {
+    "variants": [
+      {
+        "rule": {
+          "__resolveType": "website/matchers/always.ts"
+        },
+        "value": [
+          {
+            "__resolveType": "Theme - Bolovo "
+          },
+          {
+            "__resolveType": "Header - 01"
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Images/Carousel.tsx",
+              "images": [
+                {
+                  "alt": "/",
+                  "action": {
+                    "label": "/todos",
+                    "href": "/todos"
+                  },
+                  "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/a91a2fe2-e6ff-47dc-bee0-f37300ef890d/BANNER_MANIFESTO_01_MOB.jpg",
+                  "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/ca774e25-0148-4c08-8f73-3f8b139c02d8/BANNER_MANIFESTO_01.jpg"
+                }
+              ],
+              "preload": false,
+              "autoplay": {
+                "activate": false,
+                "interval": 5
+              }
+            }
+          },
+          {
+            "__resolveType": "site/sections/Product/ProductGallery.tsx",
+            "title": "<p><br data-mce-bogus=\"1\"></p>",
+            "colors": {
+              "__resolveType": "Color Map Configuration"
+            },
+            "products": {
+              "ids": [
+                2403,
+                2191,
+                2868,
+                2512,
+                2402,
+                2383,
+                2022,
+                2558,
+                2007,
+                2028,
+                2240,
+                2064,
+                2826,
+                1964,
+                2203,
+                2243
+              ],
+              "sort": "newest",
+              "tags": [],
+              "count": 16,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "layout": {
+              "columns": {
+                "mobile": 2,
+                "desktop": 4
+              }
+            },
+            "cardLayout": {
+              "dots": true
+            },
+            "cardsLayout": {
+              "dots": true,
+              "aspect": true,
+              "onMouseOver": {
+                "showCardShadow": false
+              }
+            }
+          },
+          {
+            "__resolveType": "site/sections/Images/Carousel.tsx",
+            "images": [
+              {
+                "alt": "/",
+                "action": {
+                  "href": "/tropical-research",
+                  "label": "/tropical-research"
+                },
+                "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/50355ab0-3f11-4687-9cef-2fd0d0a6c10f/400x508-(1).png",
+                "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/0738ef48-d6e8-4d50-9db4-8a176e661d32/full-banner-(1).png"
+              }
+            ],
+            "preload": false,
+            "autoplay": {
+              "activate": false,
+              "interval": 5
+            }
+          },
+          {
+            "__resolveType": "site/sections/Product/ProductGallery.tsx",
+            "title": "<p><br data-mce-bogus=\"1\"></p>",
+            "colors": {
+              "__resolveType": "Color Map Configuration"
+            },
+            "products": {
+              "ids": [
+                2906,
+                2905,
+                2902,
+                2904,
+                2921,
+                2916,
+                2920,
+                2914,
+                2919,
+                2901,
+                2900,
+                2899,
+                2917,
+                2918,
+                2912,
+                2913
+              ],
+              "sort": "newest",
+              "tags": [],
+              "count": 16,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "layout": {
+              "columns": {
+                "mobile": 2,
+                "desktop": 4
+              }
+            },
+            "cardLayout": {
+              "dots": true
+            },
+            "cardsLayout": {
+              "dots": true,
+              "aspect": true,
+              "onMouseOver": {
+                "showCardShadow": false
+              }
+            }
+          },
+          {
+            "__resolveType": "site/sections/Product/FeaturedGallery.tsx",
+            "title": "<p></p>",
+            "colors": [
+              {
+                "hex": "#28c356",
+                "label": "verde"
+              },
+              {
+                "hex": "#bc1818",
+                "label": "vermelho"
+              },
+              {
+                "hex": "#080b78",
+                "label": "azul"
+              },
+              {
+                "hex": "#f8deab",
+                "label": "bege"
+              },
+              {
+                "hex": "#fbb231",
+                "label": "amarelo"
+              },
+              {
+                "hex": "#121212",
+                "label": "preto"
+              },
+              {
+                "hex": "#693416",
+                "label": "marrom"
+              },
+              {
+                "hex": "#ec7ebe",
+                "label": "rosa"
+              },
+              {
+                "hex": "#f0efef",
+                "label": "branco"
+              },
+              {
+                "hex": "#e3e3ce",
+                "label": "offwhite"
+              },
+              {
+                "label": "estampado",
+                "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/fe3bee0f-5ef7-4160-91ab-c26a7851f108"
+              },
+              {
+                "label": "roxo",
+                "hex": "#6a01e9"
+              },
+              {
+                "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2989/45eb5e6f-eba9-48e1-b246-2165739b946d",
+                "label": "colorido"
+              },
+              {
+                "hex": "#767474",
+                "label": "cinza"
+              },
+              {
+                "hex": "#dd831d",
+                "label": "laranja"
+              }
+            ],
+            "products": {
+              "__resolveType": "vnda/loaders/productList.ts",
+              "ids": [
+                2915
+              ],
+              "sort": "newest",
+              "tags": [],
+              "count": 1,
+              "typeTags": []
+            },
+            "showColorVariants": false,
+            "product": {
+              "ids": [
+                1912
+              ],
+              "sort": "newest",
+              "tags": [],
+              "count": 1,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "idProduct": {
+              "ids": [
+                2310
+              ],
+              "sort": "newest",
+              "tags": [],
+              "brand": {},
+              "count": 1,
+              "offers": {
+                "offers": []
+              },
+              "review": [],
+              "isRelatedTo": [],
+              "isSimilarTo": [],
+              "isVariantOf": {
+                "hasVariant": [],
+                "additionalProperty": []
+              },
+              "__resolveType": "vnda/loaders/productList.ts",
+              "aggregateRating": {},
+              "additionalProperty": [],
+              "isAccessoryOrSparePartFor": []
+            },
+            "featuredPhoto": {
+              "alt": "pra ficar na estica",
+              "src": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/b4956149-cfd6-4dae-8b78-5bfa651475b7/03_CORPO-TODO-(4).jpg",
+              "href": "#"
+            },
+            "contentDirection": {
+              "mobile": "imagem acima",
+              "desktop": "imagem na esquerda"
+            },
+            "directionInverse": {
+              "mobile": "col",
+              "desktop": "row"
+            },
+            "productCardLayout": {
+              "dots": true,
+              "aspect": true,
+              "basics": {
+                "oldPriceSize": "Small",
+                "contentAlignment": "Left"
+              },
+              "onMouseOver": {
+                "card": "None",
+                "image": "Change image"
+              },
+              "elementsPositions": {
+                "skuSelector": "Top",
+                "favoriteIcon": "Top right"
+              }
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "site/sections/Product/ProductShelf.tsx",
+              "title": "<p>Club Days</p>",
+              "colors": {
+                "__resolveType": "Color Map Configuration"
+              },
+              "seeMore": {
+                "link": "/club-days",
+                "text": "VEJA TODOS"
+              },
+              "products": {
+                "ids": [],
+                "tags": [
+                  "club-days"
+                ],
+                "count": 8,
+                "__resolveType": "vnda/loaders/productList.ts"
+              },
+              "cardLayout": {
+                "__resolveType": "Product Card Layout - 01"
+              },
+              "description": "Wow, my VNDA shop is FAST!!",
+              "showColorVariants": true
+            }
+          },
+          {
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Video and Text - 01"
+            }
+          },
+          {
+            "__resolveType": "STORES - 01"
+          },
+          {
+            "__resolveType": "Footer - 01"
+          },
+          {
+            "__resolveType": "Cookie Consent - 01",
+            "banners": []
+          },
+          {
+            "__resolveType": "website/sections/Seo/Seo.tsx"
+          }
+        ]
+      }
+    ],
+    "__resolveType": "website/flags/multivariate.ts"
+  },
+  "__resolveType": "website/pages/Page.tsx"
+}

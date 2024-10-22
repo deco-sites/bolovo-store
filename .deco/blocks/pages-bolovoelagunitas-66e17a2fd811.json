@@ -1,0 +1,27 @@
+{
+  "name": "Bolovo e Lagunitas",
+  "path": "/bolovo-lagunitas",
+  "sections": {
+    "variants": [
+      {
+        "rule": { "__resolveType": "website/matchers/always.ts" },
+        "value": [
+          { "__resolveType": "Theme - Bolovo " },
+          { "__resolveType": "Header - 01" },
+          {
+            "content": "<p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><span style=\"font-size: 36pt;\" data-mce-style=\"font-size: 36pt;\"><br data-mce-bogus=\"1\"></span></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><span style=\"font-size: 36pt;\" data-mce-style=\"font-size: 36pt;\"><br data-mce-bogus=\"1\"></span></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><span style=\"font-size: 36pt;\" data-mce-style=\"font-size: 36pt;\"><br data-mce-bogus=\"1\"></span></p><p style=\"text-align: center;\" data-mce-style=\"text-align: center;\"><span style=\"font-size: 36pt;\" data-mce-style=\"font-size: 36pt;\">kqaknkdnkddddddddddscsaq</span></p>",
+            "__resolveType": "site/sections/Institutional/TextContent.tsx"
+          },
+          { "__resolveType": "Video and Text - 01" },
+          { "__resolveType": "Carousel - 01" },
+          { "__resolveType": "Banner Grid Home " },
+          { "__resolveType": "Carousel - 01" },
+          { "__resolveType": "Product Gallery - en" },
+          { "__resolveType": "Footer - 01" }
+        ]
+      }
+    ],
+    "__resolveType": "website/flags/multivariate.ts"
+  },
+  "__resolveType": "website/pages/Page.tsx"
+}

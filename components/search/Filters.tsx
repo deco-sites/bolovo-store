@@ -1,15 +1,14 @@
+import Icon from "$store/components/ui/Icon.tsx";
+import ValueItem from "$store/islands/ValueItem.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 import type {
   Filter,
   FilterToggle,
   FilterToggleValue,
   ProductListingPage,
 } from "apps/commerce/types.ts";
-import Icon from "$store/components/ui/Icon.tsx";
-import ValueItem from "$store/islands/ValueItem.tsx";
-import type { ImageWidget } from "apps/admin/widgets.ts";
-import { compareSizes } from "deco-sites/bolovo-store/sdk/useVariantPossiblities.ts";
-import { FilterName } from "deco-sites/bolovo-store/components/search/SearchResult.tsx";
+import { FilterName } from "site/components/search/SearchResult.tsx";
 
 interface Props {
   filters: ProductListingPage["filters"];
@@ -30,8 +29,10 @@ type FilterValuesProps = {
   priceIntl?: boolean;
 };
 
-export const isToggle = (filter: Filter): filter is FilterToggle =>
-  filter["@type"] == "FilterToggle";
+export const isToggle = (
+  filter: Filter,
+): filter is FilterToggle & { newLabel: string } =>
+  filter["@type"] === "FilterToggle";
 
 function FilterValues(
   { label, values, filterColors, priceIntl }: FilterValuesProps,
@@ -111,7 +112,8 @@ function Filters(
   const sortedFilters = filterNames.map((label) =>
     filters.find((filter) => filter.label === label.filter)
   ).filter(Boolean);
-  const namedFilters = sortedFilters?.map(
+
+  const namedFilters = sortedFilters.map(
     (filter) => {
       const matchedName = filterNames?.find(
         (name) => name.filter === filter?.label,
@@ -127,11 +129,9 @@ function Filters(
     },
   );
 
-  namedFilters[1]?.values.sort(compareSizes);
-
   return (
     <ul class="flex flex-col gap-[10px]">
-      {namedFilters
+      {(namedFilters as unknown as (Filter & { newLabel: string })[])
         .filter(isToggle)
         .map((filter, index) => (
           <>
