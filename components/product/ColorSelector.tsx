@@ -1,5 +1,6 @@
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
 import { Signal } from "@preact/signals";
+import { useDevice } from "@deco/deco/hooks";
 import { useEffect, useRef } from "preact/hooks";
 
 interface ColorVariant {
@@ -29,6 +30,7 @@ function ColorSelector({
   showColorVariants,
   selectedColorVariant,
 }: ColorSelectorProps) {
+  const device = useDevice();
   const initialImage = useRef<
     {
       name: string;
@@ -70,60 +72,65 @@ function ColorSelector({
         const isSvg = selectedColor?.hex !== undefined;
         const isImg = selectedColor?.src !== undefined;
 
-        return (
-          <div class="items-center">
-            {index < 4
-              ? (
-                <li key={index}>
-                  <button
-                    onClick={() => handleColorSelect(colorVariant)}
-                    onMouseEnter={() => handleColorSelect(colorVariant)}
-                    onMouseLeave={() => handleColorSelect()}
+        if (index < 4) {
+          return (
+            <div class="items-center">
+              <li key={index}>
+                <button
+                  onClick={() =>
+                    device !== "desktop" && handleColorSelect(colorVariant)}
+                  onMouseEnter={() =>
+                    device === "desktop" && handleColorSelect(colorVariant)}
+                  onMouseLeave={() =>
+                    device === "desktop" && handleColorSelect()}
+                >
+                  <div
+                    class="w-[12px] h-[12px] flex items-center justify-center border"
+                    title={`Cor ${colorVariant.name}`}
                   >
-                    <div
-                      class="w-[12px] h-[12px] flex items-center justify-center border"
-                      title={`Cor ${colorVariant.name}`}
-                    >
-                      {isSvg
-                        ? (
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
+                    {isSvg
+                      ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                        >
+                          <rect
+                            x="0"
+                            y="0"
                             width="12"
                             height="12"
-                            viewBox="0 0 12 12"
-                            fill="none"
-                          >
-                            <rect
-                              x="0"
-                              y="0"
-                              width="12"
-                              height="12"
-                              fill={selectedColor
-                                ?.hex}
-                            />
-                          </svg>
-                        )
-                        : isImg
-                        ? (
-                          <img
-                            src={selectedColor.src}
-                            alt={`Cor ${colorVariant.name}`}
+                            fill={selectedColor
+                              ?.hex}
                           />
-                        )
-                        : null}
-                    </div>
-                  </button>
-                </li>
-              )
-              : index === 5
-              ? (
-                <div class="w-[12px] h-[12px] flex items-center justify-center mb-[2px]">
-                  +
-                </div>
-              )
-              : null}
-          </div>
-        );
+                        </svg>
+                      )
+                      : isImg
+                      ? (
+                        <img
+                          src={selectedColor.src}
+                          alt={`Cor ${colorVariant.name}`}
+                        />
+                      )
+                      : null}
+                  </div>
+                </button>
+              </li>
+            </div>
+          );
+        }
+
+        if (index === 5) {
+          return (
+            <div class="w-[12px] h-[12px] flex items-center justify-center mb-[2px]">
+              +
+            </div>
+          );
+        }
+
+        return null;
       })}
     </ul>
   );

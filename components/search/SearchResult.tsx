@@ -181,9 +181,9 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   } = {};
   if (showColorVariants) {
     try {
-      colorRelated = await getColorRelatedProducts(props.page?.products, ctx);
+      colorRelated = await getColorRelatedProducts(props.page?.products);
     } catch (error) {
-      console.error("Erro ao obter produtos relacionados por cor:", error);
+      console.error("Result - Erro ao obter produtos relacionados por cor:", error);
     }
   }
   return {

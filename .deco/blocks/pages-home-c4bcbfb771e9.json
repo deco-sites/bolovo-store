@@ -15,25 +15,22 @@
             "__resolveType": "Header - 01"
           },
           {
-            "__resolveType": "website/sections/Rendering/Lazy.tsx",
-            "section": {
-              "__resolveType": "site/sections/Images/Carousel.tsx",
-              "images": [
-                {
-                  "alt": "/",
-                  "action": {
-                    "label": "/todos",
-                    "href": "/todos"
-                  },
-                  "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/a91a2fe2-e6ff-47dc-bee0-f37300ef890d/BANNER_MANIFESTO_01_MOB.jpg",
-                  "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/ca774e25-0148-4c08-8f73-3f8b139c02d8/BANNER_MANIFESTO_01.jpg"
-                }
-              ],
-              "preload": false,
-              "autoplay": {
-                "activate": false,
-                "interval": 5
+            "__resolveType": "site/sections/Images/Carousel.tsx",
+            "images": [
+              {
+                "alt": "/",
+                "action": {
+                  "label": "/todos",
+                  "href": "/todos"
+                },
+                "mobile": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/a91a2fe2-e6ff-47dc-bee0-f37300ef890d/BANNER_MANIFESTO_01_MOB.jpg",
+                "desktop": "https://deco-sites-assets.s3.sa-east-1.amazonaws.com/bolovo-store/ca774e25-0148-4c08-8f73-3f8b139c02d8/BANNER_MANIFESTO_01.jpg"
               }
+            ],
+            "preload": false,
+            "autoplay": {
+              "activate": false,
+              "interval": 5
             }
           },
           {
@@ -288,31 +285,28 @@
             }
           },
           {
-            "__resolveType": "website/sections/Rendering/Lazy.tsx",
-            "section": {
-              "__resolveType": "site/sections/Product/ProductShelf.tsx",
-              "title": "<p>Club Days</p>",
-              "colors": {
-                "__resolveType": "Color Map Configuration"
-              },
-              "seeMore": {
-                "link": "/club-days",
-                "text": "VEJA TODOS"
-              },
-              "products": {
-                "ids": [],
-                "tags": [
-                  "club-days"
-                ],
-                "count": 8,
-                "__resolveType": "vnda/loaders/productList.ts"
-              },
-              "cardLayout": {
-                "__resolveType": "Product Card Layout - 01"
-              },
-              "description": "Wow, my VNDA shop is FAST!!",
-              "showColorVariants": true
-            }
+            "__resolveType": "site/sections/Product/ProductShelf.tsx",
+            "title": "<p>Club Days</p>",
+            "colors": {
+              "__resolveType": "Color Map Configuration"
+            },
+            "seeMore": {
+              "link": "/club-days",
+              "text": "VEJA TODOS"
+            },
+            "products": {
+              "ids": [],
+              "tags": [
+                "club-days"
+              ],
+              "count": 8,
+              "__resolveType": "vnda/loaders/productList.ts"
+            },
+            "cardLayout": {
+              "__resolveType": "Product Card Layout - 01"
+            },
+            "description": "Wow, my VNDA shop is FAST!!",
+            "showColorVariants": true
           },
           {
             "__resolveType": "website/sections/Rendering/Lazy.tsx",
@@ -321,17 +315,23 @@
             }
           },
           {
-            "__resolveType": "STORES - 01"
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "STORES - 01"
+            }
           },
           {
-            "__resolveType": "Footer - 01"
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Footer - 01"
+            }
           },
           {
-            "__resolveType": "Cookie Consent - 01",
-            "banners": []
-          },
-          {
-            "__resolveType": "website/sections/Seo/Seo.tsx"
+            "__resolveType": "website/sections/Rendering/Lazy.tsx",
+            "section": {
+              "__resolveType": "Cookie Consent - 01",
+              "banners": []
+            }
           }
         ]
       }

@@ -39,7 +39,7 @@ export interface ShelfProps {
 export interface Props {
   shelfs: ShelfProps[];
 }
-export const loader = async (props: Props, req: Request, ctx: AppContext) => {
+export const loader = async (props: Props, req: Request) => {
   const { shelfs } = props;
   const shelf = shelfs?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
@@ -49,9 +49,9 @@ export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   } = {};
   if (shelf?.shelf.showColorVariants && shelf?.shelf.products) {
     try {
-      colorRelated = await getColorRelatedProducts(shelf?.shelf.products, ctx);
+      colorRelated = await getColorRelatedProducts(shelf?.shelf.products);
     } catch (error) {
-      console.error("Erro ao obter produtos relacionados por cor:", error);
+      console.error("ByPage - Erro ao obter produtos relacionados por cor:", error);
     }
   }
   return {

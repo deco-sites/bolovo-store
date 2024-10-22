@@ -41,17 +41,15 @@ export interface Props {
 
 export const loader = async (
   props: Props,
-  _req: Request,
-  ctx: AppContext,
 ) => {
   const { showColorVariants } = props;
   let colorRelated: { [productName: string]: Product[] } = {};
 
   if (showColorVariants && props.products) {
     try {
-      colorRelated = await getColorRelatedProducts(props.products, ctx);
+      colorRelated = await getColorRelatedProducts(props.products);
     } catch (error) {
-      console.error("Erro ao obter produtos relacionados por cor:", error);
+      console.error("Shelf - Erro ao obter produtos relacionados por cor:", error);
     }
   }
 

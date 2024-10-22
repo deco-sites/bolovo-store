@@ -1,9 +1,8 @@
 import type { AppContext } from "$store/apps/site.ts";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-import type { Product, ProductListingPage } from "apps/commerce/types.ts";
-import { getColorRelatedProducts } from "./CategoryMenu.tsx";
 import { type SectionProps } from "@deco/deco";
+import type { Product, ProductListingPage } from "apps/commerce/types.ts";
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
@@ -89,20 +88,10 @@ export default SearchResult;
 export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   const { showColorVariants } = props;
   const term = new URLSearchParams(new URL(req.url).search).get("q");
-  let colorRelated: {
-    [productName: string]: Product[];
-  } = {};
-  if (showColorVariants) {
-    try {
-      colorRelated = await getColorRelatedProducts(props.page?.products, ctx);
-    } catch (error) {
-      console.error("Erro ao obter produtos relacionados por cor:", error);
-    }
-  }
+
   return {
     ...props,
     searchTerm: term ?? "",
     url: req.url,
-    colorVariant: colorRelated || {},
   };
 };

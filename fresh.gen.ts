@@ -37,7 +37,7 @@ import * as $SliderJS from "./islands/SliderJS.tsx";
 import * as $ValueItem from "./islands/ValueItem.tsx";
 import * as $WishlistButton from "./islands/WishlistButton.tsx";
 import * as $content_IframeLoader from "./islands/content/IframeLoader.tsx";
-import { type Manifest } from "$fresh/server.ts";
+import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {

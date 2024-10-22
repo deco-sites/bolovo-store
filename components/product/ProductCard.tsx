@@ -69,36 +69,6 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-// interface DotsProps {
-//   images: ImageObject[];
-//   interval?: number;
-// }
-
-// function Dots({ images, interval = 0 }: DotsProps) {
-//   return (
-//     <>
-//       <ul class="carousel justify-center col-span-full gap-2 z-10 row-start-7 bg-transparent">
-//         {images?.map((_, index) => (
-//           <li class="carousel-item">
-//             <Slider.Dot index={index}>
-//               <div
-//                 class={`py-5 ${
-//                   ((index === 0) || (index % 4 === 0)) ? "" : "lg:hidden"
-//                 }`}
-//               >
-//                 <div
-//                   class="w-4 h-0.5 group-disabled:opacity-100 opacity-20 rounded-full bg-primary"
-//                   style={{ animationDuration: `${interval}s` }}
-//                 />
-//               </div>
-//             </Slider.Dot>
-//           </li>
-//         ))}
-//       </ul>
-//     </>
-//   );
-// }
-
 function ProductCard(
   {
     product,
