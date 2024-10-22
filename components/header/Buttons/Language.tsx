@@ -30,7 +30,13 @@ export default function LanguageSwitcher(
   );
 
   function setLanguageCookie(languageCode: string) {
-    document.cookie = "language=" + languageCode.toLowerCase() + "; path=/";
+    const now = new Date();
+    const expireTime = now.getTime() + 86400000; // adding one day
+    now.setTime(expireTime);
+
+    document.cookie = "language=" + languageCode.toLowerCase() + ";expires=" +
+      now.toUTCString() + ";path=/";
+
     location.reload();
   }
   useEffect(() => {
