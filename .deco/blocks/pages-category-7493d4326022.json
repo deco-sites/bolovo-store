@@ -7,7 +7,10 @@
         "rule": {
           "conditions": [
             {
-              "case": { "type": "Equals", "value": "show-more" },
+              "case": {
+                "type": "Equals",
+                "value": "show-more"
+              },
               "param": "pagination"
             }
           ],
@@ -15,10 +18,14 @@
         },
         "value": [
           {
-            "jsonLD": { "__resolveType": "PLP Default" },
+            "jsonLD": {
+              "__resolveType": "PLP Default"
+            },
             "__resolveType": "commerce/sections/Seo/SeoPLPV2.tsx"
           },
-          { "__resolveType": "Header - 01" },
+          {
+            "__resolveType": "Header - 01"
+          },
           {
             "banners": [
               {
@@ -83,28 +90,87 @@
           },
           {
             "list": [
-              { "href": "/bolovoland", "label": "bolovoland" },
-              { "href": "/camisetas", "label": "Camisetas" },
-              { "href": "/bones", "label": "Bonés" },
-              { "href": "/gorros", "label": "Gorros" },
-              { "href": "/camisas", "label": "camisas" },
-              { "href": "/casacos", "label": "casacos" },
-              { "href": "/shorts", "label": "shorts" },
-              { "href": "/calcas", "label": "calças" },
-              { "href": "/meias", "label": "meias" },
-              { "href": "/acessórios", "label": "acessórios" },
-              { "href": "/tralhas", "label": "tralhas" },
-              { "href": "/moletons", "label": "moletons" },
-              { "href": "/tênis", "label": "tênis" },
-              { "href": "/underwear", "label": "underwear" },
-              { "href": "/underwear", "label": "underwear" },
-              { "href": "/underwear", "label": "underwear" },
-              { "href": "/underwear", "label": "underwear" },
-              { "href": "/teste", "label": "teste" }
+              {
+                "href": "/bolovoland",
+                "label": "bolovoland"
+              },
+              {
+                "href": "/camisetas",
+                "label": "Camisetas"
+              },
+              {
+                "href": "/bones",
+                "label": "Bonés"
+              },
+              {
+                "href": "/gorros",
+                "label": "Gorros"
+              },
+              {
+                "href": "/camisas",
+                "label": "camisas"
+              },
+              {
+                "href": "/casacos",
+                "label": "casacos"
+              },
+              {
+                "href": "/shorts",
+                "label": "shorts"
+              },
+              {
+                "href": "/calcas",
+                "label": "calças"
+              },
+              {
+                "href": "/meias",
+                "label": "meias"
+              },
+              {
+                "href": "/acessórios",
+                "label": "acessórios"
+              },
+              {
+                "href": "/tralhas",
+                "label": "tralhas"
+              },
+              {
+                "href": "/moletons",
+                "label": "moletons"
+              },
+              {
+                "href": "/tênis",
+                "label": "tênis"
+              },
+              {
+                "href": "/underwear",
+                "label": "underwear"
+              },
+              {
+                "href": "/underwear",
+                "label": "underwear"
+              },
+              {
+                "href": "/underwear",
+                "label": "underwear"
+              },
+              {
+                "href": "/underwear",
+                "label": "underwear"
+              },
+              {
+                "href": "/teste",
+                "label": "teste"
+              }
             ],
-            "page": { "__resolveType": "PLP Default" },
+            "page": {
+              "__resolveType": "PLP Default"
+            },
             "layout": {
-              "columns": { "mobile": 2, "desktop": 4 },
+              "columns": {
+                "mobile": 2,
+                "desktop": 4
+              },
               "variant": "aside"
             },
             "banners": [
@@ -181,7 +247,9 @@
                       "headerfontSize": "Normal",
                       "headerAlignment": "left"
                     },
-                    "products": { "__resolveType": "ProductListHome" },
+                    "products": {
+                      "__resolveType": "ProductListHome"
+                    },
                     "cardLayout": {
                       "basics": {
                         "oldPriceSize": "Small",
@@ -206,7 +274,9 @@
                       "headerfontSize": "Normal",
                       "headerAlignment": "center"
                     },
-                    "products": { "__resolveType": "ProductListHome" },
+                    "products": {
+                      "__resolveType": "ProductListHome"
+                    },
                     "cardLayout": {
                       "basics": {
                         "oldPriceSize": "Small",
@@ -235,7 +305,9 @@
                         "headerfontSize": "Normal",
                         "headerAlignment": "left"
                       },
-                      "products": { "__resolveType": "ProductListHome" },
+                      "products": {
+                        "__resolveType": "ProductListHome"
+                      },
                       "cardLayout": {
                         "basics": {
                           "oldPriceSize": "Small",
@@ -256,7 +328,9 @@
                       "headerfontSize": "Normal",
                       "headerAlignment": "center"
                     },
-                    "products": { "__resolveType": "ProductListHome" },
+                    "products": {
+                      "__resolveType": "ProductListHome"
+                    },
                     "cardLayout": {
                       "basics": {
                         "oldPriceSize": "Small",
@@ -278,7 +352,9 @@
                         "headerfontSize": "Normal",
                         "headerAlignment": "center"
                       },
-                      "products": { "__resolveType": "ProductListHome" },
+                      "products": {
+                        "__resolveType": "ProductListHome"
+                      },
                       "cardLayout": {
                         "basics": {
                           "oldPriceSize": "Small",
@@ -322,7 +398,10 @@
               "backgroundSearch": "#FFFFFF"
             },
             "cardLayout": {
-              "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+              "basics": {
+                "oldPriceSize": "Small",
+                "contentAlignment": "Left"
+              },
               "onMouseOver": {
                 "card": "None",
                 "image": "Change image",
@@ -338,16 +417,34 @@
               {
                 "url": "/camisetas",
                 "items": [
-                  { "url": "/camisetas/manga-curta", "label": "MANGA CURTA" },
-                  { "url": "/camisetas/manga-longa", "label": "MANGA LONGA " },
-                  { "url": "/camisetas/classicas", "label": "CLÁSSICAS" },
-                  { "url": "/camisetas/listras", "label": "LISTRAS" },
+                  {
+                    "url": "/camisetas/manga-curta",
+                    "label": "MANGA CURTA"
+                  },
+                  {
+                    "url": "/camisetas/manga-longa",
+                    "label": "MANGA LONGA "
+                  },
+                  {
+                    "url": "/camisetas/classicas",
+                    "label": "CLÁSSICAS"
+                  },
+                  {
+                    "url": "/camisetas/listras",
+                    "label": "LISTRAS"
+                  },
                   {
                     "url": "/camisetas/listas-brisa",
                     "label": "LISTRAS BRISA"
                   },
-                  { "url": "/camisetas/basicas", "label": "BÁSICAS" },
-                  { "url": "/camisetas/uv", "label": "UV" }
+                  {
+                    "url": "/camisetas/basicas",
+                    "label": "BÁSICAS"
+                  },
+                  {
+                    "url": "/camisetas/uv",
+                    "label": "UV"
+                  }
                 ],
                 "matcher": "/camisetas",
                 "category": "camisetas"
@@ -355,10 +452,22 @@
               {
                 "url": "/shorts",
                 "items": [
-                  { "url": "/shorts/short-shorts", "label": "SHORT SHORTS" },
-                  { "url": "/shorts/fds", "label": "FDS SHORTS" },
-                  { "url": "/dads", "label": "DADS SHORTS" },
-                  { "url": "/shorts/velvet", "label": "VELVET SHORTS " }
+                  {
+                    "url": "/shorts/short-shorts",
+                    "label": "SHORT SHORTS"
+                  },
+                  {
+                    "url": "/shorts/fds",
+                    "label": "FDS SHORTS"
+                  },
+                  {
+                    "url": "/dads",
+                    "label": "DADS SHORTS"
+                  },
+                  {
+                    "url": "/shorts/velvet",
+                    "label": "VELVET SHORTS "
+                  }
                 ],
                 "matcher": "/shorts",
                 "category": "shorts"
@@ -366,10 +475,22 @@
               {
                 "url": "/shorts-home",
                 "items": [
-                  { "url": "/fds-shorts", "label": "FDS SHORTS" },
-                  { "url": "/dads-shorts", "label": "DADS SHORTS" },
-                  { "url": "/short-shorts", "label": "SHORT SHORTS " },
-                  { "url": "/velvet-shorts", "label": "VELVET SHORTS" }
+                  {
+                    "url": "/fds-shorts",
+                    "label": "FDS SHORTS"
+                  },
+                  {
+                    "url": "/dads-shorts",
+                    "label": "DADS SHORTS"
+                  },
+                  {
+                    "url": "/short-shorts",
+                    "label": "SHORT SHORTS "
+                  },
+                  {
+                    "url": "/velvet-shorts",
+                    "label": "VELVET SHORTS"
+                  }
                 ],
                 "matcher": "/shorts-home",
                 "category": "shorts-home"
@@ -377,11 +498,26 @@
               {
                 "url": "/acessorios",
                 "items": [
-                  { "url": "/acessorios/pochetes", "label": "POCHETE" },
-                  { "url": "/acessorios/shoulder", "label": "SHOULDER" },
-                  { "url": "/acessorios/bolsa", "label": "BOLSAS" },
-                  { "url": "/acessorios/mala", "label": "MALA" },
-                  { "url": "/acessorios/tabaqueira", "label": "TABAQUEIRA" }
+                  {
+                    "url": "/acessorios/pochetes",
+                    "label": "POCHETE"
+                  },
+                  {
+                    "url": "/acessorios/shoulder",
+                    "label": "SHOULDER"
+                  },
+                  {
+                    "url": "/acessorios/bolsa",
+                    "label": "BOLSAS"
+                  },
+                  {
+                    "url": "/acessorios/mala",
+                    "label": "MALA"
+                  },
+                  {
+                    "url": "/acessorios/tabaqueira",
+                    "label": "TABAQUEIRA"
+                  }
                 ],
                 "matcher": "/acessorios",
                 "category": "acessorios"
@@ -389,10 +525,22 @@
               {
                 "url": "/bones",
                 "items": [
-                  { "url": "/bones/b-5-panel", "label": "BONÉS 5 PANEL" },
-                  { "url": "/bones//b-tactel", "label": "BONÉS TACTEL" },
-                  { "url": "/bones/b-sarja", "label": "BONÉS SARJA" },
-                  { "url": "/bones/b-classicos", "label": "BONÉS CLÁSSICOS" },
+                  {
+                    "url": "/bones/b-5-panel",
+                    "label": "BONÉS 5 PANEL"
+                  },
+                  {
+                    "url": "/bones//b-tactel",
+                    "label": "BONÉS TACTEL"
+                  },
+                  {
+                    "url": "/bones/b-sarja",
+                    "label": "BONÉS SARJA"
+                  },
+                  {
+                    "url": "/bones/b-classicos",
+                    "label": "BONÉS CLÁSSICOS"
+                  },
                   {
                     "url": "/bones/chapeus-buckets",
                     "label": "chapeus e buckets"
@@ -404,12 +552,30 @@
               {
                 "url": "/casacos",
                 "items": [
-                  { "url": "/casacos/windbreaker ", "label": "Windbreakers" },
-                  { "url": "/casacos/parka", "label": "PARKAS" },
-                  { "url": "/casacos/jaqueta", "label": "JAQUETAS" },
-                  { "url": "/casacos/fleece", "label": "FLEECES" },
-                  { "url": "/casacos/crewneck", "label": "CREWNECK" },
-                  { "url": "/casacos/moletom", "label": "MOLETOM" }
+                  {
+                    "url": "/casacos/windbreaker ",
+                    "label": "Windbreakers"
+                  },
+                  {
+                    "url": "/casacos/parka",
+                    "label": "PARKAS"
+                  },
+                  {
+                    "url": "/casacos/jaqueta",
+                    "label": "JAQUETAS"
+                  },
+                  {
+                    "url": "/casacos/fleece",
+                    "label": "FLEECES"
+                  },
+                  {
+                    "url": "/casacos/crewneck",
+                    "label": "CREWNECK"
+                  },
+                  {
+                    "url": "/casacos/moletom",
+                    "label": "MOLETOM"
+                  }
                 ],
                 "matcher": "/casacos",
                 "category": "casacos"
@@ -417,12 +583,18 @@
               {
                 "url": "/calcas",
                 "items": [
-                  { "url": "/calcas/good_times", "label": "Good Times" },
+                  {
+                    "url": "/calcas/good_times",
+                    "label": "Good Times"
+                  },
                   {
                     "url": "/calcas/que-vira-shorts",
                     "label": "Calça Que Vira Shorts"
                   },
-                  { "url": "/calcas/c-velvet ", "label": "Velvet" }
+                  {
+                    "url": "/calcas/c-velvet ",
+                    "label": "Velvet"
+                  }
                 ],
                 "matcher": "/calcas",
                 "category": "calcas"
@@ -430,17 +602,38 @@
               {
                 "url": "/tralhas",
                 "items": [
-                  { "url": "/tralhas/chaveiro", "label": "CHAVEIROS" },
-                  { "url": "/tralhas//garrafa", "label": "GARRAFAS" },
-                  { "url": "/tralhas/adesivo", "label": "ADESIVOS" },
-                  { "url": "/tralhas/cinzeiros", "label": "CINZEIROS" },
-                  { "url": "/tralhas/copo-e-caneca", "label": "CANECAS" },
+                  {
+                    "url": "/tralhas/chaveiro",
+                    "label": "CHAVEIROS"
+                  },
+                  {
+                    "url": "/tralhas//garrafa",
+                    "label": "GARRAFAS"
+                  },
+                  {
+                    "url": "/tralhas/adesivo",
+                    "label": "ADESIVOS"
+                  },
+                  {
+                    "url": "/tralhas/cinzeiros",
+                    "label": "CINZEIROS"
+                  },
+                  {
+                    "url": "/tralhas/copo-e-caneca",
+                    "label": "CANECAS"
+                  },
                   {
                     "url": "/tralhas/strap-de-camera",
                     "label": "STRAPS DE CAMERA"
                   },
-                  { "url": "/tralhas/seda", "label": "SEDAS" },
-                  { "url": "/tralhas/pijamão", "label": "PIJAMÃO" }
+                  {
+                    "url": "/tralhas/seda",
+                    "label": "SEDAS"
+                  },
+                  {
+                    "url": "/tralhas/pijamão",
+                    "label": "PIJAMÃO"
+                  }
                 ],
                 "matcher": "/tralhas",
                 "category": "tralhas"
@@ -448,21 +641,44 @@
               {
                 "url": "/short-shorts",
                 "items": [
-                  { "url": "/shorts", "label": "SHORTS" },
-                  { "url": "/shorts/fds", "label": "FDS SHORTS" },
-                  { "url": "/shorts/dads", "label": "DADS SHORTS" },
-                  { "url": "/shorts/velvet", "label": "VELVET SHORTS" }
+                  {
+                    "url": "/shorts",
+                    "label": "SHORTS"
+                  },
+                  {
+                    "url": "/shorts/fds",
+                    "label": "FDS SHORTS"
+                  },
+                  {
+                    "url": "/shorts/dads",
+                    "label": "DADS SHORTS"
+                  },
+                  {
+                    "url": "/shorts/velvet",
+                    "label": "VELVET SHORTS"
+                  }
                 ],
                 "matcher": "/short-shorts",
                 "category": "short-shorts"
               }
             ],
             "textFilters": "FILTROS",
-            "filterColors": { "__resolveType": "Color Map Configuration" },
+            "filterColors": {
+              "__resolveType": "Color Map Configuration"
+            },
             "filtersNames": [
-              { "label": "CORES", "filter": "cor" },
-              { "label": "TAMANHOS", "filter": "property2" },
-              { "label": "TECIDO", "filter": "Tecido" }
+              {
+                "label": "CORES",
+                "filter": "cor"
+              },
+              {
+                "label": "TAMANHOS",
+                "filter": "property2"
+              },
+              {
+                "label": "TECIDO",
+                "filter": "Tecido"
+              }
             ],
             "__resolveType": "site/sections/Category/CategoryMenu.tsx",
             "labelOrdenation": "ORDENAR",
@@ -541,12 +757,16 @@
                 {
                   "shelf": {
                     "title": "já que estamos aqui, dá uma olhada nisso",
-                    "colors": { "__resolveType": "Color Map Configuration" },
+                    "colors": {
+                      "__resolveType": "Color Map Configuration"
+                    },
                     "layout": {
                       "headerfontSize": "Normal",
                       "headerAlignment": "left"
                     },
-                    "products": { "__resolveType": "ProductListHome" },
+                    "products": {
+                      "__resolveType": "ProductListHome"
+                    },
                     "cardLayout": {
                       "basics": {
                         "oldPriceSize": "Small",
@@ -575,7 +795,9 @@
                         "headerfontSize": "Normal",
                         "headerAlignment": "left"
                       },
-                      "products": { "__resolveType": "ProductListHome" },
+                      "products": {
+                        "__resolveType": "ProductListHome"
+                      },
                       "cardLayout": {
                         "basics": {
                           "oldPriceSize": "Small",
@@ -596,7 +818,9 @@
                       "headerfontSize": "Normal",
                       "headerAlignment": "center"
                     },
-                    "products": { "__resolveType": "ProductListHome" },
+                    "products": {
+                      "__resolveType": "ProductListHome"
+                    },
                     "cardLayout": {
                       "basics": {
                         "oldPriceSize": "Small",
@@ -618,7 +842,9 @@
                         "headerfontSize": "Normal",
                         "headerAlignment": "center"
                       },
-                      "products": { "__resolveType": "ProductListHome" },
+                      "products": {
+                        "__resolveType": "ProductListHome"
+                      },
                       "cardLayout": {
                         "basics": {
                           "oldPriceSize": "Small",
@@ -662,7 +888,9 @@
               "backgroundSearch": "#FFFFFF"
             },
             "photoOnPLP": [],
-            "filterColors": { "__resolveType": "Color Map Configuration" },
+            "filterColors": {
+              "__resolveType": "Color Map Configuration"
+            },
             "__resolveType": "site/sections/Product/SearchResult.tsx",
             "buttonsPagination": {
               "labelNext": "próximo",
@@ -673,27 +901,40 @@
             "showColorVariants": true
           },
           {
-            "behavior": { "type": "scroll", "payload": 100 },
+            "behavior": {
+              "type": "scroll",
+              "payload": 100
+            },
             "sections": [
               {
                 "texts": [],
                 "__resolveType": "site/sections/Content/TextSEO.tsx"
               },
-              { "__resolveType": "Banner Category Grid" },
-              { "__resolveType": "Footer - 01" }
+              {
+                "__resolveType": "Banner Category Grid"
+              },
+              {
+                "__resolveType": "Footer - 01"
+              }
             ],
             "__resolveType": "website/sections/Rendering/Deferred.tsx"
           }
         ]
       },
       {
-        "rule": { "__resolveType": "website/matchers/always.ts" },
+        "rule": {
+          "__resolveType": "website/matchers/always.ts"
+        },
         "value": [
           {
-            "jsonLD": { "__resolveType": "PLP Default" },
+            "jsonLD": {
+              "__resolveType": "PLP Default"
+            },
             "__resolveType": "commerce/sections/Seo/SeoPLPV2.tsx"
           },
-          { "__resolveType": "Header - 01" },
+          {
+            "__resolveType": "Header - 01"
+          },
           {
             "banners": [
               {
@@ -758,28 +999,87 @@
           },
           {
             "list": [
-              { "href": "/bolovoland", "label": "bolovoland" },
-              { "href": "/camisetas", "label": "Camisetas" },
-              { "href": "/bones", "label": "Bonés" },
-              { "href": "/gorros", "label": "Gorros" },
-              { "href": "/camisas", "label": "camisas" },
-              { "href": "/casacos", "label": "casacos" },
-              { "href": "/shorts", "label": "shorts" },
-              { "href": "/calcas", "label": "calças" },
-              { "href": "/meias", "label": "meias" },
-              { "href": "/acessórios", "label": "acessórios" },
-              { "href": "/tralhas", "label": "tralhas" },
-              { "href": "/moletons", "label": "moletons" },
-              { "href": "/tênis", "label": "tênis" },
-              { "href": "/underwear", "label": "underwear" },
-              { "href": "/underwear", "label": "underwear" },
-              { "href": "/underwear", "label": "underwear" },
-              { "href": "/underwear", "label": "underwear" },
-              { "href": "/teste", "label": "teste" }
+              {
+                "href": "/bolovoland",
+                "label": "bolovoland"
+              },
+              {
+                "href": "/camisetas",
+                "label": "Camisetas"
+              },
+              {
+                "href": "/bones",
+                "label": "Bonés"
+              },
+              {
+                "href": "/gorros",
+                "label": "Gorros"
+              },
+              {
+                "href": "/camisas",
+                "label": "camisas"
+              },
+              {
+                "href": "/casacos",
+                "label": "casacos"
+              },
+              {
+                "href": "/shorts",
+                "label": "shorts"
+              },
+              {
+                "href": "/calcas",
+                "label": "calças"
+              },
+              {
+                "href": "/meias",
+                "label": "meias"
+              },
+              {
+                "href": "/acessórios",
+                "label": "acessórios"
+              },
+              {
+                "href": "/tralhas",
+                "label": "tralhas"
+              },
+              {
+                "href": "/moletons",
+                "label": "moletons"
+              },
+              {
+                "href": "/tênis",
+                "label": "tênis"
+              },
+              {
+                "href": "/underwear",
+                "label": "underwear"
+              },
+              {
+                "href": "/underwear",
+                "label": "underwear"
+              },
+              {
+                "href": "/underwear",
+                "label": "underwear"
+              },
+              {
+                "href": "/underwear",
+                "label": "underwear"
+              },
+              {
+                "href": "/teste",
+                "label": "teste"
+              }
             ],
-            "page": { "__resolveType": "PLP Default" },
+            "page": {
+              "__resolveType": "PLP Default"
+            },
             "layout": {
-              "columns": { "mobile": 2, "desktop": 4 },
+              "columns": {
+                "mobile": 2,
+                "desktop": 4
+              },
               "variant": "aside"
             },
             "banners": [
@@ -856,7 +1156,9 @@
                       "headerfontSize": "Normal",
                       "headerAlignment": "left"
                     },
-                    "products": { "__resolveType": "ProductListHome" },
+                    "products": {
+                      "__resolveType": "ProductListHome"
+                    },
                     "cardLayout": {
                       "basics": {
                         "oldPriceSize": "Small",
@@ -881,7 +1183,9 @@
                       "headerfontSize": "Normal",
                       "headerAlignment": "center"
                     },
-                    "products": { "__resolveType": "ProductListHome" },
+                    "products": {
+                      "__resolveType": "ProductListHome"
+                    },
                     "cardLayout": {
                       "basics": {
                         "oldPriceSize": "Small",
@@ -910,7 +1214,9 @@
                         "headerfontSize": "Normal",
                         "headerAlignment": "left"
                       },
-                      "products": { "__resolveType": "ProductListHome" },
+                      "products": {
+                        "__resolveType": "ProductListHome"
+                      },
                       "cardLayout": {
                         "basics": {
                           "oldPriceSize": "Small",
@@ -931,7 +1237,9 @@
                       "headerfontSize": "Normal",
                       "headerAlignment": "center"
                     },
-                    "products": { "__resolveType": "ProductListHome" },
+                    "products": {
+                      "__resolveType": "ProductListHome"
+                    },
                     "cardLayout": {
                       "basics": {
                         "oldPriceSize": "Small",
@@ -953,7 +1261,9 @@
                         "headerfontSize": "Normal",
                         "headerAlignment": "center"
                       },
-                      "products": { "__resolveType": "ProductListHome" },
+                      "products": {
+                        "__resolveType": "ProductListHome"
+                      },
                       "cardLayout": {
                         "basics": {
                           "oldPriceSize": "Small",
@@ -997,7 +1307,10 @@
               "backgroundSearch": "#FFFFFF"
             },
             "cardLayout": {
-              "basics": { "oldPriceSize": "Small", "contentAlignment": "Left" },
+              "basics": {
+                "oldPriceSize": "Small",
+                "contentAlignment": "Left"
+              },
               "onMouseOver": {
                 "card": "None",
                 "image": "Change image",
@@ -1013,16 +1326,34 @@
               {
                 "url": "/camisetas",
                 "items": [
-                  { "url": "/camisetas/manga-curta", "label": "MANGA CURTA" },
-                  { "url": "/camisetas/manga-longa", "label": "MANGA LONGA " },
-                  { "url": "/classicas", "label": "CLÁSSICAS" },
-                  { "url": "/camisetas/listras", "label": "LISTRAS" },
+                  {
+                    "url": "/camisetas/manga-curta",
+                    "label": "MANGA CURTA"
+                  },
+                  {
+                    "url": "/camisetas/manga-longa",
+                    "label": "MANGA LONGA "
+                  },
+                  {
+                    "url": "/classicas",
+                    "label": "CLÁSSICAS"
+                  },
+                  {
+                    "url": "/camisetas/listras",
+                    "label": "LISTRAS"
+                  },
                   {
                     "url": "/camisetas/listas-brisa",
                     "label": "LISTRAS BRISA JACQUARD"
                   },
-                  { "url": "/camisetas/basicas", "label": "BÁSICAS" },
-                  { "url": "/camisetas/uv", "label": "UV" }
+                  {
+                    "url": "/camisetas/basicas",
+                    "label": "BÁSICAS"
+                  },
+                  {
+                    "url": "/camisetas/uv",
+                    "label": "UV"
+                  }
                 ],
                 "matcher": "/camisetas",
                 "category": "camisetas"
@@ -1030,9 +1361,18 @@
               {
                 "url": "/shorts",
                 "items": [
-                  { "url": "/shorts/fds", "label": "FDS SHORTS" },
-                  { "url": "/shorts/dads", "label": "DADS SHORTS" },
-                  { "url": "/shorts/velvet", "label": "VELVET SHORTS " },
+                  {
+                    "url": "/shorts/fds",
+                    "label": "FDS SHORTS"
+                  },
+                  {
+                    "url": "/shorts/dads",
+                    "label": "DADS SHORTS"
+                  },
+                  {
+                    "url": "/shorts/velvet",
+                    "label": "VELVET SHORTS "
+                  },
                   {
                     "url": "/shorts/s-de-expedicao",
                     "label": "SHORTS DE EXPEDIÇÃO"
@@ -1044,11 +1384,26 @@
               {
                 "url": "/acessorios",
                 "items": [
-                  { "url": "/acessorios/pochetes", "label": "POCHETE" },
-                  { "url": "/acessorios/shoulder", "label": "SHOULDER" },
-                  { "url": "/acessorios/bolsa", "label": "BOLSAS" },
-                  { "url": "/acessorios/mala", "label": "MALA" },
-                  { "url": "/acessorios/carteiras", "label": "Carteiras" }
+                  {
+                    "url": "/acessorios/pochetes",
+                    "label": "POCHETE"
+                  },
+                  {
+                    "url": "/acessorios/shoulder",
+                    "label": "SHOULDER"
+                  },
+                  {
+                    "url": "/acessorios/bolsa",
+                    "label": "BOLSAS"
+                  },
+                  {
+                    "url": "/acessorios/mala",
+                    "label": "MALA"
+                  },
+                  {
+                    "url": "/acessorios/carteiras",
+                    "label": "Carteiras"
+                  }
                 ],
                 "matcher": "/acessorios",
                 "category": "acessorios"
@@ -1056,10 +1411,22 @@
               {
                 "url": "/bones",
                 "items": [
-                  { "url": "/bones/b-5-panel", "label": "BONÉS 5 PANEL" },
-                  { "url": "/bones/b-tactel", "label": "BONÉS TACTEL" },
-                  { "url": "/bones/b-sarja", "label": "BONÉS SARJA" },
-                  { "url": "/bones/b-classicos", "label": "BONÉS CLÁSSICOS" },
+                  {
+                    "url": "/bones/b-5-panel",
+                    "label": "BONÉS 5 PANEL"
+                  },
+                  {
+                    "url": "/bones/b-tactel",
+                    "label": "BONÉS TACTEL"
+                  },
+                  {
+                    "url": "/bones/b-sarja",
+                    "label": "BONÉS SARJA"
+                  },
+                  {
+                    "url": "/bones/b-classicos",
+                    "label": "BONÉS CLÁSSICOS"
+                  },
                   {
                     "url": "/bones/chapeus-buckets",
                     "label": "chapeus e buckets"
@@ -1071,11 +1438,26 @@
               {
                 "url": "/casacos",
                 "items": [
-                  { "url": "/casacos/windbreaker ", "label": "Windbreakers" },
-                  { "url": "/casacos/jaqueta", "label": "JAQUETAS" },
-                  { "url": "/casacos/fleece", "label": "FLEECES" },
-                  { "url": "/casacos/crewneck", "label": "CREWNECK" },
-                  { "url": "/casacos/moletom", "label": "MOLETOM" }
+                  {
+                    "url": "/casacos/windbreaker ",
+                    "label": "Windbreakers"
+                  },
+                  {
+                    "url": "/casacos/jaqueta",
+                    "label": "JAQUETAS"
+                  },
+                  {
+                    "url": "/casacos/fleece",
+                    "label": "FLEECES"
+                  },
+                  {
+                    "url": "/casacos/crewneck",
+                    "label": "CREWNECK"
+                  },
+                  {
+                    "url": "/casacos/moletom",
+                    "label": "MOLETOM"
+                  }
                 ],
                 "matcher": "/casacos",
                 "category": "casacos"
@@ -1083,13 +1465,22 @@
               {
                 "url": "/calcas",
                 "items": [
-                  { "url": "/calcas/good_times", "label": "Good Times" },
+                  {
+                    "url": "/calcas/good_times",
+                    "label": "Good Times"
+                  },
                   {
                     "url": "/calcas/que-vira-shorts",
                     "label": "Calça Que Vira Shorts"
                   },
-                  { "url": "/calcas/c-velvet ", "label": "Velvet" },
-                  { "url": "/calcas/c-jeans", "label": "Dins" }
+                  {
+                    "url": "/calcas/c-velvet ",
+                    "label": "Velvet"
+                  },
+                  {
+                    "url": "/calcas/c-jeans",
+                    "label": "Dins"
+                  }
                 ],
                 "matcher": "/calcas",
                 "category": "calcas"
@@ -1097,17 +1488,38 @@
               {
                 "url": "/tralhas",
                 "items": [
-                  { "url": "/tralhas/adesivo", "label": "ADESIVOS" },
+                  {
+                    "url": "/tralhas/adesivo",
+                    "label": "ADESIVOS"
+                  },
                   {
                     "url": "/tralhas/strap-de-camera",
                     "label": "STRAPS DE CAMERA"
                   },
-                  { "url": "/tralhas/pijamao", "label": "PIJAMÃO" },
-                  { "url": "/tralhas/copo-e-caneca", "label": "CANECAS" },
-                  { "url": "/tralhas/chaveiro", "label": "CHAVEIROS" },
-                  { "url": "/tralhas/garrafa", "label": "GARRAFAS" },
-                  { "url": "/tralhas/pijamao", "label": "PIJAMÃO" },
-                  { "url": "/tralhas/seda", "label": "SEDAS" }
+                  {
+                    "url": "/tralhas/pijamao",
+                    "label": "PIJAMÃO"
+                  },
+                  {
+                    "url": "/tralhas/copo-e-caneca",
+                    "label": "CANECAS"
+                  },
+                  {
+                    "url": "/tralhas/chaveiro",
+                    "label": "CHAVEIROS"
+                  },
+                  {
+                    "url": "/tralhas/garrafa",
+                    "label": "GARRAFAS"
+                  },
+                  {
+                    "url": "/tralhas/pijamao",
+                    "label": "PIJAMÃO"
+                  },
+                  {
+                    "url": "/tralhas/seda",
+                    "label": "SEDAS"
+                  }
                 ],
                 "matcher": "/tralhas",
                 "category": "tralhas"
@@ -1115,8 +1527,14 @@
               {
                 "url": "/camisas",
                 "items": [
-                  { "url": "/camisas/c-manga-longa", "label": "Manga Longa" },
-                  { "url": "/camisas/c-manga-curta", "label": "Manga Curta" }
+                  {
+                    "url": "/camisas/c-manga-longa",
+                    "label": "Manga Longa"
+                  },
+                  {
+                    "url": "/camisas/c-manga-curta",
+                    "label": "Manga Curta"
+                  }
                 ],
                 "matcher": "/camisas",
                 "category": "camisas"
@@ -1124,31 +1542,72 @@
               {
                 "url": "/tudo",
                 "items": [
-                  { "url": "/tudo/camisetas", "label": "CAMISETAS" },
-                  { "url": "/tudo/camisas", "label": "CAMISAS" },
-                  { "url": "/tudo/casacos", "label": "CASACOS" },
-                  { "url": "/tudo/shorts", "label": "SHORTS" },
-                  { "url": "/calcas", "label": "CALÇAS" },
-                  { "url": "/tudo/bones", "label": "BONÉS" },
+                  {
+                    "url": "/tudo/camisetas",
+                    "label": "CAMISETAS"
+                  },
+                  {
+                    "url": "/tudo/camisas",
+                    "label": "CAMISAS"
+                  },
+                  {
+                    "url": "/tudo/casacos",
+                    "label": "CASACOS"
+                  },
+                  {
+                    "url": "/tudo/shorts",
+                    "label": "SHORTS"
+                  },
+                  {
+                    "url": "/calcas",
+                    "label": "CALÇAS"
+                  },
+                  {
+                    "url": "/tudo/bones",
+                    "label": "BONÉS"
+                  },
                   {
                     "url": "/tudo/chapeus-buckets",
                     "label": "CHAPÉUS E BUCKETS"
                   },
-                  { "url": "/tudo/acessorios", "label": "ACESSÓRIOS " },
-                  { "url": "/tudo/tralhas", "label": "TRALHAS" },
-                  { "url": "/tudo/meia", "label": "MEIAS" }
+                  {
+                    "url": "/tudo/acessorios",
+                    "label": "ACESSÓRIOS "
+                  },
+                  {
+                    "url": "/tudo/tralhas",
+                    "label": "TRALHAS"
+                  },
+                  {
+                    "url": "/tudo/meia",
+                    "label": "MEIAS"
+                  }
                 ],
                 "matcher": "/tudo",
                 "category": "tudo"
               }
             ],
             "textFilters": "FILTROS",
-            "filterColors": { "__resolveType": "Color Map Configuration" },
+            "filterColors": {
+              "__resolveType": "Color Map Configuration"
+            },
             "filtersNames": [
-              { "label": "CORES", "filter": "cor" },
-              { "label": "TAMANHOS", "filter": "property2" },
-              { "label": "TECIDO", "filter": "Tecido" },
-              { "label": "PREÇO", "filter": "faixa-de-preco" }
+              {
+                "label": "CORES",
+                "filter": "cor"
+              },
+              {
+                "label": "TAMANHOS",
+                "filter": "property2"
+              },
+              {
+                "label": "TECIDO",
+                "filter": "Tecido"
+              },
+              {
+                "label": "PREÇO",
+                "filter": "faixa-de-preco"
+              }
             ],
             "__resolveType": "site/sections/Category/CategoryMenu.tsx",
             "labelOrdenation": "ORDENAR",
@@ -1162,7 +1621,9 @@
             "appliedFiltersText": "APLICADOS"
           },
           {
-            "page": { "__resolveType": "PLP Default" },
+            "page": {
+              "__resolveType": "PLP Default"
+            },
             "cardSEO": [],
             "notFound": {
               "Steps": {
@@ -1216,12 +1677,16 @@
                 {
                   "shelf": {
                     "title": "já que estamos aqui, dá uma olhada nisso",
-                    "colors": { "__resolveType": "Color Map Configuration" },
+                    "colors": {
+                      "__resolveType": "Color Map Configuration"
+                    },
                     "layout": {
                       "headerfontSize": "Normal",
                       "headerAlignment": "left"
                     },
-                    "products": { "__resolveType": "ProductListHome" },
+                    "products": {
+                      "__resolveType": "ProductListHome"
+                    },
                     "cardLayout": {
                       "basics": {
                         "oldPriceSize": "Small",
@@ -1250,7 +1715,9 @@
                         "headerfontSize": "Normal",
                         "headerAlignment": "left"
                       },
-                      "products": { "__resolveType": "ProductListHome" },
+                      "products": {
+                        "__resolveType": "ProductListHome"
+                      },
                       "cardLayout": {
                         "basics": {
                           "oldPriceSize": "Small",
@@ -1271,7 +1738,9 @@
                       "headerfontSize": "Normal",
                       "headerAlignment": "center"
                     },
-                    "products": { "__resolveType": "ProductListHome" },
+                    "products": {
+                      "__resolveType": "ProductListHome"
+                    },
                     "cardLayout": {
                       "basics": {
                         "oldPriceSize": "Small",
@@ -1293,7 +1762,9 @@
                         "headerfontSize": "Normal",
                         "headerAlignment": "center"
                       },
-                      "products": { "__resolveType": "ProductListHome" },
+                      "products": {
+                        "__resolveType": "ProductListHome"
+                      },
                       "cardLayout": {
                         "basics": {
                           "oldPriceSize": "Small",
@@ -1337,25 +1808,34 @@
               "backgroundSearch": "#FFFFFF"
             },
             "photoOnPLP": [],
-            "filterColors": { "__resolveType": "Color Map Configuration" },
+            "filterColors": {
+              "__resolveType": "Color Map Configuration"
+            },
             "__resolveType": "site/sections/Product/SearchResult.tsx",
             "buttonsPagination": {
               "labelNext": "próximo",
               "labelPrevious": "anterior",
               "labelButtonTop": "voltar ao topo",
-              "layoutPagination": "Não limitar numeros"
+              "layoutPagination": "Ver mais"
             },
             "showColorVariants": true
           },
           {
-            "behavior": { "type": "scroll", "payload": 200 },
+            "behavior": {
+              "type": "scroll",
+              "payload": 200
+            },
             "sections": [
               {
                 "texts": [],
                 "__resolveType": "site/sections/Content/TextSEO.tsx"
               },
-              { "__resolveType": "Banner Category Grid" },
-              { "__resolveType": "Footer - 01" }
+              {
+                "__resolveType": "Banner Category Grid"
+              },
+              {
+                "__resolveType": "Footer - 01"
+              }
             ],
             "__resolveType": "website/sections/Rendering/Deferred.tsx"
           }
