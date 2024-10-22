@@ -43,9 +43,7 @@ function ProductGallery(
   const line = row === 1 ? 0 : isMobile ? (row - 1) * 2 : (row - 1) * 4;
 
   return (
-    <ul
-      class="grid grid-cols-2 gap-2 items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px]"
-    >
+    <ul class="grid grid-cols-2 gap-2 items-center lg:grid-cols-4 lg:px-[17px] lg:gap-[15px]">
       {products?.map((product, index) => (
         cardSEO && index === 0
           ? (

@@ -89,7 +89,6 @@ export default function PhotoAndProducts(
     productCardLayout?: Layout;
   },
 ) {
-
   if (!products || products.length === 0) {
     return null;
   }

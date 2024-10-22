@@ -11,7 +11,7 @@ interface Props {
   onAddItem: (id: string, additionalProperty: PropertyValue[]) => void;
 }
 
-export default function  SkuSelector(
+export default function SkuSelector(
   {
     variants,
     productID,
