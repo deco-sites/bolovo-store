@@ -1,20 +1,19 @@
 import type { Platform } from "$store/apps/site.ts";
 import { SendEventOnClick } from "$store/components/Analytics.tsx";
 import Avatar from "$store/components/ui/Avatar.tsx";
-import WishlistButton from "$store/islands/WishlistButton.tsx";
-import { formatPrice } from "$store/sdk/format.ts";
-import { useOffer } from "$store/sdk/useOffer.ts";
-import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
-import type { ImageObject, Product } from "apps/commerce/types.ts";
-import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import { Picture, Source } from "apps/website/components/Picture.tsx";
-import { useUI } from "../../sdk/useUI.ts";
+import ColorSelector from "$store/islands/ColorSelector.tsx";
+import ProductMedia from "$store/islands/ProductCardMedia.tsx";
 import QuickShop from "$store/islands/QuickShop.tsx";
+import WishlistButton from "$store/islands/WishlistButton.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
-import Slider from "site/components/ui/Slider.tsx";
-import SliderJS from "site/islands/SliderJS.tsx";
-import { useId } from "site/sdk/useId.ts";
-import Image from "apps/website/components/Image.tsx";
+import { formatPrice } from "$store/sdk/format.ts";
+import { useId } from "$store/sdk/useId.ts";
+import { useOffer } from "$store/sdk/useOffer.ts";
+import { useUI } from "$store/sdk/useUI.ts";
+import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
+import { signal } from "@preact/signals";
+import type { Product } from "apps/commerce/types.ts";
+import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 
 export interface Layout {
   basics?: {
@@ -70,36 +69,6 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-interface DotsProps {
-  images: ImageObject[];
-  interval?: number;
-}
-
-function Dots({ images, interval = 0 }: DotsProps) {
-  return (
-    <>
-      <ul class="carousel justify-center col-span-full gap-2 z-10 row-start-7 bg-transparent">
-        {images?.map((_, index) => (
-          <li class="carousel-item">
-            <Slider.Dot index={index}>
-              <div
-                class={`py-5 ${
-                  ((index === 0) || (index % 4 === 0)) ? "" : "lg:hidden"
-                }`}
-              >
-                <div
-                  class="w-4 h-0.5 group-disabled:opacity-100 opacity-20 rounded-full bg-primary"
-                  style={{ animationDuration: `${interval}s` }}
-                />
-              </div>
-            </Slider.Dot>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
-
 function ProductCard(
   {
     product,
@@ -111,8 +80,8 @@ function ProductCard(
     colorRelated,
     colors,
     showColorVariants,
-    isMobile,
-  }: Props & { isMobile?: boolean },
+    isMobile = false,
+  }: Props & { isMobile: boolean },
 ) {
   const {
     url,
@@ -163,6 +132,12 @@ function ProductCard(
               const colorVariant = {
                 name: parsedValue.name as string,
                 url: relatedProduct.url as string,
+                frontImage: relatedProduct.image
+                  ? relatedProduct.image[0].url as string
+                  : "",
+                backImage: relatedProduct.image
+                  ? relatedProduct.image[1].url as string
+                  : "",
               };
               colorVariants.push(colorVariant);
               break;
@@ -174,6 +149,7 @@ function ProductCard(
       }
     }
   }
+
   const skuSelector = Object.entries(sizeAndLinks).map(([size, link]) => (
     <li>
       <a href={link}>
@@ -184,69 +160,6 @@ function ProductCard(
       </a>
     </li>
   ));
-  const colorSelector =
-    colorVariants?.length && colorVariants.length > 1 && showColorVariants
-      ? (
-        colorVariants.map((colorVariant, index) => {
-          const selectedColor = colors?.find((color) =>
-            color.label.toLowerCase() === colorVariant.name.toLowerCase()
-          );
-          const isSvg = selectedColor?.hex !== undefined;
-          const isImg = selectedColor?.src !== undefined;
-
-          return (
-            <div class="items-center">
-              {index < 4
-                ? (
-                  <li key={index}>
-                    <a href={colorVariant.url}>
-                      <div
-                        class="w-[12px] h-[12px] flex items-center justify-center border"
-                        title={`Cor ${colorVariant.name}`}
-                      >
-                        {isSvg
-                          ? (
-                            // Se a cor for um SVG
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="12"
-                              height="12"
-                              viewBox="0 0 12 12"
-                              fill="none"
-                            >
-                              <rect
-                                x="0"
-                                y="0"
-                                width="12"
-                                height="12"
-                                fill={selectedColor?.hex}
-                              />
-                            </svg>
-                          )
-                          : isImg
-                          ? (
-                            <img
-                              src={selectedColor.src}
-                              alt={`Cor ${colorVariant.name}`}
-                            />
-                          )
-                          : undefined}
-                      </div>
-                    </a>
-                  </li>
-                )
-                : index === 5
-                ? (
-                  <div class="w-[12px] h-[12px] flex items-center justify-center mb-[2px]">
-                    +
-                  </div>
-                )
-                : undefined}
-            </div>
-          );
-        })
-      )
-      : null;
 
   const cta = (
     <a
@@ -257,7 +170,10 @@ function ProductCard(
       {layout?.basics?.ctaText || "Ver produto"}
     </a>
   );
-  const safeSrc = (url?: string) => url ?? "";
+
+  const selectedColorVariant = signal<
+    { name: string; url: string; front: string; back: string } | null
+  >(null);
 
   return (
     <div
@@ -330,112 +246,17 @@ function ProductCard(
           )}
         </div>
         {/* Product Images */}
-        <div
-          id={idSliders}
-          class="lg:hidden h-full grid grid-cols-[48px_1fr_48px] lg:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
-        >
-          <Slider class="h-full w-full carousel carousel-center gap-6 col-span-full row-span-full">
-            {productCardImages?.map((image, index) => (
-              <Slider.Item index={index} class="carousel-item w-full">
-                <a
-                  href={url && relative(url)}
-                  aria-label="view product"
-                  class="h-full grid items-center grid-cols-1 grid-rows-1 w-full relative"
-                >
-                  <Image
-                    preload={index === 0 && preload}
-                    fetchPriority={index === 0 && preload ? "high" : "auto"}
-                    src={safeSrc(image.url)}
-                    width={177}
-                    height={206}
-                    class="mix-blend-multiply bg-white h-full w-full"
-                    alt={front.alternateName}
-                    loading={index === 0 && preload ? "eager" : "lazy"}
-                  />
-                </a>
-              </Slider.Item>
-            ))}
-          </Slider>
-          {layout?.dots &&
-            (
-              <>
-                <div class="absolute bottom-0 z-10 right-[42%] bg-transparent">
-                  <Dots images={productCardImages ?? []} />
-                </div>
-                <SliderJS
-                  rootId={idSliders}
-                  direct
-                />
-              </>
-            )}
-        </div>
-
-        <a
-          href={url && relative(url)}
-          aria-label="view product"
-          class="h-full hidden lg:grid items-center grid-cols-1 grid-rows-1 w-full relative"
-        >
-          {!isMobile && (
-            <Picture preload={preload}>
-              <Source
-                media="(max-width: 1023px)"
-                fetchPriority={preload ? "high" : "auto"}
-                src={safeSrc(front.url)}
-                width={190}
-                height={190}
-              />
-              <Source
-                media="(min-width: 1024px)"
-                fetchPriority={preload ? "high" : "auto"}
-                src={safeSrc(front.url)}
-                width={317}
-                height={317}
-              />
-              <img
-                class={isMobile
-                  ? "mix-blend-multiply bg-white w-full"
-                  : `mix-blend-multiply group-hover:mix-blend-normal bg-white col-span-full row-span-full w-full ${
-                    layout?.onMouseOver?.image === "Zoom image"
-                      ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                      : ""
-                  }`}
-                src={safeSrc(front.url)}
-                alt={front.alternateName}
-                decoding="async"
-                loading={preload ? "eager" : "lazy"}
-              />
-            </Picture>
-          )}
-          {!isMobile && (!layout?.onMouseOver?.image ||
-            layout?.onMouseOver?.image === "Change image") &&
-            (
-              <div class="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity">
-                <Picture preload={preload}>
-                  <Source
-                    media="(max-width: 1023px)"
-                    fetchPriority={"auto"}
-                    src={safeSrc(back?.url ?? front.url)}
-                    width={190}
-                    height={190}
-                  />
-                  <Source
-                    media="(min-width: 1024px)"
-                    fetchPriority={"auto"}
-                    src={safeSrc(back?.url ?? front.url)}
-                    width={290}
-                    height={317}
-                  />
-                  <img
-                    class="h-full bg-white col-span-full row-span-full w-full"
-                    alt={back?.alternateName ?? front.alternateName}
-                    src={safeSrc(back?.url ?? front.url)}
-                    decoding="async"
-                    loading={"lazy"}
-                  />
-                </Picture>
-              </div>
-            )}
-        </a>
+        <ProductMedia
+          idSliders={idSliders}
+          productCardImages={productCardImages || []}
+          url={url || ""}
+          layout={layout}
+          front={front}
+          back={back}
+          isMobile={isMobile}
+          preload={preload}
+          selectedColorVariant={selectedColorVariant}
+        />
         <figcaption
           class={`
           absolute bottom-1 left-0 w-full flex flex-col gap-3 p-2 ${
@@ -501,9 +322,13 @@ function ProductCard(
                 <div>
                   {/* Seletor de Cores */}
                   <div class="group">
-                    <ul class="flex items-center gap-[11px] lg:gap-1 justify-start lg:justify-end">
-                      {colorSelector}
-                    </ul>
+                    <ColorSelector
+                      isMobile={isMobile}
+                      colorVariants={colorVariants}
+                      colors={colors}
+                      showColorVariants={showColorVariants ?? false}
+                      selectedColorVariant={selectedColorVariant}
+                    />
                   </div>
                 </div>
               </div>

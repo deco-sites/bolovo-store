@@ -1,7 +1,8 @@
+import { useDevice } from "@deco/deco/hooks";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
-import ProductCard, { Layout } from "../../components/product/ProductCard.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
+import ProductCard, { Layout } from "../../components/product/ProductCard.tsx";
 export interface ImageAndProducts {
   variant: "1x1" | "2x2" | "2x1";
   /**
@@ -89,6 +90,8 @@ export default function PhotoAndProducts(
     productCardLayout?: Layout;
   },
 ) {
+  const device = useDevice()
+
   if (!products || products.length === 0) {
     return null;
   }
@@ -149,6 +152,7 @@ export default function PhotoAndProducts(
       {products.map((product) => (
         <li class="h-full">
           <ProductCard
+            isMobile={device !== "desktop"}
             layout={productCardLayout}
             product={product}
           />

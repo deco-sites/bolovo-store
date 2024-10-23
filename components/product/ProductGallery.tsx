@@ -7,6 +7,7 @@ import PhotoAndProducts, {
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import type { CardSEO } from "../search/SearchResultMenu.tsx";
 import type { Color } from "$store/loaders/Layouts/ColorMap.tsx";
+import { useDevice } from "@deco/deco/hooks";
 
 export interface Props {
   products: Product[] | null;
@@ -38,6 +39,7 @@ function ProductGallery(
     & { showColorVariants?: boolean }
     & { hasBanner?: boolean },
 ) {
+  const device = useDevice();
   const platform = usePlatform();
   const row: number = photoOnPLP?.line ?? 0;
   const line = row === 1 ? 0 : isMobile ? (row - 1) * 2 : (row - 1) * 4;
@@ -80,7 +82,7 @@ function ProductGallery(
                   preload={false}
                   index={offset ? offset + index : undefined}
                   platform={platform}
-                  isMobile={isMobile}
+                  isMobile={device !== "desktop"}
                   colorRelated={colorVariant
                     ? colorVariant[product.name as string] || []
                     : []}
@@ -102,7 +104,7 @@ function ProductGallery(
                 layout={cardsLayout}
                 index={offset ? offset + index : undefined}
                 platform={platform}
-                isMobile={isMobile}
+                isMobile={device !== "desktop"}
                 colorRelated={colorVariant
                   ? colorVariant[product.name as string] || []
                   : []}

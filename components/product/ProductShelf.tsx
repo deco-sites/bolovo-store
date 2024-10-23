@@ -12,6 +12,7 @@ import { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
+import { useDevice } from "@deco/deco/hooks";
 
 export interface Props {
   /** @format rich-text */
@@ -41,17 +42,15 @@ export interface Props {
 
 export const loader = async (
   props: Props,
-  _req: Request,
-  ctx: AppContext,
 ) => {
   const { showColorVariants } = props;
   let colorRelated: { [productName: string]: Product[] } = {};
 
   if (showColorVariants && props.products) {
     try {
-      colorRelated = await getColorRelatedProducts(props.products, ctx);
+      colorRelated = await getColorRelatedProducts(props.products);
     } catch (error) {
-      console.error("Erro ao obter produtos relacionados por cor:", error);
+      console.error("Shelf - Erro ao obter produtos relacionados por cor:", error);
     }
   }
 
@@ -76,6 +75,7 @@ function ProductShelf(
     & { colorVariant?: { [productName: string]: Product[] } },
 ) {
   const id = useId();
+  const device = useDevice();
   const platform = "vnda";
 
   const shouldShowArrows = ((products?.length || 0) + (seeMore ? 1 : 0)) > 4;
@@ -134,6 +134,7 @@ function ProductShelf(
                 itemListName={title}
                 platform={platform}
                 index={index}
+                isMobile={device !== "desktop"}
                 colorRelated={(colorVariant &&
                   colorVariant[product.name as string]) || []}
                 colors={colors}

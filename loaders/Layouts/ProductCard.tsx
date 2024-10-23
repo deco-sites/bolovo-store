@@ -16,6 +16,7 @@ export const Preview = (props: Props) => {
     <div class="h-full w-full grid place-items-center">
       <div class="max-w-xs">
         <ProductCard
+          isMobile
           layout={layout}
           platform={usePlatform()}
           product={{

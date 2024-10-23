@@ -9,9 +9,9 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
+import { useDevice, usePartialSection } from "@deco/deco/hooks";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import { usePartialSection } from "@deco/deco/hooks";
 /** @titleBy title */
 interface Tab {
   /** @format rich-text */
@@ -34,6 +34,7 @@ function TabbedProductShelf(
   { tabs, title, description, layout, cardLayout, tabIndex }: Props,
 ) {
   const id = useId();
+  const device = useDevice();
   const platform = usePlatform();
   const ti = typeof tabIndex === "number"
     ? Math.min(Math.max(tabIndex, 0), tabs.length)
@@ -75,6 +76,7 @@ function TabbedProductShelf(
               class="carousel-item w-[270px] sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
             >
               <ProductCard
+                isMobile={device !== "desktop"}
                 product={product}
                 itemListName={title}
                 layout={cardLayout}

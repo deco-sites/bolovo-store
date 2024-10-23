@@ -6,6 +6,8 @@ import { ButtonsPaginationProps } from "./ButtonsPagination.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import type { AppContext } from "$store/apps/site.ts";
 import { type SectionProps } from "@deco/deco";
+import { invoke } from "$store/runtime.ts";
+
 /** @titleBy category */
 export interface Category {
   /** @description RegExp to enable this category on the current URL. Use /camisetas to display this on camisetas category  */
@@ -136,7 +138,6 @@ function CategoryResult(props: SectionProps<ReturnType<typeof loader>>) {
 }
 export async function getColorRelatedProducts(
   products: Product[] | undefined,
-  ctx: AppContext,
 ) {
   const colorRelated: {
     [productName: string]: Product[];
@@ -157,9 +158,11 @@ export async function getColorRelatedProducts(
       }
     }
     if (camisetaVariantProperty) {
-      const productList = await ctx.get({
-        "__resolveType": "vnda/loaders/productList.ts",
-        "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }],
+      const productList = await invoke({
+        key: "vnda/loaders/productList.ts",
+        props: {
+          "typeTags": [{ key: "variante_cor", value: camisetaVariantProperty }]
+        }
       });
       if (productList && Array.isArray(productList)) {
         colorRelated[product.name || ""] = productList;
