@@ -89,7 +89,10 @@ function ProductCardMedia(
         class="sm:hidden h-full grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
       >
         <Slider class="h-full w-full carousel carousel-center gap-6 col-span-full row-span-full">
-          {[frontImageUrl, backImageUrl]?.map((image, index) => (
+          {[
+            frontImageUrl ?? safeSrc(front.url),
+            backImageUrl ?? safeSrc(back.url),
+          ]?.map((image, index) => (
             <Slider.Item index={index} class="carousel-item w-full">
               <a
                 href={url && relative(url)}
