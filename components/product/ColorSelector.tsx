@@ -49,7 +49,7 @@ function ColorSelector({
 
   const handleColorSelect = (colorVariant?: ColorVariant) => {
     if (!colorVariant) {
-      selectedColorVariant.value = initialImage.current!;
+      selectedColorVariant.value = null;
       return;
     }
 

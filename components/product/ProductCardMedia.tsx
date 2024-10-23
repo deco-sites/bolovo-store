@@ -72,10 +72,10 @@ function ProductCardMedia(
 
   const frontImageUrl = selectedColorVariant.value
     ? safeSrc(selectedColorVariant.value.front) // Usa o URL da variante selecionada
-    : safeSrc(front.url); // URL padrão do produto
+    : null;
   const backImageUrl = selectedColorVariant.value
     ? safeSrc(selectedColorVariant.value.back) // Usa o URL da variante selecionada
-    : safeSrc(back.url || front.url); // URL padrão do produto
+    : null;
 
   const relative = (url: string) => {
     const link = new URL(url);
@@ -134,14 +134,14 @@ function ProductCardMedia(
             <Source
               media="(max-width: 1023px)"
               fetchPriority={preload ? "high" : "auto"}
-              src={frontImageUrl}
+              src={frontImageUrl ?? safeSrc(front.url)}
               width={190}
               height={190}
             />
             <Source
               media="(min-width: 1024px)"
               fetchPriority={preload ? "high" : "auto"}
-              src={frontImageUrl}
+              src={frontImageUrl ?? safeSrc(front.url)}
               width={317}
               height={317}
             />
@@ -153,7 +153,7 @@ function ProductCardMedia(
                     ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                     : ""
                 }`}
-              src={frontImageUrl}
+              src={frontImageUrl ?? safeSrc(front.url)}
               alt={front.alternateName}
               decoding="async"
               loading={preload ? "eager" : "lazy"}
@@ -168,21 +168,25 @@ function ProductCardMedia(
                 <Source
                   media="(max-width: 1023px)"
                   fetchPriority={"auto"}
-                  src={safeSrc(backImageUrl ?? frontImageUrl)}
+                  src={safeSrc(
+                    frontImageUrl ?? safeSrc(back.url) ?? safeSrc(front.url),
+                  )}
                   width={190}
                   height={190}
                 />
                 <Source
                   media="(min-width: 1024px)"
                   fetchPriority={"auto"}
-                  src={safeSrc(backImageUrl ?? frontImageUrl)}
+                  src={safeSrc(
+                    frontImageUrl ?? safeSrc(back.url) ?? safeSrc(front.url),
+                  )}
                   width={290}
                   height={317}
                 />
                 <img
                   class="h-full bg-base-100 col-span-full row-span-full w-full"
                   alt={back?.alternateName ?? front.alternateName}
-                  src={safeSrc(backImageUrl ?? frontImageUrl)}
+                  src={safeSrc(frontImageUrl ?? safeSrc(back.url || front.url))}
                   decoding="async"
                   loading={"lazy"}
                 />
