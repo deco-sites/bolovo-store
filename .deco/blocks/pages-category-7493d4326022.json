@@ -1809,7 +1809,8 @@
             },
             "photoOnPLP": [],
             "filterColors": {
-              "__resolveType": "Color Map Configuration"
+              "__resolveType": "site/loaders/Layouts/ColorMap.tsx",
+              "colors": []
             },
             "__resolveType": "site/sections/Product/SearchResult.tsx",
             "buttonsPagination": {
