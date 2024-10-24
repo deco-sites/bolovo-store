@@ -1588,9 +1588,6 @@
               }
             ],
             "textFilters": "FILTROS",
-            "filterColors": {
-              "__resolveType": "Color Map Configuration"
-            },
             "filtersNames": [
               {
                 "label": "CORES",
@@ -1808,10 +1805,6 @@
               "backgroundSearch": "#FFFFFF"
             },
             "photoOnPLP": [],
-            "filterColors": {
-              "__resolveType": "site/loaders/Layouts/ColorMap.tsx",
-              "colors": []
-            },
             "__resolveType": "site/sections/Product/SearchResult.tsx",
             "buttonsPagination": {
               "labelNext": "próximo",
