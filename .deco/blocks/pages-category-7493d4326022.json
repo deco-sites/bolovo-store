@@ -1813,7 +1813,9 @@
               "layoutPagination": "Não limitar numeros"
             },
             "showColorVariants": true,
-            "filterColors": []
+            "filterColors": {
+              "__resolveType": "Color Map Configuration"
+            }
           },
           {
             "behavior": {
