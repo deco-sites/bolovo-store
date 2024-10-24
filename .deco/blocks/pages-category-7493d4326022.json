@@ -1812,7 +1812,8 @@
               "labelButtonTop": "voltar ao topo",
               "layoutPagination": "Não limitar numeros"
             },
-            "showColorVariants": true
+            "showColorVariants": true,
+            "filterColors": []
           },
           {
             "behavior": {
