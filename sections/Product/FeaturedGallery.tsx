@@ -5,6 +5,7 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { getColorRelatedProducts } from "../../components/search/CategoryMenu.tsx";
+import { AppContext } from "site/apps/site.ts";
 
 export interface Props {
   /** @format rich-text */
@@ -51,13 +52,15 @@ export function LoadingFallback() {
 
 export const loader = async (
   props: Props,
+  _req: Request,
+  ctx: AppContext,
 ) => {
   const { showColorVariants } = props;
   let colorRelated: { [productName: string]: Product[] } = {};
 
   if (showColorVariants && props.products) {
     try {
-      colorRelated = await getColorRelatedProducts(props.products);
+      colorRelated = await getColorRelatedProducts(props.products, ctx);
     } catch (error) {
       console.error(
         "Featured - Erro ao obter produtos relacionados por cor:",

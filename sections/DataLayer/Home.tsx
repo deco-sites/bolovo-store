@@ -1,6 +1,6 @@
 import { SendEventOnLoad } from "site/components/Analytics.tsx";
 
-export default function Home() {
+function Home() {
   return (
     <SendEventOnLoad
       event={{
@@ -9,3 +9,5 @@ export default function Home() {
     />
   );
 }
+
+export default Home;

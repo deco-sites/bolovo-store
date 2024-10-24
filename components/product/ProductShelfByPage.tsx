@@ -14,6 +14,7 @@ import { useDevice } from "@deco/deco/hooks";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import { getColorRelatedProducts } from "../search/CategoryMenu.tsx";
+import { AppContext } from "site/apps/site.ts";
 export interface Shelf {
   /** @format rich-text */
   title?: string;
@@ -39,7 +40,7 @@ export interface ShelfProps {
 export interface Props {
   shelfs: ShelfProps[];
 }
-export const loader = async (props: Props, req: Request) => {
+export const loader = async (props: Props, req: Request, ctx: AppContext) => {
   const { shelfs } = props;
   const shelf = shelfs?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
@@ -49,7 +50,7 @@ export const loader = async (props: Props, req: Request) => {
   } = {};
   if (shelf?.shelf.showColorVariants && shelf?.shelf.products) {
     try {
-      colorRelated = await getColorRelatedProducts(shelf?.shelf.products);
+      colorRelated = await getColorRelatedProducts(shelf?.shelf.products, ctx);
     } catch (error) {
       console.error(
         "ByPage - Erro ao obter produtos relacionados por cor:",

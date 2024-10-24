@@ -49,7 +49,7 @@ export const loader = async (props: Props, _req: Request, ctx: AppContext) => {
 
   if (showColorVariants) {
     try {
-      colorRelated = await getColorRelatedProducts(data);
+      colorRelated = await getColorRelatedProducts(data, ctx);
     } catch (error) {
       console.error("Related - Erro ao obter produtos relacionados por cor:", error);
     }
